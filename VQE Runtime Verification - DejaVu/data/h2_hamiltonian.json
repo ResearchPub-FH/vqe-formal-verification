@@ -1,0 +1,11 @@
+{
+  "schema_version": 1,
+  "coeff_scale": 10000,
+  "terms": [
+    {"term_id": "t0", "pauli": "YZ", "coeff_int": 3980},
+    {"term_id": "t1", "pauli": "ZI", "coeff_int": -3980},
+    {"term_id": "t2", "pauli": "ZZ", "coeff_int": -113},
+    {"term_id": "t3", "pauli": "XX", "coeff_int": 1810}
+  ]
+}
+

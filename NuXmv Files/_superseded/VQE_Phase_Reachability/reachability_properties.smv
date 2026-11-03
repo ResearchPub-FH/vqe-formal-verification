@@ -1,0 +1,7 @@
+-- Reference property fragment; commands inject these queries without editing a model.
+CTLSPEC NAME reachable_bind := EF (state = BIND);
+CTLSPEC NAME reachable_measure := EF (state = EXECUTE_MEASURE);
+CTLSPEC NAME reachable_aggregate := EF (state = COMPUTE_ENERGY);
+CTLSPEC NAME reachable_check_stop := EF (state = CHECK_STOP);
+CTLSPEC NAME reachable_optimize := EF (state = OPTIMIZER_STEP);
+CTLSPEC NAME reachable_done := EF (state = DONE);

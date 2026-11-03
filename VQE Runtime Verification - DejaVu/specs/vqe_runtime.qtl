@@ -1,0 +1,398 @@
+// Three-level runtime contracts for one sequential VQE run.
+// Python certifies arithmetic; DejaVu checks causal and relational use.
+
+// Intra-iteration: was this individual evaluation executed correctly?
+
+prop intra_bindingAfterStart :
+  Forall r . Forall c . Forall k . Forall e . Forall t .
+    (parametersBound(r,c,k,e,t) ->
+      (P firstIterationStarted(r,c,k,e,t) |
+       (Exists pe . P nextIterationStarted(r,c,k,e,pe,t))))
+
+prop intra_bindingOnce :
+  Forall r . Forall c . Forall k . Forall e . Forall t .
+    (parametersBound(r,c,k,e,t) -> !(@ P parametersBound(r,c,k,e,t)))
+
+prop intra_submitAfterBinding :
+  Forall r . Forall c . Forall k . Forall e . Forall s . Forall t .
+    (jobSubmitIntent(r,c,k,e,s,t) -> P parametersBound(r,c,k,e,t))
+
+prop intra_termExpectedAfterBinding :
+  Forall r . Forall c . Forall k . Forall e . Forall s . Forall term .
+    (termExpected(r,c,k,e,s,term) ->
+      Exists t . P parametersBound(r,c,k,e,t))
+
+prop intra_oneSubmissionPerIteration :
+  Forall r . Forall c . Forall k . Forall e . Forall s . Forall t .
+    (jobSubmitIntent(r,c,k,e,s,t) ->
+      !(Exists oldS . Exists oldT . @ P jobSubmitIntent(r,c,k,e,oldS,oldT)))
+
+prop intra_submittedAfterIntent :
+  Forall r . Forall c . Forall k . Forall e . Forall s . Forall j . Forall t .
+    (jobSubmitted(r,c,k,e,s,j,t) -> P jobSubmitIntent(r,c,k,e,s,t))
+
+prop intra_submittedOnce :
+  Forall r . Forall c . Forall k . Forall e . Forall s . Forall j . Forall t .
+    (jobSubmitted(r,c,k,e,s,j,t) ->
+      !(Exists oldS . Exists oldJ . Exists oldT .
+        @ P jobSubmitted(r,c,k,e,oldS,oldJ,oldT)))
+
+prop intra_termDeclaredOnce :
+  Forall r . Forall c . Forall k . Forall e . Forall s . Forall term .
+    (termExpected(r,c,k,e,s,term) ->
+      !(Exists oldS . @ P termExpected(r,c,k,e,oldS,term)))
+
+prop intra_termWasDeclared :
+  Forall r . Forall c . Forall k . Forall e . Forall s . Forall j . Forall term . Forall t .
+    (termObserved(r,c,k,e,s,j,term,t) -> P termExpected(r,c,k,e,s,term))
+
+prop intra_termAfterSubmission :
+  Forall r . Forall c . Forall k . Forall e . Forall s . Forall j . Forall term . Forall t .
+    (termObserved(r,c,k,e,s,j,term,t) -> P jobSubmitted(r,c,k,e,s,j,t))
+
+prop intra_termObservedOnce :
+  Forall r . Forall c . Forall k . Forall e . Forall s . Forall j . Forall term . Forall t .
+    (termObserved(r,c,k,e,s,j,term,t) ->
+      !(Exists oldJ . Exists oldT . @ P termObserved(r,c,k,e,s,oldJ,term,oldT)))
+
+prop intra_sealAfterSubmission :
+  Forall r . Forall c . Forall k . Forall e . Forall s .
+    (measurementsSealed(r,c,k,e,s) ->
+      Exists j . Exists t . P jobSubmitted(r,c,k,e,s,j,t))
+
+prop intra_allDeclaredTermsObserved :
+  Forall r . Forall c . Forall k . Forall e . Forall s . Forall term .
+    (measurementsSealed(r,c,k,e,s) ->
+      (P termExpected(r,c,k,e,s,term) ->
+       Exists j . Exists t . P termObserved(r,c,k,e,s,j,term,t)))
+
+prop intra_sealOnce :
+  Forall r . Forall c . Forall k . Forall e . Forall s .
+    (measurementsSealed(r,c,k,e,s) -> !(@ P measurementsSealed(r,c,k,e,s)))
+
+prop intra_energyAfterSeal :
+  Forall r . Forall c . Forall k . Forall e . Forall energy . Forall t .
+    (numericValid(r,c,k,e,energy,t) ->
+      Exists s . P measurementsSealed(r,c,k,e,s))
+
+prop intra_energyOnce :
+  Forall r . Forall c . Forall k . Forall e . Forall energy . Forall t .
+    (numericValid(r,c,k,e,energy,t) ->
+      !(Exists oldEnergy . Exists oldT . @ P numericValid(r,c,k,e,oldEnergy,oldT)))
+
+prop intra_firstCheckAfterEnergy :
+  Forall r . Forall c . Forall k . Forall e . Forall energy . Forall t . Forall result .
+    (firstConvergenceChecked(r,c,k,e,energy,t,result) ->
+      P numericValid(r,c,k,e,energy,t))
+
+prop intra_nextCheckAfterEnergy :
+  Forall r . Forall c . Forall k . Forall e . Forall energy . Forall t . Forall pe . Forall previousEnergy . Forall result .
+    (nextConvergenceChecked(r,c,k,e,energy,t,pe,previousEnergy,result) ->
+      P numericValid(r,c,k,e,energy,t))
+
+prop intra_firstCheckOnce :
+  Forall r . Forall c . Forall k . Forall e . Forall energy . Forall t . Forall result .
+    (firstConvergenceChecked(r,c,k,e,energy,t,result) ->
+      (!(Exists oldEnergy . Exists oldT . Exists oldResult .
+          @ P firstConvergenceChecked(r,c,k,e,oldEnergy,oldT,oldResult)) &
+       !(Exists oldEnergy . Exists oldT . Exists pe . Exists previousEnergy . Exists oldResult .
+          @ P nextConvergenceChecked(r,c,k,e,oldEnergy,oldT,pe,previousEnergy,oldResult))))
+
+prop intra_nextCheckOnce :
+  Forall r . Forall c . Forall k . Forall e . Forall energy . Forall t . Forall pe . Forall previousEnergy . Forall result .
+    (nextConvergenceChecked(r,c,k,e,energy,t,pe,previousEnergy,result) ->
+      (!(Exists oldEnergy . Exists oldT . Exists oldResult .
+          @ P firstConvergenceChecked(r,c,k,e,oldEnergy,oldT,oldResult)) &
+       !(Exists oldEnergy . Exists oldT . Exists oldPe . Exists oldPreviousEnergy . Exists oldResult .
+          @ P nextConvergenceChecked(r,c,k,e,oldEnergy,oldT,oldPe,oldPreviousEnergy,oldResult))))
+
+prop intra_passAfterCheck :
+  Forall r . Forall c . Forall k . Forall e . Forall energy .
+    (iterationPass(r,c,k,e,energy) ->
+      ((Exists t . Exists result . P firstConvergenceChecked(r,c,k,e,energy,t,result)) |
+       (Exists t . Exists pe . Exists previousEnergy . Exists result .
+          P nextConvergenceChecked(r,c,k,e,energy,t,pe,previousEnergy,result))))
+
+prop intra_passOnce :
+  Forall r . Forall c . Forall k . Forall e . Forall energy .
+    (iterationPass(r,c,k,e,energy) ->
+      !(Exists oldEnergy . @ P iterationPass(r,c,k,e,oldEnergy)))
+
+prop intra_releaseAfterPass :
+  Forall r . Forall c . Forall k . Forall e . Forall energy .
+    (objectiveReleaseIntent(r,c,k,e,energy) -> P iterationPass(r,c,k,e,energy))
+
+prop intra_releaseOnce :
+  Forall r . Forall c . Forall k . Forall e . Forall energy .
+    (objectiveReleaseIntent(r,c,k,e,energy) ->
+      !(Exists oldEnergy . @ P objectiveReleaseIntent(r,c,k,e,oldEnergy)))
+
+prop intra_closeAfterRelease :
+  Forall r . Forall c . Forall k . Forall e . Forall energy . Forall t . Forall result . Forall nextT .
+    (iterationClosed(r,c,k,e,energy,t,result,nextT) ->
+      P objectiveReleaseIntent(r,c,k,e,energy))
+
+prop intra_abortAfterFailure :
+  Forall r . Forall c . Forall k . Forall e . Forall code .
+    (iterationAborted(r,c,k,e,code) -> P criticalFail(r,c,k,e,code))
+
+// Inter-iteration: did the optimization history evolve coherently?
+
+prop inter_askTellProtocolConfiguredOnce :
+  Forall r . Forall c .
+    (optimizerAskTellConfigured(r,c) ->
+      (P runStarted(r,c) &
+       !(@ P optimizerAskTellConfigured(r,c)) &
+       !(@ P optimizerOpaqueConfigured(r,c))))
+
+prop inter_opaqueProtocolConfiguredOnce :
+  Forall r . Forall c .
+    (optimizerOpaqueConfigured(r,c) ->
+      (P runStarted(r,c) &
+       !(@ P optimizerAskTellConfigured(r,c)) &
+       !(@ P optimizerOpaqueConfigured(r,c))))
+
+prop inter_askTellIntentUsesConfiguredProtocol :
+  Forall r . Forall c . Forall k . Forall e . Forall nextT .
+    (optimizerUpdateIntent(r,c,k,e,nextT) ->
+      P optimizerAskTellConfigured(r,c))
+
+prop inter_askTellUpdateUsesConfiguredProtocol :
+  Forall r . Forall c . Forall k . Forall e . Forall nextT .
+    (optimizerUpdated(r,c,k,e,nextT) ->
+      P optimizerAskTellConfigured(r,c))
+
+prop inter_opaqueAdvanceUsesConfiguredProtocol :
+  Forall r . Forall c . Forall k . Forall e . Forall nextT .
+    (opaqueOptimizerAdvanced(r,c,k,e,nextT) ->
+      P optimizerOpaqueConfigured(r,c))
+
+prop inter_firstIterationAfterConfiguredProtocol :
+  Forall r . Forall c . Forall k . Forall e . Forall t .
+    (firstIterationStarted(r,c,k,e,t) ->
+      (P optimizerAskTellConfigured(r,c) |
+       P optimizerOpaqueConfigured(r,c)))
+
+prop inter_nextIterationAfterConfiguredProtocol :
+  Forall r . Forall c . Forall k . Forall e . Forall pe . Forall t .
+    (nextIterationStarted(r,c,k,e,pe,t) ->
+      (P optimizerAskTellConfigured(r,c) |
+       P optimizerOpaqueConfigured(r,c)))
+
+prop inter_firstEvaluationIdentityUnique :
+  Forall r . Forall c . Forall k . Forall e . Forall t .
+    (firstIterationStarted(r,c,k,e,t) ->
+      (!(Exists oldK . Exists oldT . @ P firstIterationStarted(r,c,oldK,e,oldT)) &
+       !(Exists oldK . Exists pe . Exists oldT .
+          @ P nextIterationStarted(r,c,oldK,e,pe,oldT))))
+
+prop inter_nextEvaluationIdentityUnique :
+  Forall r . Forall c . Forall k . Forall e . Forall pe . Forall t .
+    (nextIterationStarted(r,c,k,e,pe,t) ->
+      (!(Exists oldK . Exists oldT . @ P firstIterationStarted(r,c,oldK,e,oldT)) &
+       !(Exists oldK . Exists oldPe . Exists oldT .
+          @ P nextIterationStarted(r,c,oldK,e,oldPe,oldT))))
+
+prop inter_submissionIdentityUnique :
+  Forall r . Forall c . Forall k . Forall e . Forall s . Forall t .
+    (jobSubmitIntent(r,c,k,e,s,t) ->
+      !(Exists oldK . Exists oldE . Exists oldT .
+        @ P jobSubmitIntent(r,c,oldK,oldE,s,oldT)))
+
+prop inter_backendJobIdentityUnique :
+  Forall r . Forall c . Forall k . Forall e . Forall s . Forall j . Forall t .
+    (jobSubmitted(r,c,k,e,s,j,t) ->
+      !(Exists oldK . Exists oldE . Exists oldS . Exists oldT .
+        @ P jobSubmitted(r,c,oldK,oldE,oldS,j,oldT)))
+
+prop inter_nextAfterPreviousClose :
+  Forall r . Forall c . Forall k . Forall e . Forall pe . Forall t .
+    (nextIterationStarted(r,c,k,e,pe,t) ->
+      ((Exists pk . Exists previousEnergy . Exists previousT . Exists previousResult .
+          P iterationClosed(r,c,pk,pe,previousEnergy,previousT,previousResult,t)) |
+       (Exists pk . Exists previousEnergy . Exists previousT . Exists previousResult . Exists oldNextT .
+          (P iterationClosed(r,c,pk,pe,previousEnergy,previousT,previousResult,oldNextT) &
+           P opaqueOptimizerAdvanced(r,c,pk,pe,t)))))
+
+prop inter_nextAfterOptimizerUpdate :
+  Forall r . Forall c . Forall k . Forall e . Forall pe . Forall t .
+    (nextIterationStarted(r,c,k,e,pe,t) ->
+      ((Exists pk . P optimizerUpdated(r,c,pk,pe,t)) |
+       (Exists pk . P opaqueOptimizerAdvanced(r,c,pk,pe,t))))
+
+prop inter_opaqueAdvanceAfterClose :
+  Forall r . Forall c . Forall k . Forall e . Forall nextT .
+    (opaqueOptimizerAdvanced(r,c,k,e,nextT) ->
+      (Exists energy . Exists t . Exists result . Exists oldNextT .
+        P iterationClosed(r,c,k,e,energy,t,result,oldNextT)))
+
+prop inter_opaqueAdvanceOnce :
+  Forall r . Forall c . Forall k . Forall e . Forall nextT .
+    (opaqueOptimizerAdvanced(r,c,k,e,nextT) ->
+      !(Exists oldNextT . @ P opaqueOptimizerAdvanced(r,c,k,e,oldNextT)))
+
+prop inter_opaqueAdvanceBeforeLimit :
+  Forall r . Forall c . Forall k . Forall e . Forall nextT .
+    (opaqueOptimizerAdvanced(r,c,k,e,nextT) ->
+      !(@ P iterationLimitReached(r,c,k,e)))
+
+prop inter_updateIntentAfterRelease :
+  Forall r . Forall c . Forall k . Forall e . Forall nextT .
+    (optimizerUpdateIntent(r,c,k,e,nextT) ->
+      Exists energy . P objectiveReleaseIntent(r,c,k,e,energy))
+
+prop inter_updateIntentOnce :
+  Forall r . Forall c . Forall k . Forall e . Forall nextT .
+    (optimizerUpdateIntent(r,c,k,e,nextT) ->
+      !(Exists oldNextT . @ P optimizerUpdateIntent(r,c,k,e,oldNextT)))
+
+prop inter_updateOnlyWhenNotConverged :
+  Forall r . Forall c . Forall k . Forall e . Forall nextT .
+    (optimizerUpdateIntent(r,c,k,e,nextT) ->
+      Exists energy . P convergenceFalse(r,c,k,e,energy))
+
+prop inter_updatedAfterIntent :
+  Forall r . Forall c . Forall k . Forall e . Forall nextT .
+    (optimizerUpdated(r,c,k,e,nextT) -> P optimizerUpdateIntent(r,c,k,e,nextT))
+
+prop inter_updateAppliedOnce :
+  Forall r . Forall c . Forall k . Forall e . Forall nextT .
+    (optimizerUpdated(r,c,k,e,nextT) -> !(@ P optimizerUpdated(r,c,k,e,nextT)))
+
+prop inter_previousEnergyIsLastCheckpoint :
+  Forall r . Forall c . Forall k . Forall e . Forall energy . Forall t . Forall pe . Forall previousEnergy . Forall result .
+    (nextConvergenceChecked(r,c,k,e,energy,t,pe,previousEnergy,result) ->
+      (Exists pk . Exists previousT . Exists previousResult . Exists nextT .
+        P iterationClosed(r,c,pk,pe,previousEnergy,previousT,previousResult,nextT)))
+
+prop inter_iterationClosedOnce :
+  Forall r . Forall c . Forall k . Forall e . Forall energy . Forall t . Forall result . Forall nextT .
+    (iterationClosed(r,c,k,e,energy,t,result,nextT) ->
+      !(Exists oldEnergy . Exists oldT . Exists oldResult . Exists oldNextT .
+        @ P iterationClosed(r,c,k,e,oldEnergy,oldT,oldResult,oldNextT)))
+
+prop inter_closeAfterCommittedUpdate :
+  Forall r . Forall c . Forall k . Forall e . Forall energy . Forall t . Forall result . Forall nextT .
+    (iterationClosed(r,c,k,e,energy,t,result,nextT) ->
+      (P optimizerUpdateIntent(r,c,k,e,nextT) ->
+       P optimizerUpdated(r,c,k,e,nextT)))
+
+prop run_iterationLimitOnce :
+  Forall r . Forall c . Forall k . Forall e .
+    (iterationLimitReached(r,c,k,e) ->
+      !(@ P iterationLimitReached(r,c,k,e)))
+
+// Run level: did the finite run obey lifecycle and termination protocol?
+
+prop run_startOnce :
+  Forall r . Forall c .
+    (runStarted(r,c) -> !(Exists oldC . @ P runStarted(r,oldC)))
+
+prop run_activityAfterMatchingStart :
+  Forall r . Forall c . Forall kind .
+    (activity(r,c,kind) -> P runStarted(r,c))
+
+prop run_noActivityAfterTerminal :
+  Forall r . Forall c . Forall kind .
+    (activity(r,c,kind) ->
+      (!(Exists k . Exists e . Exists energy . @ P runConverged(r,c,k,e,energy)) &
+       !(Exists k . Exists e . Exists energy . @ P runMaxIterations(r,c,k,e,energy)) &
+       !(Exists k . Exists e . Exists energy . @ P runOptimizerStopped(r,c,k,e,energy)) &
+       !(Exists k . Exists e . Exists code . @ P runAborted(r,c,k,e,code))))
+
+prop run_noActivityAfterClose :
+  Forall r . Forall c . Forall kind .
+    (activity(r,c,kind) -> !(@ P runClosed(r,c)))
+
+prop run_convergedAfterTrueClose :
+  Forall r . Forall c . Forall k . Forall e . Forall energy .
+    (runConverged(r,c,k,e,energy) ->
+      (P convergenceTrue(r,c,k,e,energy) &
+       (Exists t . Exists result . Exists nextT .
+          P iterationClosed(r,c,k,e,energy,t,result,nextT))))
+
+prop run_maxAfterLimitAndFalseClose :
+  Forall r . Forall c . Forall k . Forall e . Forall energy .
+    (runMaxIterations(r,c,k,e,energy) ->
+      (P iterationLimitReached(r,c,k,e) &
+       P convergenceFalse(r,c,k,e,energy) &
+       (Exists t . Exists result . Exists nextT .
+          P iterationClosed(r,c,k,e,energy,t,result,nextT))))
+
+prop run_optimizerStopAfterFalseClose :
+  Forall r . Forall c . Forall k . Forall e . Forall energy .
+    (runOptimizerStopped(r,c,k,e,energy) ->
+      (P convergenceFalse(r,c,k,e,energy) &
+       !(@ P iterationLimitReached(r,c,k,e)) &
+       (Exists t . Exists result . Exists nextT .
+          P iterationClosed(r,c,k,e,energy,t,result,nextT))))
+
+prop run_abortAfterFailure :
+  Forall r . Forall c . Forall k . Forall e . Forall code .
+    (runAborted(r,c,k,e,code) -> P criticalFail(r,c,k,e,code))
+
+prop run_normalTerminalWithoutFailure :
+  Forall r . Forall c . Forall k . Forall e . Forall energy .
+    ((runConverged(r,c,k,e,energy) |
+      runMaxIterations(r,c,k,e,energy) |
+      runOptimizerStopped(r,c,k,e,energy)) ->
+      !(Exists failedK . Exists failedE . Exists code .
+        @ P criticalFail(r,c,failedK,failedE,code)))
+
+prop run_failureRequiresAbortAtClose :
+  Forall r . Forall c .
+    (runClosed(r,c) ->
+      ((Exists failedK . Exists failedE . Exists code .
+          P criticalFail(r,c,failedK,failedE,code)) ->
+       (Exists abortK . Exists abortE . Exists abortCode .
+          P runAborted(r,c,abortK,abortE,abortCode))))
+
+prop run_convergedIsFirstTerminal :
+  Forall r . Forall c . Forall k . Forall e . Forall energy .
+    (runConverged(r,c,k,e,energy) ->
+      (!(Exists oldK . Exists oldE . Exists oldEnergy . @ P runConverged(r,c,oldK,oldE,oldEnergy)) &
+       !(Exists oldK . Exists oldE . Exists oldEnergy . @ P runMaxIterations(r,c,oldK,oldE,oldEnergy)) &
+       !(Exists oldK . Exists oldE . Exists oldEnergy . @ P runOptimizerStopped(r,c,oldK,oldE,oldEnergy)) &
+       !(Exists oldK . Exists oldE . Exists code . @ P runAborted(r,c,oldK,oldE,code))))
+
+prop run_maxIsFirstTerminal :
+  Forall r . Forall c . Forall k . Forall e . Forall energy .
+    (runMaxIterations(r,c,k,e,energy) ->
+      (!(Exists oldK . Exists oldE . Exists oldEnergy . @ P runConverged(r,c,oldK,oldE,oldEnergy)) &
+       !(Exists oldK . Exists oldE . Exists oldEnergy . @ P runMaxIterations(r,c,oldK,oldE,oldEnergy)) &
+       !(Exists oldK . Exists oldE . Exists oldEnergy . @ P runOptimizerStopped(r,c,oldK,oldE,oldEnergy)) &
+       !(Exists oldK . Exists oldE . Exists code . @ P runAborted(r,c,oldK,oldE,code))))
+
+prop run_optimizerStopIsFirstTerminal :
+  Forall r . Forall c . Forall k . Forall e . Forall energy .
+    (runOptimizerStopped(r,c,k,e,energy) ->
+      (!(Exists oldK . Exists oldE . Exists oldEnergy . @ P runConverged(r,c,oldK,oldE,oldEnergy)) &
+       !(Exists oldK . Exists oldE . Exists oldEnergy . @ P runMaxIterations(r,c,oldK,oldE,oldEnergy)) &
+       !(Exists oldK . Exists oldE . Exists oldEnergy . @ P runOptimizerStopped(r,c,oldK,oldE,oldEnergy)) &
+       !(Exists oldK . Exists oldE . Exists code . @ P runAborted(r,c,oldK,oldE,code))))
+
+prop run_abortIsFirstTerminal :
+  Forall r . Forall c . Forall k . Forall e . Forall code .
+    (runAborted(r,c,k,e,code) ->
+      (!(Exists oldK . Exists oldE . Exists oldEnergy . @ P runConverged(r,c,oldK,oldE,oldEnergy)) &
+       !(Exists oldK . Exists oldE . Exists oldEnergy . @ P runMaxIterations(r,c,oldK,oldE,oldEnergy)) &
+       !(Exists oldK . Exists oldE . Exists oldEnergy . @ P runOptimizerStopped(r,c,oldK,oldE,oldEnergy)) &
+       !(Exists oldK . Exists oldE . Exists oldCode . @ P runAborted(r,c,oldK,oldE,oldCode))))
+
+prop run_closeAfterTerminal :
+  Forall r . Forall c .
+    (runClosed(r,c) ->
+      ((Exists k . Exists e . Exists energy . P runConverged(r,c,k,e,energy)) |
+       (Exists k . Exists e . Exists energy . P runMaxIterations(r,c,k,e,energy)) |
+       (Exists k . Exists e . Exists energy . P runOptimizerStopped(r,c,k,e,energy)) |
+       (Exists k . Exists e . Exists code . P runAborted(r,c,k,e,code))))
+
+prop run_closeAfterOptimizerProtocol :
+  Forall r . Forall c .
+    (runClosed(r,c) ->
+      (P optimizerAskTellConfigured(r,c) |
+       P optimizerOpaqueConfigured(r,c)))
+
+prop run_closeOnce :
+  Forall r . Forall c .
+    (runClosed(r,c) -> !(@ P runClosed(r,c)))

@@ -1,0 +1,178 @@
+*** This is nuXmv 2.1.0 (compiled on Fri Nov 29 09:05:38 2024)
+*** Copyright (c) 2014-2024, Fondazione Bruno Kessler
+*** For more information on nuXmv see https://nuxmv.fbk.eu
+*** or email to <nuxmv@fbk.eu>.
+*** Please report bugs at Please report bugs to <nusmv-users@fbk.eu>
+*** (click on "Login Anonymously" to access)
+*** Alternatively write to <nuxmv@fbk.eu>.
+
+*** This version of nuXmv is linked to NuSMV 2.7.0.
+*** For more information on NuSMV see <http://nusmv.fbk.eu>
+*** or email to <nusmv-users@fbk.eu>.
+*** Copyright (C) 2010-2024, Fondazione Bruno Kessler
+
+*** This version of nuXmv is linked to the CUDD library version 2.4.1
+*** Copyright (c) 1995-2004, Regents of the University of Colorado
+
+*** This version of nuXmv is linked to the MiniSat SAT solver. 
+*** See http://minisat.se/MiniSat.html
+*** Copyright (c) 2003-2006, Niklas Een, Niklas Sorensson
+*** Copyright (c) 2007-2010, Niklas Sorensson
+
+*** This version of nuXmv is linked to MathSAT
+*** Copyright (C) 2009-2019 by Fondazione Bruno Kessler
+*** Copyright (C) 2009-2019 by University of Trento and others
+*** See http://mathsat.fbk.eu
+
+-- specification AG (!terminal -> AF terminal)  is true
+-- specification AG (state = DONE -> AX state = DONE)  is true
+-- specification AG (state = ABORT -> AX state = ABORT)  is true
+-- specification  G (((state = CHECK_STOP & !converged) & iter < MAX_ITERS) ->  X (state = BIND & cands_done = 0))  is true
+-- specification  G ((next(iter) = iter | next(iter) = iter + 1) & (next(iter) = iter + 1 <-> (state = OPTIMIZER_STEP & !optimizer_error)))  is true
+-- specification  G ((!terminal &  X state = ABORT) -> error)  is true
+-- specification  G ((state = CHECK_STOP & converged) ->  X (state = DONE & term_reason = DONE_CONVERGED))  is true
+-- specification  G (((state = CHECK_STOP & !converged) & iter = MAX_ITERS) ->  X (state = DONE & term_reason = DONE_MAX_ITERS))  is true
+-- specification  G (bind_fails ->  X (state = ABORT & term_reason = ABORT_BIND_ERROR))  is true
+-- specification  G (measure_fails ->  X (state = ABORT & term_reason = ABORT_QPU_ERROR))  is true
+-- specification  G (energy_fails ->  X (state = ABORT & term_reason = ABORT_ENERGY_ERROR))  is true
+-- specification  G (optimizer_fails ->  X (state = ABORT & term_reason = ABORT_OPTIMIZER_ERROR))  is true
+-- invariant (state = COMPUTE_ENERGY -> terms_done = NTERMS)  is true
+-- invariant (state = OPTIMIZER_STEP -> iter < MAX_ITERS)  is true
+-- invariant ((state = CHECK_STOP & iter > 0) -> energy_ready)  is true
+-- invariant (state = OPTIMIZER_STEP -> (cands_done = NCANDS & energy_ready))  is true
+-- invariant (state = BIND -> (terms_done = 0 & !energy_ready))  is true
+-- invariant (state = DONE -> (term_reason = DONE_CONVERGED | (term_reason = DONE_MAX_ITERS & iter = MAX_ITERS)))  is true
+-- invariant (state = ABORT -> !(term_reason in (NO_TERM union DONE_CONVERGED) union DONE_MAX_ITERS))  is true
+-- invariant (!terminal -> term_reason = NO_TERM)  is true
+-- invariant (state = EXECUTE_MEASURE -> (circ_ready & params_ready))  is false
+-- as demonstrated by the following execution sequence
+Trace Description: AG alpha Counterexample 
+Trace Type: Counterexample 
+  -> State: 1.1 <-
+    state = S_INIT
+    iter = 0
+    cands_done = 0
+    terms_done = 0
+    circ_ready = FALSE
+    params_ready = TRUE
+    energy_ready = FALSE
+    bound_version = 0
+    bound_cand = 0
+    energy_version = 0
+    term_reason = NO_TERM
+    converged = FALSE
+    bind_error = FALSE
+    qpu_error = FALSE
+    energy_error = FALSE
+    optimizer_error = FALSE
+    NCANDS = 3
+    NTERMS = 10
+    MAX_ITERS = 50
+    error = FALSE
+    optimizer_fails = FALSE
+    energy_fails = FALSE
+    measure_fails = FALSE
+    bind_fails = FALSE
+    terminal = FALSE
+  -> State: 1.2 <-
+    state = CHECK_STOP
+  -> State: 1.3 <-
+    state = BIND
+  -> State: 1.4 <-
+    state = EXECUTE_MEASURE
+    circ_ready = TRUE
+  -> State: 1.5 <-
+    terms_done = 1
+  -> State: 1.6 <-
+    terms_done = 2
+  -> State: 1.7 <-
+    terms_done = 3
+  -> State: 1.8 <-
+    terms_done = 4
+  -> State: 1.9 <-
+    terms_done = 5
+  -> State: 1.10 <-
+    terms_done = 6
+  -> State: 1.11 <-
+    terms_done = 7
+  -> State: 1.12 <-
+    terms_done = 8
+  -> State: 1.13 <-
+    terms_done = 9
+  -> State: 1.14 <-
+    state = COMPUTE_ENERGY
+    terms_done = 10
+    params_ready = FALSE
+  -> State: 1.15 <-
+    state = EXECUTE_MEASURE
+    cands_done = 1
+    terms_done = 0
+    circ_ready = FALSE
+    params_ready = TRUE
+-- invariant ((state = EXECUTE_MEASURE | state = COMPUTE_ENERGY) -> (bound_version = iter & bound_cand = cands_done))  is false
+-- as demonstrated by the following execution sequence
+Trace Description: AG alpha Counterexample 
+Trace Type: Counterexample 
+  -> State: 2.1 <-
+    state = S_INIT
+    iter = 0
+    cands_done = 0
+    terms_done = 0
+    circ_ready = FALSE
+    params_ready = TRUE
+    energy_ready = FALSE
+    bound_version = 0
+    bound_cand = 0
+    energy_version = 0
+    term_reason = NO_TERM
+    converged = FALSE
+    bind_error = FALSE
+    qpu_error = FALSE
+    energy_error = FALSE
+    optimizer_error = FALSE
+    NCANDS = 3
+    NTERMS = 10
+    MAX_ITERS = 50
+    error = FALSE
+    optimizer_fails = FALSE
+    energy_fails = FALSE
+    measure_fails = FALSE
+    bind_fails = FALSE
+    terminal = FALSE
+  -> State: 2.2 <-
+    state = CHECK_STOP
+  -> State: 2.3 <-
+    state = BIND
+  -> State: 2.4 <-
+    state = EXECUTE_MEASURE
+    circ_ready = TRUE
+  -> State: 2.5 <-
+    terms_done = 1
+  -> State: 2.6 <-
+    terms_done = 2
+  -> State: 2.7 <-
+    terms_done = 3
+  -> State: 2.8 <-
+    terms_done = 4
+  -> State: 2.9 <-
+    terms_done = 5
+  -> State: 2.10 <-
+    terms_done = 6
+  -> State: 2.11 <-
+    terms_done = 7
+  -> State: 2.12 <-
+    terms_done = 8
+  -> State: 2.13 <-
+    terms_done = 9
+  -> State: 2.14 <-
+    state = COMPUTE_ENERGY
+    terms_done = 10
+    params_ready = FALSE
+  -> State: 2.15 <-
+    state = EXECUTE_MEASURE
+    cands_done = 1
+    terms_done = 0
+    circ_ready = FALSE
+    params_ready = TRUE
+-- invariant (state = OPTIMIZER_STEP -> energy_version = iter)  is true
+-- invariant ((state = DONE & iter > 0) -> (energy_ready & energy_version + 1 = iter))  is true

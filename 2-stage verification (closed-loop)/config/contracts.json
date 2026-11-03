@@ -1,0 +1,98 @@
+{
+  "L1": {
+    "family": "logical",
+    "description": "Complete measurements precede candidate energy aggregation",
+    "stage1": "NuXmv R1: COMPUTE_ENERGY implies all NTERMS groups of the evaluation are measured",
+    "stage2": "DejaVu L1_groupsBeforeEnergy and Python unique candidate/group completeness",
+    "assumptions": ["Group events identify the actual measurement executions"],
+    "comparison": "PROVED and observed obligations satisfied yield AGREEMENT; missing raw evidence is reported explicitly",
+    "non_vacuity": "Stage 1: witness EF COMPUTE_ENERGY holds and the early-aggregation mutant is detected. Stage 2: Python obligation groups_before_energy fires at every evaluation; DejaVu L1 fires on every energy event, and the two counts must match"
+  },
+  "L2": {
+    "family": "logical",
+    "description": "All three candidate validations precede optimizer commitment",
+    "stage1": "NuXmv R4: OPTIMIZER_STEP implies NCANDS validated candidate energies; R2: a stop decision after an update follows validated energies",
+    "stage2": "DejaVu L2_validationsBeforeCommit and Python certification of each numericValid event",
+    "assumptions": ["Recorded commit events correspond to actual controller boundaries"],
+    "comparison": "A premature observed commit is DISAGREEMENT",
+    "non_vacuity": "Stage 1: witnesses EF OPTIMIZER_STEP and EF (CHECK_STOP & iter > 0) hold and the skipped-candidate mutant is detected. Stage 2: Python obligations validation_certified (each numericValid) and validations_before_commit (each commit) fire; DejaVu commit and validated counts must match them"
+  },
+  "L3": {
+    "family": "logical",
+    "description": "Evaluation identity and parameter provenance remain current",
+    "stage1": "NuXmv R3/F1-F4: bound circuit before measurement, (iteration, candidate) version of the binding and the energy, readiness reset per evaluation and per iteration",
+    "stage2": "DejaVu causal links and Python run/update/candidate/index/angle identity checks",
+    "assumptions": ["Iteration/candidate version numbers preserve current-versus-stale meaning; concrete unique IDs are a runtime strengthening, not a NuXmv proof over arbitrary strings"],
+    "comparison": "Compare freshness with the declared abstraction boundary",
+    "non_vacuity": "Stage 1: witnesses for measurement, aggregation, commitment, binding and iteration restart hold, and the no-reset, stale-readiness, skipped-rebind, stale-binding, wrong-candidate and stale-energy mutants are detected. Stage 2: Python obligations evaluation_identity_current (each measurement/evaluation/validation) and commit_identity_current (each commit) fire"
+  },
+  "L4": {
+    "family": "logical",
+    "description": "Termination is final and has the declared reason",
+    "stage1": "NuXmv T1-T9 and E1-E6: termination, absorbing DONE/ABORT, DONE by convergence or exhausted budget with its reason, every error aborts at once with its cause and nothing else aborts, update accounting and bound, returned energy",
+    "stage2": "DejaVu no activity after stop; Python terminal reason, ideal-success oracle, and update budget",
+    "assumptions": ["Ideal-energy success is the benchmark oracle; the logical success flag abstracts this classification"],
+    "comparison": "Missing termination is INCONCLUSIVE; an invalid reason or later activity is DISAGREEMENT",
+    "non_vacuity": "Stage 1: witnesses for every terminal state, the last commitment, each termination cause and each error cause hold; the defensive default branch is unreachable; the ignored-error, budget-to-abort, success-to-abort and budget-overrun mutants are detected. Stage 2: Python obligation terminal_reason fires once per closed trace; DejaVu stopped count must match"
+  },
+  "N1": {
+    "family": "numeric",
+    "description": "Raw counts normalize to the reported expectations",
+    "stage1": "Dafny NormalizeExpectation: positive shots and valid negative counts imply normalization and [-1,1]",
+    "stage2": "Independent negative-eigenvalue parity counts and exact Fraction expectations",
+    "assumptions": ["Correct frozen Pauli/basis/bit-order mapping", "Available valid raw group counts"],
+    "comparison": "Valid-input output errors: DISAGREEMENT; invalid inputs: ASSUMPTION_MISMATCH; missing counts: INCONCLUSIVE",
+    "non_vacuity": "Stage 2: obligation expectation_reconstructed fires for every term of every complete evaluation (4 terms x 3 candidates per update)"
+  },
+  "N2": {
+    "family": "numeric",
+    "description": "Declared coefficients and measurements produce the actual energy",
+    "stage1": "Dafny TermEnergyContribution, ComputeTermEnergies, AggregateEnergy and supporting lemmas",
+    "stage2": "Exact rational reconstruction; compare contributions, score, reported energy and actual optimizer inputs",
+    "assumptions": ["Complete uniquely identified term records", "Faithfully instrumented optimizer inputs", "Frozen tolerance for mathematical real versus observed floating-point values"],
+    "comparison": "Runtime checks actual outputs; Dafny does not prove the entire Python implementation",
+    "non_vacuity": "Stage 2: obligation energy_reconstructed fires for every complete candidate evaluation (3 per update)"
+  },
+  "N3": {
+    "family": "numeric",
+    "description": "Unique measurement groups determine physical shot consumption",
+    "stage1": "Dafny GroupGrid.AccumulatePhysicalGroups",
+    "stage2": "Validate raw group totals and accumulate each candidate/group key once",
+    "assumptions": ["Records enumerate unique physical executions", "Declared shot allocation per group"],
+    "comparison": "Accounting errors: DISAGREEMENT; changed allocation: ASSUMPTION_MISMATCH, invalidating P1-P3 applicability",
+    "non_vacuity": "Stage 2: obligations allocation_checked (each valid group measurement, 9 per update) and cumulative_total_checked (each commit and the terminal event) fire"
+  },
+  "N4": {
+    "family": "numeric",
+    "description": "Candidate generation and selection preserve the parameter grid",
+    "stage1": "Dafny GroupGrid.WrapCandidate and SelectCandidate",
+    "stage2": "Recompute modular candidates and exact-energy argmin with declared tie priority; check bound angles",
+    "assumptions": ["Angle conversion and quantum gate implementation are in the trusted base"],
+    "comparison": "Compare observed indices, angles, selection and successor with the finite-grid transition",
+    "non_vacuity": "Stage 2: obligations candidates_generated (each update start) and selection_checked (each commit) fire"
+  },
+  "P1": {
+    "family": "probabilistic",
+    "description": "Probability of first success within the update bound",
+    "stage1": "Storm bounded reachability in the Gaussian DTMC at frozen checkpoints",
+    "stage2": "First-success proportions from repeated independent finite-shot executions",
+    "assumptions": ["Same circuit, optimizer, grouping, shots, stopping predicate and update unit", "Declared Gaussian approximation and numerical integration", "Independent run seeds"],
+    "comparison": "Model probability inside runtime 95% Wilson interval means AGREEMENT; final bound is primary; no joint-coverage or distributional-equivalence claim"
+  },
+  "P2": {
+    "family": "probabilistic",
+    "description": "Expected first-success update conditional on bounded success",
+    "stage1": "Python propagation of the Gaussian kernel, with checkpoint CDF independently checked by Storm",
+    "stage2": "Mean first-success update over successful runs, with seeded percentile bootstrap interval",
+    "assumptions": ["P1 assumptions", "Both stages condition on success by the same bound"],
+    "comparison": "Supporting marginal comparison; fewer than two successes is INCONCLUSIVE"
+  },
+  "P3": {
+    "family": "probabilistic",
+    "description": "Expected physical shots conditional on bounded success",
+    "stage1": "P2 times configured physical shots per update",
+    "stage2": "Successful-run resource consumption checked by N3 and compared with the conditional model mean",
+    "assumptions": ["Fixed candidate/group allocation with no hidden evaluations or retries"],
+    "comparison": "Supporting statistical/resource comparison; scaled P2, not independent predictive evidence"
+  }
+}

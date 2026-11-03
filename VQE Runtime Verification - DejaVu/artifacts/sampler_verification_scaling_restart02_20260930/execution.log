@@ -1,0 +1,1336 @@
+[1/350] warmup baseline n=40 r=2
+[2/350] warmup baseline n=50 r=3
+[3/350] warmup verified n=10 r=4
+[4/350] warmup baseline n=20 r=5
+[5/350] warmup baseline n=10 r=5
+[6/350] warmup baseline n=20 r=2
+[7/350] warmup verified n=50 r=1
+[8/350] warmup baseline n=50 r=1
+[9/350] warmup verified n=50 r=4
+[10/350] warmup verified n=30 r=4
+[11/350] warmup baseline n=40 r=4
+[12/350] warmup verified n=20 r=1
+[13/350] warmup baseline n=40 r=1
+[14/350] warmup baseline n=30 r=4
+[15/350] warmup verified n=40 r=3
+[16/350] warmup baseline n=20 r=4
+[17/350] warmup baseline n=10 r=1
+[18/350] warmup baseline n=20 r=3
+[19/350] warmup verified n=20 r=4
+[20/350] warmup baseline n=50 r=4
+[21/350] warmup baseline n=50 r=5
+[22/350] warmup baseline n=30 r=1
+[23/350] warmup baseline n=50 r=2
+[24/350] warmup baseline n=30 r=3
+[25/350] warmup verified n=30 r=1
+[26/350] warmup baseline n=30 r=2
+[27/350] warmup verified n=30 r=3
+[28/350] warmup verified n=40 r=5
+[29/350] warmup baseline n=20 r=1
+[30/350] warmup verified n=40 r=2
+[31/350] warmup verified n=20 r=5
+[32/350] warmup verified n=20 r=2
+[33/350] warmup baseline n=10 r=3
+[34/350] warmup verified n=30 r=5
+[35/350] warmup verified n=10 r=3
+[36/350] warmup verified n=50 r=5
+[37/350] warmup baseline n=40 r=3
+[38/350] warmup verified n=30 r=2
+[39/350] warmup baseline n=10 r=4
+[40/350] warmup baseline n=10 r=2
+[41/350] warmup verified n=10 r=2
+[42/350] warmup verified n=20 r=3
+[43/350] warmup verified n=50 r=3
+[44/350] warmup baseline n=40 r=5
+[45/350] warmup verified n=40 r=4
+[46/350] warmup baseline n=30 r=5
+[47/350] warmup verified n=50 r=2
+[48/350] warmup verified n=40 r=1
+[49/350] warmup verified n=10 r=1
+[50/350] warmup verified n=10 r=5
+[51/350] measured verified n=20 r=5
+[52/350] measured verified n=40 r=18
+[53/350] measured verified n=30 r=16
+[54/350] measured baseline n=10 r=3
+[55/350] measured verified n=40 r=1
+[56/350] measured verified n=10 r=27
+[57/350] measured baseline n=30 r=9
+[58/350] measured baseline n=20 r=6
+[59/350] measured verified n=30 r=15
+[60/350] measured verified n=20 r=20
+[61/350] measured verified n=50 r=1
+[62/350] measured baseline n=40 r=2
+[63/350] measured verified n=20 r=10
+[64/350] measured verified n=50 r=4
+[65/350] measured baseline n=30 r=11
+[66/350] measured verified n=30 r=20
+[67/350] measured baseline n=10 r=12
+[68/350] measured baseline n=30 r=27
+[69/350] measured baseline n=30 r=24
+[70/350] measured verified n=30 r=13
+[71/350] measured baseline n=20 r=28
+[72/350] measured verified n=10 r=6
+[73/350] measured baseline n=40 r=23
+[74/350] measured verified n=40 r=14
+[75/350] measured baseline n=40 r=1
+[76/350] measured verified n=50 r=17
+[77/350] measured baseline n=30 r=23
+[78/350] measured verified n=40 r=6
+[79/350] measured verified n=10 r=23
+[80/350] measured verified n=10 r=13
+[81/350] measured verified n=50 r=14
+[82/350] measured baseline n=10 r=5
+[83/350] measured verified n=10 r=22
+[84/350] measured baseline n=50 r=25
+[85/350] measured verified n=40 r=11
+[86/350] measured verified n=50 r=11
+[87/350] measured verified n=30 r=18
+[88/350] measured baseline n=20 r=7
+[89/350] measured baseline n=20 r=27
+[90/350] measured verified n=10 r=29
+[91/350] measured verified n=40 r=2
+[92/350] measured verified n=50 r=27
+[93/350] measured verified n=20 r=3
+[94/350] measured baseline n=50 r=8
+[95/350] measured baseline n=30 r=3
+[96/350] measured baseline n=30 r=17
+[97/350] measured baseline n=30 r=19
+[98/350] measured baseline n=20 r=29
+[99/350] measured verified n=20 r=8
+[100/350] measured baseline n=40 r=25
+[101/350] measured baseline n=10 r=2
+[102/350] measured baseline n=30 r=6
+[103/350] measured baseline n=50 r=2
+[104/350] measured baseline n=10 r=27
+[105/350] measured baseline n=30 r=12
+[106/350] measured baseline n=40 r=30
+[107/350] measured baseline n=40 r=20
+[108/350] measured verified n=20 r=9
+[109/350] measured baseline n=40 r=14
+[110/350] measured verified n=30 r=17
+[111/350] measured baseline n=50 r=3
+[112/350] measured baseline n=20 r=9
+[113/350] measured baseline n=20 r=4
+[114/350] measured baseline n=10 r=28
+[115/350] measured verified n=10 r=7
+[116/350] measured baseline n=30 r=4
+[117/350] measured verified n=10 r=28
+[118/350] measured baseline n=20 r=3
+[119/350] measured baseline n=10 r=26
+[120/350] measured baseline n=20 r=23
+[121/350] measured verified n=50 r=23
+[122/350] measured baseline n=20 r=10
+[123/350] measured baseline n=10 r=13
+[124/350] measured verified n=10 r=24
+[125/350] measured baseline n=20 r=19
+[126/350] measured verified n=40 r=21
+[127/350] measured verified n=40 r=19
+[128/350] measured baseline n=20 r=2
+[129/350] measured baseline n=20 r=11
+[130/350] measured baseline n=40 r=18
+[131/350] measured baseline n=20 r=13
+[132/350] measured verified n=20 r=18
+[133/350] measured verified n=40 r=15
+[134/350] measured baseline n=30 r=22
+[135/350] measured verified n=40 r=8
+[136/350] measured verified n=10 r=5
+[137/350] measured baseline n=10 r=19
+[138/350] measured verified n=40 r=3
+[139/350] measured verified n=30 r=21
+[140/350] measured verified n=30 r=5
+[141/350] measured baseline n=30 r=21
+[142/350] measured verified n=10 r=15
+[143/350] measured baseline n=20 r=21
+[144/350] measured baseline n=50 r=19
+[145/350] measured verified n=30 r=26
+[146/350] measured verified n=50 r=10
+[147/350] measured baseline n=40 r=29
+[148/350] measured baseline n=30 r=13
+[149/350] measured baseline n=50 r=23
+[150/350] measured baseline n=10 r=15
+[151/350] measured verified n=50 r=29
+[152/350] measured baseline n=30 r=20
+[153/350] measured verified n=40 r=30
+[154/350] measured baseline n=40 r=27
+[155/350] measured verified n=30 r=10
+[156/350] measured baseline n=30 r=14
+[157/350] measured verified n=50 r=16
+[158/350] measured baseline n=20 r=24
+[159/350] measured baseline n=30 r=18
+[160/350] measured verified n=20 r=19
+[161/350] measured baseline n=30 r=2
+[162/350] measured baseline n=50 r=7
+[163/350] measured verified n=50 r=25
+[164/350] measured verified n=40 r=7
+[165/350] measured verified n=50 r=30
+[166/350] measured verified n=20 r=26
+[167/350] measured verified n=40 r=29
+[168/350] measured verified n=20 r=29
+[169/350] measured baseline n=40 r=24
+[170/350] measured verified n=50 r=9
+[171/350] measured verified n=10 r=8
+[172/350] measured baseline n=30 r=28
+[173/350] measured baseline n=20 r=16
+[174/350] measured verified n=30 r=8
+[175/350] measured baseline n=40 r=13
+[176/350] measured baseline n=30 r=5
+[177/350] measured baseline n=10 r=8
+[178/350] measured verified n=10 r=12
+[179/350] measured baseline n=50 r=9
+[180/350] measured verified n=20 r=14
+[181/350] measured baseline n=40 r=15
+[182/350] measured verified n=20 r=24
+[183/350] measured verified n=40 r=25
+[184/350] measured baseline n=20 r=22
+[185/350] measured verified n=10 r=4
+[186/350] measured verified n=20 r=28
+[187/350] measured verified n=20 r=4
+[188/350] measured verified n=10 r=30
+[189/350] measured verified n=50 r=13
+[190/350] measured verified n=10 r=16
+[191/350] measured baseline n=10 r=1
+[192/350] measured baseline n=50 r=4
+[193/350] measured verified n=40 r=23
+[194/350] measured verified n=20 r=23
+[195/350] measured verified n=40 r=20
+[196/350] measured verified n=50 r=8
+[197/350] measured baseline n=50 r=17
+[198/350] measured baseline n=40 r=19
+[199/350] measured baseline n=40 r=28
+[200/350] measured verified n=40 r=17
+[201/350] measured verified n=20 r=30
+[202/350] measured verified n=30 r=29
+[203/350] measured baseline n=50 r=30
+[204/350] measured baseline n=40 r=26
+[205/350] measured verified n=30 r=11
+[206/350] measured baseline n=20 r=18
+[207/350] measured verified n=50 r=5
+[208/350] measured verified n=10 r=10
+[209/350] measured baseline n=50 r=27
+[210/350] measured verified n=30 r=25
+[211/350] measured verified n=30 r=1
+[212/350] measured baseline n=40 r=21
+[213/350] measured verified n=20 r=16
+[214/350] measured baseline n=30 r=1
+[215/350] measured verified n=10 r=20
+[216/350] measured baseline n=50 r=22
+[217/350] measured baseline n=40 r=17
+[218/350] measured baseline n=40 r=22
+[219/350] measured verified n=30 r=4
+[220/350] measured baseline n=30 r=25
+[221/350] measured verified n=50 r=15
+[222/350] measured baseline n=10 r=10
+[223/350] measured baseline n=50 r=24
+[224/350] measured baseline n=20 r=25
+[225/350] measured baseline n=10 r=4
+[226/350] measured baseline n=20 r=30
+[227/350] measured baseline n=50 r=11
+[228/350] measured verified n=30 r=9
+[229/350] measured verified n=30 r=28
+[230/350] measured baseline n=30 r=30
+[231/350] measured verified n=40 r=16
+[232/350] measured verified n=30 r=23
+[233/350] measured verified n=30 r=30
+[234/350] measured baseline n=20 r=12
+[235/350] measured baseline n=10 r=9
+[236/350] measured baseline n=50 r=6
+[237/350] measured verified n=40 r=12
+[238/350] measured verified n=30 r=24
+[239/350] measured baseline n=40 r=11
+[240/350] measured baseline n=10 r=16
+[241/350] measured baseline n=50 r=26
+[242/350] measured verified n=30 r=3
+[243/350] measured baseline n=20 r=15
+[244/350] measured verified n=10 r=17
+[245/350] measured baseline n=50 r=5
+[246/350] measured verified n=40 r=4
+[247/350] measured baseline n=10 r=25
+[248/350] measured verified n=10 r=1
+[249/350] measured verified n=30 r=12
+[250/350] measured verified n=20 r=17
+[251/350] measured baseline n=50 r=13
+[252/350] measured baseline n=30 r=8
+[253/350] measured baseline n=20 r=1
+[254/350] measured baseline n=10 r=20
+[255/350] measured baseline n=10 r=29
+[256/350] measured verified n=20 r=25
+[257/350] measured verified n=20 r=15
+[258/350] measured baseline n=40 r=12
+[259/350] measured baseline n=20 r=20
+[260/350] measured baseline n=50 r=15
+[261/350] measured verified n=10 r=9
+[262/350] measured verified n=40 r=26
+[263/350] measured baseline n=40 r=4
+[264/350] measured baseline n=20 r=14
+[265/350] measured baseline n=50 r=18
+[266/350] measured verified n=50 r=19
+[267/350] measured baseline n=50 r=1
+[268/350] measured verified n=30 r=22
+[269/350] measured baseline n=10 r=17
+[270/350] measured baseline n=30 r=7
+[271/350] measured baseline n=10 r=30
+[272/350] measured verified n=50 r=18
+[273/350] measured baseline n=10 r=6
+[274/350] measured verified n=20 r=13
+[275/350] measured baseline n=30 r=29
+[276/350] measured verified n=30 r=19
+[277/350] measured verified n=30 r=6
+[278/350] measured verified n=20 r=2
+[279/350] measured baseline n=40 r=5
+[280/350] measured verified n=10 r=11
+[281/350] measured verified n=10 r=2
+[282/350] measured verified n=20 r=27
+[283/350] measured baseline n=10 r=14
+[284/350] measured verified n=50 r=7
+[285/350] measured baseline n=50 r=29
+[286/350] measured verified n=40 r=24
+[287/350] measured verified n=20 r=1
+[288/350] measured verified n=20 r=11
+[289/350] measured verified n=40 r=10
+[290/350] measured verified n=40 r=27
+[291/350] measured baseline n=30 r=16
+[292/350] measured verified n=30 r=7
+[293/350] measured verified n=50 r=12
+[294/350] measured baseline n=40 r=16
+[295/350] measured verified n=40 r=28
+[296/350] measured baseline n=40 r=7
+[297/350] measured baseline n=40 r=9
+[298/350] measured baseline n=40 r=10
+[299/350] measured baseline n=10 r=22
+[300/350] measured verified n=10 r=21
+[301/350] measured baseline n=10 r=11
+[302/350] measured verified n=40 r=9
+[303/350] measured baseline n=50 r=12
+[304/350] measured baseline n=20 r=26
+[305/350] measured verified n=20 r=12
+[306/350] measured verified n=40 r=22
+[307/350] measured verified n=50 r=20
+[308/350] measured verified n=20 r=7
+[309/350] measured verified n=10 r=19
+[310/350] measured baseline n=20 r=8
+[311/350] measured verified n=50 r=6
+[312/350] measured baseline n=10 r=23
+[313/350] measured verified n=50 r=28
+[314/350] measured verified n=30 r=2
+[315/350] measured verified n=20 r=21
+[316/350] measured baseline n=50 r=20
+[317/350] measured baseline n=30 r=26
+[318/350] measured baseline n=50 r=28
+[319/350] measured verified n=50 r=26
+[320/350] measured baseline n=20 r=17
+[321/350] measured baseline n=50 r=14
+[322/350] measured verified n=10 r=3
+[323/350] measured baseline n=10 r=24
+[324/350] measured verified n=40 r=5
+[325/350] measured verified n=10 r=14
+[326/350] measured baseline n=50 r=21
+[327/350] measured verified n=30 r=27
+[328/350] measured verified n=30 r=14
+[329/350] measured baseline n=50 r=10
+[330/350] measured verified n=20 r=6
+[331/350] measured baseline n=30 r=10
+[332/350] measured baseline n=20 r=5
+[333/350] measured baseline n=40 r=6
+[334/350] measured verified n=10 r=25
+[335/350] measured verified n=50 r=21
+[336/350] measured verified n=10 r=26
+[337/350] measured baseline n=40 r=8
+[338/350] measured verified n=10 r=18
+[339/350] measured verified n=50 r=2
+[340/350] measured baseline n=10 r=7
+[341/350] measured verified n=50 r=22
+[342/350] measured baseline n=50 r=16
+[343/350] measured verified n=50 r=3
+[344/350] measured verified n=50 r=24
+[345/350] measured verified n=40 r=13
+[346/350] measured baseline n=10 r=21
+[347/350] measured verified n=20 r=22
+[348/350] measured baseline n=10 r=18
+[349/350] measured baseline n=40 r=3
+[350/350] measured baseline n=30 r=15
+{
+  "comparison": "independent condition summaries; no paired estimator",
+  "configuration": {
+    "convergence": {
+      "min_iterations": 10,
+      "patience": 3,
+      "tolerance": 0.005
+    },
+    "execution": {
+      "allow_optimizer_stopped": false,
+      "backend": "StatevectorSampler",
+      "max_iterations": 50,
+      "mode": "qiskit-statevector-sampler",
+      "optimizer_protocol": "ask-tell",
+      "parameter_count": 4,
+      "seed": 7,
+      "shot_budget": 204800,
+      "shots_per_term": 1024,
+      "system": "h2"
+    },
+    "hamiltonian": {
+      "coeff_scale": 10000,
+      "schema_version": 1,
+      "terms": [
+        {
+          "coeff_int": 3980,
+          "pauli": "YZ",
+          "term_id": "t0"
+        },
+        {
+          "coeff_int": -3980,
+          "pauli": "ZI",
+          "term_id": "t1"
+        },
+        {
+          "coeff_int": -113,
+          "pauli": "ZZ",
+          "term_id": "t2"
+        },
+        {
+          "coeff_int": 1810,
+          "pauli": "XX",
+          "term_id": "t3"
+        }
+      ]
+    },
+    "hamiltonian_hash": "aff67cd405a7d3381b3642ff99a5280b793c19e0b50e86eee234bca036afe3f7",
+    "monitor": {
+      "bits_per_variable": 24,
+      "timeout_seconds": 10.0
+    },
+    "numeric": {
+      "energy_abs_tolerance": 1e-12,
+      "expectation_abs_tolerance": 1e-12,
+      "parameter_lower": -3.141592653589793,
+      "parameter_upper": 3.141592653589793
+    },
+    "observability": {
+      "require_raw_counts": true
+    },
+    "optimizer": {
+      "improvement_tolerance": 0.0,
+      "initial_step": 0.4,
+      "initialization": "seeded-uniform-v1",
+      "name": "ask-tell-pattern-search-v1",
+      "step_shrink": 0.5
+    },
+    "sampler": {
+      "bitstring_order": "qiskit-msb-qn-1-to-q0",
+      "dynamical_decoupling": false,
+      "gate_twirling": false,
+      "measurement_mitigation": "not-applicable-to-samplerv2",
+      "measurement_strategy": "independent-pauli-basis-v1",
+      "measurement_twirling": false,
+      "measurement_type": "classified",
+      "pec": "not-applicable-to-samplerv2",
+      "pubs_per_evaluation": 4,
+      "raw_evidence_format": "packed-bitarray-v1",
+      "separate_pub_per_term": true,
+      "zne": "not-applicable-to-samplerv2"
+    },
+    "schema_version": 2,
+    "source_path": "/Users/rome/Desktop/VQE Runtime Verification - DejaVu/configs/h2_statevector.toml"
+  },
+  "created_utc": "2026-10-01T01:05:13.939765+00:00",
+  "fidelity_definition": {
+    "evaluation_aggregation": "arithmetic mean across four PUBs",
+    "formula": "(sum_x sqrt(p_ideal(x) * p_sampled(x)))^2",
+    "name": "measurement-distribution fidelity",
+    "qualification": "not a tomographic quantum-state fidelity",
+    "run_error_aggregations": [
+      "mean of per-evaluation (1-F)",
+      "sum of per-evaluation (1-F)"
+    ]
+  },
+  "measured_repetitions": 30,
+  "raw_files": [
+    "runs.csv",
+    "evaluations.csv",
+    "pub_fidelity.csv",
+    "gate_latencies.csv",
+    "memory_samples.csv",
+    "schedule.json",
+    "environment.json"
+  ],
+  "scales": [
+    {
+      "conditions": {
+        "baseline": {
+          "convergence_check_seconds": {
+            "count": 300,
+            "max": 2.28749995585531e-05,
+            "mean": 7.231982696490983e-07,
+            "min": 3.7500285543501377e-07,
+            "p50": 5.830079317092896e-07,
+            "p95": 1.1270589311607188e-06
+          },
+          "cumulative_measurement_infidelity": {
+            "count": 30,
+            "max": 0.003491433712599079,
+            "mean": 0.003491433712599079,
+            "min": 0.003491433712599079,
+            "p50": 0.003491433712599079,
+            "p95": 0.003491433712599079
+          },
+          "evaluation_seconds": {
+            "count": 300,
+            "max": 0.006476292008301243,
+            "mean": 0.0044895269629584315,
+            "min": 0.004114042007131502,
+            "p50": 0.0043271874892525375,
+            "p95": 0.005276935387519188
+          },
+          "execution_seconds": {
+            "count": 30,
+            "max": 0.05673850001767278,
+            "mean": 0.04537668606596223,
+            "min": 0.04292195802554488,
+            "p50": 0.04427908298384864,
+            "p95": 0.050375891143630724
+          },
+          "final_energy": {
+            "count": 30,
+            "max": -0.3248650390625,
+            "mean": -0.3248650390625,
+            "min": -0.3248650390625,
+            "p50": -0.3248650390625,
+            "p95": -0.3248650390625
+          },
+          "first_convergence_candidate_evaluation": {
+            "count": 0,
+            "max": null,
+            "mean": null,
+            "min": null,
+            "p50": null,
+            "p95": null
+          },
+          "mean_measurement_infidelity": {
+            "count": 30,
+            "max": 0.0003491433712599079,
+            "mean": 0.0003491433712599079,
+            "min": 0.0003491433712599079,
+            "p50": 0.0003491433712599079,
+            "p95": 0.0003491433712599079
+          },
+          "peak_jvm_rss_bytes": {
+            "count": 30,
+            "max": 0.0,
+            "mean": 0.0,
+            "min": 0.0,
+            "p50": 0.0,
+            "p95": 0.0
+          },
+          "peak_python_rss_bytes": {
+            "count": 30,
+            "max": 269746176.0,
+            "mean": 216351266.13333333,
+            "min": 155516928.0,
+            "p50": 222175232.0,
+            "p95": 268212633.6
+          },
+          "time_to_first_convergence_candidate_seconds": {
+            "count": 0,
+            "max": null,
+            "mean": null,
+            "min": null,
+            "p50": null,
+            "p95": null
+          }
+        },
+        "verified": {
+          "convergence_check_seconds": {
+            "count": 300,
+            "max": 0.005429749988252297,
+            "mean": 0.00351240763644455,
+            "min": 0.002549333992647007,
+            "p50": 0.0033702499786159024,
+            "p95": 0.004776917000708637
+          },
+          "cumulative_measurement_infidelity": {
+            "count": 30,
+            "max": 0.003491433712599079,
+            "mean": 0.003491433712599079,
+            "min": 0.003491433712599079,
+            "p50": 0.003491433712599079,
+            "p95": 0.003491433712599079
+          },
+          "evaluation_seconds": {
+            "count": 300,
+            "max": 0.05710683300276287,
+            "mean": 0.038583002106752244,
+            "min": 0.029976207995787263,
+            "p50": 0.03521727048791945,
+            "p95": 0.050684988942521166
+          },
+          "execution_seconds": {
+            "count": 30,
+            "max": 0.7069187499873806,
+            "mean": 0.6341292582316479,
+            "min": 0.6116206659935415,
+            "p50": 0.6304735000012442,
+            "p95": 0.6659547661460237
+          },
+          "final_energy": {
+            "count": 30,
+            "max": -0.3248650390625,
+            "mean": -0.3248650390625,
+            "min": -0.3248650390625,
+            "p50": -0.3248650390625,
+            "p95": -0.3248650390625
+          },
+          "first_convergence_candidate_evaluation": {
+            "count": 0,
+            "max": null,
+            "mean": null,
+            "min": null,
+            "p50": null,
+            "p95": null
+          },
+          "mean_measurement_infidelity": {
+            "count": 30,
+            "max": 0.0003491433712599079,
+            "mean": 0.0003491433712599079,
+            "min": 0.0003491433712599079,
+            "p50": 0.0003491433712599079,
+            "p95": 0.0003491433712599079
+          },
+          "peak_jvm_rss_bytes": {
+            "count": 30,
+            "max": 531759104.0,
+            "mean": 531759104.0,
+            "min": 531759104.0,
+            "p50": 531759104.0,
+            "p95": 531759104.0
+          },
+          "peak_python_rss_bytes": {
+            "count": 30,
+            "max": 264781824.0,
+            "mean": 210307754.66666666,
+            "min": 155877376.0,
+            "p50": 205783040.0,
+            "p95": 262400409.59999996
+          },
+          "time_to_first_convergence_candidate_seconds": {
+            "count": 0,
+            "max": null,
+            "mean": null,
+            "min": null,
+            "p50": null,
+            "p95": null
+          }
+        }
+      },
+      "direct_p50_difference_seconds": 0.5861944170173956,
+      "direct_p50_final_energy_difference": 0.0,
+      "direct_p50_mean_infidelity_difference": 0.0,
+      "direct_p50_overhead_percent": 1323.8630466471438,
+      "evaluations": 10
+    },
+    {
+      "conditions": {
+        "baseline": {
+          "convergence_check_seconds": {
+            "count": 600,
+            "max": 3.541994374245405e-06,
+            "mean": 6.105733336880803e-07,
+            "min": 3.3300602808594704e-07,
+            "p50": 5.00003807246685e-07,
+            "p95": 1.1250085663050413e-06
+          },
+          "cumulative_measurement_infidelity": {
+            "count": 30,
+            "max": 0.009323621712126084,
+            "mean": 0.009323621712126084,
+            "min": 0.009323621712126084,
+            "p50": 0.009323621712126084,
+            "p95": 0.009323621712126084
+          },
+          "evaluation_seconds": {
+            "count": 600,
+            "max": 0.03843816599692218,
+            "mean": 0.004466096337079458,
+            "min": 0.004007041978184134,
+            "p50": 0.004268624499673024,
+            "p95": 0.005145648549660109
+          },
+          "execution_seconds": {
+            "count": 30,
+            "max": 0.11999787497916259,
+            "mean": 0.08978658059980565,
+            "min": 0.08444858400616795,
+            "p50": 0.0865754164988175,
+            "p95": 0.10188389756076502
+          },
+          "final_energy": {
+            "count": 30,
+            "max": -0.38575800781249997,
+            "mean": -0.38575800781249997,
+            "min": -0.38575800781249997,
+            "p50": -0.38575800781249997,
+            "p95": -0.38575800781249997
+          },
+          "first_convergence_candidate_evaluation": {
+            "count": 0,
+            "max": null,
+            "mean": null,
+            "min": null,
+            "p50": null,
+            "p95": null
+          },
+          "mean_measurement_infidelity": {
+            "count": 30,
+            "max": 0.00046618108560630425,
+            "mean": 0.00046618108560630425,
+            "min": 0.00046618108560630425,
+            "p50": 0.00046618108560630425,
+            "p95": 0.00046618108560630425
+          },
+          "peak_jvm_rss_bytes": {
+            "count": 30,
+            "max": 0.0,
+            "mean": 0.0,
+            "min": 0.0,
+            "p50": 0.0,
+            "p95": 0.0
+          },
+          "peak_python_rss_bytes": {
+            "count": 30,
+            "max": 259489792.0,
+            "mean": 201150190.93333334,
+            "min": 155877376.0,
+            "p50": 188964864.0,
+            "p95": 256956006.39999998
+          },
+          "time_to_first_convergence_candidate_seconds": {
+            "count": 0,
+            "max": null,
+            "mean": null,
+            "min": null,
+            "p50": null,
+            "p95": null
+          }
+        },
+        "verified": {
+          "convergence_check_seconds": {
+            "count": 600,
+            "max": 0.005791792005766183,
+            "mean": 0.0033097578448844918,
+            "min": 0.0023398749763146043,
+            "p50": 0.003170334006426856,
+            "p95": 0.004530692296975758
+          },
+          "cumulative_measurement_infidelity": {
+            "count": 30,
+            "max": 0.009323621712126084,
+            "mean": 0.009323621712126084,
+            "min": 0.009323621712126084,
+            "p50": 0.009323621712126084,
+            "p95": 0.009323621712126084
+          },
+          "evaluation_seconds": {
+            "count": 600,
+            "max": 0.057720416982192546,
+            "mean": 0.03594443972906447,
+            "min": 0.0281058750115335,
+            "p50": 0.033715853991452605,
+            "p95": 0.05017029615119099
+          },
+          "execution_seconds": {
+            "count": 30,
+            "max": 1.0623868339753244,
+            "mean": 0.9688483679676817,
+            "min": 0.9189331250090618,
+            "p50": 0.9586325210111681,
+            "p95": 1.0431288352847332
+          },
+          "final_energy": {
+            "count": 30,
+            "max": -0.38575800781249997,
+            "mean": -0.38575800781249997,
+            "min": -0.38575800781249997,
+            "p50": -0.38575800781249997,
+            "p95": -0.38575800781249997
+          },
+          "first_convergence_candidate_evaluation": {
+            "count": 0,
+            "max": null,
+            "mean": null,
+            "min": null,
+            "p50": null,
+            "p95": null
+          },
+          "mean_measurement_infidelity": {
+            "count": 30,
+            "max": 0.00046618108560630425,
+            "mean": 0.00046618108560630425,
+            "min": 0.00046618108560630425,
+            "p50": 0.00046618108560630425,
+            "p95": 0.00046618108560630425
+          },
+          "peak_jvm_rss_bytes": {
+            "count": 30,
+            "max": 531759104.0,
+            "mean": 531759104.0,
+            "min": 531759104.0,
+            "p50": 531759104.0,
+            "p95": 531759104.0
+          },
+          "peak_python_rss_bytes": {
+            "count": 30,
+            "max": 269746176.0,
+            "mean": 213126348.8,
+            "min": 155222016.0,
+            "p50": 210526208.0,
+            "p95": 258280652.79999998
+          },
+          "time_to_first_convergence_candidate_seconds": {
+            "count": 0,
+            "max": null,
+            "mean": null,
+            "min": null,
+            "p50": null,
+            "p95": null
+          }
+        }
+      },
+      "direct_p50_difference_seconds": 0.8720571045123506,
+      "direct_p50_final_energy_difference": 0.0,
+      "direct_p50_mean_infidelity_difference": 0.0,
+      "direct_p50_overhead_percent": 1007.2802878450625,
+      "evaluations": 20
+    },
+    {
+      "conditions": {
+        "baseline": {
+          "convergence_check_seconds": {
+            "count": 900,
+            "max": 2.207991201430559e-06,
+            "mean": 5.84736408200115e-07,
+            "min": 3.7500285543501377e-07,
+            "p50": 5.00003807246685e-07,
+            "p95": 1.044053351506589e-06
+          },
+          "cumulative_measurement_infidelity": {
+            "count": 30,
+            "max": 0.013303000029302514,
+            "mean": 0.013303000029302514,
+            "min": 0.013303000029302514,
+            "p50": 0.013303000029302514,
+            "p95": 0.013303000029302514
+          },
+          "evaluation_seconds": {
+            "count": 900,
+            "max": 0.007173874997533858,
+            "mean": 0.004404486308016607,
+            "min": 0.004002833011327311,
+            "p50": 0.004273729005944915,
+            "p95": 0.0051925753607065415
+          },
+          "execution_seconds": {
+            "count": 30,
+            "max": 0.15903612499823794,
+            "mean": 0.1326273389015114,
+            "min": 0.12607612501597032,
+            "p50": 0.12962435399822425,
+            "p95": 0.15000486875505886
+          },
+          "final_energy": {
+            "count": 30,
+            "max": -0.37426660156249997,
+            "mean": -0.37426660156249997,
+            "min": -0.37426660156249997,
+            "p50": -0.37426660156249997,
+            "p95": -0.37426660156249997
+          },
+          "first_convergence_candidate_evaluation": {
+            "count": 0,
+            "max": null,
+            "mean": null,
+            "min": null,
+            "p50": null,
+            "p95": null
+          },
+          "mean_measurement_infidelity": {
+            "count": 30,
+            "max": 0.0004434333343100838,
+            "mean": 0.0004434333343100838,
+            "min": 0.0004434333343100838,
+            "p50": 0.0004434333343100838,
+            "p95": 0.0004434333343100838
+          },
+          "peak_jvm_rss_bytes": {
+            "count": 30,
+            "max": 0.0,
+            "mean": 0.0,
+            "min": 0.0,
+            "p50": 0.0,
+            "p95": 0.0
+          },
+          "peak_python_rss_bytes": {
+            "count": 30,
+            "max": 269746176.0,
+            "mean": 199628663.46666667,
+            "min": 155877376.0,
+            "p50": 192724992.0,
+            "p95": 258280652.79999998
+          },
+          "time_to_first_convergence_candidate_seconds": {
+            "count": 0,
+            "max": null,
+            "mean": null,
+            "min": null,
+            "p50": null,
+            "p95": null
+          }
+        },
+        "verified": {
+          "convergence_check_seconds": {
+            "count": 900,
+            "max": 0.021214332984527573,
+            "mean": 0.003188484069542028,
+            "min": 0.002070166985504329,
+            "p50": 0.0030981665040599182,
+            "p95": 0.004410610688501037
+          },
+          "cumulative_measurement_infidelity": {
+            "count": 30,
+            "max": 0.013303000029302514,
+            "mean": 0.013303000029302514,
+            "min": 0.013303000029302514,
+            "p50": 0.013303000029302514,
+            "p95": 0.013303000029302514
+          },
+          "evaluation_seconds": {
+            "count": 900,
+            "max": 0.07962158299051225,
+            "mean": 0.034519483141161295,
+            "min": 0.02712783301831223,
+            "p50": 0.03276025000377558,
+            "p95": 0.04928840414213482
+          },
+          "execution_seconds": {
+            "count": 30,
+            "max": 1.4937246250046883,
+            "mean": 1.2916501194325973,
+            "min": 1.211849584011361,
+            "p50": 1.2684504165081307,
+            "p95": 1.4042940315470331
+          },
+          "final_energy": {
+            "count": 30,
+            "max": -0.37426660156249997,
+            "mean": -0.37426660156249997,
+            "min": -0.37426660156249997,
+            "p50": -0.37426660156249997,
+            "p95": -0.37426660156249997
+          },
+          "first_convergence_candidate_evaluation": {
+            "count": 0,
+            "max": null,
+            "mean": null,
+            "min": null,
+            "p50": null,
+            "p95": null
+          },
+          "mean_measurement_infidelity": {
+            "count": 30,
+            "max": 0.0004434333343100838,
+            "mean": 0.0004434333343100838,
+            "min": 0.0004434333343100838,
+            "p50": 0.0004434333343100838,
+            "p95": 0.0004434333343100838
+          },
+          "peak_jvm_rss_bytes": {
+            "count": 30,
+            "max": 531759104.0,
+            "mean": 531759104.0,
+            "min": 531759104.0,
+            "p50": 531759104.0,
+            "p95": 531759104.0
+          },
+          "peak_python_rss_bytes": {
+            "count": 30,
+            "max": 259489792.0,
+            "mean": 209868663.46666667,
+            "min": 155516928.0,
+            "p50": 216891392.0,
+            "p95": 258280652.79999998
+          },
+          "time_to_first_convergence_candidate_seconds": {
+            "count": 0,
+            "max": null,
+            "mean": null,
+            "min": null,
+            "p50": null,
+            "p95": null
+          }
+        }
+      },
+      "direct_p50_difference_seconds": 1.1388260625099065,
+      "direct_p50_final_energy_difference": 0.0,
+      "direct_p50_mean_infidelity_difference": 0.0,
+      "direct_p50_overhead_percent": 878.5587178513596,
+      "evaluations": 30
+    },
+    {
+      "conditions": {
+        "baseline": {
+          "convergence_check_seconds": {
+            "count": 1200,
+            "max": 5.375011824071407e-06,
+            "mean": 6.276457861531526e-07,
+            "min": 3.3300602808594704e-07,
+            "p50": 5.409820005297661e-07,
+            "p95": 1.1690543033182602e-06
+          },
+          "cumulative_measurement_infidelity": {
+            "count": 30,
+            "max": 0.019322559152396335,
+            "mean": 0.019322559152396335,
+            "min": 0.019322559152396335,
+            "p50": 0.019322559152396335,
+            "p95": 0.019322559152396335
+          },
+          "evaluation_seconds": {
+            "count": 1200,
+            "max": 0.007690832979278639,
+            "mean": 0.004423213068682041,
+            "min": 0.003979041997808963,
+            "p50": 0.004281562505639158,
+            "p95": 0.005262718450103421
+          },
+          "execution_seconds": {
+            "count": 30,
+            "max": 0.21306166701833718,
+            "mean": 0.1774513820001933,
+            "min": 0.1675549579958897,
+            "p50": 0.17352462500275578,
+            "p95": 0.19258114214317174
+          },
+          "final_energy": {
+            "count": 30,
+            "max": -0.40600078125,
+            "mean": -0.40600078125,
+            "min": -0.40600078125,
+            "p50": -0.40600078125,
+            "p95": -0.40600078125
+          },
+          "first_convergence_candidate_evaluation": {
+            "count": 0,
+            "max": null,
+            "mean": null,
+            "min": null,
+            "p50": null,
+            "p95": null
+          },
+          "mean_measurement_infidelity": {
+            "count": 30,
+            "max": 0.0004830639788099084,
+            "mean": 0.0004830639788099084,
+            "min": 0.0004830639788099084,
+            "p50": 0.0004830639788099084,
+            "p95": 0.0004830639788099084
+          },
+          "peak_jvm_rss_bytes": {
+            "count": 30,
+            "max": 0.0,
+            "mean": 0.0,
+            "min": 0.0,
+            "p50": 0.0,
+            "p95": 0.0
+          },
+          "peak_python_rss_bytes": {
+            "count": 30,
+            "max": 269746176.0,
+            "mean": 211786683.73333332,
+            "min": 161660928.0,
+            "p50": 212090880.0,
+            "p95": 262400409.59999996
+          },
+          "time_to_first_convergence_candidate_seconds": {
+            "count": 0,
+            "max": null,
+            "mean": null,
+            "min": null,
+            "p50": null,
+            "p95": null
+          }
+        },
+        "verified": {
+          "convergence_check_seconds": {
+            "count": 1200,
+            "max": 0.008963792002759874,
+            "mean": 0.0030108715238263053,
+            "min": 0.0020410419965628535,
+            "p50": 0.0029624580056406558,
+            "p95": 0.004275322618195787
+          },
+          "cumulative_measurement_infidelity": {
+            "count": 30,
+            "max": 0.019322559152396335,
+            "mean": 0.019322559152396335,
+            "min": 0.019322559152396335,
+            "p50": 0.019322559152396335,
+            "p95": 0.019322559152396335
+          },
+          "evaluation_seconds": {
+            "count": 1200,
+            "max": 0.057938957994338125,
+            "mean": 0.0331383679597396,
+            "min": 0.026192915975116193,
+            "p50": 0.03155470899946522,
+            "p95": 0.04787677951389924
+          },
+          "execution_seconds": {
+            "count": 30,
+            "max": 1.7778406249999534,
+            "mean": 1.5847511861337504,
+            "min": 1.5019417089933995,
+            "p50": 1.5616673749900656,
+            "p95": 1.7241468206630088
+          },
+          "final_energy": {
+            "count": 30,
+            "max": -0.40600078125,
+            "mean": -0.40600078125,
+            "min": -0.40600078125,
+            "p50": -0.40600078125,
+            "p95": -0.40600078125
+          },
+          "first_convergence_candidate_evaluation": {
+            "count": 0,
+            "max": null,
+            "mean": null,
+            "min": null,
+            "p50": null,
+            "p95": null
+          },
+          "mean_measurement_infidelity": {
+            "count": 30,
+            "max": 0.0004830639788099084,
+            "mean": 0.0004830639788099084,
+            "min": 0.0004830639788099084,
+            "p50": 0.0004830639788099084,
+            "p95": 0.0004830639788099084
+          },
+          "peak_jvm_rss_bytes": {
+            "count": 30,
+            "max": 531759104.0,
+            "mean": 531759104.0,
+            "min": 531759104.0,
+            "p50": 531759104.0,
+            "p95": 531759104.0
+          },
+          "peak_python_rss_bytes": {
+            "count": 30,
+            "max": 269746176.0,
+            "mean": 207192610.13333333,
+            "min": 155222016.0,
+            "p50": 205692928.0,
+            "p95": 254778572.79999995
+          },
+          "time_to_first_convergence_candidate_seconds": {
+            "count": 0,
+            "max": null,
+            "mean": null,
+            "min": null,
+            "p50": null,
+            "p95": null
+          }
+        }
+      },
+      "direct_p50_difference_seconds": 1.3881427499873098,
+      "direct_p50_final_energy_difference": 0.0,
+      "direct_p50_mean_infidelity_difference": 0.0,
+      "direct_p50_overhead_percent": 799.9687364057202,
+      "evaluations": 40
+    },
+    {
+      "conditions": {
+        "baseline": {
+          "convergence_check_seconds": {
+            "count": 1500,
+            "max": 3.875000402331352e-06,
+            "mean": 5.895636277273297e-07,
+            "min": 3.3300602808594704e-07,
+            "p50": 5.00003807246685e-07,
+            "p95": 1.00000761449337e-06
+          },
+          "cumulative_measurement_infidelity": {
+            "count": 30,
+            "max": 0.02332153719160779,
+            "mean": 0.02332153719160779,
+            "min": 0.02332153719160779,
+            "p50": 0.02332153719160779,
+            "p95": 0.02332153719160779
+          },
+          "evaluation_seconds": {
+            "count": 1500,
+            "max": 0.02695679198950529,
+            "mean": 0.004409172897149498,
+            "min": 0.003966458985814825,
+            "p50": 0.004265354509698227,
+            "p95": 0.005115881581150461
+          },
+          "execution_seconds": {
+            "count": 30,
+            "max": 0.260403291991679,
+            "mean": 0.22097807913669384,
+            "min": 0.20790475001558661,
+            "p50": 0.21514731251227204,
+            "p95": 0.23945605160115518
+          },
+          "final_energy": {
+            "count": 30,
+            "max": -0.43980742187500005,
+            "mean": -0.43980742187500005,
+            "min": -0.43980742187500005,
+            "p50": -0.43980742187500005,
+            "p95": -0.43980742187500005
+          },
+          "first_convergence_candidate_evaluation": {
+            "count": 0,
+            "max": null,
+            "mean": null,
+            "min": null,
+            "p50": null,
+            "p95": null
+          },
+          "mean_measurement_infidelity": {
+            "count": 30,
+            "max": 0.00046643074383215575,
+            "mean": 0.00046643074383215575,
+            "min": 0.00046643074383215575,
+            "p50": 0.00046643074383215575,
+            "p95": 0.00046643074383215575
+          },
+          "peak_jvm_rss_bytes": {
+            "count": 30,
+            "max": 0.0,
+            "mean": 0.0,
+            "min": 0.0,
+            "p50": 0.0,
+            "p95": 0.0
+          },
+          "peak_python_rss_bytes": {
+            "count": 30,
+            "max": 267386880.0,
+            "mean": 220436889.6,
+            "min": 169984000.0,
+            "p50": 221929472.0,
+            "p95": 259489792.0
+          },
+          "time_to_first_convergence_candidate_seconds": {
+            "count": 0,
+            "max": null,
+            "mean": null,
+            "min": null,
+            "p50": null,
+            "p95": null
+          }
+        },
+        "verified": {
+          "convergence_check_seconds": {
+            "count": 1500,
+            "max": 0.0460517090104986,
+            "mean": 0.0030302972340917524,
+            "min": 0.0021040000137872994,
+            "p50": 0.0028687919984804466,
+            "p95": 0.004300080949906259
+          },
+          "cumulative_measurement_infidelity": {
+            "count": 30,
+            "max": 0.02332153719160779,
+            "mean": 0.02332153719160779,
+            "min": 0.02332153719160779,
+            "p50": 0.02332153719160779,
+            "p95": 0.02332153719160779
+          },
+          "evaluation_seconds": {
+            "count": 1500,
+            "max": 0.08602650000830181,
+            "mean": 0.032947824609077844,
+            "min": 0.02660708301118575,
+            "p50": 0.03124281250347849,
+            "p95": 0.04740357049158773
+          },
+          "execution_seconds": {
+            "count": 30,
+            "max": 2.189458457985893,
+            "mean": 1.9207473486322366,
+            "min": 1.7939529169816524,
+            "p50": 1.8757471464923583,
+            "p95": 2.139171878811612
+          },
+          "final_energy": {
+            "count": 30,
+            "max": -0.43980742187500005,
+            "mean": -0.43980742187500005,
+            "min": -0.43980742187500005,
+            "p50": -0.43980742187500005,
+            "p95": -0.43980742187500005
+          },
+          "first_convergence_candidate_evaluation": {
+            "count": 0,
+            "max": null,
+            "mean": null,
+            "min": null,
+            "p50": null,
+            "p95": null
+          },
+          "mean_measurement_infidelity": {
+            "count": 30,
+            "max": 0.00046643074383215575,
+            "mean": 0.00046643074383215575,
+            "min": 0.00046643074383215575,
+            "p50": 0.00046643074383215575,
+            "p95": 0.00046643074383215575
+          },
+          "peak_jvm_rss_bytes": {
+            "count": 30,
+            "max": 531759104.0,
+            "mean": 531759104.0,
+            "min": 531759104.0,
+            "p50": 531759104.0,
+            "p95": 531759104.0
+          },
+          "peak_python_rss_bytes": {
+            "count": 30,
+            "max": 268779520.0,
+            "mean": 215396078.93333334,
+            "min": 156106752.0,
+            "p50": 210632704.0,
+            "p95": 266980556.8
+          },
+          "time_to_first_convergence_candidate_seconds": {
+            "count": 0,
+            "max": null,
+            "mean": null,
+            "min": null,
+            "p50": null,
+            "p95": null
+          }
+        }
+      },
+      "direct_p50_difference_seconds": 1.6605998339800863,
+      "direct_p50_final_energy_difference": 0.0,
+      "direct_p50_mean_infidelity_difference": 0.0,
+      "direct_p50_overhead_percent": 771.8431685663586,
+      "evaluations": 50
+    }
+  ],
+  "schedule_seed": 20260930,
+  "schema_version": 1,
+  "timing_boundary": {
+    "baseline": "VQE setup, sampling, numeric convergence, and optimizer only",
+    "excluded_from_both": [
+      "measurement-distribution fidelity analysis",
+      "verified offline replay",
+      "baseline post-run artifact serialization",
+      "summary and figure generation"
+    ],
+    "verified": "baseline work plus synchronous RuntimeSession, DejaVu, trace, and evidence persistence"
+  },
+  "warmups": 5
+}

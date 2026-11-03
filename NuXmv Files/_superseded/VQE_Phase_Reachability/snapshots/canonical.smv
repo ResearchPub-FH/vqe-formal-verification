@@ -1,0 +1,359 @@
+-- ============================================================================
+--  VQE Hybrid Loop — Canonical NuXmv Model (refinement of vqe.smv)
+--  ----------------------------------------------------------------------------
+--  Workshop paper:
+--      "Logical Verification of Hybrid VQE Execution Loops with NuXmv"
+--      Section III.  NuXmv Encoding and Property Suite.
+--
+--  WHAT THIS MODEL ADDS OVER nuXmv/vqe.smv
+--      (1) ABORT  — an absorbing terminal state distinct from DONE.
+--      (2) term_reason — an enum that records WHY the run terminated
+--                        (convergence vs. each fault class).
+--      (3) Per-phase fault inputs (IVARs) — bind_err, qpu_err,
+--          energy_err, opt_err — that the environment can raise.
+--      (4) Version counters — theta_version, bound_version,
+--          energy_version — so freshness is provable as a version
+--          equality, not merely a readiness flag.
+--      (5) Strengthened CHECK_STOP semantics — exhausting the iteration
+--          bound without convergence ABORTs (term_reason = ABORT_MAX_ITERS)
+--          rather than silently reporting DONE.
+--  ----------------------------------------------------------------------------
+--  CONVENTIONS
+--      DONE   : algorithm terminated successfully by convergence.
+--      ABORT  : algorithm terminated by a fault OR by exhausting the
+--               iteration budget without convergence.
+--      IVARs  : fault triggers and the convergence oracle are inputs;
+--               nuXmv explores every value combination at every step.
+-- ============================================================================
+
+MODULE main
+
+-- ----------------------------------------------------------------------------
+-- 1. STATE VARIABLES
+-- ----------------------------------------------------------------------------
+VAR
+  -- Control state
+  state : { S_INIT, BIND, EXECUTE_MEASURE, COMPUTE_ENERGY,
+            CHECK_STOP, OPTIMIZER_STEP, DONE, ABORT };
+
+  -- Readiness flags (boolean abstraction of real-valued data)
+  circ_ready    : boolean;   -- current theta is bound into the ansatz circuit
+  params_ready  : boolean;   -- a fresh theta is available for binding/measurement
+  energy_ready  : boolean;   -- the current energy estimate is valid
+
+  -- Bounded counters
+  iter        : 0..MAX_ITERS;   -- VQE iteration counter
+  terms_done  : 0..NTERMS;      -- Pauli terms measured so far in this iteration
+
+  -- Version counters (freshness model — see §III.B of the paper)
+  --   theta_version : iteration index of the most recent optimizer output.
+  --   bound_version : iteration index of the theta currently bound into the circuit.
+  --   energy_version: iteration index of the most recent valid energy estimate.
+  theta_version  : 0..MAX_ITERS;
+  bound_version  : 0..MAX_ITERS;
+  energy_version : 0..MAX_ITERS;
+
+  -- Terminal-cause classifier.  Distinguishes success from every abort type.
+  term_reason : { NO_TERM,
+                  DONE_CONVERGED,
+                  ABORT_BIND_ERR,
+                  ABORT_QPU_ERR,
+                  ABORT_ENERGY_ERR,
+                  ABORT_OPT_ERR,
+                  ABORT_MAX_ITERS };
+
+-- ----------------------------------------------------------------------------
+-- 2. INPUT VARIABLES (environment, fully nondeterministic at every step)
+-- ----------------------------------------------------------------------------
+IVAR
+  -- Convergence oracle.  Abstracts | E_k - E_{k-1} | < tol .  Only consulted
+  -- when state = CHECK_STOP, but allowed to fluctuate at every step.
+  converged  : boolean;
+
+  -- Per-phase fault triggers.  Each is observed only inside its own phase
+  -- (see DEFINE block below), and forces an immediate ABORT when observed.
+  bind_err   : boolean;   -- parameter binding / circuit construction failure
+  qpu_err    : boolean;   -- QPU execution / measurement extraction failure
+  energy_err : boolean;   -- classical energy aggregation failure
+  opt_err    : boolean;   -- classical optimizer failure
+
+-- ----------------------------------------------------------------------------
+-- 3. DEFINITIONS
+-- ----------------------------------------------------------------------------
+DEFINE
+  MAX_ITERS := 5;   -- workshop default; vary for scalability table
+  NTERMS    := 3;   -- workshop default; vary for scalability table
+
+  all_terms_done := (terms_done = NTERMS);
+  terminal       := (state = DONE | state = ABORT);
+
+  -- Phase-guarded fault triggers (a fault matters only inside its phase).
+  bind_aborts    := (state = BIND           & bind_err);
+  qpu_aborts     := (state = EXECUTE_MEASURE & qpu_err);
+  energy_aborts  := (state = COMPUTE_ENERGY & energy_err);
+  opt_aborts     := (state = OPTIMIZER_STEP & opt_err);
+
+  -- Non-convergence at the iteration bound counts as an abort cause.
+  max_aborts     := (state = CHECK_STOP & !converged & iter = MAX_ITERS);
+
+  abort_now      := bind_aborts | qpu_aborts | energy_aborts
+                    | opt_aborts | max_aborts;
+
+
+-- ----------------------------------------------------------------------------
+-- 4. INITIAL STATE
+-- ----------------------------------------------------------------------------
+ASSIGN
+  init(state)          := S_INIT;
+  init(circ_ready)     := FALSE;   -- circuit must be built by BIND
+  init(params_ready)   := TRUE;    -- theta_0 supplied externally
+  init(energy_ready)   := FALSE;   -- no energy estimate yet
+  init(iter)           := 0;
+  init(terms_done)     := 0;
+  init(theta_version)  := 0;
+  init(bound_version)  := 0;       -- theta_0 trivially "bound" to iteration 0
+  init(energy_version) := 0;       -- placeholder; valid only when energy_ready
+  init(term_reason)    := NO_TERM;
+
+
+-- ----------------------------------------------------------------------------
+-- 5. TRANSITION RELATION
+-- ----------------------------------------------------------------------------
+
+  -- ── 5.1  Control state ────────────────────────────────────────────────────
+  --   Fault transitions take PRIORITY over normal transitions.
+  --   DONE and ABORT are absorbing.
+  next(state) :=
+    case
+      state = S_INIT                                            : BIND;
+
+      -- Fault and bound-exhaustion transitions (priority)
+      bind_aborts                                               : ABORT;
+      qpu_aborts                                                : ABORT;
+      energy_aborts                                             : ABORT;
+      opt_aborts                                                : ABORT;
+      max_aborts                                                : ABORT;
+
+      -- Normal flow
+      state = BIND                                              : EXECUTE_MEASURE;
+      state = EXECUTE_MEASURE   & !all_terms_done               : EXECUTE_MEASURE;
+      state = EXECUTE_MEASURE   &  all_terms_done               : COMPUTE_ENERGY;
+      state = COMPUTE_ENERGY                                    : CHECK_STOP;
+      state = CHECK_STOP        &  converged                    : DONE;
+      state = CHECK_STOP        & !converged & iter < MAX_ITERS : OPTIMIZER_STEP;
+      state = OPTIMIZER_STEP                                    : BIND;
+
+      -- Absorbing terminals
+      state = DONE                                              : DONE;
+      state = ABORT                                             : ABORT;
+
+      TRUE                                                      : state;
+    esac;
+
+  -- ── 5.2  Terminal-reason classifier ───────────────────────────────────────
+  next(term_reason) :=
+    case
+      state = CHECK_STOP & converged   : DONE_CONVERGED;
+      bind_aborts                      : ABORT_BIND_ERR;
+      qpu_aborts                       : ABORT_QPU_ERR;
+      energy_aborts                    : ABORT_ENERGY_ERR;
+      opt_aborts                       : ABORT_OPT_ERR;
+      max_aborts                       : ABORT_MAX_ITERS;
+      terminal                         : term_reason;   -- frozen once terminal
+      TRUE                             : NO_TERM;
+    esac;
+
+  -- ── 5.3  circ_ready ───────────────────────────────────────────────────────
+  next(circ_ready) :=
+    case
+      abort_now                : FALSE;
+      state = BIND             : TRUE;     -- BIND constructs the bound circuit
+      state = OPTIMIZER_STEP   : FALSE;    -- new theta invalidates old binding
+      state = ABORT            : FALSE;
+      TRUE                     : circ_ready;
+    esac;
+
+  -- ── 5.4  params_ready ─────────────────────────────────────────────────────
+  next(params_ready) :=
+    case
+      abort_now                                        : FALSE;
+      state = S_INIT                                   : TRUE;   -- theta_0 stays
+      state = OPTIMIZER_STEP                           : TRUE;   -- fresh theta produced
+      state = EXECUTE_MEASURE & all_terms_done         : FALSE;  -- consumed
+      state = ABORT                                    : FALSE;
+      TRUE                                             : params_ready;
+    esac;
+
+  -- ── 5.5  energy_ready ─────────────────────────────────────────────────────
+  next(energy_ready) :=
+    case
+      abort_now                : FALSE;
+      state = COMPUTE_ENERGY   : TRUE;    -- aggregation yields a valid estimate
+      state = OPTIMIZER_STEP   : FALSE;   -- estimate invalidated for next iter
+      state = ABORT            : FALSE;
+      TRUE                     : energy_ready;
+    esac;
+
+  -- ── 5.6  iter ─────────────────────────────────────────────────────────────
+  --   Increments only out of a clean OPTIMIZER_STEP, and only below the bound.
+  next(iter) :=
+    case
+      state = S_INIT                                            : 0;
+      state = OPTIMIZER_STEP & !opt_err & iter < MAX_ITERS      : iter + 1;
+      TRUE                                                      : iter;
+    esac;
+
+  -- ── 5.7  terms_done ───────────────────────────────────────────────────────
+  --   Reset at BIND or OPTIMIZER_STEP; increment during EXECUTE_MEASURE.
+  next(terms_done) :=
+    case
+      state = S_INIT                                            : 0;
+      state = BIND                                              : 0;
+      state = OPTIMIZER_STEP & !opt_err                         : 0;
+      state = EXECUTE_MEASURE & !qpu_err & !all_terms_done      : terms_done + 1;
+      TRUE                                                      : terms_done;
+    esac;
+
+  -- ── 5.8  Version counters ─────────────────────────────────────────────────
+  --   theta_version  is bumped by a clean OPTIMIZER_STEP.
+  --   bound_version  syncs to theta_version on a clean BIND.
+  --   energy_version syncs to bound_version on a clean COMPUTE_ENERGY.
+  next(theta_version) :=
+    case
+      state = OPTIMIZER_STEP & !opt_err
+                              & theta_version < MAX_ITERS       : theta_version + 1;
+      TRUE                                                      : theta_version;
+    esac;
+
+  next(bound_version) :=
+    case
+      state = BIND & !bind_err                                  : theta_version;
+      TRUE                                                      : bound_version;
+    esac;
+
+  next(energy_version) :=
+    case
+      state = COMPUTE_ENERGY & !energy_err                      : bound_version;
+      TRUE                                                      : energy_version;
+    esac;
+
+
+-- ============================================================================
+-- 6. PROPERTY SUITE
+-- ============================================================================
+--  Four classes, P1…P25, mirroring the paper's §III.B taxonomy:
+--      R   Readiness        — phase prerequisites are available
+--      F   Freshness        — no stale data leaks across iterations
+--      T   Termination      — every run reaches DONE or ABORT, terminals absorb
+--      E   Error-state safety — every fault is honoured by ABORT
+--  Each property is annotated with its class and ID so the paper's Table II
+--  can cite it directly.
+-- ============================================================================
+
+-- ── R: Readiness (5 properties) ──────────────────────────────────────────────
+
+-- [R1] EXECUTE_MEASURE only runs with a bound ansatz circuit.
+INVARSPEC (state = EXECUTE_MEASURE) -> circ_ready;
+
+-- [R2] EXECUTE_MEASURE only runs with fresh parameters.
+LTLSPEC G (state = EXECUTE_MEASURE -> params_ready);
+
+-- [R3] COMPUTE_ENERGY only runs after every Pauli term has been measured.
+LTLSPEC G (state = COMPUTE_ENERGY -> all_terms_done);
+
+-- [R4] CHECK_STOP is evaluated only on a valid energy estimate.
+LTLSPEC G (state = CHECK_STOP -> energy_ready);
+
+-- [R5] OPTIMIZER_STEP only runs after CHECK_STOP supplied a current energy.
+LTLSPEC G (state = OPTIMIZER_STEP -> energy_ready);
+
+
+-- ── F: Freshness (7 properties) ──────────────────────────────────────────────
+
+-- [F1] Iteration counter and theta_version stay in lock-step.
+INVARSPEC theta_version = iter;
+
+-- [F2] Binding cannot get ahead of optimization;
+--      the bound theta is always at the current optimizer iteration or earlier.
+INVARSPEC bound_version <= theta_version;
+
+-- [F3] The valid energy belongs to the currently-bound theta or earlier.
+INVARSPEC energy_version <= bound_version;
+
+-- [F4] Every measurement uses the currently-bound theta
+--      (no measurement runs on a stale binding).
+LTLSPEC G (state = EXECUTE_MEASURE -> bound_version = theta_version);
+
+-- [F5] The stop test inspects the energy of the currently-bound theta.
+LTLSPEC G (state = CHECK_STOP -> energy_version = bound_version);
+
+-- [F6] No stale energy leaks into a new iteration:
+--      BIND beyond iteration 0 always sees energy_ready cleared.
+LTLSPEC G ((state = BIND & iter > 0) -> !energy_ready);
+
+-- [F7] A clean OPTIMIZER_STEP produces fresh parameters and invalidates the
+--      old energy in one atomic transition.
+LTLSPEC G ((state = OPTIMIZER_STEP & !opt_err) ->
+           X (params_ready & !energy_ready));
+
+-- [F8] BIND begins each iteration with the Pauli-term accumulator reset.
+INVARSPEC (state = BIND) -> (terms_done = 0);
+
+
+-- ── T: Termination (6 properties) ────────────────────────────────────────────
+
+-- [T1] Every run eventually reaches a terminal state.
+CTLSPEC AF (state = DONE | state = ABORT);
+
+-- [T2a] DONE is absorbing.
+LTLSPEC G (state = DONE  -> X (state = DONE));
+
+-- [T2b] ABORT is absorbing.
+LTLSPEC G (state = ABORT -> X (state = ABORT));
+
+-- [T3] DONE is reached only by genuine convergence.
+INVARSPEC (state = DONE) -> (term_reason = DONE_CONVERGED & energy_ready);
+
+-- [T4] iter is monotone non-decreasing.
+LTLSPEC G (X iter >= iter);
+
+-- [T5] There is at least one path that converges successfully.
+CTLSPEC EF (state = DONE & term_reason = DONE_CONVERGED);
+
+
+-- ── E: Error-state safety (8 properties) ─────────────────────────────────────
+
+-- [E1] ABORT always carries a non-success reason.
+INVARSPEC (state = ABORT) ->
+            (term_reason != NO_TERM & term_reason != DONE_CONVERGED);
+
+-- [E2] A bind error during BIND aborts in one step with the correct reason.
+LTLSPEC G ((state = BIND & bind_err) ->
+           X (state = ABORT & term_reason = ABORT_BIND_ERR));
+
+-- [E3] A QPU error during EXECUTE_MEASURE aborts in one step.
+LTLSPEC G ((state = EXECUTE_MEASURE & qpu_err) ->
+           X (state = ABORT & term_reason = ABORT_QPU_ERR));
+
+-- [E4] An aggregation error during COMPUTE_ENERGY aborts in one step.
+LTLSPEC G ((state = COMPUTE_ENERGY & energy_err) ->
+           X (state = ABORT & term_reason = ABORT_ENERGY_ERR));
+
+-- [E5] An optimizer error during OPTIMIZER_STEP aborts in one step.
+LTLSPEC G ((state = OPTIMIZER_STEP & opt_err) ->
+           X (state = ABORT & term_reason = ABORT_OPT_ERR));
+
+-- [E6] Non-convergence at the iteration bound aborts (not silently DONE).
+LTLSPEC G ((state = CHECK_STOP & !converged & iter = MAX_ITERS) ->
+           X (state = ABORT & term_reason = ABORT_MAX_ITERS));
+
+-- [E7] DONE and ABORT lie on disjoint futures.
+LTLSPEC G (state = DONE  -> G !(state = ABORT));
+LTLSPEC G (state = ABORT -> G !(state = DONE));
+
+-- [E8] Each abort cause is independently reachable (the fault model is non-vacuous).
+CTLSPEC EF (state = ABORT & term_reason = ABORT_BIND_ERR);
+CTLSPEC EF (state = ABORT & term_reason = ABORT_QPU_ERR);
+CTLSPEC EF (state = ABORT & term_reason = ABORT_ENERGY_ERR);
+CTLSPEC EF (state = ABORT & term_reason = ABORT_OPT_ERR);
+CTLSPEC EF (state = ABORT & term_reason = ABORT_MAX_ITERS);

@@ -1,0 +1,986 @@
+{
+  "comparison": "independent condition summaries; no paired estimator",
+  "configuration": {
+    "convergence": {
+      "min_iterations": 10,
+      "patience": 3,
+      "tolerance": 0.005
+    },
+    "execution": {
+      "allow_optimizer_stopped": false,
+      "backend": "StatevectorSampler",
+      "max_iterations": 50,
+      "mode": "qiskit-statevector-sampler",
+      "optimizer_protocol": "ask-tell",
+      "parameter_count": 4,
+      "seed": 7,
+      "shot_budget": 204800,
+      "shots_per_term": 1024,
+      "system": "h2"
+    },
+    "hamiltonian": {
+      "coeff_scale": 10000,
+      "schema_version": 1,
+      "terms": [
+        {
+          "coeff_int": 3980,
+          "pauli": "YZ",
+          "term_id": "t0"
+        },
+        {
+          "coeff_int": -3980,
+          "pauli": "ZI",
+          "term_id": "t1"
+        },
+        {
+          "coeff_int": -113,
+          "pauli": "ZZ",
+          "term_id": "t2"
+        },
+        {
+          "coeff_int": 1810,
+          "pauli": "XX",
+          "term_id": "t3"
+        }
+      ]
+    },
+    "hamiltonian_hash": "aff67cd405a7d3381b3642ff99a5280b793c19e0b50e86eee234bca036afe3f7",
+    "monitor": {
+      "bits_per_variable": 24,
+      "timeout_seconds": 10.0
+    },
+    "numeric": {
+      "energy_abs_tolerance": 1e-12,
+      "expectation_abs_tolerance": 1e-12,
+      "parameter_lower": -3.141592653589793,
+      "parameter_upper": 3.141592653589793
+    },
+    "observability": {
+      "require_raw_counts": true
+    },
+    "optimizer": {
+      "improvement_tolerance": 0.0,
+      "initial_step": 0.4,
+      "initialization": "seeded-uniform-v1",
+      "name": "ask-tell-pattern-search-v1",
+      "step_shrink": 0.5
+    },
+    "sampler": {
+      "bitstring_order": "qiskit-msb-qn-1-to-q0",
+      "dynamical_decoupling": false,
+      "gate_twirling": false,
+      "measurement_mitigation": "not-applicable-to-samplerv2",
+      "measurement_strategy": "independent-pauli-basis-v1",
+      "measurement_twirling": false,
+      "measurement_type": "classified",
+      "pec": "not-applicable-to-samplerv2",
+      "pubs_per_evaluation": 4,
+      "raw_evidence_format": "packed-bitarray-v1",
+      "separate_pub_per_term": true,
+      "zne": "not-applicable-to-samplerv2"
+    },
+    "schema_version": 2,
+    "source_path": "/Users/rome/Desktop/VQE Runtime Verification - DejaVu/configs/h2_statevector.toml"
+  },
+  "created_utc": "2026-10-01T01:05:13.939765+00:00",
+  "fidelity_definition": {
+    "evaluation_aggregation": "arithmetic mean across four PUBs",
+    "formula": "(sum_x sqrt(p_ideal(x) * p_sampled(x)))^2",
+    "name": "measurement-distribution fidelity",
+    "qualification": "not a tomographic quantum-state fidelity",
+    "run_error_aggregations": [
+      "mean of per-evaluation (1-F)",
+      "sum of per-evaluation (1-F)"
+    ]
+  },
+  "measured_repetitions": 30,
+  "raw_files": [
+    "runs.csv",
+    "evaluations.csv",
+    "pub_fidelity.csv",
+    "gate_latencies.csv",
+    "memory_samples.csv",
+    "schedule.json",
+    "environment.json"
+  ],
+  "scales": [
+    {
+      "conditions": {
+        "baseline": {
+          "convergence_check_seconds": {
+            "count": 300,
+            "max": 2.28749995585531e-05,
+            "mean": 7.231982696490983e-07,
+            "min": 3.7500285543501377e-07,
+            "p50": 5.830079317092896e-07,
+            "p95": 1.1270589311607188e-06
+          },
+          "cumulative_measurement_infidelity": {
+            "count": 30,
+            "max": 0.003491433712599079,
+            "mean": 0.003491433712599079,
+            "min": 0.003491433712599079,
+            "p50": 0.003491433712599079,
+            "p95": 0.003491433712599079
+          },
+          "evaluation_seconds": {
+            "count": 300,
+            "max": 0.006476292008301243,
+            "mean": 0.0044895269629584315,
+            "min": 0.004114042007131502,
+            "p50": 0.0043271874892525375,
+            "p95": 0.005276935387519188
+          },
+          "execution_seconds": {
+            "count": 30,
+            "max": 0.05673850001767278,
+            "mean": 0.04537668606596223,
+            "min": 0.04292195802554488,
+            "p50": 0.04427908298384864,
+            "p95": 0.050375891143630724
+          },
+          "final_energy": {
+            "count": 30,
+            "max": -0.3248650390625,
+            "mean": -0.3248650390625,
+            "min": -0.3248650390625,
+            "p50": -0.3248650390625,
+            "p95": -0.3248650390625
+          },
+          "first_convergence_candidate_evaluation": {
+            "count": 0,
+            "max": null,
+            "mean": null,
+            "min": null,
+            "p50": null,
+            "p95": null
+          },
+          "mean_measurement_infidelity": {
+            "count": 30,
+            "max": 0.0003491433712599079,
+            "mean": 0.0003491433712599079,
+            "min": 0.0003491433712599079,
+            "p50": 0.0003491433712599079,
+            "p95": 0.0003491433712599079
+          },
+          "peak_jvm_rss_bytes": {
+            "count": 30,
+            "max": 0.0,
+            "mean": 0.0,
+            "min": 0.0,
+            "p50": 0.0,
+            "p95": 0.0
+          },
+          "peak_python_rss_bytes": {
+            "count": 30,
+            "max": 269746176.0,
+            "mean": 216351266.13333333,
+            "min": 155516928.0,
+            "p50": 222175232.0,
+            "p95": 268212633.6
+          },
+          "time_to_first_convergence_candidate_seconds": {
+            "count": 0,
+            "max": null,
+            "mean": null,
+            "min": null,
+            "p50": null,
+            "p95": null
+          }
+        },
+        "verified": {
+          "convergence_check_seconds": {
+            "count": 300,
+            "max": 0.005429749988252297,
+            "mean": 0.00351240763644455,
+            "min": 0.002549333992647007,
+            "p50": 0.0033702499786159024,
+            "p95": 0.004776917000708637
+          },
+          "cumulative_measurement_infidelity": {
+            "count": 30,
+            "max": 0.003491433712599079,
+            "mean": 0.003491433712599079,
+            "min": 0.003491433712599079,
+            "p50": 0.003491433712599079,
+            "p95": 0.003491433712599079
+          },
+          "evaluation_seconds": {
+            "count": 300,
+            "max": 0.05710683300276287,
+            "mean": 0.038583002106752244,
+            "min": 0.029976207995787263,
+            "p50": 0.03521727048791945,
+            "p95": 0.050684988942521166
+          },
+          "execution_seconds": {
+            "count": 30,
+            "max": 0.7069187499873806,
+            "mean": 0.6341292582316479,
+            "min": 0.6116206659935415,
+            "p50": 0.6304735000012442,
+            "p95": 0.6659547661460237
+          },
+          "final_energy": {
+            "count": 30,
+            "max": -0.3248650390625,
+            "mean": -0.3248650390625,
+            "min": -0.3248650390625,
+            "p50": -0.3248650390625,
+            "p95": -0.3248650390625
+          },
+          "first_convergence_candidate_evaluation": {
+            "count": 0,
+            "max": null,
+            "mean": null,
+            "min": null,
+            "p50": null,
+            "p95": null
+          },
+          "mean_measurement_infidelity": {
+            "count": 30,
+            "max": 0.0003491433712599079,
+            "mean": 0.0003491433712599079,
+            "min": 0.0003491433712599079,
+            "p50": 0.0003491433712599079,
+            "p95": 0.0003491433712599079
+          },
+          "peak_jvm_rss_bytes": {
+            "count": 30,
+            "max": 531759104.0,
+            "mean": 531759104.0,
+            "min": 531759104.0,
+            "p50": 531759104.0,
+            "p95": 531759104.0
+          },
+          "peak_python_rss_bytes": {
+            "count": 30,
+            "max": 264781824.0,
+            "mean": 210307754.66666666,
+            "min": 155877376.0,
+            "p50": 205783040.0,
+            "p95": 262400409.59999996
+          },
+          "time_to_first_convergence_candidate_seconds": {
+            "count": 0,
+            "max": null,
+            "mean": null,
+            "min": null,
+            "p50": null,
+            "p95": null
+          }
+        }
+      },
+      "direct_p50_difference_seconds": 0.5861944170173956,
+      "direct_p50_final_energy_difference": 0.0,
+      "direct_p50_mean_infidelity_difference": 0.0,
+      "direct_p50_overhead_percent": 1323.8630466471438,
+      "evaluations": 10
+    },
+    {
+      "conditions": {
+        "baseline": {
+          "convergence_check_seconds": {
+            "count": 600,
+            "max": 3.541994374245405e-06,
+            "mean": 6.105733336880803e-07,
+            "min": 3.3300602808594704e-07,
+            "p50": 5.00003807246685e-07,
+            "p95": 1.1250085663050413e-06
+          },
+          "cumulative_measurement_infidelity": {
+            "count": 30,
+            "max": 0.009323621712126084,
+            "mean": 0.009323621712126084,
+            "min": 0.009323621712126084,
+            "p50": 0.009323621712126084,
+            "p95": 0.009323621712126084
+          },
+          "evaluation_seconds": {
+            "count": 600,
+            "max": 0.03843816599692218,
+            "mean": 0.004466096337079458,
+            "min": 0.004007041978184134,
+            "p50": 0.004268624499673024,
+            "p95": 0.005145648549660109
+          },
+          "execution_seconds": {
+            "count": 30,
+            "max": 0.11999787497916259,
+            "mean": 0.08978658059980565,
+            "min": 0.08444858400616795,
+            "p50": 0.0865754164988175,
+            "p95": 0.10188389756076502
+          },
+          "final_energy": {
+            "count": 30,
+            "max": -0.38575800781249997,
+            "mean": -0.38575800781249997,
+            "min": -0.38575800781249997,
+            "p50": -0.38575800781249997,
+            "p95": -0.38575800781249997
+          },
+          "first_convergence_candidate_evaluation": {
+            "count": 0,
+            "max": null,
+            "mean": null,
+            "min": null,
+            "p50": null,
+            "p95": null
+          },
+          "mean_measurement_infidelity": {
+            "count": 30,
+            "max": 0.00046618108560630425,
+            "mean": 0.00046618108560630425,
+            "min": 0.00046618108560630425,
+            "p50": 0.00046618108560630425,
+            "p95": 0.00046618108560630425
+          },
+          "peak_jvm_rss_bytes": {
+            "count": 30,
+            "max": 0.0,
+            "mean": 0.0,
+            "min": 0.0,
+            "p50": 0.0,
+            "p95": 0.0
+          },
+          "peak_python_rss_bytes": {
+            "count": 30,
+            "max": 259489792.0,
+            "mean": 201150190.93333334,
+            "min": 155877376.0,
+            "p50": 188964864.0,
+            "p95": 256956006.39999998
+          },
+          "time_to_first_convergence_candidate_seconds": {
+            "count": 0,
+            "max": null,
+            "mean": null,
+            "min": null,
+            "p50": null,
+            "p95": null
+          }
+        },
+        "verified": {
+          "convergence_check_seconds": {
+            "count": 600,
+            "max": 0.005791792005766183,
+            "mean": 0.0033097578448844918,
+            "min": 0.0023398749763146043,
+            "p50": 0.003170334006426856,
+            "p95": 0.004530692296975758
+          },
+          "cumulative_measurement_infidelity": {
+            "count": 30,
+            "max": 0.009323621712126084,
+            "mean": 0.009323621712126084,
+            "min": 0.009323621712126084,
+            "p50": 0.009323621712126084,
+            "p95": 0.009323621712126084
+          },
+          "evaluation_seconds": {
+            "count": 600,
+            "max": 0.057720416982192546,
+            "mean": 0.03594443972906447,
+            "min": 0.0281058750115335,
+            "p50": 0.033715853991452605,
+            "p95": 0.05017029615119099
+          },
+          "execution_seconds": {
+            "count": 30,
+            "max": 1.0623868339753244,
+            "mean": 0.9688483679676817,
+            "min": 0.9189331250090618,
+            "p50": 0.9586325210111681,
+            "p95": 1.0431288352847332
+          },
+          "final_energy": {
+            "count": 30,
+            "max": -0.38575800781249997,
+            "mean": -0.38575800781249997,
+            "min": -0.38575800781249997,
+            "p50": -0.38575800781249997,
+            "p95": -0.38575800781249997
+          },
+          "first_convergence_candidate_evaluation": {
+            "count": 0,
+            "max": null,
+            "mean": null,
+            "min": null,
+            "p50": null,
+            "p95": null
+          },
+          "mean_measurement_infidelity": {
+            "count": 30,
+            "max": 0.00046618108560630425,
+            "mean": 0.00046618108560630425,
+            "min": 0.00046618108560630425,
+            "p50": 0.00046618108560630425,
+            "p95": 0.00046618108560630425
+          },
+          "peak_jvm_rss_bytes": {
+            "count": 30,
+            "max": 531759104.0,
+            "mean": 531759104.0,
+            "min": 531759104.0,
+            "p50": 531759104.0,
+            "p95": 531759104.0
+          },
+          "peak_python_rss_bytes": {
+            "count": 30,
+            "max": 269746176.0,
+            "mean": 213126348.8,
+            "min": 155222016.0,
+            "p50": 210526208.0,
+            "p95": 258280652.79999998
+          },
+          "time_to_first_convergence_candidate_seconds": {
+            "count": 0,
+            "max": null,
+            "mean": null,
+            "min": null,
+            "p50": null,
+            "p95": null
+          }
+        }
+      },
+      "direct_p50_difference_seconds": 0.8720571045123506,
+      "direct_p50_final_energy_difference": 0.0,
+      "direct_p50_mean_infidelity_difference": 0.0,
+      "direct_p50_overhead_percent": 1007.2802878450625,
+      "evaluations": 20
+    },
+    {
+      "conditions": {
+        "baseline": {
+          "convergence_check_seconds": {
+            "count": 900,
+            "max": 2.207991201430559e-06,
+            "mean": 5.84736408200115e-07,
+            "min": 3.7500285543501377e-07,
+            "p50": 5.00003807246685e-07,
+            "p95": 1.044053351506589e-06
+          },
+          "cumulative_measurement_infidelity": {
+            "count": 30,
+            "max": 0.013303000029302514,
+            "mean": 0.013303000029302514,
+            "min": 0.013303000029302514,
+            "p50": 0.013303000029302514,
+            "p95": 0.013303000029302514
+          },
+          "evaluation_seconds": {
+            "count": 900,
+            "max": 0.007173874997533858,
+            "mean": 0.004404486308016607,
+            "min": 0.004002833011327311,
+            "p50": 0.004273729005944915,
+            "p95": 0.0051925753607065415
+          },
+          "execution_seconds": {
+            "count": 30,
+            "max": 0.15903612499823794,
+            "mean": 0.1326273389015114,
+            "min": 0.12607612501597032,
+            "p50": 0.12962435399822425,
+            "p95": 0.15000486875505886
+          },
+          "final_energy": {
+            "count": 30,
+            "max": -0.37426660156249997,
+            "mean": -0.37426660156249997,
+            "min": -0.37426660156249997,
+            "p50": -0.37426660156249997,
+            "p95": -0.37426660156249997
+          },
+          "first_convergence_candidate_evaluation": {
+            "count": 0,
+            "max": null,
+            "mean": null,
+            "min": null,
+            "p50": null,
+            "p95": null
+          },
+          "mean_measurement_infidelity": {
+            "count": 30,
+            "max": 0.0004434333343100838,
+            "mean": 0.0004434333343100838,
+            "min": 0.0004434333343100838,
+            "p50": 0.0004434333343100838,
+            "p95": 0.0004434333343100838
+          },
+          "peak_jvm_rss_bytes": {
+            "count": 30,
+            "max": 0.0,
+            "mean": 0.0,
+            "min": 0.0,
+            "p50": 0.0,
+            "p95": 0.0
+          },
+          "peak_python_rss_bytes": {
+            "count": 30,
+            "max": 269746176.0,
+            "mean": 199628663.46666667,
+            "min": 155877376.0,
+            "p50": 192724992.0,
+            "p95": 258280652.79999998
+          },
+          "time_to_first_convergence_candidate_seconds": {
+            "count": 0,
+            "max": null,
+            "mean": null,
+            "min": null,
+            "p50": null,
+            "p95": null
+          }
+        },
+        "verified": {
+          "convergence_check_seconds": {
+            "count": 900,
+            "max": 0.021214332984527573,
+            "mean": 0.003188484069542028,
+            "min": 0.002070166985504329,
+            "p50": 0.0030981665040599182,
+            "p95": 0.004410610688501037
+          },
+          "cumulative_measurement_infidelity": {
+            "count": 30,
+            "max": 0.013303000029302514,
+            "mean": 0.013303000029302514,
+            "min": 0.013303000029302514,
+            "p50": 0.013303000029302514,
+            "p95": 0.013303000029302514
+          },
+          "evaluation_seconds": {
+            "count": 900,
+            "max": 0.07962158299051225,
+            "mean": 0.034519483141161295,
+            "min": 0.02712783301831223,
+            "p50": 0.03276025000377558,
+            "p95": 0.04928840414213482
+          },
+          "execution_seconds": {
+            "count": 30,
+            "max": 1.4937246250046883,
+            "mean": 1.2916501194325973,
+            "min": 1.211849584011361,
+            "p50": 1.2684504165081307,
+            "p95": 1.4042940315470331
+          },
+          "final_energy": {
+            "count": 30,
+            "max": -0.37426660156249997,
+            "mean": -0.37426660156249997,
+            "min": -0.37426660156249997,
+            "p50": -0.37426660156249997,
+            "p95": -0.37426660156249997
+          },
+          "first_convergence_candidate_evaluation": {
+            "count": 0,
+            "max": null,
+            "mean": null,
+            "min": null,
+            "p50": null,
+            "p95": null
+          },
+          "mean_measurement_infidelity": {
+            "count": 30,
+            "max": 0.0004434333343100838,
+            "mean": 0.0004434333343100838,
+            "min": 0.0004434333343100838,
+            "p50": 0.0004434333343100838,
+            "p95": 0.0004434333343100838
+          },
+          "peak_jvm_rss_bytes": {
+            "count": 30,
+            "max": 531759104.0,
+            "mean": 531759104.0,
+            "min": 531759104.0,
+            "p50": 531759104.0,
+            "p95": 531759104.0
+          },
+          "peak_python_rss_bytes": {
+            "count": 30,
+            "max": 259489792.0,
+            "mean": 209868663.46666667,
+            "min": 155516928.0,
+            "p50": 216891392.0,
+            "p95": 258280652.79999998
+          },
+          "time_to_first_convergence_candidate_seconds": {
+            "count": 0,
+            "max": null,
+            "mean": null,
+            "min": null,
+            "p50": null,
+            "p95": null
+          }
+        }
+      },
+      "direct_p50_difference_seconds": 1.1388260625099065,
+      "direct_p50_final_energy_difference": 0.0,
+      "direct_p50_mean_infidelity_difference": 0.0,
+      "direct_p50_overhead_percent": 878.5587178513596,
+      "evaluations": 30
+    },
+    {
+      "conditions": {
+        "baseline": {
+          "convergence_check_seconds": {
+            "count": 1200,
+            "max": 5.375011824071407e-06,
+            "mean": 6.276457861531526e-07,
+            "min": 3.3300602808594704e-07,
+            "p50": 5.409820005297661e-07,
+            "p95": 1.1690543033182602e-06
+          },
+          "cumulative_measurement_infidelity": {
+            "count": 30,
+            "max": 0.019322559152396335,
+            "mean": 0.019322559152396335,
+            "min": 0.019322559152396335,
+            "p50": 0.019322559152396335,
+            "p95": 0.019322559152396335
+          },
+          "evaluation_seconds": {
+            "count": 1200,
+            "max": 0.007690832979278639,
+            "mean": 0.004423213068682041,
+            "min": 0.003979041997808963,
+            "p50": 0.004281562505639158,
+            "p95": 0.005262718450103421
+          },
+          "execution_seconds": {
+            "count": 30,
+            "max": 0.21306166701833718,
+            "mean": 0.1774513820001933,
+            "min": 0.1675549579958897,
+            "p50": 0.17352462500275578,
+            "p95": 0.19258114214317174
+          },
+          "final_energy": {
+            "count": 30,
+            "max": -0.40600078125,
+            "mean": -0.40600078125,
+            "min": -0.40600078125,
+            "p50": -0.40600078125,
+            "p95": -0.40600078125
+          },
+          "first_convergence_candidate_evaluation": {
+            "count": 0,
+            "max": null,
+            "mean": null,
+            "min": null,
+            "p50": null,
+            "p95": null
+          },
+          "mean_measurement_infidelity": {
+            "count": 30,
+            "max": 0.0004830639788099084,
+            "mean": 0.0004830639788099084,
+            "min": 0.0004830639788099084,
+            "p50": 0.0004830639788099084,
+            "p95": 0.0004830639788099084
+          },
+          "peak_jvm_rss_bytes": {
+            "count": 30,
+            "max": 0.0,
+            "mean": 0.0,
+            "min": 0.0,
+            "p50": 0.0,
+            "p95": 0.0
+          },
+          "peak_python_rss_bytes": {
+            "count": 30,
+            "max": 269746176.0,
+            "mean": 211786683.73333332,
+            "min": 161660928.0,
+            "p50": 212090880.0,
+            "p95": 262400409.59999996
+          },
+          "time_to_first_convergence_candidate_seconds": {
+            "count": 0,
+            "max": null,
+            "mean": null,
+            "min": null,
+            "p50": null,
+            "p95": null
+          }
+        },
+        "verified": {
+          "convergence_check_seconds": {
+            "count": 1200,
+            "max": 0.008963792002759874,
+            "mean": 0.0030108715238263053,
+            "min": 0.0020410419965628535,
+            "p50": 0.0029624580056406558,
+            "p95": 0.004275322618195787
+          },
+          "cumulative_measurement_infidelity": {
+            "count": 30,
+            "max": 0.019322559152396335,
+            "mean": 0.019322559152396335,
+            "min": 0.019322559152396335,
+            "p50": 0.019322559152396335,
+            "p95": 0.019322559152396335
+          },
+          "evaluation_seconds": {
+            "count": 1200,
+            "max": 0.057938957994338125,
+            "mean": 0.0331383679597396,
+            "min": 0.026192915975116193,
+            "p50": 0.03155470899946522,
+            "p95": 0.04787677951389924
+          },
+          "execution_seconds": {
+            "count": 30,
+            "max": 1.7778406249999534,
+            "mean": 1.5847511861337504,
+            "min": 1.5019417089933995,
+            "p50": 1.5616673749900656,
+            "p95": 1.7241468206630088
+          },
+          "final_energy": {
+            "count": 30,
+            "max": -0.40600078125,
+            "mean": -0.40600078125,
+            "min": -0.40600078125,
+            "p50": -0.40600078125,
+            "p95": -0.40600078125
+          },
+          "first_convergence_candidate_evaluation": {
+            "count": 0,
+            "max": null,
+            "mean": null,
+            "min": null,
+            "p50": null,
+            "p95": null
+          },
+          "mean_measurement_infidelity": {
+            "count": 30,
+            "max": 0.0004830639788099084,
+            "mean": 0.0004830639788099084,
+            "min": 0.0004830639788099084,
+            "p50": 0.0004830639788099084,
+            "p95": 0.0004830639788099084
+          },
+          "peak_jvm_rss_bytes": {
+            "count": 30,
+            "max": 531759104.0,
+            "mean": 531759104.0,
+            "min": 531759104.0,
+            "p50": 531759104.0,
+            "p95": 531759104.0
+          },
+          "peak_python_rss_bytes": {
+            "count": 30,
+            "max": 269746176.0,
+            "mean": 207192610.13333333,
+            "min": 155222016.0,
+            "p50": 205692928.0,
+            "p95": 254778572.79999995
+          },
+          "time_to_first_convergence_candidate_seconds": {
+            "count": 0,
+            "max": null,
+            "mean": null,
+            "min": null,
+            "p50": null,
+            "p95": null
+          }
+        }
+      },
+      "direct_p50_difference_seconds": 1.3881427499873098,
+      "direct_p50_final_energy_difference": 0.0,
+      "direct_p50_mean_infidelity_difference": 0.0,
+      "direct_p50_overhead_percent": 799.9687364057202,
+      "evaluations": 40
+    },
+    {
+      "conditions": {
+        "baseline": {
+          "convergence_check_seconds": {
+            "count": 1500,
+            "max": 3.875000402331352e-06,
+            "mean": 5.895636277273297e-07,
+            "min": 3.3300602808594704e-07,
+            "p50": 5.00003807246685e-07,
+            "p95": 1.00000761449337e-06
+          },
+          "cumulative_measurement_infidelity": {
+            "count": 30,
+            "max": 0.02332153719160779,
+            "mean": 0.02332153719160779,
+            "min": 0.02332153719160779,
+            "p50": 0.02332153719160779,
+            "p95": 0.02332153719160779
+          },
+          "evaluation_seconds": {
+            "count": 1500,
+            "max": 0.02695679198950529,
+            "mean": 0.004409172897149498,
+            "min": 0.003966458985814825,
+            "p50": 0.004265354509698227,
+            "p95": 0.005115881581150461
+          },
+          "execution_seconds": {
+            "count": 30,
+            "max": 0.260403291991679,
+            "mean": 0.22097807913669384,
+            "min": 0.20790475001558661,
+            "p50": 0.21514731251227204,
+            "p95": 0.23945605160115518
+          },
+          "final_energy": {
+            "count": 30,
+            "max": -0.43980742187500005,
+            "mean": -0.43980742187500005,
+            "min": -0.43980742187500005,
+            "p50": -0.43980742187500005,
+            "p95": -0.43980742187500005
+          },
+          "first_convergence_candidate_evaluation": {
+            "count": 0,
+            "max": null,
+            "mean": null,
+            "min": null,
+            "p50": null,
+            "p95": null
+          },
+          "mean_measurement_infidelity": {
+            "count": 30,
+            "max": 0.00046643074383215575,
+            "mean": 0.00046643074383215575,
+            "min": 0.00046643074383215575,
+            "p50": 0.00046643074383215575,
+            "p95": 0.00046643074383215575
+          },
+          "peak_jvm_rss_bytes": {
+            "count": 30,
+            "max": 0.0,
+            "mean": 0.0,
+            "min": 0.0,
+            "p50": 0.0,
+            "p95": 0.0
+          },
+          "peak_python_rss_bytes": {
+            "count": 30,
+            "max": 267386880.0,
+            "mean": 220436889.6,
+            "min": 169984000.0,
+            "p50": 221929472.0,
+            "p95": 259489792.0
+          },
+          "time_to_first_convergence_candidate_seconds": {
+            "count": 0,
+            "max": null,
+            "mean": null,
+            "min": null,
+            "p50": null,
+            "p95": null
+          }
+        },
+        "verified": {
+          "convergence_check_seconds": {
+            "count": 1500,
+            "max": 0.0460517090104986,
+            "mean": 0.0030302972340917524,
+            "min": 0.0021040000137872994,
+            "p50": 0.0028687919984804466,
+            "p95": 0.004300080949906259
+          },
+          "cumulative_measurement_infidelity": {
+            "count": 30,
+            "max": 0.02332153719160779,
+            "mean": 0.02332153719160779,
+            "min": 0.02332153719160779,
+            "p50": 0.02332153719160779,
+            "p95": 0.02332153719160779
+          },
+          "evaluation_seconds": {
+            "count": 1500,
+            "max": 0.08602650000830181,
+            "mean": 0.032947824609077844,
+            "min": 0.02660708301118575,
+            "p50": 0.03124281250347849,
+            "p95": 0.04740357049158773
+          },
+          "execution_seconds": {
+            "count": 30,
+            "max": 2.189458457985893,
+            "mean": 1.9207473486322366,
+            "min": 1.7939529169816524,
+            "p50": 1.8757471464923583,
+            "p95": 2.139171878811612
+          },
+          "final_energy": {
+            "count": 30,
+            "max": -0.43980742187500005,
+            "mean": -0.43980742187500005,
+            "min": -0.43980742187500005,
+            "p50": -0.43980742187500005,
+            "p95": -0.43980742187500005
+          },
+          "first_convergence_candidate_evaluation": {
+            "count": 0,
+            "max": null,
+            "mean": null,
+            "min": null,
+            "p50": null,
+            "p95": null
+          },
+          "mean_measurement_infidelity": {
+            "count": 30,
+            "max": 0.00046643074383215575,
+            "mean": 0.00046643074383215575,
+            "min": 0.00046643074383215575,
+            "p50": 0.00046643074383215575,
+            "p95": 0.00046643074383215575
+          },
+          "peak_jvm_rss_bytes": {
+            "count": 30,
+            "max": 531759104.0,
+            "mean": 531759104.0,
+            "min": 531759104.0,
+            "p50": 531759104.0,
+            "p95": 531759104.0
+          },
+          "peak_python_rss_bytes": {
+            "count": 30,
+            "max": 268779520.0,
+            "mean": 215396078.93333334,
+            "min": 156106752.0,
+            "p50": 210632704.0,
+            "p95": 266980556.8
+          },
+          "time_to_first_convergence_candidate_seconds": {
+            "count": 0,
+            "max": null,
+            "mean": null,
+            "min": null,
+            "p50": null,
+            "p95": null
+          }
+        }
+      },
+      "direct_p50_difference_seconds": 1.6605998339800863,
+      "direct_p50_final_energy_difference": 0.0,
+      "direct_p50_mean_infidelity_difference": 0.0,
+      "direct_p50_overhead_percent": 771.8431685663586,
+      "evaluations": 50
+    }
+  ],
+  "schedule_seed": 20260930,
+  "schema_version": 1,
+  "timing_boundary": {
+    "baseline": "VQE setup, sampling, numeric convergence, and optimizer only",
+    "excluded_from_both": [
+      "measurement-distribution fidelity analysis",
+      "verified offline replay",
+      "baseline post-run artifact serialization",
+      "summary and figure generation"
+    ],
+    "verified": "baseline work plus synchronous RuntimeSession, DejaVu, trace, and evidence persistence"
+  },
+  "warmups": 5
+}

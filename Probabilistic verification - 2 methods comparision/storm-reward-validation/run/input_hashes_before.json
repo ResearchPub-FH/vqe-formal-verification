@@ -1,0 +1,11 @@
+{
+  "/Users/rome/Desktop/Implementation of Formal Verification on VQE/2-stage verification (closed-loop)/artifacts/approved-experiment/stage1/configuration.json": "e7ee8cdab1d346598d9722f090b2f731af57093e173779f02eecdf7f97be7174",
+  "/Users/rome/Desktop/Implementation of Formal Verification on VQE/2-stage verification (closed-loop)/artifacts/approved-experiment/stage1/gaussian-kernels.npz": "c718a020b88c97e56475386d4eef069181632543312b6f3e0a5774add82379b0",
+  "/Users/rome/Desktop/Implementation of Formal Verification on VQE/2-stage verification (closed-loop)/artifacts/approved-experiment/stage1/gaussian.lab": "b46cee3de3d2e6184240550ec233ab30ed85dcb8f069ce9f02e4b158819c99ba",
+  "/Users/rome/Desktop/Implementation of Formal Verification on VQE/2-stage verification (closed-loop)/artifacts/approved-experiment/stage1/gaussian.props": "f860e984a0f00d1ef65ec96afd48e7e67c959945cf3bd11dc0cdd5f020194cd1",
+  "/Users/rome/Desktop/Implementation of Formal Verification on VQE/2-stage verification (closed-loop)/artifacts/approved-experiment/stage1/gaussian.tra": "eac2165b799ee0f7d49c1af90c987e11ea77a3330ad48b2cd6518ff00472c498",
+  "/Users/rome/Desktop/Implementation of Formal Verification on VQE/2-stage verification (closed-loop)/artifacts/approved-experiment/stage1/pre_execution.json": "b3de315ae48c909ca80e275fafde44deb567ec68cad3b0de366e93a93c53c3ca",
+  "/Users/rome/Desktop/Implementation of Formal Verification on VQE/2-stage verification (closed-loop)/artifacts/approved-experiment/stage1/quantitative.json": "c59cac50cf3a3a01ee17768804f981b94b2b8d51ccdf1cc3b77b664902fdce9b",
+  "/Users/rome/Desktop/Implementation of Formal Verification on VQE/2-stage verification (closed-loop)/artifacts/approved-experiment/stage1/storm.log": "b24ddf3ab8b08e73381ecfd456121bf7f569f09ca8db08935616b9a64de50385",
+  "/Users/rome/Desktop/Implementation of Formal Verification on VQE/2-stage verification (closed-loop)/closed_loop/physics.py": "7221648d1e244110f66bee84ad9bcea4aa2ffab1bcf883d9b25ebab91ce07ded"
+}

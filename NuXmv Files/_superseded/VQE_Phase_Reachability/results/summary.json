@@ -1,0 +1,178 @@
+{
+  "run_utc": "2026-09-10T20:41:00.792816+00:00",
+  "nuXmv": "/Users/rome/Desktop/Formal Verification on VQE/code/NuXmv Files/nuXmv/bin/nuXmv",
+  "nuXmv_sha256": "ea792e7c91017476e83cc2d923f1e8de59cb309e98db87046c73c092c950dbc1",
+  "version": "2.1.0",
+  "engine": "BDD CTL model checking (unbounded EF)",
+  "MAX_ITERS": 5,
+  "NTERMS": 3,
+  "queries": [
+    {
+      "model": "baseline",
+      "phase": "BIND",
+      "formula": "EF (state = BIND)",
+      "result": "TRUE",
+      "minimum_transitions": 1
+    },
+    {
+      "model": "baseline",
+      "phase": "MEASURE",
+      "formula": "EF (state = EXECUTE_MEASURE)",
+      "result": "TRUE",
+      "minimum_transitions": 2
+    },
+    {
+      "model": "baseline",
+      "phase": "AGGREGATE",
+      "formula": "EF (state = COMPUTE_ENERGY)",
+      "result": "TRUE",
+      "minimum_transitions": 6
+    },
+    {
+      "model": "baseline",
+      "phase": "CHECK_STOP",
+      "formula": "EF (state = CHECK_STOP)",
+      "result": "TRUE",
+      "minimum_transitions": 7
+    },
+    {
+      "model": "baseline",
+      "phase": "OPTIMIZE",
+      "formula": "EF (state = OPTIMIZER_STEP)",
+      "result": "TRUE",
+      "minimum_transitions": 8
+    },
+    {
+      "model": "baseline",
+      "phase": "DONE",
+      "formula": "EF (state = DONE)",
+      "result": "TRUE",
+      "minimum_transitions": 8
+    },
+    {
+      "model": "refined_abort",
+      "phase": "BIND",
+      "formula": "EF (state = BIND)",
+      "result": "TRUE",
+      "minimum_transitions": 1
+    },
+    {
+      "model": "refined_abort",
+      "phase": "MEASURE",
+      "formula": "EF (state = EXECUTE_MEASURE)",
+      "result": "TRUE",
+      "minimum_transitions": 2
+    },
+    {
+      "model": "refined_abort",
+      "phase": "AGGREGATE",
+      "formula": "EF (state = COMPUTE_ENERGY)",
+      "result": "TRUE",
+      "minimum_transitions": 6
+    },
+    {
+      "model": "refined_abort",
+      "phase": "CHECK_STOP",
+      "formula": "EF (state = CHECK_STOP)",
+      "result": "TRUE",
+      "minimum_transitions": 7
+    },
+    {
+      "model": "refined_abort",
+      "phase": "OPTIMIZE",
+      "formula": "EF (state = OPTIMIZER_STEP)",
+      "result": "TRUE",
+      "minimum_transitions": 8
+    },
+    {
+      "model": "refined_abort",
+      "phase": "DONE",
+      "formula": "EF (state = DONE)",
+      "result": "TRUE",
+      "minimum_transitions": 8
+    },
+    {
+      "model": "canonical",
+      "phase": "BIND",
+      "formula": "EF (state = BIND)",
+      "result": "TRUE",
+      "minimum_transitions": 1
+    },
+    {
+      "model": "canonical",
+      "phase": "MEASURE",
+      "formula": "EF (state = EXECUTE_MEASURE)",
+      "result": "TRUE",
+      "minimum_transitions": 2
+    },
+    {
+      "model": "canonical",
+      "phase": "AGGREGATE",
+      "formula": "EF (state = COMPUTE_ENERGY)",
+      "result": "TRUE",
+      "minimum_transitions": 6
+    },
+    {
+      "model": "canonical",
+      "phase": "CHECK_STOP",
+      "formula": "EF (state = CHECK_STOP)",
+      "result": "TRUE",
+      "minimum_transitions": 7
+    },
+    {
+      "model": "canonical",
+      "phase": "OPTIMIZE",
+      "formula": "EF (state = OPTIMIZER_STEP)",
+      "result": "TRUE",
+      "minimum_transitions": 8
+    },
+    {
+      "model": "canonical",
+      "phase": "DONE",
+      "formula": "EF (state = DONE)",
+      "result": "TRUE",
+      "minimum_transitions": 8
+    }
+  ],
+  "models": {
+    "baseline": {
+      "source": "nuXmv/vqe_rename.smv",
+      "source_sha256": "9c852731cb76f00d8fd902094bbed3687c2797d33f3e9e0ab989eb6c6c20e6c6",
+      "transition_relation_total": true,
+      "reachable_states_output": "108 (2^6.75489) out of 2688 (2^11.3923)",
+      "ordered_all_six_phases": true,
+      "abort_reachable": null,
+      "witness_count": 7
+    },
+    "refined_abort": {
+      "source": "VQE_NuXmv_Refinement/vqe_refined_abort.smv",
+      "source_sha256": "c3c7a26098b2f044ffb671b5945e18d6ec0ed3536cdb38c79e5dc23a8b55a03c",
+      "transition_relation_total": true,
+      "reachable_states_output": "3072 (2^11.585) out of 344064 (2^18.3923)",
+      "ordered_all_six_phases": true,
+      "abort_reachable": true,
+      "witness_count": 7
+    },
+    "canonical": {
+      "source": "claude/vqe_canonical.smv",
+      "source_sha256": "5efd8c46e7acdfa3505fd6e854fa523b525d09c05947e4ef83038036a30963e4",
+      "transition_relation_total": true,
+      "reachable_states_output": "96 (2^6.58496) out of 2.32243e+06 (2^21.1472)",
+      "ordered_all_six_phases": true,
+      "abort_reachable": true,
+      "witness_count": 7
+    }
+  },
+  "legacy": {
+    "source": "nuXmv/vqe.smv",
+    "status": "PARSE_ERROR",
+    "exit_code": 0
+  },
+  "integrity": {
+    "method": "SHA-256 of every pre-existing regular file, excluding .DS_Store",
+    "files_checked": 2225,
+    "changed_or_missing": [],
+    "new_files_outside_isolated_folder": [],
+    "snapshots_byte_identical": true
+  }
+}

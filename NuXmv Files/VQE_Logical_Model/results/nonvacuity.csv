@@ -1,0 +1,63 @@
+id,kind,contract,formula,expected,holds,as_expected
+W_R1_groups_before_aggregation_0,antecedent,L1,EF (state = COMPUTE_ENERGY),True,True,True
+C_R1_groups_before_aggregation,consequent,L1,EF !(terms_done = NTERMS),True,True,True
+W_R2_energy_before_check_0,antecedent,L2,EF (state = CHECK_STOP & iter > 0),True,True,True
+C_R2_energy_before_check,consequent,L2,EF !energy_ready,True,True,True
+W_R3_bound_before_measure_0,antecedent,L3,EF (state = EXECUTE_MEASURE),True,True,True
+C_R3_bound_before_measure,consequent,L3,EF !(circ_ready & params_ready),True,True,True
+W_R4_candidates_before_commit_0,antecedent,L2,EF (state = OPTIMIZER_STEP),True,True,True
+C_R4_candidates_before_commit,consequent,L2,EF !(cands_done = NCANDS & energy_ready),True,True,True
+W_F1_current_evaluation_0,antecedent,L3,EF (state = EXECUTE_MEASURE),True,True,True
+W_F1_current_evaluation_1,antecedent,L3,EF (state = COMPUTE_ENERGY),True,True,True
+C_F1_current_evaluation,consequent,L3,EF !(bound_version = iter & bound_cand = cands_done),True,True,True
+W_F2_current_energy_0,antecedent,L3,EF (state = OPTIMIZER_STEP),True,True,True
+C_F2_current_energy,consequent,L3,EF !(energy_version = iter),True,True,True
+W_F3_evaluation_reset_0,antecedent,L3,EF (state = BIND),True,True,True
+C_F3_evaluation_reset,consequent,L3,EF !(terms_done = 0 & !energy_ready),True,True,True
+W_F4_iteration_reset_0,antecedent,L3,EF (state = CHECK_STOP & !converged & iter < MAX_ITERS),True,True,True
+C_F4_iteration_reset,consequent,L3,EF !(state = BIND & cands_done = 0),True,True,True
+W_F5_returned_energy_0,antecedent,L4,EF (state = DONE & iter > 0),True,True,True
+C_F5_returned_energy,consequent,L4,EF !(energy_ready & energy_version + 1 = iter),True,True,True
+W_T1_termination_0,antecedent,L4,EF !terminal,True,True,True
+C_T1_termination,consequent,L4,EF !terminal,True,True,True
+W_T2_done_reason_0,antecedent,L4,EF (state = DONE),True,True,True
+C_T2_done_reason,consequent,L4,EF !(term_reason = DONE_CONVERGED | (term_reason = DONE_MAX_ITERS & iter = MAX_ITERS)),True,True,True
+W_T3_done_absorbing_0,antecedent,L4,EF (state = DONE),True,True,True
+C_T3_done_absorbing,consequent,L4,EF !(state = DONE),True,True,True
+W_T4_abort_absorbing_0,antecedent,L4,EF (state = ABORT),True,True,True
+C_T4_abort_absorbing,consequent,L4,EF !(state = ABORT),True,True,True
+W_T5_success_reason_0,antecedent,L4,EF (state = CHECK_STOP & converged),True,True,True
+C_T5_success_reason,consequent,L4,EF !(state = DONE & term_reason = DONE_CONVERGED),True,True,True
+W_T6_budget_reason_0,antecedent,L4,EF (state = CHECK_STOP & !converged & iter = MAX_ITERS),True,True,True
+C_T6_budget_reason,consequent,L4,EF !(state = DONE & term_reason = DONE_MAX_ITERS),True,True,True
+W_T7_abort_reason_0,antecedent,L4,EF (state = ABORT),True,True,True
+C_T7_abort_reason,consequent,L4,"EF (term_reason in {NO_TERM, DONE_CONVERGED, DONE_MAX_ITERS})",True,True,True
+W_T8_no_early_reason_0,antecedent,L4,EF !terminal,True,True,True
+C_T8_no_early_reason,consequent,L4,EF !(term_reason = NO_TERM),True,True,True
+W_T9_update_accounting_0,antecedent,L4,EF (state = OPTIMIZER_STEP & !optimizer_error),True,True,True
+C_T9_update_accounting,consequent,L4,EF !(state = OPTIMIZER_STEP & !optimizer_error),True,True,True
+W_E1_bind_fails_0,antecedent,L4,EF bind_fails,True,True,True
+C_E1_bind_fails,consequent,L4,EF !(state = ABORT & term_reason = ABORT_BIND_ERROR),True,True,True
+W_E2_measure_fails_0,antecedent,L4,EF measure_fails,True,True,True
+C_E2_measure_fails,consequent,L4,EF !(state = ABORT & term_reason = ABORT_QPU_ERROR),True,True,True
+W_E3_energy_fails_0,antecedent,L4,EF energy_fails,True,True,True
+C_E3_energy_fails,consequent,L4,EF !(state = ABORT & term_reason = ABORT_ENERGY_ERROR),True,True,True
+W_E4_optimizer_fails_0,antecedent,L4,EF optimizer_fails,True,True,True
+C_E4_optimizer_fails,consequent,L4,EF !(state = ABORT & term_reason = ABORT_OPTIMIZER_ERROR),True,True,True
+W_E5_abort_only_on_error_0,antecedent,L4,EF (!terminal & EX state = ABORT),True,True,True
+C_E5_abort_only_on_error,consequent,L4,EF !error,True,True,True
+W_E6_update_bound_0,antecedent,L4,EF (state = OPTIMIZER_STEP),True,True,True
+C_E6_update_bound,consequent,L4,EF !(iter < MAX_ITERS),True,True,True
+B_0,branch,,EF ((terminal)),True,True,True
+B_1,branch,,EF ((error) & !(terminal)),True,True,True
+B_2,branch,,EF ((state = S_INIT) & !(terminal) & !(error)),True,True,True
+B_3,branch,,EF ((state = CHECK_STOP & converged) & !(terminal) & !(error) & !(state = S_INIT)),True,True,True
+B_4,branch,,EF ((state = CHECK_STOP & !converged & iter = MAX_ITERS) & !(terminal) & !(error) & !(state = S_INIT) & !(state = CHECK_STOP & converged)),True,True,True
+B_5,branch,,EF ((state = CHECK_STOP & !converged & iter < MAX_ITERS) & !(terminal) & !(error) & !(state = S_INIT) & !(state = CHECK_STOP & converged) & !(state = CHECK_STOP & !converged & iter = MAX_ITERS)),True,True,True
+B_6,branch,,EF ((state = BIND) & !(terminal) & !(error) & !(state = S_INIT) & !(state = CHECK_STOP & converged) & !(state = CHECK_STOP & !converged & iter = MAX_ITERS) & !(state = CHECK_STOP & !converged & iter < MAX_ITERS)),True,True,True
+B_7,branch,,EF ((state = EXECUTE_MEASURE & terms_done + 1 < NTERMS) & !(terminal) & !(error) & !(state = S_INIT) & !(state = CHECK_STOP & converged) & !(state = CHECK_STOP & !converged & iter = MAX_ITERS) & !(state = CHECK_STOP & !converged & iter < MAX_ITERS) & !(state = BIND)),True,True,True
+B_8,branch,,EF ((state = EXECUTE_MEASURE & terms_done + 1 = NTERMS) & !(terminal) & !(error) & !(state = S_INIT) & !(state = CHECK_STOP & converged) & !(state = CHECK_STOP & !converged & iter = MAX_ITERS) & !(state = CHECK_STOP & !converged & iter < MAX_ITERS) & !(state = BIND) & !(state = EXECUTE_MEASURE & terms_done + 1 < NTERMS)),True,True,True
+B_9,branch,,EF ((state = COMPUTE_ENERGY & cands_done + 1 < NCANDS) & !(terminal) & !(error) & !(state = S_INIT) & !(state = CHECK_STOP & converged) & !(state = CHECK_STOP & !converged & iter = MAX_ITERS) & !(state = CHECK_STOP & !converged & iter < MAX_ITERS) & !(state = BIND) & !(state = EXECUTE_MEASURE & terms_done + 1 < NTERMS) & !(state = EXECUTE_MEASURE & terms_done + 1 = NTERMS)),True,True,True
+B_10,branch,,EF ((state = COMPUTE_ENERGY & cands_done + 1 = NCANDS) & !(terminal) & !(error) & !(state = S_INIT) & !(state = CHECK_STOP & converged) & !(state = CHECK_STOP & !converged & iter = MAX_ITERS) & !(state = CHECK_STOP & !converged & iter < MAX_ITERS) & !(state = BIND) & !(state = EXECUTE_MEASURE & terms_done + 1 < NTERMS) & !(state = EXECUTE_MEASURE & terms_done + 1 = NTERMS) & !(state = COMPUTE_ENERGY & cands_done + 1 < NCANDS)),True,True,True
+B_11,branch,,EF ((state = OPTIMIZER_STEP) & !(terminal) & !(error) & !(state = S_INIT) & !(state = CHECK_STOP & converged) & !(state = CHECK_STOP & !converged & iter = MAX_ITERS) & !(state = CHECK_STOP & !converged & iter < MAX_ITERS) & !(state = BIND) & !(state = EXECUTE_MEASURE & terms_done + 1 < NTERMS) & !(state = EXECUTE_MEASURE & terms_done + 1 = NTERMS) & !(state = COMPUTE_ENERGY & cands_done + 1 < NCANDS) & !(state = COMPUTE_ENERGY & cands_done + 1 = NCANDS)),True,True,True
+B_12,branch,,EF ((TRUE) & !(terminal) & !(error) & !(state = S_INIT) & !(state = CHECK_STOP & converged) & !(state = CHECK_STOP & !converged & iter = MAX_ITERS) & !(state = CHECK_STOP & !converged & iter < MAX_ITERS) & !(state = BIND) & !(state = EXECUTE_MEASURE & terms_done + 1 < NTERMS) & !(state = EXECUTE_MEASURE & terms_done + 1 = NTERMS) & !(state = COMPUTE_ENERGY & cands_done + 1 < NCANDS) & !(state = COMPUTE_ENERGY & cands_done + 1 = NCANDS) & !(state = OPTIMIZER_STEP)),False,False,True

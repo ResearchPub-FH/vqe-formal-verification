@@ -1,0 +1,48 @@
+{
+  "analytical_semantics": "Born-derived Gaussian finite-shot approximation",
+  "files": {
+    "h2_gaussian.lab": {
+      "bytes": 2510365,
+      "sha256": "b5d3dce96b7929d3f720a76ade7b66fa85198bf00896f4c0a632a858378d6fcf"
+    },
+    "h2_gaussian.props": {
+      "bytes": 374,
+      "sha256": "3b4d8757d16d811790bb12edade42c9c5692b25665a30101f46f38a2b75055c2"
+    },
+    "h2_gaussian.sta": {
+      "bytes": 5787157,
+      "sha256": "a83c783ea3a81b8d08680b6f583de42465da57ec4435b074ddf66ae60c96b85b"
+    },
+    "h2_gaussian.tra": {
+      "bytes": 25599081,
+      "sha256": "c2ec44abb2cf02563d0eb24b272b0bee78550e6fa1e787d66026a96d1e179051"
+    },
+    "h2_gaussian_shots.trew": {
+      "bytes": 13699528,
+      "sha256": "8adb263502c394ecd555b019037fc2843520ef1d88c5032b6d507ac58bd7e7a6"
+    },
+    "h2_gaussian_updates.trew": {
+      "bytes": 11434098,
+      "sha256": "a428aed46fa60e01524caa1fc343f23a08f813f418380c94cfba1724bbda4ec6"
+    }
+  },
+  "initial_state": 15214,
+  "model_type": "DTMC",
+  "nonzero_rewarded_candidate_transitions": 755144,
+  "phase_semantics": "active coordinate for the next optimizer update",
+  "state_count": 262144,
+  "state_variables": [
+    "i0",
+    "i1",
+    "i2",
+    "i3",
+    "phase",
+    "status"
+  ],
+  "status_values": {
+    "running": 0,
+    "success": 1
+  },
+  "transition_count": 755176,
+  "transition_semantics": "One transition is one complete optimizer update."
+}

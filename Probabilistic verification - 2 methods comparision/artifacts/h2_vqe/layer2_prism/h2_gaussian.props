@@ -1,0 +1,11 @@
+// Approved property family: bounded convergence.
+// H is swept from 0 through 50 to recover the first-hit law.
+const int H;
+
+"P_success_by_H": P=? [ F<=H "success" ];
+
+"P_success_10": P=? [ F<=10 "success" ];
+"P_success_20": P=? [ F<=20 "success" ];
+"P_success_30": P=? [ F<=30 "success" ];
+"P_success_40": P=? [ F<=40 "success" ];
+"P_success_50": P=? [ F<=50 "success" ];

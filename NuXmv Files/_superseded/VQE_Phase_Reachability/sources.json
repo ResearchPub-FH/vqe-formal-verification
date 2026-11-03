@@ -1,0 +1,6 @@
+{
+  "baseline": "nuXmv/vqe_rename.smv",
+  "refined_abort": "VQE_NuXmv_Refinement/vqe_refined_abort.smv",
+  "canonical": "claude/vqe_canonical.smv",
+  "legacy": "nuXmv/vqe.smv"
+}

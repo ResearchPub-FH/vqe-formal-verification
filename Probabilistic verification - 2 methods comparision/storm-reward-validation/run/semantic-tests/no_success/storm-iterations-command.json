@@ -1,0 +1,17 @@
+{
+  "command": [
+    "/opt/homebrew/bin/storm",
+    "--explicit",
+    "/Users/rome/Desktop/Implementation of Formal Verification on VQE/output/storm-reward-validation/run/semantic-tests/no_success/model.tra",
+    "/Users/rome/Desktop/Implementation of Formal Verification on VQE/output/storm-reward-validation/run/semantic-tests/no_success/model.lab",
+    "--staterew",
+    "/Users/rome/Desktop/Implementation of Formal Verification on VQE/output/storm-reward-validation/run/semantic-tests/no_success/iterations.rew",
+    "--prop",
+    "/Users/rome/Desktop/Implementation of Formal Verification on VQE/output/storm-reward-validation/run/semantic-tests/no_success/iterations.props",
+    "--precision",
+    "1e-12"
+  ],
+  "elapsed_seconds": 0.05338254198431969,
+  "exit_code": 0,
+  "log": "/Users/rome/Desktop/Implementation of Formal Verification on VQE/output/storm-reward-validation/run/semantic-tests/no_success/storm-iterations.log"
+}

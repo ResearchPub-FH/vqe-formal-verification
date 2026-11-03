@@ -1,0 +1,75 @@
+*** This is nuXmv 2.1.0 (compiled on Thu Nov 28 18:33:21 2024)
+*** Copyright (c) 2014-2024, Fondazione Bruno Kessler
+*** For more information on nuXmv see https://nuxmv.fbk.eu
+*** or email to <nuxmv@fbk.eu>.
+*** Please report bugs at Please report bugs to <nusmv-users@fbk.eu>
+*** (click on "Login Anonymously" to access)
+*** Alternatively write to <nuxmv@fbk.eu>.
+
+*** This version of nuXmv is linked to NuSMV 2.7.0.
+*** For more information on NuSMV see <http://nusmv.fbk.eu>
+*** or email to <nusmv-users@fbk.eu>.
+*** Copyright (C) 2010-2024, Fondazione Bruno Kessler
+
+*** This version of nuXmv is linked to the CUDD library version 2.4.1
+*** Copyright (c) 1995-2004, Regents of the University of Colorado
+
+*** This version of nuXmv is linked to the MiniSat SAT solver. 
+*** See http://minisat.se/MiniSat.html
+*** Copyright (c) 2003-2006, Niklas Een, Niklas Sorensson
+*** Copyright (c) 2007-2010, Niklas Sorensson
+
+*** This version of nuXmv is linked to MathSAT
+*** Copyright (C) 2009-2019 by Fondazione Bruno Kessler
+*** Copyright (C) 2009-2019 by University of Trento and others
+*** See http://mathsat.fbk.eu
+
+-- specification EF state = COMPUTE_ENERGY  is true
+-- specification EF !(terms_done = NTERMS)  is true
+-- specification EF (state = CHECK_STOP & iter > 0)  is true
+-- specification EF !energy_ready  is true
+-- specification EF state = EXECUTE_MEASURE  is true
+-- specification EF !(circ_ready & params_ready)  is true
+-- specification EF state = OPTIMIZER_STEP  is true
+-- specification EF !(cands_done = NCANDS & energy_ready)  is true
+-- specification EF state = EXECUTE_MEASURE  is true
+-- specification EF state = COMPUTE_ENERGY  is true
+-- specification EF !(bound_version = iter & bound_cand = cands_done)  is true
+-- specification EF state = OPTIMIZER_STEP  is true
+-- specification EF !(energy_version = iter)  is true
+-- specification EF state = BIND  is true
+-- specification EF !(terms_done = 0 & !energy_ready)  is true
+-- specification EF ((state = CHECK_STOP & !converged) & iter < MAX_ITERS)  is true
+-- specification EF !(state = BIND & cands_done = 0)  is true
+-- specification EF (state = DONE & iter > 0)  is true
+-- specification EF !(energy_ready & energy_version + 1 = iter)  is true
+-- specification EF !terminal  is true
+-- specification EF !terminal  is true
+-- specification EF state = DONE  is true
+-- specification EF !(term_reason = DONE_CONVERGED | (term_reason = DONE_MAX_ITERS & iter = MAX_ITERS))  is true
+-- specification EF state = DONE  is true
+-- specification EF !(state = DONE)  is true
+-- specification EF state = ABORT  is true
+-- specification EF !(state = ABORT)  is true
+-- specification EF (state = CHECK_STOP & converged)  is true
+-- specification EF !(state = DONE & term_reason = DONE_CONVERGED)  is true
+-- specification EF ((state = CHECK_STOP & !converged) & iter = MAX_ITERS)  is true
+-- specification EF !(state = DONE & term_reason = DONE_MAX_ITERS)  is true
+-- specification EF state = ABORT  is true
+-- specification EF term_reason in (NO_TERM union DONE_CONVERGED) union DONE_MAX_ITERS  is true
+-- specification EF !terminal  is true
+-- specification EF !(term_reason = NO_TERM)  is true
+-- specification EF (state = OPTIMIZER_STEP & !optimizer_error)  is true
+-- specification EF !(state = OPTIMIZER_STEP & !optimizer_error)  is true
+-- specification EF bind_fails  is true
+-- specification EF !(state = ABORT & term_reason = ABORT_BIND_ERROR)  is true
+-- specification EF measure_fails  is true
+-- specification EF !(state = ABORT & term_reason = ABORT_QPU_ERROR)  is true
+-- specification EF energy_fails  is true
+-- specification EF !(state = ABORT & term_reason = ABORT_ENERGY_ERROR)  is true
+-- specification EF optimizer_fails  is true
+-- specification EF !(state = ABORT & term_reason = ABORT_OPTIMIZER_ERROR)  is true
+-- specification EF (!terminal & EX state = ABORT)  is true
+-- specification EF !error  is true
+-- specification EF state = OPTIMIZER_STEP  is true
+-- specification EF !(iter < MAX_ITERS)  is true

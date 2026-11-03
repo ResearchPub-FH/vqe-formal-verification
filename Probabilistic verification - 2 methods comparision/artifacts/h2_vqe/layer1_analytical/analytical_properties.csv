@@ -1,0 +1,8 @@
+property,value,semantics
+success_by_10,0,P(T_success <= 10)
+success_by_20,0,P(T_success <= 20)
+success_by_30,0.383940189144,P(T_success <= 30)
+success_by_40,0.756252963383,P(T_success <= 40)
+success_by_50,0.928027222501,P(T_success <= 50)
+expected_updates_given_success_by_50,33.111187099,E[T_success | T_success <= 50]
+expected_shots_given_success_by_50,305152.700304,E[shots | T_success <= 50]

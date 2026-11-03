@@ -1,0 +1,36 @@
+Could not load BDD package buddy: Can't load library: /Users/rome/Desktop/Implementation of Formal Verification on VQE/2-stage verification (closed-loop)/libbuddy.dylib
+Could not load BDD package buddy: Could not initialize class net.sf.javabdd.BuDDyFactory
+Could not load BDD package buddy: Could not initialize class net.sf.javabdd.BuDDyFactory
+Could not load BDD package buddy: Could not initialize class net.sf.javabdd.BuDDyFactory
+Could not load BDD package buddy: Could not initialize class net.sf.javabdd.BuDDyFactory
+VIOLATION	premature_update-000	3	L2_validationsBeforeCommit
+TRIGGERS	premature_update-000	activity:4,begin:1,commit:1,stopped:1
+RESULT	premature_update-000	L2_validationsBeforeCommit:1
+Could not load BDD package buddy: Could not initialize class net.sf.javabdd.BuDDyFactory
+Could not load BDD package buddy: Could not initialize class net.sf.javabdd.BuDDyFactory
+Could not load BDD package buddy: Could not initialize class net.sf.javabdd.BuDDyFactory
+Could not load BDD package buddy: Could not initialize class net.sf.javabdd.BuDDyFactory
+Could not load BDD package buddy: Could not initialize class net.sf.javabdd.BuDDyFactory
+TRIGGERS	corrupt_energy-000	activity:7,begin:1,energy:1,groupOne:1,groupTwo:1,groupZero:1,stopped:1
+RESULT	corrupt_energy-000	
+Could not load BDD package buddy: Could not initialize class net.sf.javabdd.BuDDyFactory
+Could not load BDD package buddy: Could not initialize class net.sf.javabdd.BuDDyFactory
+Could not load BDD package buddy: Could not initialize class net.sf.javabdd.BuDDyFactory
+Could not load BDD package buddy: Could not initialize class net.sf.javabdd.BuDDyFactory
+Could not load BDD package buddy: Could not initialize class net.sf.javabdd.BuDDyFactory
+TRIGGERS	coefficient_swap-000	activity:7,begin:1,energy:1,groupOne:1,groupTwo:1,groupZero:1,stopped:1
+RESULT	coefficient_swap-000	
+Could not load BDD package buddy: Could not initialize class net.sf.javabdd.BuDDyFactory
+Could not load BDD package buddy: Could not initialize class net.sf.javabdd.BuDDyFactory
+Could not load BDD package buddy: Could not initialize class net.sf.javabdd.BuDDyFactory
+Could not load BDD package buddy: Could not initialize class net.sf.javabdd.BuDDyFactory
+Could not load BDD package buddy: Could not initialize class net.sf.javabdd.BuDDyFactory
+TRIGGERS	shot_mismatch-000	activity:4,begin:1,groupZero:1,stopped:1
+RESULT	shot_mismatch-000	
+Could not load BDD package buddy: Could not initialize class net.sf.javabdd.BuDDyFactory
+Could not load BDD package buddy: Could not initialize class net.sf.javabdd.BuDDyFactory
+Could not load BDD package buddy: Could not initialize class net.sf.javabdd.BuDDyFactory
+Could not load BDD package buddy: Could not initialize class net.sf.javabdd.BuDDyFactory
+Could not load BDD package buddy: Could not initialize class net.sf.javabdd.BuDDyFactory
+TRIGGERS	missing_evidence-000	activity:53,begin:3,commit:3,energy:9,groupOne:9,groupTwo:9,groupZero:9,stopped:1,validOne:3,validTwo:3,validZero:3,validated:9
+RESULT	missing_evidence-000	

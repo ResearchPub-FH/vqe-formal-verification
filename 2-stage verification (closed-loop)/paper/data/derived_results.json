@@ -1,0 +1,1379 @@
+{
+  "P2": {
+    "absolute_difference": 0.8215696126312579,
+    "bootstrap_95": [
+      31.579234972677597,
+      32.994535519125684
+    ],
+    "classification": "AGREEMENT (statistically compatible after Holm adjustment)",
+    "empirical": 32.2896174863388,
+    "model": 33.111187098970056,
+    "p_holm": 0.09400404078303333,
+    "p_raw": 0.023501010195758332,
+    "successful_runs": 366
+  },
+  "P3": {
+    "absolute_difference": 7571.585550009673,
+    "bootstrap_95": [
+      291034.2295081967,
+      304077.6393442623
+    ],
+    "classification": "AGREEMENT (derived from P2; not an independent test)",
+    "derived_from": "P2",
+    "empirical": 297581.11475409835,
+    "model": 305152.70030410803
+  },
+  "configuration": {
+    "ansatz": "h-rz-y-on-both-cx01-h-rz-y-on-both-v1",
+    "bootstrap_samples": 5000,
+    "candidate_order": [
+      "current",
+      "minus",
+      "plus"
+    ],
+    "checkpoints": [
+      10,
+      20,
+      30,
+      40,
+      50
+    ],
+    "confidence_level": 0.95,
+    "coordinate_schedule": [
+      0,
+      1,
+      2,
+      3
+    ],
+    "energy_tolerance": 1e-12,
+    "environment": "ideal-born-finite-shot",
+    "expectation_tolerance": 1e-12,
+    "fault_runs": 10,
+    "gauss_hermite_points": 24,
+    "grid_size": 16,
+    "hamiltonian": {
+      "coefficient_scale": 10000,
+      "terms": {
+        "XX": 1810,
+        "YZ": 3980,
+        "ZI": -3980,
+        "ZZ": -113
+      }
+    },
+    "initial_index": [
+      3,
+      11,
+      6,
+      14
+    ],
+    "maximum_updates": 50,
+    "measurement_groups": [
+      [
+        "ZI",
+        "ZZ"
+      ],
+      [
+        "YZ"
+      ],
+      [
+        "XX"
+      ]
+    ],
+    "name": "h2-two-stage-closed-loop-v1",
+    "parameter_count": 4,
+    "qubit_order": "q1-q0",
+    "runs": 400,
+    "schema_version": 1,
+    "seed": 20260721,
+    "shots_per_group": 1024,
+    "stop_rule": "first-ideal-energy-success-or-update-budget",
+    "success_gap": 0.02
+  },
+  "configuration_digest": "03b387a2e7fede7a78b71b5a25065f673af10bbb9193103dd9895866d10706be",
+  "contracts": [
+    {
+      "contract": "L1",
+      "description": "Complete measurements precede candidate energy aggregation",
+      "qualification": "Mapping assumptions stated in Table I",
+      "runtime_checks": 324432,
+      "runtime_counts": {
+        "AGREEMENT": 400
+      },
+      "stage1": "PROVED",
+      "verdict_agreement": "AGREEMENT"
+    },
+    {
+      "contract": "L2",
+      "description": "All three candidate validations precede optimizer commitment",
+      "qualification": "Mapping assumptions stated in Table I",
+      "runtime_checks": 135180,
+      "runtime_counts": {
+        "AGREEMENT": 400
+      },
+      "stage1": "PROVED",
+      "verdict_agreement": "AGREEMENT"
+    },
+    {
+      "contract": "L3",
+      "description": "Evaluation identity and parameter provenance remain current",
+      "qualification": "Mapping assumptions stated in Table I",
+      "runtime_checks": 1355400,
+      "runtime_counts": {
+        "AGREEMENT": 400
+      },
+      "stage1": "PROVED",
+      "verdict_agreement": "AGREEMENT"
+    },
+    {
+      "contract": "L4",
+      "description": "Termination is final and has the declared reason",
+      "qualification": "Only terminal absorption and budget bounds prospectively; reason checks at runtime",
+      "runtime_checks": 244524,
+      "runtime_counts": {
+        "AGREEMENT": 400
+      },
+      "stage1": "PROVED",
+      "verdict_agreement": "AGREEMENT"
+    },
+    {
+      "contract": "N1",
+      "description": "Raw counts normalize to the reported expectations",
+      "qualification": "Mapping assumptions stated in Table I",
+      "runtime_checks": 446094,
+      "runtime_counts": {
+        "AGREEMENT": 400
+      },
+      "stage1": "PROVED",
+      "verdict_agreement": "AGREEMENT"
+    },
+    {
+      "contract": "N2",
+      "description": "Declared coefficients and measurements produce the actual energy",
+      "qualification": "Mapping assumptions stated in Table I",
+      "runtime_checks": 351468,
+      "runtime_counts": {
+        "AGREEMENT": 400
+      },
+      "stage1": "PROVED",
+      "verdict_agreement": "AGREEMENT"
+    },
+    {
+      "contract": "N3",
+      "description": "Unique measurement groups determine physical shot consumption",
+      "qualification": "Mapping assumptions stated in Table I",
+      "runtime_checks": 257242,
+      "runtime_counts": {
+        "AGREEMENT": 400
+      },
+      "stage1": "PROVED",
+      "verdict_agreement": "AGREEMENT"
+    },
+    {
+      "contract": "N4",
+      "description": "Candidate generation and selection preserve the parameter grid",
+      "qualification": "Mapping assumptions stated in Table I",
+      "runtime_checks": 460012,
+      "runtime_counts": {
+        "AGREEMENT": 400
+      },
+      "stage1": "PROVED",
+      "verdict_agreement": "AGREEMENT"
+    }
+  ],
+  "dejavu_baseline_passed": 400,
+  "faults": [
+    {
+      "dejavu_passed": 10,
+      "detected": 10,
+      "expected_contract": "N2",
+      "expected_verdict": "DISAGREEMENT",
+      "fault": "coefficient_swap",
+      "n": 10,
+      "probabilistic_applicability_recorded": {
+        "INCONCLUSIVE": 10
+      },
+      "scope": "controlled execution",
+      "vector": {
+        "L1": "AGREEMENT",
+        "L2": "AGREEMENT",
+        "L3": "AGREEMENT",
+        "L4": "AGREEMENT",
+        "N1": "AGREEMENT",
+        "N2": "DISAGREEMENT",
+        "N3": "AGREEMENT",
+        "N4": "AGREEMENT"
+      }
+    },
+    {
+      "dejavu_passed": 10,
+      "detected": 10,
+      "expected_contract": "N2",
+      "expected_verdict": "DISAGREEMENT",
+      "fault": "corrupt_energy",
+      "n": 10,
+      "probabilistic_applicability_recorded": {
+        "INCONCLUSIVE": 10
+      },
+      "scope": "controlled execution",
+      "vector": {
+        "L1": "AGREEMENT",
+        "L2": "AGREEMENT",
+        "L3": "AGREEMENT",
+        "L4": "AGREEMENT",
+        "N1": "AGREEMENT",
+        "N2": "DISAGREEMENT",
+        "N3": "AGREEMENT",
+        "N4": "AGREEMENT"
+      }
+    },
+    {
+      "dejavu_passed": 10,
+      "detected": 10,
+      "expected_contract": "N1",
+      "expected_verdict": "INCONCLUSIVE",
+      "fault": "missing_evidence",
+      "n": 10,
+      "probabilistic_applicability_recorded": {
+        "INCONCLUSIVE": 10
+      },
+      "scope": "saved-trace mutation; no execution mutation",
+      "vector": {
+        "L1": "DISAGREEMENT",
+        "L2": "INCONCLUSIVE",
+        "L3": "AGREEMENT",
+        "L4": "AGREEMENT",
+        "N1": "INCONCLUSIVE",
+        "N2": "INCONCLUSIVE",
+        "N3": "INCONCLUSIVE",
+        "N4": "INCONCLUSIVE"
+      }
+    },
+    {
+      "dejavu_passed": 0,
+      "detected": 10,
+      "expected_contract": "L2",
+      "expected_verdict": "DISAGREEMENT",
+      "fault": "premature_update",
+      "n": 10,
+      "probabilistic_applicability_recorded": {
+        "INCONCLUSIVE": 10
+      },
+      "scope": "controlled execution",
+      "vector": {
+        "L1": "INCONCLUSIVE",
+        "L2": "DISAGREEMENT",
+        "L3": "AGREEMENT",
+        "L4": "AGREEMENT",
+        "N1": "INCONCLUSIVE",
+        "N2": "INCONCLUSIVE",
+        "N3": "AGREEMENT",
+        "N4": "AGREEMENT"
+      }
+    },
+    {
+      "dejavu_passed": 10,
+      "detected": 10,
+      "expected_contract": "N3",
+      "expected_verdict": "ASSUMPTION_MISMATCH",
+      "fault": "shot_mismatch",
+      "n": 10,
+      "probabilistic_applicability_recorded": {
+        "ASSUMPTION_MISMATCH": 10
+      },
+      "scope": "controlled execution",
+      "vector": {
+        "L1": "AGREEMENT",
+        "L2": "AGREEMENT",
+        "L3": "AGREEMENT",
+        "L4": "AGREEMENT",
+        "N1": "AGREEMENT",
+        "N2": "INCONCLUSIVE",
+        "N3": "ASSUMPTION_MISMATCH",
+        "N4": "AGREEMENT"
+      }
+    }
+  ],
+  "hardware_runtime": [
+    {
+      "condition": "statevector_sampler",
+      "evaluations": 50,
+      "online": "pass",
+      "physical_shots": 204800,
+      "pubs": 200,
+      "replay": "pass",
+      "terminal": "max_iterations"
+    },
+    {
+      "condition": "ibm_marrakesh",
+      "evaluations": 50,
+      "online": "pass",
+      "physical_shots": 204800,
+      "pubs": 200,
+      "replay": "pass",
+      "terminal": "max_iterations"
+    }
+  ],
+  "legacy_logical": {
+    "phase_queries": 18,
+    "phase_true": 18,
+    "properties": 41,
+    "scales": [
+      {
+        "false": 0,
+        "seconds": 0.03,
+        "terms": 5,
+        "true": 41,
+        "updates": 10
+      },
+      {
+        "false": 0,
+        "seconds": 0.07,
+        "terms": 10,
+        "true": 41,
+        "updates": 20
+      },
+      {
+        "false": 0,
+        "seconds": 0.04,
+        "terms": 2,
+        "true": 41,
+        "updates": 3
+      },
+      {
+        "false": 0,
+        "seconds": 0.02,
+        "terms": 3,
+        "true": 41,
+        "updates": 5
+      }
+    ],
+    "true": 41
+  },
+  "logical_property_count": 7,
+  "missing_audit_arrays": true,
+  "model": {
+    "conditional_expectation_provenance": "Python forward propagation of the same Gaussian kernel's first-success distribution; checked against Storm at declared checkpoints. These are not Storm reward-query results.",
+    "dtmc_states": 262144,
+    "expected_shots_given_success": 305152.70030410803,
+    "expected_total_updates": 34.326721872124374,
+    "expected_updates_given_success": 33.111187098970056,
+    "grid_states": 65536,
+    "ground_energy": -0.7029303944595313,
+    "maximum_energy_variance": 0.000341500673828125,
+    "maximum_quadrature_row_correction": 5.089960319892839e-08,
+    "minimum_energy_variance": 0.000154816103515625,
+    "numeric_method": "24-node Gauss-Hermite (configured), normal CDF approximation, normalized rows; no certified approximation-error bound",
+    "storm": {
+      "command": [
+        "/opt/homebrew/bin/storm",
+        "--explicit",
+        "/Users/rome/Desktop/Implementation of Formal Verification on VQE/2-stage verification (closed-loop)/artifacts/approved-experiment/stage1/gaussian.tra",
+        "/Users/rome/Desktop/Implementation of Formal Verification on VQE/2-stage verification (closed-loop)/artifacts/approved-experiment/stage1/gaussian.lab",
+        "--prop",
+        "/Users/rome/Desktop/Implementation of Formal Verification on VQE/2-stage verification (closed-loop)/artifacts/approved-experiment/stage1/gaussian.props",
+        "--precision",
+        "1e-12"
+      ],
+      "elapsed_seconds": 0.4620695000048727,
+      "exit_code": 0,
+      "log": "/Users/rome/Desktop/Implementation of Formal Verification on VQE/2-stage verification (closed-loop)/artifacts/approved-experiment/stage1/storm.log",
+      "maximum_difference_from_forward_propagation": 1.1102230246251565e-16,
+      "results": {
+        "10": 0.0,
+        "20": 0.0,
+        "30": 0.3839401891440446,
+        "40": 0.7562529633830386,
+        "50": 0.92802722250063
+      },
+      "status": "ESTABLISHED_FOR_GAUSSIAN_MODEL"
+    },
+    "success_cdf": [
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      1.5363626802534903e-07,
+      0.20205752834850396,
+      0.20205778800071678,
+      0.330218259152972,
+      0.35601468849854706,
+      0.3839401555901147,
+      0.3839401891440445,
+      0.48450828205469715,
+      0.49469545908800083,
+      0.516421287434196,
+      0.516421310567393,
+      0.6155447753587134,
+      0.624910818874576,
+      0.6472290852247644,
+      0.6472291072286342,
+      0.7469439335232962,
+      0.7562529633830386,
+      0.778660222184848,
+      0.7786602436290898,
+      0.8486843990286221,
+      0.855523806720443,
+      0.8716755875650385,
+      0.8716756024657384,
+      0.9138672150468242,
+      0.9181180525780548,
+      0.9280272135484897,
+      0.9280272225006299
+    ],
+    "transitions": 755176
+  },
+  "model_cdf_recomputed": [
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    1.5363626802534903e-07,
+    0.20205752834850396,
+    0.20205778800071678,
+    0.330218259152972,
+    0.35601468849854706,
+    0.3839401555901147,
+    0.3839401891440445,
+    0.48450828205469715,
+    0.49469545908800083,
+    0.516421287434196,
+    0.516421310567393,
+    0.6155447753587134,
+    0.624910818874576,
+    0.6472290852247644,
+    0.6472291072286342,
+    0.7469439335232962,
+    0.7562529633830386,
+    0.778660222184848,
+    0.7786602436290898,
+    0.8486843990286221,
+    0.855523806720443,
+    0.8716755875650385,
+    0.8716756024657384,
+    0.9138672150468242,
+    0.9181180525780548,
+    0.9280272135484897,
+    0.9280272225006299
+  ],
+  "noisy_robustness": {
+    "configuration": {
+      "backend": "fake_jakarta",
+      "backend_class": "FakeJakarta",
+      "backend_properties_last_update": "2021-07-26 11:47:01-04:00",
+      "optimization_level": 3,
+      "platform": "macOS-26.5.2-x86_64-i386-64bit",
+      "python": "3.8.10 (default, May 19 2021, 11:01:55) \n[Clang 10.0.0 ]",
+      "qiskit_versions": {
+        "qiskit": "0.38.0",
+        "qiskit-aer": "0.11.0",
+        "qiskit-finance": null,
+        "qiskit-ibmq-provider": "0.19.2",
+        "qiskit-ignis": null,
+        "qiskit-machine-learning": null,
+        "qiskit-nature": null,
+        "qiskit-optimization": null,
+        "qiskit-terra": "0.21.2"
+      },
+      "simulation_method": "density_matrix",
+      "transpile_seed": 20260721,
+      "transpiled_depths": [
+        14,
+        14,
+        15
+      ],
+      "transpiled_operations": [
+        {
+          "barrier": 1,
+          "cx": 1,
+          "measure": 2,
+          "rz": 16,
+          "sx": 4,
+          "x": 4
+        },
+        {
+          "barrier": 1,
+          "cx": 1,
+          "measure": 2,
+          "rz": 16,
+          "sx": 5,
+          "x": 3
+        },
+        {
+          "barrier": 1,
+          "cx": 1,
+          "measure": 2,
+          "rz": 18,
+          "sx": 6,
+          "x": 2
+        }
+      ]
+    },
+    "n": 400,
+    "probability": 0.8675,
+    "successes": 347,
+    "wilson_95": [
+      0.8307536803033191,
+      0.897254783360973
+    ]
+  },
+  "numeric": [
+    {
+      "errors": 0,
+      "source": "VQELemmas.dfy",
+      "verified": 8
+    },
+    {
+      "errors": 0,
+      "source": "VQENumericKernels.dfy",
+      "verified": 11
+    },
+    {
+      "errors": 0,
+      "source": "GroupGrid.dfy",
+      "verified": 5
+    }
+  ],
+  "numeric_traces": [
+    {
+      "name": "Two-qubit Estimator",
+      "parameters": 4,
+      "path": "Dafny + Python trace checker/traces/myTests/h2_ibm_runtime_paper.jsonl",
+      "qubits": 2,
+      "raw_counts_available": false,
+      "records": 25,
+      "status": "PASS",
+      "terms": 4
+    },
+    {
+      "name": "Heisenberg",
+      "parameters": 28,
+      "path": "Dafny + Python trace checker/traces/myTests/heisenberg14_statevector.jsonl",
+      "qubits": 14,
+      "raw_counts_available": false,
+      "records": 60,
+      "status": "PASS",
+      "terms": 287
+    }
+  ],
+  "pre_execution_digest": "b3de315ae48c909ca80e275fafde44deb567ec68cad3b0de366e93a93c53c3ca",
+  "probability_comparison": [
+    {
+      "absolute_difference": 0.0,
+      "empirical": 0.0,
+      "k": 10,
+      "model": 0.0,
+      "n": 400,
+      "successes": 0,
+      "wilson_95": [
+        0.0,
+        0.009512294334296508
+      ]
+    },
+    {
+      "absolute_difference": 0.0,
+      "empirical": 0.0,
+      "k": 20,
+      "model": 0.0,
+      "n": 400,
+      "successes": 0,
+      "wilson_95": [
+        0.0,
+        0.009512294334296508
+      ]
+    },
+    {
+      "absolute_difference": 0.03855981085595539,
+      "empirical": 0.4225,
+      "k": 30,
+      "model": 0.3839401891440446,
+      "n": 400,
+      "p_holm": 0.33842055134817384,
+      "p_raw": 0.11280685044939129,
+      "successes": 169,
+      "wilson_95": [
+        0.3750554237475196,
+        0.47141898187429637
+      ]
+    },
+    {
+      "absolute_difference": 0.011247036616961359,
+      "empirical": 0.7675,
+      "k": 40,
+      "model": 0.7562529633830386,
+      "n": 400,
+      "p_holm": 0.6267823351996076,
+      "p_raw": 0.6003342587246439,
+      "successes": 307,
+      "wilson_95": [
+        0.7236773296522552,
+        0.8062335928788962
+      ]
+    },
+    {
+      "absolute_difference": 0.013027222500629931,
+      "empirical": 0.915,
+      "k": 50,
+      "model": 0.92802722250063,
+      "n": 400,
+      "p_holm": 0.6267823351996076,
+      "p_raw": 0.3133911675998038,
+      "successes": 366,
+      "wilson_95": [
+        0.8835678157264721,
+        0.9385369799760619
+      ]
+    }
+  ],
+  "resolution": {
+    "approximate_80_power_deviation": 0.03620248072658334,
+    "score_threshold": 0.025326932022757286
+  },
+  "resource": {
+    "bootstrap_95": [
+      32.985,
+      34.6025625
+    ],
+    "empirical_mean_updates": 33.795,
+    "evaluations": 40554,
+    "max_energy_error": 5.542233338928781e-17,
+    "measurements": 121662,
+    "model_mean_updates": 34.326721872124374,
+    "total_shots": 124581888,
+    "total_updates": 13518
+  },
+  "run_id": "approved-experiment",
+  "scaling": [
+    {
+      "K": "10",
+      "absolute_difference": "0",
+      "dtmc_construction_time_s": "0.008373458",
+      "explicit_model_bytes": "217037",
+      "gaussian_pK": "0",
+      "reachable_states": "3582",
+      "storm_checking_time_s": "0",
+      "storm_result": "0",
+      "transitions": "7900"
+    },
+    {
+      "K": "20",
+      "absolute_difference": "0",
+      "dtmc_construction_time_s": "0.161251667",
+      "explicit_model_bytes": "5514443",
+      "gaussian_pK": "0",
+      "reachable_states": "70849",
+      "storm_checking_time_s": "0.002",
+      "storm_result": "0",
+      "transitions": "178378"
+    },
+    {
+      "K": "30",
+      "absolute_difference": "4.40438796545e-11",
+      "dtmc_construction_time_s": "1.06662167",
+      "explicit_model_bytes": "38116199",
+      "gaussian_pK": "0.383940189144",
+      "reachable_states": "435618",
+      "storm_checking_time_s": "0.02",
+      "storm_result": "0.3839401891",
+      "transitions": "1143927"
+    },
+    {
+      "K": "40",
+      "absolute_difference": "1.69620983925e-11",
+      "dtmc_construction_time_s": "2.82050633",
+      "explicit_model_bytes": "103404710",
+      "gaussian_pK": "0.756252963383",
+      "reachable_states": "1086396",
+      "storm_checking_time_s": "0.072",
+      "storm_result": "0.7562529634",
+      "transitions": "3014507"
+    },
+    {
+      "K": "50",
+      "absolute_difference": "6.2938543266e-13",
+      "dtmc_construction_time_s": "4.66274958",
+      "explicit_model_bytes": "172362073",
+      "gaussian_pK": "0.928027222501",
+      "reachable_states": "1741676",
+      "storm_checking_time_s": "0.206",
+      "storm_result": "0.9280272225",
+      "transitions": "4889851"
+    }
+  ],
+  "success_steps_from_raw": [
+    27,
+    25,
+    39,
+    null,
+    25,
+    27,
+    43,
+    31,
+    43,
+    31,
+    31,
+    27,
+    45,
+    39,
+    47,
+    25,
+    null,
+    31,
+    25,
+    40,
+    31,
+    null,
+    27,
+    28,
+    null,
+    25,
+    25,
+    39,
+    25,
+    25,
+    25,
+    31,
+    25,
+    25,
+    40,
+    null,
+    25,
+    27,
+    25,
+    41,
+    35,
+    39,
+    39,
+    null,
+    40,
+    27,
+    35,
+    25,
+    27,
+    25,
+    25,
+    25,
+    25,
+    31,
+    27,
+    31,
+    43,
+    27,
+    29,
+    27,
+    25,
+    28,
+    33,
+    null,
+    null,
+    36,
+    39,
+    47,
+    39,
+    33,
+    31,
+    29,
+    25,
+    25,
+    37,
+    43,
+    27,
+    null,
+    25,
+    39,
+    28,
+    27,
+    45,
+    25,
+    31,
+    27,
+    25,
+    25,
+    39,
+    29,
+    29,
+    28,
+    43,
+    29,
+    27,
+    27,
+    39,
+    43,
+    31,
+    39,
+    27,
+    27,
+    39,
+    25,
+    27,
+    39,
+    31,
+    25,
+    27,
+    36,
+    39,
+    27,
+    25,
+    31,
+    41,
+    41,
+    37,
+    25,
+    37,
+    33,
+    25,
+    25,
+    25,
+    43,
+    25,
+    31,
+    27,
+    31,
+    43,
+    25,
+    35,
+    31,
+    27,
+    27,
+    31,
+    32,
+    43,
+    null,
+    null,
+    31,
+    null,
+    25,
+    43,
+    35,
+    25,
+    31,
+    37,
+    31,
+    null,
+    43,
+    25,
+    39,
+    null,
+    25,
+    25,
+    35,
+    35,
+    31,
+    null,
+    43,
+    47,
+    43,
+    39,
+    39,
+    41,
+    36,
+    25,
+    35,
+    37,
+    27,
+    39,
+    28,
+    25,
+    25,
+    36,
+    28,
+    27,
+    25,
+    39,
+    25,
+    27,
+    43,
+    25,
+    33,
+    null,
+    39,
+    45,
+    39,
+    39,
+    47,
+    null,
+    null,
+    35,
+    25,
+    35,
+    31,
+    32,
+    25,
+    25,
+    25,
+    35,
+    43,
+    31,
+    49,
+    29,
+    25,
+    49,
+    47,
+    31,
+    43,
+    39,
+    25,
+    27,
+    null,
+    47,
+    29,
+    27,
+    null,
+    25,
+    43,
+    43,
+    35,
+    45,
+    35,
+    47,
+    27,
+    45,
+    41,
+    37,
+    29,
+    25,
+    31,
+    35,
+    null,
+    31,
+    47,
+    41,
+    25,
+    32,
+    31,
+    41,
+    39,
+    25,
+    31,
+    null,
+    40,
+    36,
+    27,
+    27,
+    31,
+    27,
+    32,
+    25,
+    39,
+    31,
+    49,
+    25,
+    27,
+    25,
+    25,
+    31,
+    32,
+    null,
+    31,
+    35,
+    29,
+    null,
+    null,
+    25,
+    39,
+    25,
+    null,
+    35,
+    43,
+    null,
+    39,
+    36,
+    37,
+    25,
+    33,
+    31,
+    37,
+    39,
+    null,
+    27,
+    25,
+    27,
+    43,
+    31,
+    25,
+    28,
+    43,
+    31,
+    43,
+    25,
+    27,
+    43,
+    25,
+    25,
+    43,
+    31,
+    27,
+    39,
+    27,
+    25,
+    27,
+    27,
+    27,
+    35,
+    29,
+    25,
+    47,
+    27,
+    31,
+    35,
+    25,
+    27,
+    25,
+    39,
+    35,
+    27,
+    27,
+    27,
+    25,
+    25,
+    43,
+    35,
+    25,
+    35,
+    35,
+    25,
+    27,
+    27,
+    25,
+    25,
+    25,
+    28,
+    35,
+    null,
+    41,
+    31,
+    27,
+    45,
+    27,
+    28,
+    44,
+    43,
+    35,
+    39,
+    null,
+    39,
+    47,
+    25,
+    27,
+    27,
+    25,
+    27,
+    35,
+    25,
+    31,
+    43,
+    43,
+    35,
+    25,
+    31,
+    27,
+    39,
+    25,
+    25,
+    null,
+    31,
+    35,
+    31,
+    27,
+    41,
+    39,
+    32,
+    35,
+    25,
+    25,
+    27,
+    35,
+    25,
+    35,
+    25,
+    39,
+    null,
+    35,
+    47,
+    29,
+    31,
+    33,
+    null,
+    25,
+    47,
+    25,
+    27,
+    null,
+    25,
+    25
+  ],
+  "timing": [
+    {
+      "added_bootstrap_95": [
+        0.5791480097082967,
+        0.5923637704836437
+      ],
+      "added_median": 0.5861944170173956,
+      "baseline": {
+        "median": 0.04427908298384864,
+        "median_bootstrap_95": [
+          0.04392252101388294,
+          0.044900520995724946
+        ],
+        "n": 30,
+        "p95": 0.050375891143630724
+      },
+      "evaluations": 10,
+      "relative_increase_percent": 1323.8630466471438,
+      "verified": {
+        "median": 0.6304735000012442,
+        "median_bootstrap_95": [
+          0.6237336250051158,
+          0.6366067289782222
+        ],
+        "n": 30,
+        "p95": 0.6659547661460237
+      }
+    },
+    {
+      "added_bootstrap_95": [
+        0.8634298334945925,
+        0.8913066660024924
+      ],
+      "added_median": 0.8720571045123506,
+      "baseline": {
+        "median": 0.0865754164988175,
+        "median_bootstrap_95": [
+          0.08582531250431202,
+          0.08907408350205515
+        ],
+        "n": 30,
+        "p95": 0.10188389756076502
+      },
+      "evaluations": 20,
+      "relative_increase_percent": 1007.2802878450625,
+      "verified": {
+        "median": 0.9586325210111681,
+        "median_bootstrap_95": [
+          0.9505562505073613,
+          0.9780819160077954
+        ],
+        "n": 30,
+        "p95": 1.0431288352847332
+      }
+    },
+    {
+      "added_bootstrap_95": [
+        1.119035312498454,
+        1.156452670424187
+      ],
+      "added_median": 1.1388260625099065,
+      "baseline": {
+        "median": 0.12962435399822425,
+        "median_bootstrap_95": [
+          0.1290445210179314,
+          0.13118750050489325
+        ],
+        "n": 30,
+        "p95": 0.15000486875505883
+      },
+      "evaluations": 30,
+      "relative_increase_percent": 878.5587178513596,
+      "verified": {
+        "median": 1.2684504165081307,
+        "median_bootstrap_95": [
+          1.2488234375050524,
+          1.2864912920049392
+        ],
+        "n": 30,
+        "p95": 1.4042940315470331
+      }
+    },
+    {
+      "added_bootstrap_95": [
+        1.3663737795170163,
+        1.4063330630306154
+      ],
+      "added_median": 1.3881427499873098,
+      "baseline": {
+        "median": 0.17352462500275578,
+        "median_bootstrap_95": [
+          0.1717023545061238,
+          0.17756750050466508
+        ],
+        "n": 30,
+        "p95": 0.19258114214317174
+      },
+      "evaluations": 40,
+      "relative_increase_percent": 799.9687364057202,
+      "verified": {
+        "median": 1.5616673749900656,
+        "median_bootstrap_95": [
+          1.5407024789892603,
+          1.5795700210146606
+        ],
+        "n": 30,
+        "p95": 1.7241468206630088
+      }
+    },
+    {
+      "added_bootstrap_95": [
+        1.632810501003405,
+        1.7207611515572352
+      ],
+      "added_median": 1.6605998339800863,
+      "baseline": {
+        "median": 0.21514731251227204,
+        "median_bootstrap_95": [
+          0.21364689599431586,
+          0.22368012501101475
+        ],
+        "n": 30,
+        "p95": 0.23945605160115518
+      },
+      "evaluations": 50,
+      "relative_increase_percent": 771.8431685663586,
+      "verified": {
+        "median": 1.8757471464923583,
+        "median_bootstrap_95": [
+          1.8492036045063287,
+          1.9357443750050152
+        ],
+        "n": 30,
+        "p95": 2.139171878811612
+      }
+    }
+  ],
+  "timing_metadata": {
+    "bootstrap_resamples": 10000,
+    "bootstrap_seed": 20261006,
+    "configuration": {
+      "convergence": {
+        "min_iterations": 10,
+        "patience": 3,
+        "tolerance": 0.005
+      },
+      "execution": {
+        "allow_optimizer_stopped": false,
+        "backend": "StatevectorSampler",
+        "max_iterations": 50,
+        "mode": "qiskit-statevector-sampler",
+        "optimizer_protocol": "ask-tell",
+        "parameter_count": 4,
+        "seed": 7,
+        "shot_budget": 204800,
+        "shots_per_term": 1024,
+        "system": "h2"
+      },
+      "hamiltonian": {
+        "coeff_scale": 10000,
+        "schema_version": 1,
+        "terms": [
+          {
+            "coeff_int": 3980,
+            "pauli": "YZ",
+            "term_id": "t0"
+          },
+          {
+            "coeff_int": -3980,
+            "pauli": "ZI",
+            "term_id": "t1"
+          },
+          {
+            "coeff_int": -113,
+            "pauli": "ZZ",
+            "term_id": "t2"
+          },
+          {
+            "coeff_int": 1810,
+            "pauli": "XX",
+            "term_id": "t3"
+          }
+        ]
+      },
+      "hamiltonian_hash": "aff67cd405a7d3381b3642ff99a5280b793c19e0b50e86eee234bca036afe3f7",
+      "monitor": {
+        "bits_per_variable": 24,
+        "timeout_seconds": 10.0
+      },
+      "numeric": {
+        "energy_abs_tolerance": 1e-12,
+        "expectation_abs_tolerance": 1e-12,
+        "parameter_lower": -3.141592653589793,
+        "parameter_upper": 3.141592653589793
+      },
+      "observability": {
+        "require_raw_counts": true
+      },
+      "optimizer": {
+        "improvement_tolerance": 0.0,
+        "initial_step": 0.4,
+        "initialization": "seeded-uniform-v1",
+        "name": "ask-tell-pattern-search-v1",
+        "step_shrink": 0.5
+      },
+      "sampler": {
+        "bitstring_order": "qiskit-msb-qn-1-to-q0",
+        "dynamical_decoupling": false,
+        "gate_twirling": false,
+        "measurement_mitigation": "not-applicable-to-samplerv2",
+        "measurement_strategy": "independent-pauli-basis-v1",
+        "measurement_twirling": false,
+        "measurement_type": "classified",
+        "pec": "not-applicable-to-samplerv2",
+        "pubs_per_evaluation": 4,
+        "raw_evidence_format": "packed-bitarray-v1",
+        "separate_pub_per_term": true,
+        "zne": "not-applicable-to-samplerv2"
+      },
+      "schema_version": 2,
+      "source_path": "/Users/rome/Desktop/VQE Runtime Verification - DejaVu/configs/h2_statevector.toml"
+    },
+    "measured_repetitions": 30,
+    "timing_boundary": {
+      "baseline": "VQE setup, sampling, numeric convergence, and optimizer only",
+      "excluded_from_both": [
+        "measurement-distribution fidelity analysis",
+        "verified offline replay",
+        "baseline post-run artifact serialization",
+        "summary and figure generation"
+      ],
+      "verified": "baseline work plus synchronous RuntimeSession, DejaVu, trace, and evidence persistence"
+    },
+    "warmups": 5
+  }
+}

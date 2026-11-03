@@ -1,0 +1,2 @@
+{"condition":"baseline","elapsed_seconds":7.458991603925824e-06,"evaluations":50,"phase":"measured","pid":96715,"repetition":13,"role":"python","rss_bytes":224821248,"run_id":"sampler-scale-baseline-n50-r13-measured","source":"getrusage-self-peak"}
+{"condition":"baseline","elapsed_seconds":0.2327192499942612,"evaluations":50,"phase":"measured","pid":96715,"repetition":13,"role":"python","rss_bytes":224821248,"run_id":"sampler-scale-baseline-n50-r13-measured","source":"getrusage-self-peak"}

@@ -1,0 +1,258 @@
+{
+  "completed_at": "2026-10-05T23:11:07.071738+00:00",
+  "configuration_digest": "0988fc089b0bbec6c0095dd1b4a7d94d35e54c6962f005c1f1d64bde8cfa0c15",
+  "pre_execution_digest": "245821aeed61225fb8bf4d57b8052c32f9c1058acb4d24a2fb5199e7d0e77f06",
+  "results": [
+    {
+      "contracts": {
+        "L1": {
+          "assumption_mismatches": [],
+          "checks": 72,
+          "inconclusive": [],
+          "runtime_verdict": "AGREEMENT",
+          "violations": []
+        },
+        "L2": {
+          "assumption_mismatches": [],
+          "checks": 18,
+          "inconclusive": [],
+          "runtime_verdict": "AGREEMENT",
+          "violations": []
+        },
+        "L3": {
+          "assumption_mismatches": [],
+          "checks": 309,
+          "inconclusive": [],
+          "runtime_verdict": "AGREEMENT",
+          "violations": []
+        },
+        "L4": {
+          "assumption_mismatches": [],
+          "checks": 57,
+          "inconclusive": [],
+          "runtime_verdict": "AGREEMENT",
+          "violations": []
+        },
+        "N1": {
+          "assumption_mismatches": [],
+          "checks": 99,
+          "inconclusive": [],
+          "runtime_verdict": "AGREEMENT",
+          "violations": []
+        },
+        "N2": {
+          "assumption_mismatches": [],
+          "checks": 75,
+          "inconclusive": [],
+          "runtime_verdict": "AGREEMENT",
+          "violations": []
+        },
+        "N3": {
+          "assumption_mismatches": [],
+          "checks": 58,
+          "inconclusive": [],
+          "runtime_verdict": "AGREEMENT",
+          "violations": []
+        },
+        "N4": {
+          "assumption_mismatches": [],
+          "checks": 55,
+          "inconclusive": [],
+          "runtime_verdict": "AGREEMENT",
+          "violations": []
+        }
+      },
+      "dejavu": {
+        "passed": true,
+        "violations": {}
+      },
+      "events": 53,
+      "injected_fault": null,
+      "max_energy_error": 0.0,
+      "max_expectation_error": 0.0,
+      "online_replay_agreement": true,
+      "physical_shots": 27648,
+      "run_id": "baseline-0000",
+      "seed_words": [
+        20260721,
+        0,
+        0
+      ],
+      "success_step": null,
+      "terminal_reason": "budget",
+      "trace": "stage2/baseline/baseline-0000.jsonl.gz",
+      "trace_sha256": "2ab6b0aecdfed3e7e67e326eca70c304ad1258488ce607bcaedd2b96554e731f",
+      "updates": 3
+    },
+    {
+      "contracts": {
+        "L1": {
+          "assumption_mismatches": [],
+          "checks": 72,
+          "inconclusive": [],
+          "runtime_verdict": "AGREEMENT",
+          "violations": []
+        },
+        "L2": {
+          "assumption_mismatches": [],
+          "checks": 18,
+          "inconclusive": [],
+          "runtime_verdict": "AGREEMENT",
+          "violations": []
+        },
+        "L3": {
+          "assumption_mismatches": [],
+          "checks": 309,
+          "inconclusive": [],
+          "runtime_verdict": "AGREEMENT",
+          "violations": []
+        },
+        "L4": {
+          "assumption_mismatches": [],
+          "checks": 57,
+          "inconclusive": [],
+          "runtime_verdict": "AGREEMENT",
+          "violations": []
+        },
+        "N1": {
+          "assumption_mismatches": [],
+          "checks": 99,
+          "inconclusive": [],
+          "runtime_verdict": "AGREEMENT",
+          "violations": []
+        },
+        "N2": {
+          "assumption_mismatches": [],
+          "checks": 75,
+          "inconclusive": [],
+          "runtime_verdict": "AGREEMENT",
+          "violations": []
+        },
+        "N3": {
+          "assumption_mismatches": [],
+          "checks": 58,
+          "inconclusive": [],
+          "runtime_verdict": "AGREEMENT",
+          "violations": []
+        },
+        "N4": {
+          "assumption_mismatches": [],
+          "checks": 55,
+          "inconclusive": [],
+          "runtime_verdict": "AGREEMENT",
+          "violations": []
+        }
+      },
+      "dejavu": {
+        "passed": true,
+        "violations": {}
+      },
+      "events": 53,
+      "injected_fault": null,
+      "max_energy_error": 0.0,
+      "max_expectation_error": 0.0,
+      "online_replay_agreement": true,
+      "physical_shots": 27648,
+      "run_id": "baseline-0001",
+      "seed_words": [
+        20260721,
+        0,
+        1
+      ],
+      "success_step": null,
+      "terminal_reason": "budget",
+      "trace": "stage2/baseline/baseline-0001.jsonl.gz",
+      "trace_sha256": "43dd4a3d32ae2f0dae3f0df58c5bed681b2012439139ca00d50c5aa6397ee42d",
+      "updates": 3
+    },
+    {
+      "contracts": {
+        "L1": {
+          "assumption_mismatches": [],
+          "checks": 72,
+          "inconclusive": [],
+          "runtime_verdict": "AGREEMENT",
+          "violations": []
+        },
+        "L2": {
+          "assumption_mismatches": [],
+          "checks": 18,
+          "inconclusive": [],
+          "runtime_verdict": "AGREEMENT",
+          "violations": []
+        },
+        "L3": {
+          "assumption_mismatches": [],
+          "checks": 309,
+          "inconclusive": [],
+          "runtime_verdict": "AGREEMENT",
+          "violations": []
+        },
+        "L4": {
+          "assumption_mismatches": [],
+          "checks": 57,
+          "inconclusive": [],
+          "runtime_verdict": "AGREEMENT",
+          "violations": []
+        },
+        "N1": {
+          "assumption_mismatches": [],
+          "checks": 99,
+          "inconclusive": [],
+          "runtime_verdict": "AGREEMENT",
+          "violations": []
+        },
+        "N2": {
+          "assumption_mismatches": [],
+          "checks": 75,
+          "inconclusive": [],
+          "runtime_verdict": "AGREEMENT",
+          "violations": []
+        },
+        "N3": {
+          "assumption_mismatches": [],
+          "checks": 58,
+          "inconclusive": [],
+          "runtime_verdict": "AGREEMENT",
+          "violations": []
+        },
+        "N4": {
+          "assumption_mismatches": [],
+          "checks": 55,
+          "inconclusive": [],
+          "runtime_verdict": "AGREEMENT",
+          "violations": []
+        }
+      },
+      "dejavu": {
+        "passed": true,
+        "violations": {}
+      },
+      "events": 53,
+      "injected_fault": null,
+      "max_energy_error": 0.0,
+      "max_expectation_error": 0.0,
+      "online_replay_agreement": true,
+      "physical_shots": 27648,
+      "run_id": "baseline-0002",
+      "seed_words": [
+        20260721,
+        0,
+        2
+      ],
+      "success_step": null,
+      "terminal_reason": "budget",
+      "trace": "stage2/baseline/baseline-0002.jsonl.gz",
+      "trace_sha256": "56178016f5f840dc242118f4a8b8c4cf49987a0f8222a6c4157ae09783bfa0f0",
+      "updates": 3
+    }
+  ],
+  "started_at": "2026-10-05T23:11:06.866152+00:00",
+  "temporal_monitor": {
+    "input_sha256": "06e3751fe12f9ec8fbf5681752123c092b04bdf748511b124d733b2fb2011836",
+    "log_sha256": "56813b4938cac5f6e9b378f1e061e0746ba4a573fd7ad704dd4a66fd5473bb71",
+    "passed_runs": 3,
+    "tool": "DejaVu",
+    "total_runs": 3
+  }
+}

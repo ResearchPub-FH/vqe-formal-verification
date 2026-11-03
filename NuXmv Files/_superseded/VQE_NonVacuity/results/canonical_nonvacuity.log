@@ -1,0 +1,4582 @@
+*** This is nuXmv 2.1.0 (compiled on Fri Nov 29 09:05:38 2024)
+*** Copyright (c) 2014-2024, Fondazione Bruno Kessler
+*** For more information on nuXmv see https://nuxmv.fbk.eu
+*** or email to <nuxmv@fbk.eu>.
+*** Please report bugs at Please report bugs to <nusmv-users@fbk.eu>
+*** (click on "Login Anonymously" to access)
+*** Alternatively write to <nuxmv@fbk.eu>.
+
+*** This version of nuXmv is linked to NuSMV 2.7.0.
+*** For more information on NuSMV see <http://nusmv.fbk.eu>
+*** or email to <nusmv-users@fbk.eu>.
+*** Copyright (C) 2010-2024, Fondazione Bruno Kessler
+
+*** This version of nuXmv is linked to the CUDD library version 2.4.1
+*** Copyright (c) 1995-2004, Regents of the University of Colorado
+
+*** This version of nuXmv is linked to the MiniSat SAT solver. 
+*** See http://minisat.se/MiniSat.html
+*** Copyright (c) 2003-2006, Niklas Een, Niklas Sorensson
+*** Copyright (c) 2007-2010, Niklas Sorensson
+
+*** This version of nuXmv is linked to MathSAT
+*** Copyright (C) 2009-2019 by Fondazione Bruno Kessler
+*** Copyright (C) 2009-2019 by University of Trento and others
+*** See http://mathsat.fbk.eu
+
+-- specification  G !(state = EXECUTE_MEASURE)  is false
+-- as demonstrated by the following execution sequence
+Trace Description: LTL Counterexample 
+Trace Type: Counterexample 
+  -> State: 1.1 <-
+    state = S_INIT
+    circ_ready = FALSE
+    params_ready = TRUE
+    energy_ready = FALSE
+    iter = 0
+    terms_done = 0
+    theta_version = 0
+    bound_version = 0
+    energy_version = 0
+    term_reason = NO_TERM
+    terminal = FALSE
+    all_terms_done = FALSE
+    NTERMS = 3
+    MAX_ITERS = 5
+    abort_now = FALSE
+    max_aborts = FALSE
+    opt_aborts = FALSE
+    energy_aborts = FALSE
+    qpu_aborts = FALSE
+    bind_aborts = FALSE
+  -> Input: 1.2 <-
+    converged = FALSE
+    bind_err = FALSE
+    qpu_err = FALSE
+    energy_err = FALSE
+    opt_err = FALSE
+  -> State: 1.2 <-
+    state = BIND
+  -> Input: 1.3 <-
+  -> State: 1.3 <-
+    state = EXECUTE_MEASURE
+    circ_ready = TRUE
+    abort_now = TRUE
+    qpu_aborts = TRUE
+  -> Input: 1.4 <-
+    qpu_err = TRUE
+  -- Loop starts here
+  -> State: 1.4 <-
+    state = ABORT
+    circ_ready = FALSE
+    params_ready = FALSE
+    term_reason = ABORT_QPU_ERR
+    terminal = TRUE
+    abort_now = FALSE
+    qpu_aborts = FALSE
+  -> Input: 1.5 <-
+    qpu_err = FALSE
+  -- Loop starts here
+  -> State: 1.5 <-
+  -> Input: 1.6 <-
+  -> State: 1.6 <-
+-- specification  G circ_ready  is false
+-- as demonstrated by the following execution sequence
+Trace Description: LTL Counterexample 
+Trace Type: Counterexample 
+  -> State: 2.1 <-
+    state = S_INIT
+    circ_ready = FALSE
+    params_ready = TRUE
+    energy_ready = FALSE
+    iter = 0
+    terms_done = 0
+    theta_version = 0
+    bound_version = 0
+    energy_version = 0
+    term_reason = NO_TERM
+    terminal = FALSE
+    all_terms_done = FALSE
+    NTERMS = 3
+    MAX_ITERS = 5
+    abort_now = FALSE
+    max_aborts = FALSE
+    opt_aborts = FALSE
+    energy_aborts = FALSE
+    qpu_aborts = FALSE
+    bind_aborts = FALSE
+  -> Input: 2.2 <-
+    converged = FALSE
+    bind_err = FALSE
+    qpu_err = FALSE
+    energy_err = FALSE
+    opt_err = FALSE
+  -> State: 2.2 <-
+    state = BIND
+  -> Input: 2.3 <-
+  -> State: 2.3 <-
+    state = EXECUTE_MEASURE
+    circ_ready = TRUE
+  -> Input: 2.4 <-
+  -> State: 2.4 <-
+    terms_done = 1
+  -> Input: 2.5 <-
+  -> State: 2.5 <-
+    terms_done = 2
+  -> Input: 2.6 <-
+  -> State: 2.6 <-
+    terms_done = 3
+    all_terms_done = TRUE
+  -> Input: 2.7 <-
+  -> State: 2.7 <-
+    state = COMPUTE_ENERGY
+    params_ready = FALSE
+  -> Input: 2.8 <-
+  -> State: 2.8 <-
+    state = CHECK_STOP
+    energy_ready = TRUE
+  -> Input: 2.9 <-
+    converged = TRUE
+  -- Loop starts here
+  -> State: 2.9 <-
+    state = DONE
+    term_reason = DONE_CONVERGED
+    terminal = TRUE
+  -> Input: 2.10 <-
+    converged = FALSE
+  -- Loop starts here
+  -> State: 2.10 <-
+  -> Input: 2.11 <-
+  -> State: 2.11 <-
+-- specification  G !(state = EXECUTE_MEASURE)  is false
+-- as demonstrated by the following execution sequence
+Trace Description: LTL Counterexample 
+Trace Type: Counterexample 
+  -> State: 3.1 <-
+    state = S_INIT
+    circ_ready = FALSE
+    params_ready = TRUE
+    energy_ready = FALSE
+    iter = 0
+    terms_done = 0
+    theta_version = 0
+    bound_version = 0
+    energy_version = 0
+    term_reason = NO_TERM
+    terminal = FALSE
+    all_terms_done = FALSE
+    NTERMS = 3
+    MAX_ITERS = 5
+    abort_now = FALSE
+    max_aborts = FALSE
+    opt_aborts = FALSE
+    energy_aborts = FALSE
+    qpu_aborts = FALSE
+    bind_aborts = FALSE
+  -> Input: 3.2 <-
+    converged = FALSE
+    bind_err = FALSE
+    qpu_err = FALSE
+    energy_err = FALSE
+    opt_err = FALSE
+  -> State: 3.2 <-
+    state = BIND
+  -> Input: 3.3 <-
+  -> State: 3.3 <-
+    state = EXECUTE_MEASURE
+    circ_ready = TRUE
+    abort_now = TRUE
+    qpu_aborts = TRUE
+  -> Input: 3.4 <-
+    qpu_err = TRUE
+  -- Loop starts here
+  -> State: 3.4 <-
+    state = ABORT
+    circ_ready = FALSE
+    params_ready = FALSE
+    term_reason = ABORT_QPU_ERR
+    terminal = TRUE
+    abort_now = FALSE
+    qpu_aborts = FALSE
+  -> Input: 3.5 <-
+    qpu_err = FALSE
+  -- Loop starts here
+  -> State: 3.5 <-
+  -> Input: 3.6 <-
+  -> State: 3.6 <-
+-- specification  G params_ready  is false
+-- as demonstrated by the following execution sequence
+Trace Description: LTL Counterexample 
+Trace Type: Counterexample 
+  -> State: 4.1 <-
+    state = S_INIT
+    circ_ready = FALSE
+    params_ready = TRUE
+    energy_ready = FALSE
+    iter = 0
+    terms_done = 0
+    theta_version = 0
+    bound_version = 0
+    energy_version = 0
+    term_reason = NO_TERM
+    terminal = FALSE
+    all_terms_done = FALSE
+    NTERMS = 3
+    MAX_ITERS = 5
+    abort_now = FALSE
+    max_aborts = FALSE
+    opt_aborts = FALSE
+    energy_aborts = FALSE
+    qpu_aborts = FALSE
+    bind_aborts = FALSE
+  -> Input: 4.2 <-
+    converged = FALSE
+    bind_err = FALSE
+    qpu_err = FALSE
+    energy_err = FALSE
+    opt_err = FALSE
+  -> State: 4.2 <-
+    state = BIND
+    abort_now = TRUE
+    bind_aborts = TRUE
+  -> Input: 4.3 <-
+    bind_err = TRUE
+  -- Loop starts here
+  -> State: 4.3 <-
+    state = ABORT
+    params_ready = FALSE
+    term_reason = ABORT_BIND_ERR
+    terminal = TRUE
+    abort_now = FALSE
+    bind_aborts = FALSE
+  -> Input: 4.4 <-
+    bind_err = FALSE
+  -- Loop starts here
+  -> State: 4.4 <-
+  -> Input: 4.5 <-
+  -> State: 4.5 <-
+-- specification  G !(state = COMPUTE_ENERGY)  is false
+-- as demonstrated by the following execution sequence
+Trace Description: LTL Counterexample 
+Trace Type: Counterexample 
+  -> State: 5.1 <-
+    state = S_INIT
+    circ_ready = FALSE
+    params_ready = TRUE
+    energy_ready = FALSE
+    iter = 0
+    terms_done = 0
+    theta_version = 0
+    bound_version = 0
+    energy_version = 0
+    term_reason = NO_TERM
+    terminal = FALSE
+    all_terms_done = FALSE
+    NTERMS = 3
+    MAX_ITERS = 5
+    abort_now = FALSE
+    max_aborts = FALSE
+    opt_aborts = FALSE
+    energy_aborts = FALSE
+    qpu_aborts = FALSE
+    bind_aborts = FALSE
+  -> Input: 5.2 <-
+    converged = FALSE
+    bind_err = FALSE
+    qpu_err = FALSE
+    energy_err = FALSE
+    opt_err = FALSE
+  -> State: 5.2 <-
+    state = BIND
+  -> Input: 5.3 <-
+  -> State: 5.3 <-
+    state = EXECUTE_MEASURE
+    circ_ready = TRUE
+  -> Input: 5.4 <-
+  -> State: 5.4 <-
+    terms_done = 1
+  -> Input: 5.5 <-
+  -> State: 5.5 <-
+    terms_done = 2
+  -> Input: 5.6 <-
+  -> State: 5.6 <-
+    terms_done = 3
+    all_terms_done = TRUE
+  -> Input: 5.7 <-
+  -> State: 5.7 <-
+    state = COMPUTE_ENERGY
+    params_ready = FALSE
+    abort_now = TRUE
+    energy_aborts = TRUE
+  -> Input: 5.8 <-
+    energy_err = TRUE
+  -- Loop starts here
+  -> State: 5.8 <-
+    state = ABORT
+    circ_ready = FALSE
+    term_reason = ABORT_ENERGY_ERR
+    terminal = TRUE
+    abort_now = FALSE
+    energy_aborts = FALSE
+  -> Input: 5.9 <-
+    energy_err = FALSE
+  -> State: 5.9 <-
+-- specification  G all_terms_done  is false
+-- as demonstrated by the following execution sequence
+Trace Description: LTL Counterexample 
+Trace Type: Counterexample 
+  -> State: 6.1 <-
+    state = S_INIT
+    circ_ready = FALSE
+    params_ready = TRUE
+    energy_ready = FALSE
+    iter = 0
+    terms_done = 0
+    theta_version = 0
+    bound_version = 0
+    energy_version = 0
+    term_reason = NO_TERM
+    terminal = FALSE
+    all_terms_done = FALSE
+    NTERMS = 3
+    MAX_ITERS = 5
+    abort_now = FALSE
+    max_aborts = FALSE
+    opt_aborts = FALSE
+    energy_aborts = FALSE
+    qpu_aborts = FALSE
+    bind_aborts = FALSE
+  -> Input: 6.2 <-
+    converged = FALSE
+    bind_err = FALSE
+    qpu_err = FALSE
+    energy_err = FALSE
+    opt_err = FALSE
+  -> State: 6.2 <-
+    state = BIND
+    abort_now = TRUE
+    bind_aborts = TRUE
+  -> Input: 6.3 <-
+    bind_err = TRUE
+  -- Loop starts here
+  -> State: 6.3 <-
+    state = ABORT
+    params_ready = FALSE
+    term_reason = ABORT_BIND_ERR
+    terminal = TRUE
+    abort_now = FALSE
+    bind_aborts = FALSE
+  -> Input: 6.4 <-
+    bind_err = FALSE
+  -> State: 6.4 <-
+-- specification  G !(state = CHECK_STOP)  is false
+-- as demonstrated by the following execution sequence
+Trace Description: LTL Counterexample 
+Trace Type: Counterexample 
+  -> State: 7.1 <-
+    state = S_INIT
+    circ_ready = FALSE
+    params_ready = TRUE
+    energy_ready = FALSE
+    iter = 0
+    terms_done = 0
+    theta_version = 0
+    bound_version = 0
+    energy_version = 0
+    term_reason = NO_TERM
+    terminal = FALSE
+    all_terms_done = FALSE
+    NTERMS = 3
+    MAX_ITERS = 5
+    abort_now = FALSE
+    max_aborts = FALSE
+    opt_aborts = FALSE
+    energy_aborts = FALSE
+    qpu_aborts = FALSE
+    bind_aborts = FALSE
+  -> Input: 7.2 <-
+    converged = FALSE
+    bind_err = FALSE
+    qpu_err = FALSE
+    energy_err = FALSE
+    opt_err = FALSE
+  -> State: 7.2 <-
+    state = BIND
+  -> Input: 7.3 <-
+  -> State: 7.3 <-
+    state = EXECUTE_MEASURE
+    circ_ready = TRUE
+  -> Input: 7.4 <-
+  -> State: 7.4 <-
+    terms_done = 1
+  -> Input: 7.5 <-
+  -> State: 7.5 <-
+    terms_done = 2
+  -> Input: 7.6 <-
+  -> State: 7.6 <-
+    terms_done = 3
+    all_terms_done = TRUE
+  -> Input: 7.7 <-
+  -> State: 7.7 <-
+    state = COMPUTE_ENERGY
+    params_ready = FALSE
+  -> Input: 7.8 <-
+  -> State: 7.8 <-
+    state = CHECK_STOP
+    energy_ready = TRUE
+  -> Input: 7.9 <-
+  -> State: 7.9 <-
+    state = OPTIMIZER_STEP
+    abort_now = TRUE
+    opt_aborts = TRUE
+  -> Input: 7.10 <-
+    opt_err = TRUE
+  -- Loop starts here
+  -> State: 7.10 <-
+    state = ABORT
+    circ_ready = FALSE
+    energy_ready = FALSE
+    term_reason = ABORT_OPT_ERR
+    terminal = TRUE
+    abort_now = FALSE
+    opt_aborts = FALSE
+  -> Input: 7.11 <-
+    opt_err = FALSE
+  -> State: 7.11 <-
+-- specification  G energy_ready  is false
+-- as demonstrated by the following execution sequence
+Trace Description: LTL Counterexample 
+Trace Type: Counterexample 
+  -> State: 8.1 <-
+    state = S_INIT
+    circ_ready = FALSE
+    params_ready = TRUE
+    energy_ready = FALSE
+    iter = 0
+    terms_done = 0
+    theta_version = 0
+    bound_version = 0
+    energy_version = 0
+    term_reason = NO_TERM
+    terminal = FALSE
+    all_terms_done = FALSE
+    NTERMS = 3
+    MAX_ITERS = 5
+    abort_now = FALSE
+    max_aborts = FALSE
+    opt_aborts = FALSE
+    energy_aborts = FALSE
+    qpu_aborts = FALSE
+    bind_aborts = FALSE
+  -> Input: 8.2 <-
+    converged = FALSE
+    bind_err = FALSE
+    qpu_err = FALSE
+    energy_err = FALSE
+    opt_err = FALSE
+  -> State: 8.2 <-
+    state = BIND
+    abort_now = TRUE
+    bind_aborts = TRUE
+  -> Input: 8.3 <-
+    bind_err = TRUE
+  -- Loop starts here
+  -> State: 8.3 <-
+    state = ABORT
+    params_ready = FALSE
+    term_reason = ABORT_BIND_ERR
+    terminal = TRUE
+    abort_now = FALSE
+    bind_aborts = FALSE
+  -> Input: 8.4 <-
+    bind_err = FALSE
+  -> State: 8.4 <-
+-- specification  G !(state = OPTIMIZER_STEP)  is false
+-- as demonstrated by the following execution sequence
+Trace Description: LTL Counterexample 
+Trace Type: Counterexample 
+  -> State: 9.1 <-
+    state = S_INIT
+    circ_ready = FALSE
+    params_ready = TRUE
+    energy_ready = FALSE
+    iter = 0
+    terms_done = 0
+    theta_version = 0
+    bound_version = 0
+    energy_version = 0
+    term_reason = NO_TERM
+    terminal = FALSE
+    all_terms_done = FALSE
+    NTERMS = 3
+    MAX_ITERS = 5
+    abort_now = FALSE
+    max_aborts = FALSE
+    opt_aborts = FALSE
+    energy_aborts = FALSE
+    qpu_aborts = FALSE
+    bind_aborts = FALSE
+  -> Input: 9.2 <-
+    converged = FALSE
+    bind_err = FALSE
+    qpu_err = FALSE
+    energy_err = FALSE
+    opt_err = FALSE
+  -> State: 9.2 <-
+    state = BIND
+  -> Input: 9.3 <-
+  -> State: 9.3 <-
+    state = EXECUTE_MEASURE
+    circ_ready = TRUE
+  -> Input: 9.4 <-
+  -> State: 9.4 <-
+    terms_done = 1
+  -> Input: 9.5 <-
+  -> State: 9.5 <-
+    terms_done = 2
+  -> Input: 9.6 <-
+  -> State: 9.6 <-
+    terms_done = 3
+    all_terms_done = TRUE
+  -> Input: 9.7 <-
+  -> State: 9.7 <-
+    state = COMPUTE_ENERGY
+    params_ready = FALSE
+  -> Input: 9.8 <-
+  -> State: 9.8 <-
+    state = CHECK_STOP
+    energy_ready = TRUE
+  -> Input: 9.9 <-
+  -> State: 9.9 <-
+    state = OPTIMIZER_STEP
+    abort_now = TRUE
+    opt_aborts = TRUE
+  -> Input: 9.10 <-
+    opt_err = TRUE
+  -- Loop starts here
+  -> State: 9.10 <-
+    state = ABORT
+    circ_ready = FALSE
+    energy_ready = FALSE
+    term_reason = ABORT_OPT_ERR
+    terminal = TRUE
+    abort_now = FALSE
+    opt_aborts = FALSE
+  -> Input: 9.11 <-
+    opt_err = FALSE
+  -> State: 9.11 <-
+-- specification  G energy_ready  is false
+-- as demonstrated by the following execution sequence
+Trace Description: LTL Counterexample 
+Trace Type: Counterexample 
+  -> State: 10.1 <-
+    state = S_INIT
+    circ_ready = FALSE
+    params_ready = TRUE
+    energy_ready = FALSE
+    iter = 0
+    terms_done = 0
+    theta_version = 0
+    bound_version = 0
+    energy_version = 0
+    term_reason = NO_TERM
+    terminal = FALSE
+    all_terms_done = FALSE
+    NTERMS = 3
+    MAX_ITERS = 5
+    abort_now = FALSE
+    max_aborts = FALSE
+    opt_aborts = FALSE
+    energy_aborts = FALSE
+    qpu_aborts = FALSE
+    bind_aborts = FALSE
+  -> Input: 10.2 <-
+    converged = FALSE
+    bind_err = FALSE
+    qpu_err = FALSE
+    energy_err = FALSE
+    opt_err = FALSE
+  -> State: 10.2 <-
+    state = BIND
+    abort_now = TRUE
+    bind_aborts = TRUE
+  -> Input: 10.3 <-
+    bind_err = TRUE
+  -- Loop starts here
+  -> State: 10.3 <-
+    state = ABORT
+    params_ready = FALSE
+    term_reason = ABORT_BIND_ERR
+    terminal = TRUE
+    abort_now = FALSE
+    bind_aborts = FALSE
+  -> Input: 10.4 <-
+    bind_err = FALSE
+  -> State: 10.4 <-
+-- specification  G !(state = EXECUTE_MEASURE)  is false
+-- as demonstrated by the following execution sequence
+Trace Description: LTL Counterexample 
+Trace Type: Counterexample 
+  -> State: 11.1 <-
+    state = S_INIT
+    circ_ready = FALSE
+    params_ready = TRUE
+    energy_ready = FALSE
+    iter = 0
+    terms_done = 0
+    theta_version = 0
+    bound_version = 0
+    energy_version = 0
+    term_reason = NO_TERM
+    terminal = FALSE
+    all_terms_done = FALSE
+    NTERMS = 3
+    MAX_ITERS = 5
+    abort_now = FALSE
+    max_aborts = FALSE
+    opt_aborts = FALSE
+    energy_aborts = FALSE
+    qpu_aborts = FALSE
+    bind_aborts = FALSE
+  -> Input: 11.2 <-
+    converged = FALSE
+    bind_err = FALSE
+    qpu_err = FALSE
+    energy_err = FALSE
+    opt_err = FALSE
+  -> State: 11.2 <-
+    state = BIND
+  -> Input: 11.3 <-
+  -> State: 11.3 <-
+    state = EXECUTE_MEASURE
+    circ_ready = TRUE
+    abort_now = TRUE
+    qpu_aborts = TRUE
+  -> Input: 11.4 <-
+    qpu_err = TRUE
+  -- Loop starts here
+  -> State: 11.4 <-
+    state = ABORT
+    circ_ready = FALSE
+    params_ready = FALSE
+    term_reason = ABORT_QPU_ERR
+    terminal = TRUE
+    abort_now = FALSE
+    qpu_aborts = FALSE
+  -> Input: 11.5 <-
+    qpu_err = FALSE
+  -- Loop starts here
+  -> State: 11.5 <-
+  -> Input: 11.6 <-
+  -> State: 11.6 <-
+-- specification  G bound_version = theta_version  is false
+-- as demonstrated by the following execution sequence
+Trace Description: LTL Counterexample 
+Trace Type: Counterexample 
+  -> State: 12.1 <-
+    state = S_INIT
+    circ_ready = FALSE
+    params_ready = TRUE
+    energy_ready = FALSE
+    iter = 0
+    terms_done = 0
+    theta_version = 0
+    bound_version = 0
+    energy_version = 0
+    term_reason = NO_TERM
+    terminal = FALSE
+    all_terms_done = FALSE
+    NTERMS = 3
+    MAX_ITERS = 5
+    abort_now = FALSE
+    max_aborts = FALSE
+    opt_aborts = FALSE
+    energy_aborts = FALSE
+    qpu_aborts = FALSE
+    bind_aborts = FALSE
+  -> Input: 12.2 <-
+    converged = FALSE
+    bind_err = FALSE
+    qpu_err = FALSE
+    energy_err = FALSE
+    opt_err = FALSE
+  -> State: 12.2 <-
+    state = BIND
+  -> Input: 12.3 <-
+  -> State: 12.3 <-
+    state = EXECUTE_MEASURE
+    circ_ready = TRUE
+  -> Input: 12.4 <-
+  -> State: 12.4 <-
+    terms_done = 1
+  -> Input: 12.5 <-
+  -> State: 12.5 <-
+    terms_done = 2
+  -> Input: 12.6 <-
+  -> State: 12.6 <-
+    terms_done = 3
+    all_terms_done = TRUE
+  -> Input: 12.7 <-
+  -> State: 12.7 <-
+    state = COMPUTE_ENERGY
+    params_ready = FALSE
+  -> Input: 12.8 <-
+  -> State: 12.8 <-
+    state = CHECK_STOP
+    energy_ready = TRUE
+  -> Input: 12.9 <-
+  -> State: 12.9 <-
+    state = OPTIMIZER_STEP
+  -> Input: 12.10 <-
+  -> State: 12.10 <-
+    state = BIND
+    circ_ready = FALSE
+    params_ready = TRUE
+    energy_ready = FALSE
+    iter = 1
+    terms_done = 0
+    theta_version = 1
+    all_terms_done = FALSE
+  -> Input: 12.11 <-
+  -> State: 12.11 <-
+    state = EXECUTE_MEASURE
+    circ_ready = TRUE
+    bound_version = 1
+    abort_now = TRUE
+    qpu_aborts = TRUE
+  -> Input: 12.12 <-
+    qpu_err = TRUE
+  -- Loop starts here
+  -> State: 12.12 <-
+    state = ABORT
+    circ_ready = FALSE
+    params_ready = FALSE
+    term_reason = ABORT_QPU_ERR
+    terminal = TRUE
+    abort_now = FALSE
+    qpu_aborts = FALSE
+  -> Input: 12.13 <-
+    qpu_err = FALSE
+  -> State: 12.13 <-
+-- specification  G !(state = CHECK_STOP)  is false
+-- as demonstrated by the following execution sequence
+Trace Description: LTL Counterexample 
+Trace Type: Counterexample 
+  -> State: 13.1 <-
+    state = S_INIT
+    circ_ready = FALSE
+    params_ready = TRUE
+    energy_ready = FALSE
+    iter = 0
+    terms_done = 0
+    theta_version = 0
+    bound_version = 0
+    energy_version = 0
+    term_reason = NO_TERM
+    terminal = FALSE
+    all_terms_done = FALSE
+    NTERMS = 3
+    MAX_ITERS = 5
+    abort_now = FALSE
+    max_aborts = FALSE
+    opt_aborts = FALSE
+    energy_aborts = FALSE
+    qpu_aborts = FALSE
+    bind_aborts = FALSE
+  -> Input: 13.2 <-
+    converged = FALSE
+    bind_err = FALSE
+    qpu_err = FALSE
+    energy_err = FALSE
+    opt_err = FALSE
+  -> State: 13.2 <-
+    state = BIND
+  -> Input: 13.3 <-
+  -> State: 13.3 <-
+    state = EXECUTE_MEASURE
+    circ_ready = TRUE
+  -> Input: 13.4 <-
+  -> State: 13.4 <-
+    terms_done = 1
+  -> Input: 13.5 <-
+  -> State: 13.5 <-
+    terms_done = 2
+  -> Input: 13.6 <-
+  -> State: 13.6 <-
+    terms_done = 3
+    all_terms_done = TRUE
+  -> Input: 13.7 <-
+  -> State: 13.7 <-
+    state = COMPUTE_ENERGY
+    params_ready = FALSE
+  -> Input: 13.8 <-
+  -> State: 13.8 <-
+    state = CHECK_STOP
+    energy_ready = TRUE
+  -> Input: 13.9 <-
+  -> State: 13.9 <-
+    state = OPTIMIZER_STEP
+    abort_now = TRUE
+    opt_aborts = TRUE
+  -> Input: 13.10 <-
+    opt_err = TRUE
+  -- Loop starts here
+  -> State: 13.10 <-
+    state = ABORT
+    circ_ready = FALSE
+    energy_ready = FALSE
+    term_reason = ABORT_OPT_ERR
+    terminal = TRUE
+    abort_now = FALSE
+    opt_aborts = FALSE
+  -> Input: 13.11 <-
+    opt_err = FALSE
+  -> State: 13.11 <-
+-- specification  G energy_version = bound_version  is false
+-- as demonstrated by the following execution sequence
+Trace Description: LTL Counterexample 
+Trace Type: Counterexample 
+  -> State: 14.1 <-
+    state = S_INIT
+    circ_ready = FALSE
+    params_ready = TRUE
+    energy_ready = FALSE
+    iter = 0
+    terms_done = 0
+    theta_version = 0
+    bound_version = 0
+    energy_version = 0
+    term_reason = NO_TERM
+    terminal = FALSE
+    all_terms_done = FALSE
+    NTERMS = 3
+    MAX_ITERS = 5
+    abort_now = FALSE
+    max_aborts = FALSE
+    opt_aborts = FALSE
+    energy_aborts = FALSE
+    qpu_aborts = FALSE
+    bind_aborts = FALSE
+  -> Input: 14.2 <-
+    converged = FALSE
+    bind_err = FALSE
+    qpu_err = FALSE
+    energy_err = FALSE
+    opt_err = FALSE
+  -> State: 14.2 <-
+    state = BIND
+  -> Input: 14.3 <-
+  -> State: 14.3 <-
+    state = EXECUTE_MEASURE
+    circ_ready = TRUE
+  -> Input: 14.4 <-
+  -> State: 14.4 <-
+    terms_done = 1
+  -> Input: 14.5 <-
+  -> State: 14.5 <-
+    terms_done = 2
+  -> Input: 14.6 <-
+  -> State: 14.6 <-
+    terms_done = 3
+    all_terms_done = TRUE
+  -> Input: 14.7 <-
+  -> State: 14.7 <-
+    state = COMPUTE_ENERGY
+    params_ready = FALSE
+  -> Input: 14.8 <-
+  -> State: 14.8 <-
+    state = CHECK_STOP
+    energy_ready = TRUE
+  -> Input: 14.9 <-
+  -> State: 14.9 <-
+    state = OPTIMIZER_STEP
+  -> Input: 14.10 <-
+  -> State: 14.10 <-
+    state = BIND
+    circ_ready = FALSE
+    params_ready = TRUE
+    energy_ready = FALSE
+    iter = 1
+    terms_done = 0
+    theta_version = 1
+    all_terms_done = FALSE
+  -> Input: 14.11 <-
+  -> State: 14.11 <-
+    state = EXECUTE_MEASURE
+    circ_ready = TRUE
+    bound_version = 1
+    abort_now = TRUE
+    qpu_aborts = TRUE
+  -> Input: 14.12 <-
+    qpu_err = TRUE
+  -- Loop starts here
+  -> State: 14.12 <-
+    state = ABORT
+    circ_ready = FALSE
+    params_ready = FALSE
+    term_reason = ABORT_QPU_ERR
+    terminal = TRUE
+    abort_now = FALSE
+    qpu_aborts = FALSE
+  -> Input: 14.13 <-
+    qpu_err = FALSE
+  -> State: 14.13 <-
+-- specification  G !(state = BIND & iter > 0)  is false
+-- as demonstrated by the following execution sequence
+Trace Description: LTL Counterexample 
+Trace Type: Counterexample 
+  -> State: 15.1 <-
+    state = S_INIT
+    circ_ready = FALSE
+    params_ready = TRUE
+    energy_ready = FALSE
+    iter = 0
+    terms_done = 0
+    theta_version = 0
+    bound_version = 0
+    energy_version = 0
+    term_reason = NO_TERM
+    terminal = FALSE
+    all_terms_done = FALSE
+    NTERMS = 3
+    MAX_ITERS = 5
+    abort_now = FALSE
+    max_aborts = FALSE
+    opt_aborts = FALSE
+    energy_aborts = FALSE
+    qpu_aborts = FALSE
+    bind_aborts = FALSE
+  -> Input: 15.2 <-
+    converged = FALSE
+    bind_err = FALSE
+    qpu_err = FALSE
+    energy_err = FALSE
+    opt_err = FALSE
+  -> State: 15.2 <-
+    state = BIND
+  -> Input: 15.3 <-
+  -> State: 15.3 <-
+    state = EXECUTE_MEASURE
+    circ_ready = TRUE
+  -> Input: 15.4 <-
+  -> State: 15.4 <-
+    terms_done = 1
+  -> Input: 15.5 <-
+  -> State: 15.5 <-
+    terms_done = 2
+  -> Input: 15.6 <-
+  -> State: 15.6 <-
+    terms_done = 3
+    all_terms_done = TRUE
+  -> Input: 15.7 <-
+  -> State: 15.7 <-
+    state = COMPUTE_ENERGY
+    params_ready = FALSE
+  -> Input: 15.8 <-
+  -> State: 15.8 <-
+    state = CHECK_STOP
+    energy_ready = TRUE
+  -> Input: 15.9 <-
+  -> State: 15.9 <-
+    state = OPTIMIZER_STEP
+  -> Input: 15.10 <-
+  -> State: 15.10 <-
+    state = BIND
+    circ_ready = FALSE
+    params_ready = TRUE
+    energy_ready = FALSE
+    iter = 1
+    terms_done = 0
+    theta_version = 1
+    all_terms_done = FALSE
+    abort_now = TRUE
+    bind_aborts = TRUE
+  -> Input: 15.11 <-
+    bind_err = TRUE
+  -- Loop starts here
+  -> State: 15.11 <-
+    state = ABORT
+    params_ready = FALSE
+    term_reason = ABORT_BIND_ERR
+    terminal = TRUE
+    abort_now = FALSE
+    bind_aborts = FALSE
+  -> Input: 15.12 <-
+    bind_err = FALSE
+  -> State: 15.12 <-
+-- specification  G !energy_ready  is false
+-- as demonstrated by the following execution sequence
+Trace Description: LTL Counterexample 
+Trace Type: Counterexample 
+  -> State: 16.1 <-
+    state = S_INIT
+    circ_ready = FALSE
+    params_ready = TRUE
+    energy_ready = FALSE
+    iter = 0
+    terms_done = 0
+    theta_version = 0
+    bound_version = 0
+    energy_version = 0
+    term_reason = NO_TERM
+    terminal = FALSE
+    all_terms_done = FALSE
+    NTERMS = 3
+    MAX_ITERS = 5
+    abort_now = FALSE
+    max_aborts = FALSE
+    opt_aborts = FALSE
+    energy_aborts = FALSE
+    qpu_aborts = FALSE
+    bind_aborts = FALSE
+  -> Input: 16.2 <-
+    converged = FALSE
+    bind_err = FALSE
+    qpu_err = FALSE
+    energy_err = FALSE
+    opt_err = FALSE
+  -> State: 16.2 <-
+    state = BIND
+  -> Input: 16.3 <-
+  -> State: 16.3 <-
+    state = EXECUTE_MEASURE
+    circ_ready = TRUE
+  -> Input: 16.4 <-
+  -> State: 16.4 <-
+    terms_done = 1
+  -> Input: 16.5 <-
+  -> State: 16.5 <-
+    terms_done = 2
+  -> Input: 16.6 <-
+  -> State: 16.6 <-
+    terms_done = 3
+    all_terms_done = TRUE
+  -> Input: 16.7 <-
+  -> State: 16.7 <-
+    state = COMPUTE_ENERGY
+    params_ready = FALSE
+  -> Input: 16.8 <-
+  -> State: 16.8 <-
+    state = CHECK_STOP
+    energy_ready = TRUE
+  -> Input: 16.9 <-
+  -> State: 16.9 <-
+    state = OPTIMIZER_STEP
+    abort_now = TRUE
+    opt_aborts = TRUE
+  -> Input: 16.10 <-
+    opt_err = TRUE
+  -- Loop starts here
+  -> State: 16.10 <-
+    state = ABORT
+    circ_ready = FALSE
+    energy_ready = FALSE
+    term_reason = ABORT_OPT_ERR
+    terminal = TRUE
+    abort_now = FALSE
+    opt_aborts = FALSE
+  -> Input: 16.11 <-
+    opt_err = FALSE
+  -> State: 16.11 <-
+-- specification  G !(state = OPTIMIZER_STEP & !opt_err)  is false
+-- as demonstrated by the following execution sequence
+Trace Description: LTL Counterexample 
+Trace Type: Counterexample 
+  -> State: 17.1 <-
+    state = S_INIT
+    circ_ready = FALSE
+    params_ready = TRUE
+    energy_ready = FALSE
+    iter = 0
+    terms_done = 0
+    theta_version = 0
+    bound_version = 0
+    energy_version = 0
+    term_reason = NO_TERM
+    terminal = FALSE
+    all_terms_done = FALSE
+    NTERMS = 3
+    MAX_ITERS = 5
+    abort_now = FALSE
+    max_aborts = FALSE
+    opt_aborts = FALSE
+    energy_aborts = FALSE
+    qpu_aborts = FALSE
+    bind_aborts = FALSE
+  -> Input: 17.2 <-
+    converged = FALSE
+    bind_err = FALSE
+    qpu_err = FALSE
+    energy_err = FALSE
+    opt_err = FALSE
+  -> State: 17.2 <-
+    state = BIND
+  -> Input: 17.3 <-
+  -> State: 17.3 <-
+    state = EXECUTE_MEASURE
+    circ_ready = TRUE
+  -> Input: 17.4 <-
+  -> State: 17.4 <-
+    terms_done = 1
+  -> Input: 17.5 <-
+  -> State: 17.5 <-
+    terms_done = 2
+  -> Input: 17.6 <-
+  -> State: 17.6 <-
+    terms_done = 3
+    all_terms_done = TRUE
+  -> Input: 17.7 <-
+  -> State: 17.7 <-
+    state = COMPUTE_ENERGY
+    params_ready = FALSE
+  -> Input: 17.8 <-
+  -> State: 17.8 <-
+    state = CHECK_STOP
+    energy_ready = TRUE
+  -> Input: 17.9 <-
+  -> State: 17.9 <-
+    state = OPTIMIZER_STEP
+  -> Input: 17.10 <-
+  -> State: 17.10 <-
+    state = BIND
+    circ_ready = FALSE
+    params_ready = TRUE
+    energy_ready = FALSE
+    iter = 1
+    terms_done = 0
+    theta_version = 1
+    all_terms_done = FALSE
+    abort_now = TRUE
+    bind_aborts = TRUE
+  -> Input: 17.11 <-
+    bind_err = TRUE
+  -- Loop starts here
+  -> State: 17.11 <-
+    state = ABORT
+    params_ready = FALSE
+    term_reason = ABORT_BIND_ERR
+    terminal = TRUE
+    abort_now = FALSE
+    bind_aborts = FALSE
+  -> Input: 17.12 <-
+    bind_err = FALSE
+  -> State: 17.12 <-
+-- specification  G ( X (params_ready & !energy_ready))  is false
+-- as demonstrated by the following execution sequence
+Trace Description: LTL Counterexample 
+Trace Type: Counterexample 
+  -> State: 18.1 <-
+    state = S_INIT
+    circ_ready = FALSE
+    params_ready = TRUE
+    energy_ready = FALSE
+    iter = 0
+    terms_done = 0
+    theta_version = 0
+    bound_version = 0
+    energy_version = 0
+    term_reason = NO_TERM
+    terminal = FALSE
+    all_terms_done = FALSE
+    NTERMS = 3
+    MAX_ITERS = 5
+    abort_now = FALSE
+    max_aborts = FALSE
+    opt_aborts = FALSE
+    energy_aborts = FALSE
+    qpu_aborts = FALSE
+    bind_aborts = FALSE
+  -> Input: 18.2 <-
+    converged = FALSE
+    bind_err = FALSE
+    qpu_err = FALSE
+    energy_err = FALSE
+    opt_err = FALSE
+  -> State: 18.2 <-
+    state = BIND
+    abort_now = TRUE
+    bind_aborts = TRUE
+  -> Input: 18.3 <-
+    bind_err = TRUE
+  -- Loop starts here
+  -> State: 18.3 <-
+    state = ABORT
+    params_ready = FALSE
+    term_reason = ABORT_BIND_ERR
+    terminal = TRUE
+    abort_now = FALSE
+    bind_aborts = FALSE
+  -> Input: 18.4 <-
+    bind_err = FALSE
+  -- Loop starts here
+  -> State: 18.4 <-
+  -> Input: 18.5 <-
+  -> State: 18.5 <-
+-- specification  G !(state = BIND)  is false
+-- as demonstrated by the following execution sequence
+Trace Description: LTL Counterexample 
+Trace Type: Counterexample 
+  -> State: 19.1 <-
+    state = S_INIT
+    circ_ready = FALSE
+    params_ready = TRUE
+    energy_ready = FALSE
+    iter = 0
+    terms_done = 0
+    theta_version = 0
+    bound_version = 0
+    energy_version = 0
+    term_reason = NO_TERM
+    terminal = FALSE
+    all_terms_done = FALSE
+    NTERMS = 3
+    MAX_ITERS = 5
+    abort_now = FALSE
+    max_aborts = FALSE
+    opt_aborts = FALSE
+    energy_aborts = FALSE
+    qpu_aborts = FALSE
+    bind_aborts = FALSE
+  -> Input: 19.2 <-
+    converged = FALSE
+    bind_err = FALSE
+    qpu_err = FALSE
+    energy_err = FALSE
+    opt_err = FALSE
+  -> State: 19.2 <-
+    state = BIND
+    abort_now = TRUE
+    bind_aborts = TRUE
+  -> Input: 19.3 <-
+    bind_err = TRUE
+  -- Loop starts here
+  -> State: 19.3 <-
+    state = ABORT
+    params_ready = FALSE
+    term_reason = ABORT_BIND_ERR
+    terminal = TRUE
+    abort_now = FALSE
+    bind_aborts = FALSE
+  -> Input: 19.4 <-
+    bind_err = FALSE
+  -> State: 19.4 <-
+-- specification  G terms_done = 0  is false
+-- as demonstrated by the following execution sequence
+Trace Description: LTL Counterexample 
+Trace Type: Counterexample 
+  -> State: 20.1 <-
+    state = S_INIT
+    circ_ready = FALSE
+    params_ready = TRUE
+    energy_ready = FALSE
+    iter = 0
+    terms_done = 0
+    theta_version = 0
+    bound_version = 0
+    energy_version = 0
+    term_reason = NO_TERM
+    terminal = FALSE
+    all_terms_done = FALSE
+    NTERMS = 3
+    MAX_ITERS = 5
+    abort_now = FALSE
+    max_aborts = FALSE
+    opt_aborts = FALSE
+    energy_aborts = FALSE
+    qpu_aborts = FALSE
+    bind_aborts = FALSE
+  -> Input: 20.2 <-
+    converged = FALSE
+    bind_err = FALSE
+    qpu_err = FALSE
+    energy_err = FALSE
+    opt_err = FALSE
+  -> State: 20.2 <-
+    state = BIND
+  -> Input: 20.3 <-
+  -> State: 20.3 <-
+    state = EXECUTE_MEASURE
+    circ_ready = TRUE
+  -> Input: 20.4 <-
+  -> State: 20.4 <-
+    terms_done = 1
+    abort_now = TRUE
+    qpu_aborts = TRUE
+  -> Input: 20.5 <-
+    qpu_err = TRUE
+  -- Loop starts here
+  -> State: 20.5 <-
+    state = ABORT
+    circ_ready = FALSE
+    params_ready = FALSE
+    term_reason = ABORT_QPU_ERR
+    terminal = TRUE
+    abort_now = FALSE
+    qpu_aborts = FALSE
+  -> Input: 20.6 <-
+    qpu_err = FALSE
+  -> State: 20.6 <-
+-- specification  G !(state = DONE)  is false
+-- as demonstrated by the following execution sequence
+Trace Description: LTL Counterexample 
+Trace Type: Counterexample 
+  -> State: 21.1 <-
+    state = S_INIT
+    circ_ready = FALSE
+    params_ready = TRUE
+    energy_ready = FALSE
+    iter = 0
+    terms_done = 0
+    theta_version = 0
+    bound_version = 0
+    energy_version = 0
+    term_reason = NO_TERM
+    terminal = FALSE
+    all_terms_done = FALSE
+    NTERMS = 3
+    MAX_ITERS = 5
+    abort_now = FALSE
+    max_aborts = FALSE
+    opt_aborts = FALSE
+    energy_aborts = FALSE
+    qpu_aborts = FALSE
+    bind_aborts = FALSE
+  -> Input: 21.2 <-
+    converged = FALSE
+    bind_err = FALSE
+    qpu_err = FALSE
+    energy_err = FALSE
+    opt_err = FALSE
+  -> State: 21.2 <-
+    state = BIND
+  -> Input: 21.3 <-
+  -> State: 21.3 <-
+    state = EXECUTE_MEASURE
+    circ_ready = TRUE
+  -> Input: 21.4 <-
+  -> State: 21.4 <-
+    terms_done = 1
+  -> Input: 21.5 <-
+  -> State: 21.5 <-
+    terms_done = 2
+  -> Input: 21.6 <-
+  -> State: 21.6 <-
+    terms_done = 3
+    all_terms_done = TRUE
+  -> Input: 21.7 <-
+  -> State: 21.7 <-
+    state = COMPUTE_ENERGY
+    params_ready = FALSE
+  -> Input: 21.8 <-
+  -> State: 21.8 <-
+    state = CHECK_STOP
+    energy_ready = TRUE
+  -> Input: 21.9 <-
+    converged = TRUE
+  -- Loop starts here
+  -> State: 21.9 <-
+    state = DONE
+    term_reason = DONE_CONVERGED
+    terminal = TRUE
+  -> Input: 21.10 <-
+    converged = FALSE
+  -- Loop starts here
+  -> State: 21.10 <-
+  -> Input: 21.11 <-
+  -> State: 21.11 <-
+-- specification  G ( X state = DONE)  is false
+-- as demonstrated by the following execution sequence
+Trace Description: LTL Counterexample 
+Trace Type: Counterexample 
+  -> State: 22.1 <-
+    state = S_INIT
+    circ_ready = FALSE
+    params_ready = TRUE
+    energy_ready = FALSE
+    iter = 0
+    terms_done = 0
+    theta_version = 0
+    bound_version = 0
+    energy_version = 0
+    term_reason = NO_TERM
+    terminal = FALSE
+    all_terms_done = FALSE
+    NTERMS = 3
+    MAX_ITERS = 5
+    abort_now = FALSE
+    max_aborts = FALSE
+    opt_aborts = FALSE
+    energy_aborts = FALSE
+    qpu_aborts = FALSE
+    bind_aborts = FALSE
+  -> Input: 22.2 <-
+    converged = FALSE
+    bind_err = FALSE
+    qpu_err = FALSE
+    energy_err = FALSE
+    opt_err = FALSE
+  -> State: 22.2 <-
+    state = BIND
+    abort_now = TRUE
+    bind_aborts = TRUE
+  -> Input: 22.3 <-
+    bind_err = TRUE
+  -- Loop starts here
+  -> State: 22.3 <-
+    state = ABORT
+    params_ready = FALSE
+    term_reason = ABORT_BIND_ERR
+    terminal = TRUE
+    abort_now = FALSE
+    bind_aborts = FALSE
+  -> Input: 22.4 <-
+    bind_err = FALSE
+  -> State: 22.4 <-
+-- specification  G !(state = ABORT)  is false
+-- as demonstrated by the following execution sequence
+Trace Description: LTL Counterexample 
+Trace Type: Counterexample 
+  -> State: 23.1 <-
+    state = S_INIT
+    circ_ready = FALSE
+    params_ready = TRUE
+    energy_ready = FALSE
+    iter = 0
+    terms_done = 0
+    theta_version = 0
+    bound_version = 0
+    energy_version = 0
+    term_reason = NO_TERM
+    terminal = FALSE
+    all_terms_done = FALSE
+    NTERMS = 3
+    MAX_ITERS = 5
+    abort_now = FALSE
+    max_aborts = FALSE
+    opt_aborts = FALSE
+    energy_aborts = FALSE
+    qpu_aborts = FALSE
+    bind_aborts = FALSE
+  -> Input: 23.2 <-
+    converged = FALSE
+    bind_err = FALSE
+    qpu_err = FALSE
+    energy_err = FALSE
+    opt_err = FALSE
+  -> State: 23.2 <-
+    state = BIND
+    abort_now = TRUE
+    bind_aborts = TRUE
+  -> Input: 23.3 <-
+    bind_err = TRUE
+  -- Loop starts here
+  -> State: 23.3 <-
+    state = ABORT
+    params_ready = FALSE
+    term_reason = ABORT_BIND_ERR
+    terminal = TRUE
+    abort_now = FALSE
+    bind_aborts = FALSE
+  -> Input: 23.4 <-
+    bind_err = FALSE
+  -- Loop starts here
+  -> State: 23.4 <-
+  -> Input: 23.5 <-
+  -> State: 23.5 <-
+-- specification  G ( X state = ABORT)  is false
+-- as demonstrated by the following execution sequence
+Trace Description: LTL Counterexample 
+Trace Type: Counterexample 
+  -> State: 24.1 <-
+    state = S_INIT
+    circ_ready = FALSE
+    params_ready = TRUE
+    energy_ready = FALSE
+    iter = 0
+    terms_done = 0
+    theta_version = 0
+    bound_version = 0
+    energy_version = 0
+    term_reason = NO_TERM
+    terminal = FALSE
+    all_terms_done = FALSE
+    NTERMS = 3
+    MAX_ITERS = 5
+    abort_now = FALSE
+    max_aborts = FALSE
+    opt_aborts = FALSE
+    energy_aborts = FALSE
+    qpu_aborts = FALSE
+    bind_aborts = FALSE
+  -> Input: 24.2 <-
+    converged = FALSE
+    bind_err = FALSE
+    qpu_err = FALSE
+    energy_err = FALSE
+    opt_err = FALSE
+  -> State: 24.2 <-
+    state = BIND
+    abort_now = TRUE
+    bind_aborts = TRUE
+  -> Input: 24.3 <-
+    bind_err = TRUE
+  -- Loop starts here
+  -> State: 24.3 <-
+    state = ABORT
+    params_ready = FALSE
+    term_reason = ABORT_BIND_ERR
+    terminal = TRUE
+    abort_now = FALSE
+    bind_aborts = FALSE
+  -> Input: 24.4 <-
+    bind_err = FALSE
+  -- Loop starts here
+  -> State: 24.4 <-
+  -> Input: 24.5 <-
+  -> State: 24.5 <-
+-- specification  G !(state = DONE)  is false
+-- as demonstrated by the following execution sequence
+Trace Description: LTL Counterexample 
+Trace Type: Counterexample 
+  -> State: 25.1 <-
+    state = S_INIT
+    circ_ready = FALSE
+    params_ready = TRUE
+    energy_ready = FALSE
+    iter = 0
+    terms_done = 0
+    theta_version = 0
+    bound_version = 0
+    energy_version = 0
+    term_reason = NO_TERM
+    terminal = FALSE
+    all_terms_done = FALSE
+    NTERMS = 3
+    MAX_ITERS = 5
+    abort_now = FALSE
+    max_aborts = FALSE
+    opt_aborts = FALSE
+    energy_aborts = FALSE
+    qpu_aborts = FALSE
+    bind_aborts = FALSE
+  -> Input: 25.2 <-
+    converged = FALSE
+    bind_err = FALSE
+    qpu_err = FALSE
+    energy_err = FALSE
+    opt_err = FALSE
+  -> State: 25.2 <-
+    state = BIND
+  -> Input: 25.3 <-
+  -> State: 25.3 <-
+    state = EXECUTE_MEASURE
+    circ_ready = TRUE
+  -> Input: 25.4 <-
+  -> State: 25.4 <-
+    terms_done = 1
+  -> Input: 25.5 <-
+  -> State: 25.5 <-
+    terms_done = 2
+  -> Input: 25.6 <-
+  -> State: 25.6 <-
+    terms_done = 3
+    all_terms_done = TRUE
+  -> Input: 25.7 <-
+  -> State: 25.7 <-
+    state = COMPUTE_ENERGY
+    params_ready = FALSE
+  -> Input: 25.8 <-
+  -> State: 25.8 <-
+    state = CHECK_STOP
+    energy_ready = TRUE
+  -> Input: 25.9 <-
+    converged = TRUE
+  -- Loop starts here
+  -> State: 25.9 <-
+    state = DONE
+    term_reason = DONE_CONVERGED
+    terminal = TRUE
+  -> Input: 25.10 <-
+    converged = FALSE
+  -- Loop starts here
+  -> State: 25.10 <-
+  -> Input: 25.11 <-
+  -> State: 25.11 <-
+-- specification  G (term_reason = DONE_CONVERGED & energy_ready)  is false
+-- as demonstrated by the following execution sequence
+Trace Description: LTL Counterexample 
+Trace Type: Counterexample 
+  -> State: 26.1 <-
+    state = S_INIT
+    circ_ready = FALSE
+    params_ready = TRUE
+    energy_ready = FALSE
+    iter = 0
+    terms_done = 0
+    theta_version = 0
+    bound_version = 0
+    energy_version = 0
+    term_reason = NO_TERM
+    terminal = FALSE
+    all_terms_done = FALSE
+    NTERMS = 3
+    MAX_ITERS = 5
+    abort_now = FALSE
+    max_aborts = FALSE
+    opt_aborts = FALSE
+    energy_aborts = FALSE
+    qpu_aborts = FALSE
+    bind_aborts = FALSE
+  -> Input: 26.2 <-
+    converged = FALSE
+    bind_err = FALSE
+    qpu_err = FALSE
+    energy_err = FALSE
+    opt_err = FALSE
+  -> State: 26.2 <-
+    state = BIND
+    abort_now = TRUE
+    bind_aborts = TRUE
+  -> Input: 26.3 <-
+    bind_err = TRUE
+  -- Loop starts here
+  -> State: 26.3 <-
+    state = ABORT
+    params_ready = FALSE
+    term_reason = ABORT_BIND_ERR
+    terminal = TRUE
+    abort_now = FALSE
+    bind_aborts = FALSE
+  -> Input: 26.4 <-
+    bind_err = FALSE
+  -> State: 26.4 <-
+-- specification  G !(state = ABORT)  is false
+-- as demonstrated by the following execution sequence
+Trace Description: LTL Counterexample 
+Trace Type: Counterexample 
+  -> State: 27.1 <-
+    state = S_INIT
+    circ_ready = FALSE
+    params_ready = TRUE
+    energy_ready = FALSE
+    iter = 0
+    terms_done = 0
+    theta_version = 0
+    bound_version = 0
+    energy_version = 0
+    term_reason = NO_TERM
+    terminal = FALSE
+    all_terms_done = FALSE
+    NTERMS = 3
+    MAX_ITERS = 5
+    abort_now = FALSE
+    max_aborts = FALSE
+    opt_aborts = FALSE
+    energy_aborts = FALSE
+    qpu_aborts = FALSE
+    bind_aborts = FALSE
+  -> Input: 27.2 <-
+    converged = FALSE
+    bind_err = FALSE
+    qpu_err = FALSE
+    energy_err = FALSE
+    opt_err = FALSE
+  -> State: 27.2 <-
+    state = BIND
+    abort_now = TRUE
+    bind_aborts = TRUE
+  -> Input: 27.3 <-
+    bind_err = TRUE
+  -- Loop starts here
+  -> State: 27.3 <-
+    state = ABORT
+    params_ready = FALSE
+    term_reason = ABORT_BIND_ERR
+    terminal = TRUE
+    abort_now = FALSE
+    bind_aborts = FALSE
+  -> Input: 27.4 <-
+    bind_err = FALSE
+  -- Loop starts here
+  -> State: 27.4 <-
+  -> Input: 27.5 <-
+  -> State: 27.5 <-
+-- specification  G (term_reason != NO_TERM & term_reason != DONE_CONVERGED)  is false
+-- as demonstrated by the following execution sequence
+Trace Description: LTL Counterexample 
+Trace Type: Counterexample 
+  -> State: 28.1 <-
+    state = S_INIT
+    circ_ready = FALSE
+    params_ready = TRUE
+    energy_ready = FALSE
+    iter = 0
+    terms_done = 0
+    theta_version = 0
+    bound_version = 0
+    energy_version = 0
+    term_reason = NO_TERM
+    terminal = FALSE
+    all_terms_done = FALSE
+    NTERMS = 3
+    MAX_ITERS = 5
+    abort_now = FALSE
+    max_aborts = FALSE
+    opt_aborts = FALSE
+    energy_aborts = FALSE
+    qpu_aborts = FALSE
+    bind_aborts = FALSE
+  -> Input: 28.2 <-
+    converged = FALSE
+    bind_err = FALSE
+    qpu_err = FALSE
+    energy_err = FALSE
+    opt_err = FALSE
+  -> State: 28.2 <-
+    state = BIND
+    abort_now = TRUE
+    bind_aborts = TRUE
+  -> Input: 28.3 <-
+    bind_err = TRUE
+  -- Loop starts here
+  -> State: 28.3 <-
+    state = ABORT
+    params_ready = FALSE
+    term_reason = ABORT_BIND_ERR
+    terminal = TRUE
+    abort_now = FALSE
+    bind_aborts = FALSE
+  -> Input: 28.4 <-
+    bind_err = FALSE
+  -- Loop starts here
+  -> State: 28.4 <-
+  -> Input: 28.5 <-
+  -> State: 28.5 <-
+-- specification  G !(state = BIND & bind_err)  is false
+-- as demonstrated by the following execution sequence
+Trace Description: LTL Counterexample 
+Trace Type: Counterexample 
+  -> State: 29.1 <-
+    state = S_INIT
+    circ_ready = FALSE
+    params_ready = TRUE
+    energy_ready = FALSE
+    iter = 0
+    terms_done = 0
+    theta_version = 0
+    bound_version = 0
+    energy_version = 0
+    term_reason = NO_TERM
+    terminal = FALSE
+    all_terms_done = FALSE
+    NTERMS = 3
+    MAX_ITERS = 5
+    abort_now = FALSE
+    max_aborts = FALSE
+    opt_aborts = FALSE
+    energy_aborts = FALSE
+    qpu_aborts = FALSE
+    bind_aborts = FALSE
+  -> Input: 29.2 <-
+    converged = FALSE
+    bind_err = FALSE
+    qpu_err = FALSE
+    energy_err = FALSE
+    opt_err = FALSE
+  -> State: 29.2 <-
+    state = BIND
+    abort_now = TRUE
+    bind_aborts = TRUE
+  -> Input: 29.3 <-
+    bind_err = TRUE
+  -- Loop starts here
+  -> State: 29.3 <-
+    state = ABORT
+    params_ready = FALSE
+    term_reason = ABORT_BIND_ERR
+    terminal = TRUE
+    abort_now = FALSE
+    bind_aborts = FALSE
+  -> Input: 29.4 <-
+    bind_err = FALSE
+  -- Loop starts here
+  -> State: 29.4 <-
+  -> Input: 29.5 <-
+  -> State: 29.5 <-
+-- specification  G ( X (state = ABORT & term_reason = ABORT_BIND_ERR))  is false
+-- as demonstrated by the following execution sequence
+Trace Description: LTL Counterexample 
+Trace Type: Counterexample 
+  -> State: 30.1 <-
+    state = S_INIT
+    circ_ready = FALSE
+    params_ready = TRUE
+    energy_ready = FALSE
+    iter = 0
+    terms_done = 0
+    theta_version = 0
+    bound_version = 0
+    energy_version = 0
+    term_reason = NO_TERM
+    terminal = FALSE
+    all_terms_done = FALSE
+    NTERMS = 3
+    MAX_ITERS = 5
+    abort_now = FALSE
+    max_aborts = FALSE
+    opt_aborts = FALSE
+    energy_aborts = FALSE
+    qpu_aborts = FALSE
+    bind_aborts = FALSE
+  -> Input: 30.2 <-
+    converged = FALSE
+    bind_err = FALSE
+    qpu_err = FALSE
+    energy_err = FALSE
+    opt_err = FALSE
+  -> State: 30.2 <-
+    state = BIND
+    abort_now = TRUE
+    bind_aborts = TRUE
+  -> Input: 30.3 <-
+    bind_err = TRUE
+  -- Loop starts here
+  -> State: 30.3 <-
+    state = ABORT
+    params_ready = FALSE
+    term_reason = ABORT_BIND_ERR
+    terminal = TRUE
+    abort_now = FALSE
+    bind_aborts = FALSE
+  -> Input: 30.4 <-
+    bind_err = FALSE
+  -- Loop starts here
+  -> State: 30.4 <-
+  -> Input: 30.5 <-
+  -> State: 30.5 <-
+-- specification  G !(state = EXECUTE_MEASURE & qpu_err)  is false
+-- as demonstrated by the following execution sequence
+Trace Description: LTL Counterexample 
+Trace Type: Counterexample 
+  -> State: 31.1 <-
+    state = S_INIT
+    circ_ready = FALSE
+    params_ready = TRUE
+    energy_ready = FALSE
+    iter = 0
+    terms_done = 0
+    theta_version = 0
+    bound_version = 0
+    energy_version = 0
+    term_reason = NO_TERM
+    terminal = FALSE
+    all_terms_done = FALSE
+    NTERMS = 3
+    MAX_ITERS = 5
+    abort_now = FALSE
+    max_aborts = FALSE
+    opt_aborts = FALSE
+    energy_aborts = FALSE
+    qpu_aborts = FALSE
+    bind_aborts = FALSE
+  -> Input: 31.2 <-
+    converged = FALSE
+    bind_err = FALSE
+    qpu_err = FALSE
+    energy_err = FALSE
+    opt_err = FALSE
+  -> State: 31.2 <-
+    state = BIND
+  -> Input: 31.3 <-
+  -> State: 31.3 <-
+    state = EXECUTE_MEASURE
+    circ_ready = TRUE
+    abort_now = TRUE
+    qpu_aborts = TRUE
+  -> Input: 31.4 <-
+    qpu_err = TRUE
+  -- Loop starts here
+  -> State: 31.4 <-
+    state = ABORT
+    circ_ready = FALSE
+    params_ready = FALSE
+    term_reason = ABORT_QPU_ERR
+    terminal = TRUE
+    abort_now = FALSE
+    qpu_aborts = FALSE
+  -> Input: 31.5 <-
+    qpu_err = FALSE
+  -- Loop starts here
+  -> State: 31.5 <-
+  -> Input: 31.6 <-
+  -> State: 31.6 <-
+-- specification  G ( X (state = ABORT & term_reason = ABORT_QPU_ERR))  is false
+-- as demonstrated by the following execution sequence
+Trace Description: LTL Counterexample 
+Trace Type: Counterexample 
+  -> State: 32.1 <-
+    state = S_INIT
+    circ_ready = FALSE
+    params_ready = TRUE
+    energy_ready = FALSE
+    iter = 0
+    terms_done = 0
+    theta_version = 0
+    bound_version = 0
+    energy_version = 0
+    term_reason = NO_TERM
+    terminal = FALSE
+    all_terms_done = FALSE
+    NTERMS = 3
+    MAX_ITERS = 5
+    abort_now = FALSE
+    max_aborts = FALSE
+    opt_aborts = FALSE
+    energy_aborts = FALSE
+    qpu_aborts = FALSE
+    bind_aborts = FALSE
+  -> Input: 32.2 <-
+    converged = FALSE
+    bind_err = FALSE
+    qpu_err = FALSE
+    energy_err = FALSE
+    opt_err = FALSE
+  -> State: 32.2 <-
+    state = BIND
+  -> Input: 32.3 <-
+  -> State: 32.3 <-
+    state = EXECUTE_MEASURE
+    circ_ready = TRUE
+    abort_now = TRUE
+    qpu_aborts = TRUE
+  -> Input: 32.4 <-
+    qpu_err = TRUE
+  -- Loop starts here
+  -> State: 32.4 <-
+    state = ABORT
+    circ_ready = FALSE
+    params_ready = FALSE
+    term_reason = ABORT_QPU_ERR
+    terminal = TRUE
+    abort_now = FALSE
+    qpu_aborts = FALSE
+  -> Input: 32.5 <-
+    qpu_err = FALSE
+  -> State: 32.5 <-
+-- specification  G !(state = COMPUTE_ENERGY & energy_err)  is false
+-- as demonstrated by the following execution sequence
+Trace Description: LTL Counterexample 
+Trace Type: Counterexample 
+  -> State: 33.1 <-
+    state = S_INIT
+    circ_ready = FALSE
+    params_ready = TRUE
+    energy_ready = FALSE
+    iter = 0
+    terms_done = 0
+    theta_version = 0
+    bound_version = 0
+    energy_version = 0
+    term_reason = NO_TERM
+    terminal = FALSE
+    all_terms_done = FALSE
+    NTERMS = 3
+    MAX_ITERS = 5
+    abort_now = FALSE
+    max_aborts = FALSE
+    opt_aborts = FALSE
+    energy_aborts = FALSE
+    qpu_aborts = FALSE
+    bind_aborts = FALSE
+  -> Input: 33.2 <-
+    converged = FALSE
+    bind_err = FALSE
+    qpu_err = FALSE
+    energy_err = FALSE
+    opt_err = FALSE
+  -> State: 33.2 <-
+    state = BIND
+  -> Input: 33.3 <-
+  -> State: 33.3 <-
+    state = EXECUTE_MEASURE
+    circ_ready = TRUE
+  -> Input: 33.4 <-
+  -> State: 33.4 <-
+    terms_done = 1
+  -> Input: 33.5 <-
+  -> State: 33.5 <-
+    terms_done = 2
+  -> Input: 33.6 <-
+  -> State: 33.6 <-
+    terms_done = 3
+    all_terms_done = TRUE
+  -> Input: 33.7 <-
+  -> State: 33.7 <-
+    state = COMPUTE_ENERGY
+    params_ready = FALSE
+    abort_now = TRUE
+    energy_aborts = TRUE
+  -> Input: 33.8 <-
+    energy_err = TRUE
+  -- Loop starts here
+  -> State: 33.8 <-
+    state = ABORT
+    circ_ready = FALSE
+    term_reason = ABORT_ENERGY_ERR
+    terminal = TRUE
+    abort_now = FALSE
+    energy_aborts = FALSE
+  -> Input: 33.9 <-
+    energy_err = FALSE
+  -- Loop starts here
+  -> State: 33.9 <-
+  -> Input: 33.10 <-
+  -> State: 33.10 <-
+-- specification  G ( X (state = ABORT & term_reason = ABORT_ENERGY_ERR))  is false
+-- as demonstrated by the following execution sequence
+Trace Description: LTL Counterexample 
+Trace Type: Counterexample 
+  -> State: 34.1 <-
+    state = S_INIT
+    circ_ready = FALSE
+    params_ready = TRUE
+    energy_ready = FALSE
+    iter = 0
+    terms_done = 0
+    theta_version = 0
+    bound_version = 0
+    energy_version = 0
+    term_reason = NO_TERM
+    terminal = FALSE
+    all_terms_done = FALSE
+    NTERMS = 3
+    MAX_ITERS = 5
+    abort_now = FALSE
+    max_aborts = FALSE
+    opt_aborts = FALSE
+    energy_aborts = FALSE
+    qpu_aborts = FALSE
+    bind_aborts = FALSE
+  -> Input: 34.2 <-
+    converged = FALSE
+    bind_err = FALSE
+    qpu_err = FALSE
+    energy_err = FALSE
+    opt_err = FALSE
+  -> State: 34.2 <-
+    state = BIND
+    abort_now = TRUE
+    bind_aborts = TRUE
+  -> Input: 34.3 <-
+    bind_err = TRUE
+  -- Loop starts here
+  -> State: 34.3 <-
+    state = ABORT
+    params_ready = FALSE
+    term_reason = ABORT_BIND_ERR
+    terminal = TRUE
+    abort_now = FALSE
+    bind_aborts = FALSE
+  -> Input: 34.4 <-
+    bind_err = FALSE
+  -> State: 34.4 <-
+-- specification  G !(state = OPTIMIZER_STEP & opt_err)  is false
+-- as demonstrated by the following execution sequence
+Trace Description: LTL Counterexample 
+Trace Type: Counterexample 
+  -> State: 35.1 <-
+    state = S_INIT
+    circ_ready = FALSE
+    params_ready = TRUE
+    energy_ready = FALSE
+    iter = 0
+    terms_done = 0
+    theta_version = 0
+    bound_version = 0
+    energy_version = 0
+    term_reason = NO_TERM
+    terminal = FALSE
+    all_terms_done = FALSE
+    NTERMS = 3
+    MAX_ITERS = 5
+    abort_now = FALSE
+    max_aborts = FALSE
+    opt_aborts = FALSE
+    energy_aborts = FALSE
+    qpu_aborts = FALSE
+    bind_aborts = FALSE
+  -> Input: 35.2 <-
+    converged = FALSE
+    bind_err = FALSE
+    qpu_err = FALSE
+    energy_err = FALSE
+    opt_err = FALSE
+  -> State: 35.2 <-
+    state = BIND
+  -> Input: 35.3 <-
+  -> State: 35.3 <-
+    state = EXECUTE_MEASURE
+    circ_ready = TRUE
+  -> Input: 35.4 <-
+  -> State: 35.4 <-
+    terms_done = 1
+  -> Input: 35.5 <-
+  -> State: 35.5 <-
+    terms_done = 2
+  -> Input: 35.6 <-
+  -> State: 35.6 <-
+    terms_done = 3
+    all_terms_done = TRUE
+  -> Input: 35.7 <-
+  -> State: 35.7 <-
+    state = COMPUTE_ENERGY
+    params_ready = FALSE
+  -> Input: 35.8 <-
+  -> State: 35.8 <-
+    state = CHECK_STOP
+    energy_ready = TRUE
+  -> Input: 35.9 <-
+  -> State: 35.9 <-
+    state = OPTIMIZER_STEP
+    abort_now = TRUE
+    opt_aborts = TRUE
+  -> Input: 35.10 <-
+    opt_err = TRUE
+  -- Loop starts here
+  -> State: 35.10 <-
+    state = ABORT
+    circ_ready = FALSE
+    energy_ready = FALSE
+    term_reason = ABORT_OPT_ERR
+    terminal = TRUE
+    abort_now = FALSE
+    opt_aborts = FALSE
+  -> Input: 35.11 <-
+    opt_err = FALSE
+  -- Loop starts here
+  -> State: 35.11 <-
+  -> Input: 35.12 <-
+  -> State: 35.12 <-
+-- specification  G ( X (state = ABORT & term_reason = ABORT_OPT_ERR))  is false
+-- as demonstrated by the following execution sequence
+Trace Description: LTL Counterexample 
+Trace Type: Counterexample 
+  -> State: 36.1 <-
+    state = S_INIT
+    circ_ready = FALSE
+    params_ready = TRUE
+    energy_ready = FALSE
+    iter = 0
+    terms_done = 0
+    theta_version = 0
+    bound_version = 0
+    energy_version = 0
+    term_reason = NO_TERM
+    terminal = FALSE
+    all_terms_done = FALSE
+    NTERMS = 3
+    MAX_ITERS = 5
+    abort_now = FALSE
+    max_aborts = FALSE
+    opt_aborts = FALSE
+    energy_aborts = FALSE
+    qpu_aborts = FALSE
+    bind_aborts = FALSE
+  -> Input: 36.2 <-
+    converged = FALSE
+    bind_err = FALSE
+    qpu_err = FALSE
+    energy_err = FALSE
+    opt_err = FALSE
+  -> State: 36.2 <-
+    state = BIND
+    abort_now = TRUE
+    bind_aborts = TRUE
+  -> Input: 36.3 <-
+    bind_err = TRUE
+  -- Loop starts here
+  -> State: 36.3 <-
+    state = ABORT
+    params_ready = FALSE
+    term_reason = ABORT_BIND_ERR
+    terminal = TRUE
+    abort_now = FALSE
+    bind_aborts = FALSE
+  -> Input: 36.4 <-
+    bind_err = FALSE
+  -> State: 36.4 <-
+-- specification  G !((state = CHECK_STOP & !converged) & iter = MAX_ITERS)  is false
+-- as demonstrated by the following execution sequence
+Trace Description: LTL Counterexample 
+Trace Type: Counterexample 
+  -> State: 37.1 <-
+    state = S_INIT
+    circ_ready = FALSE
+    params_ready = TRUE
+    energy_ready = FALSE
+    iter = 0
+    terms_done = 0
+    theta_version = 0
+    bound_version = 0
+    energy_version = 0
+    term_reason = NO_TERM
+    terminal = FALSE
+    all_terms_done = FALSE
+    NTERMS = 3
+    MAX_ITERS = 5
+    abort_now = FALSE
+    max_aborts = FALSE
+    opt_aborts = FALSE
+    energy_aborts = FALSE
+    qpu_aborts = FALSE
+    bind_aborts = FALSE
+  -> Input: 37.2 <-
+    converged = FALSE
+    bind_err = FALSE
+    qpu_err = FALSE
+    energy_err = FALSE
+    opt_err = FALSE
+  -> State: 37.2 <-
+    state = BIND
+  -> Input: 37.3 <-
+  -> State: 37.3 <-
+    state = EXECUTE_MEASURE
+    circ_ready = TRUE
+  -> Input: 37.4 <-
+  -> State: 37.4 <-
+    terms_done = 1
+  -> Input: 37.5 <-
+  -> State: 37.5 <-
+    terms_done = 2
+  -> Input: 37.6 <-
+  -> State: 37.6 <-
+    terms_done = 3
+    all_terms_done = TRUE
+  -> Input: 37.7 <-
+  -> State: 37.7 <-
+    state = COMPUTE_ENERGY
+    params_ready = FALSE
+  -> Input: 37.8 <-
+  -> State: 37.8 <-
+    state = CHECK_STOP
+    energy_ready = TRUE
+  -> Input: 37.9 <-
+  -> State: 37.9 <-
+    state = OPTIMIZER_STEP
+  -> Input: 37.10 <-
+  -> State: 37.10 <-
+    state = BIND
+    circ_ready = FALSE
+    params_ready = TRUE
+    energy_ready = FALSE
+    iter = 1
+    terms_done = 0
+    theta_version = 1
+    all_terms_done = FALSE
+  -> Input: 37.11 <-
+  -> State: 37.11 <-
+    state = EXECUTE_MEASURE
+    circ_ready = TRUE
+    bound_version = 1
+  -> Input: 37.12 <-
+  -> State: 37.12 <-
+    terms_done = 1
+  -> Input: 37.13 <-
+  -> State: 37.13 <-
+    terms_done = 2
+  -> Input: 37.14 <-
+  -> State: 37.14 <-
+    terms_done = 3
+    all_terms_done = TRUE
+  -> Input: 37.15 <-
+  -> State: 37.15 <-
+    state = COMPUTE_ENERGY
+    params_ready = FALSE
+  -> Input: 37.16 <-
+  -> State: 37.16 <-
+    state = CHECK_STOP
+    energy_ready = TRUE
+    energy_version = 1
+  -> Input: 37.17 <-
+  -> State: 37.17 <-
+    state = OPTIMIZER_STEP
+  -> Input: 37.18 <-
+  -> State: 37.18 <-
+    state = BIND
+    circ_ready = FALSE
+    params_ready = TRUE
+    energy_ready = FALSE
+    iter = 2
+    terms_done = 0
+    theta_version = 2
+    all_terms_done = FALSE
+  -> Input: 37.19 <-
+  -> State: 37.19 <-
+    state = EXECUTE_MEASURE
+    circ_ready = TRUE
+    bound_version = 2
+  -> Input: 37.20 <-
+  -> State: 37.20 <-
+    terms_done = 1
+  -> Input: 37.21 <-
+  -> State: 37.21 <-
+    terms_done = 2
+  -> Input: 37.22 <-
+  -> State: 37.22 <-
+    terms_done = 3
+    all_terms_done = TRUE
+  -> Input: 37.23 <-
+  -> State: 37.23 <-
+    state = COMPUTE_ENERGY
+    params_ready = FALSE
+  -> Input: 37.24 <-
+  -> State: 37.24 <-
+    state = CHECK_STOP
+    energy_ready = TRUE
+    energy_version = 2
+  -> Input: 37.25 <-
+  -> State: 37.25 <-
+    state = OPTIMIZER_STEP
+  -> Input: 37.26 <-
+  -> State: 37.26 <-
+    state = BIND
+    circ_ready = FALSE
+    params_ready = TRUE
+    energy_ready = FALSE
+    iter = 3
+    terms_done = 0
+    theta_version = 3
+    all_terms_done = FALSE
+  -> Input: 37.27 <-
+  -> State: 37.27 <-
+    state = EXECUTE_MEASURE
+    circ_ready = TRUE
+    bound_version = 3
+  -> Input: 37.28 <-
+  -> State: 37.28 <-
+    terms_done = 1
+  -> Input: 37.29 <-
+  -> State: 37.29 <-
+    terms_done = 2
+  -> Input: 37.30 <-
+  -> State: 37.30 <-
+    terms_done = 3
+    all_terms_done = TRUE
+  -> Input: 37.31 <-
+  -> State: 37.31 <-
+    state = COMPUTE_ENERGY
+    params_ready = FALSE
+  -> Input: 37.32 <-
+  -> State: 37.32 <-
+    state = CHECK_STOP
+    energy_ready = TRUE
+    energy_version = 3
+  -> Input: 37.33 <-
+  -> State: 37.33 <-
+    state = OPTIMIZER_STEP
+  -> Input: 37.34 <-
+  -> State: 37.34 <-
+    state = BIND
+    circ_ready = FALSE
+    params_ready = TRUE
+    energy_ready = FALSE
+    iter = 4
+    terms_done = 0
+    theta_version = 4
+    all_terms_done = FALSE
+  -> Input: 37.35 <-
+  -> State: 37.35 <-
+    state = EXECUTE_MEASURE
+    circ_ready = TRUE
+    bound_version = 4
+  -> Input: 37.36 <-
+  -> State: 37.36 <-
+    terms_done = 1
+  -> Input: 37.37 <-
+  -> State: 37.37 <-
+    terms_done = 2
+  -> Input: 37.38 <-
+  -> State: 37.38 <-
+    terms_done = 3
+    all_terms_done = TRUE
+  -> Input: 37.39 <-
+  -> State: 37.39 <-
+    state = COMPUTE_ENERGY
+    params_ready = FALSE
+  -> Input: 37.40 <-
+  -> State: 37.40 <-
+    state = CHECK_STOP
+    energy_ready = TRUE
+    energy_version = 4
+  -> Input: 37.41 <-
+  -> State: 37.41 <-
+    state = OPTIMIZER_STEP
+  -> Input: 37.42 <-
+  -> State: 37.42 <-
+    state = BIND
+    circ_ready = FALSE
+    params_ready = TRUE
+    energy_ready = FALSE
+    iter = 5
+    terms_done = 0
+    theta_version = 5
+    all_terms_done = FALSE
+  -> Input: 37.43 <-
+  -> State: 37.43 <-
+    state = EXECUTE_MEASURE
+    circ_ready = TRUE
+    bound_version = 5
+  -> Input: 37.44 <-
+  -> State: 37.44 <-
+    terms_done = 1
+  -> Input: 37.45 <-
+  -> State: 37.45 <-
+    terms_done = 2
+  -> Input: 37.46 <-
+  -> State: 37.46 <-
+    terms_done = 3
+    all_terms_done = TRUE
+  -> Input: 37.47 <-
+  -> State: 37.47 <-
+    state = COMPUTE_ENERGY
+    params_ready = FALSE
+  -> Input: 37.48 <-
+  -> State: 37.48 <-
+    state = CHECK_STOP
+    energy_ready = TRUE
+    energy_version = 5
+    abort_now = TRUE
+    max_aborts = TRUE
+  -> Input: 37.49 <-
+  -- Loop starts here
+  -> State: 37.49 <-
+    state = ABORT
+    circ_ready = FALSE
+    energy_ready = FALSE
+    term_reason = ABORT_MAX_ITERS
+    terminal = TRUE
+    abort_now = FALSE
+    max_aborts = FALSE
+  -> Input: 37.50 <-
+  -- Loop starts here
+  -> State: 37.50 <-
+  -> Input: 37.51 <-
+  -> State: 37.51 <-
+-- specification  G ( X (state = ABORT & term_reason = ABORT_MAX_ITERS))  is false
+-- as demonstrated by the following execution sequence
+Trace Description: LTL Counterexample 
+Trace Type: Counterexample 
+  -> State: 38.1 <-
+    state = S_INIT
+    circ_ready = FALSE
+    params_ready = TRUE
+    energy_ready = FALSE
+    iter = 0
+    terms_done = 0
+    theta_version = 0
+    bound_version = 0
+    energy_version = 0
+    term_reason = NO_TERM
+    terminal = FALSE
+    all_terms_done = FALSE
+    NTERMS = 3
+    MAX_ITERS = 5
+    abort_now = FALSE
+    max_aborts = FALSE
+    opt_aborts = FALSE
+    energy_aborts = FALSE
+    qpu_aborts = FALSE
+    bind_aborts = FALSE
+  -> Input: 38.2 <-
+    converged = FALSE
+    bind_err = FALSE
+    qpu_err = FALSE
+    energy_err = FALSE
+    opt_err = FALSE
+  -> State: 38.2 <-
+    state = BIND
+    abort_now = TRUE
+    bind_aborts = TRUE
+  -> Input: 38.3 <-
+    bind_err = TRUE
+  -- Loop starts here
+  -> State: 38.3 <-
+    state = ABORT
+    params_ready = FALSE
+    term_reason = ABORT_BIND_ERR
+    terminal = TRUE
+    abort_now = FALSE
+    bind_aborts = FALSE
+  -> Input: 38.4 <-
+    bind_err = FALSE
+  -> State: 38.4 <-
+-- specification  G !(state = DONE)  is false
+-- as demonstrated by the following execution sequence
+Trace Description: LTL Counterexample 
+Trace Type: Counterexample 
+  -> State: 39.1 <-
+    state = S_INIT
+    circ_ready = FALSE
+    params_ready = TRUE
+    energy_ready = FALSE
+    iter = 0
+    terms_done = 0
+    theta_version = 0
+    bound_version = 0
+    energy_version = 0
+    term_reason = NO_TERM
+    terminal = FALSE
+    all_terms_done = FALSE
+    NTERMS = 3
+    MAX_ITERS = 5
+    abort_now = FALSE
+    max_aborts = FALSE
+    opt_aborts = FALSE
+    energy_aborts = FALSE
+    qpu_aborts = FALSE
+    bind_aborts = FALSE
+  -> Input: 39.2 <-
+    converged = FALSE
+    bind_err = FALSE
+    qpu_err = FALSE
+    energy_err = FALSE
+    opt_err = FALSE
+  -> State: 39.2 <-
+    state = BIND
+  -> Input: 39.3 <-
+  -> State: 39.3 <-
+    state = EXECUTE_MEASURE
+    circ_ready = TRUE
+  -> Input: 39.4 <-
+  -> State: 39.4 <-
+    terms_done = 1
+  -> Input: 39.5 <-
+  -> State: 39.5 <-
+    terms_done = 2
+  -> Input: 39.6 <-
+  -> State: 39.6 <-
+    terms_done = 3
+    all_terms_done = TRUE
+  -> Input: 39.7 <-
+  -> State: 39.7 <-
+    state = COMPUTE_ENERGY
+    params_ready = FALSE
+  -> Input: 39.8 <-
+  -> State: 39.8 <-
+    state = CHECK_STOP
+    energy_ready = TRUE
+  -> Input: 39.9 <-
+    converged = TRUE
+  -- Loop starts here
+  -> State: 39.9 <-
+    state = DONE
+    term_reason = DONE_CONVERGED
+    terminal = TRUE
+  -> Input: 39.10 <-
+    converged = FALSE
+  -- Loop starts here
+  -> State: 39.10 <-
+  -> Input: 39.11 <-
+  -> State: 39.11 <-
+-- specification  G ( G !(state = ABORT))  is false
+-- as demonstrated by the following execution sequence
+Trace Description: LTL Counterexample 
+Trace Type: Counterexample 
+  -> State: 40.1 <-
+    state = S_INIT
+    circ_ready = FALSE
+    params_ready = TRUE
+    energy_ready = FALSE
+    iter = 0
+    terms_done = 0
+    theta_version = 0
+    bound_version = 0
+    energy_version = 0
+    term_reason = NO_TERM
+    terminal = FALSE
+    all_terms_done = FALSE
+    NTERMS = 3
+    MAX_ITERS = 5
+    abort_now = FALSE
+    max_aborts = FALSE
+    opt_aborts = FALSE
+    energy_aborts = FALSE
+    qpu_aborts = FALSE
+    bind_aborts = FALSE
+  -> Input: 40.2 <-
+    converged = FALSE
+    bind_err = FALSE
+    qpu_err = FALSE
+    energy_err = FALSE
+    opt_err = FALSE
+  -> State: 40.2 <-
+    state = BIND
+    abort_now = TRUE
+    bind_aborts = TRUE
+  -> Input: 40.3 <-
+    bind_err = TRUE
+  -- Loop starts here
+  -> State: 40.3 <-
+    state = ABORT
+    params_ready = FALSE
+    term_reason = ABORT_BIND_ERR
+    terminal = TRUE
+    abort_now = FALSE
+    bind_aborts = FALSE
+  -> Input: 40.4 <-
+    bind_err = FALSE
+  -- Loop starts here
+  -> State: 40.4 <-
+  -> Input: 40.5 <-
+  -> State: 40.5 <-
+-- specification  G !(state = ABORT)  is false
+-- as demonstrated by the following execution sequence
+Trace Description: LTL Counterexample 
+Trace Type: Counterexample 
+  -> State: 41.1 <-
+    state = S_INIT
+    circ_ready = FALSE
+    params_ready = TRUE
+    energy_ready = FALSE
+    iter = 0
+    terms_done = 0
+    theta_version = 0
+    bound_version = 0
+    energy_version = 0
+    term_reason = NO_TERM
+    terminal = FALSE
+    all_terms_done = FALSE
+    NTERMS = 3
+    MAX_ITERS = 5
+    abort_now = FALSE
+    max_aborts = FALSE
+    opt_aborts = FALSE
+    energy_aborts = FALSE
+    qpu_aborts = FALSE
+    bind_aborts = FALSE
+  -> Input: 41.2 <-
+    converged = FALSE
+    bind_err = FALSE
+    qpu_err = FALSE
+    energy_err = FALSE
+    opt_err = FALSE
+  -> State: 41.2 <-
+    state = BIND
+    abort_now = TRUE
+    bind_aborts = TRUE
+  -> Input: 41.3 <-
+    bind_err = TRUE
+  -- Loop starts here
+  -> State: 41.3 <-
+    state = ABORT
+    params_ready = FALSE
+    term_reason = ABORT_BIND_ERR
+    terminal = TRUE
+    abort_now = FALSE
+    bind_aborts = FALSE
+  -> Input: 41.4 <-
+    bind_err = FALSE
+  -- Loop starts here
+  -> State: 41.4 <-
+  -> Input: 41.5 <-
+  -> State: 41.5 <-
+-- specification  G ( G !(state = DONE))  is false
+-- as demonstrated by the following execution sequence
+Trace Description: LTL Counterexample 
+Trace Type: Counterexample 
+  -> State: 42.1 <-
+    state = S_INIT
+    circ_ready = FALSE
+    params_ready = TRUE
+    energy_ready = FALSE
+    iter = 0
+    terms_done = 0
+    theta_version = 0
+    bound_version = 0
+    energy_version = 0
+    term_reason = NO_TERM
+    terminal = FALSE
+    all_terms_done = FALSE
+    NTERMS = 3
+    MAX_ITERS = 5
+    abort_now = FALSE
+    max_aborts = FALSE
+    opt_aborts = FALSE
+    energy_aborts = FALSE
+    qpu_aborts = FALSE
+    bind_aborts = FALSE
+  -> Input: 42.2 <-
+    converged = FALSE
+    bind_err = FALSE
+    qpu_err = FALSE
+    energy_err = FALSE
+    opt_err = FALSE
+  -> State: 42.2 <-
+    state = BIND
+  -> Input: 42.3 <-
+  -> State: 42.3 <-
+    state = EXECUTE_MEASURE
+    circ_ready = TRUE
+  -> Input: 42.4 <-
+  -> State: 42.4 <-
+    terms_done = 1
+  -> Input: 42.5 <-
+  -> State: 42.5 <-
+    terms_done = 2
+  -> Input: 42.6 <-
+  -> State: 42.6 <-
+    terms_done = 3
+    all_terms_done = TRUE
+  -> Input: 42.7 <-
+  -> State: 42.7 <-
+    state = COMPUTE_ENERGY
+    params_ready = FALSE
+  -> Input: 42.8 <-
+  -> State: 42.8 <-
+    state = CHECK_STOP
+    energy_ready = TRUE
+  -> Input: 42.9 <-
+    converged = TRUE
+  -- Loop starts here
+  -> State: 42.9 <-
+    state = DONE
+    term_reason = DONE_CONVERGED
+    terminal = TRUE
+  -> Input: 42.10 <-
+    converged = FALSE
+  -- Loop starts here
+  -> State: 42.10 <-
+  -> Input: 42.11 <-
+  -> State: 42.11 <-
+-- specification  G !(state = S_INIT)  is false
+-- as demonstrated by the following execution sequence
+Trace Description: LTL Counterexample 
+Trace Type: Counterexample 
+  -> State: 43.1 <-
+    state = S_INIT
+    circ_ready = FALSE
+    params_ready = TRUE
+    energy_ready = FALSE
+    iter = 0
+    terms_done = 0
+    theta_version = 0
+    bound_version = 0
+    energy_version = 0
+    term_reason = NO_TERM
+    terminal = FALSE
+    all_terms_done = FALSE
+    NTERMS = 3
+    MAX_ITERS = 5
+    abort_now = FALSE
+    max_aborts = FALSE
+    opt_aborts = FALSE
+    energy_aborts = FALSE
+    qpu_aborts = FALSE
+    bind_aborts = FALSE
+  -> Input: 43.2 <-
+    converged = FALSE
+    bind_err = FALSE
+    qpu_err = FALSE
+    energy_err = FALSE
+    opt_err = FALSE
+  -> State: 43.2 <-
+    state = BIND
+    abort_now = TRUE
+    bind_aborts = TRUE
+  -> Input: 43.3 <-
+    bind_err = TRUE
+  -- Loop starts here
+  -> State: 43.3 <-
+    state = ABORT
+    params_ready = FALSE
+    term_reason = ABORT_BIND_ERR
+    terminal = TRUE
+    abort_now = FALSE
+    bind_aborts = FALSE
+  -> Input: 43.4 <-
+    bind_err = FALSE
+  -> State: 43.4 <-
+-- specification  G !(bind_aborts & !(state = S_INIT))  is false
+-- as demonstrated by the following execution sequence
+Trace Description: LTL Counterexample 
+Trace Type: Counterexample 
+  -> State: 44.1 <-
+    state = S_INIT
+    circ_ready = FALSE
+    params_ready = TRUE
+    energy_ready = FALSE
+    iter = 0
+    terms_done = 0
+    theta_version = 0
+    bound_version = 0
+    energy_version = 0
+    term_reason = NO_TERM
+    terminal = FALSE
+    all_terms_done = FALSE
+    NTERMS = 3
+    MAX_ITERS = 5
+    abort_now = FALSE
+    max_aborts = FALSE
+    opt_aborts = FALSE
+    energy_aborts = FALSE
+    qpu_aborts = FALSE
+    bind_aborts = FALSE
+  -> Input: 44.2 <-
+    converged = FALSE
+    bind_err = FALSE
+    qpu_err = FALSE
+    energy_err = FALSE
+    opt_err = FALSE
+  -> State: 44.2 <-
+    state = BIND
+    abort_now = TRUE
+    bind_aborts = TRUE
+  -> Input: 44.3 <-
+    bind_err = TRUE
+  -- Loop starts here
+  -> State: 44.3 <-
+    state = ABORT
+    params_ready = FALSE
+    term_reason = ABORT_BIND_ERR
+    terminal = TRUE
+    abort_now = FALSE
+    bind_aborts = FALSE
+  -> Input: 44.4 <-
+    bind_err = FALSE
+  -- Loop starts here
+  -> State: 44.4 <-
+  -> Input: 44.5 <-
+  -> State: 44.5 <-
+-- specification  G !((qpu_aborts & !(state = S_INIT)) & !bind_aborts)  is false
+-- as demonstrated by the following execution sequence
+Trace Description: LTL Counterexample 
+Trace Type: Counterexample 
+  -> State: 45.1 <-
+    state = S_INIT
+    circ_ready = FALSE
+    params_ready = TRUE
+    energy_ready = FALSE
+    iter = 0
+    terms_done = 0
+    theta_version = 0
+    bound_version = 0
+    energy_version = 0
+    term_reason = NO_TERM
+    terminal = FALSE
+    all_terms_done = FALSE
+    NTERMS = 3
+    MAX_ITERS = 5
+    abort_now = FALSE
+    max_aborts = FALSE
+    opt_aborts = FALSE
+    energy_aborts = FALSE
+    qpu_aborts = FALSE
+    bind_aborts = FALSE
+  -> Input: 45.2 <-
+    converged = FALSE
+    bind_err = FALSE
+    qpu_err = FALSE
+    energy_err = FALSE
+    opt_err = FALSE
+  -> State: 45.2 <-
+    state = BIND
+  -> Input: 45.3 <-
+  -> State: 45.3 <-
+    state = EXECUTE_MEASURE
+    circ_ready = TRUE
+    abort_now = TRUE
+    qpu_aborts = TRUE
+  -> Input: 45.4 <-
+    qpu_err = TRUE
+  -- Loop starts here
+  -> State: 45.4 <-
+    state = ABORT
+    circ_ready = FALSE
+    params_ready = FALSE
+    term_reason = ABORT_QPU_ERR
+    terminal = TRUE
+    abort_now = FALSE
+    qpu_aborts = FALSE
+  -> Input: 45.5 <-
+    qpu_err = FALSE
+  -- Loop starts here
+  -> State: 45.5 <-
+  -> Input: 45.6 <-
+  -> State: 45.6 <-
+-- specification  G !(((energy_aborts & !(state = S_INIT)) & !bind_aborts) & !qpu_aborts)  is false
+-- as demonstrated by the following execution sequence
+Trace Description: LTL Counterexample 
+Trace Type: Counterexample 
+  -> State: 46.1 <-
+    state = S_INIT
+    circ_ready = FALSE
+    params_ready = TRUE
+    energy_ready = FALSE
+    iter = 0
+    terms_done = 0
+    theta_version = 0
+    bound_version = 0
+    energy_version = 0
+    term_reason = NO_TERM
+    terminal = FALSE
+    all_terms_done = FALSE
+    NTERMS = 3
+    MAX_ITERS = 5
+    abort_now = FALSE
+    max_aborts = FALSE
+    opt_aborts = FALSE
+    energy_aborts = FALSE
+    qpu_aborts = FALSE
+    bind_aborts = FALSE
+  -> Input: 46.2 <-
+    converged = FALSE
+    bind_err = FALSE
+    qpu_err = FALSE
+    energy_err = FALSE
+    opt_err = FALSE
+  -> State: 46.2 <-
+    state = BIND
+  -> Input: 46.3 <-
+  -> State: 46.3 <-
+    state = EXECUTE_MEASURE
+    circ_ready = TRUE
+  -> Input: 46.4 <-
+  -> State: 46.4 <-
+    terms_done = 1
+  -> Input: 46.5 <-
+  -> State: 46.5 <-
+    terms_done = 2
+  -> Input: 46.6 <-
+  -> State: 46.6 <-
+    terms_done = 3
+    all_terms_done = TRUE
+  -> Input: 46.7 <-
+  -> State: 46.7 <-
+    state = COMPUTE_ENERGY
+    params_ready = FALSE
+    abort_now = TRUE
+    energy_aborts = TRUE
+  -> Input: 46.8 <-
+    energy_err = TRUE
+  -- Loop starts here
+  -> State: 46.8 <-
+    state = ABORT
+    circ_ready = FALSE
+    term_reason = ABORT_ENERGY_ERR
+    terminal = TRUE
+    abort_now = FALSE
+    energy_aborts = FALSE
+  -> Input: 46.9 <-
+    energy_err = FALSE
+  -- Loop starts here
+  -> State: 46.9 <-
+  -> Input: 46.10 <-
+  -> State: 46.10 <-
+-- specification  G !((((opt_aborts & !(state = S_INIT)) & !bind_aborts) & !qpu_aborts) & !energy_aborts)  is false
+-- as demonstrated by the following execution sequence
+Trace Description: LTL Counterexample 
+Trace Type: Counterexample 
+  -> State: 47.1 <-
+    state = S_INIT
+    circ_ready = FALSE
+    params_ready = TRUE
+    energy_ready = FALSE
+    iter = 0
+    terms_done = 0
+    theta_version = 0
+    bound_version = 0
+    energy_version = 0
+    term_reason = NO_TERM
+    terminal = FALSE
+    all_terms_done = FALSE
+    NTERMS = 3
+    MAX_ITERS = 5
+    abort_now = FALSE
+    max_aborts = FALSE
+    opt_aborts = FALSE
+    energy_aborts = FALSE
+    qpu_aborts = FALSE
+    bind_aborts = FALSE
+  -> Input: 47.2 <-
+    converged = FALSE
+    bind_err = FALSE
+    qpu_err = FALSE
+    energy_err = FALSE
+    opt_err = FALSE
+  -> State: 47.2 <-
+    state = BIND
+  -> Input: 47.3 <-
+  -> State: 47.3 <-
+    state = EXECUTE_MEASURE
+    circ_ready = TRUE
+  -> Input: 47.4 <-
+  -> State: 47.4 <-
+    terms_done = 1
+  -> Input: 47.5 <-
+  -> State: 47.5 <-
+    terms_done = 2
+  -> Input: 47.6 <-
+  -> State: 47.6 <-
+    terms_done = 3
+    all_terms_done = TRUE
+  -> Input: 47.7 <-
+  -> State: 47.7 <-
+    state = COMPUTE_ENERGY
+    params_ready = FALSE
+  -> Input: 47.8 <-
+  -> State: 47.8 <-
+    state = CHECK_STOP
+    energy_ready = TRUE
+  -> Input: 47.9 <-
+  -> State: 47.9 <-
+    state = OPTIMIZER_STEP
+    abort_now = TRUE
+    opt_aborts = TRUE
+  -> Input: 47.10 <-
+    opt_err = TRUE
+  -- Loop starts here
+  -> State: 47.10 <-
+    state = ABORT
+    circ_ready = FALSE
+    energy_ready = FALSE
+    term_reason = ABORT_OPT_ERR
+    terminal = TRUE
+    abort_now = FALSE
+    opt_aborts = FALSE
+  -> Input: 47.11 <-
+    opt_err = FALSE
+  -- Loop starts here
+  -> State: 47.11 <-
+  -> Input: 47.12 <-
+  -> State: 47.12 <-
+-- specification  G !(((((max_aborts & !(state = S_INIT)) & !bind_aborts) & !qpu_aborts) & !energy_aborts) & !opt_aborts)  is false
+-- as demonstrated by the following execution sequence
+Trace Description: LTL Counterexample 
+Trace Type: Counterexample 
+  -> State: 48.1 <-
+    state = S_INIT
+    circ_ready = FALSE
+    params_ready = TRUE
+    energy_ready = FALSE
+    iter = 0
+    terms_done = 0
+    theta_version = 0
+    bound_version = 0
+    energy_version = 0
+    term_reason = NO_TERM
+    terminal = FALSE
+    all_terms_done = FALSE
+    NTERMS = 3
+    MAX_ITERS = 5
+    abort_now = FALSE
+    max_aborts = FALSE
+    opt_aborts = FALSE
+    energy_aborts = FALSE
+    qpu_aborts = FALSE
+    bind_aborts = FALSE
+  -> Input: 48.2 <-
+    converged = FALSE
+    bind_err = FALSE
+    qpu_err = FALSE
+    energy_err = FALSE
+    opt_err = FALSE
+  -> State: 48.2 <-
+    state = BIND
+  -> Input: 48.3 <-
+  -> State: 48.3 <-
+    state = EXECUTE_MEASURE
+    circ_ready = TRUE
+  -> Input: 48.4 <-
+  -> State: 48.4 <-
+    terms_done = 1
+  -> Input: 48.5 <-
+  -> State: 48.5 <-
+    terms_done = 2
+  -> Input: 48.6 <-
+  -> State: 48.6 <-
+    terms_done = 3
+    all_terms_done = TRUE
+  -> Input: 48.7 <-
+  -> State: 48.7 <-
+    state = COMPUTE_ENERGY
+    params_ready = FALSE
+  -> Input: 48.8 <-
+  -> State: 48.8 <-
+    state = CHECK_STOP
+    energy_ready = TRUE
+  -> Input: 48.9 <-
+  -> State: 48.9 <-
+    state = OPTIMIZER_STEP
+  -> Input: 48.10 <-
+  -> State: 48.10 <-
+    state = BIND
+    circ_ready = FALSE
+    params_ready = TRUE
+    energy_ready = FALSE
+    iter = 1
+    terms_done = 0
+    theta_version = 1
+    all_terms_done = FALSE
+  -> Input: 48.11 <-
+  -> State: 48.11 <-
+    state = EXECUTE_MEASURE
+    circ_ready = TRUE
+    bound_version = 1
+  -> Input: 48.12 <-
+  -> State: 48.12 <-
+    terms_done = 1
+  -> Input: 48.13 <-
+  -> State: 48.13 <-
+    terms_done = 2
+  -> Input: 48.14 <-
+  -> State: 48.14 <-
+    terms_done = 3
+    all_terms_done = TRUE
+  -> Input: 48.15 <-
+  -> State: 48.15 <-
+    state = COMPUTE_ENERGY
+    params_ready = FALSE
+  -> Input: 48.16 <-
+  -> State: 48.16 <-
+    state = CHECK_STOP
+    energy_ready = TRUE
+    energy_version = 1
+  -> Input: 48.17 <-
+  -> State: 48.17 <-
+    state = OPTIMIZER_STEP
+  -> Input: 48.18 <-
+  -> State: 48.18 <-
+    state = BIND
+    circ_ready = FALSE
+    params_ready = TRUE
+    energy_ready = FALSE
+    iter = 2
+    terms_done = 0
+    theta_version = 2
+    all_terms_done = FALSE
+  -> Input: 48.19 <-
+  -> State: 48.19 <-
+    state = EXECUTE_MEASURE
+    circ_ready = TRUE
+    bound_version = 2
+  -> Input: 48.20 <-
+  -> State: 48.20 <-
+    terms_done = 1
+  -> Input: 48.21 <-
+  -> State: 48.21 <-
+    terms_done = 2
+  -> Input: 48.22 <-
+  -> State: 48.22 <-
+    terms_done = 3
+    all_terms_done = TRUE
+  -> Input: 48.23 <-
+  -> State: 48.23 <-
+    state = COMPUTE_ENERGY
+    params_ready = FALSE
+  -> Input: 48.24 <-
+  -> State: 48.24 <-
+    state = CHECK_STOP
+    energy_ready = TRUE
+    energy_version = 2
+  -> Input: 48.25 <-
+  -> State: 48.25 <-
+    state = OPTIMIZER_STEP
+  -> Input: 48.26 <-
+  -> State: 48.26 <-
+    state = BIND
+    circ_ready = FALSE
+    params_ready = TRUE
+    energy_ready = FALSE
+    iter = 3
+    terms_done = 0
+    theta_version = 3
+    all_terms_done = FALSE
+  -> Input: 48.27 <-
+  -> State: 48.27 <-
+    state = EXECUTE_MEASURE
+    circ_ready = TRUE
+    bound_version = 3
+  -> Input: 48.28 <-
+  -> State: 48.28 <-
+    terms_done = 1
+  -> Input: 48.29 <-
+  -> State: 48.29 <-
+    terms_done = 2
+  -> Input: 48.30 <-
+  -> State: 48.30 <-
+    terms_done = 3
+    all_terms_done = TRUE
+  -> Input: 48.31 <-
+  -> State: 48.31 <-
+    state = COMPUTE_ENERGY
+    params_ready = FALSE
+  -> Input: 48.32 <-
+  -> State: 48.32 <-
+    state = CHECK_STOP
+    energy_ready = TRUE
+    energy_version = 3
+  -> Input: 48.33 <-
+  -> State: 48.33 <-
+    state = OPTIMIZER_STEP
+  -> Input: 48.34 <-
+  -> State: 48.34 <-
+    state = BIND
+    circ_ready = FALSE
+    params_ready = TRUE
+    energy_ready = FALSE
+    iter = 4
+    terms_done = 0
+    theta_version = 4
+    all_terms_done = FALSE
+  -> Input: 48.35 <-
+  -> State: 48.35 <-
+    state = EXECUTE_MEASURE
+    circ_ready = TRUE
+    bound_version = 4
+  -> Input: 48.36 <-
+  -> State: 48.36 <-
+    terms_done = 1
+  -> Input: 48.37 <-
+  -> State: 48.37 <-
+    terms_done = 2
+  -> Input: 48.38 <-
+  -> State: 48.38 <-
+    terms_done = 3
+    all_terms_done = TRUE
+  -> Input: 48.39 <-
+  -> State: 48.39 <-
+    state = COMPUTE_ENERGY
+    params_ready = FALSE
+  -> Input: 48.40 <-
+  -> State: 48.40 <-
+    state = CHECK_STOP
+    energy_ready = TRUE
+    energy_version = 4
+  -> Input: 48.41 <-
+  -> State: 48.41 <-
+    state = OPTIMIZER_STEP
+  -> Input: 48.42 <-
+  -> State: 48.42 <-
+    state = BIND
+    circ_ready = FALSE
+    params_ready = TRUE
+    energy_ready = FALSE
+    iter = 5
+    terms_done = 0
+    theta_version = 5
+    all_terms_done = FALSE
+  -> Input: 48.43 <-
+  -> State: 48.43 <-
+    state = EXECUTE_MEASURE
+    circ_ready = TRUE
+    bound_version = 5
+  -> Input: 48.44 <-
+  -> State: 48.44 <-
+    terms_done = 1
+  -> Input: 48.45 <-
+  -> State: 48.45 <-
+    terms_done = 2
+  -> Input: 48.46 <-
+  -> State: 48.46 <-
+    terms_done = 3
+    all_terms_done = TRUE
+  -> Input: 48.47 <-
+  -> State: 48.47 <-
+    state = COMPUTE_ENERGY
+    params_ready = FALSE
+  -> Input: 48.48 <-
+  -> State: 48.48 <-
+    state = CHECK_STOP
+    energy_ready = TRUE
+    energy_version = 5
+    abort_now = TRUE
+    max_aborts = TRUE
+  -> Input: 48.49 <-
+  -- Loop starts here
+  -> State: 48.49 <-
+    state = ABORT
+    circ_ready = FALSE
+    energy_ready = FALSE
+    term_reason = ABORT_MAX_ITERS
+    terminal = TRUE
+    abort_now = FALSE
+    max_aborts = FALSE
+  -> Input: 48.50 <-
+  -- Loop starts here
+  -> State: 48.50 <-
+  -> Input: 48.51 <-
+  -> State: 48.51 <-
+-- specification  G !((((((state = BIND & !(state = S_INIT)) & !bind_aborts) & !qpu_aborts) & !energy_aborts) & !opt_aborts) & !max_aborts)  is false
+-- as demonstrated by the following execution sequence
+Trace Description: LTL Counterexample 
+Trace Type: Counterexample 
+  -> State: 49.1 <-
+    state = S_INIT
+    circ_ready = FALSE
+    params_ready = TRUE
+    energy_ready = FALSE
+    iter = 0
+    terms_done = 0
+    theta_version = 0
+    bound_version = 0
+    energy_version = 0
+    term_reason = NO_TERM
+    terminal = FALSE
+    all_terms_done = FALSE
+    NTERMS = 3
+    MAX_ITERS = 5
+    abort_now = FALSE
+    max_aborts = FALSE
+    opt_aborts = FALSE
+    energy_aborts = FALSE
+    qpu_aborts = FALSE
+    bind_aborts = FALSE
+  -> Input: 49.2 <-
+    converged = FALSE
+    bind_err = FALSE
+    qpu_err = FALSE
+    energy_err = FALSE
+    opt_err = FALSE
+  -> State: 49.2 <-
+    state = BIND
+  -> Input: 49.3 <-
+  -> State: 49.3 <-
+    state = EXECUTE_MEASURE
+    circ_ready = TRUE
+    abort_now = TRUE
+    qpu_aborts = TRUE
+  -> Input: 49.4 <-
+    qpu_err = TRUE
+  -- Loop starts here
+  -> State: 49.4 <-
+    state = ABORT
+    circ_ready = FALSE
+    params_ready = FALSE
+    term_reason = ABORT_QPU_ERR
+    terminal = TRUE
+    abort_now = FALSE
+    qpu_aborts = FALSE
+  -> Input: 49.5 <-
+    qpu_err = FALSE
+  -> State: 49.5 <-
+-- specification  G !((((((((state = EXECUTE_MEASURE & !all_terms_done) & !(state = S_INIT)) & !bind_aborts) & !qpu_aborts) & !energy_aborts) & !opt_aborts) & !max_aborts) & !(state = BIND))  is false
+-- as demonstrated by the following execution sequence
+Trace Description: LTL Counterexample 
+Trace Type: Counterexample 
+  -> State: 50.1 <-
+    state = S_INIT
+    circ_ready = FALSE
+    params_ready = TRUE
+    energy_ready = FALSE
+    iter = 0
+    terms_done = 0
+    theta_version = 0
+    bound_version = 0
+    energy_version = 0
+    term_reason = NO_TERM
+    terminal = FALSE
+    all_terms_done = FALSE
+    NTERMS = 3
+    MAX_ITERS = 5
+    abort_now = FALSE
+    max_aborts = FALSE
+    opt_aborts = FALSE
+    energy_aborts = FALSE
+    qpu_aborts = FALSE
+    bind_aborts = FALSE
+  -> Input: 50.2 <-
+    converged = FALSE
+    bind_err = FALSE
+    qpu_err = FALSE
+    energy_err = FALSE
+    opt_err = FALSE
+  -> State: 50.2 <-
+    state = BIND
+  -> Input: 50.3 <-
+  -> State: 50.3 <-
+    state = EXECUTE_MEASURE
+    circ_ready = TRUE
+  -> Input: 50.4 <-
+  -> State: 50.4 <-
+    terms_done = 1
+    abort_now = TRUE
+    qpu_aborts = TRUE
+  -> Input: 50.5 <-
+    qpu_err = TRUE
+  -- Loop starts here
+  -> State: 50.5 <-
+    state = ABORT
+    circ_ready = FALSE
+    params_ready = FALSE
+    term_reason = ABORT_QPU_ERR
+    terminal = TRUE
+    abort_now = FALSE
+    qpu_aborts = FALSE
+  -> Input: 50.6 <-
+    qpu_err = FALSE
+  -> State: 50.6 <-
+-- specification  G !(((((((((state = EXECUTE_MEASURE & all_terms_done) & !(state = S_INIT)) & !bind_aborts) & !qpu_aborts) & !energy_aborts) & !opt_aborts) & !max_aborts) & !(state = BIND)) & !(state = EXECUTE_MEASURE & !all_terms_done))  is false
+-- as demonstrated by the following execution sequence
+Trace Description: LTL Counterexample 
+Trace Type: Counterexample 
+  -> State: 51.1 <-
+    state = S_INIT
+    circ_ready = FALSE
+    params_ready = TRUE
+    energy_ready = FALSE
+    iter = 0
+    terms_done = 0
+    theta_version = 0
+    bound_version = 0
+    energy_version = 0
+    term_reason = NO_TERM
+    terminal = FALSE
+    all_terms_done = FALSE
+    NTERMS = 3
+    MAX_ITERS = 5
+    abort_now = FALSE
+    max_aborts = FALSE
+    opt_aborts = FALSE
+    energy_aborts = FALSE
+    qpu_aborts = FALSE
+    bind_aborts = FALSE
+  -> Input: 51.2 <-
+    converged = FALSE
+    bind_err = FALSE
+    qpu_err = FALSE
+    energy_err = FALSE
+    opt_err = FALSE
+  -> State: 51.2 <-
+    state = BIND
+  -> Input: 51.3 <-
+  -> State: 51.3 <-
+    state = EXECUTE_MEASURE
+    circ_ready = TRUE
+  -> Input: 51.4 <-
+  -> State: 51.4 <-
+    terms_done = 1
+  -> Input: 51.5 <-
+  -> State: 51.5 <-
+    terms_done = 2
+  -> Input: 51.6 <-
+  -> State: 51.6 <-
+    terms_done = 3
+    all_terms_done = TRUE
+  -> Input: 51.7 <-
+  -> State: 51.7 <-
+    state = COMPUTE_ENERGY
+    params_ready = FALSE
+    abort_now = TRUE
+    energy_aborts = TRUE
+  -> Input: 51.8 <-
+    energy_err = TRUE
+  -- Loop starts here
+  -> State: 51.8 <-
+    state = ABORT
+    circ_ready = FALSE
+    term_reason = ABORT_ENERGY_ERR
+    terminal = TRUE
+    abort_now = FALSE
+    energy_aborts = FALSE
+  -> Input: 51.9 <-
+    energy_err = FALSE
+  -> State: 51.9 <-
+-- specification  G !(((((((((state = COMPUTE_ENERGY & !(state = S_INIT)) & !bind_aborts) & !qpu_aborts) & !energy_aborts) & !opt_aborts) & !max_aborts) & !(state = BIND)) & !(state = EXECUTE_MEASURE & !all_terms_done)) & !(state = EXECUTE_MEASURE & all_terms_done))  is false
+-- as demonstrated by the following execution sequence
+Trace Description: LTL Counterexample 
+Trace Type: Counterexample 
+  -> State: 52.1 <-
+    state = S_INIT
+    circ_ready = FALSE
+    params_ready = TRUE
+    energy_ready = FALSE
+    iter = 0
+    terms_done = 0
+    theta_version = 0
+    bound_version = 0
+    energy_version = 0
+    term_reason = NO_TERM
+    terminal = FALSE
+    all_terms_done = FALSE
+    NTERMS = 3
+    MAX_ITERS = 5
+    abort_now = FALSE
+    max_aborts = FALSE
+    opt_aborts = FALSE
+    energy_aborts = FALSE
+    qpu_aborts = FALSE
+    bind_aborts = FALSE
+  -> Input: 52.2 <-
+    converged = FALSE
+    bind_err = FALSE
+    qpu_err = FALSE
+    energy_err = FALSE
+    opt_err = FALSE
+  -> State: 52.2 <-
+    state = BIND
+  -> Input: 52.3 <-
+  -> State: 52.3 <-
+    state = EXECUTE_MEASURE
+    circ_ready = TRUE
+  -> Input: 52.4 <-
+  -> State: 52.4 <-
+    terms_done = 1
+  -> Input: 52.5 <-
+  -> State: 52.5 <-
+    terms_done = 2
+  -> Input: 52.6 <-
+  -> State: 52.6 <-
+    terms_done = 3
+    all_terms_done = TRUE
+  -> Input: 52.7 <-
+  -> State: 52.7 <-
+    state = COMPUTE_ENERGY
+    params_ready = FALSE
+  -> Input: 52.8 <-
+  -> State: 52.8 <-
+    state = CHECK_STOP
+    energy_ready = TRUE
+  -> Input: 52.9 <-
+  -> State: 52.9 <-
+    state = OPTIMIZER_STEP
+    abort_now = TRUE
+    opt_aborts = TRUE
+  -> Input: 52.10 <-
+    opt_err = TRUE
+  -- Loop starts here
+  -> State: 52.10 <-
+    state = ABORT
+    circ_ready = FALSE
+    energy_ready = FALSE
+    term_reason = ABORT_OPT_ERR
+    terminal = TRUE
+    abort_now = FALSE
+    opt_aborts = FALSE
+  -> Input: 52.11 <-
+    opt_err = FALSE
+  -> State: 52.11 <-
+-- specification  G !(((((((((((state = CHECK_STOP & converged) & !(state = S_INIT)) & !bind_aborts) & !qpu_aborts) & !energy_aborts) & !opt_aborts) & !max_aborts) & !(state = BIND)) & !(state = EXECUTE_MEASURE & !all_terms_done)) & !(state = EXECUTE_MEASURE & all_terms_done)) & !(state = COMPUTE_ENERGY))  is false
+-- as demonstrated by the following execution sequence
+Trace Description: LTL Counterexample 
+Trace Type: Counterexample 
+  -> State: 53.1 <-
+    state = S_INIT
+    circ_ready = FALSE
+    params_ready = TRUE
+    energy_ready = FALSE
+    iter = 0
+    terms_done = 0
+    theta_version = 0
+    bound_version = 0
+    energy_version = 0
+    term_reason = NO_TERM
+    terminal = FALSE
+    all_terms_done = FALSE
+    NTERMS = 3
+    MAX_ITERS = 5
+    abort_now = FALSE
+    max_aborts = FALSE
+    opt_aborts = FALSE
+    energy_aborts = FALSE
+    qpu_aborts = FALSE
+    bind_aborts = FALSE
+  -> Input: 53.2 <-
+    converged = FALSE
+    bind_err = FALSE
+    qpu_err = FALSE
+    energy_err = FALSE
+    opt_err = FALSE
+  -> State: 53.2 <-
+    state = BIND
+  -> Input: 53.3 <-
+  -> State: 53.3 <-
+    state = EXECUTE_MEASURE
+    circ_ready = TRUE
+  -> Input: 53.4 <-
+  -> State: 53.4 <-
+    terms_done = 1
+  -> Input: 53.5 <-
+  -> State: 53.5 <-
+    terms_done = 2
+  -> Input: 53.6 <-
+  -> State: 53.6 <-
+    terms_done = 3
+    all_terms_done = TRUE
+  -> Input: 53.7 <-
+  -> State: 53.7 <-
+    state = COMPUTE_ENERGY
+    params_ready = FALSE
+  -> Input: 53.8 <-
+  -> State: 53.8 <-
+    state = CHECK_STOP
+    energy_ready = TRUE
+  -> Input: 53.9 <-
+    converged = TRUE
+  -- Loop starts here
+  -> State: 53.9 <-
+    state = DONE
+    term_reason = DONE_CONVERGED
+    terminal = TRUE
+  -> Input: 53.10 <-
+    converged = FALSE
+  -- Loop starts here
+  -> State: 53.10 <-
+  -> Input: 53.11 <-
+  -> State: 53.11 <-
+-- specification  G !(((((((((((((state = CHECK_STOP & !converged) & iter < MAX_ITERS) & !(state = S_INIT)) & !bind_aborts) & !qpu_aborts) & !energy_aborts) & !opt_aborts) & !max_aborts) & !(state = BIND)) & !(state = EXECUTE_MEASURE & !all_terms_done)) & !(state = EXECUTE_MEASURE & all_terms_done)) & !(state = COMPUTE_ENERGY)) & !(state = CHECK_STOP & converged))  is false
+-- as demonstrated by the following execution sequence
+Trace Description: LTL Counterexample 
+Trace Type: Counterexample 
+  -> State: 54.1 <-
+    state = S_INIT
+    circ_ready = FALSE
+    params_ready = TRUE
+    energy_ready = FALSE
+    iter = 0
+    terms_done = 0
+    theta_version = 0
+    bound_version = 0
+    energy_version = 0
+    term_reason = NO_TERM
+    terminal = FALSE
+    all_terms_done = FALSE
+    NTERMS = 3
+    MAX_ITERS = 5
+    abort_now = FALSE
+    max_aborts = FALSE
+    opt_aborts = FALSE
+    energy_aborts = FALSE
+    qpu_aborts = FALSE
+    bind_aborts = FALSE
+  -> Input: 54.2 <-
+    converged = FALSE
+    bind_err = FALSE
+    qpu_err = FALSE
+    energy_err = FALSE
+    opt_err = FALSE
+  -> State: 54.2 <-
+    state = BIND
+  -> Input: 54.3 <-
+  -> State: 54.3 <-
+    state = EXECUTE_MEASURE
+    circ_ready = TRUE
+  -> Input: 54.4 <-
+  -> State: 54.4 <-
+    terms_done = 1
+  -> Input: 54.5 <-
+  -> State: 54.5 <-
+    terms_done = 2
+  -> Input: 54.6 <-
+  -> State: 54.6 <-
+    terms_done = 3
+    all_terms_done = TRUE
+  -> Input: 54.7 <-
+  -> State: 54.7 <-
+    state = COMPUTE_ENERGY
+    params_ready = FALSE
+  -> Input: 54.8 <-
+  -> State: 54.8 <-
+    state = CHECK_STOP
+    energy_ready = TRUE
+  -> Input: 54.9 <-
+  -> State: 54.9 <-
+    state = OPTIMIZER_STEP
+    abort_now = TRUE
+    opt_aborts = TRUE
+  -> Input: 54.10 <-
+    opt_err = TRUE
+  -- Loop starts here
+  -> State: 54.10 <-
+    state = ABORT
+    circ_ready = FALSE
+    energy_ready = FALSE
+    term_reason = ABORT_OPT_ERR
+    terminal = TRUE
+    abort_now = FALSE
+    opt_aborts = FALSE
+  -> Input: 54.11 <-
+    opt_err = FALSE
+  -> State: 54.11 <-
+-- specification  G !((((((((((((state = OPTIMIZER_STEP & !(state = S_INIT)) & !bind_aborts) & !qpu_aborts) & !energy_aborts) & !opt_aborts) & !max_aborts) & !(state = BIND)) & !(state = EXECUTE_MEASURE & !all_terms_done)) & !(state = EXECUTE_MEASURE & all_terms_done)) & !(state = COMPUTE_ENERGY)) & !(state = CHECK_STOP & converged)) & !((state = CHECK_STOP & !converged) & iter < MAX_ITERS))  is false
+-- as demonstrated by the following execution sequence
+Trace Description: LTL Counterexample 
+Trace Type: Counterexample 
+  -> State: 55.1 <-
+    state = S_INIT
+    circ_ready = FALSE
+    params_ready = TRUE
+    energy_ready = FALSE
+    iter = 0
+    terms_done = 0
+    theta_version = 0
+    bound_version = 0
+    energy_version = 0
+    term_reason = NO_TERM
+    terminal = FALSE
+    all_terms_done = FALSE
+    NTERMS = 3
+    MAX_ITERS = 5
+    abort_now = FALSE
+    max_aborts = FALSE
+    opt_aborts = FALSE
+    energy_aborts = FALSE
+    qpu_aborts = FALSE
+    bind_aborts = FALSE
+  -> Input: 55.2 <-
+    converged = FALSE
+    bind_err = FALSE
+    qpu_err = FALSE
+    energy_err = FALSE
+    opt_err = FALSE
+  -> State: 55.2 <-
+    state = BIND
+  -> Input: 55.3 <-
+  -> State: 55.3 <-
+    state = EXECUTE_MEASURE
+    circ_ready = TRUE
+  -> Input: 55.4 <-
+  -> State: 55.4 <-
+    terms_done = 1
+  -> Input: 55.5 <-
+  -> State: 55.5 <-
+    terms_done = 2
+  -> Input: 55.6 <-
+  -> State: 55.6 <-
+    terms_done = 3
+    all_terms_done = TRUE
+  -> Input: 55.7 <-
+  -> State: 55.7 <-
+    state = COMPUTE_ENERGY
+    params_ready = FALSE
+  -> Input: 55.8 <-
+  -> State: 55.8 <-
+    state = CHECK_STOP
+    energy_ready = TRUE
+  -> Input: 55.9 <-
+  -> State: 55.9 <-
+    state = OPTIMIZER_STEP
+  -> Input: 55.10 <-
+  -> State: 55.10 <-
+    state = BIND
+    circ_ready = FALSE
+    params_ready = TRUE
+    energy_ready = FALSE
+    iter = 1
+    terms_done = 0
+    theta_version = 1
+    all_terms_done = FALSE
+    abort_now = TRUE
+    bind_aborts = TRUE
+  -> Input: 55.11 <-
+    bind_err = TRUE
+  -- Loop starts here
+  -> State: 55.11 <-
+    state = ABORT
+    params_ready = FALSE
+    term_reason = ABORT_BIND_ERR
+    terminal = TRUE
+    abort_now = FALSE
+    bind_aborts = FALSE
+  -> Input: 55.12 <-
+    bind_err = FALSE
+  -> State: 55.12 <-
+-- specification  G !(((((((((((((state = DONE & !(state = S_INIT)) & !bind_aborts) & !qpu_aborts) & !energy_aborts) & !opt_aborts) & !max_aborts) & !(state = BIND)) & !(state = EXECUTE_MEASURE & !all_terms_done)) & !(state = EXECUTE_MEASURE & all_terms_done)) & !(state = COMPUTE_ENERGY)) & !(state = CHECK_STOP & converged)) & !((state = CHECK_STOP & !converged) & iter < MAX_ITERS)) & !(state = OPTIMIZER_STEP))  is false
+-- as demonstrated by the following execution sequence
+Trace Description: LTL Counterexample 
+Trace Type: Counterexample 
+  -> State: 56.1 <-
+    state = S_INIT
+    circ_ready = FALSE
+    params_ready = TRUE
+    energy_ready = FALSE
+    iter = 0
+    terms_done = 0
+    theta_version = 0
+    bound_version = 0
+    energy_version = 0
+    term_reason = NO_TERM
+    terminal = FALSE
+    all_terms_done = FALSE
+    NTERMS = 3
+    MAX_ITERS = 5
+    abort_now = FALSE
+    max_aborts = FALSE
+    opt_aborts = FALSE
+    energy_aborts = FALSE
+    qpu_aborts = FALSE
+    bind_aborts = FALSE
+  -> Input: 56.2 <-
+    converged = FALSE
+    bind_err = FALSE
+    qpu_err = FALSE
+    energy_err = FALSE
+    opt_err = FALSE
+  -> State: 56.2 <-
+    state = BIND
+  -> Input: 56.3 <-
+  -> State: 56.3 <-
+    state = EXECUTE_MEASURE
+    circ_ready = TRUE
+  -> Input: 56.4 <-
+  -> State: 56.4 <-
+    terms_done = 1
+  -> Input: 56.5 <-
+  -> State: 56.5 <-
+    terms_done = 2
+  -> Input: 56.6 <-
+  -> State: 56.6 <-
+    terms_done = 3
+    all_terms_done = TRUE
+  -> Input: 56.7 <-
+  -> State: 56.7 <-
+    state = COMPUTE_ENERGY
+    params_ready = FALSE
+  -> Input: 56.8 <-
+  -> State: 56.8 <-
+    state = CHECK_STOP
+    energy_ready = TRUE
+  -> Input: 56.9 <-
+    converged = TRUE
+  -- Loop starts here
+  -> State: 56.9 <-
+    state = DONE
+    term_reason = DONE_CONVERGED
+    terminal = TRUE
+  -> Input: 56.10 <-
+    converged = FALSE
+  -- Loop starts here
+  -> State: 56.10 <-
+  -> Input: 56.11 <-
+  -> State: 56.11 <-
+-- specification  G !((((((((((((((state = ABORT & !(state = S_INIT)) & !bind_aborts) & !qpu_aborts) & !energy_aborts) & !opt_aborts) & !max_aborts) & !(state = BIND)) & !(state = EXECUTE_MEASURE & !all_terms_done)) & !(state = EXECUTE_MEASURE & all_terms_done)) & !(state = COMPUTE_ENERGY)) & !(state = CHECK_STOP & converged)) & !((state = CHECK_STOP & !converged) & iter < MAX_ITERS)) & !(state = OPTIMIZER_STEP)) & !(state = DONE))  is false
+-- as demonstrated by the following execution sequence
+Trace Description: LTL Counterexample 
+Trace Type: Counterexample 
+  -> State: 57.1 <-
+    state = S_INIT
+    circ_ready = FALSE
+    params_ready = TRUE
+    energy_ready = FALSE
+    iter = 0
+    terms_done = 0
+    theta_version = 0
+    bound_version = 0
+    energy_version = 0
+    term_reason = NO_TERM
+    terminal = FALSE
+    all_terms_done = FALSE
+    NTERMS = 3
+    MAX_ITERS = 5
+    abort_now = FALSE
+    max_aborts = FALSE
+    opt_aborts = FALSE
+    energy_aborts = FALSE
+    qpu_aborts = FALSE
+    bind_aborts = FALSE
+  -> Input: 57.2 <-
+    converged = FALSE
+    bind_err = FALSE
+    qpu_err = FALSE
+    energy_err = FALSE
+    opt_err = FALSE
+  -> State: 57.2 <-
+    state = BIND
+    abort_now = TRUE
+    bind_aborts = TRUE
+  -> Input: 57.3 <-
+    bind_err = TRUE
+  -- Loop starts here
+  -> State: 57.3 <-
+    state = ABORT
+    params_ready = FALSE
+    term_reason = ABORT_BIND_ERR
+    terminal = TRUE
+    abort_now = FALSE
+    bind_aborts = FALSE
+  -> Input: 57.4 <-
+    bind_err = FALSE
+  -- Loop starts here
+  -> State: 57.4 <-
+  -> Input: 57.5 <-
+  -> State: 57.5 <-
+-- specification  G !(((((((((((((((TRUE & !(state = S_INIT)) & !bind_aborts) & !qpu_aborts) & !energy_aborts) & !opt_aborts) & !max_aborts) & !(state = BIND)) & !(state = EXECUTE_MEASURE & !all_terms_done)) & !(state = EXECUTE_MEASURE & all_terms_done)) & !(state = COMPUTE_ENERGY)) & !(state = CHECK_STOP & converged)) & !((state = CHECK_STOP & !converged) & iter < MAX_ITERS)) & !(state = OPTIMIZER_STEP)) & !(state = DONE)) & !(state = ABORT))  is true
+-- specification  G !(state = CHECK_STOP & converged)  is false
+-- as demonstrated by the following execution sequence
+Trace Description: LTL Counterexample 
+Trace Type: Counterexample 
+  -> State: 58.1 <-
+    state = S_INIT
+    circ_ready = FALSE
+    params_ready = TRUE
+    energy_ready = FALSE
+    iter = 0
+    terms_done = 0
+    theta_version = 0
+    bound_version = 0
+    energy_version = 0
+    term_reason = NO_TERM
+    terminal = FALSE
+    all_terms_done = FALSE
+    NTERMS = 3
+    MAX_ITERS = 5
+    abort_now = FALSE
+    max_aborts = FALSE
+    opt_aborts = FALSE
+    energy_aborts = FALSE
+    qpu_aborts = FALSE
+    bind_aborts = FALSE
+  -> Input: 58.2 <-
+    converged = FALSE
+    bind_err = FALSE
+    qpu_err = FALSE
+    energy_err = FALSE
+    opt_err = FALSE
+  -> State: 58.2 <-
+    state = BIND
+  -> Input: 58.3 <-
+  -> State: 58.3 <-
+    state = EXECUTE_MEASURE
+    circ_ready = TRUE
+  -> Input: 58.4 <-
+  -> State: 58.4 <-
+    terms_done = 1
+  -> Input: 58.5 <-
+  -> State: 58.5 <-
+    terms_done = 2
+  -> Input: 58.6 <-
+  -> State: 58.6 <-
+    terms_done = 3
+    all_terms_done = TRUE
+  -> Input: 58.7 <-
+  -> State: 58.7 <-
+    state = COMPUTE_ENERGY
+    params_ready = FALSE
+  -> Input: 58.8 <-
+  -> State: 58.8 <-
+    state = CHECK_STOP
+    energy_ready = TRUE
+  -> Input: 58.9 <-
+    converged = TRUE
+  -- Loop starts here
+  -> State: 58.9 <-
+    state = DONE
+    term_reason = DONE_CONVERGED
+    terminal = TRUE
+  -> Input: 58.10 <-
+    converged = FALSE
+  -- Loop starts here
+  -> State: 58.10 <-
+  -> Input: 58.11 <-
+  -> State: 58.11 <-
+-- specification  G !(bind_aborts & !(state = CHECK_STOP & converged))  is false
+-- as demonstrated by the following execution sequence
+Trace Description: LTL Counterexample 
+Trace Type: Counterexample 
+  -> State: 59.1 <-
+    state = S_INIT
+    circ_ready = FALSE
+    params_ready = TRUE
+    energy_ready = FALSE
+    iter = 0
+    terms_done = 0
+    theta_version = 0
+    bound_version = 0
+    energy_version = 0
+    term_reason = NO_TERM
+    terminal = FALSE
+    all_terms_done = FALSE
+    NTERMS = 3
+    MAX_ITERS = 5
+    abort_now = FALSE
+    max_aborts = FALSE
+    opt_aborts = FALSE
+    energy_aborts = FALSE
+    qpu_aborts = FALSE
+    bind_aborts = FALSE
+  -> Input: 59.2 <-
+    converged = FALSE
+    bind_err = FALSE
+    qpu_err = FALSE
+    energy_err = FALSE
+    opt_err = FALSE
+  -> State: 59.2 <-
+    state = BIND
+    abort_now = TRUE
+    bind_aborts = TRUE
+  -> Input: 59.3 <-
+    bind_err = TRUE
+  -- Loop starts here
+  -> State: 59.3 <-
+    state = ABORT
+    params_ready = FALSE
+    term_reason = ABORT_BIND_ERR
+    terminal = TRUE
+    abort_now = FALSE
+    bind_aborts = FALSE
+  -> Input: 59.4 <-
+    bind_err = FALSE
+  -- Loop starts here
+  -> State: 59.4 <-
+  -> Input: 59.5 <-
+  -> State: 59.5 <-
+-- specification  G !((qpu_aborts & !(state = CHECK_STOP & converged)) & !bind_aborts)  is false
+-- as demonstrated by the following execution sequence
+Trace Description: LTL Counterexample 
+Trace Type: Counterexample 
+  -> State: 60.1 <-
+    state = S_INIT
+    circ_ready = FALSE
+    params_ready = TRUE
+    energy_ready = FALSE
+    iter = 0
+    terms_done = 0
+    theta_version = 0
+    bound_version = 0
+    energy_version = 0
+    term_reason = NO_TERM
+    terminal = FALSE
+    all_terms_done = FALSE
+    NTERMS = 3
+    MAX_ITERS = 5
+    abort_now = FALSE
+    max_aborts = FALSE
+    opt_aborts = FALSE
+    energy_aborts = FALSE
+    qpu_aborts = FALSE
+    bind_aborts = FALSE
+  -> Input: 60.2 <-
+    converged = FALSE
+    bind_err = FALSE
+    qpu_err = FALSE
+    energy_err = FALSE
+    opt_err = FALSE
+  -> State: 60.2 <-
+    state = BIND
+  -> Input: 60.3 <-
+  -> State: 60.3 <-
+    state = EXECUTE_MEASURE
+    circ_ready = TRUE
+    abort_now = TRUE
+    qpu_aborts = TRUE
+  -> Input: 60.4 <-
+    qpu_err = TRUE
+  -- Loop starts here
+  -> State: 60.4 <-
+    state = ABORT
+    circ_ready = FALSE
+    params_ready = FALSE
+    term_reason = ABORT_QPU_ERR
+    terminal = TRUE
+    abort_now = FALSE
+    qpu_aborts = FALSE
+  -> Input: 60.5 <-
+    qpu_err = FALSE
+  -- Loop starts here
+  -> State: 60.5 <-
+  -> Input: 60.6 <-
+  -> State: 60.6 <-
+-- specification  G !(((energy_aborts & !(state = CHECK_STOP & converged)) & !bind_aborts) & !qpu_aborts)  is false
+-- as demonstrated by the following execution sequence
+Trace Description: LTL Counterexample 
+Trace Type: Counterexample 
+  -> State: 61.1 <-
+    state = S_INIT
+    circ_ready = FALSE
+    params_ready = TRUE
+    energy_ready = FALSE
+    iter = 0
+    terms_done = 0
+    theta_version = 0
+    bound_version = 0
+    energy_version = 0
+    term_reason = NO_TERM
+    terminal = FALSE
+    all_terms_done = FALSE
+    NTERMS = 3
+    MAX_ITERS = 5
+    abort_now = FALSE
+    max_aborts = FALSE
+    opt_aborts = FALSE
+    energy_aborts = FALSE
+    qpu_aborts = FALSE
+    bind_aborts = FALSE
+  -> Input: 61.2 <-
+    converged = FALSE
+    bind_err = FALSE
+    qpu_err = FALSE
+    energy_err = FALSE
+    opt_err = FALSE
+  -> State: 61.2 <-
+    state = BIND
+  -> Input: 61.3 <-
+  -> State: 61.3 <-
+    state = EXECUTE_MEASURE
+    circ_ready = TRUE
+  -> Input: 61.4 <-
+  -> State: 61.4 <-
+    terms_done = 1
+  -> Input: 61.5 <-
+  -> State: 61.5 <-
+    terms_done = 2
+  -> Input: 61.6 <-
+  -> State: 61.6 <-
+    terms_done = 3
+    all_terms_done = TRUE
+  -> Input: 61.7 <-
+  -> State: 61.7 <-
+    state = COMPUTE_ENERGY
+    params_ready = FALSE
+    abort_now = TRUE
+    energy_aborts = TRUE
+  -> Input: 61.8 <-
+    energy_err = TRUE
+  -- Loop starts here
+  -> State: 61.8 <-
+    state = ABORT
+    circ_ready = FALSE
+    term_reason = ABORT_ENERGY_ERR
+    terminal = TRUE
+    abort_now = FALSE
+    energy_aborts = FALSE
+  -> Input: 61.9 <-
+    energy_err = FALSE
+  -- Loop starts here
+  -> State: 61.9 <-
+  -> Input: 61.10 <-
+  -> State: 61.10 <-
+-- specification  G !((((opt_aborts & !(state = CHECK_STOP & converged)) & !bind_aborts) & !qpu_aborts) & !energy_aborts)  is false
+-- as demonstrated by the following execution sequence
+Trace Description: LTL Counterexample 
+Trace Type: Counterexample 
+  -> State: 62.1 <-
+    state = S_INIT
+    circ_ready = FALSE
+    params_ready = TRUE
+    energy_ready = FALSE
+    iter = 0
+    terms_done = 0
+    theta_version = 0
+    bound_version = 0
+    energy_version = 0
+    term_reason = NO_TERM
+    terminal = FALSE
+    all_terms_done = FALSE
+    NTERMS = 3
+    MAX_ITERS = 5
+    abort_now = FALSE
+    max_aborts = FALSE
+    opt_aborts = FALSE
+    energy_aborts = FALSE
+    qpu_aborts = FALSE
+    bind_aborts = FALSE
+  -> Input: 62.2 <-
+    converged = FALSE
+    bind_err = FALSE
+    qpu_err = FALSE
+    energy_err = FALSE
+    opt_err = FALSE
+  -> State: 62.2 <-
+    state = BIND
+  -> Input: 62.3 <-
+  -> State: 62.3 <-
+    state = EXECUTE_MEASURE
+    circ_ready = TRUE
+  -> Input: 62.4 <-
+  -> State: 62.4 <-
+    terms_done = 1
+  -> Input: 62.5 <-
+  -> State: 62.5 <-
+    terms_done = 2
+  -> Input: 62.6 <-
+  -> State: 62.6 <-
+    terms_done = 3
+    all_terms_done = TRUE
+  -> Input: 62.7 <-
+  -> State: 62.7 <-
+    state = COMPUTE_ENERGY
+    params_ready = FALSE
+  -> Input: 62.8 <-
+  -> State: 62.8 <-
+    state = CHECK_STOP
+    energy_ready = TRUE
+  -> Input: 62.9 <-
+  -> State: 62.9 <-
+    state = OPTIMIZER_STEP
+    abort_now = TRUE
+    opt_aborts = TRUE
+  -> Input: 62.10 <-
+    opt_err = TRUE
+  -- Loop starts here
+  -> State: 62.10 <-
+    state = ABORT
+    circ_ready = FALSE
+    energy_ready = FALSE
+    term_reason = ABORT_OPT_ERR
+    terminal = TRUE
+    abort_now = FALSE
+    opt_aborts = FALSE
+  -> Input: 62.11 <-
+    opt_err = FALSE
+  -- Loop starts here
+  -> State: 62.11 <-
+  -> Input: 62.12 <-
+  -> State: 62.12 <-
+-- specification  G !(((((max_aborts & !(state = CHECK_STOP & converged)) & !bind_aborts) & !qpu_aborts) & !energy_aborts) & !opt_aborts)  is false
+-- as demonstrated by the following execution sequence
+Trace Description: LTL Counterexample 
+Trace Type: Counterexample 
+  -> State: 63.1 <-
+    state = S_INIT
+    circ_ready = FALSE
+    params_ready = TRUE
+    energy_ready = FALSE
+    iter = 0
+    terms_done = 0
+    theta_version = 0
+    bound_version = 0
+    energy_version = 0
+    term_reason = NO_TERM
+    terminal = FALSE
+    all_terms_done = FALSE
+    NTERMS = 3
+    MAX_ITERS = 5
+    abort_now = FALSE
+    max_aborts = FALSE
+    opt_aborts = FALSE
+    energy_aborts = FALSE
+    qpu_aborts = FALSE
+    bind_aborts = FALSE
+  -> Input: 63.2 <-
+    converged = FALSE
+    bind_err = FALSE
+    qpu_err = FALSE
+    energy_err = FALSE
+    opt_err = FALSE
+  -> State: 63.2 <-
+    state = BIND
+  -> Input: 63.3 <-
+  -> State: 63.3 <-
+    state = EXECUTE_MEASURE
+    circ_ready = TRUE
+  -> Input: 63.4 <-
+  -> State: 63.4 <-
+    terms_done = 1
+  -> Input: 63.5 <-
+  -> State: 63.5 <-
+    terms_done = 2
+  -> Input: 63.6 <-
+  -> State: 63.6 <-
+    terms_done = 3
+    all_terms_done = TRUE
+  -> Input: 63.7 <-
+  -> State: 63.7 <-
+    state = COMPUTE_ENERGY
+    params_ready = FALSE
+  -> Input: 63.8 <-
+  -> State: 63.8 <-
+    state = CHECK_STOP
+    energy_ready = TRUE
+  -> Input: 63.9 <-
+  -> State: 63.9 <-
+    state = OPTIMIZER_STEP
+  -> Input: 63.10 <-
+  -> State: 63.10 <-
+    state = BIND
+    circ_ready = FALSE
+    params_ready = TRUE
+    energy_ready = FALSE
+    iter = 1
+    terms_done = 0
+    theta_version = 1
+    all_terms_done = FALSE
+  -> Input: 63.11 <-
+  -> State: 63.11 <-
+    state = EXECUTE_MEASURE
+    circ_ready = TRUE
+    bound_version = 1
+  -> Input: 63.12 <-
+  -> State: 63.12 <-
+    terms_done = 1
+  -> Input: 63.13 <-
+  -> State: 63.13 <-
+    terms_done = 2
+  -> Input: 63.14 <-
+  -> State: 63.14 <-
+    terms_done = 3
+    all_terms_done = TRUE
+  -> Input: 63.15 <-
+  -> State: 63.15 <-
+    state = COMPUTE_ENERGY
+    params_ready = FALSE
+  -> Input: 63.16 <-
+  -> State: 63.16 <-
+    state = CHECK_STOP
+    energy_ready = TRUE
+    energy_version = 1
+  -> Input: 63.17 <-
+  -> State: 63.17 <-
+    state = OPTIMIZER_STEP
+  -> Input: 63.18 <-
+  -> State: 63.18 <-
+    state = BIND
+    circ_ready = FALSE
+    params_ready = TRUE
+    energy_ready = FALSE
+    iter = 2
+    terms_done = 0
+    theta_version = 2
+    all_terms_done = FALSE
+  -> Input: 63.19 <-
+  -> State: 63.19 <-
+    state = EXECUTE_MEASURE
+    circ_ready = TRUE
+    bound_version = 2
+  -> Input: 63.20 <-
+  -> State: 63.20 <-
+    terms_done = 1
+  -> Input: 63.21 <-
+  -> State: 63.21 <-
+    terms_done = 2
+  -> Input: 63.22 <-
+  -> State: 63.22 <-
+    terms_done = 3
+    all_terms_done = TRUE
+  -> Input: 63.23 <-
+  -> State: 63.23 <-
+    state = COMPUTE_ENERGY
+    params_ready = FALSE
+  -> Input: 63.24 <-
+  -> State: 63.24 <-
+    state = CHECK_STOP
+    energy_ready = TRUE
+    energy_version = 2
+  -> Input: 63.25 <-
+  -> State: 63.25 <-
+    state = OPTIMIZER_STEP
+  -> Input: 63.26 <-
+  -> State: 63.26 <-
+    state = BIND
+    circ_ready = FALSE
+    params_ready = TRUE
+    energy_ready = FALSE
+    iter = 3
+    terms_done = 0
+    theta_version = 3
+    all_terms_done = FALSE
+  -> Input: 63.27 <-
+  -> State: 63.27 <-
+    state = EXECUTE_MEASURE
+    circ_ready = TRUE
+    bound_version = 3
+  -> Input: 63.28 <-
+  -> State: 63.28 <-
+    terms_done = 1
+  -> Input: 63.29 <-
+  -> State: 63.29 <-
+    terms_done = 2
+  -> Input: 63.30 <-
+  -> State: 63.30 <-
+    terms_done = 3
+    all_terms_done = TRUE
+  -> Input: 63.31 <-
+  -> State: 63.31 <-
+    state = COMPUTE_ENERGY
+    params_ready = FALSE
+  -> Input: 63.32 <-
+  -> State: 63.32 <-
+    state = CHECK_STOP
+    energy_ready = TRUE
+    energy_version = 3
+  -> Input: 63.33 <-
+  -> State: 63.33 <-
+    state = OPTIMIZER_STEP
+  -> Input: 63.34 <-
+  -> State: 63.34 <-
+    state = BIND
+    circ_ready = FALSE
+    params_ready = TRUE
+    energy_ready = FALSE
+    iter = 4
+    terms_done = 0
+    theta_version = 4
+    all_terms_done = FALSE
+  -> Input: 63.35 <-
+  -> State: 63.35 <-
+    state = EXECUTE_MEASURE
+    circ_ready = TRUE
+    bound_version = 4
+  -> Input: 63.36 <-
+  -> State: 63.36 <-
+    terms_done = 1
+  -> Input: 63.37 <-
+  -> State: 63.37 <-
+    terms_done = 2
+  -> Input: 63.38 <-
+  -> State: 63.38 <-
+    terms_done = 3
+    all_terms_done = TRUE
+  -> Input: 63.39 <-
+  -> State: 63.39 <-
+    state = COMPUTE_ENERGY
+    params_ready = FALSE
+  -> Input: 63.40 <-
+  -> State: 63.40 <-
+    state = CHECK_STOP
+    energy_ready = TRUE
+    energy_version = 4
+  -> Input: 63.41 <-
+  -> State: 63.41 <-
+    state = OPTIMIZER_STEP
+  -> Input: 63.42 <-
+  -> State: 63.42 <-
+    state = BIND
+    circ_ready = FALSE
+    params_ready = TRUE
+    energy_ready = FALSE
+    iter = 5
+    terms_done = 0
+    theta_version = 5
+    all_terms_done = FALSE
+  -> Input: 63.43 <-
+  -> State: 63.43 <-
+    state = EXECUTE_MEASURE
+    circ_ready = TRUE
+    bound_version = 5
+  -> Input: 63.44 <-
+  -> State: 63.44 <-
+    terms_done = 1
+  -> Input: 63.45 <-
+  -> State: 63.45 <-
+    terms_done = 2
+  -> Input: 63.46 <-
+  -> State: 63.46 <-
+    terms_done = 3
+    all_terms_done = TRUE
+  -> Input: 63.47 <-
+  -> State: 63.47 <-
+    state = COMPUTE_ENERGY
+    params_ready = FALSE
+  -> Input: 63.48 <-
+  -> State: 63.48 <-
+    state = CHECK_STOP
+    energy_ready = TRUE
+    energy_version = 5
+    abort_now = TRUE
+    max_aborts = TRUE
+  -> Input: 63.49 <-
+  -- Loop starts here
+  -> State: 63.49 <-
+    state = ABORT
+    circ_ready = FALSE
+    energy_ready = FALSE
+    term_reason = ABORT_MAX_ITERS
+    terminal = TRUE
+    abort_now = FALSE
+    max_aborts = FALSE
+  -> Input: 63.50 <-
+  -- Loop starts here
+  -> State: 63.50 <-
+  -> Input: 63.51 <-
+  -> State: 63.51 <-
+-- specification  G !((((((terminal & !(state = CHECK_STOP & converged)) & !bind_aborts) & !qpu_aborts) & !energy_aborts) & !opt_aborts) & !max_aborts)  is false
+-- as demonstrated by the following execution sequence
+Trace Description: LTL Counterexample 
+Trace Type: Counterexample 
+  -> State: 64.1 <-
+    state = S_INIT
+    circ_ready = FALSE
+    params_ready = TRUE
+    energy_ready = FALSE
+    iter = 0
+    terms_done = 0
+    theta_version = 0
+    bound_version = 0
+    energy_version = 0
+    term_reason = NO_TERM
+    terminal = FALSE
+    all_terms_done = FALSE
+    NTERMS = 3
+    MAX_ITERS = 5
+    abort_now = FALSE
+    max_aborts = FALSE
+    opt_aborts = FALSE
+    energy_aborts = FALSE
+    qpu_aborts = FALSE
+    bind_aborts = FALSE
+  -> Input: 64.2 <-
+    converged = FALSE
+    bind_err = FALSE
+    qpu_err = FALSE
+    energy_err = FALSE
+    opt_err = FALSE
+  -> State: 64.2 <-
+    state = BIND
+    abort_now = TRUE
+    bind_aborts = TRUE
+  -> Input: 64.3 <-
+    bind_err = TRUE
+  -- Loop starts here
+  -> State: 64.3 <-
+    state = ABORT
+    params_ready = FALSE
+    term_reason = ABORT_BIND_ERR
+    terminal = TRUE
+    abort_now = FALSE
+    bind_aborts = FALSE
+  -> Input: 64.4 <-
+    bind_err = FALSE
+  -- Loop starts here
+  -> State: 64.4 <-
+  -> Input: 64.5 <-
+  -> State: 64.5 <-
+-- specification  G !(((((((TRUE & !(state = CHECK_STOP & converged)) & !bind_aborts) & !qpu_aborts) & !energy_aborts) & !opt_aborts) & !max_aborts) & !terminal)  is false
+-- as demonstrated by the following execution sequence
+Trace Description: LTL Counterexample 
+Trace Type: Counterexample 
+  -> State: 65.1 <-
+    state = S_INIT
+    circ_ready = FALSE
+    params_ready = TRUE
+    energy_ready = FALSE
+    iter = 0
+    terms_done = 0
+    theta_version = 0
+    bound_version = 0
+    energy_version = 0
+    term_reason = NO_TERM
+    terminal = FALSE
+    all_terms_done = FALSE
+    NTERMS = 3
+    MAX_ITERS = 5
+    abort_now = FALSE
+    max_aborts = FALSE
+    opt_aborts = FALSE
+    energy_aborts = FALSE
+    qpu_aborts = FALSE
+    bind_aborts = FALSE
+  -> Input: 65.2 <-
+    converged = FALSE
+    bind_err = FALSE
+    qpu_err = FALSE
+    energy_err = FALSE
+    opt_err = FALSE
+  -> State: 65.2 <-
+    state = BIND
+    abort_now = TRUE
+    bind_aborts = TRUE
+  -> Input: 65.3 <-
+    bind_err = TRUE
+  -- Loop starts here
+  -> State: 65.3 <-
+    state = ABORT
+    params_ready = FALSE
+    term_reason = ABORT_BIND_ERR
+    terminal = TRUE
+    abort_now = FALSE
+    bind_aborts = FALSE
+  -> Input: 65.4 <-
+    bind_err = FALSE
+  -- Loop starts here
+  -> State: 65.4 <-
+  -> Input: 65.5 <-
+  -> State: 65.5 <-

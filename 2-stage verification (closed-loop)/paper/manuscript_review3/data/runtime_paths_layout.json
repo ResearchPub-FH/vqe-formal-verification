@@ -1,0 +1,37 @@
+{
+  "figure": "runtime_verification_online_offline",
+  "size_inches": [
+    7.16,
+    3.8
+  ],
+  "placement": "double-column",
+  "fonts": "STIX serif text and mathematics",
+  "png_dpi": 400,
+  "shared_panel_center_x": 2.995,
+  "lane_center_x": 2.995,
+  "shared_panel_width_inches": 3.9,
+  "shared_heading_size_pt": 13,
+  "verdict_symbols_present": false,
+  "verdict_labels_centered": true,
+  "feedback_operation_term": "instrumented",
+  "mode_action_labels_bold": true,
+  "timing_labels_present": false,
+  "transition_labels_bold": true,
+  "neutral_foreground_color": "#000000",
+  "correspondence_guides": 0,
+  "text_overlap_count": 0,
+  "outside_canvas": [],
+  "preserved_sha256": {
+    "manuscript_review3.tex": "378d92b04419b91fed85a38b91aa1f2c08375aec0fb3626adb7264b5cfa40a3d",
+    "manuscript_review3.pdf": "fa37ce17576fd5e2c8ac8d99c9b1046d2817792c51393fca66e00061de3d1e51",
+    "figures/introduction-overview.pdf": "31d58714f8d971758b535135447d7ca7855ad4e2d1b00a54d3c7b93ffcfac099",
+    "figures/architecture.pdf": "11c68784222acb6448f462825470a3f9f5a8c82ab080f3ccf03de7b0786abff0"
+  },
+  "unchanged": {
+    "manuscript_review3.tex": true,
+    "manuscript_review3.pdf": true,
+    "figures/introduction-overview.pdf": true,
+    "figures/architecture.pdf": true
+  },
+  "scientific_content": "Conceptual paths and symbolic events; no measured results"
+}

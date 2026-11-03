@@ -1,0 +1,4 @@
+# Verified build: Python 3.12.14. Plot typography uses Matplotlib's bundled STIX.
+numpy==2.3.5
+matplotlib==3.11.2
+pypdf==6.10.0

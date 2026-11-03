@@ -1,0 +1,159 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="820" viewBox="0 0 1200 820">
+<style>
+.title{font:700 30px -apple-system,BlinkMacSystemFont,Segoe UI,sans-serif;fill:#152145}
+.axis{stroke:#7b7f89;stroke-width:1.7}
+.grid{stroke:#dfe5f0;stroke-width:1}
+.tick{font:500 23px -apple-system,BlinkMacSystemFont,Segoe UI,sans-serif;fill:#586278}
+.label{font:600 20px -apple-system,BlinkMacSystemFont,Segoe UI,sans-serif;fill:#586278}
+.legend{font:600 22px -apple-system,BlinkMacSystemFont,Segoe UI,sans-serif;fill:#586278}
+.energy{fill:none;stroke:#18275b;stroke-width:7;stroke-linecap:round;stroke-linejoin:round}
+.reference{fill:none;stroke:#0fa37f;stroke-width:6;stroke-linecap:round;stroke-linejoin:round}
+.verifyLine{stroke:#dfe5f0;stroke-width:2}
+.verifyText{font:700 17px -apple-system,BlinkMacSystemFont,Segoe UI,sans-serif;fill:white}
+</style>
+<rect x="28" y="28" width="1144" height="764" fill="white" stroke="#bfd0ef" stroke-width="2"/>
+<text class="title" x="78" y="92">H2 Qiskit Runtime - reported energy by iteration (Ha)</text>
+<line class="grid" x1="125" y1="590.000" x2="1120" y2="590.000"/>
+<text class="tick" x="103" y="598.000" text-anchor="end">-0.7983</text>
+<line class="grid" x1="125" y1="495.000" x2="1120" y2="495.000"/>
+<text class="tick" x="103" y="503.000" text-anchor="end">-0.6012</text>
+<line class="grid" x1="125" y1="400.000" x2="1120" y2="400.000"/>
+<text class="tick" x="103" y="408.000" text-anchor="end">-0.404</text>
+<line class="grid" x1="125" y1="305.000" x2="1120" y2="305.000"/>
+<text class="tick" x="103" y="313.000" text-anchor="end">-0.2069</text>
+<line class="grid" x1="125" y1="210.000" x2="1120" y2="210.000"/>
+<text class="tick" x="103" y="218.000" text-anchor="end">-0.009731</text>
+<line class="grid" x1="125" y1="115.000" x2="1120" y2="115.000"/>
+<text class="tick" x="103" y="123.000" text-anchor="end">0.1874</text>
+<line class="axis" x1="125" y1="115" x2="125" y2="590"/>
+<line class="axis" x1="125" y1="205.311" x2="1120" y2="205.311"/>
+<line class="axis" x1="125.000" y1="205.311" x2="125.000" y2="213.311"/>
+<text class="tick" x="125.000" y="632" text-anchor="middle">iter 0</text>
+<line class="axis" x1="249.375" y1="205.311" x2="249.375" y2="213.311"/>
+<text class="tick" x="249.375" y="632" text-anchor="middle">iter 3</text>
+<line class="axis" x1="415.208" y1="205.311" x2="415.208" y2="213.311"/>
+<text class="tick" x="415.208" y="632" text-anchor="middle">iter 7</text>
+<line class="axis" x1="539.583" y1="205.311" x2="539.583" y2="213.311"/>
+<text class="tick" x="539.583" y="632" text-anchor="middle">iter 10</text>
+<line class="axis" x1="705.417" y1="205.311" x2="705.417" y2="213.311"/>
+<text class="tick" x="705.417" y="632" text-anchor="middle">iter 14</text>
+<line class="axis" x1="829.792" y1="205.311" x2="829.792" y2="213.311"/>
+<text class="tick" x="829.792" y="632" text-anchor="middle">iter 17</text>
+<line class="axis" x1="995.625" y1="205.311" x2="995.625" y2="213.311"/>
+<text class="tick" x="995.625" y="632" text-anchor="middle">iter 21</text>
+<line class="axis" x1="1120.000" y1="205.311" x2="1120.000" y2="213.311"/>
+<text class="tick" x="1120.000" y="632" text-anchor="middle">iter 24</text>
+<polyline class="reference" points="125.000,544.032 166.458,544.032 207.917,544.032 249.375,544.032 290.833,544.032 332.292,544.032 373.750,544.032 415.208,544.032 456.667,544.032 498.125,544.032 539.583,544.032 581.042,544.032 622.500,544.032 663.958,544.032 705.417,544.032 746.875,544.032 788.333,544.032 829.792,544.032 871.250,544.032 912.708,544.032 954.167,544.032 995.625,544.032 1037.083,544.032 1078.542,544.032 1120.000,544.032"/>
+<circle cx="125.000" cy="544.032" r="8" fill="#0fa37f"/>
+<circle cx="166.458" cy="544.032" r="8" fill="#0fa37f"/>
+<circle cx="207.917" cy="544.032" r="8" fill="#0fa37f"/>
+<circle cx="249.375" cy="544.032" r="8" fill="#0fa37f"/>
+<circle cx="290.833" cy="544.032" r="8" fill="#0fa37f"/>
+<circle cx="332.292" cy="544.032" r="8" fill="#0fa37f"/>
+<circle cx="373.750" cy="544.032" r="8" fill="#0fa37f"/>
+<circle cx="415.208" cy="544.032" r="8" fill="#0fa37f"/>
+<circle cx="456.667" cy="544.032" r="8" fill="#0fa37f"/>
+<circle cx="498.125" cy="544.032" r="8" fill="#0fa37f"/>
+<circle cx="539.583" cy="544.032" r="8" fill="#0fa37f"/>
+<circle cx="581.042" cy="544.032" r="8" fill="#0fa37f"/>
+<circle cx="622.500" cy="544.032" r="8" fill="#0fa37f"/>
+<circle cx="663.958" cy="544.032" r="8" fill="#0fa37f"/>
+<circle cx="705.417" cy="544.032" r="8" fill="#0fa37f"/>
+<circle cx="746.875" cy="544.032" r="8" fill="#0fa37f"/>
+<circle cx="788.333" cy="544.032" r="8" fill="#0fa37f"/>
+<circle cx="829.792" cy="544.032" r="8" fill="#0fa37f"/>
+<circle cx="871.250" cy="544.032" r="8" fill="#0fa37f"/>
+<circle cx="912.708" cy="544.032" r="8" fill="#0fa37f"/>
+<circle cx="954.167" cy="544.032" r="8" fill="#0fa37f"/>
+<circle cx="995.625" cy="544.032" r="8" fill="#0fa37f"/>
+<circle cx="1037.083" cy="544.032" r="8" fill="#0fa37f"/>
+<circle cx="1078.542" cy="544.032" r="8" fill="#0fa37f"/>
+<circle cx="1120.000" cy="544.032" r="8" fill="#0fa37f"/>
+<polyline class="energy" points="125.000,346.387 166.458,279.864 207.917,160.968 249.375,373.361 290.833,343.632 332.292,345.062 373.750,400.941 415.208,371.370 456.667,414.731 498.125,423.561 539.583,428.689 581.042,431.898 622.500,441.146 663.958,434.886 705.417,428.710 746.875,435.192 788.333,439.244 829.792,441.901 871.250,446.031 912.708,432.374 954.167,440.649 995.625,446.416 1037.083,447.414 1078.542,443.178 1120.000,446.444"/>
+<circle cx="125.000" cy="346.387" r="10" fill="#18275b"/>
+<circle cx="166.458" cy="279.864" r="10" fill="#18275b"/>
+<circle cx="207.917" cy="160.968" r="10" fill="#18275b"/>
+<circle cx="249.375" cy="373.361" r="10" fill="#18275b"/>
+<circle cx="290.833" cy="343.632" r="10" fill="#18275b"/>
+<circle cx="332.292" cy="345.062" r="10" fill="#18275b"/>
+<circle cx="373.750" cy="400.941" r="10" fill="#18275b"/>
+<circle cx="415.208" cy="371.370" r="10" fill="#18275b"/>
+<circle cx="456.667" cy="414.731" r="10" fill="#18275b"/>
+<circle cx="498.125" cy="423.561" r="10" fill="#18275b"/>
+<circle cx="539.583" cy="428.689" r="10" fill="#18275b"/>
+<circle cx="581.042" cy="431.898" r="10" fill="#18275b"/>
+<circle cx="622.500" cy="441.146" r="10" fill="#18275b"/>
+<circle cx="663.958" cy="434.886" r="10" fill="#18275b"/>
+<circle cx="705.417" cy="428.710" r="10" fill="#18275b"/>
+<circle cx="746.875" cy="435.192" r="10" fill="#18275b"/>
+<circle cx="788.333" cy="439.244" r="10" fill="#18275b"/>
+<circle cx="829.792" cy="441.901" r="10" fill="#18275b"/>
+<circle cx="871.250" cy="446.031" r="10" fill="#18275b"/>
+<circle cx="912.708" cy="432.374" r="10" fill="#18275b"/>
+<circle cx="954.167" cy="440.649" r="10" fill="#18275b"/>
+<circle cx="995.625" cy="446.416" r="10" fill="#18275b"/>
+<circle cx="1037.083" cy="447.414" r="10" fill="#18275b"/>
+<circle cx="1078.542" cy="443.178" r="10" fill="#18275b"/>
+<circle cx="1120.000" cy="446.444" r="10" fill="#18275b"/>
+<text class="label" x="120" y="662" text-anchor="end">verified</text>
+<line class="verifyLine" x1="125" y1="655" x2="1120" y2="655"/>
+<circle cx="125.000" cy="655" r="13" fill="#0fa37f"/>
+<text class="verifyText" x="125.000" y="661" text-anchor="middle">OK</text>
+<circle cx="166.458" cy="655" r="13" fill="#0fa37f"/>
+<text class="verifyText" x="166.458" y="661" text-anchor="middle">OK</text>
+<circle cx="207.917" cy="655" r="13" fill="#0fa37f"/>
+<text class="verifyText" x="207.917" y="661" text-anchor="middle">OK</text>
+<circle cx="249.375" cy="655" r="13" fill="#0fa37f"/>
+<text class="verifyText" x="249.375" y="661" text-anchor="middle">OK</text>
+<circle cx="290.833" cy="655" r="13" fill="#0fa37f"/>
+<text class="verifyText" x="290.833" y="661" text-anchor="middle">OK</text>
+<circle cx="332.292" cy="655" r="13" fill="#0fa37f"/>
+<text class="verifyText" x="332.292" y="661" text-anchor="middle">OK</text>
+<circle cx="373.750" cy="655" r="13" fill="#0fa37f"/>
+<text class="verifyText" x="373.750" y="661" text-anchor="middle">OK</text>
+<circle cx="415.208" cy="655" r="13" fill="#0fa37f"/>
+<text class="verifyText" x="415.208" y="661" text-anchor="middle">OK</text>
+<circle cx="456.667" cy="655" r="13" fill="#0fa37f"/>
+<text class="verifyText" x="456.667" y="661" text-anchor="middle">OK</text>
+<circle cx="498.125" cy="655" r="13" fill="#0fa37f"/>
+<text class="verifyText" x="498.125" y="661" text-anchor="middle">OK</text>
+<circle cx="539.583" cy="655" r="13" fill="#0fa37f"/>
+<text class="verifyText" x="539.583" y="661" text-anchor="middle">OK</text>
+<circle cx="581.042" cy="655" r="13" fill="#0fa37f"/>
+<text class="verifyText" x="581.042" y="661" text-anchor="middle">OK</text>
+<circle cx="622.500" cy="655" r="13" fill="#0fa37f"/>
+<text class="verifyText" x="622.500" y="661" text-anchor="middle">OK</text>
+<circle cx="663.958" cy="655" r="13" fill="#0fa37f"/>
+<text class="verifyText" x="663.958" y="661" text-anchor="middle">OK</text>
+<circle cx="705.417" cy="655" r="13" fill="#0fa37f"/>
+<text class="verifyText" x="705.417" y="661" text-anchor="middle">OK</text>
+<circle cx="746.875" cy="655" r="13" fill="#0fa37f"/>
+<text class="verifyText" x="746.875" y="661" text-anchor="middle">OK</text>
+<circle cx="788.333" cy="655" r="13" fill="#0fa37f"/>
+<text class="verifyText" x="788.333" y="661" text-anchor="middle">OK</text>
+<circle cx="829.792" cy="655" r="13" fill="#0fa37f"/>
+<text class="verifyText" x="829.792" y="661" text-anchor="middle">OK</text>
+<circle cx="871.250" cy="655" r="13" fill="#0fa37f"/>
+<text class="verifyText" x="871.250" y="661" text-anchor="middle">OK</text>
+<circle cx="912.708" cy="655" r="13" fill="#0fa37f"/>
+<text class="verifyText" x="912.708" y="661" text-anchor="middle">OK</text>
+<circle cx="954.167" cy="655" r="13" fill="#0fa37f"/>
+<text class="verifyText" x="954.167" y="661" text-anchor="middle">OK</text>
+<circle cx="995.625" cy="655" r="13" fill="#0fa37f"/>
+<text class="verifyText" x="995.625" y="661" text-anchor="middle">OK</text>
+<circle cx="1037.083" cy="655" r="13" fill="#0fa37f"/>
+<text class="verifyText" x="1037.083" y="661" text-anchor="middle">OK</text>
+<circle cx="1078.542" cy="655" r="13" fill="#0fa37f"/>
+<text class="verifyText" x="1078.542" y="661" text-anchor="middle">OK</text>
+<circle cx="1120.000" cy="655" r="13" fill="#0fa37f"/>
+<text class="verifyText" x="1120.000" y="661" text-anchor="middle">OK</text>
+<line class="energy" x1="295" y1="742" x2="340" y2="742"/>
+<circle cx="317" cy="742" r="8" fill="#18275b"/>
+<text class="legend" x="353" y="750">reported energy</text>
+<line class="reference" x1="585" y1="742" x2="630" y2="742"/>
+<circle cx="607" cy="742" r="8" fill="#0fa37f"/>
+<text class="legend" x="643" y="750">reference ground energy</text>
+<circle cx="995" cy="742" r="10" fill="#0fa37f"/>
+<text class="verifyText" x="995" y="748" text-anchor="middle">OK</text>
+<text class="legend" x="1017" y="750">iteration verification pass</text>
+</svg>

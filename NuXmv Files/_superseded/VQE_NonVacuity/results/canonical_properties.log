@@ -1,0 +1,58 @@
+*** This is nuXmv 2.1.0 (compiled on Fri Nov 29 09:05:38 2024)
+*** Copyright (c) 2014-2024, Fondazione Bruno Kessler
+*** For more information on nuXmv see https://nuxmv.fbk.eu
+*** or email to <nuxmv@fbk.eu>.
+*** Please report bugs at Please report bugs to <nusmv-users@fbk.eu>
+*** (click on "Login Anonymously" to access)
+*** Alternatively write to <nuxmv@fbk.eu>.
+
+*** This version of nuXmv is linked to NuSMV 2.7.0.
+*** For more information on NuSMV see <http://nusmv.fbk.eu>
+*** or email to <nusmv-users@fbk.eu>.
+*** Copyright (C) 2010-2024, Fondazione Bruno Kessler
+
+*** This version of nuXmv is linked to the CUDD library version 2.4.1
+*** Copyright (c) 1995-2004, Regents of the University of Colorado
+
+*** This version of nuXmv is linked to the MiniSat SAT solver. 
+*** See http://minisat.se/MiniSat.html
+*** Copyright (c) 2003-2006, Niklas Een, Niklas Sorensson
+*** Copyright (c) 2007-2010, Niklas Sorensson
+
+*** This version of nuXmv is linked to MathSAT
+*** Copyright (C) 2009-2019 by Fondazione Bruno Kessler
+*** Copyright (C) 2009-2019 by University of Trento and others
+*** See http://mathsat.fbk.eu
+
+-- invariant (state = BIND -> terms_done = 0)  is true
+-- invariant (state = EXECUTE_MEASURE -> circ_ready)  is true
+-- invariant theta_version = iter  is true
+-- invariant (state = ABORT -> (term_reason != NO_TERM & term_reason != DONE_CONVERGED))  is true
+-- invariant bound_version <= theta_version  is true
+-- invariant (state = DONE -> (term_reason = DONE_CONVERGED & energy_ready))  is true
+-- invariant energy_version <= bound_version  is true
+-- specification  G (state = COMPUTE_ENERGY -> all_terms_done)  is true
+-- specification  G (state = DONE ->  X state = DONE)  is true
+-- specification  G (state = ABORT ->  X state = ABORT)  is true
+-- specification  G ( X iter >= iter)  is true
+-- specification  G (state = DONE ->  G !(state = ABORT))  is true
+-- specification  G (state = ABORT ->  G !(state = DONE))  is true
+-- specification  G (state = EXECUTE_MEASURE -> params_ready)  is true
+-- specification  G (state = CHECK_STOP -> energy_ready)  is true
+-- specification  G (state = OPTIMIZER_STEP -> energy_ready)  is true
+-- specification  G ((state = BIND & iter > 0) -> !energy_ready)  is true
+-- specification  G ((state = BIND & bind_err) ->  X (state = ABORT & term_reason = ABORT_BIND_ERR))  is true
+-- specification  G ((state = EXECUTE_MEASURE & qpu_err) ->  X (state = ABORT & term_reason = ABORT_QPU_ERR))  is true
+-- specification  G ((state = COMPUTE_ENERGY & energy_err) ->  X (state = ABORT & term_reason = ABORT_ENERGY_ERR))  is true
+-- specification  G ((state = OPTIMIZER_STEP & opt_err) ->  X (state = ABORT & term_reason = ABORT_OPT_ERR))  is true
+-- specification  G (((state = CHECK_STOP & !converged) & iter = MAX_ITERS) ->  X (state = ABORT & term_reason = ABORT_MAX_ITERS))  is true
+-- specification  G (state = EXECUTE_MEASURE -> bound_version = theta_version)  is true
+-- specification  G ((state = OPTIMIZER_STEP & !opt_err) ->  X (params_ready & !energy_ready))  is true
+-- specification  G (state = CHECK_STOP -> energy_version = bound_version)  is true
+-- specification AF (state = DONE | state = ABORT)  is true
+-- specification EF (state = DONE & term_reason = DONE_CONVERGED)  is true
+-- specification EF (state = ABORT & term_reason = ABORT_BIND_ERR)  is true
+-- specification EF (state = ABORT & term_reason = ABORT_QPU_ERR)  is true
+-- specification EF (state = ABORT & term_reason = ABORT_ENERGY_ERR)  is true
+-- specification EF (state = ABORT & term_reason = ABORT_OPT_ERR)  is true
+-- specification EF (state = ABORT & term_reason = ABORT_MAX_ITERS)  is true

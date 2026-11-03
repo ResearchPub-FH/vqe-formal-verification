@@ -1,0 +1,32 @@
+schema_version = 1
+hamiltonian = "../data/h2_hamiltonian.json"
+
+[execution]
+mode = "demo"
+system = "h2"
+backend = "deterministic-counts"
+parameter_count = 2
+max_iterations = 3
+shots_per_term = 1000
+shot_budget = 12000
+seed = 7
+optimizer_protocol = "ask-tell"
+allow_optimizer_stopped = false
+
+[numeric]
+parameter_lower = -3.141592653589793
+parameter_upper = 3.141592653589793
+energy_abs_tolerance = 1e-9
+expectation_abs_tolerance = 1e-9
+
+[convergence]
+tolerance = 0.001
+min_iterations = 3
+patience = 2
+
+[observability]
+require_raw_counts = true
+
+[monitor]
+timeout_seconds = 10.0
+bits_per_variable = 24

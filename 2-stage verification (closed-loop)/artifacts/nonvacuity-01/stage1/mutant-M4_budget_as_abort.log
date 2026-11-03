@@ -1,0 +1,5466 @@
+*** This is nuXmv 2.1.0 (compiled on Fri Nov 29 09:05:38 2024)
+*** Copyright (c) 2014-2024, Fondazione Bruno Kessler
+*** For more information on nuXmv see https://nuxmv.fbk.eu
+*** or email to <nuxmv@fbk.eu>.
+*** Please report bugs at Please report bugs to <nusmv-users@fbk.eu>
+*** (click on "Login Anonymously" to access)
+*** Alternatively write to <nuxmv@fbk.eu>.
+
+*** This version of nuXmv is linked to NuSMV 2.7.0.
+*** For more information on NuSMV see <http://nusmv.fbk.eu>
+*** or email to <nusmv-users@fbk.eu>.
+*** Copyright (C) 2010-2024, Fondazione Bruno Kessler
+
+*** This version of nuXmv is linked to the CUDD library version 2.4.1
+*** Copyright (c) 1995-2004, Regents of the University of Colorado
+
+*** This version of nuXmv is linked to the MiniSat SAT solver. 
+*** See http://minisat.se/MiniSat.html
+*** Copyright (c) 2003-2006, Niklas Een, Niklas Sorensson
+*** Copyright (c) 2007-2010, Niklas Sorensson
+
+*** This version of nuXmv is linked to MathSAT
+*** Copyright (C) 2009-2019 by Fondazione Bruno Kessler
+*** Copyright (C) 2009-2019 by University of Trento and others
+*** See http://mathsat.fbk.eu
+
+-- specification  G (phase = aggregate -> groups = 3)  is true
+-- specification  G (phase in select union commit -> ready = 3)  is true
+-- specification  G (phase = start ->  X (ready = 0 & groups = 0))  is true
+-- specification  G (terminal ->  X terminal)  is true
+-- specification  G (phase = done_budget -> updates = 50)  is true
+-- specification  G (phase = commit -> updates < 50)  is true
+-- specification  G ((phase = check & success) ->  X phase = done_success)  is true
+-- specification  G (((phase = check & !success) & updates = 50) ->  X phase = done_budget)  is false
+-- as demonstrated by the following execution sequence
+Trace Description: LTL Counterexample 
+Trace Type: Counterexample 
+  -> State: 1.1 <-
+    phase = start
+    updates = 0
+    groups = 0
+    ready = 0
+    epoch = FALSE
+    energy_epoch = FALSE
+    environment_error = FALSE
+    success = FALSE
+    terminal = FALSE
+  -> State: 1.2 <-
+    phase = measure
+    epoch = TRUE
+  -> State: 1.3 <-
+    groups = 1
+  -> State: 1.4 <-
+    groups = 2
+  -> State: 1.5 <-
+    groups = 3
+  -> State: 1.6 <-
+    phase = aggregate
+  -> State: 1.7 <-
+    phase = validate
+  -> State: 1.8 <-
+    phase = measure
+    groups = 0
+    ready = 1
+    energy_epoch = TRUE
+  -> State: 1.9 <-
+    groups = 1
+  -> State: 1.10 <-
+    groups = 2
+  -> State: 1.11 <-
+    groups = 3
+  -> State: 1.12 <-
+    phase = aggregate
+  -> State: 1.13 <-
+    phase = validate
+  -> State: 1.14 <-
+    phase = measure
+    groups = 0
+    ready = 2
+  -> State: 1.15 <-
+    groups = 1
+  -> State: 1.16 <-
+    groups = 2
+  -> State: 1.17 <-
+    groups = 3
+  -> State: 1.18 <-
+    phase = aggregate
+  -> State: 1.19 <-
+    phase = validate
+  -> State: 1.20 <-
+    phase = select
+    groups = 0
+    ready = 3
+  -> State: 1.21 <-
+    phase = commit
+  -> State: 1.22 <-
+    phase = check
+    updates = 1
+  -> State: 1.23 <-
+    phase = start
+  -> State: 1.24 <-
+    phase = measure
+    ready = 0
+    epoch = FALSE
+  -> State: 1.25 <-
+    groups = 1
+  -> State: 1.26 <-
+    groups = 2
+  -> State: 1.27 <-
+    groups = 3
+  -> State: 1.28 <-
+    phase = aggregate
+  -> State: 1.29 <-
+    phase = validate
+  -> State: 1.30 <-
+    phase = measure
+    groups = 0
+    ready = 1
+    energy_epoch = FALSE
+  -> State: 1.31 <-
+    groups = 1
+  -> State: 1.32 <-
+    groups = 2
+  -> State: 1.33 <-
+    groups = 3
+  -> State: 1.34 <-
+    phase = aggregate
+  -> State: 1.35 <-
+    phase = validate
+  -> State: 1.36 <-
+    phase = measure
+    groups = 0
+    ready = 2
+  -> State: 1.37 <-
+    groups = 1
+  -> State: 1.38 <-
+    groups = 2
+  -> State: 1.39 <-
+    groups = 3
+  -> State: 1.40 <-
+    phase = aggregate
+  -> State: 1.41 <-
+    phase = validate
+  -> State: 1.42 <-
+    phase = select
+    groups = 0
+    ready = 3
+  -> State: 1.43 <-
+    phase = commit
+  -> State: 1.44 <-
+    phase = check
+    updates = 2
+  -> State: 1.45 <-
+    phase = start
+  -> State: 1.46 <-
+    phase = measure
+    ready = 0
+    epoch = TRUE
+  -> State: 1.47 <-
+    groups = 1
+  -> State: 1.48 <-
+    groups = 2
+  -> State: 1.49 <-
+    groups = 3
+  -> State: 1.50 <-
+    phase = aggregate
+  -> State: 1.51 <-
+    phase = validate
+  -> State: 1.52 <-
+    phase = measure
+    groups = 0
+    ready = 1
+    energy_epoch = TRUE
+  -> State: 1.53 <-
+    groups = 1
+  -> State: 1.54 <-
+    groups = 2
+  -> State: 1.55 <-
+    groups = 3
+  -> State: 1.56 <-
+    phase = aggregate
+  -> State: 1.57 <-
+    phase = validate
+  -> State: 1.58 <-
+    phase = measure
+    groups = 0
+    ready = 2
+  -> State: 1.59 <-
+    groups = 1
+  -> State: 1.60 <-
+    groups = 2
+  -> State: 1.61 <-
+    groups = 3
+  -> State: 1.62 <-
+    phase = aggregate
+  -> State: 1.63 <-
+    phase = validate
+  -> State: 1.64 <-
+    phase = select
+    groups = 0
+    ready = 3
+  -> State: 1.65 <-
+    phase = commit
+  -> State: 1.66 <-
+    phase = check
+    updates = 3
+  -> State: 1.67 <-
+    phase = start
+  -> State: 1.68 <-
+    phase = measure
+    ready = 0
+    epoch = FALSE
+  -> State: 1.69 <-
+    groups = 1
+  -> State: 1.70 <-
+    groups = 2
+  -> State: 1.71 <-
+    groups = 3
+  -> State: 1.72 <-
+    phase = aggregate
+  -> State: 1.73 <-
+    phase = validate
+  -> State: 1.74 <-
+    phase = measure
+    groups = 0
+    ready = 1
+    energy_epoch = FALSE
+  -> State: 1.75 <-
+    groups = 1
+  -> State: 1.76 <-
+    groups = 2
+  -> State: 1.77 <-
+    groups = 3
+  -> State: 1.78 <-
+    phase = aggregate
+  -> State: 1.79 <-
+    phase = validate
+  -> State: 1.80 <-
+    phase = measure
+    groups = 0
+    ready = 2
+  -> State: 1.81 <-
+    groups = 1
+  -> State: 1.82 <-
+    groups = 2
+  -> State: 1.83 <-
+    groups = 3
+  -> State: 1.84 <-
+    phase = aggregate
+  -> State: 1.85 <-
+    phase = validate
+  -> State: 1.86 <-
+    phase = select
+    groups = 0
+    ready = 3
+  -> State: 1.87 <-
+    phase = commit
+  -> State: 1.88 <-
+    phase = check
+    updates = 4
+  -> State: 1.89 <-
+    phase = start
+  -> State: 1.90 <-
+    phase = measure
+    ready = 0
+    epoch = TRUE
+  -> State: 1.91 <-
+    groups = 1
+  -> State: 1.92 <-
+    groups = 2
+  -> State: 1.93 <-
+    groups = 3
+  -> State: 1.94 <-
+    phase = aggregate
+  -> State: 1.95 <-
+    phase = validate
+  -> State: 1.96 <-
+    phase = measure
+    groups = 0
+    ready = 1
+    energy_epoch = TRUE
+  -> State: 1.97 <-
+    groups = 1
+  -> State: 1.98 <-
+    groups = 2
+  -> State: 1.99 <-
+    groups = 3
+  -> State: 1.100 <-
+    phase = aggregate
+  -> State: 1.101 <-
+    phase = validate
+  -> State: 1.102 <-
+    phase = measure
+    groups = 0
+    ready = 2
+  -> State: 1.103 <-
+    groups = 1
+  -> State: 1.104 <-
+    groups = 2
+  -> State: 1.105 <-
+    groups = 3
+  -> State: 1.106 <-
+    phase = aggregate
+  -> State: 1.107 <-
+    phase = validate
+  -> State: 1.108 <-
+    phase = select
+    groups = 0
+    ready = 3
+  -> State: 1.109 <-
+    phase = commit
+  -> State: 1.110 <-
+    phase = check
+    updates = 5
+  -> State: 1.111 <-
+    phase = start
+  -> State: 1.112 <-
+    phase = measure
+    ready = 0
+    epoch = FALSE
+  -> State: 1.113 <-
+    groups = 1
+  -> State: 1.114 <-
+    groups = 2
+  -> State: 1.115 <-
+    groups = 3
+  -> State: 1.116 <-
+    phase = aggregate
+  -> State: 1.117 <-
+    phase = validate
+  -> State: 1.118 <-
+    phase = measure
+    groups = 0
+    ready = 1
+    energy_epoch = FALSE
+  -> State: 1.119 <-
+    groups = 1
+  -> State: 1.120 <-
+    groups = 2
+  -> State: 1.121 <-
+    groups = 3
+  -> State: 1.122 <-
+    phase = aggregate
+  -> State: 1.123 <-
+    phase = validate
+  -> State: 1.124 <-
+    phase = measure
+    groups = 0
+    ready = 2
+  -> State: 1.125 <-
+    groups = 1
+  -> State: 1.126 <-
+    groups = 2
+  -> State: 1.127 <-
+    groups = 3
+  -> State: 1.128 <-
+    phase = aggregate
+  -> State: 1.129 <-
+    phase = validate
+  -> State: 1.130 <-
+    phase = select
+    groups = 0
+    ready = 3
+  -> State: 1.131 <-
+    phase = commit
+  -> State: 1.132 <-
+    phase = check
+    updates = 6
+  -> State: 1.133 <-
+    phase = start
+  -> State: 1.134 <-
+    phase = measure
+    ready = 0
+    epoch = TRUE
+  -> State: 1.135 <-
+    groups = 1
+  -> State: 1.136 <-
+    groups = 2
+  -> State: 1.137 <-
+    groups = 3
+  -> State: 1.138 <-
+    phase = aggregate
+  -> State: 1.139 <-
+    phase = validate
+  -> State: 1.140 <-
+    phase = measure
+    groups = 0
+    ready = 1
+    energy_epoch = TRUE
+  -> State: 1.141 <-
+    groups = 1
+  -> State: 1.142 <-
+    groups = 2
+  -> State: 1.143 <-
+    groups = 3
+  -> State: 1.144 <-
+    phase = aggregate
+  -> State: 1.145 <-
+    phase = validate
+  -> State: 1.146 <-
+    phase = measure
+    groups = 0
+    ready = 2
+  -> State: 1.147 <-
+    groups = 1
+  -> State: 1.148 <-
+    groups = 2
+  -> State: 1.149 <-
+    groups = 3
+  -> State: 1.150 <-
+    phase = aggregate
+  -> State: 1.151 <-
+    phase = validate
+  -> State: 1.152 <-
+    phase = select
+    groups = 0
+    ready = 3
+  -> State: 1.153 <-
+    phase = commit
+  -> State: 1.154 <-
+    phase = check
+    updates = 7
+  -> State: 1.155 <-
+    phase = start
+  -> State: 1.156 <-
+    phase = measure
+    ready = 0
+    epoch = FALSE
+  -> State: 1.157 <-
+    groups = 1
+  -> State: 1.158 <-
+    groups = 2
+  -> State: 1.159 <-
+    groups = 3
+  -> State: 1.160 <-
+    phase = aggregate
+  -> State: 1.161 <-
+    phase = validate
+  -> State: 1.162 <-
+    phase = measure
+    groups = 0
+    ready = 1
+    energy_epoch = FALSE
+  -> State: 1.163 <-
+    groups = 1
+  -> State: 1.164 <-
+    groups = 2
+  -> State: 1.165 <-
+    groups = 3
+  -> State: 1.166 <-
+    phase = aggregate
+  -> State: 1.167 <-
+    phase = validate
+  -> State: 1.168 <-
+    phase = measure
+    groups = 0
+    ready = 2
+  -> State: 1.169 <-
+    groups = 1
+  -> State: 1.170 <-
+    groups = 2
+  -> State: 1.171 <-
+    groups = 3
+  -> State: 1.172 <-
+    phase = aggregate
+  -> State: 1.173 <-
+    phase = validate
+  -> State: 1.174 <-
+    phase = select
+    groups = 0
+    ready = 3
+  -> State: 1.175 <-
+    phase = commit
+  -> State: 1.176 <-
+    phase = check
+    updates = 8
+  -> State: 1.177 <-
+    phase = start
+  -> State: 1.178 <-
+    phase = measure
+    ready = 0
+    epoch = TRUE
+  -> State: 1.179 <-
+    groups = 1
+  -> State: 1.180 <-
+    groups = 2
+  -> State: 1.181 <-
+    groups = 3
+  -> State: 1.182 <-
+    phase = aggregate
+  -> State: 1.183 <-
+    phase = validate
+  -> State: 1.184 <-
+    phase = measure
+    groups = 0
+    ready = 1
+    energy_epoch = TRUE
+  -> State: 1.185 <-
+    groups = 1
+  -> State: 1.186 <-
+    groups = 2
+  -> State: 1.187 <-
+    groups = 3
+  -> State: 1.188 <-
+    phase = aggregate
+  -> State: 1.189 <-
+    phase = validate
+  -> State: 1.190 <-
+    phase = measure
+    groups = 0
+    ready = 2
+  -> State: 1.191 <-
+    groups = 1
+  -> State: 1.192 <-
+    groups = 2
+  -> State: 1.193 <-
+    groups = 3
+  -> State: 1.194 <-
+    phase = aggregate
+  -> State: 1.195 <-
+    phase = validate
+  -> State: 1.196 <-
+    phase = select
+    groups = 0
+    ready = 3
+  -> State: 1.197 <-
+    phase = commit
+  -> State: 1.198 <-
+    phase = check
+    updates = 9
+  -> State: 1.199 <-
+    phase = start
+  -> State: 1.200 <-
+    phase = measure
+    ready = 0
+    epoch = FALSE
+  -> State: 1.201 <-
+    groups = 1
+  -> State: 1.202 <-
+    groups = 2
+  -> State: 1.203 <-
+    groups = 3
+  -> State: 1.204 <-
+    phase = aggregate
+  -> State: 1.205 <-
+    phase = validate
+  -> State: 1.206 <-
+    phase = measure
+    groups = 0
+    ready = 1
+    energy_epoch = FALSE
+  -> State: 1.207 <-
+    groups = 1
+  -> State: 1.208 <-
+    groups = 2
+  -> State: 1.209 <-
+    groups = 3
+  -> State: 1.210 <-
+    phase = aggregate
+  -> State: 1.211 <-
+    phase = validate
+  -> State: 1.212 <-
+    phase = measure
+    groups = 0
+    ready = 2
+  -> State: 1.213 <-
+    groups = 1
+  -> State: 1.214 <-
+    groups = 2
+  -> State: 1.215 <-
+    groups = 3
+  -> State: 1.216 <-
+    phase = aggregate
+  -> State: 1.217 <-
+    phase = validate
+  -> State: 1.218 <-
+    phase = select
+    groups = 0
+    ready = 3
+  -> State: 1.219 <-
+    phase = commit
+  -> State: 1.220 <-
+    phase = check
+    updates = 10
+  -> State: 1.221 <-
+    phase = start
+  -> State: 1.222 <-
+    phase = measure
+    ready = 0
+    epoch = TRUE
+  -> State: 1.223 <-
+    groups = 1
+  -> State: 1.224 <-
+    groups = 2
+  -> State: 1.225 <-
+    groups = 3
+  -> State: 1.226 <-
+    phase = aggregate
+  -> State: 1.227 <-
+    phase = validate
+  -> State: 1.228 <-
+    phase = measure
+    groups = 0
+    ready = 1
+    energy_epoch = TRUE
+  -> State: 1.229 <-
+    groups = 1
+  -> State: 1.230 <-
+    groups = 2
+  -> State: 1.231 <-
+    groups = 3
+  -> State: 1.232 <-
+    phase = aggregate
+  -> State: 1.233 <-
+    phase = validate
+  -> State: 1.234 <-
+    phase = measure
+    groups = 0
+    ready = 2
+  -> State: 1.235 <-
+    groups = 1
+  -> State: 1.236 <-
+    groups = 2
+  -> State: 1.237 <-
+    groups = 3
+  -> State: 1.238 <-
+    phase = aggregate
+  -> State: 1.239 <-
+    phase = validate
+  -> State: 1.240 <-
+    phase = select
+    groups = 0
+    ready = 3
+  -> State: 1.241 <-
+    phase = commit
+  -> State: 1.242 <-
+    phase = check
+    updates = 11
+  -> State: 1.243 <-
+    phase = start
+  -> State: 1.244 <-
+    phase = measure
+    ready = 0
+    epoch = FALSE
+  -> State: 1.245 <-
+    groups = 1
+  -> State: 1.246 <-
+    groups = 2
+  -> State: 1.247 <-
+    groups = 3
+  -> State: 1.248 <-
+    phase = aggregate
+  -> State: 1.249 <-
+    phase = validate
+  -> State: 1.250 <-
+    phase = measure
+    groups = 0
+    ready = 1
+    energy_epoch = FALSE
+  -> State: 1.251 <-
+    groups = 1
+  -> State: 1.252 <-
+    groups = 2
+  -> State: 1.253 <-
+    groups = 3
+  -> State: 1.254 <-
+    phase = aggregate
+  -> State: 1.255 <-
+    phase = validate
+  -> State: 1.256 <-
+    phase = measure
+    groups = 0
+    ready = 2
+  -> State: 1.257 <-
+    groups = 1
+  -> State: 1.258 <-
+    groups = 2
+  -> State: 1.259 <-
+    groups = 3
+  -> State: 1.260 <-
+    phase = aggregate
+  -> State: 1.261 <-
+    phase = validate
+  -> State: 1.262 <-
+    phase = select
+    groups = 0
+    ready = 3
+  -> State: 1.263 <-
+    phase = commit
+  -> State: 1.264 <-
+    phase = check
+    updates = 12
+  -> State: 1.265 <-
+    phase = start
+  -> State: 1.266 <-
+    phase = measure
+    ready = 0
+    epoch = TRUE
+  -> State: 1.267 <-
+    groups = 1
+  -> State: 1.268 <-
+    groups = 2
+  -> State: 1.269 <-
+    groups = 3
+  -> State: 1.270 <-
+    phase = aggregate
+  -> State: 1.271 <-
+    phase = validate
+  -> State: 1.272 <-
+    phase = measure
+    groups = 0
+    ready = 1
+    energy_epoch = TRUE
+  -> State: 1.273 <-
+    groups = 1
+  -> State: 1.274 <-
+    groups = 2
+  -> State: 1.275 <-
+    groups = 3
+  -> State: 1.276 <-
+    phase = aggregate
+  -> State: 1.277 <-
+    phase = validate
+  -> State: 1.278 <-
+    phase = measure
+    groups = 0
+    ready = 2
+  -> State: 1.279 <-
+    groups = 1
+  -> State: 1.280 <-
+    groups = 2
+  -> State: 1.281 <-
+    groups = 3
+  -> State: 1.282 <-
+    phase = aggregate
+  -> State: 1.283 <-
+    phase = validate
+  -> State: 1.284 <-
+    phase = select
+    groups = 0
+    ready = 3
+  -> State: 1.285 <-
+    phase = commit
+  -> State: 1.286 <-
+    phase = check
+    updates = 13
+  -> State: 1.287 <-
+    phase = start
+  -> State: 1.288 <-
+    phase = measure
+    ready = 0
+    epoch = FALSE
+  -> State: 1.289 <-
+    groups = 1
+  -> State: 1.290 <-
+    groups = 2
+  -> State: 1.291 <-
+    groups = 3
+  -> State: 1.292 <-
+    phase = aggregate
+  -> State: 1.293 <-
+    phase = validate
+  -> State: 1.294 <-
+    phase = measure
+    groups = 0
+    ready = 1
+    energy_epoch = FALSE
+  -> State: 1.295 <-
+    groups = 1
+  -> State: 1.296 <-
+    groups = 2
+  -> State: 1.297 <-
+    groups = 3
+  -> State: 1.298 <-
+    phase = aggregate
+  -> State: 1.299 <-
+    phase = validate
+  -> State: 1.300 <-
+    phase = measure
+    groups = 0
+    ready = 2
+  -> State: 1.301 <-
+    groups = 1
+  -> State: 1.302 <-
+    groups = 2
+  -> State: 1.303 <-
+    groups = 3
+  -> State: 1.304 <-
+    phase = aggregate
+  -> State: 1.305 <-
+    phase = validate
+  -> State: 1.306 <-
+    phase = select
+    groups = 0
+    ready = 3
+  -> State: 1.307 <-
+    phase = commit
+  -> State: 1.308 <-
+    phase = check
+    updates = 14
+  -> State: 1.309 <-
+    phase = start
+  -> State: 1.310 <-
+    phase = measure
+    ready = 0
+    epoch = TRUE
+  -> State: 1.311 <-
+    groups = 1
+  -> State: 1.312 <-
+    groups = 2
+  -> State: 1.313 <-
+    groups = 3
+  -> State: 1.314 <-
+    phase = aggregate
+  -> State: 1.315 <-
+    phase = validate
+  -> State: 1.316 <-
+    phase = measure
+    groups = 0
+    ready = 1
+    energy_epoch = TRUE
+  -> State: 1.317 <-
+    groups = 1
+  -> State: 1.318 <-
+    groups = 2
+  -> State: 1.319 <-
+    groups = 3
+  -> State: 1.320 <-
+    phase = aggregate
+  -> State: 1.321 <-
+    phase = validate
+  -> State: 1.322 <-
+    phase = measure
+    groups = 0
+    ready = 2
+  -> State: 1.323 <-
+    groups = 1
+  -> State: 1.324 <-
+    groups = 2
+  -> State: 1.325 <-
+    groups = 3
+  -> State: 1.326 <-
+    phase = aggregate
+  -> State: 1.327 <-
+    phase = validate
+  -> State: 1.328 <-
+    phase = select
+    groups = 0
+    ready = 3
+  -> State: 1.329 <-
+    phase = commit
+  -> State: 1.330 <-
+    phase = check
+    updates = 15
+  -> State: 1.331 <-
+    phase = start
+  -> State: 1.332 <-
+    phase = measure
+    ready = 0
+    epoch = FALSE
+  -> State: 1.333 <-
+    groups = 1
+  -> State: 1.334 <-
+    groups = 2
+  -> State: 1.335 <-
+    groups = 3
+  -> State: 1.336 <-
+    phase = aggregate
+  -> State: 1.337 <-
+    phase = validate
+  -> State: 1.338 <-
+    phase = measure
+    groups = 0
+    ready = 1
+    energy_epoch = FALSE
+  -> State: 1.339 <-
+    groups = 1
+  -> State: 1.340 <-
+    groups = 2
+  -> State: 1.341 <-
+    groups = 3
+  -> State: 1.342 <-
+    phase = aggregate
+  -> State: 1.343 <-
+    phase = validate
+  -> State: 1.344 <-
+    phase = measure
+    groups = 0
+    ready = 2
+  -> State: 1.345 <-
+    groups = 1
+  -> State: 1.346 <-
+    groups = 2
+  -> State: 1.347 <-
+    groups = 3
+  -> State: 1.348 <-
+    phase = aggregate
+  -> State: 1.349 <-
+    phase = validate
+  -> State: 1.350 <-
+    phase = select
+    groups = 0
+    ready = 3
+  -> State: 1.351 <-
+    phase = commit
+  -> State: 1.352 <-
+    phase = check
+    updates = 16
+  -> State: 1.353 <-
+    phase = start
+  -> State: 1.354 <-
+    phase = measure
+    ready = 0
+    epoch = TRUE
+  -> State: 1.355 <-
+    groups = 1
+  -> State: 1.356 <-
+    groups = 2
+  -> State: 1.357 <-
+    groups = 3
+  -> State: 1.358 <-
+    phase = aggregate
+  -> State: 1.359 <-
+    phase = validate
+  -> State: 1.360 <-
+    phase = measure
+    groups = 0
+    ready = 1
+    energy_epoch = TRUE
+  -> State: 1.361 <-
+    groups = 1
+  -> State: 1.362 <-
+    groups = 2
+  -> State: 1.363 <-
+    groups = 3
+  -> State: 1.364 <-
+    phase = aggregate
+  -> State: 1.365 <-
+    phase = validate
+  -> State: 1.366 <-
+    phase = measure
+    groups = 0
+    ready = 2
+  -> State: 1.367 <-
+    groups = 1
+  -> State: 1.368 <-
+    groups = 2
+  -> State: 1.369 <-
+    groups = 3
+  -> State: 1.370 <-
+    phase = aggregate
+  -> State: 1.371 <-
+    phase = validate
+  -> State: 1.372 <-
+    phase = select
+    groups = 0
+    ready = 3
+  -> State: 1.373 <-
+    phase = commit
+  -> State: 1.374 <-
+    phase = check
+    updates = 17
+  -> State: 1.375 <-
+    phase = start
+  -> State: 1.376 <-
+    phase = measure
+    ready = 0
+    epoch = FALSE
+  -> State: 1.377 <-
+    groups = 1
+  -> State: 1.378 <-
+    groups = 2
+  -> State: 1.379 <-
+    groups = 3
+  -> State: 1.380 <-
+    phase = aggregate
+  -> State: 1.381 <-
+    phase = validate
+  -> State: 1.382 <-
+    phase = measure
+    groups = 0
+    ready = 1
+    energy_epoch = FALSE
+  -> State: 1.383 <-
+    groups = 1
+  -> State: 1.384 <-
+    groups = 2
+  -> State: 1.385 <-
+    groups = 3
+  -> State: 1.386 <-
+    phase = aggregate
+  -> State: 1.387 <-
+    phase = validate
+  -> State: 1.388 <-
+    phase = measure
+    groups = 0
+    ready = 2
+  -> State: 1.389 <-
+    groups = 1
+  -> State: 1.390 <-
+    groups = 2
+  -> State: 1.391 <-
+    groups = 3
+  -> State: 1.392 <-
+    phase = aggregate
+  -> State: 1.393 <-
+    phase = validate
+  -> State: 1.394 <-
+    phase = select
+    groups = 0
+    ready = 3
+  -> State: 1.395 <-
+    phase = commit
+  -> State: 1.396 <-
+    phase = check
+    updates = 18
+  -> State: 1.397 <-
+    phase = start
+  -> State: 1.398 <-
+    phase = measure
+    ready = 0
+    epoch = TRUE
+  -> State: 1.399 <-
+    groups = 1
+  -> State: 1.400 <-
+    groups = 2
+  -> State: 1.401 <-
+    groups = 3
+  -> State: 1.402 <-
+    phase = aggregate
+  -> State: 1.403 <-
+    phase = validate
+  -> State: 1.404 <-
+    phase = measure
+    groups = 0
+    ready = 1
+    energy_epoch = TRUE
+  -> State: 1.405 <-
+    groups = 1
+  -> State: 1.406 <-
+    groups = 2
+  -> State: 1.407 <-
+    groups = 3
+  -> State: 1.408 <-
+    phase = aggregate
+  -> State: 1.409 <-
+    phase = validate
+  -> State: 1.410 <-
+    phase = measure
+    groups = 0
+    ready = 2
+  -> State: 1.411 <-
+    groups = 1
+  -> State: 1.412 <-
+    groups = 2
+  -> State: 1.413 <-
+    groups = 3
+  -> State: 1.414 <-
+    phase = aggregate
+  -> State: 1.415 <-
+    phase = validate
+  -> State: 1.416 <-
+    phase = select
+    groups = 0
+    ready = 3
+  -> State: 1.417 <-
+    phase = commit
+  -> State: 1.418 <-
+    phase = check
+    updates = 19
+  -> State: 1.419 <-
+    phase = start
+  -> State: 1.420 <-
+    phase = measure
+    ready = 0
+    epoch = FALSE
+  -> State: 1.421 <-
+    groups = 1
+  -> State: 1.422 <-
+    groups = 2
+  -> State: 1.423 <-
+    groups = 3
+  -> State: 1.424 <-
+    phase = aggregate
+  -> State: 1.425 <-
+    phase = validate
+  -> State: 1.426 <-
+    phase = measure
+    groups = 0
+    ready = 1
+    energy_epoch = FALSE
+  -> State: 1.427 <-
+    groups = 1
+  -> State: 1.428 <-
+    groups = 2
+  -> State: 1.429 <-
+    groups = 3
+  -> State: 1.430 <-
+    phase = aggregate
+  -> State: 1.431 <-
+    phase = validate
+  -> State: 1.432 <-
+    phase = measure
+    groups = 0
+    ready = 2
+  -> State: 1.433 <-
+    groups = 1
+  -> State: 1.434 <-
+    groups = 2
+  -> State: 1.435 <-
+    groups = 3
+  -> State: 1.436 <-
+    phase = aggregate
+  -> State: 1.437 <-
+    phase = validate
+  -> State: 1.438 <-
+    phase = select
+    groups = 0
+    ready = 3
+  -> State: 1.439 <-
+    phase = commit
+  -> State: 1.440 <-
+    phase = check
+    updates = 20
+  -> State: 1.441 <-
+    phase = start
+  -> State: 1.442 <-
+    phase = measure
+    ready = 0
+    epoch = TRUE
+  -> State: 1.443 <-
+    groups = 1
+  -> State: 1.444 <-
+    groups = 2
+  -> State: 1.445 <-
+    groups = 3
+  -> State: 1.446 <-
+    phase = aggregate
+  -> State: 1.447 <-
+    phase = validate
+  -> State: 1.448 <-
+    phase = measure
+    groups = 0
+    ready = 1
+    energy_epoch = TRUE
+  -> State: 1.449 <-
+    groups = 1
+  -> State: 1.450 <-
+    groups = 2
+  -> State: 1.451 <-
+    groups = 3
+  -> State: 1.452 <-
+    phase = aggregate
+  -> State: 1.453 <-
+    phase = validate
+  -> State: 1.454 <-
+    phase = measure
+    groups = 0
+    ready = 2
+  -> State: 1.455 <-
+    groups = 1
+  -> State: 1.456 <-
+    groups = 2
+  -> State: 1.457 <-
+    groups = 3
+  -> State: 1.458 <-
+    phase = aggregate
+  -> State: 1.459 <-
+    phase = validate
+  -> State: 1.460 <-
+    phase = select
+    groups = 0
+    ready = 3
+  -> State: 1.461 <-
+    phase = commit
+  -> State: 1.462 <-
+    phase = check
+    updates = 21
+  -> State: 1.463 <-
+    phase = start
+  -> State: 1.464 <-
+    phase = measure
+    ready = 0
+    epoch = FALSE
+  -> State: 1.465 <-
+    groups = 1
+  -> State: 1.466 <-
+    groups = 2
+  -> State: 1.467 <-
+    groups = 3
+  -> State: 1.468 <-
+    phase = aggregate
+  -> State: 1.469 <-
+    phase = validate
+  -> State: 1.470 <-
+    phase = measure
+    groups = 0
+    ready = 1
+    energy_epoch = FALSE
+  -> State: 1.471 <-
+    groups = 1
+  -> State: 1.472 <-
+    groups = 2
+  -> State: 1.473 <-
+    groups = 3
+  -> State: 1.474 <-
+    phase = aggregate
+  -> State: 1.475 <-
+    phase = validate
+  -> State: 1.476 <-
+    phase = measure
+    groups = 0
+    ready = 2
+  -> State: 1.477 <-
+    groups = 1
+  -> State: 1.478 <-
+    groups = 2
+  -> State: 1.479 <-
+    groups = 3
+  -> State: 1.480 <-
+    phase = aggregate
+  -> State: 1.481 <-
+    phase = validate
+  -> State: 1.482 <-
+    phase = select
+    groups = 0
+    ready = 3
+  -> State: 1.483 <-
+    phase = commit
+  -> State: 1.484 <-
+    phase = check
+    updates = 22
+  -> State: 1.485 <-
+    phase = start
+  -> State: 1.486 <-
+    phase = measure
+    ready = 0
+    epoch = TRUE
+  -> State: 1.487 <-
+    groups = 1
+  -> State: 1.488 <-
+    groups = 2
+  -> State: 1.489 <-
+    groups = 3
+  -> State: 1.490 <-
+    phase = aggregate
+  -> State: 1.491 <-
+    phase = validate
+  -> State: 1.492 <-
+    phase = measure
+    groups = 0
+    ready = 1
+    energy_epoch = TRUE
+  -> State: 1.493 <-
+    groups = 1
+  -> State: 1.494 <-
+    groups = 2
+  -> State: 1.495 <-
+    groups = 3
+  -> State: 1.496 <-
+    phase = aggregate
+  -> State: 1.497 <-
+    phase = validate
+  -> State: 1.498 <-
+    phase = measure
+    groups = 0
+    ready = 2
+  -> State: 1.499 <-
+    groups = 1
+  -> State: 1.500 <-
+    groups = 2
+  -> State: 1.501 <-
+    groups = 3
+  -> State: 1.502 <-
+    phase = aggregate
+  -> State: 1.503 <-
+    phase = validate
+  -> State: 1.504 <-
+    phase = select
+    groups = 0
+    ready = 3
+  -> State: 1.505 <-
+    phase = commit
+  -> State: 1.506 <-
+    phase = check
+    updates = 23
+  -> State: 1.507 <-
+    phase = start
+  -> State: 1.508 <-
+    phase = measure
+    ready = 0
+    epoch = FALSE
+  -> State: 1.509 <-
+    groups = 1
+  -> State: 1.510 <-
+    groups = 2
+  -> State: 1.511 <-
+    groups = 3
+  -> State: 1.512 <-
+    phase = aggregate
+  -> State: 1.513 <-
+    phase = validate
+  -> State: 1.514 <-
+    phase = measure
+    groups = 0
+    ready = 1
+    energy_epoch = FALSE
+  -> State: 1.515 <-
+    groups = 1
+  -> State: 1.516 <-
+    groups = 2
+  -> State: 1.517 <-
+    groups = 3
+  -> State: 1.518 <-
+    phase = aggregate
+  -> State: 1.519 <-
+    phase = validate
+  -> State: 1.520 <-
+    phase = measure
+    groups = 0
+    ready = 2
+  -> State: 1.521 <-
+    groups = 1
+  -> State: 1.522 <-
+    groups = 2
+  -> State: 1.523 <-
+    groups = 3
+  -> State: 1.524 <-
+    phase = aggregate
+  -> State: 1.525 <-
+    phase = validate
+  -> State: 1.526 <-
+    phase = select
+    groups = 0
+    ready = 3
+  -> State: 1.527 <-
+    phase = commit
+  -> State: 1.528 <-
+    phase = check
+    updates = 24
+  -> State: 1.529 <-
+    phase = start
+  -> State: 1.530 <-
+    phase = measure
+    ready = 0
+    epoch = TRUE
+  -> State: 1.531 <-
+    groups = 1
+  -> State: 1.532 <-
+    groups = 2
+  -> State: 1.533 <-
+    groups = 3
+  -> State: 1.534 <-
+    phase = aggregate
+  -> State: 1.535 <-
+    phase = validate
+  -> State: 1.536 <-
+    phase = measure
+    groups = 0
+    ready = 1
+    energy_epoch = TRUE
+  -> State: 1.537 <-
+    groups = 1
+  -> State: 1.538 <-
+    groups = 2
+  -> State: 1.539 <-
+    groups = 3
+  -> State: 1.540 <-
+    phase = aggregate
+  -> State: 1.541 <-
+    phase = validate
+  -> State: 1.542 <-
+    phase = measure
+    groups = 0
+    ready = 2
+  -> State: 1.543 <-
+    groups = 1
+  -> State: 1.544 <-
+    groups = 2
+  -> State: 1.545 <-
+    groups = 3
+  -> State: 1.546 <-
+    phase = aggregate
+  -> State: 1.547 <-
+    phase = validate
+  -> State: 1.548 <-
+    phase = select
+    groups = 0
+    ready = 3
+  -> State: 1.549 <-
+    phase = commit
+  -> State: 1.550 <-
+    phase = check
+    updates = 25
+  -> State: 1.551 <-
+    phase = start
+  -> State: 1.552 <-
+    phase = measure
+    ready = 0
+    epoch = FALSE
+  -> State: 1.553 <-
+    groups = 1
+  -> State: 1.554 <-
+    groups = 2
+  -> State: 1.555 <-
+    groups = 3
+  -> State: 1.556 <-
+    phase = aggregate
+  -> State: 1.557 <-
+    phase = validate
+  -> State: 1.558 <-
+    phase = measure
+    groups = 0
+    ready = 1
+    energy_epoch = FALSE
+  -> State: 1.559 <-
+    groups = 1
+  -> State: 1.560 <-
+    groups = 2
+  -> State: 1.561 <-
+    groups = 3
+  -> State: 1.562 <-
+    phase = aggregate
+  -> State: 1.563 <-
+    phase = validate
+  -> State: 1.564 <-
+    phase = measure
+    groups = 0
+    ready = 2
+  -> State: 1.565 <-
+    groups = 1
+  -> State: 1.566 <-
+    groups = 2
+  -> State: 1.567 <-
+    groups = 3
+  -> State: 1.568 <-
+    phase = aggregate
+  -> State: 1.569 <-
+    phase = validate
+  -> State: 1.570 <-
+    phase = select
+    groups = 0
+    ready = 3
+  -> State: 1.571 <-
+    phase = commit
+  -> State: 1.572 <-
+    phase = check
+    updates = 26
+  -> State: 1.573 <-
+    phase = start
+  -> State: 1.574 <-
+    phase = measure
+    ready = 0
+    epoch = TRUE
+  -> State: 1.575 <-
+    groups = 1
+  -> State: 1.576 <-
+    groups = 2
+  -> State: 1.577 <-
+    groups = 3
+  -> State: 1.578 <-
+    phase = aggregate
+  -> State: 1.579 <-
+    phase = validate
+  -> State: 1.580 <-
+    phase = measure
+    groups = 0
+    ready = 1
+    energy_epoch = TRUE
+  -> State: 1.581 <-
+    groups = 1
+  -> State: 1.582 <-
+    groups = 2
+  -> State: 1.583 <-
+    groups = 3
+  -> State: 1.584 <-
+    phase = aggregate
+  -> State: 1.585 <-
+    phase = validate
+  -> State: 1.586 <-
+    phase = measure
+    groups = 0
+    ready = 2
+  -> State: 1.587 <-
+    groups = 1
+  -> State: 1.588 <-
+    groups = 2
+  -> State: 1.589 <-
+    groups = 3
+  -> State: 1.590 <-
+    phase = aggregate
+  -> State: 1.591 <-
+    phase = validate
+  -> State: 1.592 <-
+    phase = select
+    groups = 0
+    ready = 3
+  -> State: 1.593 <-
+    phase = commit
+  -> State: 1.594 <-
+    phase = check
+    updates = 27
+  -> State: 1.595 <-
+    phase = start
+  -> State: 1.596 <-
+    phase = measure
+    ready = 0
+    epoch = FALSE
+  -> State: 1.597 <-
+    groups = 1
+  -> State: 1.598 <-
+    groups = 2
+  -> State: 1.599 <-
+    groups = 3
+  -> State: 1.600 <-
+    phase = aggregate
+  -> State: 1.601 <-
+    phase = validate
+  -> State: 1.602 <-
+    phase = measure
+    groups = 0
+    ready = 1
+    energy_epoch = FALSE
+  -> State: 1.603 <-
+    groups = 1
+  -> State: 1.604 <-
+    groups = 2
+  -> State: 1.605 <-
+    groups = 3
+  -> State: 1.606 <-
+    phase = aggregate
+  -> State: 1.607 <-
+    phase = validate
+  -> State: 1.608 <-
+    phase = measure
+    groups = 0
+    ready = 2
+  -> State: 1.609 <-
+    groups = 1
+  -> State: 1.610 <-
+    groups = 2
+  -> State: 1.611 <-
+    groups = 3
+  -> State: 1.612 <-
+    phase = aggregate
+  -> State: 1.613 <-
+    phase = validate
+  -> State: 1.614 <-
+    phase = select
+    groups = 0
+    ready = 3
+  -> State: 1.615 <-
+    phase = commit
+  -> State: 1.616 <-
+    phase = check
+    updates = 28
+  -> State: 1.617 <-
+    phase = start
+  -> State: 1.618 <-
+    phase = measure
+    ready = 0
+    epoch = TRUE
+  -> State: 1.619 <-
+    groups = 1
+  -> State: 1.620 <-
+    groups = 2
+  -> State: 1.621 <-
+    groups = 3
+  -> State: 1.622 <-
+    phase = aggregate
+  -> State: 1.623 <-
+    phase = validate
+  -> State: 1.624 <-
+    phase = measure
+    groups = 0
+    ready = 1
+    energy_epoch = TRUE
+  -> State: 1.625 <-
+    groups = 1
+  -> State: 1.626 <-
+    groups = 2
+  -> State: 1.627 <-
+    groups = 3
+  -> State: 1.628 <-
+    phase = aggregate
+  -> State: 1.629 <-
+    phase = validate
+  -> State: 1.630 <-
+    phase = measure
+    groups = 0
+    ready = 2
+  -> State: 1.631 <-
+    groups = 1
+  -> State: 1.632 <-
+    groups = 2
+  -> State: 1.633 <-
+    groups = 3
+  -> State: 1.634 <-
+    phase = aggregate
+  -> State: 1.635 <-
+    phase = validate
+  -> State: 1.636 <-
+    phase = select
+    groups = 0
+    ready = 3
+  -> State: 1.637 <-
+    phase = commit
+  -> State: 1.638 <-
+    phase = check
+    updates = 29
+  -> State: 1.639 <-
+    phase = start
+  -> State: 1.640 <-
+    phase = measure
+    ready = 0
+    epoch = FALSE
+  -> State: 1.641 <-
+    groups = 1
+  -> State: 1.642 <-
+    groups = 2
+  -> State: 1.643 <-
+    groups = 3
+  -> State: 1.644 <-
+    phase = aggregate
+  -> State: 1.645 <-
+    phase = validate
+  -> State: 1.646 <-
+    phase = measure
+    groups = 0
+    ready = 1
+    energy_epoch = FALSE
+  -> State: 1.647 <-
+    groups = 1
+  -> State: 1.648 <-
+    groups = 2
+  -> State: 1.649 <-
+    groups = 3
+  -> State: 1.650 <-
+    phase = aggregate
+  -> State: 1.651 <-
+    phase = validate
+  -> State: 1.652 <-
+    phase = measure
+    groups = 0
+    ready = 2
+  -> State: 1.653 <-
+    groups = 1
+  -> State: 1.654 <-
+    groups = 2
+  -> State: 1.655 <-
+    groups = 3
+  -> State: 1.656 <-
+    phase = aggregate
+  -> State: 1.657 <-
+    phase = validate
+  -> State: 1.658 <-
+    phase = select
+    groups = 0
+    ready = 3
+  -> State: 1.659 <-
+    phase = commit
+  -> State: 1.660 <-
+    phase = check
+    updates = 30
+  -> State: 1.661 <-
+    phase = start
+  -> State: 1.662 <-
+    phase = measure
+    ready = 0
+    epoch = TRUE
+  -> State: 1.663 <-
+    groups = 1
+  -> State: 1.664 <-
+    groups = 2
+  -> State: 1.665 <-
+    groups = 3
+  -> State: 1.666 <-
+    phase = aggregate
+  -> State: 1.667 <-
+    phase = validate
+  -> State: 1.668 <-
+    phase = measure
+    groups = 0
+    ready = 1
+    energy_epoch = TRUE
+  -> State: 1.669 <-
+    groups = 1
+  -> State: 1.670 <-
+    groups = 2
+  -> State: 1.671 <-
+    groups = 3
+  -> State: 1.672 <-
+    phase = aggregate
+  -> State: 1.673 <-
+    phase = validate
+  -> State: 1.674 <-
+    phase = measure
+    groups = 0
+    ready = 2
+  -> State: 1.675 <-
+    groups = 1
+  -> State: 1.676 <-
+    groups = 2
+  -> State: 1.677 <-
+    groups = 3
+  -> State: 1.678 <-
+    phase = aggregate
+  -> State: 1.679 <-
+    phase = validate
+  -> State: 1.680 <-
+    phase = select
+    groups = 0
+    ready = 3
+  -> State: 1.681 <-
+    phase = commit
+  -> State: 1.682 <-
+    phase = check
+    updates = 31
+  -> State: 1.683 <-
+    phase = start
+  -> State: 1.684 <-
+    phase = measure
+    ready = 0
+    epoch = FALSE
+  -> State: 1.685 <-
+    groups = 1
+  -> State: 1.686 <-
+    groups = 2
+  -> State: 1.687 <-
+    groups = 3
+  -> State: 1.688 <-
+    phase = aggregate
+  -> State: 1.689 <-
+    phase = validate
+  -> State: 1.690 <-
+    phase = measure
+    groups = 0
+    ready = 1
+    energy_epoch = FALSE
+  -> State: 1.691 <-
+    groups = 1
+  -> State: 1.692 <-
+    groups = 2
+  -> State: 1.693 <-
+    groups = 3
+  -> State: 1.694 <-
+    phase = aggregate
+  -> State: 1.695 <-
+    phase = validate
+  -> State: 1.696 <-
+    phase = measure
+    groups = 0
+    ready = 2
+  -> State: 1.697 <-
+    groups = 1
+  -> State: 1.698 <-
+    groups = 2
+  -> State: 1.699 <-
+    groups = 3
+  -> State: 1.700 <-
+    phase = aggregate
+  -> State: 1.701 <-
+    phase = validate
+  -> State: 1.702 <-
+    phase = select
+    groups = 0
+    ready = 3
+  -> State: 1.703 <-
+    phase = commit
+  -> State: 1.704 <-
+    phase = check
+    updates = 32
+  -> State: 1.705 <-
+    phase = start
+  -> State: 1.706 <-
+    phase = measure
+    ready = 0
+    epoch = TRUE
+  -> State: 1.707 <-
+    groups = 1
+  -> State: 1.708 <-
+    groups = 2
+  -> State: 1.709 <-
+    groups = 3
+  -> State: 1.710 <-
+    phase = aggregate
+  -> State: 1.711 <-
+    phase = validate
+  -> State: 1.712 <-
+    phase = measure
+    groups = 0
+    ready = 1
+    energy_epoch = TRUE
+  -> State: 1.713 <-
+    groups = 1
+  -> State: 1.714 <-
+    groups = 2
+  -> State: 1.715 <-
+    groups = 3
+  -> State: 1.716 <-
+    phase = aggregate
+  -> State: 1.717 <-
+    phase = validate
+  -> State: 1.718 <-
+    phase = measure
+    groups = 0
+    ready = 2
+  -> State: 1.719 <-
+    groups = 1
+  -> State: 1.720 <-
+    groups = 2
+  -> State: 1.721 <-
+    groups = 3
+  -> State: 1.722 <-
+    phase = aggregate
+  -> State: 1.723 <-
+    phase = validate
+  -> State: 1.724 <-
+    phase = select
+    groups = 0
+    ready = 3
+  -> State: 1.725 <-
+    phase = commit
+  -> State: 1.726 <-
+    phase = check
+    updates = 33
+  -> State: 1.727 <-
+    phase = start
+  -> State: 1.728 <-
+    phase = measure
+    ready = 0
+    epoch = FALSE
+  -> State: 1.729 <-
+    groups = 1
+  -> State: 1.730 <-
+    groups = 2
+  -> State: 1.731 <-
+    groups = 3
+  -> State: 1.732 <-
+    phase = aggregate
+  -> State: 1.733 <-
+    phase = validate
+  -> State: 1.734 <-
+    phase = measure
+    groups = 0
+    ready = 1
+    energy_epoch = FALSE
+  -> State: 1.735 <-
+    groups = 1
+  -> State: 1.736 <-
+    groups = 2
+  -> State: 1.737 <-
+    groups = 3
+  -> State: 1.738 <-
+    phase = aggregate
+  -> State: 1.739 <-
+    phase = validate
+  -> State: 1.740 <-
+    phase = measure
+    groups = 0
+    ready = 2
+  -> State: 1.741 <-
+    groups = 1
+  -> State: 1.742 <-
+    groups = 2
+  -> State: 1.743 <-
+    groups = 3
+  -> State: 1.744 <-
+    phase = aggregate
+  -> State: 1.745 <-
+    phase = validate
+  -> State: 1.746 <-
+    phase = select
+    groups = 0
+    ready = 3
+  -> State: 1.747 <-
+    phase = commit
+  -> State: 1.748 <-
+    phase = check
+    updates = 34
+  -> State: 1.749 <-
+    phase = start
+  -> State: 1.750 <-
+    phase = measure
+    ready = 0
+    epoch = TRUE
+  -> State: 1.751 <-
+    groups = 1
+  -> State: 1.752 <-
+    groups = 2
+  -> State: 1.753 <-
+    groups = 3
+  -> State: 1.754 <-
+    phase = aggregate
+  -> State: 1.755 <-
+    phase = validate
+  -> State: 1.756 <-
+    phase = measure
+    groups = 0
+    ready = 1
+    energy_epoch = TRUE
+  -> State: 1.757 <-
+    groups = 1
+  -> State: 1.758 <-
+    groups = 2
+  -> State: 1.759 <-
+    groups = 3
+  -> State: 1.760 <-
+    phase = aggregate
+  -> State: 1.761 <-
+    phase = validate
+  -> State: 1.762 <-
+    phase = measure
+    groups = 0
+    ready = 2
+  -> State: 1.763 <-
+    groups = 1
+  -> State: 1.764 <-
+    groups = 2
+  -> State: 1.765 <-
+    groups = 3
+  -> State: 1.766 <-
+    phase = aggregate
+  -> State: 1.767 <-
+    phase = validate
+  -> State: 1.768 <-
+    phase = select
+    groups = 0
+    ready = 3
+  -> State: 1.769 <-
+    phase = commit
+  -> State: 1.770 <-
+    phase = check
+    updates = 35
+  -> State: 1.771 <-
+    phase = start
+  -> State: 1.772 <-
+    phase = measure
+    ready = 0
+    epoch = FALSE
+  -> State: 1.773 <-
+    groups = 1
+  -> State: 1.774 <-
+    groups = 2
+  -> State: 1.775 <-
+    groups = 3
+  -> State: 1.776 <-
+    phase = aggregate
+  -> State: 1.777 <-
+    phase = validate
+  -> State: 1.778 <-
+    phase = measure
+    groups = 0
+    ready = 1
+    energy_epoch = FALSE
+  -> State: 1.779 <-
+    groups = 1
+  -> State: 1.780 <-
+    groups = 2
+  -> State: 1.781 <-
+    groups = 3
+  -> State: 1.782 <-
+    phase = aggregate
+  -> State: 1.783 <-
+    phase = validate
+  -> State: 1.784 <-
+    phase = measure
+    groups = 0
+    ready = 2
+  -> State: 1.785 <-
+    groups = 1
+  -> State: 1.786 <-
+    groups = 2
+  -> State: 1.787 <-
+    groups = 3
+  -> State: 1.788 <-
+    phase = aggregate
+  -> State: 1.789 <-
+    phase = validate
+  -> State: 1.790 <-
+    phase = select
+    groups = 0
+    ready = 3
+  -> State: 1.791 <-
+    phase = commit
+  -> State: 1.792 <-
+    phase = check
+    updates = 36
+  -> State: 1.793 <-
+    phase = start
+  -> State: 1.794 <-
+    phase = measure
+    ready = 0
+    epoch = TRUE
+  -> State: 1.795 <-
+    groups = 1
+  -> State: 1.796 <-
+    groups = 2
+  -> State: 1.797 <-
+    groups = 3
+  -> State: 1.798 <-
+    phase = aggregate
+  -> State: 1.799 <-
+    phase = validate
+  -> State: 1.800 <-
+    phase = measure
+    groups = 0
+    ready = 1
+    energy_epoch = TRUE
+  -> State: 1.801 <-
+    groups = 1
+  -> State: 1.802 <-
+    groups = 2
+  -> State: 1.803 <-
+    groups = 3
+  -> State: 1.804 <-
+    phase = aggregate
+  -> State: 1.805 <-
+    phase = validate
+  -> State: 1.806 <-
+    phase = measure
+    groups = 0
+    ready = 2
+  -> State: 1.807 <-
+    groups = 1
+  -> State: 1.808 <-
+    groups = 2
+  -> State: 1.809 <-
+    groups = 3
+  -> State: 1.810 <-
+    phase = aggregate
+  -> State: 1.811 <-
+    phase = validate
+  -> State: 1.812 <-
+    phase = select
+    groups = 0
+    ready = 3
+  -> State: 1.813 <-
+    phase = commit
+  -> State: 1.814 <-
+    phase = check
+    updates = 37
+  -> State: 1.815 <-
+    phase = start
+  -> State: 1.816 <-
+    phase = measure
+    ready = 0
+    epoch = FALSE
+  -> State: 1.817 <-
+    groups = 1
+  -> State: 1.818 <-
+    groups = 2
+  -> State: 1.819 <-
+    groups = 3
+  -> State: 1.820 <-
+    phase = aggregate
+  -> State: 1.821 <-
+    phase = validate
+  -> State: 1.822 <-
+    phase = measure
+    groups = 0
+    ready = 1
+    energy_epoch = FALSE
+  -> State: 1.823 <-
+    groups = 1
+  -> State: 1.824 <-
+    groups = 2
+  -> State: 1.825 <-
+    groups = 3
+  -> State: 1.826 <-
+    phase = aggregate
+  -> State: 1.827 <-
+    phase = validate
+  -> State: 1.828 <-
+    phase = measure
+    groups = 0
+    ready = 2
+  -> State: 1.829 <-
+    groups = 1
+  -> State: 1.830 <-
+    groups = 2
+  -> State: 1.831 <-
+    groups = 3
+  -> State: 1.832 <-
+    phase = aggregate
+  -> State: 1.833 <-
+    phase = validate
+  -> State: 1.834 <-
+    phase = select
+    groups = 0
+    ready = 3
+  -> State: 1.835 <-
+    phase = commit
+  -> State: 1.836 <-
+    phase = check
+    updates = 38
+  -> State: 1.837 <-
+    phase = start
+  -> State: 1.838 <-
+    phase = measure
+    ready = 0
+    epoch = TRUE
+  -> State: 1.839 <-
+    groups = 1
+  -> State: 1.840 <-
+    groups = 2
+  -> State: 1.841 <-
+    groups = 3
+  -> State: 1.842 <-
+    phase = aggregate
+  -> State: 1.843 <-
+    phase = validate
+  -> State: 1.844 <-
+    phase = measure
+    groups = 0
+    ready = 1
+    energy_epoch = TRUE
+  -> State: 1.845 <-
+    groups = 1
+  -> State: 1.846 <-
+    groups = 2
+  -> State: 1.847 <-
+    groups = 3
+  -> State: 1.848 <-
+    phase = aggregate
+  -> State: 1.849 <-
+    phase = validate
+  -> State: 1.850 <-
+    phase = measure
+    groups = 0
+    ready = 2
+  -> State: 1.851 <-
+    groups = 1
+  -> State: 1.852 <-
+    groups = 2
+  -> State: 1.853 <-
+    groups = 3
+  -> State: 1.854 <-
+    phase = aggregate
+  -> State: 1.855 <-
+    phase = validate
+  -> State: 1.856 <-
+    phase = select
+    groups = 0
+    ready = 3
+  -> State: 1.857 <-
+    phase = commit
+  -> State: 1.858 <-
+    phase = check
+    updates = 39
+  -> State: 1.859 <-
+    phase = start
+  -> State: 1.860 <-
+    phase = measure
+    ready = 0
+    epoch = FALSE
+  -> State: 1.861 <-
+    groups = 1
+  -> State: 1.862 <-
+    groups = 2
+  -> State: 1.863 <-
+    groups = 3
+  -> State: 1.864 <-
+    phase = aggregate
+  -> State: 1.865 <-
+    phase = validate
+  -> State: 1.866 <-
+    phase = measure
+    groups = 0
+    ready = 1
+    energy_epoch = FALSE
+  -> State: 1.867 <-
+    groups = 1
+  -> State: 1.868 <-
+    groups = 2
+  -> State: 1.869 <-
+    groups = 3
+  -> State: 1.870 <-
+    phase = aggregate
+  -> State: 1.871 <-
+    phase = validate
+  -> State: 1.872 <-
+    phase = measure
+    groups = 0
+    ready = 2
+  -> State: 1.873 <-
+    groups = 1
+  -> State: 1.874 <-
+    groups = 2
+  -> State: 1.875 <-
+    groups = 3
+  -> State: 1.876 <-
+    phase = aggregate
+  -> State: 1.877 <-
+    phase = validate
+  -> State: 1.878 <-
+    phase = select
+    groups = 0
+    ready = 3
+  -> State: 1.879 <-
+    phase = commit
+  -> State: 1.880 <-
+    phase = check
+    updates = 40
+  -> State: 1.881 <-
+    phase = start
+  -> State: 1.882 <-
+    phase = measure
+    ready = 0
+    epoch = TRUE
+  -> State: 1.883 <-
+    groups = 1
+  -> State: 1.884 <-
+    groups = 2
+  -> State: 1.885 <-
+    groups = 3
+  -> State: 1.886 <-
+    phase = aggregate
+  -> State: 1.887 <-
+    phase = validate
+  -> State: 1.888 <-
+    phase = measure
+    groups = 0
+    ready = 1
+    energy_epoch = TRUE
+  -> State: 1.889 <-
+    groups = 1
+  -> State: 1.890 <-
+    groups = 2
+  -> State: 1.891 <-
+    groups = 3
+  -> State: 1.892 <-
+    phase = aggregate
+  -> State: 1.893 <-
+    phase = validate
+  -> State: 1.894 <-
+    phase = measure
+    groups = 0
+    ready = 2
+  -> State: 1.895 <-
+    groups = 1
+  -> State: 1.896 <-
+    groups = 2
+  -> State: 1.897 <-
+    groups = 3
+  -> State: 1.898 <-
+    phase = aggregate
+  -> State: 1.899 <-
+    phase = validate
+  -> State: 1.900 <-
+    phase = select
+    groups = 0
+    ready = 3
+  -> State: 1.901 <-
+    phase = commit
+  -> State: 1.902 <-
+    phase = check
+    updates = 41
+  -> State: 1.903 <-
+    phase = start
+  -> State: 1.904 <-
+    phase = measure
+    ready = 0
+    epoch = FALSE
+  -> State: 1.905 <-
+    groups = 1
+  -> State: 1.906 <-
+    groups = 2
+  -> State: 1.907 <-
+    groups = 3
+  -> State: 1.908 <-
+    phase = aggregate
+  -> State: 1.909 <-
+    phase = validate
+  -> State: 1.910 <-
+    phase = measure
+    groups = 0
+    ready = 1
+    energy_epoch = FALSE
+  -> State: 1.911 <-
+    groups = 1
+  -> State: 1.912 <-
+    groups = 2
+  -> State: 1.913 <-
+    groups = 3
+  -> State: 1.914 <-
+    phase = aggregate
+  -> State: 1.915 <-
+    phase = validate
+  -> State: 1.916 <-
+    phase = measure
+    groups = 0
+    ready = 2
+  -> State: 1.917 <-
+    groups = 1
+  -> State: 1.918 <-
+    groups = 2
+  -> State: 1.919 <-
+    groups = 3
+  -> State: 1.920 <-
+    phase = aggregate
+  -> State: 1.921 <-
+    phase = validate
+  -> State: 1.922 <-
+    phase = select
+    groups = 0
+    ready = 3
+  -> State: 1.923 <-
+    phase = commit
+  -> State: 1.924 <-
+    phase = check
+    updates = 42
+  -> State: 1.925 <-
+    phase = start
+  -> State: 1.926 <-
+    phase = measure
+    ready = 0
+    epoch = TRUE
+  -> State: 1.927 <-
+    groups = 1
+  -> State: 1.928 <-
+    groups = 2
+  -> State: 1.929 <-
+    groups = 3
+  -> State: 1.930 <-
+    phase = aggregate
+  -> State: 1.931 <-
+    phase = validate
+  -> State: 1.932 <-
+    phase = measure
+    groups = 0
+    ready = 1
+    energy_epoch = TRUE
+  -> State: 1.933 <-
+    groups = 1
+  -> State: 1.934 <-
+    groups = 2
+  -> State: 1.935 <-
+    groups = 3
+  -> State: 1.936 <-
+    phase = aggregate
+  -> State: 1.937 <-
+    phase = validate
+  -> State: 1.938 <-
+    phase = measure
+    groups = 0
+    ready = 2
+  -> State: 1.939 <-
+    groups = 1
+  -> State: 1.940 <-
+    groups = 2
+  -> State: 1.941 <-
+    groups = 3
+  -> State: 1.942 <-
+    phase = aggregate
+  -> State: 1.943 <-
+    phase = validate
+  -> State: 1.944 <-
+    phase = select
+    groups = 0
+    ready = 3
+  -> State: 1.945 <-
+    phase = commit
+  -> State: 1.946 <-
+    phase = check
+    updates = 43
+  -> State: 1.947 <-
+    phase = start
+  -> State: 1.948 <-
+    phase = measure
+    ready = 0
+    epoch = FALSE
+  -> State: 1.949 <-
+    groups = 1
+  -> State: 1.950 <-
+    groups = 2
+  -> State: 1.951 <-
+    groups = 3
+  -> State: 1.952 <-
+    phase = aggregate
+  -> State: 1.953 <-
+    phase = validate
+  -> State: 1.954 <-
+    phase = measure
+    groups = 0
+    ready = 1
+    energy_epoch = FALSE
+  -> State: 1.955 <-
+    groups = 1
+  -> State: 1.956 <-
+    groups = 2
+  -> State: 1.957 <-
+    groups = 3
+  -> State: 1.958 <-
+    phase = aggregate
+  -> State: 1.959 <-
+    phase = validate
+  -> State: 1.960 <-
+    phase = measure
+    groups = 0
+    ready = 2
+  -> State: 1.961 <-
+    groups = 1
+  -> State: 1.962 <-
+    groups = 2
+  -> State: 1.963 <-
+    groups = 3
+  -> State: 1.964 <-
+    phase = aggregate
+  -> State: 1.965 <-
+    phase = validate
+  -> State: 1.966 <-
+    phase = select
+    groups = 0
+    ready = 3
+  -> State: 1.967 <-
+    phase = commit
+  -> State: 1.968 <-
+    phase = check
+    updates = 44
+  -> State: 1.969 <-
+    phase = start
+  -> State: 1.970 <-
+    phase = measure
+    ready = 0
+    epoch = TRUE
+  -> State: 1.971 <-
+    groups = 1
+  -> State: 1.972 <-
+    groups = 2
+  -> State: 1.973 <-
+    groups = 3
+  -> State: 1.974 <-
+    phase = aggregate
+  -> State: 1.975 <-
+    phase = validate
+  -> State: 1.976 <-
+    phase = measure
+    groups = 0
+    ready = 1
+    energy_epoch = TRUE
+  -> State: 1.977 <-
+    groups = 1
+  -> State: 1.978 <-
+    groups = 2
+  -> State: 1.979 <-
+    groups = 3
+  -> State: 1.980 <-
+    phase = aggregate
+  -> State: 1.981 <-
+    phase = validate
+  -> State: 1.982 <-
+    phase = measure
+    groups = 0
+    ready = 2
+  -> State: 1.983 <-
+    groups = 1
+  -> State: 1.984 <-
+    groups = 2
+  -> State: 1.985 <-
+    groups = 3
+  -> State: 1.986 <-
+    phase = aggregate
+  -> State: 1.987 <-
+    phase = validate
+  -> State: 1.988 <-
+    phase = select
+    groups = 0
+    ready = 3
+  -> State: 1.989 <-
+    phase = commit
+  -> State: 1.990 <-
+    phase = check
+    updates = 45
+  -> State: 1.991 <-
+    phase = start
+  -> State: 1.992 <-
+    phase = measure
+    ready = 0
+    epoch = FALSE
+  -> State: 1.993 <-
+    groups = 1
+  -> State: 1.994 <-
+    groups = 2
+  -> State: 1.995 <-
+    groups = 3
+  -> State: 1.996 <-
+    phase = aggregate
+  -> State: 1.997 <-
+    phase = validate
+  -> State: 1.998 <-
+    phase = measure
+    groups = 0
+    ready = 1
+    energy_epoch = FALSE
+  -> State: 1.999 <-
+    groups = 1
+  -> State: 1.1000 <-
+    groups = 2
+  -> State: 1.1001 <-
+    groups = 3
+  -> State: 1.1002 <-
+    phase = aggregate
+  -> State: 1.1003 <-
+    phase = validate
+  -> State: 1.1004 <-
+    phase = measure
+    groups = 0
+    ready = 2
+  -> State: 1.1005 <-
+    groups = 1
+  -> State: 1.1006 <-
+    groups = 2
+  -> State: 1.1007 <-
+    groups = 3
+  -> State: 1.1008 <-
+    phase = aggregate
+  -> State: 1.1009 <-
+    phase = validate
+  -> State: 1.1010 <-
+    phase = select
+    groups = 0
+    ready = 3
+  -> State: 1.1011 <-
+    phase = commit
+  -> State: 1.1012 <-
+    phase = check
+    updates = 46
+  -> State: 1.1013 <-
+    phase = start
+  -> State: 1.1014 <-
+    phase = measure
+    ready = 0
+    epoch = TRUE
+  -> State: 1.1015 <-
+    groups = 1
+  -> State: 1.1016 <-
+    groups = 2
+  -> State: 1.1017 <-
+    groups = 3
+  -> State: 1.1018 <-
+    phase = aggregate
+  -> State: 1.1019 <-
+    phase = validate
+  -> State: 1.1020 <-
+    phase = measure
+    groups = 0
+    ready = 1
+    energy_epoch = TRUE
+  -> State: 1.1021 <-
+    groups = 1
+  -> State: 1.1022 <-
+    groups = 2
+  -> State: 1.1023 <-
+    groups = 3
+  -> State: 1.1024 <-
+    phase = aggregate
+  -> State: 1.1025 <-
+    phase = validate
+  -> State: 1.1026 <-
+    phase = measure
+    groups = 0
+    ready = 2
+  -> State: 1.1027 <-
+    groups = 1
+  -> State: 1.1028 <-
+    groups = 2
+  -> State: 1.1029 <-
+    groups = 3
+  -> State: 1.1030 <-
+    phase = aggregate
+  -> State: 1.1031 <-
+    phase = validate
+  -> State: 1.1032 <-
+    phase = select
+    groups = 0
+    ready = 3
+  -> State: 1.1033 <-
+    phase = commit
+  -> State: 1.1034 <-
+    phase = check
+    updates = 47
+  -> State: 1.1035 <-
+    phase = start
+  -> State: 1.1036 <-
+    phase = measure
+    ready = 0
+    epoch = FALSE
+  -> State: 1.1037 <-
+    groups = 1
+  -> State: 1.1038 <-
+    groups = 2
+  -> State: 1.1039 <-
+    groups = 3
+  -> State: 1.1040 <-
+    phase = aggregate
+  -> State: 1.1041 <-
+    phase = validate
+  -> State: 1.1042 <-
+    phase = measure
+    groups = 0
+    ready = 1
+    energy_epoch = FALSE
+  -> State: 1.1043 <-
+    groups = 1
+  -> State: 1.1044 <-
+    groups = 2
+  -> State: 1.1045 <-
+    groups = 3
+  -> State: 1.1046 <-
+    phase = aggregate
+  -> State: 1.1047 <-
+    phase = validate
+  -> State: 1.1048 <-
+    phase = measure
+    groups = 0
+    ready = 2
+  -> State: 1.1049 <-
+    groups = 1
+  -> State: 1.1050 <-
+    groups = 2
+  -> State: 1.1051 <-
+    groups = 3
+  -> State: 1.1052 <-
+    phase = aggregate
+  -> State: 1.1053 <-
+    phase = validate
+  -> State: 1.1054 <-
+    phase = select
+    groups = 0
+    ready = 3
+  -> State: 1.1055 <-
+    phase = commit
+  -> State: 1.1056 <-
+    phase = check
+    updates = 48
+  -> State: 1.1057 <-
+    phase = start
+  -> State: 1.1058 <-
+    phase = measure
+    ready = 0
+    epoch = TRUE
+  -> State: 1.1059 <-
+    groups = 1
+  -> State: 1.1060 <-
+    groups = 2
+  -> State: 1.1061 <-
+    groups = 3
+  -> State: 1.1062 <-
+    phase = aggregate
+  -> State: 1.1063 <-
+    phase = validate
+  -> State: 1.1064 <-
+    phase = measure
+    groups = 0
+    ready = 1
+    energy_epoch = TRUE
+  -> State: 1.1065 <-
+    groups = 1
+  -> State: 1.1066 <-
+    groups = 2
+  -> State: 1.1067 <-
+    groups = 3
+  -> State: 1.1068 <-
+    phase = aggregate
+  -> State: 1.1069 <-
+    phase = validate
+  -> State: 1.1070 <-
+    phase = measure
+    groups = 0
+    ready = 2
+  -> State: 1.1071 <-
+    groups = 1
+  -> State: 1.1072 <-
+    groups = 2
+  -> State: 1.1073 <-
+    groups = 3
+  -> State: 1.1074 <-
+    phase = aggregate
+  -> State: 1.1075 <-
+    phase = validate
+  -> State: 1.1076 <-
+    phase = select
+    groups = 0
+    ready = 3
+  -> State: 1.1077 <-
+    phase = commit
+  -> State: 1.1078 <-
+    phase = check
+    updates = 49
+  -> State: 1.1079 <-
+    phase = start
+  -> State: 1.1080 <-
+    phase = measure
+    ready = 0
+    epoch = FALSE
+  -> State: 1.1081 <-
+    groups = 1
+  -> State: 1.1082 <-
+    groups = 2
+  -> State: 1.1083 <-
+    groups = 3
+  -> State: 1.1084 <-
+    phase = aggregate
+  -> State: 1.1085 <-
+    phase = validate
+  -> State: 1.1086 <-
+    phase = measure
+    groups = 0
+    ready = 1
+    energy_epoch = FALSE
+  -> State: 1.1087 <-
+    groups = 1
+  -> State: 1.1088 <-
+    groups = 2
+  -> State: 1.1089 <-
+    groups = 3
+  -> State: 1.1090 <-
+    phase = aggregate
+  -> State: 1.1091 <-
+    phase = validate
+  -> State: 1.1092 <-
+    phase = measure
+    groups = 0
+    ready = 2
+  -> State: 1.1093 <-
+    groups = 1
+  -> State: 1.1094 <-
+    groups = 2
+  -> State: 1.1095 <-
+    groups = 3
+  -> State: 1.1096 <-
+    phase = aggregate
+  -> State: 1.1097 <-
+    phase = validate
+  -> State: 1.1098 <-
+    phase = select
+    groups = 0
+    ready = 3
+  -> State: 1.1099 <-
+    phase = commit
+  -> State: 1.1100 <-
+    phase = check
+    updates = 50
+  -- Loop starts here
+  -> State: 1.1101 <-
+    phase = aborted
+    terminal = TRUE
+  -> State: 1.1102 <-
+-- specification  G ((!terminal &  X phase = aborted) -> environment_error)  is false
+-- as demonstrated by the following execution sequence
+Trace Description: LTL Counterexample 
+Trace Type: Counterexample 
+  -> State: 2.1 <-
+    phase = start
+    updates = 0
+    groups = 0
+    ready = 0
+    epoch = FALSE
+    energy_epoch = FALSE
+    environment_error = FALSE
+    success = FALSE
+    terminal = FALSE
+  -> State: 2.2 <-
+    phase = measure
+    epoch = TRUE
+  -> State: 2.3 <-
+    groups = 1
+  -> State: 2.4 <-
+    groups = 2
+  -> State: 2.5 <-
+    groups = 3
+  -> State: 2.6 <-
+    phase = aggregate
+  -> State: 2.7 <-
+    phase = validate
+  -> State: 2.8 <-
+    phase = measure
+    groups = 0
+    ready = 1
+    energy_epoch = TRUE
+  -> State: 2.9 <-
+    groups = 1
+  -> State: 2.10 <-
+    groups = 2
+  -> State: 2.11 <-
+    groups = 3
+  -> State: 2.12 <-
+    phase = aggregate
+  -> State: 2.13 <-
+    phase = validate
+  -> State: 2.14 <-
+    phase = measure
+    groups = 0
+    ready = 2
+  -> State: 2.15 <-
+    groups = 1
+  -> State: 2.16 <-
+    groups = 2
+  -> State: 2.17 <-
+    groups = 3
+  -> State: 2.18 <-
+    phase = aggregate
+  -> State: 2.19 <-
+    phase = validate
+  -> State: 2.20 <-
+    phase = select
+    groups = 0
+    ready = 3
+  -> State: 2.21 <-
+    phase = commit
+  -> State: 2.22 <-
+    phase = check
+    updates = 1
+  -> State: 2.23 <-
+    phase = start
+  -> State: 2.24 <-
+    phase = measure
+    ready = 0
+    epoch = FALSE
+  -> State: 2.25 <-
+    groups = 1
+  -> State: 2.26 <-
+    groups = 2
+  -> State: 2.27 <-
+    groups = 3
+  -> State: 2.28 <-
+    phase = aggregate
+  -> State: 2.29 <-
+    phase = validate
+  -> State: 2.30 <-
+    phase = measure
+    groups = 0
+    ready = 1
+    energy_epoch = FALSE
+  -> State: 2.31 <-
+    groups = 1
+  -> State: 2.32 <-
+    groups = 2
+  -> State: 2.33 <-
+    groups = 3
+  -> State: 2.34 <-
+    phase = aggregate
+  -> State: 2.35 <-
+    phase = validate
+  -> State: 2.36 <-
+    phase = measure
+    groups = 0
+    ready = 2
+  -> State: 2.37 <-
+    groups = 1
+  -> State: 2.38 <-
+    groups = 2
+  -> State: 2.39 <-
+    groups = 3
+  -> State: 2.40 <-
+    phase = aggregate
+  -> State: 2.41 <-
+    phase = validate
+  -> State: 2.42 <-
+    phase = select
+    groups = 0
+    ready = 3
+  -> State: 2.43 <-
+    phase = commit
+  -> State: 2.44 <-
+    phase = check
+    updates = 2
+  -> State: 2.45 <-
+    phase = start
+  -> State: 2.46 <-
+    phase = measure
+    ready = 0
+    epoch = TRUE
+  -> State: 2.47 <-
+    groups = 1
+  -> State: 2.48 <-
+    groups = 2
+  -> State: 2.49 <-
+    groups = 3
+  -> State: 2.50 <-
+    phase = aggregate
+  -> State: 2.51 <-
+    phase = validate
+  -> State: 2.52 <-
+    phase = measure
+    groups = 0
+    ready = 1
+    energy_epoch = TRUE
+  -> State: 2.53 <-
+    groups = 1
+  -> State: 2.54 <-
+    groups = 2
+  -> State: 2.55 <-
+    groups = 3
+  -> State: 2.56 <-
+    phase = aggregate
+  -> State: 2.57 <-
+    phase = validate
+  -> State: 2.58 <-
+    phase = measure
+    groups = 0
+    ready = 2
+  -> State: 2.59 <-
+    groups = 1
+  -> State: 2.60 <-
+    groups = 2
+  -> State: 2.61 <-
+    groups = 3
+  -> State: 2.62 <-
+    phase = aggregate
+  -> State: 2.63 <-
+    phase = validate
+  -> State: 2.64 <-
+    phase = select
+    groups = 0
+    ready = 3
+  -> State: 2.65 <-
+    phase = commit
+  -> State: 2.66 <-
+    phase = check
+    updates = 3
+  -> State: 2.67 <-
+    phase = start
+  -> State: 2.68 <-
+    phase = measure
+    ready = 0
+    epoch = FALSE
+  -> State: 2.69 <-
+    groups = 1
+  -> State: 2.70 <-
+    groups = 2
+  -> State: 2.71 <-
+    groups = 3
+  -> State: 2.72 <-
+    phase = aggregate
+  -> State: 2.73 <-
+    phase = validate
+  -> State: 2.74 <-
+    phase = measure
+    groups = 0
+    ready = 1
+    energy_epoch = FALSE
+  -> State: 2.75 <-
+    groups = 1
+  -> State: 2.76 <-
+    groups = 2
+  -> State: 2.77 <-
+    groups = 3
+  -> State: 2.78 <-
+    phase = aggregate
+  -> State: 2.79 <-
+    phase = validate
+  -> State: 2.80 <-
+    phase = measure
+    groups = 0
+    ready = 2
+  -> State: 2.81 <-
+    groups = 1
+  -> State: 2.82 <-
+    groups = 2
+  -> State: 2.83 <-
+    groups = 3
+  -> State: 2.84 <-
+    phase = aggregate
+  -> State: 2.85 <-
+    phase = validate
+  -> State: 2.86 <-
+    phase = select
+    groups = 0
+    ready = 3
+  -> State: 2.87 <-
+    phase = commit
+  -> State: 2.88 <-
+    phase = check
+    updates = 4
+  -> State: 2.89 <-
+    phase = start
+  -> State: 2.90 <-
+    phase = measure
+    ready = 0
+    epoch = TRUE
+  -> State: 2.91 <-
+    groups = 1
+  -> State: 2.92 <-
+    groups = 2
+  -> State: 2.93 <-
+    groups = 3
+  -> State: 2.94 <-
+    phase = aggregate
+  -> State: 2.95 <-
+    phase = validate
+  -> State: 2.96 <-
+    phase = measure
+    groups = 0
+    ready = 1
+    energy_epoch = TRUE
+  -> State: 2.97 <-
+    groups = 1
+  -> State: 2.98 <-
+    groups = 2
+  -> State: 2.99 <-
+    groups = 3
+  -> State: 2.100 <-
+    phase = aggregate
+  -> State: 2.101 <-
+    phase = validate
+  -> State: 2.102 <-
+    phase = measure
+    groups = 0
+    ready = 2
+  -> State: 2.103 <-
+    groups = 1
+  -> State: 2.104 <-
+    groups = 2
+  -> State: 2.105 <-
+    groups = 3
+  -> State: 2.106 <-
+    phase = aggregate
+  -> State: 2.107 <-
+    phase = validate
+  -> State: 2.108 <-
+    phase = select
+    groups = 0
+    ready = 3
+  -> State: 2.109 <-
+    phase = commit
+  -> State: 2.110 <-
+    phase = check
+    updates = 5
+  -> State: 2.111 <-
+    phase = start
+  -> State: 2.112 <-
+    phase = measure
+    ready = 0
+    epoch = FALSE
+  -> State: 2.113 <-
+    groups = 1
+  -> State: 2.114 <-
+    groups = 2
+  -> State: 2.115 <-
+    groups = 3
+  -> State: 2.116 <-
+    phase = aggregate
+  -> State: 2.117 <-
+    phase = validate
+  -> State: 2.118 <-
+    phase = measure
+    groups = 0
+    ready = 1
+    energy_epoch = FALSE
+  -> State: 2.119 <-
+    groups = 1
+  -> State: 2.120 <-
+    groups = 2
+  -> State: 2.121 <-
+    groups = 3
+  -> State: 2.122 <-
+    phase = aggregate
+  -> State: 2.123 <-
+    phase = validate
+  -> State: 2.124 <-
+    phase = measure
+    groups = 0
+    ready = 2
+  -> State: 2.125 <-
+    groups = 1
+  -> State: 2.126 <-
+    groups = 2
+  -> State: 2.127 <-
+    groups = 3
+  -> State: 2.128 <-
+    phase = aggregate
+  -> State: 2.129 <-
+    phase = validate
+  -> State: 2.130 <-
+    phase = select
+    groups = 0
+    ready = 3
+  -> State: 2.131 <-
+    phase = commit
+  -> State: 2.132 <-
+    phase = check
+    updates = 6
+  -> State: 2.133 <-
+    phase = start
+  -> State: 2.134 <-
+    phase = measure
+    ready = 0
+    epoch = TRUE
+  -> State: 2.135 <-
+    groups = 1
+  -> State: 2.136 <-
+    groups = 2
+  -> State: 2.137 <-
+    groups = 3
+  -> State: 2.138 <-
+    phase = aggregate
+  -> State: 2.139 <-
+    phase = validate
+  -> State: 2.140 <-
+    phase = measure
+    groups = 0
+    ready = 1
+    energy_epoch = TRUE
+  -> State: 2.141 <-
+    groups = 1
+  -> State: 2.142 <-
+    groups = 2
+  -> State: 2.143 <-
+    groups = 3
+  -> State: 2.144 <-
+    phase = aggregate
+  -> State: 2.145 <-
+    phase = validate
+  -> State: 2.146 <-
+    phase = measure
+    groups = 0
+    ready = 2
+  -> State: 2.147 <-
+    groups = 1
+  -> State: 2.148 <-
+    groups = 2
+  -> State: 2.149 <-
+    groups = 3
+  -> State: 2.150 <-
+    phase = aggregate
+  -> State: 2.151 <-
+    phase = validate
+  -> State: 2.152 <-
+    phase = select
+    groups = 0
+    ready = 3
+  -> State: 2.153 <-
+    phase = commit
+  -> State: 2.154 <-
+    phase = check
+    updates = 7
+  -> State: 2.155 <-
+    phase = start
+  -> State: 2.156 <-
+    phase = measure
+    ready = 0
+    epoch = FALSE
+  -> State: 2.157 <-
+    groups = 1
+  -> State: 2.158 <-
+    groups = 2
+  -> State: 2.159 <-
+    groups = 3
+  -> State: 2.160 <-
+    phase = aggregate
+  -> State: 2.161 <-
+    phase = validate
+  -> State: 2.162 <-
+    phase = measure
+    groups = 0
+    ready = 1
+    energy_epoch = FALSE
+  -> State: 2.163 <-
+    groups = 1
+  -> State: 2.164 <-
+    groups = 2
+  -> State: 2.165 <-
+    groups = 3
+  -> State: 2.166 <-
+    phase = aggregate
+  -> State: 2.167 <-
+    phase = validate
+  -> State: 2.168 <-
+    phase = measure
+    groups = 0
+    ready = 2
+  -> State: 2.169 <-
+    groups = 1
+  -> State: 2.170 <-
+    groups = 2
+  -> State: 2.171 <-
+    groups = 3
+  -> State: 2.172 <-
+    phase = aggregate
+  -> State: 2.173 <-
+    phase = validate
+  -> State: 2.174 <-
+    phase = select
+    groups = 0
+    ready = 3
+  -> State: 2.175 <-
+    phase = commit
+  -> State: 2.176 <-
+    phase = check
+    updates = 8
+  -> State: 2.177 <-
+    phase = start
+  -> State: 2.178 <-
+    phase = measure
+    ready = 0
+    epoch = TRUE
+  -> State: 2.179 <-
+    groups = 1
+  -> State: 2.180 <-
+    groups = 2
+  -> State: 2.181 <-
+    groups = 3
+  -> State: 2.182 <-
+    phase = aggregate
+  -> State: 2.183 <-
+    phase = validate
+  -> State: 2.184 <-
+    phase = measure
+    groups = 0
+    ready = 1
+    energy_epoch = TRUE
+  -> State: 2.185 <-
+    groups = 1
+  -> State: 2.186 <-
+    groups = 2
+  -> State: 2.187 <-
+    groups = 3
+  -> State: 2.188 <-
+    phase = aggregate
+  -> State: 2.189 <-
+    phase = validate
+  -> State: 2.190 <-
+    phase = measure
+    groups = 0
+    ready = 2
+  -> State: 2.191 <-
+    groups = 1
+  -> State: 2.192 <-
+    groups = 2
+  -> State: 2.193 <-
+    groups = 3
+  -> State: 2.194 <-
+    phase = aggregate
+  -> State: 2.195 <-
+    phase = validate
+  -> State: 2.196 <-
+    phase = select
+    groups = 0
+    ready = 3
+  -> State: 2.197 <-
+    phase = commit
+  -> State: 2.198 <-
+    phase = check
+    updates = 9
+  -> State: 2.199 <-
+    phase = start
+  -> State: 2.200 <-
+    phase = measure
+    ready = 0
+    epoch = FALSE
+  -> State: 2.201 <-
+    groups = 1
+  -> State: 2.202 <-
+    groups = 2
+  -> State: 2.203 <-
+    groups = 3
+  -> State: 2.204 <-
+    phase = aggregate
+  -> State: 2.205 <-
+    phase = validate
+  -> State: 2.206 <-
+    phase = measure
+    groups = 0
+    ready = 1
+    energy_epoch = FALSE
+  -> State: 2.207 <-
+    groups = 1
+  -> State: 2.208 <-
+    groups = 2
+  -> State: 2.209 <-
+    groups = 3
+  -> State: 2.210 <-
+    phase = aggregate
+  -> State: 2.211 <-
+    phase = validate
+  -> State: 2.212 <-
+    phase = measure
+    groups = 0
+    ready = 2
+  -> State: 2.213 <-
+    groups = 1
+  -> State: 2.214 <-
+    groups = 2
+  -> State: 2.215 <-
+    groups = 3
+  -> State: 2.216 <-
+    phase = aggregate
+  -> State: 2.217 <-
+    phase = validate
+  -> State: 2.218 <-
+    phase = select
+    groups = 0
+    ready = 3
+  -> State: 2.219 <-
+    phase = commit
+  -> State: 2.220 <-
+    phase = check
+    updates = 10
+  -> State: 2.221 <-
+    phase = start
+  -> State: 2.222 <-
+    phase = measure
+    ready = 0
+    epoch = TRUE
+  -> State: 2.223 <-
+    groups = 1
+  -> State: 2.224 <-
+    groups = 2
+  -> State: 2.225 <-
+    groups = 3
+  -> State: 2.226 <-
+    phase = aggregate
+  -> State: 2.227 <-
+    phase = validate
+  -> State: 2.228 <-
+    phase = measure
+    groups = 0
+    ready = 1
+    energy_epoch = TRUE
+  -> State: 2.229 <-
+    groups = 1
+  -> State: 2.230 <-
+    groups = 2
+  -> State: 2.231 <-
+    groups = 3
+  -> State: 2.232 <-
+    phase = aggregate
+  -> State: 2.233 <-
+    phase = validate
+  -> State: 2.234 <-
+    phase = measure
+    groups = 0
+    ready = 2
+  -> State: 2.235 <-
+    groups = 1
+  -> State: 2.236 <-
+    groups = 2
+  -> State: 2.237 <-
+    groups = 3
+  -> State: 2.238 <-
+    phase = aggregate
+  -> State: 2.239 <-
+    phase = validate
+  -> State: 2.240 <-
+    phase = select
+    groups = 0
+    ready = 3
+  -> State: 2.241 <-
+    phase = commit
+  -> State: 2.242 <-
+    phase = check
+    updates = 11
+  -> State: 2.243 <-
+    phase = start
+  -> State: 2.244 <-
+    phase = measure
+    ready = 0
+    epoch = FALSE
+  -> State: 2.245 <-
+    groups = 1
+  -> State: 2.246 <-
+    groups = 2
+  -> State: 2.247 <-
+    groups = 3
+  -> State: 2.248 <-
+    phase = aggregate
+  -> State: 2.249 <-
+    phase = validate
+  -> State: 2.250 <-
+    phase = measure
+    groups = 0
+    ready = 1
+    energy_epoch = FALSE
+  -> State: 2.251 <-
+    groups = 1
+  -> State: 2.252 <-
+    groups = 2
+  -> State: 2.253 <-
+    groups = 3
+  -> State: 2.254 <-
+    phase = aggregate
+  -> State: 2.255 <-
+    phase = validate
+  -> State: 2.256 <-
+    phase = measure
+    groups = 0
+    ready = 2
+  -> State: 2.257 <-
+    groups = 1
+  -> State: 2.258 <-
+    groups = 2
+  -> State: 2.259 <-
+    groups = 3
+  -> State: 2.260 <-
+    phase = aggregate
+  -> State: 2.261 <-
+    phase = validate
+  -> State: 2.262 <-
+    phase = select
+    groups = 0
+    ready = 3
+  -> State: 2.263 <-
+    phase = commit
+  -> State: 2.264 <-
+    phase = check
+    updates = 12
+  -> State: 2.265 <-
+    phase = start
+  -> State: 2.266 <-
+    phase = measure
+    ready = 0
+    epoch = TRUE
+  -> State: 2.267 <-
+    groups = 1
+  -> State: 2.268 <-
+    groups = 2
+  -> State: 2.269 <-
+    groups = 3
+  -> State: 2.270 <-
+    phase = aggregate
+  -> State: 2.271 <-
+    phase = validate
+  -> State: 2.272 <-
+    phase = measure
+    groups = 0
+    ready = 1
+    energy_epoch = TRUE
+  -> State: 2.273 <-
+    groups = 1
+  -> State: 2.274 <-
+    groups = 2
+  -> State: 2.275 <-
+    groups = 3
+  -> State: 2.276 <-
+    phase = aggregate
+  -> State: 2.277 <-
+    phase = validate
+  -> State: 2.278 <-
+    phase = measure
+    groups = 0
+    ready = 2
+  -> State: 2.279 <-
+    groups = 1
+  -> State: 2.280 <-
+    groups = 2
+  -> State: 2.281 <-
+    groups = 3
+  -> State: 2.282 <-
+    phase = aggregate
+  -> State: 2.283 <-
+    phase = validate
+  -> State: 2.284 <-
+    phase = select
+    groups = 0
+    ready = 3
+  -> State: 2.285 <-
+    phase = commit
+  -> State: 2.286 <-
+    phase = check
+    updates = 13
+  -> State: 2.287 <-
+    phase = start
+  -> State: 2.288 <-
+    phase = measure
+    ready = 0
+    epoch = FALSE
+  -> State: 2.289 <-
+    groups = 1
+  -> State: 2.290 <-
+    groups = 2
+  -> State: 2.291 <-
+    groups = 3
+  -> State: 2.292 <-
+    phase = aggregate
+  -> State: 2.293 <-
+    phase = validate
+  -> State: 2.294 <-
+    phase = measure
+    groups = 0
+    ready = 1
+    energy_epoch = FALSE
+  -> State: 2.295 <-
+    groups = 1
+  -> State: 2.296 <-
+    groups = 2
+  -> State: 2.297 <-
+    groups = 3
+  -> State: 2.298 <-
+    phase = aggregate
+  -> State: 2.299 <-
+    phase = validate
+  -> State: 2.300 <-
+    phase = measure
+    groups = 0
+    ready = 2
+  -> State: 2.301 <-
+    groups = 1
+  -> State: 2.302 <-
+    groups = 2
+  -> State: 2.303 <-
+    groups = 3
+  -> State: 2.304 <-
+    phase = aggregate
+  -> State: 2.305 <-
+    phase = validate
+  -> State: 2.306 <-
+    phase = select
+    groups = 0
+    ready = 3
+  -> State: 2.307 <-
+    phase = commit
+  -> State: 2.308 <-
+    phase = check
+    updates = 14
+  -> State: 2.309 <-
+    phase = start
+  -> State: 2.310 <-
+    phase = measure
+    ready = 0
+    epoch = TRUE
+  -> State: 2.311 <-
+    groups = 1
+  -> State: 2.312 <-
+    groups = 2
+  -> State: 2.313 <-
+    groups = 3
+  -> State: 2.314 <-
+    phase = aggregate
+  -> State: 2.315 <-
+    phase = validate
+  -> State: 2.316 <-
+    phase = measure
+    groups = 0
+    ready = 1
+    energy_epoch = TRUE
+  -> State: 2.317 <-
+    groups = 1
+  -> State: 2.318 <-
+    groups = 2
+  -> State: 2.319 <-
+    groups = 3
+  -> State: 2.320 <-
+    phase = aggregate
+  -> State: 2.321 <-
+    phase = validate
+  -> State: 2.322 <-
+    phase = measure
+    groups = 0
+    ready = 2
+  -> State: 2.323 <-
+    groups = 1
+  -> State: 2.324 <-
+    groups = 2
+  -> State: 2.325 <-
+    groups = 3
+  -> State: 2.326 <-
+    phase = aggregate
+  -> State: 2.327 <-
+    phase = validate
+  -> State: 2.328 <-
+    phase = select
+    groups = 0
+    ready = 3
+  -> State: 2.329 <-
+    phase = commit
+  -> State: 2.330 <-
+    phase = check
+    updates = 15
+  -> State: 2.331 <-
+    phase = start
+  -> State: 2.332 <-
+    phase = measure
+    ready = 0
+    epoch = FALSE
+  -> State: 2.333 <-
+    groups = 1
+  -> State: 2.334 <-
+    groups = 2
+  -> State: 2.335 <-
+    groups = 3
+  -> State: 2.336 <-
+    phase = aggregate
+  -> State: 2.337 <-
+    phase = validate
+  -> State: 2.338 <-
+    phase = measure
+    groups = 0
+    ready = 1
+    energy_epoch = FALSE
+  -> State: 2.339 <-
+    groups = 1
+  -> State: 2.340 <-
+    groups = 2
+  -> State: 2.341 <-
+    groups = 3
+  -> State: 2.342 <-
+    phase = aggregate
+  -> State: 2.343 <-
+    phase = validate
+  -> State: 2.344 <-
+    phase = measure
+    groups = 0
+    ready = 2
+  -> State: 2.345 <-
+    groups = 1
+  -> State: 2.346 <-
+    groups = 2
+  -> State: 2.347 <-
+    groups = 3
+  -> State: 2.348 <-
+    phase = aggregate
+  -> State: 2.349 <-
+    phase = validate
+  -> State: 2.350 <-
+    phase = select
+    groups = 0
+    ready = 3
+  -> State: 2.351 <-
+    phase = commit
+  -> State: 2.352 <-
+    phase = check
+    updates = 16
+  -> State: 2.353 <-
+    phase = start
+  -> State: 2.354 <-
+    phase = measure
+    ready = 0
+    epoch = TRUE
+  -> State: 2.355 <-
+    groups = 1
+  -> State: 2.356 <-
+    groups = 2
+  -> State: 2.357 <-
+    groups = 3
+  -> State: 2.358 <-
+    phase = aggregate
+  -> State: 2.359 <-
+    phase = validate
+  -> State: 2.360 <-
+    phase = measure
+    groups = 0
+    ready = 1
+    energy_epoch = TRUE
+  -> State: 2.361 <-
+    groups = 1
+  -> State: 2.362 <-
+    groups = 2
+  -> State: 2.363 <-
+    groups = 3
+  -> State: 2.364 <-
+    phase = aggregate
+  -> State: 2.365 <-
+    phase = validate
+  -> State: 2.366 <-
+    phase = measure
+    groups = 0
+    ready = 2
+  -> State: 2.367 <-
+    groups = 1
+  -> State: 2.368 <-
+    groups = 2
+  -> State: 2.369 <-
+    groups = 3
+  -> State: 2.370 <-
+    phase = aggregate
+  -> State: 2.371 <-
+    phase = validate
+  -> State: 2.372 <-
+    phase = select
+    groups = 0
+    ready = 3
+  -> State: 2.373 <-
+    phase = commit
+  -> State: 2.374 <-
+    phase = check
+    updates = 17
+  -> State: 2.375 <-
+    phase = start
+  -> State: 2.376 <-
+    phase = measure
+    ready = 0
+    epoch = FALSE
+  -> State: 2.377 <-
+    groups = 1
+  -> State: 2.378 <-
+    groups = 2
+  -> State: 2.379 <-
+    groups = 3
+  -> State: 2.380 <-
+    phase = aggregate
+  -> State: 2.381 <-
+    phase = validate
+  -> State: 2.382 <-
+    phase = measure
+    groups = 0
+    ready = 1
+    energy_epoch = FALSE
+  -> State: 2.383 <-
+    groups = 1
+  -> State: 2.384 <-
+    groups = 2
+  -> State: 2.385 <-
+    groups = 3
+  -> State: 2.386 <-
+    phase = aggregate
+  -> State: 2.387 <-
+    phase = validate
+  -> State: 2.388 <-
+    phase = measure
+    groups = 0
+    ready = 2
+  -> State: 2.389 <-
+    groups = 1
+  -> State: 2.390 <-
+    groups = 2
+  -> State: 2.391 <-
+    groups = 3
+  -> State: 2.392 <-
+    phase = aggregate
+  -> State: 2.393 <-
+    phase = validate
+  -> State: 2.394 <-
+    phase = select
+    groups = 0
+    ready = 3
+  -> State: 2.395 <-
+    phase = commit
+  -> State: 2.396 <-
+    phase = check
+    updates = 18
+  -> State: 2.397 <-
+    phase = start
+  -> State: 2.398 <-
+    phase = measure
+    ready = 0
+    epoch = TRUE
+  -> State: 2.399 <-
+    groups = 1
+  -> State: 2.400 <-
+    groups = 2
+  -> State: 2.401 <-
+    groups = 3
+  -> State: 2.402 <-
+    phase = aggregate
+  -> State: 2.403 <-
+    phase = validate
+  -> State: 2.404 <-
+    phase = measure
+    groups = 0
+    ready = 1
+    energy_epoch = TRUE
+  -> State: 2.405 <-
+    groups = 1
+  -> State: 2.406 <-
+    groups = 2
+  -> State: 2.407 <-
+    groups = 3
+  -> State: 2.408 <-
+    phase = aggregate
+  -> State: 2.409 <-
+    phase = validate
+  -> State: 2.410 <-
+    phase = measure
+    groups = 0
+    ready = 2
+  -> State: 2.411 <-
+    groups = 1
+  -> State: 2.412 <-
+    groups = 2
+  -> State: 2.413 <-
+    groups = 3
+  -> State: 2.414 <-
+    phase = aggregate
+  -> State: 2.415 <-
+    phase = validate
+  -> State: 2.416 <-
+    phase = select
+    groups = 0
+    ready = 3
+  -> State: 2.417 <-
+    phase = commit
+  -> State: 2.418 <-
+    phase = check
+    updates = 19
+  -> State: 2.419 <-
+    phase = start
+  -> State: 2.420 <-
+    phase = measure
+    ready = 0
+    epoch = FALSE
+  -> State: 2.421 <-
+    groups = 1
+  -> State: 2.422 <-
+    groups = 2
+  -> State: 2.423 <-
+    groups = 3
+  -> State: 2.424 <-
+    phase = aggregate
+  -> State: 2.425 <-
+    phase = validate
+  -> State: 2.426 <-
+    phase = measure
+    groups = 0
+    ready = 1
+    energy_epoch = FALSE
+  -> State: 2.427 <-
+    groups = 1
+  -> State: 2.428 <-
+    groups = 2
+  -> State: 2.429 <-
+    groups = 3
+  -> State: 2.430 <-
+    phase = aggregate
+  -> State: 2.431 <-
+    phase = validate
+  -> State: 2.432 <-
+    phase = measure
+    groups = 0
+    ready = 2
+  -> State: 2.433 <-
+    groups = 1
+  -> State: 2.434 <-
+    groups = 2
+  -> State: 2.435 <-
+    groups = 3
+  -> State: 2.436 <-
+    phase = aggregate
+  -> State: 2.437 <-
+    phase = validate
+  -> State: 2.438 <-
+    phase = select
+    groups = 0
+    ready = 3
+  -> State: 2.439 <-
+    phase = commit
+  -> State: 2.440 <-
+    phase = check
+    updates = 20
+  -> State: 2.441 <-
+    phase = start
+  -> State: 2.442 <-
+    phase = measure
+    ready = 0
+    epoch = TRUE
+  -> State: 2.443 <-
+    groups = 1
+  -> State: 2.444 <-
+    groups = 2
+  -> State: 2.445 <-
+    groups = 3
+  -> State: 2.446 <-
+    phase = aggregate
+  -> State: 2.447 <-
+    phase = validate
+  -> State: 2.448 <-
+    phase = measure
+    groups = 0
+    ready = 1
+    energy_epoch = TRUE
+  -> State: 2.449 <-
+    groups = 1
+  -> State: 2.450 <-
+    groups = 2
+  -> State: 2.451 <-
+    groups = 3
+  -> State: 2.452 <-
+    phase = aggregate
+  -> State: 2.453 <-
+    phase = validate
+  -> State: 2.454 <-
+    phase = measure
+    groups = 0
+    ready = 2
+  -> State: 2.455 <-
+    groups = 1
+  -> State: 2.456 <-
+    groups = 2
+  -> State: 2.457 <-
+    groups = 3
+  -> State: 2.458 <-
+    phase = aggregate
+  -> State: 2.459 <-
+    phase = validate
+  -> State: 2.460 <-
+    phase = select
+    groups = 0
+    ready = 3
+  -> State: 2.461 <-
+    phase = commit
+  -> State: 2.462 <-
+    phase = check
+    updates = 21
+  -> State: 2.463 <-
+    phase = start
+  -> State: 2.464 <-
+    phase = measure
+    ready = 0
+    epoch = FALSE
+  -> State: 2.465 <-
+    groups = 1
+  -> State: 2.466 <-
+    groups = 2
+  -> State: 2.467 <-
+    groups = 3
+  -> State: 2.468 <-
+    phase = aggregate
+  -> State: 2.469 <-
+    phase = validate
+  -> State: 2.470 <-
+    phase = measure
+    groups = 0
+    ready = 1
+    energy_epoch = FALSE
+  -> State: 2.471 <-
+    groups = 1
+  -> State: 2.472 <-
+    groups = 2
+  -> State: 2.473 <-
+    groups = 3
+  -> State: 2.474 <-
+    phase = aggregate
+  -> State: 2.475 <-
+    phase = validate
+  -> State: 2.476 <-
+    phase = measure
+    groups = 0
+    ready = 2
+  -> State: 2.477 <-
+    groups = 1
+  -> State: 2.478 <-
+    groups = 2
+  -> State: 2.479 <-
+    groups = 3
+  -> State: 2.480 <-
+    phase = aggregate
+  -> State: 2.481 <-
+    phase = validate
+  -> State: 2.482 <-
+    phase = select
+    groups = 0
+    ready = 3
+  -> State: 2.483 <-
+    phase = commit
+  -> State: 2.484 <-
+    phase = check
+    updates = 22
+  -> State: 2.485 <-
+    phase = start
+  -> State: 2.486 <-
+    phase = measure
+    ready = 0
+    epoch = TRUE
+  -> State: 2.487 <-
+    groups = 1
+  -> State: 2.488 <-
+    groups = 2
+  -> State: 2.489 <-
+    groups = 3
+  -> State: 2.490 <-
+    phase = aggregate
+  -> State: 2.491 <-
+    phase = validate
+  -> State: 2.492 <-
+    phase = measure
+    groups = 0
+    ready = 1
+    energy_epoch = TRUE
+  -> State: 2.493 <-
+    groups = 1
+  -> State: 2.494 <-
+    groups = 2
+  -> State: 2.495 <-
+    groups = 3
+  -> State: 2.496 <-
+    phase = aggregate
+  -> State: 2.497 <-
+    phase = validate
+  -> State: 2.498 <-
+    phase = measure
+    groups = 0
+    ready = 2
+  -> State: 2.499 <-
+    groups = 1
+  -> State: 2.500 <-
+    groups = 2
+  -> State: 2.501 <-
+    groups = 3
+  -> State: 2.502 <-
+    phase = aggregate
+  -> State: 2.503 <-
+    phase = validate
+  -> State: 2.504 <-
+    phase = select
+    groups = 0
+    ready = 3
+  -> State: 2.505 <-
+    phase = commit
+  -> State: 2.506 <-
+    phase = check
+    updates = 23
+  -> State: 2.507 <-
+    phase = start
+  -> State: 2.508 <-
+    phase = measure
+    ready = 0
+    epoch = FALSE
+  -> State: 2.509 <-
+    groups = 1
+  -> State: 2.510 <-
+    groups = 2
+  -> State: 2.511 <-
+    groups = 3
+  -> State: 2.512 <-
+    phase = aggregate
+  -> State: 2.513 <-
+    phase = validate
+  -> State: 2.514 <-
+    phase = measure
+    groups = 0
+    ready = 1
+    energy_epoch = FALSE
+  -> State: 2.515 <-
+    groups = 1
+  -> State: 2.516 <-
+    groups = 2
+  -> State: 2.517 <-
+    groups = 3
+  -> State: 2.518 <-
+    phase = aggregate
+  -> State: 2.519 <-
+    phase = validate
+  -> State: 2.520 <-
+    phase = measure
+    groups = 0
+    ready = 2
+  -> State: 2.521 <-
+    groups = 1
+  -> State: 2.522 <-
+    groups = 2
+  -> State: 2.523 <-
+    groups = 3
+  -> State: 2.524 <-
+    phase = aggregate
+  -> State: 2.525 <-
+    phase = validate
+  -> State: 2.526 <-
+    phase = select
+    groups = 0
+    ready = 3
+  -> State: 2.527 <-
+    phase = commit
+  -> State: 2.528 <-
+    phase = check
+    updates = 24
+  -> State: 2.529 <-
+    phase = start
+  -> State: 2.530 <-
+    phase = measure
+    ready = 0
+    epoch = TRUE
+  -> State: 2.531 <-
+    groups = 1
+  -> State: 2.532 <-
+    groups = 2
+  -> State: 2.533 <-
+    groups = 3
+  -> State: 2.534 <-
+    phase = aggregate
+  -> State: 2.535 <-
+    phase = validate
+  -> State: 2.536 <-
+    phase = measure
+    groups = 0
+    ready = 1
+    energy_epoch = TRUE
+  -> State: 2.537 <-
+    groups = 1
+  -> State: 2.538 <-
+    groups = 2
+  -> State: 2.539 <-
+    groups = 3
+  -> State: 2.540 <-
+    phase = aggregate
+  -> State: 2.541 <-
+    phase = validate
+  -> State: 2.542 <-
+    phase = measure
+    groups = 0
+    ready = 2
+  -> State: 2.543 <-
+    groups = 1
+  -> State: 2.544 <-
+    groups = 2
+  -> State: 2.545 <-
+    groups = 3
+  -> State: 2.546 <-
+    phase = aggregate
+  -> State: 2.547 <-
+    phase = validate
+  -> State: 2.548 <-
+    phase = select
+    groups = 0
+    ready = 3
+  -> State: 2.549 <-
+    phase = commit
+  -> State: 2.550 <-
+    phase = check
+    updates = 25
+  -> State: 2.551 <-
+    phase = start
+  -> State: 2.552 <-
+    phase = measure
+    ready = 0
+    epoch = FALSE
+  -> State: 2.553 <-
+    groups = 1
+  -> State: 2.554 <-
+    groups = 2
+  -> State: 2.555 <-
+    groups = 3
+  -> State: 2.556 <-
+    phase = aggregate
+  -> State: 2.557 <-
+    phase = validate
+  -> State: 2.558 <-
+    phase = measure
+    groups = 0
+    ready = 1
+    energy_epoch = FALSE
+  -> State: 2.559 <-
+    groups = 1
+  -> State: 2.560 <-
+    groups = 2
+  -> State: 2.561 <-
+    groups = 3
+  -> State: 2.562 <-
+    phase = aggregate
+  -> State: 2.563 <-
+    phase = validate
+  -> State: 2.564 <-
+    phase = measure
+    groups = 0
+    ready = 2
+  -> State: 2.565 <-
+    groups = 1
+  -> State: 2.566 <-
+    groups = 2
+  -> State: 2.567 <-
+    groups = 3
+  -> State: 2.568 <-
+    phase = aggregate
+  -> State: 2.569 <-
+    phase = validate
+  -> State: 2.570 <-
+    phase = select
+    groups = 0
+    ready = 3
+  -> State: 2.571 <-
+    phase = commit
+  -> State: 2.572 <-
+    phase = check
+    updates = 26
+  -> State: 2.573 <-
+    phase = start
+  -> State: 2.574 <-
+    phase = measure
+    ready = 0
+    epoch = TRUE
+  -> State: 2.575 <-
+    groups = 1
+  -> State: 2.576 <-
+    groups = 2
+  -> State: 2.577 <-
+    groups = 3
+  -> State: 2.578 <-
+    phase = aggregate
+  -> State: 2.579 <-
+    phase = validate
+  -> State: 2.580 <-
+    phase = measure
+    groups = 0
+    ready = 1
+    energy_epoch = TRUE
+  -> State: 2.581 <-
+    groups = 1
+  -> State: 2.582 <-
+    groups = 2
+  -> State: 2.583 <-
+    groups = 3
+  -> State: 2.584 <-
+    phase = aggregate
+  -> State: 2.585 <-
+    phase = validate
+  -> State: 2.586 <-
+    phase = measure
+    groups = 0
+    ready = 2
+  -> State: 2.587 <-
+    groups = 1
+  -> State: 2.588 <-
+    groups = 2
+  -> State: 2.589 <-
+    groups = 3
+  -> State: 2.590 <-
+    phase = aggregate
+  -> State: 2.591 <-
+    phase = validate
+  -> State: 2.592 <-
+    phase = select
+    groups = 0
+    ready = 3
+  -> State: 2.593 <-
+    phase = commit
+  -> State: 2.594 <-
+    phase = check
+    updates = 27
+  -> State: 2.595 <-
+    phase = start
+  -> State: 2.596 <-
+    phase = measure
+    ready = 0
+    epoch = FALSE
+  -> State: 2.597 <-
+    groups = 1
+  -> State: 2.598 <-
+    groups = 2
+  -> State: 2.599 <-
+    groups = 3
+  -> State: 2.600 <-
+    phase = aggregate
+  -> State: 2.601 <-
+    phase = validate
+  -> State: 2.602 <-
+    phase = measure
+    groups = 0
+    ready = 1
+    energy_epoch = FALSE
+  -> State: 2.603 <-
+    groups = 1
+  -> State: 2.604 <-
+    groups = 2
+  -> State: 2.605 <-
+    groups = 3
+  -> State: 2.606 <-
+    phase = aggregate
+  -> State: 2.607 <-
+    phase = validate
+  -> State: 2.608 <-
+    phase = measure
+    groups = 0
+    ready = 2
+  -> State: 2.609 <-
+    groups = 1
+  -> State: 2.610 <-
+    groups = 2
+  -> State: 2.611 <-
+    groups = 3
+  -> State: 2.612 <-
+    phase = aggregate
+  -> State: 2.613 <-
+    phase = validate
+  -> State: 2.614 <-
+    phase = select
+    groups = 0
+    ready = 3
+  -> State: 2.615 <-
+    phase = commit
+  -> State: 2.616 <-
+    phase = check
+    updates = 28
+  -> State: 2.617 <-
+    phase = start
+  -> State: 2.618 <-
+    phase = measure
+    ready = 0
+    epoch = TRUE
+  -> State: 2.619 <-
+    groups = 1
+  -> State: 2.620 <-
+    groups = 2
+  -> State: 2.621 <-
+    groups = 3
+  -> State: 2.622 <-
+    phase = aggregate
+  -> State: 2.623 <-
+    phase = validate
+  -> State: 2.624 <-
+    phase = measure
+    groups = 0
+    ready = 1
+    energy_epoch = TRUE
+  -> State: 2.625 <-
+    groups = 1
+  -> State: 2.626 <-
+    groups = 2
+  -> State: 2.627 <-
+    groups = 3
+  -> State: 2.628 <-
+    phase = aggregate
+  -> State: 2.629 <-
+    phase = validate
+  -> State: 2.630 <-
+    phase = measure
+    groups = 0
+    ready = 2
+  -> State: 2.631 <-
+    groups = 1
+  -> State: 2.632 <-
+    groups = 2
+  -> State: 2.633 <-
+    groups = 3
+  -> State: 2.634 <-
+    phase = aggregate
+  -> State: 2.635 <-
+    phase = validate
+  -> State: 2.636 <-
+    phase = select
+    groups = 0
+    ready = 3
+  -> State: 2.637 <-
+    phase = commit
+  -> State: 2.638 <-
+    phase = check
+    updates = 29
+  -> State: 2.639 <-
+    phase = start
+  -> State: 2.640 <-
+    phase = measure
+    ready = 0
+    epoch = FALSE
+  -> State: 2.641 <-
+    groups = 1
+  -> State: 2.642 <-
+    groups = 2
+  -> State: 2.643 <-
+    groups = 3
+  -> State: 2.644 <-
+    phase = aggregate
+  -> State: 2.645 <-
+    phase = validate
+  -> State: 2.646 <-
+    phase = measure
+    groups = 0
+    ready = 1
+    energy_epoch = FALSE
+  -> State: 2.647 <-
+    groups = 1
+  -> State: 2.648 <-
+    groups = 2
+  -> State: 2.649 <-
+    groups = 3
+  -> State: 2.650 <-
+    phase = aggregate
+  -> State: 2.651 <-
+    phase = validate
+  -> State: 2.652 <-
+    phase = measure
+    groups = 0
+    ready = 2
+  -> State: 2.653 <-
+    groups = 1
+  -> State: 2.654 <-
+    groups = 2
+  -> State: 2.655 <-
+    groups = 3
+  -> State: 2.656 <-
+    phase = aggregate
+  -> State: 2.657 <-
+    phase = validate
+  -> State: 2.658 <-
+    phase = select
+    groups = 0
+    ready = 3
+  -> State: 2.659 <-
+    phase = commit
+  -> State: 2.660 <-
+    phase = check
+    updates = 30
+  -> State: 2.661 <-
+    phase = start
+  -> State: 2.662 <-
+    phase = measure
+    ready = 0
+    epoch = TRUE
+  -> State: 2.663 <-
+    groups = 1
+  -> State: 2.664 <-
+    groups = 2
+  -> State: 2.665 <-
+    groups = 3
+  -> State: 2.666 <-
+    phase = aggregate
+  -> State: 2.667 <-
+    phase = validate
+  -> State: 2.668 <-
+    phase = measure
+    groups = 0
+    ready = 1
+    energy_epoch = TRUE
+  -> State: 2.669 <-
+    groups = 1
+  -> State: 2.670 <-
+    groups = 2
+  -> State: 2.671 <-
+    groups = 3
+  -> State: 2.672 <-
+    phase = aggregate
+  -> State: 2.673 <-
+    phase = validate
+  -> State: 2.674 <-
+    phase = measure
+    groups = 0
+    ready = 2
+  -> State: 2.675 <-
+    groups = 1
+  -> State: 2.676 <-
+    groups = 2
+  -> State: 2.677 <-
+    groups = 3
+  -> State: 2.678 <-
+    phase = aggregate
+  -> State: 2.679 <-
+    phase = validate
+  -> State: 2.680 <-
+    phase = select
+    groups = 0
+    ready = 3
+  -> State: 2.681 <-
+    phase = commit
+  -> State: 2.682 <-
+    phase = check
+    updates = 31
+  -> State: 2.683 <-
+    phase = start
+  -> State: 2.684 <-
+    phase = measure
+    ready = 0
+    epoch = FALSE
+  -> State: 2.685 <-
+    groups = 1
+  -> State: 2.686 <-
+    groups = 2
+  -> State: 2.687 <-
+    groups = 3
+  -> State: 2.688 <-
+    phase = aggregate
+  -> State: 2.689 <-
+    phase = validate
+  -> State: 2.690 <-
+    phase = measure
+    groups = 0
+    ready = 1
+    energy_epoch = FALSE
+  -> State: 2.691 <-
+    groups = 1
+  -> State: 2.692 <-
+    groups = 2
+  -> State: 2.693 <-
+    groups = 3
+  -> State: 2.694 <-
+    phase = aggregate
+  -> State: 2.695 <-
+    phase = validate
+  -> State: 2.696 <-
+    phase = measure
+    groups = 0
+    ready = 2
+  -> State: 2.697 <-
+    groups = 1
+  -> State: 2.698 <-
+    groups = 2
+  -> State: 2.699 <-
+    groups = 3
+  -> State: 2.700 <-
+    phase = aggregate
+  -> State: 2.701 <-
+    phase = validate
+  -> State: 2.702 <-
+    phase = select
+    groups = 0
+    ready = 3
+  -> State: 2.703 <-
+    phase = commit
+  -> State: 2.704 <-
+    phase = check
+    updates = 32
+  -> State: 2.705 <-
+    phase = start
+  -> State: 2.706 <-
+    phase = measure
+    ready = 0
+    epoch = TRUE
+  -> State: 2.707 <-
+    groups = 1
+  -> State: 2.708 <-
+    groups = 2
+  -> State: 2.709 <-
+    groups = 3
+  -> State: 2.710 <-
+    phase = aggregate
+  -> State: 2.711 <-
+    phase = validate
+  -> State: 2.712 <-
+    phase = measure
+    groups = 0
+    ready = 1
+    energy_epoch = TRUE
+  -> State: 2.713 <-
+    groups = 1
+  -> State: 2.714 <-
+    groups = 2
+  -> State: 2.715 <-
+    groups = 3
+  -> State: 2.716 <-
+    phase = aggregate
+  -> State: 2.717 <-
+    phase = validate
+  -> State: 2.718 <-
+    phase = measure
+    groups = 0
+    ready = 2
+  -> State: 2.719 <-
+    groups = 1
+  -> State: 2.720 <-
+    groups = 2
+  -> State: 2.721 <-
+    groups = 3
+  -> State: 2.722 <-
+    phase = aggregate
+  -> State: 2.723 <-
+    phase = validate
+  -> State: 2.724 <-
+    phase = select
+    groups = 0
+    ready = 3
+  -> State: 2.725 <-
+    phase = commit
+  -> State: 2.726 <-
+    phase = check
+    updates = 33
+  -> State: 2.727 <-
+    phase = start
+  -> State: 2.728 <-
+    phase = measure
+    ready = 0
+    epoch = FALSE
+  -> State: 2.729 <-
+    groups = 1
+  -> State: 2.730 <-
+    groups = 2
+  -> State: 2.731 <-
+    groups = 3
+  -> State: 2.732 <-
+    phase = aggregate
+  -> State: 2.733 <-
+    phase = validate
+  -> State: 2.734 <-
+    phase = measure
+    groups = 0
+    ready = 1
+    energy_epoch = FALSE
+  -> State: 2.735 <-
+    groups = 1
+  -> State: 2.736 <-
+    groups = 2
+  -> State: 2.737 <-
+    groups = 3
+  -> State: 2.738 <-
+    phase = aggregate
+  -> State: 2.739 <-
+    phase = validate
+  -> State: 2.740 <-
+    phase = measure
+    groups = 0
+    ready = 2
+  -> State: 2.741 <-
+    groups = 1
+  -> State: 2.742 <-
+    groups = 2
+  -> State: 2.743 <-
+    groups = 3
+  -> State: 2.744 <-
+    phase = aggregate
+  -> State: 2.745 <-
+    phase = validate
+  -> State: 2.746 <-
+    phase = select
+    groups = 0
+    ready = 3
+  -> State: 2.747 <-
+    phase = commit
+  -> State: 2.748 <-
+    phase = check
+    updates = 34
+  -> State: 2.749 <-
+    phase = start
+  -> State: 2.750 <-
+    phase = measure
+    ready = 0
+    epoch = TRUE
+  -> State: 2.751 <-
+    groups = 1
+  -> State: 2.752 <-
+    groups = 2
+  -> State: 2.753 <-
+    groups = 3
+  -> State: 2.754 <-
+    phase = aggregate
+  -> State: 2.755 <-
+    phase = validate
+  -> State: 2.756 <-
+    phase = measure
+    groups = 0
+    ready = 1
+    energy_epoch = TRUE
+  -> State: 2.757 <-
+    groups = 1
+  -> State: 2.758 <-
+    groups = 2
+  -> State: 2.759 <-
+    groups = 3
+  -> State: 2.760 <-
+    phase = aggregate
+  -> State: 2.761 <-
+    phase = validate
+  -> State: 2.762 <-
+    phase = measure
+    groups = 0
+    ready = 2
+  -> State: 2.763 <-
+    groups = 1
+  -> State: 2.764 <-
+    groups = 2
+  -> State: 2.765 <-
+    groups = 3
+  -> State: 2.766 <-
+    phase = aggregate
+  -> State: 2.767 <-
+    phase = validate
+  -> State: 2.768 <-
+    phase = select
+    groups = 0
+    ready = 3
+  -> State: 2.769 <-
+    phase = commit
+  -> State: 2.770 <-
+    phase = check
+    updates = 35
+  -> State: 2.771 <-
+    phase = start
+  -> State: 2.772 <-
+    phase = measure
+    ready = 0
+    epoch = FALSE
+  -> State: 2.773 <-
+    groups = 1
+  -> State: 2.774 <-
+    groups = 2
+  -> State: 2.775 <-
+    groups = 3
+  -> State: 2.776 <-
+    phase = aggregate
+  -> State: 2.777 <-
+    phase = validate
+  -> State: 2.778 <-
+    phase = measure
+    groups = 0
+    ready = 1
+    energy_epoch = FALSE
+  -> State: 2.779 <-
+    groups = 1
+  -> State: 2.780 <-
+    groups = 2
+  -> State: 2.781 <-
+    groups = 3
+  -> State: 2.782 <-
+    phase = aggregate
+  -> State: 2.783 <-
+    phase = validate
+  -> State: 2.784 <-
+    phase = measure
+    groups = 0
+    ready = 2
+  -> State: 2.785 <-
+    groups = 1
+  -> State: 2.786 <-
+    groups = 2
+  -> State: 2.787 <-
+    groups = 3
+  -> State: 2.788 <-
+    phase = aggregate
+  -> State: 2.789 <-
+    phase = validate
+  -> State: 2.790 <-
+    phase = select
+    groups = 0
+    ready = 3
+  -> State: 2.791 <-
+    phase = commit
+  -> State: 2.792 <-
+    phase = check
+    updates = 36
+  -> State: 2.793 <-
+    phase = start
+  -> State: 2.794 <-
+    phase = measure
+    ready = 0
+    epoch = TRUE
+  -> State: 2.795 <-
+    groups = 1
+  -> State: 2.796 <-
+    groups = 2
+  -> State: 2.797 <-
+    groups = 3
+  -> State: 2.798 <-
+    phase = aggregate
+  -> State: 2.799 <-
+    phase = validate
+  -> State: 2.800 <-
+    phase = measure
+    groups = 0
+    ready = 1
+    energy_epoch = TRUE
+  -> State: 2.801 <-
+    groups = 1
+  -> State: 2.802 <-
+    groups = 2
+  -> State: 2.803 <-
+    groups = 3
+  -> State: 2.804 <-
+    phase = aggregate
+  -> State: 2.805 <-
+    phase = validate
+  -> State: 2.806 <-
+    phase = measure
+    groups = 0
+    ready = 2
+  -> State: 2.807 <-
+    groups = 1
+  -> State: 2.808 <-
+    groups = 2
+  -> State: 2.809 <-
+    groups = 3
+  -> State: 2.810 <-
+    phase = aggregate
+  -> State: 2.811 <-
+    phase = validate
+  -> State: 2.812 <-
+    phase = select
+    groups = 0
+    ready = 3
+  -> State: 2.813 <-
+    phase = commit
+  -> State: 2.814 <-
+    phase = check
+    updates = 37
+  -> State: 2.815 <-
+    phase = start
+  -> State: 2.816 <-
+    phase = measure
+    ready = 0
+    epoch = FALSE
+  -> State: 2.817 <-
+    groups = 1
+  -> State: 2.818 <-
+    groups = 2
+  -> State: 2.819 <-
+    groups = 3
+  -> State: 2.820 <-
+    phase = aggregate
+  -> State: 2.821 <-
+    phase = validate
+  -> State: 2.822 <-
+    phase = measure
+    groups = 0
+    ready = 1
+    energy_epoch = FALSE
+  -> State: 2.823 <-
+    groups = 1
+  -> State: 2.824 <-
+    groups = 2
+  -> State: 2.825 <-
+    groups = 3
+  -> State: 2.826 <-
+    phase = aggregate
+  -> State: 2.827 <-
+    phase = validate
+  -> State: 2.828 <-
+    phase = measure
+    groups = 0
+    ready = 2
+  -> State: 2.829 <-
+    groups = 1
+  -> State: 2.830 <-
+    groups = 2
+  -> State: 2.831 <-
+    groups = 3
+  -> State: 2.832 <-
+    phase = aggregate
+  -> State: 2.833 <-
+    phase = validate
+  -> State: 2.834 <-
+    phase = select
+    groups = 0
+    ready = 3
+  -> State: 2.835 <-
+    phase = commit
+  -> State: 2.836 <-
+    phase = check
+    updates = 38
+  -> State: 2.837 <-
+    phase = start
+  -> State: 2.838 <-
+    phase = measure
+    ready = 0
+    epoch = TRUE
+  -> State: 2.839 <-
+    groups = 1
+  -> State: 2.840 <-
+    groups = 2
+  -> State: 2.841 <-
+    groups = 3
+  -> State: 2.842 <-
+    phase = aggregate
+  -> State: 2.843 <-
+    phase = validate
+  -> State: 2.844 <-
+    phase = measure
+    groups = 0
+    ready = 1
+    energy_epoch = TRUE
+  -> State: 2.845 <-
+    groups = 1
+  -> State: 2.846 <-
+    groups = 2
+  -> State: 2.847 <-
+    groups = 3
+  -> State: 2.848 <-
+    phase = aggregate
+  -> State: 2.849 <-
+    phase = validate
+  -> State: 2.850 <-
+    phase = measure
+    groups = 0
+    ready = 2
+  -> State: 2.851 <-
+    groups = 1
+  -> State: 2.852 <-
+    groups = 2
+  -> State: 2.853 <-
+    groups = 3
+  -> State: 2.854 <-
+    phase = aggregate
+  -> State: 2.855 <-
+    phase = validate
+  -> State: 2.856 <-
+    phase = select
+    groups = 0
+    ready = 3
+  -> State: 2.857 <-
+    phase = commit
+  -> State: 2.858 <-
+    phase = check
+    updates = 39
+  -> State: 2.859 <-
+    phase = start
+  -> State: 2.860 <-
+    phase = measure
+    ready = 0
+    epoch = FALSE
+  -> State: 2.861 <-
+    groups = 1
+  -> State: 2.862 <-
+    groups = 2
+  -> State: 2.863 <-
+    groups = 3
+  -> State: 2.864 <-
+    phase = aggregate
+  -> State: 2.865 <-
+    phase = validate
+  -> State: 2.866 <-
+    phase = measure
+    groups = 0
+    ready = 1
+    energy_epoch = FALSE
+  -> State: 2.867 <-
+    groups = 1
+  -> State: 2.868 <-
+    groups = 2
+  -> State: 2.869 <-
+    groups = 3
+  -> State: 2.870 <-
+    phase = aggregate
+  -> State: 2.871 <-
+    phase = validate
+  -> State: 2.872 <-
+    phase = measure
+    groups = 0
+    ready = 2
+  -> State: 2.873 <-
+    groups = 1
+  -> State: 2.874 <-
+    groups = 2
+  -> State: 2.875 <-
+    groups = 3
+  -> State: 2.876 <-
+    phase = aggregate
+  -> State: 2.877 <-
+    phase = validate
+  -> State: 2.878 <-
+    phase = select
+    groups = 0
+    ready = 3
+  -> State: 2.879 <-
+    phase = commit
+  -> State: 2.880 <-
+    phase = check
+    updates = 40
+  -> State: 2.881 <-
+    phase = start
+  -> State: 2.882 <-
+    phase = measure
+    ready = 0
+    epoch = TRUE
+  -> State: 2.883 <-
+    groups = 1
+  -> State: 2.884 <-
+    groups = 2
+  -> State: 2.885 <-
+    groups = 3
+  -> State: 2.886 <-
+    phase = aggregate
+  -> State: 2.887 <-
+    phase = validate
+  -> State: 2.888 <-
+    phase = measure
+    groups = 0
+    ready = 1
+    energy_epoch = TRUE
+  -> State: 2.889 <-
+    groups = 1
+  -> State: 2.890 <-
+    groups = 2
+  -> State: 2.891 <-
+    groups = 3
+  -> State: 2.892 <-
+    phase = aggregate
+  -> State: 2.893 <-
+    phase = validate
+  -> State: 2.894 <-
+    phase = measure
+    groups = 0
+    ready = 2
+  -> State: 2.895 <-
+    groups = 1
+  -> State: 2.896 <-
+    groups = 2
+  -> State: 2.897 <-
+    groups = 3
+  -> State: 2.898 <-
+    phase = aggregate
+  -> State: 2.899 <-
+    phase = validate
+  -> State: 2.900 <-
+    phase = select
+    groups = 0
+    ready = 3
+  -> State: 2.901 <-
+    phase = commit
+  -> State: 2.902 <-
+    phase = check
+    updates = 41
+  -> State: 2.903 <-
+    phase = start
+  -> State: 2.904 <-
+    phase = measure
+    ready = 0
+    epoch = FALSE
+  -> State: 2.905 <-
+    groups = 1
+  -> State: 2.906 <-
+    groups = 2
+  -> State: 2.907 <-
+    groups = 3
+  -> State: 2.908 <-
+    phase = aggregate
+  -> State: 2.909 <-
+    phase = validate
+  -> State: 2.910 <-
+    phase = measure
+    groups = 0
+    ready = 1
+    energy_epoch = FALSE
+  -> State: 2.911 <-
+    groups = 1
+  -> State: 2.912 <-
+    groups = 2
+  -> State: 2.913 <-
+    groups = 3
+  -> State: 2.914 <-
+    phase = aggregate
+  -> State: 2.915 <-
+    phase = validate
+  -> State: 2.916 <-
+    phase = measure
+    groups = 0
+    ready = 2
+  -> State: 2.917 <-
+    groups = 1
+  -> State: 2.918 <-
+    groups = 2
+  -> State: 2.919 <-
+    groups = 3
+  -> State: 2.920 <-
+    phase = aggregate
+  -> State: 2.921 <-
+    phase = validate
+  -> State: 2.922 <-
+    phase = select
+    groups = 0
+    ready = 3
+  -> State: 2.923 <-
+    phase = commit
+  -> State: 2.924 <-
+    phase = check
+    updates = 42
+  -> State: 2.925 <-
+    phase = start
+  -> State: 2.926 <-
+    phase = measure
+    ready = 0
+    epoch = TRUE
+  -> State: 2.927 <-
+    groups = 1
+  -> State: 2.928 <-
+    groups = 2
+  -> State: 2.929 <-
+    groups = 3
+  -> State: 2.930 <-
+    phase = aggregate
+  -> State: 2.931 <-
+    phase = validate
+  -> State: 2.932 <-
+    phase = measure
+    groups = 0
+    ready = 1
+    energy_epoch = TRUE
+  -> State: 2.933 <-
+    groups = 1
+  -> State: 2.934 <-
+    groups = 2
+  -> State: 2.935 <-
+    groups = 3
+  -> State: 2.936 <-
+    phase = aggregate
+  -> State: 2.937 <-
+    phase = validate
+  -> State: 2.938 <-
+    phase = measure
+    groups = 0
+    ready = 2
+  -> State: 2.939 <-
+    groups = 1
+  -> State: 2.940 <-
+    groups = 2
+  -> State: 2.941 <-
+    groups = 3
+  -> State: 2.942 <-
+    phase = aggregate
+  -> State: 2.943 <-
+    phase = validate
+  -> State: 2.944 <-
+    phase = select
+    groups = 0
+    ready = 3
+  -> State: 2.945 <-
+    phase = commit
+  -> State: 2.946 <-
+    phase = check
+    updates = 43
+  -> State: 2.947 <-
+    phase = start
+  -> State: 2.948 <-
+    phase = measure
+    ready = 0
+    epoch = FALSE
+  -> State: 2.949 <-
+    groups = 1
+  -> State: 2.950 <-
+    groups = 2
+  -> State: 2.951 <-
+    groups = 3
+  -> State: 2.952 <-
+    phase = aggregate
+  -> State: 2.953 <-
+    phase = validate
+  -> State: 2.954 <-
+    phase = measure
+    groups = 0
+    ready = 1
+    energy_epoch = FALSE
+  -> State: 2.955 <-
+    groups = 1
+  -> State: 2.956 <-
+    groups = 2
+  -> State: 2.957 <-
+    groups = 3
+  -> State: 2.958 <-
+    phase = aggregate
+  -> State: 2.959 <-
+    phase = validate
+  -> State: 2.960 <-
+    phase = measure
+    groups = 0
+    ready = 2
+  -> State: 2.961 <-
+    groups = 1
+  -> State: 2.962 <-
+    groups = 2
+  -> State: 2.963 <-
+    groups = 3
+  -> State: 2.964 <-
+    phase = aggregate
+  -> State: 2.965 <-
+    phase = validate
+  -> State: 2.966 <-
+    phase = select
+    groups = 0
+    ready = 3
+  -> State: 2.967 <-
+    phase = commit
+  -> State: 2.968 <-
+    phase = check
+    updates = 44
+  -> State: 2.969 <-
+    phase = start
+  -> State: 2.970 <-
+    phase = measure
+    ready = 0
+    epoch = TRUE
+  -> State: 2.971 <-
+    groups = 1
+  -> State: 2.972 <-
+    groups = 2
+  -> State: 2.973 <-
+    groups = 3
+  -> State: 2.974 <-
+    phase = aggregate
+  -> State: 2.975 <-
+    phase = validate
+  -> State: 2.976 <-
+    phase = measure
+    groups = 0
+    ready = 1
+    energy_epoch = TRUE
+  -> State: 2.977 <-
+    groups = 1
+  -> State: 2.978 <-
+    groups = 2
+  -> State: 2.979 <-
+    groups = 3
+  -> State: 2.980 <-
+    phase = aggregate
+  -> State: 2.981 <-
+    phase = validate
+  -> State: 2.982 <-
+    phase = measure
+    groups = 0
+    ready = 2
+  -> State: 2.983 <-
+    groups = 1
+  -> State: 2.984 <-
+    groups = 2
+  -> State: 2.985 <-
+    groups = 3
+  -> State: 2.986 <-
+    phase = aggregate
+  -> State: 2.987 <-
+    phase = validate
+  -> State: 2.988 <-
+    phase = select
+    groups = 0
+    ready = 3
+  -> State: 2.989 <-
+    phase = commit
+  -> State: 2.990 <-
+    phase = check
+    updates = 45
+  -> State: 2.991 <-
+    phase = start
+  -> State: 2.992 <-
+    phase = measure
+    ready = 0
+    epoch = FALSE
+  -> State: 2.993 <-
+    groups = 1
+  -> State: 2.994 <-
+    groups = 2
+  -> State: 2.995 <-
+    groups = 3
+  -> State: 2.996 <-
+    phase = aggregate
+  -> State: 2.997 <-
+    phase = validate
+  -> State: 2.998 <-
+    phase = measure
+    groups = 0
+    ready = 1
+    energy_epoch = FALSE
+  -> State: 2.999 <-
+    groups = 1
+  -> State: 2.1000 <-
+    groups = 2
+  -> State: 2.1001 <-
+    groups = 3
+  -> State: 2.1002 <-
+    phase = aggregate
+  -> State: 2.1003 <-
+    phase = validate
+  -> State: 2.1004 <-
+    phase = measure
+    groups = 0
+    ready = 2
+  -> State: 2.1005 <-
+    groups = 1
+  -> State: 2.1006 <-
+    groups = 2
+  -> State: 2.1007 <-
+    groups = 3
+  -> State: 2.1008 <-
+    phase = aggregate
+  -> State: 2.1009 <-
+    phase = validate
+  -> State: 2.1010 <-
+    phase = select
+    groups = 0
+    ready = 3
+  -> State: 2.1011 <-
+    phase = commit
+  -> State: 2.1012 <-
+    phase = check
+    updates = 46
+  -> State: 2.1013 <-
+    phase = start
+  -> State: 2.1014 <-
+    phase = measure
+    ready = 0
+    epoch = TRUE
+  -> State: 2.1015 <-
+    groups = 1
+  -> State: 2.1016 <-
+    groups = 2
+  -> State: 2.1017 <-
+    groups = 3
+  -> State: 2.1018 <-
+    phase = aggregate
+  -> State: 2.1019 <-
+    phase = validate
+  -> State: 2.1020 <-
+    phase = measure
+    groups = 0
+    ready = 1
+    energy_epoch = TRUE
+  -> State: 2.1021 <-
+    groups = 1
+  -> State: 2.1022 <-
+    groups = 2
+  -> State: 2.1023 <-
+    groups = 3
+  -> State: 2.1024 <-
+    phase = aggregate
+  -> State: 2.1025 <-
+    phase = validate
+  -> State: 2.1026 <-
+    phase = measure
+    groups = 0
+    ready = 2
+  -> State: 2.1027 <-
+    groups = 1
+  -> State: 2.1028 <-
+    groups = 2
+  -> State: 2.1029 <-
+    groups = 3
+  -> State: 2.1030 <-
+    phase = aggregate
+  -> State: 2.1031 <-
+    phase = validate
+  -> State: 2.1032 <-
+    phase = select
+    groups = 0
+    ready = 3
+  -> State: 2.1033 <-
+    phase = commit
+  -> State: 2.1034 <-
+    phase = check
+    updates = 47
+  -> State: 2.1035 <-
+    phase = start
+  -> State: 2.1036 <-
+    phase = measure
+    ready = 0
+    epoch = FALSE
+  -> State: 2.1037 <-
+    groups = 1
+  -> State: 2.1038 <-
+    groups = 2
+  -> State: 2.1039 <-
+    groups = 3
+  -> State: 2.1040 <-
+    phase = aggregate
+  -> State: 2.1041 <-
+    phase = validate
+  -> State: 2.1042 <-
+    phase = measure
+    groups = 0
+    ready = 1
+    energy_epoch = FALSE
+  -> State: 2.1043 <-
+    groups = 1
+  -> State: 2.1044 <-
+    groups = 2
+  -> State: 2.1045 <-
+    groups = 3
+  -> State: 2.1046 <-
+    phase = aggregate
+  -> State: 2.1047 <-
+    phase = validate
+  -> State: 2.1048 <-
+    phase = measure
+    groups = 0
+    ready = 2
+  -> State: 2.1049 <-
+    groups = 1
+  -> State: 2.1050 <-
+    groups = 2
+  -> State: 2.1051 <-
+    groups = 3
+  -> State: 2.1052 <-
+    phase = aggregate
+  -> State: 2.1053 <-
+    phase = validate
+  -> State: 2.1054 <-
+    phase = select
+    groups = 0
+    ready = 3
+  -> State: 2.1055 <-
+    phase = commit
+  -> State: 2.1056 <-
+    phase = check
+    updates = 48
+  -> State: 2.1057 <-
+    phase = start
+  -> State: 2.1058 <-
+    phase = measure
+    ready = 0
+    epoch = TRUE
+  -> State: 2.1059 <-
+    groups = 1
+  -> State: 2.1060 <-
+    groups = 2
+  -> State: 2.1061 <-
+    groups = 3
+  -> State: 2.1062 <-
+    phase = aggregate
+  -> State: 2.1063 <-
+    phase = validate
+  -> State: 2.1064 <-
+    phase = measure
+    groups = 0
+    ready = 1
+    energy_epoch = TRUE
+  -> State: 2.1065 <-
+    groups = 1
+  -> State: 2.1066 <-
+    groups = 2
+  -> State: 2.1067 <-
+    groups = 3
+  -> State: 2.1068 <-
+    phase = aggregate
+  -> State: 2.1069 <-
+    phase = validate
+  -> State: 2.1070 <-
+    phase = measure
+    groups = 0
+    ready = 2
+  -> State: 2.1071 <-
+    groups = 1
+  -> State: 2.1072 <-
+    groups = 2
+  -> State: 2.1073 <-
+    groups = 3
+  -> State: 2.1074 <-
+    phase = aggregate
+  -> State: 2.1075 <-
+    phase = validate
+  -> State: 2.1076 <-
+    phase = select
+    groups = 0
+    ready = 3
+  -> State: 2.1077 <-
+    phase = commit
+  -> State: 2.1078 <-
+    phase = check
+    updates = 49
+  -> State: 2.1079 <-
+    phase = start
+  -> State: 2.1080 <-
+    phase = measure
+    ready = 0
+    epoch = FALSE
+  -> State: 2.1081 <-
+    groups = 1
+  -> State: 2.1082 <-
+    groups = 2
+  -> State: 2.1083 <-
+    groups = 3
+  -> State: 2.1084 <-
+    phase = aggregate
+  -> State: 2.1085 <-
+    phase = validate
+  -> State: 2.1086 <-
+    phase = measure
+    groups = 0
+    ready = 1
+    energy_epoch = FALSE
+  -> State: 2.1087 <-
+    groups = 1
+  -> State: 2.1088 <-
+    groups = 2
+  -> State: 2.1089 <-
+    groups = 3
+  -> State: 2.1090 <-
+    phase = aggregate
+  -> State: 2.1091 <-
+    phase = validate
+  -> State: 2.1092 <-
+    phase = measure
+    groups = 0
+    ready = 2
+  -> State: 2.1093 <-
+    groups = 1
+  -> State: 2.1094 <-
+    groups = 2
+  -> State: 2.1095 <-
+    groups = 3
+  -> State: 2.1096 <-
+    phase = aggregate
+  -> State: 2.1097 <-
+    phase = validate
+  -> State: 2.1098 <-
+    phase = select
+    groups = 0
+    ready = 3
+  -> State: 2.1099 <-
+    phase = commit
+  -> State: 2.1100 <-
+    phase = check
+    updates = 50
+  -- Loop starts here
+  -> State: 2.1101 <-
+    phase = aborted
+    terminal = TRUE
+  -> State: 2.1102 <-
+-- specification  G (phase = commit -> energy_epoch = epoch)  is true

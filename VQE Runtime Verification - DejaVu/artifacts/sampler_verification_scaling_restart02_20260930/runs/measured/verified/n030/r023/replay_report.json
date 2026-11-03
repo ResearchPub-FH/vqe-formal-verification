@@ -1,0 +1,163 @@
+{
+  "complete": true,
+  "config_hash": "ac2429becb0b4a21fb9b7dcbe04fd550bdc53b6e21b83605bd89e789ed4588c8",
+  "execution_provenance": {
+    "ansatz": {
+      "class": "EfficientSU2",
+      "entanglement": "linear",
+      "num_qubits": 2,
+      "parameter_count": 4,
+      "qpy_sha256": "cc2cafc6cf081916057d7923ad697fa83591cd82f866ac9f998585e19c3c8396",
+      "reps": 1,
+      "su2_gates": [
+        "ry"
+      ]
+    },
+    "backend": "StatevectorSampler",
+    "initial_theta": [
+      -1.1068913836067251,
+      -2.193779340387185,
+      0.9483492633509023,
+      -2.6864620414936398
+    ],
+    "initial_theta_hash": "1d0b2ef6b735c9200bcab5237f7b5a700045f4f608dcd9c2c4ca1c748937e609",
+    "mode": "qiskit-statevector-sampler",
+    "qiskit_ibm_runtime_version": null,
+    "qiskit_version": "2.5.2",
+    "sampler_experiment": {
+      "api_options": {
+        "constructor": {
+          "default_shots": 1024,
+          "seed": 7
+        },
+        "primitive": "qiskit.primitives.StatevectorSampler",
+        "run_shots": 1024
+      },
+      "bitstring_order": "qiskit-msb-qn-1-to-q0",
+      "layout_strategy": "logical-identity-untranspiled-v1",
+      "maximum_physical_shots": 122880,
+      "maximum_submitted_pubs": 120,
+      "optimizer_gate_order": [
+        "preview_update_no_mutation",
+        "verifier_authorize_exact_theta",
+        "commit_update",
+        "verifier_record_commit"
+      ],
+      "optimizer_policy": {
+        "improvement_tolerance": 0.0,
+        "initial_step": 0.4,
+        "initialization": "seeded-uniform-v1",
+        "name": "ask-tell-pattern-search-v1",
+        "step_shrink": 0.5
+      },
+      "parameterized_circuit_qpy_sha256": [
+        "456d0183116e569855edbbaa2848eac916fd96b9268ab7a36975344c58fe28b2",
+        "1d807052ae142b4f8266a70189757e2579b57ba38f13171cdfb8ff0bbbaf9b41",
+        "1d807052ae142b4f8266a70189757e2579b57ba38f13171cdfb8ff0bbbaf9b41",
+        "95ddd72340f4343fa9c0e74860d8f48f836322275b850582d854b6f823db338a"
+      ],
+      "pauli_order": [
+        "YZ",
+        "ZI",
+        "ZZ",
+        "XX"
+      ],
+      "physical_layouts": [
+        {
+          "logical_to_physical": [
+            0,
+            1
+          ],
+          "transpiled": false
+        },
+        {
+          "logical_to_physical": [
+            0,
+            1
+          ],
+          "transpiled": false
+        },
+        {
+          "logical_to_physical": [
+            0,
+            1
+          ],
+          "transpiled": false
+        },
+        {
+          "logical_to_physical": [
+            0,
+            1
+          ],
+          "transpiled": false
+        }
+      ],
+      "physical_shots_per_evaluation": 4096,
+      "pubs_per_evaluation": 4,
+      "raw_evidence_format": "packed-bitarray-v1",
+      "sampler_policy": {
+        "bitstring_order": "qiskit-msb-qn-1-to-q0",
+        "dynamical_decoupling": false,
+        "gate_twirling": false,
+        "measurement_mitigation": "not-applicable-to-samplerv2",
+        "measurement_strategy": "independent-pauli-basis-v1",
+        "measurement_twirling": false,
+        "measurement_type": "classified",
+        "pec": "not-applicable-to-samplerv2",
+        "pubs_per_evaluation": 4,
+        "raw_evidence_format": "packed-bitarray-v1",
+        "separate_pub_per_term": true,
+        "zne": "not-applicable-to-samplerv2"
+      },
+      "seed_transpiler": null,
+      "shots_per_pub": 1024,
+      "term_order": [
+        "t0",
+        "t1",
+        "t2",
+        "t3"
+      ],
+      "transpiler_optimization_level": null
+    },
+    "seed": 7,
+    "system": "h2"
+  },
+  "levels": {
+    "inter_iteration": {
+      "findings": [],
+      "status": "pass"
+    },
+    "intra_iteration": {
+      "findings": [],
+      "status": "pass"
+    },
+    "run_level": {
+      "findings": [],
+      "status": "pass"
+    }
+  },
+  "metrics": {
+    "duration_seconds": 0.869650792,
+    "event_count": 1263,
+    "iterations": 30,
+    "recorded_contract_count": 37,
+    "verified_effective_term_samples": 122880
+  },
+  "monitor_provenance": {
+    "adapter": "synchronous-dejavu-generated-monitor",
+    "bridge_sha256": "e46bfca48e9135503e146c677f310b28bee58110571abdca54d185a30a47af86",
+    "dejavu_sha256": "99fbc72ac9ba0dbf8051691f4c15958e1694345a025840acfd344d1eb66d58e1",
+    "monitor_sha256": "fd94121b102b5e21d161d983973c91a7e229f7f9929b48c04aafec9e5b13a4e7",
+    "property_levels": [
+      "intra_iteration",
+      "inter_iteration",
+      "run_level"
+    ],
+    "schema": 1,
+    "spec_sha256": "8a9e2dd660d1eb5dbf93eae8d60b7844faf792710a8337cb9910ac553c4b7729"
+  },
+  "run_id": "sampler-scale-verified-n30-r23-measured",
+  "schema_version": 1,
+  "status": "pass",
+  "terminal_reason": "max_iterations"
+}

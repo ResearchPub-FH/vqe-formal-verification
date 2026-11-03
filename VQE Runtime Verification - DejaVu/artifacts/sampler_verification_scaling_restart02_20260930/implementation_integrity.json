@@ -1,0 +1,55 @@
+{
+  "created_utc": "2026-10-01T00:55:01.192457+00:00",
+  "fresh_output_directory": "/Users/rome/Desktop/VQE Runtime Verification - DejaVu/artifacts/sampler_verification_scaling_restart02_20260930",
+  "excluded_directories": [
+    "/Users/rome/Desktop/VQE Runtime Verification - DejaVu/artifacts/excluded_scaling_campaign_20260930_restart02",
+    "/Users/rome/Desktop/VQE Runtime Verification - DejaVu/artifacts/excluded_scaling_campaign_20260930_restart01"
+  ],
+  "implementation_modified": false,
+  "files_verified": 26,
+  "sha256": {
+    "src/vqe_runtime/config.py": "d1dbbde40fd33f057ed12ce4ca7dee198dd3caff22804422db620849b1f8e20b",
+    "src/vqe_runtime/dejavu.py": "907e097adc61d0e6a99c389bc82dd322cb24addf785b3fd310b04e21378a95a4",
+    "src/vqe_runtime/events.py": "8c2f44f40ee300bbd6bf6b50c37d0a635589531e1f90f8c6a85b646ea8f89ccc",
+    "src/vqe_runtime/session.py": "7108e2a6dd5668cfdf805c1972dd2fa813412deadb66dec62f01897377cab670",
+    "src/vqe_runtime/__init__.py": "e47f64a915a9500ed9dd1fe68d2bb351590908e5133809fab6b45eab08684902",
+    "src/vqe_runtime/evidence_replay.py": "b363de6796b112ded071691c0bdd2142739f9f14ed2bc1cda58255957a34a904",
+    "src/vqe_runtime/cli.py": "f863fb39dca2725dace34642e495198a155117fc79a24b6dd37764d0ffa66d69",
+    "src/vqe_runtime/sampling.py": "1251b62030f861995ae62904b913d62c4ff283d33751c1df8405da5d0e08f280",
+    "src/vqe_runtime/contracts.py": "ac5574b77635c19dce8e3ae9317cffa5c4d80d27294c3521848830d7f9a7bd52",
+    "src/vqe_runtime/optimizer.py": "15ddadc97b952a9309b3ceca2c4ecc5880aaf20af37a5bec99950d3fa5eac110",
+    "src/vqe_runtime/demo.py": "25c3be77787a421d43f3e99f1e6e696fd1d0b53183b6653a5e4291514e96d844",
+    "src/vqe_runtime/sampler_runner.py": "cadf9cb9285bbabef562c495f70430332c52f9e6a0c7f68512f0a01f2d26407f",
+    "src/vqe_runtime/evidence.py": "6c26a8d03d9bc83c616d9192c3f0cb4798e481380063dfadae0b2dee21fbf2eb",
+    "src/vqe_runtime/__main__.py": "e014c07c71c5daede3fe8520fd696eaaed07cb19d77c01c14147273d0f9ed71b",
+    "src/vqe_runtime/qiskit_runner.py": "de26ccc763103768245a9057e2ea51c8bdb040d00c6909e143c249f0d7b223d9",
+    "src/vqe_runtime/report.py": "41dfecf4ede0cb4c9832054d78b70f87ce9a1fb7c4d2c3d33d772f54b6630628",
+    "src/vqe_runtime/checker.py": "5277ed7567e5946d67388350ecdc71122caabf4f08f3c020b567642fc1174cc4",
+    "src/vqe_runtime/vendor/dejavu/UPSTREAM.md": "9f4a40c42271f951bb00a6426463a6c1054278b23bc77ee13d4807188bbfd79d",
+    "src/vqe_runtime/vendor/dejavu/dejavu.jar": "99fbc72ac9ba0dbf8051691f4c15958e1694345a025840acfd344d1eb66d58e1",
+    "src/vqe_runtime/vendor/dejavu/vqe-three-level-monitor.jar": "fd94121b102b5e21d161d983973c91a7e229f7f9929b48c04aafec9e5b13a4e7",
+    "src/vqe_runtime/vendor/dejavu/monitor-manifest.json": "338601a6748cdf489a34709a56b02d5b5f2ff3dc0d26fb06d2d802d4ac331d88",
+    "src/vqe_runtime/vendor/dejavu/LICENSE.txt": "1f2afa61a3e7d62e5cf62b471c60c40853effc3428289f5961c84e24cf60447a",
+    "tools/benchmark_sampler_verification_scaling.py": "57e81d156bbb6ae03709df65cdb36cbcb4306cefb1079b45b358adc030842a17",
+    "configs/h2_statevector.toml": "bde4d9d24e7ad2406b0ee0186ba737eec8c34a148b5e9e771013bafda8c03ef9",
+    "data/h2_hamiltonian.json": "8364398979d8e71d268f41d14867ad7f25a505edcd065a90cb8d58c478fa5502",
+    "specs/vqe_runtime.qtl": "8a9e2dd660d1eb5dbf93eae8d60b7844faf792710a8337cb9910ac553c4b7729"
+  },
+  "checks": "54 sampling, optimizer, online session, evidence replay and sampler runner tests passed",
+  "configuration": {
+    "evaluations": [
+      10,
+      20,
+      30,
+      40,
+      50
+    ],
+    "conditions": [
+      "baseline",
+      "verified"
+    ],
+    "warmups_per_condition_count": 5,
+    "measured_runs_per_condition_count": 30,
+    "start_from_zero": true
+  }
+}

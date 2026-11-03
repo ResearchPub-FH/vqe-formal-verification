@@ -1,0 +1,246 @@
+[
+  {
+    "line": 2,
+    "text": "\\usepackage[T1]{fontenc}"
+  },
+  {
+    "line": 23,
+    "text": "VQE estimates a Hamiltonian expectation using a parameterized quantum state and adjusts the parameters with a classical optimizer~\\cite{peruzzo2014,mcclean2016}. Its hybrid execution combines circuit preparation, measurement, numerical aggregation, and classical decisions. The reliability of these interactions matters alongside the quality of the resulting energy estimate. Measurements must belong to the current candidate. Aggregation must use the declared observables and coefficients, and the optimizer must consume validated values. Stopping must follow the specified policy. Finite-shot uncertainty also makes reaching a target within a resource bound a probabilistic question~\\cite{tilly2022}."
+  },
+  {
+    "line": 27,
+    "text": "VQE research has extensively studied ansatz design, measurement, optimization, and noise~\\cite{tilly2022}. The verification problem addressed here concerns their interaction in an implemented workflow. A controller proof, an arithmetic proof, and a success-probability prediction become useful together when the reader can identify which requirement each establishes and how that requirement is checked during execution. This motivates a shared execution model, explicit specification mappings, and a procedure for comparing prospective results with observed behavior."
+  },
+  {
+    "line": 62,
+    "text": "\\includegraphics[width=.94\\textwidth]{figures/architecture.pdf}"
+  },
+  {
+    "line": 73,
+    "text": "\\begin{tabularx}{\\textwidth}{@{}p{.04\\textwidth}>{\\raggedright\\arraybackslash}p{.20\\textwidth}>{\\raggedright\\arraybackslash}p{.25\\textwidth}>{\\raggedright\\arraybackslash}p{.25\\textwidth}Y@{}}"
+  },
+  {
+    "line": 77,
+    "text": "L1 & Complete measurements before energy aggregation & NuXmv: aggregation implies three group completions & Unique candidate/group records and DejaVu past-group facts & Ordering agreement when required records are present \\\\"
+  },
+  {
+    "line": 78,
+    "text": "L2 & Candidate validation before optimizer commitment & NuXmv: selection/commit requires three ready candidates & Three validation events precede commit, with consumed scores recorded & Ordering agreement with fail-stop enforcement \\\\"
+  },
+  {
+    "line": 79,
+    "text": "L3 & Current evaluation and parameter provenance & NuXmv: epoch equality and readiness reset & Run/iteration/evaluation identities, indices, angles, successors & Runtime checks strengthen the epoch abstraction \\\\"
+  },
+  {
+    "line": 80,
+    "text": "L4 & Terminal closure and declared stopping reason & NuXmv: absorbing terminals and budget bounds & No later activity, with reason checked against oracle/budget & Agreement for shared properties. Reason is checked at runtime \\\\"
+  },
+  {
+    "line": 81,
+    "text": "N1 & Expectations consistent with raw counts & Dafny normalization kernel and range bound & Exact parity reconstruction and count totals & Agreement under trusted basis and parity mapping \\\\"
+  },
+  {
+    "line": 82,
+    "text": "N2 & Energy uses declared coefficients and measurements & Dafny contribution, weighted-sum, and interval kernels & Rational reference versus contributions, total energy, actual optimizer input & Arithmetic agreement within the specified tolerance \\\\"
+  },
+  {
+    "line": 83,
+    "text": "N3 & Physical shots counted consistently & Dafny natural-number list accumulation & Unique group executions, allocations, cumulative totals & Agreement under group-identity assumptions. Changed shots invalidate the stochastic setup \\\\"
+  },
+  {
+    "line": 84,
+    "text": "N4 & Valid candidates and deterministic selection & Dafny modular wrap and integer argmin/tie priority & Recomputed candidate indices, scores, chosen successor & Agreement under trusted angle/gate interpretation \\\\"
+  },
+  {
+    "line": 85,
+    "text": "P1 & Bounded success probability & Storm reachability of the Gaussian DTMC & First-success frequencies and Wilson intervals & Statistical compatibility under the model's assumptions \\\\"
+  },
+  {
+    "line": 86,
+    "text": "P2 & Iterations conditional on bounded success & Python propagation of the same Gaussian kernel & Mean first-success iteration and bootstrap interval & Supporting comparison with multiplicity adjustment \\\\"
+  },
+  {
+    "line": 87,
+    "text": "P3 & Shots conditional on bounded success & Fixed shot allocation times P2 & Successful-path shots at fixed shots/iteration & Derived from P2 \\\\"
+  },
+  {
+    "line": 94,
+    "text": "The experiment uses a two-qubit benchmark operator published in IBM's VQE example~\\cite{ibmvqe}, written in $q_1\\otimes q_0$ order:"
+  },
+  {
+    "line": 96,
+    "text": " H=0.398\\,YZ-0.398\\,ZI-0.0113\\,ZZ+0.181\\,XX."
+  },
+  {
+    "line": 99,
+    "text": "The project's supplied \\texttt{vqe\\_qiskit.py} directly constructs these Pauli terms and coefficients, which match the published example. The implementation uses that operator as input rather than deriving it from electronic integrals. Neither the project nor the cited two-qubit example supplies a molecular geometry, orbital basis, or fermion mapping for this operator. We therefore call it the \\emph{IBM two-qubit VQE benchmark}. Internal ``h2'' filenames are legacy identifiers. Its reference minimum eigenvalue is $E_{\\rm ref}=\\GroundEnergy$ in the operator's numerical units, and the success target is defined relative to this value."
+  },
+  {
+    "line": 101,
+    "text": "The circuit follows the example's four-parameter \\texttt{efficient\\_su2} construction~\\cite{ibmvqe}. It applies H to both qubits, the first pair of RZ rotations, Y to both, CX$(0\\!\\to\\!1)$, H to both, the second pair of RZ rotations, and Y to both. Four integer indices $z$ give angles $\\theta_j=2\\pi z_j/\\GridSize$, with wrap-around."
+  },
+  {
+    "line": 103,
+    "text": "We use cyclic coordinate search to make the finite-shot selection rule explicit and representable in a finite-state probabilistic model. This derivative-free method chooses among measured objective values, consistent with the general direct-search approach~\\cite{kolda2003}. At each iteration it remeasures the current, minus-one, and plus-one candidates on the selected coordinate, then chooses the smallest integer energy score. Ties prefer current, then minus, then plus. The coordinate cycle and fixed grid make candidate validity, tie handling, measurement accounting, and stochastic transitions directly checkable. The choice serves this verification experiment. Performance comparisons with other VQE optimizers are outside the evaluation. The integer coefficients are the declared decimal coefficients scaled by $10^4$."
+  },
+  {
+    "line": 109,
+    "text": "\\begin{tabularx}{\\columnwidth}{@{}p{.43\\columnwidth}Y@{}}"
+  },
+  {
+    "line": 113,
+    "text": "Parameter grid & $z\\in\\{0,\\ldots,\\GridSize-1\\}^4$, with \\GridPoints points \\\\"
+  },
+  {
+    "line": 114,
+    "text": "Initial index & $(3,11,6,14)$ \\\\"
+  },
+  {
+    "line": 115,
+    "text": "Coordinate cycle & $(0,1,2,3)$ \\\\"
+  },
+  {
+    "line": 124,
+    "text": "Numeric tolerance & $10^{-12}$ for energy and expectations \\\\"
+  },
+  {
+    "line": 126,
+    "text": "Intervals & 95\\% Wilson and \\BootstrapSamples bootstrap resamples \\\\"
+  },
+  {
+    "line": 138,
+    "text": " &\\mathbf G(\\mathrm{aggregate}\\Rightarrow\\mathrm{groups}=3),\\nonumber\\\\"
+  },
+  {
+    "line": 139,
+    "text": " &\\mathbf G(\\mathrm{select}\\lor\\mathrm{commit}\\Rightarrow\\mathrm{ready}=3),\\nonumber\\\\"
+  },
+  {
+    "line": 145,
+    "text": "L4 covers terminal absorption, the counter value at budget termination, and commitment below the bound. The audit found that redirecting either the success or budget branch to abort leaves the checked properties true. The prospective result therefore establishes those three conditions. Correct selection of the termination reason is an additional obligation checked at runtime. This distinction identifies the exact part of the specification supported by each stage."
+  },
+  {
+    "line": 149,
+    "text": "Dafny~\\cite{dafny} proves kernels with mathematical real and integer semantics. A normalization routine assumes a positive shot count and an admissible event count. Weighted-sum routines assume matching term sequences and expectations in $[-1,1]$, and establish"
+  },
+  {
+    "line": 156,
+    "text": "Runtime matching reconstructs expectations from raw measurements. For outcome counts $n_{g,o}$ in group $g$, let $s_{i,o}\\in\\{-1,+1\\}$ be the declared Pauli parity. The reference values are"
+  },
+  {
+    "line": 170,
+    "text": " \\sigma^2(z)=\\frac{1}{N_g}\\sum_g"
+  },
+  {
+    "line": 174,
+    "text": "where all groups receive $N_g=\\ShotsPerGroup$ shots. The experiment samples groups, candidate measurements, and repeated executions independently. Terms measured within a group share outcomes, so their covariance contributes to the variance, as in grouped VQE energy estimation~\\cite{mcclean2016,tilly2022}. Approximating a candidate energy by $X_j\\sim\\mathcal N(\\mu_j,\\sigma_j^2)$ gives its selection probability"
+  },
+  {
+    "line": 177,
+    "text": " =\\int f_j(x)\\prod_{\\ell\\ne j}[1-F_\\ell(x)]\\,dx."
+  },
+  {
+    "line": 188,
+    "text": "Storm exhaustively checks the constructed Gaussian DTMC. Empirical executions assess how well its prediction describes the finite-shot process. Python forward propagation of the same kernel produces the full cumulative curve and first-success distribution. P2 is $\\mathbb E_G[T\\mid T\\leq K]$, and P3 multiplies P2 by the fixed shots per iteration. These quantities are computed by Python propagation conditional on bounded success. Total expenditure includes unsuccessful paths and is reported separately. Numerical agreement between Storm and propagation assesses the model computation. Accuracy relative to the finite-shot process requires empirical comparison or a separate approximation-error analysis."
+  },
+  {
+    "line": 201,
+    "text": "For logical verification, NuXmv evaluates the refined controller and its phase-reachability queries. Its budget terminal uses an abort label. Numeric checking uses version 2.0 of the trace checker on a two-qubit Estimator trace and an exact-estimate Heisenberg trace. Both record expectations and contributions, without raw measurement counts. These traces support checking the reported arithmetic and record structure."
+  },
+  {
+    "line": 205,
+    "text": "Runtime timing uses Qiskit's StatevectorSampler, four independent Pauli submissions per evaluation, and \\ShotsPerGroup shots per term. An ask/tell pattern-search optimizer uses an initial step of $0.4$, a shrink factor of $0.5$, and the recorded energy-stability rule: tolerance $0.005$ for three successive checks after at least ten evaluations. The cost sweep fixes the workload seed at seven and evaluates counts from ten to fifty in increments of ten. It has \\TimingWarmupsPerCell warm-ups and \\TimingRepetitions measured repetitions per condition/count. Independent-condition bootstrap resampling gives uncertainty intervals for the medians and added time. The hardware assessment uses the recorded \\texttt{ibm\\_marrakesh} execution and its simulator counterpart. Their results concern monitored conformance and declared termination."
+  },
+  {
+    "line": 212,
+    "text": "For the controller used in the two-stage evaluation, \\LogicalProperties logical properties hold. Three Dafny invocations report \\DafnyChecks verified units with zero errors. A verified unit is a tool-reported proof task. The specification mapping identifies how these tasks support N1--N4, and the result manifest records their distribution across modules."
+  },
+  {
+    "line": 238,
+    "text": "\\caption{Simulator runtime cost with synchronous ask/tell monitoring. Top: baseline and verified medians. Bottom: verified median minus baseline median. Error bars are 95\\% percentile bootstrap intervals from 10,000 independent-condition resamples, using \\TimingRepetitions measured runs per condition/count after \\TimingWarmupsPerCell warm-ups. Timing covers setup, execution, online checking and persistence, and finalization. Baseline post-run serialization, fidelity analysis, and offline replay are excluded. Repetitions use the same workload seed.}"
+  },
+  {
+    "line": 263,
+    "text": "Stage 1 generates and checks the controller with NuXmv, verifies the numeric modules with Dafny, constructs the Gaussian kernel and DTMC, and runs Storm at the specified checkpoints. It also compiles the temporal monitor and records the results, configuration, and source hashes. Stage 2 checks that the execution uses this record, then performs \\BaselineRuns ideal-Born finite-shot runs with independently seeded count streams. It stores raw counts and all values consumed by the optimizer, checks events online, and replays the traces. Each run stops at first success or at $K=\\UpdateBound$ iterations. The ideal-energy gap defines success, as in the Gaussian model. Error closure handles online violations. No backend noise is introduced in this comparison."
+  },
+  {
+    "line": 265,
+    "text": "For logical and numeric obligations, the comparison relates each prospective property result to the check on every observed run. The implementation labels satisfaction \\texttt{AGREEMENT}, violations \\texttt{DISAGREEMENT}, invalid assumptions \\texttt{ASSUMPTION\\_MISMATCH}, and unavailable checks \\texttt{INCONCLUSIVE}. The meaning of each result follows its specification mapping. Numerical tolerances govern deterministic conformance. Stage 2 is gated on successful prospective verification, which restricts the evaluated combinations to executions authorized by Stage 1."
+  },
+  {
+    "line": 267,
+    "text": "Probabilistic comparison operates on repeated executions. P1 compares the Gaussian reachability probability with the fraction reaching success by each checkpoint, including unsuccessful runs in the denominator. The probability at $K$ is the primary comparison. Pointwise 95\\% Wilson intervals quantify binomial uncertainty~\\cite{wilson}. P2 compares iterations conditional on bounded success using the original \\BootstrapSamples-resample percentile-bootstrap interval. P3 applies the fixed shots per iteration to that quantity. A stochastic run that exhausts its budget is one permitted outcome of this bounded-success specification."
+  },
+  {
+    "line": 269,
+    "text": "The supporting analysis computes two-sided score-test $p$-values at the nonzero-probability checkpoints and a normal-approximation test for P2. Holm adjustment~\\cite{holm} controls multiplicity for that family at $\\alpha=0.05$. The early zero-probability checkpoints are structurally uninformative, and P3 is derived from P2. This post-audit interpretation uses the existing observations and intervals. The comparison tests compatibility at the available sample size, without a preregistered equivalence margin."
+  },
+  {
+    "line": 272,
+    "text": "Table~\\ref{tab:contract-results} gives the prospectively established property and runtime count for each logical and numeric obligation. All observed baseline obligations agree on \\BaselineRuns runs under the mapping's assumptions. The result establishes conformance of these observed executions. L4 agreement covers terminal absorption and bound conditions at both stages. The stronger termination-reason obligation is assessed at runtime."
+  },
+  {
+    "line": 276,
+    "text": "\\caption{Logical and numeric results by obligation. The listed prospective properties have successful tool outputs, and the runtime column counts agreeing baseline runs. Agreement is interpreted under Table~\\ref{tab:mapping}'s assumptions. L4's prospective scope covers terminal absorption and budget bounds. Correct termination reasons are checked at runtime.}"
+  },
+  {
+    "line": 278,
+    "text": "\\begin{tabularx}{\\textwidth}{@{}p{.045\\textwidth}p{.44\\textwidth}p{.14\\textwidth}Y@{}}\\toprule"
+  },
+  {
+    "line": 294,
+    "text": "\\caption{Cumulative probability of first satisfying $E_{\\rm ideal}(z)-E_{\\rm ref}\\leq\\GapThreshold$ versus optimizer iteration. The solid staircase is Gaussian-DTMC forward propagation, circles are Storm checkpoints, and the dashed staircase summarizes \\BaselineRuns independently seeded ideal-Born finite-shot runs with \\ShotsPerGroup shots per group/candidate. The shaded region gives pointwise 95\\% Wilson intervals at each iteration. It is not a simultaneous confidence band. Both processes use the same success predicate, candidate rule, and resource configuration.}"
+  },
+  {
+    "line": 302,
+    "text": "\\caption{P1 results for the specified two-stage evaluation. Probabilities and Wilson limits are percentages, and deviations are percentage points. Holm values adjust the informative checkpoint and P2 comparisons jointly. The early zero-probability checkpoints are structural.}"
+  },
+  {
+    "line": 305,
+    "text": "$k$ & Successes/runs & Model (\\%) & Empirical (\\%) & Wilson 95\\% (\\%) & $|\\Delta p|$ (pp) & Holm $p$ \\\\"
+  },
+  {
+    "line": 312,
+    "text": "P2 is \\PModelMean modeled iterations conditional on success versus \\PEmpiricalMean empirical iterations, with the original percentile-bootstrap interval [\\PMeanLow, \\PMeanHigh]. Table~\\ref{tab:conditional} preserves that interval, which does not contain the model mean. Marginal interval containment was the automated report's decision rule. The post-audit analysis interprets the supporting comparisons jointly: the raw P2 $p$-value is \\PMeanRawP, becoming \\PMeanAdjustedP after Holm adjustment. All informative comparisons are compatible at the family level. Thus P2 and its derived P3 result agree under the stated statistical comparison. The source report's original labels remain preserved for provenance. Statistical compatibility has the scope of this test and sample size, rather than a claim of distributional equivalence."
+  },
+  {
+    "line": 316,
+    "text": "\\caption{Resources conditional on bounded success in the two-stage evaluation, based on \\SuccessRuns successful executions. Intervals are the original 95\\% percentile-bootstrap intervals from \\BootstrapSamples resamples. P2 is statistically compatible after Holm adjustment. P3 scales P2 by \\ShotsPerUpdate shots/iteration and is therefore a derived result.}"
+  },
+  {
+    "line": 319,
+    "text": "Quantity / unit & Model mean & Empirical mean & Bootstrap 95\\% & Absolute deviation & Holm $p$ \\\\"
+  },
+  {
+    "line": 326,
+    "text": "Including unsuccessful runs, mean expenditure is \\UnconditionalEmpirical iterations versus \\UnconditionalModel modeled iterations. Total shot consumption includes budget-terminated paths, whereas P2 and P3 describe successful paths. The primary probability comparison's approximate normal-theory deviation detectable at 80\\% power is \\DetectablePP percentage points at this sample size. This local planning approximation describes statistical resolution. An equivalence claim would require a declared margin and corresponding test. Supporting checkpoints are correlated, and the confidence band is pointwise."
+  },
+  {
+    "line": 334,
+    "text": "\\caption{Fault verdict matrix for \\FaultClasses scenarios, each repeated \\FaultRepetitions times with different count streams. Every repetition within a row has the displayed vector. Colors and letters indicate A: AGREEMENT, D: DISAGREEMENT, M: ASSUMPTION\\_MISMATCH, and I: INCONCLUSIVE. ``Expected verdict'' counts the specified target-obligation result, including an inconclusive result for missing counts. ``DejaVu pass'' counts acceptance by the independent temporal replay. Missing counts are removed from a saved trace. Its L1 D reflects the checker's treatment of incomplete records and does not establish a physical ordering violation.}"
+  },
+  {
+    "line": 338,
+    "text": "Premature commitment is caught by Python and DejaVu ordering checks. Altering the energy or coefficient pairing violates N2 while temporal properties pass, illustrating their complementary scopes. A shot-allocation change produces an N3 assumption mismatch and makes the probabilistic comparison inapplicable. The injector configures this applicability label, so it records which stochastic assumptions the fault changes."
+  },
+  {
+    "line": 340,
+    "text": "Missing counts make numeric reconstruction inconclusive. The checker also records an L1 disagreement because its completeness condition treats unavailable records as missing measurements. A deleted record alone does not establish that the original execution aggregated too early. The full vector exposes this classification limitation alongside the expected target detections. The suite covers the specified fault classes at one injection boundary. Terminal-boundary faults, stale inputs, and additional injection sites require further tests."
+  },
+  {
+    "line": 345,
+    "text": "The baseline agreement supports this connection at the level of the established properties. Logical and numeric checks accept every observed baseline run, and the bounded-success and conditional-resource comparisons are statistically compatible under the stated analysis. P3 follows P2 because shots per iteration are fixed. Successful comparisons therefore depend on the meaning and scope of the requirement, as well as on the reported verdict. L4 illustrates the distinction: both stages assess terminal closure and budget bounds, while correct termination reasons have runtime support."
+  },
+  {
+    "line": 352,
+    "text": "VQE and variational hybrid algorithms combine classical decisions with quantum measurements~\\cite{peruzzo2014,mcclean2016}. Reviews of VQE examine measurement strategies, optimization, noise, and their impact on practical performance~\\cite{tilly2022}. Direct-search literature provides the optimization context for choosing candidates using objective values~\\cite{kolda2003}. Here, the finite-grid search makes these decisions explicit enough to model their probability and inspect their execution."
+  },
+  {
+    "line": 366,
+    "text": "\\emph{Statistical and audit boundaries.} The P2/P3 interpretation is a post-audit reporting correction. Original marginal intervals and observations remain visible, and the sample size constrains statistical resolution. Development executions used the same seeds and are excluded from the reported sample counts. Their trajectories were already known before the recorded prospective verification, so this is an engineering evaluation rather than a blinded confirmatory study. The independent audit identified gaps in termination properties and classification of missing records. The reported scopes reflect these findings, with the experiment sources unchanged. The auditor's additional simulations support its statistical interpretation, but their saved arrays are unavailable. Their numerical summaries are therefore excluded. The reproducibility manifest also documents the unavailable scalability model exports."
+  },
+  {
+    "line": 377,
+    "text": "\\IEEEtriggeratref{4}"
+  }
+]

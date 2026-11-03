@@ -1,0 +1,7 @@
+{
+  "method": "SHA-256 of every pre-existing regular file, excluding .DS_Store",
+  "files_checked": 2225,
+  "changed_or_missing": [],
+  "new_files_outside_isolated_folder": [],
+  "snapshots_byte_identical": true
+}

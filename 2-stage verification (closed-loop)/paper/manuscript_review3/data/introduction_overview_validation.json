@@ -1,0 +1,98 @@
+{
+  "status": "PASS",
+  "purpose": "Conceptual introductory overview; no quantitative experiment results",
+  "size_inches": [
+    7.16,
+    4.550000000000001
+  ],
+  "placement": "double-column",
+  "pdf_pages": 1,
+  "pdf_image_objects": 0,
+  "pdf_fonts": {
+    "/F2": {
+      "type": "/Type0",
+      "embedded": true
+    },
+    "/F3": {
+      "type": "/Type0",
+      "embedded": true
+    },
+    "/F1": {
+      "type": "/Type0",
+      "embedded": true
+    },
+    "/F8": {
+      "type": "/Type0",
+      "embedded": true
+    },
+    "/F5": {
+      "type": "/Type0",
+      "embedded": true
+    },
+    "/F4": {
+      "type": "/Type0",
+      "embedded": true
+    },
+    "/F7": {
+      "type": "/Type0",
+      "embedded": true
+    },
+    "/F6": {
+      "type": "/Type0",
+      "embedded": true
+    }
+  },
+  "png_pixels": [
+    2864,
+    1820
+  ],
+  "png_dpi": [
+    399.9992,
+    399.9992
+  ],
+  "svg_text_elements": 46,
+  "required_labels_present": [
+    "Logical",
+    "Ordering",
+    "Readiness",
+    "State consistency",
+    "Numeric",
+    "Arithmetic validity",
+    "Coefficient alignment",
+    "Shot accounting",
+    "Probabilistic",
+    "Bounded success",
+    "Convergence",
+    "Resource prediction",
+    "Runtime",
+    "Trace conformance",
+    "Observed evidence",
+    "Cross-stage comparison",
+    "Quantum execution",
+    "Program output",
+    "Classical processing",
+    "Updated parameters",
+    "Observed trace"
+  ],
+  "generator_checks": [
+    "No text overlap",
+    "No text outside canvas"
+  ],
+  "visual_inspection": [
+    "180 dpi color PDF render",
+    "100 dpi grayscale PDF render"
+  ],
+  "python": "3.12.14",
+  "matplotlib": "3.11.2",
+  "inputs_sha256": {
+    "/Users/rome/Downloads/Formal_Verification_in_Hybrid_Quantum_Classical_Computing_Systems.pdf": "8ab2c4b04dab4d9d2dc0d6becb750a0a7e3d4a3acf300cb98e88c898411aca9f",
+    "/var/folders/95/xf4nr9q96g9b26fs6wjqbz0r0000gn/T/codex-clipboard-40fffa6b-cd7d-40cb-9a31-ca05ddfe0880.png": "afb0a4ec671143cec8cd7d313f2c7df94a02c9c61d8c7b738151024f3397ddd5"
+  },
+  "outputs_sha256": {
+    "figures/introduction-overview.pdf": "31d58714f8d971758b535135447d7ca7855ad4e2d1b00a54d3c7b93ffcfac099",
+    "figures/introduction-overview.png": "ce56983c6f51b896c29c1dfe68551788b0931b00a9e06ce116f274f553bdc77e",
+    "figures/introduction-overview.svg": "619a378eb3e9fef4764c14b9aed5e640eec2cd28cef12579062cb78b33b18f6a",
+    "scripts/figures/introduction_overview.py": "6516d58f80831c9013afb0d52b8f88467353ca3ceea487dc1971eaccf2c11439",
+    "figures/introduction-overview-caption.tex": "cd7a35bd0038c1f7d6a97999067ba24266c95e6a4f8014116c64b77abda11bed"
+  }
+}

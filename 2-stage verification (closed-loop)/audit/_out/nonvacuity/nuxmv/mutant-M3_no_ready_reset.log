@@ -1,0 +1,119 @@
+*** This is nuXmv 2.1.0 (compiled on Fri Nov 29 09:05:38 2024)
+*** Copyright (c) 2014-2024, Fondazione Bruno Kessler
+*** For more information on nuXmv see https://nuxmv.fbk.eu
+*** or email to <nuxmv@fbk.eu>.
+*** Please report bugs at Please report bugs to <nusmv-users@fbk.eu>
+*** (click on "Login Anonymously" to access)
+*** Alternatively write to <nuxmv@fbk.eu>.
+
+*** This version of nuXmv is linked to NuSMV 2.7.0.
+*** For more information on NuSMV see <http://nusmv.fbk.eu>
+*** or email to <nusmv-users@fbk.eu>.
+*** Copyright (C) 2010-2024, Fondazione Bruno Kessler
+
+*** This version of nuXmv is linked to the CUDD library version 2.4.1
+*** Copyright (c) 1995-2004, Regents of the University of Colorado
+
+*** This version of nuXmv is linked to the MiniSat SAT solver. 
+*** See http://minisat.se/MiniSat.html
+*** Copyright (c) 2003-2006, Niklas Een, Niklas Sorensson
+*** Copyright (c) 2007-2010, Niklas Sorensson
+
+*** This version of nuXmv is linked to MathSAT
+*** Copyright (C) 2009-2019 by Fondazione Bruno Kessler
+*** Copyright (C) 2009-2019 by University of Trento and others
+*** See http://mathsat.fbk.eu
+
+-- specification  G (phase = aggregate -> groups = 3)  is true
+-- specification  G (phase in select union commit -> ready = 3)  is true
+-- specification  G (phase = start ->  X (ready = 0 & groups = 0))  is false
+-- as demonstrated by the following execution sequence
+Trace Description: LTL Counterexample 
+Trace Type: Counterexample 
+  -> State: 1.1 <-
+    phase = start
+    updates = 0
+    groups = 0
+    ready = 0
+    epoch = FALSE
+    energy_epoch = FALSE
+    environment_error = FALSE
+    success = FALSE
+    terminal = FALSE
+  -> State: 1.2 <-
+    phase = measure
+    epoch = TRUE
+  -> State: 1.3 <-
+    groups = 1
+  -> State: 1.4 <-
+    groups = 2
+  -> State: 1.5 <-
+    groups = 3
+  -> State: 1.6 <-
+    phase = aggregate
+  -> State: 1.7 <-
+    phase = validate
+  -> State: 1.8 <-
+    phase = measure
+    groups = 0
+    ready = 1
+    energy_epoch = TRUE
+  -> State: 1.9 <-
+    groups = 1
+  -> State: 1.10 <-
+    groups = 2
+  -> State: 1.11 <-
+    groups = 3
+  -> State: 1.12 <-
+    phase = aggregate
+  -> State: 1.13 <-
+    phase = validate
+  -> State: 1.14 <-
+    phase = measure
+    groups = 0
+    ready = 2
+  -> State: 1.15 <-
+    groups = 1
+  -> State: 1.16 <-
+    groups = 2
+  -> State: 1.17 <-
+    groups = 3
+  -> State: 1.18 <-
+    phase = aggregate
+  -> State: 1.19 <-
+    phase = validate
+  -> State: 1.20 <-
+    phase = select
+    groups = 0
+    ready = 3
+  -> State: 1.21 <-
+    phase = commit
+  -> State: 1.22 <-
+    phase = check
+    updates = 1
+  -> State: 1.23 <-
+    phase = start
+  -> State: 1.24 <-
+    phase = measure
+    epoch = FALSE
+  -> State: 1.25 <-
+    groups = 1
+  -> State: 1.26 <-
+    groups = 2
+  -> State: 1.27 <-
+    groups = 3
+  -> State: 1.28 <-
+    phase = aggregate
+  -> State: 1.29 <-
+    phase = validate
+  -- Loop starts here
+  -> State: 1.30 <-
+    phase = aborted
+    groups = 0
+    energy_epoch = FALSE
+    terminal = TRUE
+  -> State: 1.31 <-
+-- specification  G (terminal ->  X terminal)  is true
+-- specification  G (phase = done_budget -> updates = 50)  is true
+-- specification  G (phase = commit -> updates < 50)  is true
+-- specification  G (phase = commit -> energy_epoch = epoch)  is true

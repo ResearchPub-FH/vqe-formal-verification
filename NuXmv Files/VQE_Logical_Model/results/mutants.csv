@@ -1,0 +1,13 @@
+mutant,target_contract,killed,detected_by,failing_properties
+M1_early_aggregation,L1,True,L1,R1_groups_before_aggregation
+M2_skipped_candidate,L2,True,L2 L4,R2_energy_before_check R4_candidates_before_commit F5_returned_energy
+M3_no_candidate_reset,L3,True,L3 L4,F4_iteration_reset T7_abort_reason E5_abort_only_on_error
+M4_stale_energy_ready,L3,True,L3,F3_evaluation_reset
+M5_skipped_rebind,L3,True,L3,R3_bound_before_measure F1_current_evaluation
+M6_stale_binding,L3,True,L3 L4,F1_current_evaluation F2_current_energy F5_returned_energy
+M7_wrong_candidate,L3,True,L3,F1_current_evaluation
+M8_stale_energy_epoch,L3,True,L3 L4,F2_current_energy F5_returned_energy
+M9_measurement_error_ignored,L4,True,L1 L4,R1_groups_before_aggregation T1_termination T8_no_early_reason E2_measure_fails
+M10_budget_as_abort,L4,True,L4,T6_budget_reason T7_abort_reason E5_abort_only_on_error
+M11_success_as_abort,L4,True,L4,T5_success_reason T7_abort_reason E5_abort_only_on_error
+M12_budget_overrun,L4,True,L3 L4,F3_evaluation_reset F5_returned_energy T1_termination T6_budget_reason T8_no_early_reason T9_update_accounting E6_update_bound

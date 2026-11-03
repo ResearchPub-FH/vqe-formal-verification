@@ -1,0 +1,2102 @@
+[
+  {
+    "condition": "baseline",
+    "evaluations": 40,
+    "phase": "warmup",
+    "repetition": 2
+  },
+  {
+    "condition": "baseline",
+    "evaluations": 50,
+    "phase": "warmup",
+    "repetition": 3
+  },
+  {
+    "condition": "verified",
+    "evaluations": 10,
+    "phase": "warmup",
+    "repetition": 4
+  },
+  {
+    "condition": "baseline",
+    "evaluations": 20,
+    "phase": "warmup",
+    "repetition": 5
+  },
+  {
+    "condition": "baseline",
+    "evaluations": 10,
+    "phase": "warmup",
+    "repetition": 5
+  },
+  {
+    "condition": "baseline",
+    "evaluations": 20,
+    "phase": "warmup",
+    "repetition": 2
+  },
+  {
+    "condition": "verified",
+    "evaluations": 50,
+    "phase": "warmup",
+    "repetition": 1
+  },
+  {
+    "condition": "baseline",
+    "evaluations": 50,
+    "phase": "warmup",
+    "repetition": 1
+  },
+  {
+    "condition": "verified",
+    "evaluations": 50,
+    "phase": "warmup",
+    "repetition": 4
+  },
+  {
+    "condition": "verified",
+    "evaluations": 30,
+    "phase": "warmup",
+    "repetition": 4
+  },
+  {
+    "condition": "baseline",
+    "evaluations": 40,
+    "phase": "warmup",
+    "repetition": 4
+  },
+  {
+    "condition": "verified",
+    "evaluations": 20,
+    "phase": "warmup",
+    "repetition": 1
+  },
+  {
+    "condition": "baseline",
+    "evaluations": 40,
+    "phase": "warmup",
+    "repetition": 1
+  },
+  {
+    "condition": "baseline",
+    "evaluations": 30,
+    "phase": "warmup",
+    "repetition": 4
+  },
+  {
+    "condition": "verified",
+    "evaluations": 40,
+    "phase": "warmup",
+    "repetition": 3
+  },
+  {
+    "condition": "baseline",
+    "evaluations": 20,
+    "phase": "warmup",
+    "repetition": 4
+  },
+  {
+    "condition": "baseline",
+    "evaluations": 10,
+    "phase": "warmup",
+    "repetition": 1
+  },
+  {
+    "condition": "baseline",
+    "evaluations": 20,
+    "phase": "warmup",
+    "repetition": 3
+  },
+  {
+    "condition": "verified",
+    "evaluations": 20,
+    "phase": "warmup",
+    "repetition": 4
+  },
+  {
+    "condition": "baseline",
+    "evaluations": 50,
+    "phase": "warmup",
+    "repetition": 4
+  },
+  {
+    "condition": "baseline",
+    "evaluations": 50,
+    "phase": "warmup",
+    "repetition": 5
+  },
+  {
+    "condition": "baseline",
+    "evaluations": 30,
+    "phase": "warmup",
+    "repetition": 1
+  },
+  {
+    "condition": "baseline",
+    "evaluations": 50,
+    "phase": "warmup",
+    "repetition": 2
+  },
+  {
+    "condition": "baseline",
+    "evaluations": 30,
+    "phase": "warmup",
+    "repetition": 3
+  },
+  {
+    "condition": "verified",
+    "evaluations": 30,
+    "phase": "warmup",
+    "repetition": 1
+  },
+  {
+    "condition": "baseline",
+    "evaluations": 30,
+    "phase": "warmup",
+    "repetition": 2
+  },
+  {
+    "condition": "verified",
+    "evaluations": 30,
+    "phase": "warmup",
+    "repetition": 3
+  },
+  {
+    "condition": "verified",
+    "evaluations": 40,
+    "phase": "warmup",
+    "repetition": 5
+  },
+  {
+    "condition": "baseline",
+    "evaluations": 20,
+    "phase": "warmup",
+    "repetition": 1
+  },
+  {
+    "condition": "verified",
+    "evaluations": 40,
+    "phase": "warmup",
+    "repetition": 2
+  },
+  {
+    "condition": "verified",
+    "evaluations": 20,
+    "phase": "warmup",
+    "repetition": 5
+  },
+  {
+    "condition": "verified",
+    "evaluations": 20,
+    "phase": "warmup",
+    "repetition": 2
+  },
+  {
+    "condition": "baseline",
+    "evaluations": 10,
+    "phase": "warmup",
+    "repetition": 3
+  },
+  {
+    "condition": "verified",
+    "evaluations": 30,
+    "phase": "warmup",
+    "repetition": 5
+  },
+  {
+    "condition": "verified",
+    "evaluations": 10,
+    "phase": "warmup",
+    "repetition": 3
+  },
+  {
+    "condition": "verified",
+    "evaluations": 50,
+    "phase": "warmup",
+    "repetition": 5
+  },
+  {
+    "condition": "baseline",
+    "evaluations": 40,
+    "phase": "warmup",
+    "repetition": 3
+  },
+  {
+    "condition": "verified",
+    "evaluations": 30,
+    "phase": "warmup",
+    "repetition": 2
+  },
+  {
+    "condition": "baseline",
+    "evaluations": 10,
+    "phase": "warmup",
+    "repetition": 4
+  },
+  {
+    "condition": "baseline",
+    "evaluations": 10,
+    "phase": "warmup",
+    "repetition": 2
+  },
+  {
+    "condition": "verified",
+    "evaluations": 10,
+    "phase": "warmup",
+    "repetition": 2
+  },
+  {
+    "condition": "verified",
+    "evaluations": 20,
+    "phase": "warmup",
+    "repetition": 3
+  },
+  {
+    "condition": "verified",
+    "evaluations": 50,
+    "phase": "warmup",
+    "repetition": 3
+  },
+  {
+    "condition": "baseline",
+    "evaluations": 40,
+    "phase": "warmup",
+    "repetition": 5
+  },
+  {
+    "condition": "verified",
+    "evaluations": 40,
+    "phase": "warmup",
+    "repetition": 4
+  },
+  {
+    "condition": "baseline",
+    "evaluations": 30,
+    "phase": "warmup",
+    "repetition": 5
+  },
+  {
+    "condition": "verified",
+    "evaluations": 50,
+    "phase": "warmup",
+    "repetition": 2
+  },
+  {
+    "condition": "verified",
+    "evaluations": 40,
+    "phase": "warmup",
+    "repetition": 1
+  },
+  {
+    "condition": "verified",
+    "evaluations": 10,
+    "phase": "warmup",
+    "repetition": 1
+  },
+  {
+    "condition": "verified",
+    "evaluations": 10,
+    "phase": "warmup",
+    "repetition": 5
+  },
+  {
+    "condition": "verified",
+    "evaluations": 20,
+    "phase": "measured",
+    "repetition": 5
+  },
+  {
+    "condition": "verified",
+    "evaluations": 40,
+    "phase": "measured",
+    "repetition": 18
+  },
+  {
+    "condition": "verified",
+    "evaluations": 30,
+    "phase": "measured",
+    "repetition": 16
+  },
+  {
+    "condition": "baseline",
+    "evaluations": 10,
+    "phase": "measured",
+    "repetition": 3
+  },
+  {
+    "condition": "verified",
+    "evaluations": 40,
+    "phase": "measured",
+    "repetition": 1
+  },
+  {
+    "condition": "verified",
+    "evaluations": 10,
+    "phase": "measured",
+    "repetition": 27
+  },
+  {
+    "condition": "baseline",
+    "evaluations": 30,
+    "phase": "measured",
+    "repetition": 9
+  },
+  {
+    "condition": "baseline",
+    "evaluations": 20,
+    "phase": "measured",
+    "repetition": 6
+  },
+  {
+    "condition": "verified",
+    "evaluations": 30,
+    "phase": "measured",
+    "repetition": 15
+  },
+  {
+    "condition": "verified",
+    "evaluations": 20,
+    "phase": "measured",
+    "repetition": 20
+  },
+  {
+    "condition": "verified",
+    "evaluations": 50,
+    "phase": "measured",
+    "repetition": 1
+  },
+  {
+    "condition": "baseline",
+    "evaluations": 40,
+    "phase": "measured",
+    "repetition": 2
+  },
+  {
+    "condition": "verified",
+    "evaluations": 20,
+    "phase": "measured",
+    "repetition": 10
+  },
+  {
+    "condition": "verified",
+    "evaluations": 50,
+    "phase": "measured",
+    "repetition": 4
+  },
+  {
+    "condition": "baseline",
+    "evaluations": 30,
+    "phase": "measured",
+    "repetition": 11
+  },
+  {
+    "condition": "verified",
+    "evaluations": 30,
+    "phase": "measured",
+    "repetition": 20
+  },
+  {
+    "condition": "baseline",
+    "evaluations": 10,
+    "phase": "measured",
+    "repetition": 12
+  },
+  {
+    "condition": "baseline",
+    "evaluations": 30,
+    "phase": "measured",
+    "repetition": 27
+  },
+  {
+    "condition": "baseline",
+    "evaluations": 30,
+    "phase": "measured",
+    "repetition": 24
+  },
+  {
+    "condition": "verified",
+    "evaluations": 30,
+    "phase": "measured",
+    "repetition": 13
+  },
+  {
+    "condition": "baseline",
+    "evaluations": 20,
+    "phase": "measured",
+    "repetition": 28
+  },
+  {
+    "condition": "verified",
+    "evaluations": 10,
+    "phase": "measured",
+    "repetition": 6
+  },
+  {
+    "condition": "baseline",
+    "evaluations": 40,
+    "phase": "measured",
+    "repetition": 23
+  },
+  {
+    "condition": "verified",
+    "evaluations": 40,
+    "phase": "measured",
+    "repetition": 14
+  },
+  {
+    "condition": "baseline",
+    "evaluations": 40,
+    "phase": "measured",
+    "repetition": 1
+  },
+  {
+    "condition": "verified",
+    "evaluations": 50,
+    "phase": "measured",
+    "repetition": 17
+  },
+  {
+    "condition": "baseline",
+    "evaluations": 30,
+    "phase": "measured",
+    "repetition": 23
+  },
+  {
+    "condition": "verified",
+    "evaluations": 40,
+    "phase": "measured",
+    "repetition": 6
+  },
+  {
+    "condition": "verified",
+    "evaluations": 10,
+    "phase": "measured",
+    "repetition": 23
+  },
+  {
+    "condition": "verified",
+    "evaluations": 10,
+    "phase": "measured",
+    "repetition": 13
+  },
+  {
+    "condition": "verified",
+    "evaluations": 50,
+    "phase": "measured",
+    "repetition": 14
+  },
+  {
+    "condition": "baseline",
+    "evaluations": 10,
+    "phase": "measured",
+    "repetition": 5
+  },
+  {
+    "condition": "verified",
+    "evaluations": 10,
+    "phase": "measured",
+    "repetition": 22
+  },
+  {
+    "condition": "baseline",
+    "evaluations": 50,
+    "phase": "measured",
+    "repetition": 25
+  },
+  {
+    "condition": "verified",
+    "evaluations": 40,
+    "phase": "measured",
+    "repetition": 11
+  },
+  {
+    "condition": "verified",
+    "evaluations": 50,
+    "phase": "measured",
+    "repetition": 11
+  },
+  {
+    "condition": "verified",
+    "evaluations": 30,
+    "phase": "measured",
+    "repetition": 18
+  },
+  {
+    "condition": "baseline",
+    "evaluations": 20,
+    "phase": "measured",
+    "repetition": 7
+  },
+  {
+    "condition": "baseline",
+    "evaluations": 20,
+    "phase": "measured",
+    "repetition": 27
+  },
+  {
+    "condition": "verified",
+    "evaluations": 10,
+    "phase": "measured",
+    "repetition": 29
+  },
+  {
+    "condition": "verified",
+    "evaluations": 40,
+    "phase": "measured",
+    "repetition": 2
+  },
+  {
+    "condition": "verified",
+    "evaluations": 50,
+    "phase": "measured",
+    "repetition": 27
+  },
+  {
+    "condition": "verified",
+    "evaluations": 20,
+    "phase": "measured",
+    "repetition": 3
+  },
+  {
+    "condition": "baseline",
+    "evaluations": 50,
+    "phase": "measured",
+    "repetition": 8
+  },
+  {
+    "condition": "baseline",
+    "evaluations": 30,
+    "phase": "measured",
+    "repetition": 3
+  },
+  {
+    "condition": "baseline",
+    "evaluations": 30,
+    "phase": "measured",
+    "repetition": 17
+  },
+  {
+    "condition": "baseline",
+    "evaluations": 30,
+    "phase": "measured",
+    "repetition": 19
+  },
+  {
+    "condition": "baseline",
+    "evaluations": 20,
+    "phase": "measured",
+    "repetition": 29
+  },
+  {
+    "condition": "verified",
+    "evaluations": 20,
+    "phase": "measured",
+    "repetition": 8
+  },
+  {
+    "condition": "baseline",
+    "evaluations": 40,
+    "phase": "measured",
+    "repetition": 25
+  },
+  {
+    "condition": "baseline",
+    "evaluations": 10,
+    "phase": "measured",
+    "repetition": 2
+  },
+  {
+    "condition": "baseline",
+    "evaluations": 30,
+    "phase": "measured",
+    "repetition": 6
+  },
+  {
+    "condition": "baseline",
+    "evaluations": 50,
+    "phase": "measured",
+    "repetition": 2
+  },
+  {
+    "condition": "baseline",
+    "evaluations": 10,
+    "phase": "measured",
+    "repetition": 27
+  },
+  {
+    "condition": "baseline",
+    "evaluations": 30,
+    "phase": "measured",
+    "repetition": 12
+  },
+  {
+    "condition": "baseline",
+    "evaluations": 40,
+    "phase": "measured",
+    "repetition": 30
+  },
+  {
+    "condition": "baseline",
+    "evaluations": 40,
+    "phase": "measured",
+    "repetition": 20
+  },
+  {
+    "condition": "verified",
+    "evaluations": 20,
+    "phase": "measured",
+    "repetition": 9
+  },
+  {
+    "condition": "baseline",
+    "evaluations": 40,
+    "phase": "measured",
+    "repetition": 14
+  },
+  {
+    "condition": "verified",
+    "evaluations": 30,
+    "phase": "measured",
+    "repetition": 17
+  },
+  {
+    "condition": "baseline",
+    "evaluations": 50,
+    "phase": "measured",
+    "repetition": 3
+  },
+  {
+    "condition": "baseline",
+    "evaluations": 20,
+    "phase": "measured",
+    "repetition": 9
+  },
+  {
+    "condition": "baseline",
+    "evaluations": 20,
+    "phase": "measured",
+    "repetition": 4
+  },
+  {
+    "condition": "baseline",
+    "evaluations": 10,
+    "phase": "measured",
+    "repetition": 28
+  },
+  {
+    "condition": "verified",
+    "evaluations": 10,
+    "phase": "measured",
+    "repetition": 7
+  },
+  {
+    "condition": "baseline",
+    "evaluations": 30,
+    "phase": "measured",
+    "repetition": 4
+  },
+  {
+    "condition": "verified",
+    "evaluations": 10,
+    "phase": "measured",
+    "repetition": 28
+  },
+  {
+    "condition": "baseline",
+    "evaluations": 20,
+    "phase": "measured",
+    "repetition": 3
+  },
+  {
+    "condition": "baseline",
+    "evaluations": 10,
+    "phase": "measured",
+    "repetition": 26
+  },
+  {
+    "condition": "baseline",
+    "evaluations": 20,
+    "phase": "measured",
+    "repetition": 23
+  },
+  {
+    "condition": "verified",
+    "evaluations": 50,
+    "phase": "measured",
+    "repetition": 23
+  },
+  {
+    "condition": "baseline",
+    "evaluations": 20,
+    "phase": "measured",
+    "repetition": 10
+  },
+  {
+    "condition": "baseline",
+    "evaluations": 10,
+    "phase": "measured",
+    "repetition": 13
+  },
+  {
+    "condition": "verified",
+    "evaluations": 10,
+    "phase": "measured",
+    "repetition": 24
+  },
+  {
+    "condition": "baseline",
+    "evaluations": 20,
+    "phase": "measured",
+    "repetition": 19
+  },
+  {
+    "condition": "verified",
+    "evaluations": 40,
+    "phase": "measured",
+    "repetition": 21
+  },
+  {
+    "condition": "verified",
+    "evaluations": 40,
+    "phase": "measured",
+    "repetition": 19
+  },
+  {
+    "condition": "baseline",
+    "evaluations": 20,
+    "phase": "measured",
+    "repetition": 2
+  },
+  {
+    "condition": "baseline",
+    "evaluations": 20,
+    "phase": "measured",
+    "repetition": 11
+  },
+  {
+    "condition": "baseline",
+    "evaluations": 40,
+    "phase": "measured",
+    "repetition": 18
+  },
+  {
+    "condition": "baseline",
+    "evaluations": 20,
+    "phase": "measured",
+    "repetition": 13
+  },
+  {
+    "condition": "verified",
+    "evaluations": 20,
+    "phase": "measured",
+    "repetition": 18
+  },
+  {
+    "condition": "verified",
+    "evaluations": 40,
+    "phase": "measured",
+    "repetition": 15
+  },
+  {
+    "condition": "baseline",
+    "evaluations": 30,
+    "phase": "measured",
+    "repetition": 22
+  },
+  {
+    "condition": "verified",
+    "evaluations": 40,
+    "phase": "measured",
+    "repetition": 8
+  },
+  {
+    "condition": "verified",
+    "evaluations": 10,
+    "phase": "measured",
+    "repetition": 5
+  },
+  {
+    "condition": "baseline",
+    "evaluations": 10,
+    "phase": "measured",
+    "repetition": 19
+  },
+  {
+    "condition": "verified",
+    "evaluations": 40,
+    "phase": "measured",
+    "repetition": 3
+  },
+  {
+    "condition": "verified",
+    "evaluations": 30,
+    "phase": "measured",
+    "repetition": 21
+  },
+  {
+    "condition": "verified",
+    "evaluations": 30,
+    "phase": "measured",
+    "repetition": 5
+  },
+  {
+    "condition": "baseline",
+    "evaluations": 30,
+    "phase": "measured",
+    "repetition": 21
+  },
+  {
+    "condition": "verified",
+    "evaluations": 10,
+    "phase": "measured",
+    "repetition": 15
+  },
+  {
+    "condition": "baseline",
+    "evaluations": 20,
+    "phase": "measured",
+    "repetition": 21
+  },
+  {
+    "condition": "baseline",
+    "evaluations": 50,
+    "phase": "measured",
+    "repetition": 19
+  },
+  {
+    "condition": "verified",
+    "evaluations": 30,
+    "phase": "measured",
+    "repetition": 26
+  },
+  {
+    "condition": "verified",
+    "evaluations": 50,
+    "phase": "measured",
+    "repetition": 10
+  },
+  {
+    "condition": "baseline",
+    "evaluations": 40,
+    "phase": "measured",
+    "repetition": 29
+  },
+  {
+    "condition": "baseline",
+    "evaluations": 30,
+    "phase": "measured",
+    "repetition": 13
+  },
+  {
+    "condition": "baseline",
+    "evaluations": 50,
+    "phase": "measured",
+    "repetition": 23
+  },
+  {
+    "condition": "baseline",
+    "evaluations": 10,
+    "phase": "measured",
+    "repetition": 15
+  },
+  {
+    "condition": "verified",
+    "evaluations": 50,
+    "phase": "measured",
+    "repetition": 29
+  },
+  {
+    "condition": "baseline",
+    "evaluations": 30,
+    "phase": "measured",
+    "repetition": 20
+  },
+  {
+    "condition": "verified",
+    "evaluations": 40,
+    "phase": "measured",
+    "repetition": 30
+  },
+  {
+    "condition": "baseline",
+    "evaluations": 40,
+    "phase": "measured",
+    "repetition": 27
+  },
+  {
+    "condition": "verified",
+    "evaluations": 30,
+    "phase": "measured",
+    "repetition": 10
+  },
+  {
+    "condition": "baseline",
+    "evaluations": 30,
+    "phase": "measured",
+    "repetition": 14
+  },
+  {
+    "condition": "verified",
+    "evaluations": 50,
+    "phase": "measured",
+    "repetition": 16
+  },
+  {
+    "condition": "baseline",
+    "evaluations": 20,
+    "phase": "measured",
+    "repetition": 24
+  },
+  {
+    "condition": "baseline",
+    "evaluations": 30,
+    "phase": "measured",
+    "repetition": 18
+  },
+  {
+    "condition": "verified",
+    "evaluations": 20,
+    "phase": "measured",
+    "repetition": 19
+  },
+  {
+    "condition": "baseline",
+    "evaluations": 30,
+    "phase": "measured",
+    "repetition": 2
+  },
+  {
+    "condition": "baseline",
+    "evaluations": 50,
+    "phase": "measured",
+    "repetition": 7
+  },
+  {
+    "condition": "verified",
+    "evaluations": 50,
+    "phase": "measured",
+    "repetition": 25
+  },
+  {
+    "condition": "verified",
+    "evaluations": 40,
+    "phase": "measured",
+    "repetition": 7
+  },
+  {
+    "condition": "verified",
+    "evaluations": 50,
+    "phase": "measured",
+    "repetition": 30
+  },
+  {
+    "condition": "verified",
+    "evaluations": 20,
+    "phase": "measured",
+    "repetition": 26
+  },
+  {
+    "condition": "verified",
+    "evaluations": 40,
+    "phase": "measured",
+    "repetition": 29
+  },
+  {
+    "condition": "verified",
+    "evaluations": 20,
+    "phase": "measured",
+    "repetition": 29
+  },
+  {
+    "condition": "baseline",
+    "evaluations": 40,
+    "phase": "measured",
+    "repetition": 24
+  },
+  {
+    "condition": "verified",
+    "evaluations": 50,
+    "phase": "measured",
+    "repetition": 9
+  },
+  {
+    "condition": "verified",
+    "evaluations": 10,
+    "phase": "measured",
+    "repetition": 8
+  },
+  {
+    "condition": "baseline",
+    "evaluations": 30,
+    "phase": "measured",
+    "repetition": 28
+  },
+  {
+    "condition": "baseline",
+    "evaluations": 20,
+    "phase": "measured",
+    "repetition": 16
+  },
+  {
+    "condition": "verified",
+    "evaluations": 30,
+    "phase": "measured",
+    "repetition": 8
+  },
+  {
+    "condition": "baseline",
+    "evaluations": 40,
+    "phase": "measured",
+    "repetition": 13
+  },
+  {
+    "condition": "baseline",
+    "evaluations": 30,
+    "phase": "measured",
+    "repetition": 5
+  },
+  {
+    "condition": "baseline",
+    "evaluations": 10,
+    "phase": "measured",
+    "repetition": 8
+  },
+  {
+    "condition": "verified",
+    "evaluations": 10,
+    "phase": "measured",
+    "repetition": 12
+  },
+  {
+    "condition": "baseline",
+    "evaluations": 50,
+    "phase": "measured",
+    "repetition": 9
+  },
+  {
+    "condition": "verified",
+    "evaluations": 20,
+    "phase": "measured",
+    "repetition": 14
+  },
+  {
+    "condition": "baseline",
+    "evaluations": 40,
+    "phase": "measured",
+    "repetition": 15
+  },
+  {
+    "condition": "verified",
+    "evaluations": 20,
+    "phase": "measured",
+    "repetition": 24
+  },
+  {
+    "condition": "verified",
+    "evaluations": 40,
+    "phase": "measured",
+    "repetition": 25
+  },
+  {
+    "condition": "baseline",
+    "evaluations": 20,
+    "phase": "measured",
+    "repetition": 22
+  },
+  {
+    "condition": "verified",
+    "evaluations": 10,
+    "phase": "measured",
+    "repetition": 4
+  },
+  {
+    "condition": "verified",
+    "evaluations": 20,
+    "phase": "measured",
+    "repetition": 28
+  },
+  {
+    "condition": "verified",
+    "evaluations": 20,
+    "phase": "measured",
+    "repetition": 4
+  },
+  {
+    "condition": "verified",
+    "evaluations": 10,
+    "phase": "measured",
+    "repetition": 30
+  },
+  {
+    "condition": "verified",
+    "evaluations": 50,
+    "phase": "measured",
+    "repetition": 13
+  },
+  {
+    "condition": "verified",
+    "evaluations": 10,
+    "phase": "measured",
+    "repetition": 16
+  },
+  {
+    "condition": "baseline",
+    "evaluations": 10,
+    "phase": "measured",
+    "repetition": 1
+  },
+  {
+    "condition": "baseline",
+    "evaluations": 50,
+    "phase": "measured",
+    "repetition": 4
+  },
+  {
+    "condition": "verified",
+    "evaluations": 40,
+    "phase": "measured",
+    "repetition": 23
+  },
+  {
+    "condition": "verified",
+    "evaluations": 20,
+    "phase": "measured",
+    "repetition": 23
+  },
+  {
+    "condition": "verified",
+    "evaluations": 40,
+    "phase": "measured",
+    "repetition": 20
+  },
+  {
+    "condition": "verified",
+    "evaluations": 50,
+    "phase": "measured",
+    "repetition": 8
+  },
+  {
+    "condition": "baseline",
+    "evaluations": 50,
+    "phase": "measured",
+    "repetition": 17
+  },
+  {
+    "condition": "baseline",
+    "evaluations": 40,
+    "phase": "measured",
+    "repetition": 19
+  },
+  {
+    "condition": "baseline",
+    "evaluations": 40,
+    "phase": "measured",
+    "repetition": 28
+  },
+  {
+    "condition": "verified",
+    "evaluations": 40,
+    "phase": "measured",
+    "repetition": 17
+  },
+  {
+    "condition": "verified",
+    "evaluations": 20,
+    "phase": "measured",
+    "repetition": 30
+  },
+  {
+    "condition": "verified",
+    "evaluations": 30,
+    "phase": "measured",
+    "repetition": 29
+  },
+  {
+    "condition": "baseline",
+    "evaluations": 50,
+    "phase": "measured",
+    "repetition": 30
+  },
+  {
+    "condition": "baseline",
+    "evaluations": 40,
+    "phase": "measured",
+    "repetition": 26
+  },
+  {
+    "condition": "verified",
+    "evaluations": 30,
+    "phase": "measured",
+    "repetition": 11
+  },
+  {
+    "condition": "baseline",
+    "evaluations": 20,
+    "phase": "measured",
+    "repetition": 18
+  },
+  {
+    "condition": "verified",
+    "evaluations": 50,
+    "phase": "measured",
+    "repetition": 5
+  },
+  {
+    "condition": "verified",
+    "evaluations": 10,
+    "phase": "measured",
+    "repetition": 10
+  },
+  {
+    "condition": "baseline",
+    "evaluations": 50,
+    "phase": "measured",
+    "repetition": 27
+  },
+  {
+    "condition": "verified",
+    "evaluations": 30,
+    "phase": "measured",
+    "repetition": 25
+  },
+  {
+    "condition": "verified",
+    "evaluations": 30,
+    "phase": "measured",
+    "repetition": 1
+  },
+  {
+    "condition": "baseline",
+    "evaluations": 40,
+    "phase": "measured",
+    "repetition": 21
+  },
+  {
+    "condition": "verified",
+    "evaluations": 20,
+    "phase": "measured",
+    "repetition": 16
+  },
+  {
+    "condition": "baseline",
+    "evaluations": 30,
+    "phase": "measured",
+    "repetition": 1
+  },
+  {
+    "condition": "verified",
+    "evaluations": 10,
+    "phase": "measured",
+    "repetition": 20
+  },
+  {
+    "condition": "baseline",
+    "evaluations": 50,
+    "phase": "measured",
+    "repetition": 22
+  },
+  {
+    "condition": "baseline",
+    "evaluations": 40,
+    "phase": "measured",
+    "repetition": 17
+  },
+  {
+    "condition": "baseline",
+    "evaluations": 40,
+    "phase": "measured",
+    "repetition": 22
+  },
+  {
+    "condition": "verified",
+    "evaluations": 30,
+    "phase": "measured",
+    "repetition": 4
+  },
+  {
+    "condition": "baseline",
+    "evaluations": 30,
+    "phase": "measured",
+    "repetition": 25
+  },
+  {
+    "condition": "verified",
+    "evaluations": 50,
+    "phase": "measured",
+    "repetition": 15
+  },
+  {
+    "condition": "baseline",
+    "evaluations": 10,
+    "phase": "measured",
+    "repetition": 10
+  },
+  {
+    "condition": "baseline",
+    "evaluations": 50,
+    "phase": "measured",
+    "repetition": 24
+  },
+  {
+    "condition": "baseline",
+    "evaluations": 20,
+    "phase": "measured",
+    "repetition": 25
+  },
+  {
+    "condition": "baseline",
+    "evaluations": 10,
+    "phase": "measured",
+    "repetition": 4
+  },
+  {
+    "condition": "baseline",
+    "evaluations": 20,
+    "phase": "measured",
+    "repetition": 30
+  },
+  {
+    "condition": "baseline",
+    "evaluations": 50,
+    "phase": "measured",
+    "repetition": 11
+  },
+  {
+    "condition": "verified",
+    "evaluations": 30,
+    "phase": "measured",
+    "repetition": 9
+  },
+  {
+    "condition": "verified",
+    "evaluations": 30,
+    "phase": "measured",
+    "repetition": 28
+  },
+  {
+    "condition": "baseline",
+    "evaluations": 30,
+    "phase": "measured",
+    "repetition": 30
+  },
+  {
+    "condition": "verified",
+    "evaluations": 40,
+    "phase": "measured",
+    "repetition": 16
+  },
+  {
+    "condition": "verified",
+    "evaluations": 30,
+    "phase": "measured",
+    "repetition": 23
+  },
+  {
+    "condition": "verified",
+    "evaluations": 30,
+    "phase": "measured",
+    "repetition": 30
+  },
+  {
+    "condition": "baseline",
+    "evaluations": 20,
+    "phase": "measured",
+    "repetition": 12
+  },
+  {
+    "condition": "baseline",
+    "evaluations": 10,
+    "phase": "measured",
+    "repetition": 9
+  },
+  {
+    "condition": "baseline",
+    "evaluations": 50,
+    "phase": "measured",
+    "repetition": 6
+  },
+  {
+    "condition": "verified",
+    "evaluations": 40,
+    "phase": "measured",
+    "repetition": 12
+  },
+  {
+    "condition": "verified",
+    "evaluations": 30,
+    "phase": "measured",
+    "repetition": 24
+  },
+  {
+    "condition": "baseline",
+    "evaluations": 40,
+    "phase": "measured",
+    "repetition": 11
+  },
+  {
+    "condition": "baseline",
+    "evaluations": 10,
+    "phase": "measured",
+    "repetition": 16
+  },
+  {
+    "condition": "baseline",
+    "evaluations": 50,
+    "phase": "measured",
+    "repetition": 26
+  },
+  {
+    "condition": "verified",
+    "evaluations": 30,
+    "phase": "measured",
+    "repetition": 3
+  },
+  {
+    "condition": "baseline",
+    "evaluations": 20,
+    "phase": "measured",
+    "repetition": 15
+  },
+  {
+    "condition": "verified",
+    "evaluations": 10,
+    "phase": "measured",
+    "repetition": 17
+  },
+  {
+    "condition": "baseline",
+    "evaluations": 50,
+    "phase": "measured",
+    "repetition": 5
+  },
+  {
+    "condition": "verified",
+    "evaluations": 40,
+    "phase": "measured",
+    "repetition": 4
+  },
+  {
+    "condition": "baseline",
+    "evaluations": 10,
+    "phase": "measured",
+    "repetition": 25
+  },
+  {
+    "condition": "verified",
+    "evaluations": 10,
+    "phase": "measured",
+    "repetition": 1
+  },
+  {
+    "condition": "verified",
+    "evaluations": 30,
+    "phase": "measured",
+    "repetition": 12
+  },
+  {
+    "condition": "verified",
+    "evaluations": 20,
+    "phase": "measured",
+    "repetition": 17
+  },
+  {
+    "condition": "baseline",
+    "evaluations": 50,
+    "phase": "measured",
+    "repetition": 13
+  },
+  {
+    "condition": "baseline",
+    "evaluations": 30,
+    "phase": "measured",
+    "repetition": 8
+  },
+  {
+    "condition": "baseline",
+    "evaluations": 20,
+    "phase": "measured",
+    "repetition": 1
+  },
+  {
+    "condition": "baseline",
+    "evaluations": 10,
+    "phase": "measured",
+    "repetition": 20
+  },
+  {
+    "condition": "baseline",
+    "evaluations": 10,
+    "phase": "measured",
+    "repetition": 29
+  },
+  {
+    "condition": "verified",
+    "evaluations": 20,
+    "phase": "measured",
+    "repetition": 25
+  },
+  {
+    "condition": "verified",
+    "evaluations": 20,
+    "phase": "measured",
+    "repetition": 15
+  },
+  {
+    "condition": "baseline",
+    "evaluations": 40,
+    "phase": "measured",
+    "repetition": 12
+  },
+  {
+    "condition": "baseline",
+    "evaluations": 20,
+    "phase": "measured",
+    "repetition": 20
+  },
+  {
+    "condition": "baseline",
+    "evaluations": 50,
+    "phase": "measured",
+    "repetition": 15
+  },
+  {
+    "condition": "verified",
+    "evaluations": 10,
+    "phase": "measured",
+    "repetition": 9
+  },
+  {
+    "condition": "verified",
+    "evaluations": 40,
+    "phase": "measured",
+    "repetition": 26
+  },
+  {
+    "condition": "baseline",
+    "evaluations": 40,
+    "phase": "measured",
+    "repetition": 4
+  },
+  {
+    "condition": "baseline",
+    "evaluations": 20,
+    "phase": "measured",
+    "repetition": 14
+  },
+  {
+    "condition": "baseline",
+    "evaluations": 50,
+    "phase": "measured",
+    "repetition": 18
+  },
+  {
+    "condition": "verified",
+    "evaluations": 50,
+    "phase": "measured",
+    "repetition": 19
+  },
+  {
+    "condition": "baseline",
+    "evaluations": 50,
+    "phase": "measured",
+    "repetition": 1
+  },
+  {
+    "condition": "verified",
+    "evaluations": 30,
+    "phase": "measured",
+    "repetition": 22
+  },
+  {
+    "condition": "baseline",
+    "evaluations": 10,
+    "phase": "measured",
+    "repetition": 17
+  },
+  {
+    "condition": "baseline",
+    "evaluations": 30,
+    "phase": "measured",
+    "repetition": 7
+  },
+  {
+    "condition": "baseline",
+    "evaluations": 10,
+    "phase": "measured",
+    "repetition": 30
+  },
+  {
+    "condition": "verified",
+    "evaluations": 50,
+    "phase": "measured",
+    "repetition": 18
+  },
+  {
+    "condition": "baseline",
+    "evaluations": 10,
+    "phase": "measured",
+    "repetition": 6
+  },
+  {
+    "condition": "verified",
+    "evaluations": 20,
+    "phase": "measured",
+    "repetition": 13
+  },
+  {
+    "condition": "baseline",
+    "evaluations": 30,
+    "phase": "measured",
+    "repetition": 29
+  },
+  {
+    "condition": "verified",
+    "evaluations": 30,
+    "phase": "measured",
+    "repetition": 19
+  },
+  {
+    "condition": "verified",
+    "evaluations": 30,
+    "phase": "measured",
+    "repetition": 6
+  },
+  {
+    "condition": "verified",
+    "evaluations": 20,
+    "phase": "measured",
+    "repetition": 2
+  },
+  {
+    "condition": "baseline",
+    "evaluations": 40,
+    "phase": "measured",
+    "repetition": 5
+  },
+  {
+    "condition": "verified",
+    "evaluations": 10,
+    "phase": "measured",
+    "repetition": 11
+  },
+  {
+    "condition": "verified",
+    "evaluations": 10,
+    "phase": "measured",
+    "repetition": 2
+  },
+  {
+    "condition": "verified",
+    "evaluations": 20,
+    "phase": "measured",
+    "repetition": 27
+  },
+  {
+    "condition": "baseline",
+    "evaluations": 10,
+    "phase": "measured",
+    "repetition": 14
+  },
+  {
+    "condition": "verified",
+    "evaluations": 50,
+    "phase": "measured",
+    "repetition": 7
+  },
+  {
+    "condition": "baseline",
+    "evaluations": 50,
+    "phase": "measured",
+    "repetition": 29
+  },
+  {
+    "condition": "verified",
+    "evaluations": 40,
+    "phase": "measured",
+    "repetition": 24
+  },
+  {
+    "condition": "verified",
+    "evaluations": 20,
+    "phase": "measured",
+    "repetition": 1
+  },
+  {
+    "condition": "verified",
+    "evaluations": 20,
+    "phase": "measured",
+    "repetition": 11
+  },
+  {
+    "condition": "verified",
+    "evaluations": 40,
+    "phase": "measured",
+    "repetition": 10
+  },
+  {
+    "condition": "verified",
+    "evaluations": 40,
+    "phase": "measured",
+    "repetition": 27
+  },
+  {
+    "condition": "baseline",
+    "evaluations": 30,
+    "phase": "measured",
+    "repetition": 16
+  },
+  {
+    "condition": "verified",
+    "evaluations": 30,
+    "phase": "measured",
+    "repetition": 7
+  },
+  {
+    "condition": "verified",
+    "evaluations": 50,
+    "phase": "measured",
+    "repetition": 12
+  },
+  {
+    "condition": "baseline",
+    "evaluations": 40,
+    "phase": "measured",
+    "repetition": 16
+  },
+  {
+    "condition": "verified",
+    "evaluations": 40,
+    "phase": "measured",
+    "repetition": 28
+  },
+  {
+    "condition": "baseline",
+    "evaluations": 40,
+    "phase": "measured",
+    "repetition": 7
+  },
+  {
+    "condition": "baseline",
+    "evaluations": 40,
+    "phase": "measured",
+    "repetition": 9
+  },
+  {
+    "condition": "baseline",
+    "evaluations": 40,
+    "phase": "measured",
+    "repetition": 10
+  },
+  {
+    "condition": "baseline",
+    "evaluations": 10,
+    "phase": "measured",
+    "repetition": 22
+  },
+  {
+    "condition": "verified",
+    "evaluations": 10,
+    "phase": "measured",
+    "repetition": 21
+  },
+  {
+    "condition": "baseline",
+    "evaluations": 10,
+    "phase": "measured",
+    "repetition": 11
+  },
+  {
+    "condition": "verified",
+    "evaluations": 40,
+    "phase": "measured",
+    "repetition": 9
+  },
+  {
+    "condition": "baseline",
+    "evaluations": 50,
+    "phase": "measured",
+    "repetition": 12
+  },
+  {
+    "condition": "baseline",
+    "evaluations": 20,
+    "phase": "measured",
+    "repetition": 26
+  },
+  {
+    "condition": "verified",
+    "evaluations": 20,
+    "phase": "measured",
+    "repetition": 12
+  },
+  {
+    "condition": "verified",
+    "evaluations": 40,
+    "phase": "measured",
+    "repetition": 22
+  },
+  {
+    "condition": "verified",
+    "evaluations": 50,
+    "phase": "measured",
+    "repetition": 20
+  },
+  {
+    "condition": "verified",
+    "evaluations": 20,
+    "phase": "measured",
+    "repetition": 7
+  },
+  {
+    "condition": "verified",
+    "evaluations": 10,
+    "phase": "measured",
+    "repetition": 19
+  },
+  {
+    "condition": "baseline",
+    "evaluations": 20,
+    "phase": "measured",
+    "repetition": 8
+  },
+  {
+    "condition": "verified",
+    "evaluations": 50,
+    "phase": "measured",
+    "repetition": 6
+  },
+  {
+    "condition": "baseline",
+    "evaluations": 10,
+    "phase": "measured",
+    "repetition": 23
+  },
+  {
+    "condition": "verified",
+    "evaluations": 50,
+    "phase": "measured",
+    "repetition": 28
+  },
+  {
+    "condition": "verified",
+    "evaluations": 30,
+    "phase": "measured",
+    "repetition": 2
+  },
+  {
+    "condition": "verified",
+    "evaluations": 20,
+    "phase": "measured",
+    "repetition": 21
+  },
+  {
+    "condition": "baseline",
+    "evaluations": 50,
+    "phase": "measured",
+    "repetition": 20
+  },
+  {
+    "condition": "baseline",
+    "evaluations": 30,
+    "phase": "measured",
+    "repetition": 26
+  },
+  {
+    "condition": "baseline",
+    "evaluations": 50,
+    "phase": "measured",
+    "repetition": 28
+  },
+  {
+    "condition": "verified",
+    "evaluations": 50,
+    "phase": "measured",
+    "repetition": 26
+  },
+  {
+    "condition": "baseline",
+    "evaluations": 20,
+    "phase": "measured",
+    "repetition": 17
+  },
+  {
+    "condition": "baseline",
+    "evaluations": 50,
+    "phase": "measured",
+    "repetition": 14
+  },
+  {
+    "condition": "verified",
+    "evaluations": 10,
+    "phase": "measured",
+    "repetition": 3
+  },
+  {
+    "condition": "baseline",
+    "evaluations": 10,
+    "phase": "measured",
+    "repetition": 24
+  },
+  {
+    "condition": "verified",
+    "evaluations": 40,
+    "phase": "measured",
+    "repetition": 5
+  },
+  {
+    "condition": "verified",
+    "evaluations": 10,
+    "phase": "measured",
+    "repetition": 14
+  },
+  {
+    "condition": "baseline",
+    "evaluations": 50,
+    "phase": "measured",
+    "repetition": 21
+  },
+  {
+    "condition": "verified",
+    "evaluations": 30,
+    "phase": "measured",
+    "repetition": 27
+  },
+  {
+    "condition": "verified",
+    "evaluations": 30,
+    "phase": "measured",
+    "repetition": 14
+  },
+  {
+    "condition": "baseline",
+    "evaluations": 50,
+    "phase": "measured",
+    "repetition": 10
+  },
+  {
+    "condition": "verified",
+    "evaluations": 20,
+    "phase": "measured",
+    "repetition": 6
+  },
+  {
+    "condition": "baseline",
+    "evaluations": 30,
+    "phase": "measured",
+    "repetition": 10
+  },
+  {
+    "condition": "baseline",
+    "evaluations": 20,
+    "phase": "measured",
+    "repetition": 5
+  },
+  {
+    "condition": "baseline",
+    "evaluations": 40,
+    "phase": "measured",
+    "repetition": 6
+  },
+  {
+    "condition": "verified",
+    "evaluations": 10,
+    "phase": "measured",
+    "repetition": 25
+  },
+  {
+    "condition": "verified",
+    "evaluations": 50,
+    "phase": "measured",
+    "repetition": 21
+  },
+  {
+    "condition": "verified",
+    "evaluations": 10,
+    "phase": "measured",
+    "repetition": 26
+  },
+  {
+    "condition": "baseline",
+    "evaluations": 40,
+    "phase": "measured",
+    "repetition": 8
+  },
+  {
+    "condition": "verified",
+    "evaluations": 10,
+    "phase": "measured",
+    "repetition": 18
+  },
+  {
+    "condition": "verified",
+    "evaluations": 50,
+    "phase": "measured",
+    "repetition": 2
+  },
+  {
+    "condition": "baseline",
+    "evaluations": 10,
+    "phase": "measured",
+    "repetition": 7
+  },
+  {
+    "condition": "verified",
+    "evaluations": 50,
+    "phase": "measured",
+    "repetition": 22
+  },
+  {
+    "condition": "baseline",
+    "evaluations": 50,
+    "phase": "measured",
+    "repetition": 16
+  },
+  {
+    "condition": "verified",
+    "evaluations": 50,
+    "phase": "measured",
+    "repetition": 3
+  },
+  {
+    "condition": "verified",
+    "evaluations": 50,
+    "phase": "measured",
+    "repetition": 24
+  },
+  {
+    "condition": "verified",
+    "evaluations": 40,
+    "phase": "measured",
+    "repetition": 13
+  },
+  {
+    "condition": "baseline",
+    "evaluations": 10,
+    "phase": "measured",
+    "repetition": 21
+  },
+  {
+    "condition": "verified",
+    "evaluations": 20,
+    "phase": "measured",
+    "repetition": 22
+  },
+  {
+    "condition": "baseline",
+    "evaluations": 10,
+    "phase": "measured",
+    "repetition": 18
+  },
+  {
+    "condition": "baseline",
+    "evaluations": 40,
+    "phase": "measured",
+    "repetition": 3
+  },
+  {
+    "condition": "baseline",
+    "evaluations": 30,
+    "phase": "measured",
+    "repetition": 15
+  }
+]

@@ -1,0 +1,131 @@
+{
+  "review_source": "/Users/rome/Desktop/Review2.docx",
+  "review_round": 3,
+  "items": [
+    {
+      "id": "G1",
+      "review_item_number": "General comment",
+      "status": "ADDRESSED",
+      "type": [
+        "textual revision",
+        "experimental clarification"
+      ],
+      "location": "Sections II-A and III-C",
+      "files": [
+        "manuscript_review3.tex"
+      ],
+      "change": "Introduced verdicts with their meaning and purpose; explained the requirements selected for evaluation and the Gaussian approximation/DTMC choice before their technical use. Existing introductions for the other verification layers were reviewed and retained."
+    },
+    {
+      "id": "C1",
+      "review_item_number": "Contents 1",
+      "status": "ADDRESSED",
+      "type": [
+        "textual revision",
+        "experimental clarification",
+        "table revision"
+      ],
+      "location": "Section II-A, paragraph introducing Table I; Table I caption/header",
+      "files": [
+        "manuscript_review3.tex"
+      ],
+      "change": "Described Table I as the selected requirements evaluated in this study, justified selection at measurement/calculation/optimizer interfaces, and stated the additional specifications needed for broader VQE questions."
+    },
+    {
+      "id": "C2",
+      "review_item_number": "Contents 2",
+      "status": "ADDRESSED",
+      "type": [
+        "textual revision",
+        "citation revision",
+        "experimental clarification"
+      ],
+      "location": "Section III-C opening paragraph",
+      "files": [
+        "manuscript_review3.tex"
+      ],
+      "change": "Explained the central-limit motivation for sample-mean energy estimates, the computational benefit of selection probabilities, and the finite Markov state from the grid/phase and fresh independent measurements. Retained empirical validation and absence of a certified approximation-error bound. Cited the existing McClean et al. primary reference."
+    },
+    {
+      "id": "C3",
+      "review_item_number": "Contents 3",
+      "status": "ADDRESSED",
+      "type": [
+        "terminology revision",
+        "table revision"
+      ],
+      "location": "Table IV, L4 row; Section V-B",
+      "files": [
+        "tables/contracts.tex",
+        "scripts/generate_tables.py",
+        "manuscript_review3.tex"
+      ],
+      "change": "Selected Agreement under mapping, consistent with the other rows and the recorded AGREEMENT verdict. Preserved terminal absorption/budget scope and the separate runtime support for termination reasons."
+    },
+    {
+      "id": "C4",
+      "review_item_number": "Contents 4",
+      "status": "ADDRESSED",
+      "type": [
+        "textual revision",
+        "figure/table revision"
+      ],
+      "location": "Captions of all five figures and five revised tables; Sections II-B, IV-C, IV-D, V-C and V-D",
+      "files": [
+        "manuscript_review3.tex"
+      ],
+      "change": "Shortened every retained caption. Kept curve/panel meanings, sample counts and interval methods needed to read the graphics. Moved iteration/group counts, timing exclusions and resolution, and statistical/fault qualifications into surrounding prose. The combined probabilistic caption replaces the two previous captions."
+    },
+    {
+      "id": "C5",
+      "review_item_number": "Contents 5",
+      "status": "ADDRESSED",
+      "type": [
+        "table revision",
+        "textual revision"
+      ],
+      "location": "Section V-C; new Table V",
+      "files": [
+        "manuscript_review3.tex",
+        "tables/probabilistic_results.tex",
+        "scripts/generate_tables.py"
+      ],
+      "change": "Merged old Tables V and VI into one four-column table containing predictions, empirical estimates/counts and original intervals. Removed deviation and Holm columns. Retained primary deviation and P2 multiplicity analysis in prose to preserve the scientific interpretation. Generated all cells from shared audited results."
+    },
+    {
+      "id": "T1",
+      "review_item_number": "Terms 1",
+      "status": "ADDRESSED",
+      "type": [
+        "textual revision",
+        "terminology revision"
+      ],
+      "location": "Section II-A before Figure 1; Section V-A and V-D",
+      "files": [
+        "manuscript_review3.tex"
+      ],
+      "change": "Defined ASSUMPTION_MISMATCH before first diagram use, explained why assumption-dependent prospective results need an applicability verdict, and illustrated shot-allocation changes. Distinguished violation, inapplicability and insufficient observations. Retained the implementation-specific fault classification qualification."
+    },
+    {
+      "id": "T2",
+      "review_item_number": "Terms 2",
+      "status": "ADDRESSED",
+      "type": [
+        "terminology revision",
+        "figure/table revision"
+      ],
+      "location": "Abstract, Sections I-V and VIII, Tables I/IV, architecture library label",
+      "files": [
+        "manuscript_review3.tex",
+        "tables/contracts.tex",
+        "../figures/architecture.tex",
+        "figures/architecture.pdf"
+      ],
+      "change": "Used requirement for system expectations and routine per-run comparisons. Retained obligation only in the agreed methodological quotation, its precise contract definition, and the mathematical kernel discussion. Defined the technical meaning and aligned the diagram label."
+    }
+  ],
+  "second_pass_read": "Complete DOCX text and rendered one-page review reread; every substantive comment checked against the revised source and compiled layout. Blank final numbered line contains no comment.",
+  "fully_addressed": 8,
+  "partially_addressed": 0,
+  "needs_author_decision": 0
+}

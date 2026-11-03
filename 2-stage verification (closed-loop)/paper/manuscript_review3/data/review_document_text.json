@@ -1,0 +1,17 @@
+{
+  "source": "/Users/rome/Desktop/Review2.docx",
+  "paragraphs": [
+    "Review for \u201cFormal Verification in Hybrid Quantum-Classical Computing Systems\u201d",
+    "Always remember when you introduce or propose something, you need to explain what this is briefly, what\u2019s this for, and why we need this.",
+    "Contents:",
+    "Table I is just a summary of all system-level obligations evaluated in this study and their pre-execution/runtime mappings, not a table exhaustively covers every possible verification requirement for VQE. We need to justify this setting",
+    "You didn\u2019t justify and explain why we use the Gaussian DTMC in probabilistic verification, this is important and good for review to understand our choice",
+    "L4 result in Table IV \u201cQualified agreement\u201d or \u201cAgreement under mapping\u201d",
+    "Captions in all tables and figures contain too much information and details. You need to judge which figure/table caption should include more details and explanation and analysis, which figure/table caption just keeps concise and informative",
+    "Merge Table V and Table VI, don\u2019t include these columns \u201c|\u2206p| (pp)\u201d, \u201c Holm p\u201d, \u201cAbsolute deviation\u201d, or just remove these two tables completely, and explain and analyze the results in the section they belong. You need to judge which choice is better",
+    "Terms:",
+    "The \u201cASSUMPTION_MISMATCH\u201d is an indicator or verdict result of fault injection; we need to justify and explain why we use this term in the beginning",
+    "\u201crequirement\u201d or \u201cobligation\u201d, which one is better? I think \u201crequirement\u201d sounds more natural and intuitive, replace \u201cobligation\u201d when appropriate",
+    ""
+  ]
+}

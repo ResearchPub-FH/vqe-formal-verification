@@ -1,0 +1,152 @@
+{
+  "comparison": {
+    "hardware_minus_statevector_best_energy": 0.02095507812499997,
+    "hardware_minus_statevector_final_energy": 0.06223457031250007,
+    "interpretation": "The two sampled optimization paths are comparable by design but may diverge after noisy objective values change ask/tell decisions.",
+    "same_ansatz_measurement_optimizer_and_budget": true,
+    "same_initial_theta": true
+  },
+  "fixed_design": {
+    "evaluations": 50,
+    "maximum_physical_shots": 204800,
+    "maximum_pubs": 200,
+    "optimizer_protocol": "ask-tell-pattern-search-v1",
+    "pubs_per_evaluation": 4,
+    "shots_per_term": 1024,
+    "term_order": [
+      "YZ",
+      "ZI",
+      "ZZ",
+      "XX"
+    ]
+  },
+  "generated_utc": "2026-09-08T03:58:37.083221+00:00",
+  "hamiltonian": {
+    "coefficients": {
+      "t0": 0.398,
+      "t1": -0.398,
+      "t2": -0.0113,
+      "t3": 0.181
+    },
+    "expression": "0.3980 YZ - 0.3980 ZI - 0.0113 ZZ + 0.1810 XX",
+    "sha256": "8364398979d8e71d268f41d14867ad7f25a505edcd065a90cb8d58c478fa5502",
+    "source": "data/h2_hamiltonian.json"
+  },
+  "hardware": {
+    "acceptance_criteria": {
+      "all_energies_reconstruct_from_four_expectations": true,
+      "all_expectations_reconstruct_from_odd_parity": true,
+      "all_job_ids_unique": true,
+      "each_pub_has_exactly_1024_observed_shots": true,
+      "every_count_dictionary_sums_to_1024": true,
+      "explicit_ask_tell_chain_valid": true,
+      "fixed_physical_layout_across_all_pubs": true,
+      "online_and_replay_verdicts_agree": true,
+      "packed_and_ordered_shots_match_archived_hashes": true,
+      "physical_shot_budget_not_exceeded": true,
+      "sealed_manifest_matches_records": true,
+      "strict_raw_sidecar_validation": true,
+      "truthful_max_iteration_termination": true
+    },
+    "best_energy": -0.418932421875,
+    "best_energy_iteration": 28,
+    "config_hash": "b4b72e2897d930dcfed93a3b7a18a4811c8b1b6697ff0699a7b0ea4ddfb69c62",
+    "evaluations": 50,
+    "evidence_manifest_sha256": "06019a3a2fff08388e13a0ebce7faa1fe2f10203ebc830497bbc1bc9078fdd57",
+    "final_energy": -0.3775728515625,
+    "initial_energy": 0.19164843750000002,
+    "job_count": 50,
+    "label": "ibm_marrakesh",
+    "online_status": "pass",
+    "paths": {
+      "evidence": "artifacts/evidence/h2_ibm_marrakesh_sampler_20260907.jsonl",
+      "online_report": "artifacts/reports/h2_ibm_marrakesh_sampler_20260907_online.json",
+      "replay_report": "artifacts/reports/h2_ibm_marrakesh_sampler_20260907_replay.json",
+      "trace": "artifacts/traces/h2_ibm_marrakesh_sampler_20260907.jsonl"
+    },
+    "physical_layouts": [
+      [
+        6,
+        7
+      ]
+    ],
+    "physical_shots": 204800,
+    "pubs": 200,
+    "qpu_charge_time_seconds": 150,
+    "quantum_seconds_estimate": 137.70284855,
+    "replay_status": "pass",
+    "run_id": "h2-ibm-marrakesh-sampler-20260907",
+    "sha256": {
+      "evidence": "e93da9837ca8c504f8d3120ddf97d6bc048f923f56f6ed77eaa3a12509e50671",
+      "online_report": "4ef8d86760c2a81cfd1a5a0c2a0e360f9d8284a68f09569c4ac43678ecb6f4cf",
+      "replay_report": "a94c0613f6b151dbe4fb0031197b4d698f7ea7b61bf305a15be35b9649ac1f51",
+      "trace": "c954babd7d629f8e75f5cf5f69132108aa99c6cc6bb04a18fb046fb0faeb342c"
+    },
+    "terminal_reason": "max_iterations",
+    "trace_event_count": 2103,
+    "verified_levels": {
+      "inter_iteration": "pass",
+      "intra_iteration": "pass",
+      "run_level": "pass"
+    }
+  },
+  "schema_version": 1,
+  "statevector": {
+    "acceptance_criteria": {
+      "all_energies_reconstruct_from_four_expectations": true,
+      "all_expectations_reconstruct_from_odd_parity": true,
+      "all_job_ids_unique": true,
+      "each_pub_has_exactly_1024_observed_shots": true,
+      "every_count_dictionary_sums_to_1024": true,
+      "explicit_ask_tell_chain_valid": true,
+      "fixed_physical_layout_across_all_pubs": true,
+      "online_and_replay_verdicts_agree": true,
+      "packed_and_ordered_shots_match_archived_hashes": true,
+      "physical_shot_budget_not_exceeded": true,
+      "sealed_manifest_matches_records": true,
+      "strict_raw_sidecar_validation": true,
+      "truthful_max_iteration_termination": true
+    },
+    "best_energy": -0.4398875,
+    "best_energy_iteration": 40,
+    "config_hash": "c914e106ef28e4d98b25eb14b11eeb0448f71d3931f3ae11340efd2299164db7",
+    "evaluations": 50,
+    "evidence_manifest_sha256": "9d560d84bec2758e0308a92cf368a79104da06d72e6cabd3a993daf0fe896b1a",
+    "final_energy": -0.43980742187500005,
+    "initial_energy": 0.2069205078125,
+    "job_count": 50,
+    "label": "statevector_sampler",
+    "online_status": "pass",
+    "paths": {
+      "evidence": "artifacts/evidence/h2_statevector_sampler_20260907.jsonl",
+      "online_report": "artifacts/reports/h2_statevector_sampler_20260907_online.json",
+      "replay_report": "artifacts/reports/h2_statevector_sampler_20260907_replay.json",
+      "trace": "artifacts/traces/h2_statevector_sampler_20260907.jsonl"
+    },
+    "physical_layouts": [
+      [
+        0,
+        1
+      ]
+    ],
+    "physical_shots": 204800,
+    "pubs": 200,
+    "qpu_charge_time_seconds": 0,
+    "quantum_seconds_estimate": 0.0,
+    "replay_status": "pass",
+    "run_id": "h2-statevector-sampler-20260907",
+    "sha256": {
+      "evidence": "522a0cc3f52f9f393492cba685786fb19b21a42c94f5bb2b31abcdff97300153",
+      "online_report": "e2aa32bbe6e046c3180ba7e12dc0adbc1adc3213aa2c5c764fb9f90b70d57c47",
+      "replay_report": "cb7fe2cbc44023c443fa5347d150aa7ec4f60b49339ae921db5c540aadf447ae",
+      "trace": "4fa179a5ad53bcf7c8ea847f36d2160a9a460a09ec534dd85a55fd130822f755"
+    },
+    "terminal_reason": "max_iterations",
+    "trace_event_count": 2103,
+    "verified_levels": {
+      "inter_iteration": "pass",
+      "intra_iteration": "pass",
+      "run_level": "pass"
+    }
+  }
+}

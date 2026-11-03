@@ -1,0 +1,49 @@
+-- Counterexample harness 1: QPU error is ignored.
+--
+-- Intended bug:
+--   EXECUTE_MEASURE continues or computes energy even when qpu_error is TRUE.
+--
+-- Expected failing property:
+--   A QPU/measurement error must transition to ABORT in the next step.
+
+MODULE main
+
+DEFINE
+  NTERMS := 2;
+  all_terms_done := (terms_done = NTERMS);
+
+VAR
+  state : {S_INIT, BIND, EXECUTE_MEASURE, COMPUTE_ENERGY, DONE, ABORT};
+  terms_done : 0..NTERMS;
+  qpu_error : boolean;
+
+ASSIGN
+  init(state) := S_INIT;
+  init(terms_done) := 0;
+
+  next(state) :=
+    case
+      state = S_INIT : BIND;
+      state = BIND : EXECUTE_MEASURE;
+
+      -- BUG: qpu_error is not checked.
+      state = EXECUTE_MEASURE & !all_terms_done : EXECUTE_MEASURE;
+      state = EXECUTE_MEASURE & all_terms_done : COMPUTE_ENERGY;
+
+      state = COMPUTE_ENERGY : DONE;
+      state = DONE : DONE;
+      state = ABORT : ABORT;
+      TRUE : state;
+    esac;
+
+  next(terms_done) :=
+    case
+      state = S_INIT : 0;
+      state = BIND : 0;
+      state = EXECUTE_MEASURE & !all_terms_done : terms_done + 1;
+      TRUE : terms_done;
+    esac;
+
+-- Must fail: an active backend/measurement fault cannot be ignored.
+LTLSPEC
+  G ((state = EXECUTE_MEASURE & qpu_error) -> X (state = ABORT));

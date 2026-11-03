@@ -1,0 +1,44 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="900" height="560" viewBox="0 0 900 560">
+<rect width="100%" height="100%" fill="white"/>
+<style>text{font-family:Arial,Helvetica,sans-serif;fill:#20242a}.axis{stroke:#343a40;stroke-width:1.5}.grid{stroke:#d8dde3;stroke-width:1}.series{fill:none;stroke-width:3}.point{stroke:white;stroke-width:1.5}</style>
+<text x="450" y="28" text-anchor="middle" font-size="20" font-weight="600">Simulator execution time by evaluation count</text>
+<line class="grid" x1="100" y1="470.00" x2="860" y2="470.00"/>
+<text x="88" y="475.00" text-anchor="end" font-size="13">0.00</text>
+<line class="grid" x1="100" y1="387.00" x2="860" y2="387.00"/>
+<text x="88" y="392.00" text-anchor="end" font-size="13">0.42</text>
+<line class="grid" x1="100" y1="304.00" x2="860" y2="304.00"/>
+<text x="88" y="309.00" text-anchor="end" font-size="13">0.84</text>
+<line class="grid" x1="100" y1="221.00" x2="860" y2="221.00"/>
+<text x="88" y="226.00" text-anchor="end" font-size="13">1.26</text>
+<line class="grid" x1="100" y1="138.00" x2="860" y2="138.00"/>
+<text x="88" y="143.00" text-anchor="end" font-size="13">1.68</text>
+<line class="grid" x1="100" y1="55.00" x2="860" y2="55.00"/>
+<text x="88" y="60.00" text-anchor="end" font-size="13">2.10</text>
+<line class="axis" x1="100" y1="55" x2="100" y2="470"/>
+<line class="axis" x1="100" y1="470" x2="860" y2="470"/>
+<text x="100.00" y="497" text-anchor="middle" font-size="13">10</text>
+<text x="290.00" y="497" text-anchor="middle" font-size="13">20</text>
+<text x="480.00" y="497" text-anchor="middle" font-size="13">30</text>
+<text x="670.00" y="497" text-anchor="middle" font-size="13">40</text>
+<text x="860.00" y="497" text-anchor="middle" font-size="13">50</text>
+<polyline class="series" stroke="#2463a9" points="100.00,461.25 290.00,452.90 480.00,444.39 670.00,435.72 860.00,427.50"/>
+<circle class="point" cx="100.00" cy="461.25" r="5" fill="#2463a9"/>
+<circle class="point" cx="290.00" cy="452.90" r="5" fill="#2463a9"/>
+<circle class="point" cx="480.00" cy="444.39" r="5" fill="#2463a9"/>
+<circle class="point" cx="670.00" cy="435.72" r="5" fill="#2463a9"/>
+<circle class="point" cx="860.00" cy="427.50" r="5" fill="#2463a9"/>
+<polyline class="series" stroke="#c64a32" points="100.00,345.46 290.00,280.63 480.00,219.43 670.00,161.51 860.00,99.46"/>
+<circle class="point" cx="100.00" cy="345.46" r="5" fill="#c64a32"/>
+<circle class="point" cx="290.00" cy="280.63" r="5" fill="#c64a32"/>
+<circle class="point" cx="480.00" cy="219.43" r="5" fill="#c64a32"/>
+<circle class="point" cx="670.00" cy="161.51" r="5" fill="#c64a32"/>
+<circle class="point" cx="860.00" cy="99.46" r="5" fill="#c64a32"/>
+<text x="480.00" y="532" text-anchor="middle" font-size="15">Completed objective evaluations</text>
+<text x="24" y="262.50" text-anchor="middle" font-size="15" transform="rotate(-90 24 262.50)">Median execution time (s)</text>
+<line x1="122" y1="73" x2="156" y2="73" stroke="#2463a9" stroke-width="3"/>
+<circle cx="139" cy="73" r="4" fill="#2463a9"/>
+<text x="166" y="78" font-size="13">Baseline VQE</text>
+<line x1="122" y1="98" x2="156" y2="98" stroke="#c64a32" stroke-width="3"/>
+<circle cx="139" cy="98" r="4" fill="#c64a32"/>
+<text x="166" y="103" font-size="13">VQE + runtime verification</text>
+</svg>

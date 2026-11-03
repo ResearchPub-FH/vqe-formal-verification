@@ -1,0 +1,55 @@
+-- Counterexample harness 2: stale energy is reused in a new iteration.
+--
+-- Intended bug:
+--   energy_ready is never cleared after OPTIMIZER_STEP, so the next BIND starts
+--   with the previous iteration's energy still marked as current.
+--
+-- Expected failing property:
+--   BIND with iter > 0 must not carry energy_ready from the previous iteration.
+
+MODULE main
+
+DEFINE
+  MAX_ITERS := 2;
+
+VAR
+  state : {S_INIT, BIND, COMPUTE_ENERGY, CHECK_STOP, OPTIMIZER_STEP, DONE};
+  iter : 0..MAX_ITERS;
+  energy_ready : boolean;
+  converged : boolean;
+
+ASSIGN
+  init(state) := S_INIT;
+  init(iter) := 0;
+  init(energy_ready) := FALSE;
+
+  next(state) :=
+    case
+      state = S_INIT : BIND;
+      state = BIND : COMPUTE_ENERGY;
+      state = COMPUTE_ENERGY : CHECK_STOP;
+      state = CHECK_STOP & converged : DONE;
+      state = CHECK_STOP & !converged & iter < MAX_ITERS : OPTIMIZER_STEP;
+      state = CHECK_STOP & !converged & iter = MAX_ITERS : DONE;
+      state = OPTIMIZER_STEP : BIND;
+      state = DONE : DONE;
+      TRUE : state;
+    esac;
+
+  next(iter) :=
+    case
+      state = OPTIMIZER_STEP & iter < MAX_ITERS : iter + 1;
+      TRUE : iter;
+    esac;
+
+  next(energy_ready) :=
+    case
+      state = COMPUTE_ENERGY : TRUE;
+
+      -- BUG: OPTIMIZER_STEP should clear stale energy before the next BIND.
+      TRUE : energy_ready;
+    esac;
+
+-- Must fail: a new iteration cannot begin with stale energy still valid.
+LTLSPEC
+  G ((state = BIND & iter > 0) -> !energy_ready);

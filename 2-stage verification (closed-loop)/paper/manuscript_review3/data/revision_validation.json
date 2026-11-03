@@ -1,0 +1,87 @@
+{
+  "status": "PASS",
+  "checks": {
+    "preservation": {
+      "passed": true,
+      "existing_files": 71,
+      "changed_shared_files": [
+        "figures/architecture.tex",
+        "scripts/validate_paper.py"
+      ],
+      "current_main_and_pdf_unchanged": true,
+      "original_main_and_pdf_unchanged": true,
+      "shared_bibliography_and_data_unchanged": true
+    },
+    "scientific_content_preserved": {
+      "passed": true,
+      "equation_blocks": 8,
+      "numerical_macros": 65
+    },
+    "revised_tables": {
+      "passed": true,
+      "probabilistic_data_rows": 7,
+      "original_intervals_preserved": true,
+      "L4_scope_preserved": true
+    },
+    "captions": {
+      "passed": true,
+      "retained_caption_word_counts": {
+        "fig:architecture": {
+          "before": 74,
+          "after": 35
+        },
+        "tab:mapping": {
+          "before": 28,
+          "after": 11
+        },
+        "tab:configuration": {
+          "before": 18,
+          "after": 6
+        },
+        "fig:storm-scalability": {
+          "before": 73,
+          "after": 30
+        },
+        "fig:runtime-overhead": {
+          "before": 64,
+          "after": 31
+        },
+        "tab:hardware": {
+          "before": 22,
+          "after": 9
+        },
+        "tab:contract-results": {
+          "before": 44,
+          "after": 22
+        },
+        "fig:probability-comparison": {
+          "before": 68,
+          "after": 27
+        },
+        "fig:fault-discrepancies": {
+          "before": 85,
+          "after": 38
+        }
+      },
+      "merged_caption_words": 31
+    },
+    "review_items": {
+      "passed": true,
+      "fully_addressed": 8,
+      "partially_addressed": 0,
+      "author_decisions": 0,
+      "second_pass_read": "Complete DOCX text and rendered one-page review reread; every substantive comment checked against the revised source and compiled layout. Blank final numbered line contains no comment."
+    },
+    "compiled_revision": {
+      "passed": true,
+      "tables": {
+        "tab:mapping": "I",
+        "tab:configuration": "II",
+        "tab:hardware": "III",
+        "tab:contract-results": "IV",
+        "tab:probabilistic-results": "V"
+      },
+      "pages": 11
+    }
+  }
+}

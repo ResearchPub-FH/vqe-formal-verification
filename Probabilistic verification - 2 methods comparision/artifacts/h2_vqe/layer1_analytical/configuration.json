@@ -1,0 +1,60 @@
+{
+  "ansatz": "EfficientSU2(['h','rz','y'], circular, reps=1), 2 qubits",
+  "candidate_order": [
+    "current",
+    "minus",
+    "plus"
+  ],
+  "candidates_per_update": 3,
+  "convergence_tolerance": 0.02,
+  "coordinate_schedule": [
+    0,
+    1,
+    2,
+    3
+  ],
+  "empirical_runs": 400,
+  "empirical_tie_priority": [
+    "current",
+    "minus",
+    "plus"
+  ],
+  "fake_backend": "FakeJakarta",
+  "grid_size_per_parameter": 16,
+  "ground_energy": -0.7029303944595313,
+  "hamiltonian": {
+    "XX": 0.181,
+    "YZ": 0.398,
+    "ZI": -0.398,
+    "ZZ": -0.0113
+  },
+  "horizons": [
+    10,
+    20,
+    30,
+    40,
+    50
+  ],
+  "initial_index": [
+    3,
+    11,
+    6,
+    14
+  ],
+  "maximum_updates": 50,
+  "measurement_groups": [
+    [
+      "ZI",
+      "ZZ"
+    ],
+    [
+      "YZ"
+    ],
+    [
+      "XX"
+    ]
+  ],
+  "seed": 20260721,
+  "shots_per_completed_update": 9216,
+  "shots_per_group": 1024
+}

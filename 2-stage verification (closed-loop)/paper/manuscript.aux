@@ -1,0 +1,113 @@
+\relax 
+\providecommand\hyper@newdestlabel[2]{}
+\providecommand\HyperFirstAtBeginDocument{\AtBeginDocument}
+\HyperFirstAtBeginDocument{\ifx\hyper@anchor\@undefined
+\global\let\oldcontentsline\contentsline
+\gdef\contentsline#1#2#3#4{\oldcontentsline{#1}{#2}{#3}}
+\global\let\oldnewlabel\newlabel
+\gdef\newlabel#1#2{\newlabelxx{#1}#2}
+\gdef\newlabelxx#1#2#3#4#5#6{\oldnewlabel{#1}{{#2}{#3}}}
+\AtEndDocument{\ifx\hyper@anchor\@undefined
+\let\contentsline\oldcontentsline
+\let\newlabel\oldnewlabel
+\fi}
+\fi}
+\global\let\hyper@last\relax 
+\gdef\HyperFirstAtBeginDocument#1{#1}
+\providecommand*\HyPL@Entry[1]{}
+\citation{peruzzo2014,mcclean2016}
+\HyPL@Entry{0<</S/D>>}
+\@writefile{toc}{\contentsline {section}{\numberline {I}Introduction}{1}{section.1}\protected@file@percent }
+\newlabel{sec:introduction}{{I}{1}{Introduction}{section.1}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {II}Shared Execution Model and Contract Library}{1}{section.2}\protected@file@percent }
+\newlabel{sec:model}{{II}{1}{Shared Execution Model and Contract Library}{section.2}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {\mbox  {II-A}}Execution and Contract Semantics}{1}{subsection.2.1}\protected@file@percent }
+\newlabel{eq:energy}{{1}{1}{Execution and Contract Semantics}{equation.2.1}{}}
+\citation{nuxmv}
+\citation{dafny}
+\@writefile{toc}{\contentsline {subsection}{\numberline {\mbox  {II-B}}Canonical Instance and Frozen Boundary}{2}{subsection.2.2}\protected@file@percent }
+\newlabel{sec:canonical}{{\mbox  {II-B}}{2}{Canonical Instance and Frozen Boundary}{subsection.2.2}{}}
+\newlabel{eq:hamiltonian}{{2}{2}{Canonical Instance and Frozen Boundary}{equation.2.2}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {III}Technical Meaning and Procedure of Each Layer}{2}{section.3}\protected@file@percent }
+\newlabel{sec:methods}{{III}{2}{Technical Meaning and Procedure of Each Layer}{section.3}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {\mbox  {III-A}}Logical Verification}{2}{subsection.3.1}\protected@file@percent }
+\newlabel{eq:logical}{{3}{2}{Logical Verification}{equation.3.3}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {\mbox  {III-B}}Numeric Verification and Its Runtime Match}{2}{subsection.3.2}\protected@file@percent }
+\newlabel{sec:numeric}{{\mbox  {III-B}}{2}{Numeric Verification and Its Runtime Match}{subsection.3.2}{}}
+\newlabel{eq:numericbound}{{4}{2}{Numeric Verification and Its Runtime Match}{equation.3.4}{}}
+\newlabel{eq:runtime-reference}{{5}{2}{Numeric Verification and Its Runtime Match}{equation.3.5}{}}
+\citation{storm}
+\@writefile{lof}{\contentsline {figure}{\numberline {1}{\ignorespaces Two-stage verification architecture for the canonical VQE instance. The contract families retain heterogeneous verification objects. The frozen record precedes execution; runtime checking combines run-level logical/numeric evidence with probabilistic evidence across repeated executions. The displayed verdict names match the implementation. A probabilistic disagreement denotes a model discrepancy only when assumptions and the statistical decision rule justify that interpretation. The architecture supplies traceability rather than an equivalence among NuXmv, Dafny, and Storm.}}{3}{figure.1}\protected@file@percent }
+\newlabel{fig:architecture}{{1}{3}{Two-stage verification architecture for the canonical VQE instance. The contract families retain heterogeneous verification objects. The frozen record precedes execution; runtime checking combines run-level logical/numeric evidence with probabilistic evidence across repeated executions. The displayed verdict names match the implementation. A probabilistic disagreement denotes a model discrepancy only when assumptions and the statistical decision rule justify that interpretation. The architecture supplies traceability rather than an equivalence among NuXmv, Dafny, and Storm}{figure.1}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {\mbox  {III-C}}Probabilistic Verification}{3}{subsection.3.3}\protected@file@percent }
+\newlabel{sec:probabilistic}{{\mbox  {III-C}}{3}{Probabilistic Verification}{subsection.3.3}{}}
+\newlabel{eq:variance}{{6}{3}{Probabilistic Verification}{equation.3.6}{}}
+\newlabel{eq:selection}{{7}{3}{Probabilistic Verification}{equation.3.7}{}}
+\citation{dejavu}
+\@writefile{lot}{\contentsline {table}{\numberline {I}{\ignorespaces System-level contract traceability. Each row connects a prospective object to concrete evidence and its interpretation. Assumptions and prospective gaps are part of the mapping.}}{4}{table.1}\protected@file@percent }
+\newlabel{tab:mapping}{{I}{4}{System-level contract traceability. Each row connects a prospective object to concrete evidence and its interpretation. Assumptions and prospective gaps are part of the mapping}{table.1}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {II}{\ignorespaces Final matched configuration from the sealed assurance record. An update contains three candidate evaluations and nine group executions.}}{4}{table.2}\protected@file@percent }
+\newlabel{tab:configuration}{{II}{4}{Final matched configuration from the sealed assurance record. An update contains three candidate evaluations and nine group executions}{table.2}{}}
+\newlabel{eq:reachability}{{8}{4}{Probabilistic Verification}{equation.3.8}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {\mbox  {III-D}}Runtime Verification}{4}{subsection.3.4}\protected@file@percent }
+\newlabel{sec:runtime}{{\mbox  {III-D}}{4}{Runtime Verification}{subsection.3.4}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {III}{\ignorespaces Retained refined-controller evaluation. Each row has one local timing measurement; this model is distinct from the final matched controller.}}{5}{table.3}\protected@file@percent }
+\newlabel{tab:logical-scaling}{{III}{5}{Retained refined-controller evaluation. Each row has one local timing measurement; this model is distinct from the final matched controller}{table.3}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {IV}Individual Layer Evaluation}{5}{section.4}\protected@file@percent }
+\newlabel{sec:individual}{{IV}{5}{Individual Layer Evaluation}{section.4}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {\mbox  {IV-A}}Evidence Selection and Experimental Boundaries}{5}{subsection.4.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {\mbox  {IV-B}}Logical and Numeric Outcomes}{5}{subsection.4.2}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {IV}{\ignorespaces Retained numeric traces replayed with checker version 2.0. PASS denotes record conformance under that checker; raw counts are unavailable in the Estimator trace.}}{5}{table.4}\protected@file@percent }
+\newlabel{tab:numeric-traces}{{IV}{5}{Retained numeric traces replayed with checker version 2.0. PASS denotes record conformance under that checker; raw counts are unavailable in the Estimator trace}{table.4}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {2}{\ignorespaces Reachable states and transitions in the retained time-unrolled Gaussian DTMC study, at the declared grid and shot allocation. The vertical axis is logarithmic; each marker is an archived model size. This representation expands the reachable update-depth history and differs from the fixed-size homogeneous phase DTMC used in the final matched experiment.}}{5}{figure.2}\protected@file@percent }
+\newlabel{fig:storm-scalability}{{2}{5}{Reachable states and transitions in the retained time-unrolled Gaussian DTMC study, at the declared grid and shot allocation. The vertical axis is logarithmic; each marker is an archived model size. This representation expands the reachable update-depth history and differs from the fixed-size homogeneous phase DTMC used in the final matched experiment}{figure.2}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {\mbox  {IV-C}}Probabilistic Model Size and Cost}{5}{subsection.4.3}\protected@file@percent }
+\newlabel{sec:modelcost}{{\mbox  {IV-C}}{5}{Probabilistic Model Size and Cost}{subsection.4.3}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {V}{\ignorespaces Retained time-unrolled model cost. Construction is one measurement; checking is the median of three tool-reported timings.}}{6}{table.5}\protected@file@percent }
+\newlabel{tab:storm-cost}{{V}{6}{Retained time-unrolled model cost. Construction is one measurement; checking is the median of three tool-reported timings}{table.5}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {VI}{\ignorespaces Timing medians and added cost in seconds. The interval applies to the difference of independent condition medians.}}{6}{table.6}\protected@file@percent }
+\newlabel{tab:runtime-cost}{{VI}{6}{Timing medians and added cost in seconds. The interval applies to the difference of independent condition medians}{table.6}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {\mbox  {IV-D}}Runtime Cost and Hardware Evidence}{6}{subsection.4.4}\protected@file@percent }
+\@writefile{lof}{\contentsline {figure}{\numberline {3}{\ignorespaces Retained simulator runtime cost under the separate ask/tell runtime implementation. Top: baseline and verified medians. Bottom: verified median minus baseline median. Error bars are 95\% percentile bootstrap intervals from 10,000 independent-condition resamples, using 30\xspace  measured runs per condition/count after 5\xspace  warm-ups. Timing includes setup, online monitoring, and finalization; fidelity analysis and offline replay are excluded. Repetitions use the same workload seed.}}{6}{figure.3}\protected@file@percent }
+\newlabel{fig:runtime-overhead}{{3}{6}{Retained simulator runtime cost under the separate ask/tell runtime implementation. Top: baseline and verified medians. Bottom: verified median minus baseline median. Error bars are 95\% percentile bootstrap intervals from 10,000 independent-condition resamples, using \TimingRepetitions measured runs per condition/count after \TimingWarmupsPerCell warm-ups. Timing includes setup, online monitoring, and finalization; fidelity analysis and offline replay are excluded. Repetitions use the same workload seed}{figure.3}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {VII}{\ignorespaces Separate runtime simulator and hardware evidence, verified against archived hashes and reports. ``pass/pass'' denotes online/replay conformance; both use budget termination.}}{6}{table.7}\protected@file@percent }
+\newlabel{tab:hardware}{{VII}{6}{Separate runtime simulator and hardware evidence, verified against archived hashes and reports. ``pass/pass'' denotes online/replay conformance; both use budget termination}{table.7}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {V}Cross-Layer Relationships and Agreement}{6}{section.5}\protected@file@percent }
+\newlabel{sec:crosslayer}{{V}{6}{Cross-Layer Relationships and Agreement}{section.5}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {\mbox  {V-A}}Experiment Goals and Comparison Procedure}{6}{subsection.5.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {\mbox  {V-B}}Logical and Numeric Contract Agreement}{7}{subsection.5.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {\mbox  {V-C}}Gaussian Prediction and Matched Finite-Shot Evidence}{7}{subsection.5.3}\protected@file@percent }
+\newlabel{sec:matched-probability}{{\mbox  {V-C}}{7}{Gaussian Prediction and Matched Finite-Shot Evidence}{subsection.5.3}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {4}{\ignorespaces Cumulative probability of first satisfying $E_{\rm  ideal}(z)-E_{\rm  ref}\leq 0.02\xspace  $ versus optimizer update. The solid staircase is Gaussian-DTMC forward propagation, circles are Storm checkpoints, and the dashed staircase is the matched ideal-Born finite-shot experiment with 400\xspace  independent seeded runs and 1,024\xspace  shots per group/candidate. The shaded region gives marginal 95\% Wilson intervals at each update; it is not a simultaneous confidence band. No backend noise is included.}}{7}{figure.4}\protected@file@percent }
+\newlabel{fig:probability-comparison}{{4}{7}{Cumulative probability of first satisfying $E_{\rm ideal}(z)-E_{\rm ref}\leq \GapThreshold $ versus optimizer update. The solid staircase is Gaussian-DTMC forward propagation, circles are Storm checkpoints, and the dashed staircase is the matched ideal-Born finite-shot experiment with \BaselineRuns independent seeded runs and \ShotsPerGroup shots per group/candidate. The shaded region gives marginal 95\% Wilson intervals at each update; it is not a simultaneous confidence band. No backend noise is included}{figure.4}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {VIII}{\ignorespaces Final contract-wise logical/numeric results. The listed prospective subclaims have successful tool outputs; the runtime column counts agreeing baseline runs. Agreement is interpreted under Table\nobreakspace  {}\ref  {tab:mapping}'s assumptions. L4 does not carry a prospective proof of termination reasons.}}{8}{table.8}\protected@file@percent }
+\newlabel{tab:contract-results}{{VIII}{8}{Final contract-wise logical/numeric results. The listed prospective subclaims have successful tool outputs; the runtime column counts agreeing baseline runs. Agreement is interpreted under Table~\ref {tab:mapping}'s assumptions. L4 does not carry a prospective proof of termination reasons}{table.8}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {IX}{\ignorespaces Final matched P1 results. Probabilities and Wilson limits are percentages; deviations are percentage points. Holm values adjust the informative checkpoint and P2 comparisons jointly. The early zero-probability checkpoints are structural, not independent empirical confirmation.}}{8}{table.9}\protected@file@percent }
+\newlabel{tab:probabilities}{{IX}{8}{Final matched P1 results. Probabilities and Wilson limits are percentages; deviations are percentage points. Holm values adjust the informative checkpoint and P2 comparisons jointly. The early zero-probability checkpoints are structural, not independent empirical confirmation}{table.9}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {X}{\ignorespaces Conditional successful-path resources in the final matched experiment, based on 366\xspace  successful executions. Intervals are the original 95\% percentile-bootstrap intervals from 5,000\xspace  resamples. P2 is statistically compatible after Holm adjustment; P3 scales P2 by 9,216\xspace  shots/update and is not an independent test.}}{8}{table.10}\protected@file@percent }
+\newlabel{tab:conditional}{{X}{8}{Conditional successful-path resources in the final matched experiment, based on \SuccessRuns successful executions. Intervals are the original 95\% percentile-bootstrap intervals from \BootstrapSamples resamples. P2 is statistically compatible after Holm adjustment; P3 scales P2 by \ShotsPerUpdate shots/update and is not an independent test}{table.10}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {\mbox  {V-D}}Faults and Cross-Stage Discrepancies}{8}{subsection.5.4}\protected@file@percent }
+\newlabel{sec:faults}{{\mbox  {V-D}}{8}{Faults and Cross-Stage Discrepancies}{subsection.5.4}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {\mbox  {V-E}}Answers to the Research Questions}{8}{subsection.5.5}\protected@file@percent }
+\citation{peruzzo2014,mcclean2016}
+\citation{nuxmv,dafny,storm,dejavu}
+\citation{wilson}
+\citation{holm}
+\@writefile{lot}{\contentsline {table}{\numberline {XI}{\ignorespaces Full final fault verdict vectors. A: AGREEMENT; D: DISAGREEMENT; M: ASSUMPTION\_MISMATCH; I: INCONCLUSIVE. ``Target'' counts the expected target-contract verdict; ``DV pass'' is the independent temporal replay count. Each row is one scenario repeated with different count streams. Missing evidence is a saved-trace mutation. Its L1 D is an audited evidence-classification artifact, not proof of a physical ordering violation.}}{9}{table.11}\protected@file@percent }
+\newlabel{tab:faults}{{XI}{9}{Full final fault verdict vectors. A: AGREEMENT; D: DISAGREEMENT; M: ASSUMPTION\_MISMATCH; I: INCONCLUSIVE. ``Target'' counts the expected target-contract verdict; ``DV pass'' is the independent temporal replay count. Each row is one scenario repeated with different count streams. Missing evidence is a saved-trace mutation. Its L1 D is an audited evidence-classification artifact, not proof of a physical ordering violation}{table.11}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {VI}Related Work}{9}{section.6}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {VII}Discussion and Limitations}{9}{section.7}\protected@file@percent }
+\newlabel{sec:limitations}{{VII}{9}{Discussion and Limitations}{section.7}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {VIII}Conclusion}{9}{section.8}\protected@file@percent }
+\bibstyle{IEEEtran}
+\bibdata{references}
+\bibcite{peruzzo2014}{1}
+\bibcite{mcclean2016}{2}
+\bibcite{nuxmv}{3}
+\bibcite{dafny}{4}
+\bibcite{storm}{5}
+\bibcite{dejavu}{6}
+\bibcite{wilson}{7}
+\bibcite{holm}{8}
+\@writefile{toc}{\contentsline {section}{References}{10}{section*.2}\protected@file@percent }
+\gdef \@abspage@last{10}

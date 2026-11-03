@@ -1,0 +1,54 @@
+{
+  "status": "PASS",
+  "preserved_files_sha256_match": {
+    "manuscript_review3.tex": true,
+    "manuscript_review3.pdf": true,
+    "architecture.pdf": true
+  },
+  "pdf_pages": 1,
+  "pdf_images": 0,
+  "pdf_font_types": {
+    "/F3": "/Type0",
+    "/F4": "/Type0",
+    "/F2": "/Type0",
+    "/F9": "/Type0",
+    "/F1": "/Type0",
+    "/F7": "/Type0",
+    "/F11": "/Type0",
+    "/F5": "/Type0",
+    "/F6": "/Type0",
+    "/F8": "/Type0",
+    "/F12": "/Type0",
+    "/F10": "/Type0"
+  },
+  "pdf_required_interface_labels_present": [
+    "experiment.py",
+    "NuXmv",
+    "Dafny",
+    "Storm",
+    "pre_execution.json",
+    "RuntimeChecker.consume(event)",
+    "optimizer_commit",
+    "verdict_agreement.json",
+    "probabilities.csv"
+  ],
+  "svg_editable_text_elements": 131,
+  "svg_image_elements": 0,
+  "generator_checks": [
+    "source APIs and event names",
+    "contract IDs",
+    "no text beyond canvas",
+    "no overlapping text bounding boxes"
+  ],
+  "visual_QA": "Poppler-rendered final PDF inspected; circuit, labels, edges and spacing checked",
+  "intended_final_size_inches": [
+    7.2,
+    6.8
+  ],
+  "output_sha256": {
+    "figures/end-to-end-software-schematic.pdf": "4a5e97bdb7be3f005a57aed81923a878cf3b13c09808a2b5beaf964bd43daaf4",
+    "figures/end-to-end-software-schematic.svg": "22d4187b52af025836c71f2f7be76b2a0d250dfc79880716678344af155dcaa3",
+    "figures/end-to-end-software-schematic.png": "44f7da39c17f374ff5a57e5f8f28549bd0e413e9864f9773f05c9efe4f9a2d26",
+    "scripts/figures/end_to_end_software_schematic.py": "3b67a07b6df283568af5d0bf4f73ecc8699883058e0682a1b6ad1939adf2567e"
+  }
+}

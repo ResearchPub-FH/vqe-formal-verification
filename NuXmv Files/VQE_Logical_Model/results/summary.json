@@ -1,0 +1,196 @@
+{
+ "nuXmv": "/Users/rome/Desktop/Implementation of Formal Verification on VQE/NuXmv Files/nuXmv/bin/nuXmv",
+ "paper_instance": [
+  50,
+  3,
+  3
+ ],
+ "sweep": [
+  {
+   "MAX_ITERS": 3,
+   "NTERMS": 2,
+   "NCANDS": 3,
+   "properties": 24,
+   "kinds": {
+    "INVARSPEC": 12,
+    "LTLSPEC": 9,
+    "CTLSPEC": 3
+   },
+   "true": 24,
+   "false": 0,
+   "check_seconds_median": 0.04657174999999997,
+   "check_seconds_all": [
+    0.048799499999999996,
+    0.0467515,
+    0.04603116700000001,
+    0.04657174999999997,
+    0.046383832999999985
+   ],
+   "reachable_states": 2816.0,
+   "encoded_states": 44040200.0,
+   "gate_status": "PROVED",
+   "nonvacuity_queries": 62,
+   "nonvacuity_as_expected": 62,
+   "unreachable_branches": [
+    "TRUE : ABORT"
+   ],
+   "mutants_killed": 12,
+   "mutants": 12
+  },
+  {
+   "MAX_ITERS": 5,
+   "NTERMS": 3,
+   "NCANDS": 3,
+   "properties": 24,
+   "kinds": {
+    "INVARSPEC": 12,
+    "LTLSPEC": 9,
+    "CTLSPEC": 3
+   },
+   "true": 24,
+   "false": 0,
+   "check_seconds_median": 0.05576095900000011,
+   "check_seconds_all": [
+    0.05594670899999987,
+    0.05553554199999988,
+    0.05576095900000011,
+    0.05577466600000003,
+    0.05521858300000004
+   ],
+   "reachable_states": 5568.0,
+   "encoded_states": 198181000.0,
+   "gate_status": "PROVED",
+   "nonvacuity_queries": 62,
+   "nonvacuity_as_expected": 62,
+   "unreachable_branches": [
+    "TRUE : ABORT"
+   ],
+   "mutants_killed": 12,
+   "mutants": 12
+  },
+  {
+   "MAX_ITERS": 10,
+   "NTERMS": 5,
+   "NCANDS": 3,
+   "properties": 24,
+   "kinds": {
+    "INVARSPEC": 12,
+    "LTLSPEC": 9,
+    "CTLSPEC": 3
+   },
+   "true": 24,
+   "false": 0,
+   "check_seconds_median": 0.11450050000000012,
+   "check_seconds_all": [
+    0.11437137500000016,
+    0.11497683300000006,
+    0.11450050000000012,
+    0.1172948749999998,
+    0.11447774999999982
+   ],
+   "reachable_states": 14848.0,
+   "encoded_states": 1831800000.0,
+   "gate_status": "PROVED",
+   "nonvacuity_queries": 62,
+   "nonvacuity_as_expected": 62,
+   "unreachable_branches": [
+    "TRUE : ABORT"
+   ],
+   "mutants_killed": 12,
+   "mutants": 12
+  },
+  {
+   "MAX_ITERS": 20,
+   "NTERMS": 10,
+   "NCANDS": 3,
+   "properties": 24,
+   "kinds": {
+    "INVARSPEC": 12,
+    "LTLSPEC": 9,
+    "CTLSPEC": 3
+   },
+   "true": 24,
+   "false": 0,
+   "check_seconds_median": 0.3471436670000001,
+   "check_seconds_all": [
+    0.34431429199999997,
+    0.3483429170000001,
+    0.36228229099999965,
+    0.3471436670000001,
+    0.3421235839999994
+   ],
+   "reachable_states": 48768.0,
+   "encoded_states": 23366800000.0,
+   "gate_status": "PROVED",
+   "nonvacuity_queries": 62,
+   "nonvacuity_as_expected": 62,
+   "unreachable_branches": [
+    "TRUE : ABORT"
+   ],
+   "mutants_killed": 12,
+   "mutants": 12
+  },
+  {
+   "MAX_ITERS": 50,
+   "NTERMS": 3,
+   "NCANDS": 3,
+   "properties": 24,
+   "kinds": {
+    "INVARSPEC": 12,
+    "LTLSPEC": 9,
+    "CTLSPEC": 3
+   },
+   "true": 24,
+   "false": 0,
+   "check_seconds_median": 0.45374258300000037,
+   "check_seconds_all": [
+    0.4711430839999977,
+    0.4368726669999994,
+    0.4891409160000002,
+    0.45205029099999905,
+    0.45374258300000037
+   ],
+   "reachable_states": 54528.0,
+   "encoded_states": 121708000000.0,
+   "gate_status": "PROVED",
+   "nonvacuity_queries": 62,
+   "nonvacuity_as_expected": 62,
+   "unreachable_branches": [
+    "TRUE : ABORT"
+   ],
+   "mutants_killed": 12,
+   "mutants": 12
+  },
+  {
+   "MAX_ITERS": 50,
+   "NTERMS": 10,
+   "NCANDS": 3,
+   "properties": 24,
+   "kinds": {
+    "INVARSPEC": 12,
+    "LTLSPEC": 9,
+    "CTLSPEC": 3
+   },
+   "true": 24,
+   "false": 0,
+   "check_seconds_median": 0.9306104160000004,
+   "check_seconds_all": [
+    0.952651000000003,
+    0.921847083000003,
+    0.9306104160000004,
+    0.9232498750000033,
+    0.9474439579999938
+   ],
+   "reachable_states": 121728.0,
+   "encoded_states": 334697000000.0,
+   "gate_status": "PROVED",
+   "nonvacuity_queries": 62,
+   "nonvacuity_as_expected": 62,
+   "unreachable_branches": [
+    "TRUE : ABORT"
+   ],
+   "mutants_killed": 12,
+   "mutants": 12
+  }
+ ]
+}

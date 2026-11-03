@@ -1,0 +1,164 @@
+RESET	premature_update-000
+EVENT	1	activity	premature_update-000
+EVENT	2	activity	premature_update-000
+EVENT	2	begin	premature_update-000	1
+EVENT	3	activity	premature_update-000
+EVENT	3	commit	premature_update-000	1
+EVENT	4	activity	premature_update-000
+EVENT	4	stopped	premature_update-000
+END
+RESET	corrupt_energy-000
+EVENT	1	activity	corrupt_energy-000
+EVENT	2	activity	corrupt_energy-000
+EVENT	2	begin	corrupt_energy-000	1
+EVENT	3	activity	corrupt_energy-000
+EVENT	3	groupZero	corrupt_energy-000	1	0
+EVENT	4	activity	corrupt_energy-000
+EVENT	4	groupOne	corrupt_energy-000	1	0
+EVENT	5	activity	corrupt_energy-000
+EVENT	5	groupTwo	corrupt_energy-000	1	0
+EVENT	6	activity	corrupt_energy-000
+EVENT	6	energy	corrupt_energy-000	1	0
+EVENT	7	activity	corrupt_energy-000
+EVENT	7	stopped	corrupt_energy-000
+END
+RESET	coefficient_swap-000
+EVENT	1	activity	coefficient_swap-000
+EVENT	2	activity	coefficient_swap-000
+EVENT	2	begin	coefficient_swap-000	1
+EVENT	3	activity	coefficient_swap-000
+EVENT	3	groupZero	coefficient_swap-000	1	0
+EVENT	4	activity	coefficient_swap-000
+EVENT	4	groupOne	coefficient_swap-000	1	0
+EVENT	5	activity	coefficient_swap-000
+EVENT	5	groupTwo	coefficient_swap-000	1	0
+EVENT	6	activity	coefficient_swap-000
+EVENT	6	energy	coefficient_swap-000	1	0
+EVENT	7	activity	coefficient_swap-000
+EVENT	7	stopped	coefficient_swap-000
+END
+RESET	shot_mismatch-000
+EVENT	1	activity	shot_mismatch-000
+EVENT	2	activity	shot_mismatch-000
+EVENT	2	begin	shot_mismatch-000	1
+EVENT	3	activity	shot_mismatch-000
+EVENT	3	groupZero	shot_mismatch-000	1	0
+EVENT	4	activity	shot_mismatch-000
+EVENT	4	stopped	shot_mismatch-000
+END
+RESET	missing_evidence-000
+EVENT	1	activity	missing_evidence-000
+EVENT	2	activity	missing_evidence-000
+EVENT	2	begin	missing_evidence-000	1
+EVENT	3	activity	missing_evidence-000
+EVENT	3	groupZero	missing_evidence-000	1	0
+EVENT	4	activity	missing_evidence-000
+EVENT	4	groupOne	missing_evidence-000	1	0
+EVENT	5	activity	missing_evidence-000
+EVENT	5	groupTwo	missing_evidence-000	1	0
+EVENT	6	activity	missing_evidence-000
+EVENT	6	energy	missing_evidence-000	1	0
+EVENT	7	activity	missing_evidence-000
+EVENT	7	validated	missing_evidence-000	1	0
+EVENT	7	validZero	missing_evidence-000	1
+EVENT	8	activity	missing_evidence-000
+EVENT	8	groupZero	missing_evidence-000	1	1
+EVENT	9	activity	missing_evidence-000
+EVENT	9	groupOne	missing_evidence-000	1	1
+EVENT	10	activity	missing_evidence-000
+EVENT	10	groupTwo	missing_evidence-000	1	1
+EVENT	11	activity	missing_evidence-000
+EVENT	11	energy	missing_evidence-000	1	1
+EVENT	12	activity	missing_evidence-000
+EVENT	12	validated	missing_evidence-000	1	1
+EVENT	12	validOne	missing_evidence-000	1
+EVENT	13	activity	missing_evidence-000
+EVENT	13	groupZero	missing_evidence-000	1	2
+EVENT	14	activity	missing_evidence-000
+EVENT	14	groupOne	missing_evidence-000	1	2
+EVENT	15	activity	missing_evidence-000
+EVENT	15	groupTwo	missing_evidence-000	1	2
+EVENT	16	activity	missing_evidence-000
+EVENT	16	energy	missing_evidence-000	1	2
+EVENT	17	activity	missing_evidence-000
+EVENT	17	validated	missing_evidence-000	1	2
+EVENT	17	validTwo	missing_evidence-000	1
+EVENT	18	activity	missing_evidence-000
+EVENT	18	commit	missing_evidence-000	1
+EVENT	19	activity	missing_evidence-000
+EVENT	19	begin	missing_evidence-000	2
+EVENT	20	activity	missing_evidence-000
+EVENT	20	groupZero	missing_evidence-000	2	0
+EVENT	21	activity	missing_evidence-000
+EVENT	21	groupOne	missing_evidence-000	2	0
+EVENT	22	activity	missing_evidence-000
+EVENT	22	groupTwo	missing_evidence-000	2	0
+EVENT	23	activity	missing_evidence-000
+EVENT	23	energy	missing_evidence-000	2	0
+EVENT	24	activity	missing_evidence-000
+EVENT	24	validated	missing_evidence-000	2	0
+EVENT	24	validZero	missing_evidence-000	2
+EVENT	25	activity	missing_evidence-000
+EVENT	25	groupZero	missing_evidence-000	2	1
+EVENT	26	activity	missing_evidence-000
+EVENT	26	groupOne	missing_evidence-000	2	1
+EVENT	27	activity	missing_evidence-000
+EVENT	27	groupTwo	missing_evidence-000	2	1
+EVENT	28	activity	missing_evidence-000
+EVENT	28	energy	missing_evidence-000	2	1
+EVENT	29	activity	missing_evidence-000
+EVENT	29	validated	missing_evidence-000	2	1
+EVENT	29	validOne	missing_evidence-000	2
+EVENT	30	activity	missing_evidence-000
+EVENT	30	groupZero	missing_evidence-000	2	2
+EVENT	31	activity	missing_evidence-000
+EVENT	31	groupOne	missing_evidence-000	2	2
+EVENT	32	activity	missing_evidence-000
+EVENT	32	groupTwo	missing_evidence-000	2	2
+EVENT	33	activity	missing_evidence-000
+EVENT	33	energy	missing_evidence-000	2	2
+EVENT	34	activity	missing_evidence-000
+EVENT	34	validated	missing_evidence-000	2	2
+EVENT	34	validTwo	missing_evidence-000	2
+EVENT	35	activity	missing_evidence-000
+EVENT	35	commit	missing_evidence-000	2
+EVENT	36	activity	missing_evidence-000
+EVENT	36	begin	missing_evidence-000	3
+EVENT	37	activity	missing_evidence-000
+EVENT	37	groupZero	missing_evidence-000	3	0
+EVENT	38	activity	missing_evidence-000
+EVENT	38	groupOne	missing_evidence-000	3	0
+EVENT	39	activity	missing_evidence-000
+EVENT	39	groupTwo	missing_evidence-000	3	0
+EVENT	40	activity	missing_evidence-000
+EVENT	40	energy	missing_evidence-000	3	0
+EVENT	41	activity	missing_evidence-000
+EVENT	41	validated	missing_evidence-000	3	0
+EVENT	41	validZero	missing_evidence-000	3
+EVENT	42	activity	missing_evidence-000
+EVENT	42	groupZero	missing_evidence-000	3	1
+EVENT	43	activity	missing_evidence-000
+EVENT	43	groupOne	missing_evidence-000	3	1
+EVENT	44	activity	missing_evidence-000
+EVENT	44	groupTwo	missing_evidence-000	3	1
+EVENT	45	activity	missing_evidence-000
+EVENT	45	energy	missing_evidence-000	3	1
+EVENT	46	activity	missing_evidence-000
+EVENT	46	validated	missing_evidence-000	3	1
+EVENT	46	validOne	missing_evidence-000	3
+EVENT	47	activity	missing_evidence-000
+EVENT	47	groupZero	missing_evidence-000	3	2
+EVENT	48	activity	missing_evidence-000
+EVENT	48	groupOne	missing_evidence-000	3	2
+EVENT	49	activity	missing_evidence-000
+EVENT	49	groupTwo	missing_evidence-000	3	2
+EVENT	50	activity	missing_evidence-000
+EVENT	50	energy	missing_evidence-000	3	2
+EVENT	51	activity	missing_evidence-000
+EVENT	51	validated	missing_evidence-000	3	2
+EVENT	51	validTwo	missing_evidence-000	3
+EVENT	52	activity	missing_evidence-000
+EVENT	52	commit	missing_evidence-000	3
+EVENT	53	activity	missing_evidence-000
+EVENT	53	stopped	missing_evidence-000
+END

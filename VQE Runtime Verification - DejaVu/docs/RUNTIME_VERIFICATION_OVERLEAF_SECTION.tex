@@ -1,0 +1,1061 @@
+% Drop-in replacement for Section V-D of
+% "Formal Verification in Hybrid Quantum-Classical Computing Systems".
+%
+% Required preamble packages:
+%   \usepackage{amsmath,amssymb,booktabs,tabularx,array,url}
+% The paper already appears to load hyperref; if not, \usepackage{url} supplies
+% \path for breakable repository paths.
+%
+% Integration warning (not intended for typesetting): the current numeric-layer
+% subsection describes an older Estimator campaign (25 executed evaluations,
+% 4,096 shots per term, 409,600 total shots).  This section reports the later
+% primary SamplerV2 campaign (50 evaluations, four independent 1,024-shot PUBs
+% per evaluation, 204,800 full-run shots).  The final manuscript should either
+% label those as two distinct campaigns or update the older paragraph/table/
+% figure so that readers do not interpret the numbers as contradictory reports
+% of one experiment.
+
+\subsection{Runtime Verification (DejaVu + Python Instrumentation)}
+\label{sec:runtime-verification}
+
+\subsubsection{Purpose and assurance boundary}
+
+The runtime-verification layer checks whether a \emph{concrete, finite}
+hybrid quantum--classical execution conforms to a declared execution protocol
+while the execution is in progress, and whether the same verdict can be
+reproduced later from durable evidence.  It is deliberately positioned at the
+boundary between the classical controller, the quantum backend, the numeric
+checker, and the optimizer.  It therefore observes facts that are abstracted
+away by the NuXmv model and that cannot be established by a proof of an
+isolated numeric kernel alone: the identity and order of parameter bindings,
+backend-submission intent, returned job identifiers, term/PUB assignments,
+raw-shot evidence, energy release, optimizer mutation, cumulative resource
+use, and the declared terminal reason.
+
+The principal claim supported by a passing run is conditional:
+
+\begin{quote}
+Given faithful instrumentation, correct cryptographic primitives, and the
+archived observations, every observed event in the run obeyed the declared
+binding, submission, measurement, numeric-certificate, optimizer-transition,
+budget, convergence, and termination contracts, and independent replay
+obtained the same verdict.
+\end{quote}
+
+This is a trace-conformance claim, not a proof that the cloud backend honestly
+performed the claimed physical operations, that the device prepared the ideal
+state, that the ansatz contains the true ground state, that the optimizer found
+a global optimum, or that one stochastic campaign estimates hardware bias.
+Likewise, a SHA-256 digest supplies integrity relative to a trusted digest and
+archive; it is not a digital signature and does not by itself establish the
+identity of the party that produced the data.
+
+\subsubsection{Reference execution and observation model}
+
+Let a run be identified by the pair $(r,c)$, where $r$ is a run identifier and
+$c$ is the digest of the fully resolved configuration, including the bound
+Hamiltonian manifest.  Let $k\in\{0,\ldots,K-1\}$ denote the zero-based
+evaluation index, $e_k$ a fresh evaluation identifier, $\boldsymbol{\theta}_k$
+the bound parameter vector, $s_k$ a submission identifier, $j_k$ the external
+backend-job identifier, and $\widehat{E}_k$ the verified sampled objective.
+The monitored execution is an ordered event sequence
+
+\begin{equation}
+  \tau = \langle a_1,a_2,\ldots,a_m\rangle,
+  \qquad
+  a_i=(i,t_i,n_i,\mathbf{x}_i,p_i),
+  \label{eq:rv-trace}
+\end{equation}
+
+where $i$ is a strictly increasing sequence watermark, $t_i$ is a monotonic
+host timestamp, $n_i$ is an event name, $\mathbf{x}_i$ is a tuple of
+monitor-safe string atoms, and $p_i$ is a typed JSON payload used by the Python
+contract engine and replay checker.  The compact DejaVu bridge transmits
+\texttt{RV1}, the watermark, the event name, and the monitor arguments as a
+tab-separated record.  Rich values such as floating-point energies, complete
+parameter vectors, counts, and metadata remain in the JSON trace or linked raw
+sidecar and are validated by Python.  Monitor atoms are restricted to the
+regular language \texttt{[A-Za-z0-9.\_:-]+}; event names are similarly
+restricted.  This prevents whitespace and delimiter ambiguity in the bridge
+protocol.
+
+The observed refinement of one nonterminal evaluation is
+
+\begin{align}
+  &\operatorname{start}(k,e_k,\boldsymbol{\theta}_k)
+  \prec \operatorname{bind}(k,e_k,h^{\theta}_k)
+  \prec \{\operatorname{termExpected}(k,e_k,s_k,P_i)\}_{i=0}^{3}
+  \prec \operatorname{submitIntent}(k,e_k,s_k)
+  \prec \operatorname{submitted}(k,e_k,s_k,j_k) \nonumber\\
+  &\prec \{\operatorname{termObserved}(k,e_k,j_k,P_i)\}_{i=0}^{3}
+  \prec \operatorname{measurementsSealed}(k,e_k)
+  \prec \operatorname{numericValid}(k,e_k,h^{E}_k) \nonumber\\
+  &\prec \operatorname{convergenceChecked}(k,e_k,h^{E}_k)
+  \prec \operatorname{iterationPass}(k,e_k,h^{E}_k)
+  \prec \operatorname{objectiveReleaseIntent}(k,e_k,h^{E}_k) \nonumber\\
+  &\prec \operatorname{optimizerUpdateIntent}(k,e_k,h^{\theta}_{k+1})
+  \prec \operatorname{optimizerUpdated}(k,e_k,h^{\theta}_{k+1})
+  \prec \operatorname{iterationClosed}(k,e_k),
+  \label{eq:rv-normal-order}
+\end{align}
+
+where $\prec$ denotes strict trace order and $h^{\theta}_k$ and $h^{E}_k$ are
+canonical digests of the parameter vector and energy, respectively.  The two
+optimizer events are omitted at a converged checkpoint or at the final
+evaluation cap.  Every domain event is preceded by an \texttt{activity}
+witness, allowing the run-level monitor to enforce that all activity follows
+the matching start and that no activity occurs after a terminal event or after
+\texttt{runClosed}.
+
+The implementation is sequential: at most one evaluation is active, one
+backend job is authorized for that evaluation, and the next evaluation cannot
+start until the preceding evaluation is closed.  Concurrent evaluations,
+batched optimizers with multiple outstanding proposals, multi-backend
+execution, and distributed controllers are outside the current model.
+
+\subsubsection{Synchronous, fail-closed enforcement}
+
+The online gate is synchronous.  Before an externally visible side effect is
+permitted, the controller (i) durably appends the proposed event, (ii) passes
+the complete event to the Python contract engine, (iii) submits the compact
+event to the generated DejaVu monitor, and (iv) requires a response carrying
+the same sequence watermark.  If both checkers accept, the guarded operation
+may proceed.  Formally, for a guarded operation $g_i$ associated with event
+$a_i$,
+
+\begin{equation}
+  \operatorname{enabled}(g_i)
+  \Longleftrightarrow
+  \operatorname{persisted}(a_i)
+  \land \operatorname{PythonOK}(a_i,\tau_{<i})
+  \land \operatorname{DejaVuAck}(i,\mathrm{PASS}).
+  \label{eq:rv-gate}
+\end{equation}
+
+A negative acknowledgement, watermark mismatch, malformed reply, monitor
+timeout, monitor-process failure, trace-persistence failure, or Python contract
+failure causes the path to fail closed.  The controller records
+\texttt{criticalFail} when possible, emits \texttt{iterationAborted} if an
+evaluation is active, emits \texttt{runAborted}, and does not release the
+rejected value or perform the guarded mutation.  A missing or unavailable real
+monitor produces an \emph{inconclusive} verdict; a test-only always-pass shadow
+monitor is never allowed to mint temporal assurance.
+
+The generated monitor is provenance-bound before startup.  The runtime checks
+the SHA-256 digests of the QTL specification, Scala bridge, DejaVu runtime JAR,
+and generated monitor JAR against a manifest embedded in the monitor artifact.
+It also rejects a generated monitor that is stale relative to the checked-in
+QTL or bridge source.  The reference run used a 24-bit finite domain per
+monitor variable and a 30-second acknowledgement timeout.  The timeout is a
+failure bound, not an expected latency; measured acknowledgement latencies are
+reported below.
+
+\subsubsection{Three levels of temporal contracts}
+
+The QTL specification is written in past-time first-order temporal logic and
+contains 68 generated-monitor properties.  Its audited classification contains
+26 intra-iteration properties, 25 inter-iteration properties (including the
+historically named \texttt{run\_iterationLimitOnce}), and 17 run-level
+properties.  The Python checker separately registers 75 executable contract
+identifiers: 25 intra-iteration, 27 inter-iteration, and 23 run-level.  Thus,
+the explicit combined level registry contains 143 identifiers.  The concrete
+hardware report records 37 dynamically exercised Python contract identifiers;
+that run-dependent count must not be confused with the static property-set
+size.
+
+\begin{table*}[t]
+  \centering
+  \caption{Runtime-verification levels and representative obligations.}
+  \label{tab:rv-levels}
+  \renewcommand{\arraystretch}{1.12}
+  \begin{tabular}{p{0.15\textwidth}p{0.22\textwidth}p{0.53\textwidth}}
+    \toprule
+    Level & Question & Representative obligations \\
+    \midrule
+    Intra-iteration
+      & Was one evaluation executed consistently?
+      & Parameters are bound after evaluation start and before submission;
+        each declared term is observed exactly once and only after submission;
+        sealing follows all required observations; numeric validity follows
+        sealing; convergence is checked once; objective release follows an
+        iteration pass; abort follows a recorded critical failure. \\
+    Inter-iteration
+      & Did the optimization history evolve coherently?
+      & Evaluation, submission, raw-evidence, and backend-job identities are
+        fresh; iterations are contiguous and nonoverlapping; the current
+        convergence check names the last closed checkpoint; cumulative shots
+        are continuous and bounded; optimizer intent follows objective release;
+        commit follows intent exactly once; the successor binds the exact
+        committed parameter digest. \\
+    Run level
+      & Did the finite run obey its lifecycle and declared terminal policy?
+      & Exactly one matching start, terminal event, and close occur; all
+        activity follows start; terminal states are absorbing; a normal terminal
+        event has no prior critical failure; a failure forces abort; provenance,
+        execution options, evidence completeness, and resource bounds match the
+        configuration; the terminal reason is truthful. \\
+    \bottomrule
+  \end{tabular}
+\end{table*}
+
+Representative temporal implications are shown schematically below, where
+$\mathbf{P}\phi$ means that the required witness occurs in the acknowledged
+past and the strict-past form is used for duplicate exclusion:
+
+\begin{align}
+  \operatorname{jobSubmitIntent}(k,e,s,h^{\theta})
+    &\Rightarrow \mathbf{P}\operatorname{parametersBound}(k,e,h^{\theta}),
+    \label{eq:rv-qtl-submit}\\
+  \operatorname{termObserved}(k,e,s,j,P)
+    &\Rightarrow \mathbf{P}\operatorname{termExpected}(k,e,s,P)
+      \land \mathbf{P}\operatorname{jobSubmitted}(k,e,s,j),
+    \label{eq:rv-qtl-term}\\
+  \operatorname{numericValid}(k,e,h^E)
+    &\Rightarrow \mathbf{P}\operatorname{measurementsSealed}(k,e),
+    \label{eq:rv-qtl-energy}\\
+  \operatorname{optimizerUpdated}(k,e,h^{\theta}_{k+1})
+    &\Rightarrow \mathbf{P}\operatorname{optimizerUpdateIntent}
+      (k,e,h^{\theta}_{k+1}),
+    \label{eq:rv-qtl-update}\\
+  \operatorname{nextIterationStarted}(k+1,e_{k+1},e_k,h^{\theta}_{k+1})
+    &\Rightarrow \mathbf{P}\operatorname{optimizerUpdated}
+      (k,e_k,h^{\theta}_{k+1}),
+    \label{eq:rv-qtl-next}\\
+  \operatorname{runMaxIterations}(K-1,e_{K-1},h^E_{K-1})
+    &\Rightarrow \mathbf{P}\operatorname{iterationLimitReached}(K-1,e_{K-1})
+      \land \mathbf{P}\operatorname{convergenceFalse}(K-1,e_{K-1},h^E_{K-1})
+      \land \mathbf{P}\operatorname{iterationClosed}(K-1,e_{K-1}).
+    \label{eq:rv-qtl-terminal}
+\end{align}
+
+The Python and DejaVu components are intentionally complementary.  DejaVu is
+the authority for causal order, strict uniqueness, and relational use of
+identities over the observed history.  Python checks facts that are awkward or
+unsafe to encode into the finite temporal domain: exact JSON schema and types,
+finite-number requirements, vector dimensions and bounds, raw-shot decoding,
+parity arithmetic, floating-point tolerances, Hamiltonian aggregation,
+configuration immutability, cumulative resource arithmetic, and correlation
+with the independently selected evidence sidecar.  Neither checker is treated
+as a redundant implementation of the other.  Differential tests confirm this
+division: some numeric/raw-data mutants are killed only by Python, while some
+ordering and uniqueness mutants are killed only by DejaVu.
+
+\subsubsection{Representative $\mathrm{H}_2$ SamplerV2 protocol}
+
+The primary runtime-verification case study uses the same representative
+two-qubit $\mathrm{H}_2$ model family as the other verification layers.  The
+bound reduced Hamiltonian is
+
+\begin{equation}
+  H = \frac{1}{10^4}
+  \left(3980\,YZ - 3980\,ZI - 113\,ZZ + 1810\,XX\right).
+  \label{eq:rv-h2-hamiltonian}
+\end{equation}
+
+This is the objective of the archived four-term model.  It must not be silently
+identified with a total molecular energy obtained using a different fermion
+mapping, frozen-core convention, nuclear-repulsion constant, or identity-term
+offset.  Because each Pauli expectation lies in $[-1,1]$, the manifest induces
+the coarse but executable bound
+
+\begin{equation}
+  |\widehat{E}| \le
+  \frac{3980+3980+113+1810}{10^4}=0.9883.
+  \label{eq:rv-energy-bound}
+\end{equation}
+
+The ansatz is a two-qubit Qiskit \texttt{EfficientSU2} circuit with one
+repetition, linear entanglement, \texttt{ry} single-qubit rotations, and four
+parameters.  The initial parameter vector is generated by the declared seed
+$7$:
+
+\begin{equation}
+  \boldsymbol{\theta}_0 =
+  (-1.1068913836067251,\,-2.193779340387185,\,
+    0.9483492633509023,\,-2.6864620414936398).
+  \label{eq:rv-initial-theta}
+\end{equation}
+
+All parameters are required to be finite and within $[-\pi,\pi]$.  The
+transpiler uses optimization level $3$ and seed $7$.  For the archived hardware
+run, logical qubits $[0,1]$ were mapped to physical qubits $[6,7]$ on
+\texttt{ibm\_marrakesh}; the same fixed mapping was recorded for every PUB.
+
+Each objective evaluation consists of four \emph{independent} measured
+circuits, submitted as four SamplerV2 PUBs in one IBM job.  Every PUB requests
+and must return exactly $N=1024$ shots.  We intentionally do not group
+$ZI$ and $ZZ$: consequently, ``1024 shots per term'' means 1024 physical
+executions for each term rather than 1024 shared executions reported as two
+effective term samples.  The physical cost of one evaluation and the declared
+full-run ceiling are therefore
+
+\begin{equation}
+  N_{\mathrm{eval}}=4\times1024=4096,
+  \qquad
+  N_{\max}=50\times4\times1024=204{,}800.
+  \label{eq:rv-shot-budget}
+\end{equation}
+
+\begin{table*}[t]
+  \centering
+  \caption{Independent measurement PUBs used in each $\mathrm{H}_2$ evaluation.  Qiskit count keys and Pauli labels are both ordered $q_1q_0$.}
+  \label{tab:rv-measurements}
+  \renewcommand{\arraystretch}{1.12}
+  \begin{tabular}{ccp{0.34\textwidth}p{0.24\textwidth}r}
+    \toprule
+    PUB & Term & Basis change before $Z$ measurement & Negative outcomes & Shots \\
+    \midrule
+    0 & $YZ$ & $S^{\dagger}$ then $H$ on the $Y$ qubit; $Z$ unchanged
+      & $01,10$ (odd parity) & 1024 \\
+    1 & $ZI$ & No rotation; inspect $q_1$ and ignore $q_0$
+      & $10,11$ & 1024 \\
+    2 & $ZZ$ & No basis rotation
+      & $01,10$ (odd parity) & 1024 \\
+    3 & $XX$ & $H$ on both qubits
+      & $01,10$ (odd parity) & 1024 \\
+    \bottomrule
+  \end{tabular}
+\end{table*}
+
+For a Pauli label $P=P_{n-1}\cdots P_0$ and a returned bitstring
+$b=b_{n-1}\cdots b_0$, define the active-qubit set
+
+\begin{equation}
+  A(P)=\{q\mid P_q\neq I\},
+  \qquad
+  \lambda_P(b)=(-1)^{\sum_{q\in A(P)}b_q}.
+  \label{eq:rv-parity-sign}
+\end{equation}
+
+The complete count dictionary $C_P(b)$ is converted into a negative-eigenvalue
+count and expectation by
+
+\begin{align}
+  N_{-}(P) &= \sum_b C_P(b)\,
+    \mathbf{1}\!\left[\lambda_P(b)=-1\right],
+    \label{eq:rv-negative-count}\\
+  \widehat{\mu}_P &= \frac{N_{+}(P)-N_{-}(P)}{N}
+    = 1-\frac{2N_{-}(P)}{N},
+    \qquad N=1024.
+    \label{eq:rv-expectation}
+\end{align}
+
+Here \texttt{counts\_ones} is treated as the explicit alias of
+$N_{-}(P)$, not as the number of one-bits on an arbitrarily chosen qubit.  The
+sampled objective is reconstructed using the integer-scaled coefficients:
+
+\begin{equation}
+  \widehat{E}_k = \frac{1}{10^4}
+  \left(3980\widehat{\mu}_{YZ,k}
+  -3980\widehat{\mu}_{ZI,k}
+  -113\widehat{\mu}_{ZZ,k}
+  +1810\widehat{\mu}_{XX,k}\right).
+  \label{eq:rv-energy-reconstruction}
+\end{equation}
+
+The Python gate requires the declared per-term expectation to equal
+Eq.~\eqref{eq:rv-expectation} and the declared energy to equal
+Eq.~\eqref{eq:rv-energy-reconstruction} with zero relative tolerance and
+absolute tolerance $10^{-12}$.  The raw-evidence loader uses a stricter
+$10^{-15}$ absolute tolerance when comparing the sidecar's expectation with
+the value directly reconstructed from its integer parity count.
+
+\subsubsection{Raw evidence, provenance, and independent replay}
+
+For each PUB, the runtime extracts the named Qiskit \texttt{BitArray} and
+archives (i) the requested and observed shot totals, (ii) all ordered
+bitstrings, (iii) the complete count dictionary, (iv) the exact C-order
+\texttt{uint8} packed array encoded as base64, (v) the Pauli label and bit-order
+convention, (vi) $N_-$ and $\widehat{\mu}_P$, (vii) evaluation, term, PUB,
+submission, and IBM-job identities, (viii) bound parameters and their digest,
+(ix) parameterized and executable-circuit QPY digests, (x) physical layout,
+transpiler seed and optimization level, (xi) timestamps, and (xii) returned
+job/PUB metadata.  The packed representation must decode byte-for-byte to the
+ordered bitstrings; the ordered bitstrings must regenerate the count
+dictionary; and the count values must sum to the observed shot total.
+
+Let $R_i$ be a canonical JSON PUB record with its own digest field removed.
+Its content digest is
+
+\begin{equation}
+  d_i=\operatorname{SHA256}(\operatorname{CanonicalJSON}(R_i)).
+  \label{eq:rv-record-digest}
+\end{equation}
+
+The sidecar is appended and flushed (with \texttt{fsync} in durable mode)
+before the compact \texttt{termObserved} event carrying $d_i$ is emitted.  At
+the end of the run, a manifest binds the run identifier, configuration digest,
+record count, cumulative shots, ordered list $(d_0,\ldots,d_{199})$, and an
+aggregate digest
+
+\begin{equation}
+  d_{\mathrm{records}} =
+  \operatorname{SHA256}(\operatorname{CanonicalJSON}([d_0,\ldots,d_{199}])).
+  \label{eq:rv-manifest-aggregate}
+\end{equation}
+
+The manifest is itself canonically hashed with its own digest field omitted.
+Duplicate hashes, missing indices, records after the manifest, mismatched run
+or configuration identities, incorrect cumulative totals, or an altered
+record order are rejected.  The compact trace is a strict-schema, ordered
+JSONL event journal and is separately archived with a whole-file SHA-256; it is
+not claimed to be a cryptographic hash chain.
+
+Replay takes the trace, configuration, and evidence sidecar as three explicit
+inputs.  In particular, replay does not follow an evidence path named by the
+trace under test.  This prevents a manipulated trace from selecting its own
+replacement evidence archive.  Replay reconstructs every packed shot array,
+ordered-shot list, count dictionary, parity, expectation, energy, cumulative
+budget, ask/tell transition, and terminal certificate, while re-executing the
+same temporal event stream through a provenance-checked DejaVu monitor.  A
+truncated trace, a missing sidecar, a shadow monitor, or an unavailable monitor
+cannot yield \textsc{pass}; the result is \textsc{inconclusive} unless a
+specific violated contract yields \textsc{fail}.
+
+\subsubsection{Verifier-mediated ask/tell optimization}
+
+An ordinary callback-style optimizer can choose or mutate its internal state
+before a monitor learns what happened.  That is observational monitoring, not
+pre-authorization.  The primary experiment therefore uses an explicit
+ask/tell pattern-search optimizer whose preview operation is pure.  Let $z_k$
+be the private optimizer state after checkpoint $k$.  Preview satisfies
+
+\begin{equation}
+  (\widetilde{\boldsymbol{\theta}}_{k+1},u_k)
+    =\operatorname{Preview}(z_k,\boldsymbol{\theta}_k,\widehat{E}_k),
+  \qquad z_k\ \text{unchanged},
+  \label{eq:rv-preview}
+\end{equation}
+
+where $u_k$ is a single-use opaque token bound to the proposal, generation,
+and candidate vector.  The verifier then emits and synchronously acknowledges
+
+\begin{equation}
+  \operatorname{optimizerUpdateIntent}
+  (r,c,k,e_k,h(\widetilde{\boldsymbol{\theta}}_{k+1})).
+  \label{eq:rv-authorize}
+\end{equation}
+
+Only after that acknowledgement may the controller call
+
+\begin{equation}
+  z_{k+1}=\operatorname{Commit}
+  (z_k,u_k,\texttt{authorized\_theta}=\widetilde{\boldsymbol{\theta}}_{k+1}).
+  \label{eq:rv-commit}
+\end{equation}
+
+Commit rejects a foreign, altered, stale, reused, or wrong-generation token,
+and rejects an authorized vector different from the previewed vector.  After a
+successful mutation, \texttt{optimizerUpdated} records the same digest.  The
+next evaluation is accepted only if it binds that exact digest:
+
+\begin{equation}
+  h(\boldsymbol{\theta}_{k+1})
+  =h(\widetilde{\boldsymbol{\theta}}_{k+1})
+  =h^{\theta}_{k+1}.
+  \label{eq:rv-theta-continuity}
+\end{equation}
+
+The pattern search uses initial step $0.4$, step shrink factor $0.5$, zero
+improvement tolerance, coordinate-wise candidates clipped to $[-\pi,\pi]$,
+and deterministic initialization from seed $7$.  This runtime contract does
+not prove that pattern search is an optimal VQE optimizer.  It proves the
+narrower but operationally essential property that the verifier sees and
+accepts the exact candidate before the only state mutation, and that the next
+quantum evaluation uses the committed candidate.
+
+For evaluation $0$, the archived trace records
+
+\begin{align}
+  \widehat{E}_0 &= 0.1916484375,\nonumber\\
+  \widetilde{\boldsymbol{\theta}}_1
+    &=(-0.7068913836,-2.1937793404,0.9483492634,-2.6864620415),
+  \label{eq:rv-first-proposal}
+\end{align}
+
+up to the displayed precision.  The proposal was authorized, committed once,
+and bound by evaluation $1$ with the same full-precision digest.  Across the
+50-evaluation hardware trace, replay found 49 proposal intents, 49 commits,
+and 49 exact successor bindings in strict order.
+
+\subsubsection{Convergence and terminal semantics}
+
+The runtime, rather than the optimizer, computes the declared convergence
+predicate.  Let $\epsilon=0.005$, $k_{\min}=10$, and $p=3$.  For $k>0$ define
+
+\begin{align}
+  \Delta_k &= |\widehat{E}_k-\widehat{E}_{k-1}|,
+  \label{eq:rv-delta}\\
+  s_k &=
+  \begin{cases}
+    s_{k-1}+1, & \Delta_k\le \epsilon+\epsilon_E,\\
+    0, & \text{otherwise},
+  \end{cases}
+  \qquad s_0=0,
+  \label{eq:rv-stable-count}\\
+  C_k &=
+  \left(\Delta_k\le\epsilon+\epsilon_E\right)
+  \land(k+1\ge k_{\min})\land(s_k\ge p),
+  \label{eq:rv-convergence}
+\end{align}
+
+where $\epsilon_E=10^{-12}$ is the configured absolute numeric tolerance.
+The first evaluation is never declared converged.  The event
+\texttt{nextConvergenceChecked} carries the current evaluation, energy and
+parameter identities together with the immediately preceding evaluation and
+energy identity, and Python recomputes $\Delta_k$, $s_k$, and $C_k$.
+
+Exactly one of the following terminal reasons is permitted:
+
+\begin{enumerate}
+  \item \texttt{converged}, only after a closed checkpoint with $C_k=\mathrm{true}$;
+  \item \texttt{max\_iterations}, only after evaluation $K-1$ is closed with
+        $C_{K-1}=\mathrm{false}$ and a unique iteration-limit certificate;
+  \item \texttt{optimizer\_stopped}, only when explicitly allowed, before the
+        cap, after a closed nonconverged checkpoint; or
+  \item \texttt{aborted}, only after a recorded critical failure.
+\end{enumerate}
+
+The H$_2$ Sampler profiles set $K=50$ and disallow optimizer-stop termination.
+The reference hardware and statevector runs both exhausted the cap without
+satisfying Eq.~\eqref{eq:rv-convergence}; therefore
+\texttt{max\_iterations}, rather than \texttt{converged}, is the only truthful
+normal terminal reason.
+
+\subsubsection{Fixed execution policy}
+
+\begin{table*}[t]
+  \centering
+  \caption{Declared and observed configuration of the primary hardware campaign.}
+  \label{tab:rv-fixed-config}
+  \renewcommand{\arraystretch}{1.1}
+  \begin{tabular}{p{0.24\textwidth}p{0.31\textwidth}p{0.35\textwidth}}
+    \toprule
+    Field & Declared value & Observed/reference value \\
+    \midrule
+    System and primitive
+      & Two-qubit $\mathrm{H}_2$; IBM Runtime SamplerV2
+      & Same reduced four-term model and primitive \\
+    Backend
+      & \texttt{ibm\_marrakesh}, subject to availability
+      & \texttt{ibm\_marrakesh}; backend version 1.0.21 at pre-audit; 156 qubits \\
+    Evaluations and PUBs
+      & At most 50; four independent PUBs per evaluation
+      & 50 evaluations; 200 PUBs; 50 unique IBM jobs \\
+    Shots
+      & 1024 per PUB; 4096 per evaluation; 204,800 full-run maximum
+      & Exactly 1024 for every PUB; 204,800 full-run shots \\
+    Term/PUB order
+      & $YZ,ZI,ZZ,XX$ at indices $0,1,2,3$
+      & Exact match for all evaluations \\
+    Optimizer
+      & Ask/tell pattern search; authorization before commit
+      & 49 intent/commit/successor-binding chains verified \\
+    Convergence
+      & $\epsilon=0.005$, minimum 10 evaluations, patience 3
+      & Not reached; cap certificate accepted \\
+    Layout
+      & One transpiled layout fixed across all four circuit families and all evaluations
+      & Logical $[0,1]$ to physical $[6,7]$ \\
+    Numeric tolerances
+      & Energy and expectation absolute tolerance $10^{-12}$
+      & All reconstructions within tolerance \\
+    \bottomrule
+  \end{tabular}
+\end{table*}
+
+The Sampler options are explicitly recorded rather than inherited from future
+defaults: \texttt{default\_shots=1024}, run-level \texttt{shots=1024},
+classified measurement output, gate twirling disabled, measurement twirling
+disabled, and dynamical decoupling disabled.  Measurement mitigation, zero-noise
+extrapolation (ZNE), and probabilistic error cancellation (PEC) are marked not
+applicable to this direct raw-count SamplerV2 path.  These choices preserve the
+auditable transformation
+
+\begin{equation}
+  \text{IBM bitstrings}\to\text{counts}\to N_-
+  \to\widehat{\mu}_P\to\widehat{E}_k
+  \to\text{verified release}\to\text{optimizer}.
+  \label{eq:rv-evidence-chain}
+\end{equation}
+
+They do not mitigate device or readout error.  The hardware objective should
+therefore be interpreted as a raw, auditable sampled objective, not as a
+chemically corrected energy estimate.
+
+\subsubsection{Validation before hardware execution}
+
+Before the primary hardware submission, a local validator executed 36 checks
+with zero failures.  It included a one-qubit Hadamard circuit with exactly 1024
+outcomes, all four H$_2$ basis-measurement circuits through
+\texttt{StatevectorSampler}, comparison of count-derived expectations with
+\texttt{StatevectorEstimator}, explicit confirmation of Qiskit's
+$q_{n-1}\cdots q_0$ Pauli-label/count-key convention, and negative tests for a
+missing PUB, wrong term/PUB assignment, shot mismatch, corrupted counts,
+corrupted ordered shots, and corrupted packed data.  The pre-submission
+automated suite passed 129 tests in 14.787 seconds; a final post-artifact rerun
+again passed all 129 tests in 14.322 seconds.
+
+The one-evaluation IBM preflight used job
+\texttt{dafnocu42tqs73b06mb0} and 4096 physical shots.  Hardware-specific
+result fields, counts, parity, and layout checks succeeded, but independent
+replay rejected a circuit-provenance digest.  Investigation found that the same
+parameterized circuit had been serialized to QPY twice and the two byte streams
+were not stable across serializations.  The correction captures each QPY
+serialization once and reuses its digest for both evidence and run provenance;
+a regression test enforces that rule.  The failed preflight artifact was
+preserved and was not resubmitted.  The complete 50-evaluation run used the
+corrected implementation and passed replay.  This incident is evidence that
+the provenance contract is active: it rejected inconsistent identity evidence
+even though the raw hardware counts were otherwise valid.
+
+\subsubsection{Primary hardware result}
+
+The reference campaign, run identifier
+\texttt{h2-ibm-marrakesh-sampler-20260907}, completed on
+\texttt{ibm\_marrakesh} on September 7--8, 2026.  It produced 2103 compact
+trace events, 200 full PUB sidecar records, and one sealed evidence manifest.
+Online verification and independent replay both returned \textsc{pass} at the
+intra-iteration, inter-iteration, and run levels with zero findings.
+
+\begin{table*}[t]
+  \centering
+  \caption{Observed results of the primary hardware campaign.}
+  \label{tab:rv-hardware-results}
+  \renewcommand{\arraystretch}{1.1}
+  \begin{tabular}{p{0.27\textwidth}p{0.18\textwidth}p{0.27\textwidth}p{0.18\textwidth}}
+    \toprule
+    Metric & Result & Metric & Result \\
+    \midrule
+    Evaluations & 50 & Unique IBM jobs & 50 \\
+    Independent PUB records & 200 & Physical shots & 204,800 \\
+    Compact trace events & 2103 & Online/replay findings & 0 / 0 \\
+    Online verdict & \textsc{pass} & Replay verdict & \textsc{pass} \\
+    Intra-iteration level & \textsc{pass} & Inter-iteration level & \textsc{pass} \\
+    Run level & \textsc{pass} & Terminal reason & \texttt{max\_iterations} \\
+    Initial objective & $0.1916484375$ & Final objective & $-0.3775728515625$ \\
+    Best objective & $-0.418932421875$ & Best evaluation & 28 (zero-based) \\
+    Monitored wall duration & $1918.285$ s & IBM QPU charge time & $150$ s \\
+    Estimated quantum time & $137.703$ s & Physical layout & $[6,7]$ \\
+    \bottomrule
+  \end{tabular}
+\end{table*}
+
+At the best hardware checkpoint, evaluation 28 and IBM job
+\texttt{dafoahbdd5gc73da3qf0}, the four count dictionaries reconstruct as shown
+in Table~\ref{tab:rv-best-checkpoint}.
+
+\begin{table*}[t]
+  \centering
+  \caption{Count-level reconstruction of the best observed hardware checkpoint.  Count columns are ordered $00/01/10/11$.}
+  \label{tab:rv-best-checkpoint}
+  \renewcommand{\arraystretch}{1.1}
+  \begin{tabular}{clrrr}
+    \toprule
+    Term & Counts $00/01/10/11$ & $N_-$ & $\widehat{\mu}_P$ & Weighted contribution \\
+    \midrule
+    $YZ$ & $158/387/162/317$ & 549 & $-0.072265625$ & $-0.028761718750$ \\
+    $ZI$ & $350/660/5/9$       & 14  & $ 0.972656250$ & $-0.387117187500$ \\
+    $ZZ$ & $314/688/6/16$      & 694 & $-0.355468750$ & $ 0.004016796875$ \\
+    $XX$ & $479/32/500/13$     & 532 & $-0.039062500$ & $-0.007070312500$ \\
+    \midrule
+    \multicolumn{4}{r}{Reconstructed objective} & $-0.418932421875$ \\
+    \bottomrule
+  \end{tabular}
+\end{table*}
+
+For example, $N_-(YZ)=C(01)+C(10)=387+162=549$, so
+$\widehat{\mu}_{YZ}=1-2(549)/1024=-0.072265625$.  Substitution into
+Eq.~\eqref{eq:rv-energy-reconstruction} gives
+
+\begin{align}
+  \widehat{E}_{28}
+  &=0.3980(-0.072265625)-0.3980(0.972656250)\nonumber\\
+  &\quad-0.0113(-0.355468750)+0.1810(-0.039062500)\nonumber\\
+  &=-0.418932421875,
+  \label{eq:rv-best-energy}
+\end{align}
+
+which matches the trace value within the declared tolerance.  The offline
+analyzer repeated the same reconstruction for all 200 PUBs and all 50 energy
+checkpoints.
+
+The full-run 204,800-shot ceiling excludes the separate 4096-shot preflight.
+The total physical-shot consumption of the archived campaign including that
+preflight was therefore
+
+\begin{equation}
+  204{,}800+4{,}096=208{,}896.
+  \label{eq:rv-campaign-shots}
+\end{equation}
+
+No inference about adherence to the full-run ceiling should incorrectly count
+the explicitly separate preflight against the primary-run configuration.
+
+\subsubsection{Comparable shot-based statevector result}
+
+The statevector comparator uses the same ansatz, initial vector, four
+measurement circuits, term/PUB ordering, 1024 shots per term, 50-evaluation
+cap, ask/tell optimizer, convergence rule, raw-evidence schema, and online and
+replay monitors.  It uses \texttt{StatevectorSampler} to generate sampled
+bitstrings; it is therefore not a shot-free exact objective.  This makes the
+measurement and budget semantics directly comparable with hardware.
+
+\begin{table*}[t]
+  \centering
+  \caption{Descriptive comparison of the two sampled optimization paths.}
+  \label{tab:rv-hw-sv-comparison}
+  \renewcommand{\arraystretch}{1.1}
+  \begin{tabular}{p{0.34\textwidth}rr}
+    \toprule
+    Measure & IBM hardware & Statevector sampler \\
+    \midrule
+    Evaluations / PUBs / samples & $50/200/204{,}800$ & $50/200/204{,}800$ \\
+    Initial objective & $0.1916484375$ & $0.2069205078125$ \\
+    Best observed objective & $-0.418932421875$ & $-0.439887500000$ \\
+    Best evaluation (zero-based) & 28 & 40 \\
+    Final objective & $-0.3775728515625$ & $-0.439807421875$ \\
+    Online / replay verdict & \textsc{pass} / \textsc{pass} & \textsc{pass} / \textsc{pass} \\
+    Terminal reason & \texttt{max\_iterations} & \texttt{max\_iterations} \\
+    \bottomrule
+  \end{tabular}
+\end{table*}
+
+The difference between the best observed objectives is
+
+\begin{equation}
+  \widehat{E}^{\star}_{\mathrm{HW}}
+  -\widehat{E}^{\star}_{\mathrm{SV}}
+  =0.020955078125.
+  \label{eq:rv-best-difference}
+\end{equation}
+
+This is a descriptive result for two adaptive sampled trajectories, not an
+estimate of device bias at a fixed parameter vector.  The first difference in
+sampled energy can change the next ask/tell decision, after which the two runs
+may evaluate different parameter vectors.  A hardware-accuracy study would
+instead require a preregistered set of fixed vectors, repeated independent
+hardware campaigns or paired jobs, calibration covariates, uncertainty
+intervals, and a declared statistical analysis plan.
+
+\subsubsection{Acceptance criteria and verdict aggregation}
+
+The hardware result is accepted only when every condition in
+Table~\ref{tab:rv-acceptance} holds.  In the archived campaign all conditions
+evaluated to true.
+
+\begin{table*}[t]
+  \centering
+  \caption{Acceptance criteria for the primary runtime-verification result.}
+  \label{tab:rv-acceptance}
+  \renewcommand{\arraystretch}{1.1}
+  \begin{tabular}{p{0.53\textwidth}p{0.29\textwidth}c}
+    \toprule
+    Requirement & Evidence/check & Result \\
+    \midrule
+    Every term has exactly 1024 observed outcomes
+      & All 200 sidecar records and \texttt{BitArray.num\_shots} & \textsc{pass} \\
+    Every complete count dictionary sums to 1024
+      & Independent reconstruction from ordered shots & \textsc{pass} \\
+    Packed bytes, ordered shots, counts, and hashes agree
+      & Strict sidecar loader and sealed manifest & \textsc{pass} \\
+    PUB indices and term identities are complete, unique, and ordered
+      & Expected manifest versus all observed PUBs & \textsc{pass} \\
+    Every expectation reconstructs from odd active-qubit parity
+      & Eq.~\eqref{eq:rv-expectation}, all 200 PUBs & \textsc{pass} \\
+    Every energy reconstructs from four expectations
+      & Eq.~\eqref{eq:rv-energy-reconstruction}, all 50 checkpoints & \textsc{pass} \\
+    Full-run cumulative shots never exceed 204,800
+      & Per-checkpoint continuity and manifest total & \textsc{pass} \\
+    Online and independent replay verdicts agree
+      & Three levels in both JSON reports & \textsc{pass} \\
+    Ask/tell authorization precedes each optimizer mutation
+      & 49 ordered intent/commit/successor chains & \textsc{pass} \\
+    Backend job and evaluation identities are fresh
+      & 50 unique IBM job IDs and 50 evaluation IDs & \textsc{pass} \\
+    Physical layout is fixed across executable circuits
+      & All hardware records report logical $[0,1]\mapsto[6,7]$ & \textsc{pass} \\
+    Evidence manifest commits to all records and the exact total
+      & 200 ordered hashes; 204,800 observed shots & \textsc{pass} \\
+    Terminal reason agrees with the final verified checkpoint
+      & Nonconverged evaluation 49 plus unique cap certificate & \textsc{pass} \\
+    \bottomrule
+  \end{tabular}
+\end{table*}
+
+At each level, a recorded violation yields \textsc{fail}; missing assurance
+that prevents the property from being established yields
+\textsc{inconclusive}.  A level is \textsc{pass} only after the trace is
+complete and no property assigned to that level is failed or inconclusive.
+The overall report is \textsc{pass} only if all three levels pass and the run
+is complete:
+
+\begin{equation}
+  V(\tau)=\mathrm{PASS}
+  \Longleftrightarrow
+  \operatorname{complete}(\tau)
+  \land\bigwedge_{\ell\in\{\mathrm{intra,inter,run}\}}
+  V_{\ell}(\tau)=\mathrm{PASS}.
+  \label{eq:rv-verdict}
+\end{equation}
+
+This prevents an empty, truncated, monitorless, or only partially checked trace
+from being misreported as successful merely because no explicit violation was
+encountered.
+
+\subsubsection{Executable overhead and scaling evaluation}
+
+Runtime overhead is measured independently of hardware queue and execution
+time.  The executable harness feeds identical deterministic H$_2$ observations
+to (i) an uninstrumented in-memory loop, (ii) the Python runtime session with a
+test/shadow monitor, and (iii) the Python runtime session with the real
+synchronous generated DejaVu monitor.  The primary comparison uses five
+warm-ups and 30 measured repetitions per condition.  It archives every run,
+every acknowledgement latency, and periodic Python/JVM resident-set-size (RSS)
+sample in CSV; JSON contains derived summaries only.
+
+For the three-evaluation primary comparison, the generated monitor had
+$358.260$ ms median and $375.798$ ms p95 end-to-end time, including a
+$228.539$ ms median JVM startup.  Across 3810 acknowledged events, gate latency
+was $0.505$ ms median and $1.722$ ms p95.  The corresponding Python-shadow p95
+was $7.505$ ms end-to-end, and the intentionally minimal uninstrumented loop
+had $0.050$ ms p95.  Relative percentages against that tiny baseline are
+dominated by fixed JVM startup and must not be generalized to a hardware VQE.
+
+The scaling sweep fixes the H$_2$ event protocol while varying the number of
+nonconverging evaluations.  Table~\ref{tab:rv-scaling} reports the raw-summary
+values from one measured scaling run at each size.
+
+\begin{table*}[t]
+  \centering
+  \caption{Generated-monitor scaling with evaluation-history length.}
+  \label{tab:rv-scaling}
+  \renewcommand{\arraystretch}{1.08}
+  \begin{tabular}{rrrrrr}
+    \toprule
+    Evaluations & Events & \shortstack{End-to-end\\(s)}
+      & \shortstack{All-gate\\p95 (ms)}
+      & \shortstack{\texttt{nextConvergenceChecked}\\p95 (ms)}
+      & \shortstack{JVM peak RSS\\(MiB)} \\
+    \midrule
+     10 &  423 &  0.537 &  1.214 &  1.332 & 219.03 \\
+     25 & 1053 &  0.819 &  1.063 &  1.237 & 273.66 \\
+     50 & 2103 &  1.210 &  0.984 &  1.305 & 439.80 \\
+     60 & 2523 &  1.350 &  0.929 &  1.669 & 481.05 \\
+    100 & 4203 &  2.081 &  0.970 &  1.532 & 635.36 \\
+    125 & 5253 &  2.929 &  1.438 &  2.307 & 718.81 \\
+    150 & 6303 &  6.436 &  3.722 &  4.373 & 839.92 \\
+    175 & 7353 & 12.486 &  7.742 &  7.606 & 847.94 \\
+    200 & 8403 & 29.971 & 16.362 & 16.222 & 941.80 \\
+    \bottomrule
+  \end{tabular}
+\end{table*}
+
+The monitor is not constant-cost over unbounded history: resident memory grows
+throughout the sweep, and a pronounced latency increase appears beyond roughly
+125 evaluations.  At the fixed primary bound of 50, however, all-gate p95 is
+$0.984$ ms and \texttt{nextConvergenceChecked} p95 is $1.305$ ms, far below
+the 30-second hardware acknowledgement timeout.
+
+\paragraph{Decision on \texttt{nextConvergenceChecked}.}
+The current relation is retained for the reported 50-evaluation profile.  It
+binds the current evaluation, current energy and parameter identities, previous
+evaluation, previous energy identity, and convergence verdict.  Projecting
+fields out merely to reduce monitor state would weaken the predecessor and
+energy-continuity guarantee without materially improving the bounded campaign.
+The defensible conclusion is therefore bounded: the relation is acceptable at
+$K\le 50$ under the measured environment; these data do not justify unbounded
+scaling.
+
+Before materially increasing the profile beyond 100 evaluations, the planned
+redesign is to let Python issue a compact checkpoint certificate, for example
+
+\begin{equation}
+  \chi_k=\operatorname{SHA256}\!\left(
+  c\parallel e_k\parallel h^{\theta}_k\parallel h^E_k
+  \parallel e_{k-1}\parallel h^E_{k-1}\parallel s_k\right),
+  \label{eq:rv-future-certificate}
+\end{equation}
+
+after verifying the exact energy delta, patience state, theta continuity, and
+predecessor relation.  DejaVu would then relate only the compact certificate
+identity and causal order.  This proposal is not part of the reported system.
+It must be accepted only after (i) differential mutants demonstrate unchanged
+rejection of stale predecessor, stale energy, false convergence, and reordered
+check faults, (ii) the generated monitor is rebuilt from pinned dependencies,
+and (iii) the warm-up/repetition benchmark and raw RSS/latency sweep are rerun
+through at least 400 evaluations.
+
+\subsubsection{Fault model and negative testing}
+
+The implementation is tested against faults at each assurance boundary.  The
+negative suite includes, among others:
+
+\begin{itemize}
+  \item binding outside the parameter domain, wrong parameter dimension,
+        NaN/Inf values, stale theta, and a successor that differs from the
+        authorized optimizer proposal;
+  \item term observation before declaration or submission, a missing PUB,
+        duplicate/wrong PUB index, wrong Pauli assignment, mismatched
+        negative-parity alias, and incomplete measurement sealing;
+  \item requested/observed shot mismatch, counts not summing to the shot total,
+        counts differing from ordered bitstrings, packed bytes differing from
+        ordered bitstrings, and attacker-rehashed raw-data corruption;
+  \item incorrect expectation, incorrect weighted contribution, incorrect
+        total energy, out-of-bound energy, reused raw-evidence digest, and an
+        evidence manifest with missing, duplicated, reordered, or orphaned
+        records;
+  \item duplicate evaluation, submission, or backend-job identity; skipped or
+        overlapping evaluations; a convergence check using a non-last
+        checkpoint; cumulative-budget discontinuity; and configuration drift;
+  \item optimizer mutation before objective release, commit without matching
+        intent, token alteration/reuse, missing commit, double commit, update at
+        the iteration cap, and a next binding that differs from the commit;
+  \item false convergence, convergence followed by a successor, iteration-cap
+        termination without a cap certificate, optimizer-stop disguised as a
+        cap, activity after terminal/close, multiple terminals, and normal
+        completion after a critical failure;
+  \item unavailable/stale monitor artifacts, monitor watermark mismatch,
+        monitor timeout, real DejaVu rejection on the online path, empty or
+        truncated trace, and replay without an explicitly supplied sidecar.
+\end{itemize}
+
+The tests establish fault-detection behavior for the modeled mutants; they do
+not establish a complete fault model for all Qiskit, IBM Runtime, operating
+system, network, or hardware failures.
+
+\subsubsection{Assumptions, trust boundaries, and threats to validity}
+
+The runtime claim depends on the following explicit assumptions.
+
+\paragraph{Instrumentation completeness.}
+All relevant controller-side effects must pass through the instrumented
+session.  Direct calls to the backend or optimizer outside the gate are not
+observable and therefore not constrained.  The Python process, event-journal
+implementation, and bridge are included in the trusted computing base.
+
+\paragraph{Sequential semantics.}
+The formal event model assumes one run, one active evaluation, one authorized
+job per evaluation, and one committed successor.  It does not cover concurrent
+job submission, speculative optimizers, asynchronous cancellation races, or
+recovery across multiple controller processes.
+
+\paragraph{Backend cooperation.}
+IBM job identifiers, timestamps, result metadata, and returned bitstrings are
+treated as observations supplied by a cooperative service.  The verifier
+checks internal consistency and provenance of what was returned; it does not
+attest the physical device, prevent a malicious backend from fabricating a
+self-consistent result, or verify IBM's accounting implementation.
+
+\paragraph{Cryptographic and archival assumptions.}
+SHA-256 is assumed collision resistant.  Canonical JSON, stored file digests,
+and the archive channel are assumed to be implemented and retained correctly.
+Because the evidence is hashed rather than digitally signed, an adversary able
+to replace both an artifact and every trusted external digest remains outside
+the threat model.
+
+\paragraph{Software semantics and versioning.}
+The result is tied to CPython 3.12.14, Qiskit 2.5.2,
+\texttt{qiskit-ibm-runtime} 0.49.0, NumPy 2.5.3, SciPy 1.18.1, and OpenJDK
+17.0.4.1 on arm64 macOS 26.6.2.  A new version may change QPY serialization,
+bit-array structure, transpilation, default options, floating-point behavior,
+or optimizer order; the validation, provenance, and replay suites must be
+rerun rather than assuming compatibility.
+
+\paragraph{Floating-point boundary.}
+Counts and Hamiltonian coefficient integers are exact, but expectation and
+energy values cross a binary floating-point interface.  The runtime uses
+explicit finite-number checks, zero relative tolerance, integer-scaled
+coefficients, and declared absolute tolerances.  It does not formally verify
+the complete floating-point implementation of Qiskit, Python, NumPy, or the
+optimizer.
+
+\paragraph{Measurement interpretation.}
+The Pauli label and Qiskit count key are assumed to share the documented
+$q_{n-1}\cdots q_0$ order.  All qubits are measured; identity positions are
+retained in the raw record but excluded from the parity calculation.  The
+preflight and statevector validation test this convention for the four
+reported terms, but not for arbitrary registers, dynamic circuits, mid-circuit
+measurements, or parameter-swept PUB shapes.
+
+\paragraph{Statistical scope.}
+The run is one adaptive stochastic trajectory.  Passing trace contracts says
+nothing about chemical accuracy, estimator variance, optimizer success
+probability, cross-day calibration drift, or generalization to repeated
+campaigns, other backends, deeper ansatze, larger Hamiltonians, or error
+mitigation.  Those questions require the probabilistic layer and a separate
+experimental design.
+
+\paragraph{Construct validity of the benchmark.}
+The overhead harness uses deterministic synthetic observations to isolate
+verification costs.  It intentionally excludes network, queue, and device
+time.  Its uninstrumented baseline is extremely small, so percentage overhead
+is not representative of a real VQE wall-clock fraction.  Absolute gate
+latency and RSS under the stated environment are the appropriate reported
+quantities.  The one-run-per-scale sweep reveals a clear late-history trend but
+does not provide confidence intervals for every scale.
+
+\paragraph{Physical layout and calibration.}
+The archived run used physical qubits $[6,7]$, but backend topology,
+calibration, availability, queue conditions, and selected layout can change.
+A reproduction may use a different valid fixed layout and will generally
+produce different counts.  Reproduction means matching the declared protocol,
+evidence completeness, and verdict semantics, not reproducing exact random
+bitstrings or the energy sequence.
+
+\subsubsection{Reproducibility and durable artifacts}
+
+The archived environment manifest records package versions, commands, source
+and artifact SHA-256 values, backend audit information, and the selected
+layout.  The principal machine-readable artifacts are:
+
+\begin{itemize}
+  \item configuration: \path{configs/h2_ibm_sampler_50.toml};
+  \item comparable statevector configuration:
+        \path{configs/h2_statevector.toml};
+  \item Hamiltonian manifest: \path{data/h2_hamiltonian.json};
+  \item temporal specification: \path{specs/vqe_runtime.qtl};
+  \item hardware trace:
+        \path{artifacts/traces/h2_ibm_marrakesh_sampler_20260907.jsonl};
+  \item hardware raw evidence:
+        \path{artifacts/evidence/h2_ibm_marrakesh_sampler_20260907.jsonl};
+  \item online and replay reports:
+        \path{artifacts/reports/h2_ibm_marrakesh_sampler_20260907_online.json}
+        and
+        \path{artifacts/reports/h2_ibm_marrakesh_sampler_20260907_replay.json};
+  \item statevector trace/evidence/reports with the corresponding
+        \path{h2_statevector_sampler_20260907} basename;
+  \item comparison summary and raw per-evaluation/per-PUB CSVs:
+        \path{artifacts/results/h2_sampler_comparison_20260907/};
+  \item executable benchmark and raw benchmark output:
+        \path{tools/benchmark_overhead.py} and
+        \path{artifacts/benchmarks/}; and
+  \item exact environment and digest manifest:
+        \path{artifacts/environments/h2_sampler_campaign_20260907.json}.
+\end{itemize}
+
+For the hardware run, the trace SHA-256 is
+\texttt{c954babd7d629f8e\allowbreak{}75f5cf5f69132108\allowbreak{}
+aa99c6cc6bb04a18\allowbreak{}fb046fb0faeb342c},
+the evidence-file SHA-256 is
+\texttt{e93da9837ca8c504\allowbreak{}f8d3120ddf97d6bc\allowbreak{}
+048f923f56f6ed77\allowbreak{}eaa3a12509e50671},
+and the sealed evidence-manifest SHA-256 is
+\texttt{06019a3a2fff0838\allowbreak{}8e13a0ebce7faa1f\allowbreak{}
+e2f10203ebc83049\allowbreak{}7bbc1bc9078fdd57}.
+The online-report and replay-report SHA-256 values are, respectively,
+\texttt{4ef8d86760c2a81c\allowbreak{}fd1a5a0c2a0e360f\allowbreak{}
+9d8284a68f09569c\allowbreak{}4ac43678ecb6f4cf}
+and
+\texttt{a94c0613f6b151db\allowbreak{}e4fb0031197b4d69\allowbreak{}
+8f7ea7b61bf305a1\allowbreak{}5be35b9649ac1f51}.
+
+In summary, the runtime layer turns the abstract ordering requirement
+``no optimizer update before verified energy aggregation'' into an enforced
+end-to-end protocol.  Raw IBM bitstrings are durably linked to parity-derived
+expectations and a reconstructed H$_2$ objective; that objective is released
+only after Python and DejaVu agree; the next optimizer proposal is authorized
+before the only state mutation; and independent replay must reconstruct the
+same three-level verdict.  The result is a bounded, evidence-backed assurance
+argument for this concrete execution, with its trust assumptions and scaling
+limits stated explicitly.

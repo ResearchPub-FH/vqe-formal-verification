@@ -1,0 +1,88 @@
+{
+  "files": {
+    "README.md": {
+      "bytes": 18010,
+      "sha256": "740682b6cb5079c9a9191cd67a144fac6e0c819e6e8f7b666983ac8cb8ceffbe"
+    },
+    "__pycache__/plot_probabilistic_results.cpython-312.pyc": {
+      "bytes": 53787,
+      "sha256": "9a6897a48dccbb17e1a8e729513f59a4ee9146f79fc3372d70381564c0fcdb93"
+    },
+    "caption.tex": {
+      "bytes": 2244,
+      "sha256": "e6de8f86bf691c02f82be77c43a158e7ac56a23aa926061d5cc7b92f24da8621"
+    },
+    "data/grouped_first_success.csv": {
+      "bytes": 279,
+      "sha256": "5d20cb1031b689ad5aebbc92e45156bebb100a5f4afc677e72a6b05821fb8543"
+    },
+    "data/iteration_results.csv": {
+      "bytes": 6031,
+      "sha256": "cf84c1ff3df7fd02f5c0b5a21b2b4a14ed3b8dfa6837fcfceb7f713835077627"
+    },
+    "data/run_first_success.csv": {
+      "bytes": 22678,
+      "sha256": "3688ac778b332f275bd444e43fe1fe88b5f759ba21f1f5995f88a711ddf0952d"
+    },
+    "data/source_manifest.json": {
+      "bytes": 108173,
+      "sha256": "f81ee6a5ac85a082abb8d9bcb83913985f35de884f0f291803da1915319c8d8f"
+    },
+    "data/verified_statistics.json": {
+      "bytes": 5522,
+      "sha256": "ecefb0ce5b5083c14ab1ae0d769c27b65856ab009ff8176d3e0e4be8a09dfdc9"
+    },
+    "plot_probabilistic_results.py": {
+      "bytes": 38032,
+      "sha256": "9d92c25c46111a8be626fb84e20ef8aad6ddb20966cd4e0aeca9e52e9c8ec957"
+    },
+    "probabilistic-results-four-panel.pdf": {
+      "bytes": 23642,
+      "sha256": "e7369222c60d9e81ad265e4a927baa6f84af41c5ce65639d40f91f1c8562025c"
+    },
+    "probabilistic-results-four-panel.png": {
+      "bytes": 355983,
+      "sha256": "f1ae7348ebc8e020c76cef4cece12e010b68f39df87f598a7645a92fff04600f"
+    },
+    "probabilistic-results-four-panel.svg": {
+      "bytes": 70047,
+      "sha256": "69ee6fa67bbed1beef847588b76db4b3d0898e2ba8584d6499f01d9f8f8a3c58"
+    },
+    "requirements.txt": {
+      "bytes": 128,
+      "sha256": "00fc82633bfca15cd34596ad01404a482c728a983ff5068b19fcf1735cd16437"
+    },
+    "validation/annotated-reference.pdf": {
+      "bytes": 461217,
+      "sha256": "cb29461de1b622106ecffffad376bf6e3e2206bb5d5776026e174a73b5adf24c"
+    },
+    "validation/annotation-checklist.json": {
+      "bytes": 3363,
+      "sha256": "0e467e1dda352dd436d78de98977397790b050ed543ac1e55293cd70e4deae6e"
+    },
+    "validation/checks.json": {
+      "bytes": 2728,
+      "sha256": "4a9806a3c406749d930ced702bd495ea5f732f46c635cef066857b71668de424"
+    },
+    "validation/inspection-150dpi.png": {
+      "bytes": 68942,
+      "sha256": "726a3ff4ee9d163c3143c4fa1cf4a885b83dcca5fe4021f7c8dbe7b2f3b1cdd4"
+    },
+    "validation/pdf-inspection-150dpi.png": {
+      "bytes": 71105,
+      "sha256": "a2fa9762523f778a4bcec795571f8601111f5ec6d8d1f5ea9cfaa74aa9ff1a22"
+    },
+    "validation/pdf-print-size-100dpi.png": {
+      "bytes": 40062,
+      "sha256": "687c66305747444dfe17eef0947357c9f190ed72134207599119f05168e54073"
+    },
+    "validation/print-size-100dpi.png": {
+      "bytes": 38385,
+      "sha256": "ea493c996d8df5b4bb5a26e9a923199adae74c6c4f257e53148a9844af6b3c00"
+    },
+    "validation/visual-review.md": {
+      "bytes": 1870,
+      "sha256": "c23645a0481e394e7cb163fb0da7896a51cbca09000cc590d9a04a59edf039e6"
+    }
+  }
+}

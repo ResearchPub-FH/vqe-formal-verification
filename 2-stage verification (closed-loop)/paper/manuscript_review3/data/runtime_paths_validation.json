@@ -1,0 +1,112 @@
+{
+  "status": "PASS",
+  "pdf_pages": 1,
+  "page_inches": [
+    7.16,
+    3.8000000000000003
+  ],
+  "pdf_image_objects": 0,
+  "pdf_fonts": {
+    "/F4": {
+      "type": "/Type0",
+      "embedded": true
+    },
+    "/F5": {
+      "type": "/Type0",
+      "embedded": true
+    },
+    "/F1": {
+      "type": "/Type0",
+      "embedded": true
+    },
+    "/F2": {
+      "type": "/Type0",
+      "embedded": true
+    },
+    "/F3": {
+      "type": "/Type0",
+      "embedded": true
+    },
+    "/F6": {
+      "type": "/Type0",
+      "embedded": true
+    }
+  },
+  "required_labels_present": [
+    "Shared specifications and event semantics",
+    "ONLINE",
+    "OFFLINE",
+    "Enforcement",
+    "Live event stream",
+    "Recorded event sequence",
+    "Online verdict",
+    "Replay verdict",
+    "Saved execution trace",
+    "Record",
+    "Replay",
+    "Check verdict consistency",
+    "Continue / block the next instrumented operation"
+  ],
+  "removed_labels_absent": [
+    "Same events",
+    "same order",
+    "Dashed guides",
+    "During execution",
+    "After execution",
+    "protected",
+    "von",
+    "vrep"
+  ],
+  "bold_labels": [
+    "ONLINE",
+    "OFFLINE",
+    "Enforcement",
+    "Record",
+    "Replay",
+    "Continue / block the next instrumented operation"
+  ],
+  "dashed_svg_lines": 0,
+  "neutral_foregrounds_black": true,
+  "svg_stroke_colors": [
+    "#000000",
+    "#087e56",
+    "#2369a5"
+  ],
+  "shared_panel_center_matches_lanes": true,
+  "png_pixels": [
+    2864,
+    1520
+  ],
+  "png_dpi": [
+    399.9992,
+    399.9992
+  ],
+  "editable_svg_text_elements": 26,
+  "layout_checks": {
+    "text_overlap_count": 0,
+    "outside_canvas": []
+  },
+  "unchanged": {
+    "manuscript_review3.tex": true,
+    "manuscript_review3.pdf": true,
+    "figures/introduction-overview.pdf": true,
+    "figures/architecture.pdf": true
+  },
+  "visual_QA": [
+    "Color PDF rendered at 1800-pixel width and inspected",
+    "Grayscale PDF rendered at 110 dpi and inspected"
+  ],
+  "python": "3.12.14",
+  "matplotlib": "3.11.2",
+  "sha256": {
+    "figures/runtime_verification_online_offline.pdf": "949703e7291aac38de1690cd8381f8add12f2093ee427850f5c1f5ae4c818944",
+    "figures/runtime_verification_online_offline.png": "c535b67d22e2d75294e0aa1260e00a150737f28e434c8dec92d1fe50c26f69b3",
+    "figures/runtime_verification_online_offline.svg": "73dc61fb98fc0d357b0d0494e557fddcb6ba220f9f8e3af9903bf0bd0a60c55c",
+    "scripts/figures/runtime_verification_online_offline.py": "1965c129b9c11fe6279737ad6012616ef12ef1cc5de137cf2a5a65324c8f69a7",
+    "figures/runtime_verification_online_offline-caption.tex": "d9c4704cd2b938a8effd7e85a7e8539ae699f5d3ff0ab13c96b282ec4f35842f"
+  },
+  "shared_heading_size_pt": 13,
+  "verdict_symbols_absent": true,
+  "verdict_labels_centered": true,
+  "feedback_operation_term": "instrumented"
+}

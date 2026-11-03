@@ -1,0 +1,17 @@
+% Replacement figure snippet; requires graphicx. Intended for double-column width.
+% The manuscript has not been changed or recompiled by the figure generator.
+\begin{figure*}[!t]
+  \centering
+  \includegraphics[width=\textwidth]{figures/runtime_verification_online_offline.pdf}
+  \caption{Online enforcement and offline replay with shared specifications and
+  event semantics. Online checking processes the growing event history and uses
+  its verdicts to control the next instrumented operation. The observed trace
+  $\tau=\langle a_1,a_2,\ldots,a_m\rangle$, together with the associated
+  measurement records and configuration, is retained for subsequent replay.
+  Offline verification consumes the recorded events in their original order.
+  Aligned event symbols indicate corresponding events in the two paths.
+  Online and replay verdicts are compared at the same verification
+  scope. This comparison requires consistent specifications and configuration
+  and sufficiently complete recorded inputs. The event sequence is schematic.}
+  \label{fig:online-offline-runtime}
+\end{figure*}

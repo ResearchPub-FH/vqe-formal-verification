@@ -1,0 +1,37 @@
+--- manuscript_review1.tex
++++ manuscript_review2.tex
+@@ -327,19 +327,13 @@
+ 
+ \subsection{Faults and Cross-Stage Discrepancies}
+ \label{sec:faults}
+-Table~\ref{tab:faults} reports the full logical and numeric verdict vector. There are \FaultClasses fault scenarios, each repeated \FaultRepetitions times, for \FaultRuns tests. Execution faults use the first iteration/candidate boundary. The missing-count scenario deletes counts from a saved trace while preserving the corresponding control execution. It assesses how the checker handles incomplete records.
+-
+-\begin{table*}[!t]
+-\centering\footnotesize
+-\caption{Fault verdict vectors. A: AGREEMENT, D: DISAGREEMENT, M: ASSUMPTION\_MISMATCH, and I: INCONCLUSIVE. ``Target'' counts the expected target-obligation verdict, and ``DV pass'' is the independent temporal replay count. Each row repeats one scenario with different count streams. Missing counts are removed from a saved trace. Its L1 D reflects the checker's treatment of incomplete records and does not establish a physical ordering violation.}
+-\label{tab:faults}
+-\begin{tabular}{@{}lrrrrrrrrrr@{}}\toprule
+-Fault & Target & L1 & L2 & L3 & L4 & N1 & N2 & N3 & N4 & DV pass \\
+-\midrule
+-\input{tables/faults.tex}
+-
+-\end{tabular}
+-\end{table*}
++Figure~\ref{fig:fault-discrepancies} reports the full logical and numeric verdict vector. The matrix shows which obligations respond to each fault, with distinct symbols for violations, changed assumptions, and unavailable checks. There are \FaultClasses fault scenarios, each repeated \FaultRepetitions times, for \FaultRuns tests. Execution faults use the first iteration/candidate boundary. The missing-count scenario deletes counts from a saved trace while preserving the corresponding control execution. It assesses how the checker handles incomplete records.
++
++\begin{figure*}[!t]
++\centering\includegraphics[width=\textwidth]{figures/fault-discrepancies.pdf}
++\caption{Fault verdict matrix for \FaultClasses scenarios, each repeated \FaultRepetitions times with different count streams. Every repetition within a row has the displayed vector. Colors and letters indicate A: AGREEMENT, D: DISAGREEMENT, M: ASSUMPTION\_MISMATCH, and I: INCONCLUSIVE. ``Expected verdict'' counts the specified target-obligation result, including an inconclusive result for missing counts. ``DejaVu pass'' counts acceptance by the independent temporal replay. Missing counts are removed from a saved trace. Its L1 D reflects the checker's treatment of incomplete records and does not establish a physical ordering violation.}
++\label{fig:fault-discrepancies}
++\end{figure*}
+ 
+ Premature commitment is caught by Python and DejaVu ordering checks. Altering the energy or coefficient pairing violates N2 while temporal properties pass, illustrating their complementary scopes. A shot-allocation change produces an N3 assumption mismatch and makes the probabilistic comparison inapplicable. The injector configures this applicability label, so it records which stochastic assumptions the fault changes.
+ 
+@@ -380,6 +374,6 @@
+ The local reproducibility bundle includes this source, vector figures, editable architecture source, figure-generation scripts, generated numerical tables, \path{FIGURE_PLAN.md}, \path{FIGURE_MANIFEST.md}, and \path{PAPER_RESULT_TRACEABILITY.md}. The source manifest records hashes of the verification record, models, proof logs, raw traces, and individual-layer inputs. Original experimental artifacts and the reference manuscript are preserved. The bundle is currently a local research artifact.
+ 
+ \bibliographystyle{IEEEtran}
+-\IEEEtriggeratref{8}
++\IEEEtriggeratref{4}
+ \bibliography{references}
+ \end{document}

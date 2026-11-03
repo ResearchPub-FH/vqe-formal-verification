@@ -1,0 +1,15 @@
+{
+  "baseline_1024_reused": true,
+  "empirical_runs_per_configuration": 400,
+  "empirical_semantics": "direct noisy FakeJakarta adaptive executions",
+  "gaussian_semantics": "ideal Born-derived finite-shot Gaussian kernel",
+  "horizon": 50,
+  "property": "P=? [ F<=50 \"success\" ]",
+  "seed": 20260721,
+  "shot_counts_per_group": [
+    256,
+    512,
+    1024,
+    2048
+  ]
+}

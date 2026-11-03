@@ -1,0 +1,347 @@
+{
+  "terminology_occurrences": [
+    {
+      "line": 10,
+      "term": "specification",
+      "text": "\\title{Layered Verification of VQE:\\\\From Specifications to Execution}"
+    },
+    {
+      "line": 15,
+      "term": "specification",
+      "text": "The variational quantum eigensolver (VQE) combines quantum energy estimation with classical parameter optimization. Reliable execution requires correct control flow, numerical calculations, and reasoning about measurement uncertainty. We propose a four-layer verification architecture covering logical, numeric, probabilistic, and runtime properties. A shared execution model and specification library organize the requirements and their assumptions. A two-stage framework implements and evaluates the architecture: NuXmv, Dafny, and Storm establish properties before execution, and runtime verification checks the corresponding obligations in concrete executions. Probabilistic predictions are compared with repeated finite-shot executions. On a two-qubit benchmark, all \\BaselineRuns executions satisfy the observed logical and numeric obligations within the verified scope. The Gaussian model and empirical executions show statistical agreement on bounded success and conditional resource use. Fault injection reveals complementary detection capabilities and limits in handling missing measurement records. Model growth and timing measurements quantify the cost of verification. These results demonstrate how heterogeneous verification methods can support a common assessment of VQE execution. Future work will strengthen the model-to-implementation correspondence and extend the framework to larger instances and hardware noise."
+    },
+    {
+      "line": 15,
+      "term": "property",
+      "text": "The variational quantum eigensolver (VQE) combines quantum energy estimation with classical parameter optimization. Reliable execution requires correct control flow, numerical calculations, and reasoning about measurement uncertainty. We propose a four-layer verification architecture covering logical, numeric, probabilistic, and runtime properties. A shared execution model and specification library organize the requirements and their assumptions. A two-stage framework implements and evaluates the architecture: NuXmv, Dafny, and Storm establish properties before execution, and runtime verification checks the corresponding obligations in concrete executions. Probabilistic predictions are compared with repeated finite-shot executions. On a two-qubit benchmark, all \\BaselineRuns executions satisfy the observed logical and numeric obligations within the verified scope. The Gaussian model and empirical executions show statistical agreement on bounded success and conditional resource use. Fault injection reveals complementary detection capabilities and limits in handling missing measurement records. Model growth and timing measurements quantify the cost of verification. These results demonstrate how heterogeneous verification methods can support a common assessment of VQE execution. Future work will strengthen the model-to-implementation correspondence and extend the framework to larger instances and hardware noise."
+    },
+    {
+      "line": 18,
+      "term": "specification",
+      "text": "VQE, layered verification, runtime verification, probabilistic model checking, specification traceability."
+    },
+    {
+      "line": 27,
+      "term": "specification",
+      "text": "VQE research has extensively studied ansatz design, measurement, optimization, and noise~\\cite{tilly2022}. The verification problem addressed here concerns their interaction in an implemented workflow. A controller proof, an arithmetic proof, and a success-probability prediction become useful together when the reader can identify which requirement each establishes and how that requirement is checked during execution. This motivates a shared execution model, explicit specification mappings, and a procedure for comparing prospective results with observed behavior."
+    },
+    {
+      "line": 31,
+      "term": "contract",
+      "text": "The contract library defines what the VQE implementation is expected to satisfy. Pre-execution verification establishes these contracts prospectively, while runtime verification determines whether the corresponding obligations hold for concrete executions."
+    },
+    {
+      "line": 33,
+      "term": "property",
+      "text": "The library records the assumptions and obligations of each contract. The comparison then identifies the property established before execution, the corresponding runtime check, and the scope in which their results can agree."
+    },
+    {
+      "line": 33,
+      "term": "contract",
+      "text": "The library records the assumptions and obligations of each contract. The comparison then identifies the property established before execution, the corresponding runtime check, and the scope in which their results can agree."
+    },
+    {
+      "line": 35,
+      "term": "specification",
+      "text": "Section~\\ref{sec:model} introduces the shared execution model and specifications. Section~\\ref{sec:methods} explains the verification methods. Section~\\ref{sec:individual} evaluates the individual layers, and Section~\\ref{sec:crosslayer} evaluates their relationships through the two-stage framework. The contributions are:"
+    },
+    {
+      "line": 38,
+      "term": "specification",
+      "text": "\\item A specification library that assigns properties and assumptions to each verification family and maps them to corresponding checks on executions."
+    },
+    {
+      "line": 38,
+      "term": "property",
+      "text": "\\item A specification library that assigns properties and assumptions to each verification family and maps them to corresponding checks on executions."
+    },
+    {
+      "line": 43,
+      "term": "specification",
+      "text": "\\section{Shared Execution Model and Specification Library}"
+    },
+    {
+      "line": 45,
+      "term": "specification",
+      "text": "\\subsection{Execution Model and Specification Semantics}"
+    },
+    {
+      "line": 48,
+      "term": "specification",
+      "text": "A \\emph{specification} formally states an expected behavior or condition. A \\emph{property} is a particular condition verified or monitored under that specification. A \\emph{contract} connects stated assumptions or preconditions to an obligation or guarantee. The specification library stores these requirements and their verification mappings. We use ``contract'' when the assumption--obligation relationship is material, including the organizing principle above."
+    },
+    {
+      "line": 48,
+      "term": "property",
+      "text": "A \\emph{specification} formally states an expected behavior or condition. A \\emph{property} is a particular condition verified or monitored under that specification. A \\emph{contract} connects stated assumptions or preconditions to an obligation or guarantee. The specification library stores these requirements and their verification mappings. We use ``contract'' when the assumption--obligation relationship is material, including the organizing principle above."
+    },
+    {
+      "line": 48,
+      "term": "contract",
+      "text": "A \\emph{specification} formally states an expected behavior or condition. A \\emph{property} is a particular condition verified or monitored under that specification. A \\emph{contract} connects stated assumptions or preconditions to an obligation or guarantee. The specification library stores these requirements and their verification mappings. We use ``contract'' when the assumption--obligation relationship is material, including the organizing principle above."
+    },
+    {
+      "line": 56,
+      "term": "specification",
+      "text": "Each library entry records a verification family, obligation, pre-execution check, runtime counterpart, assumptions, and comparison rule. The implemented library, \\texttt{config/contracts.json}, documents these links. Each family supplies its own specifications and properties in the appropriate formalism. Logical and numeric obligations are checked for individual runs. Probabilistic requirements are evaluated through repeated executions of the specified process."
+    },
+    {
+      "line": 56,
+      "term": "property",
+      "text": "Each library entry records a verification family, obligation, pre-execution check, runtime counterpart, assumptions, and comparison rule. The implemented library, \\texttt{config/contracts.json}, documents these links. Each family supplies its own specifications and properties in the appropriate formalism. Logical and numeric obligations are checked for individual runs. Probabilistic requirements are evaluated through repeated executions of the specified process."
+    },
+    {
+      "line": 56,
+      "term": "contract",
+      "text": "Each library entry records a verification family, obligation, pre-execution check, runtime counterpart, assumptions, and comparison rule. The implemented library, \\texttt{config/contracts.json}, documents these links. Each family supplies its own specifications and properties in the appropriate formalism. Logical and numeric obligations are checked for individual runs. Probabilistic requirements are evaluated through repeated executions of the specified process."
+    },
+    {
+      "line": 58,
+      "term": "contract",
+      "text": "Figure~\\ref{fig:architecture} shows how the four layers are organized into two stages. Pre-execution verification produces model-checking results, proof logs, and quantitative predictions. A verification record stores these results with the configuration, tool identities, and hashes of the source and result files. Before execution, the framework checks those hashes against the record. Runtime observations then support contract matching and verdict agreement. Revising the model or implementation requires regenerating the record and recording the next execution separately. This feedback procedure is manual."
+    },
+    {
+      "line": 67,
+      "term": "specification",
+      "text": "Table~\\ref{tab:mapping} maps the specifications to prospective checks and runtime observations. For a numeric contract, the checker interprets concrete counts and optimizer inputs as the kernel's mathematical inputs, checks the preconditions, and compares the observed output with the specified arithmetic. The Dafny proof establishes the kernel's mathematical property. Runtime reconstruction assesses that property on observed Python inputs and outputs. For a probabilistic requirement, the runtime counterpart is an estimate over repeated executions of the specified process."
+    },
+    {
+      "line": 67,
+      "term": "property",
+      "text": "Table~\\ref{tab:mapping} maps the specifications to prospective checks and runtime observations. For a numeric contract, the checker interprets concrete counts and optimizer inputs as the kernel's mathematical inputs, checks the preconditions, and compares the observed output with the specified arithmetic. The Dafny proof establishes the kernel's mathematical property. Runtime reconstruction assesses that property on observed Python inputs and outputs. For a probabilistic requirement, the runtime counterpart is an estimate over repeated executions of the specified process."
+    },
+    {
+      "line": 67,
+      "term": "contract",
+      "text": "Table~\\ref{tab:mapping} maps the specifications to prospective checks and runtime observations. For a numeric contract, the checker interprets concrete counts and optimizer inputs as the kernel's mathematical inputs, checks the preconditions, and compares the observed output with the specified arithmetic. The Dafny proof establishes the kernel's mathematical property. Runtime reconstruction assesses that property on observed Python inputs and outputs. For a probabilistic requirement, the runtime counterpart is an estimate over repeated executions of the specified process."
+    },
+    {
+      "line": 71,
+      "term": "specification",
+      "text": "\\caption{System-level specification mapping. Each row identifies an obligation, its prospective verification, the corresponding runtime observations, and the interpretation of their relationship. The assumption--obligation scope determines the contract match.}"
+    },
+    {
+      "line": 71,
+      "term": "contract",
+      "text": "\\caption{System-level specification mapping. Each row identifies an obligation, its prospective verification, the corresponding runtime observations, and the interpretation of their relationship. The assumption--obligation scope determines the contract match.}"
+    },
+    {
+      "line": 80,
+      "term": "property",
+      "text": "L4 & Terminal closure and declared stopping reason & NuXmv: absorbing terminals and budget bounds & No later activity, with reason checked against oracle/budget & Agreement for shared properties. Reason is checked at runtime \\\\"
+    },
+    {
+      "line": 131,
+      "term": "contract",
+      "text": "Table~\\ref{tab:configuration} specifies the execution boundary. An \\emph{iteration} completes one three-candidate selection, while an \\emph{evaluation} estimates the energy of one candidate. A run stops when the selected point first satisfies the ideal-energy success predicate or when it exhausts the iteration budget. An online contract violation triggers error closure. The success oracle uses exact simulation of the selected point and is available within this simulator experiment. Hardware-observed convergence requires a stopping policy based on measurable quantities. There are \\SuccessPoints successful grid points. Every unsuccessful run remains in the probability denominator and consumes its budget."
+    },
+    {
+      "line": 136,
+      "term": "property",
+      "text": "NuXmv~\\cite{nuxmv} checks a finite controller with measurement-group counters, candidate readiness, an iteration counter, and epoch flags. Nondeterministic inputs represent measurement completion, success, and environment errors. The model abstracts numeric energies and quantum states so that it can examine ordering and control flow. Representative LTL properties are"
+    },
+    {
+      "line": 143,
+      "term": "property",
+      "text": "Readiness resets at the next iteration, and terminal states are absorbing. The procedure generates the controller using the specified iteration bound, runs NuXmv, and stores each property and verdict. The result is exhaustive for the encoded model."
+    },
+    {
+      "line": 145,
+      "term": "specification",
+      "text": "L4 covers terminal absorption, the counter value at budget termination, and commitment below the bound. The audit found that redirecting either the success or budget branch to abort leaves the checked properties true. The prospective result therefore establishes those three conditions. Correct selection of the termination reason is an additional obligation checked at runtime. This distinction identifies the exact part of the specification supported by each stage."
+    },
+    {
+      "line": 145,
+      "term": "property",
+      "text": "L4 covers terminal absorption, the counter value at budget termination, and commitment below the bound. The audit found that redirecting either the success or budget branch to abort leaves the checked properties true. The prospective result therefore establishes those three conditions. Correct selection of the termination reason is an additional obligation checked at runtime. This distinction identifies the exact part of the specification supported by each stage."
+    },
+    {
+      "line": 162,
+      "term": "contract",
+      "text": "The checker reconstructs these as exact rational numbers and compares the concrete floating-point expectations, contributions, and energy within the specified tolerance. It also checks the integer scores and the actual values consumed by the optimizer. The contract match connects the kernel's mathematical obligation to the observed inputs and outputs. The Dafny proof applies to the mathematical kernel, and the runtime check assesses floating-point conformance for each observed evaluation."
+    },
+    {
+      "line": 194,
+      "term": "property",
+      "text": "Saved traces are replayed with the same Python checker class to reproduce the online verdicts. A separately compiled DejaVu monitor~\\cite{dejavu} replays five temporal properties: complete groups before aggregation, validation before commit, energy after iteration start, validation after energy, and closure after stopping. This provides an independent implementation of the ordering checks. Arithmetic verification and count-source authenticity remain outside those temporal properties. The runtime cost evaluation in Section~\\ref{sec:runtime-cost} uses a synchronous ask/tell protocol, in which the optimizer submits candidates and receives acknowledgment of validated results."
+    },
+    {
+      "line": 199,
+      "term": "specification",
+      "text": "All evaluations use the IBM two-qubit benchmark in Eq.~\\eqref{eq:hamiltonian}, except the larger Heisenberg trace used to exercise numeric checking. Each layer evaluates the object relevant to its specifications. The logical study varies the controller's iteration bound and observable count. The numeric study verifies arithmetic kernels and checks stored term-level records. The probabilistic study measures the size and checking cost of Gaussian DTMCs over the finite grid. The runtime study measures monitoring cost and checks sampled simulator and hardware executions."
+    },
+    {
+      "line": 210,
+      "term": "property",
+      "text": "The refined controller has \\LegacyLogicalProperties true properties in its NuXmv output and \\PhaseQueries positive phase-reachability queries. For the iteration-bound/term-count pairs \\LogicalScalingPairs, wall-clock measurements are respectively \\LogicalScalingTimes~s. Every configuration returns the same \\LegacyLogicalProperties true properties and zero false properties. These are single local timing measurements of bounded controllers, so the observed costs apply to the tested configurations."
+    },
+    {
+      "line": 212,
+      "term": "specification",
+      "text": "For the controller used in the two-stage evaluation, \\LogicalProperties logical properties hold. Three Dafny invocations report \\DafnyChecks verified units with zero errors. A verified unit is a tool-reported proof task. The specification mapping identifies how these tasks support N1--N4, and the result manifest records their distribution across modules."
+    },
+    {
+      "line": 212,
+      "term": "property",
+      "text": "For the controller used in the two-stage evaluation, \\LogicalProperties logical properties hold. Three Dafny invocations report \\DafnyChecks verified units with zero errors. A verified unit is a tool-reported proof task. The specification mapping identifies how these tasks support N1--N4, and the result manifest records their distribution across modules."
+    },
+    {
+      "line": 244,
+      "term": "property",
+      "text": "Table~\\ref{tab:hardware} reports the sampled simulator and \\texttt{ibm\\_marrakesh} executions and their online/replay outcomes. Both terminate at the evaluation budget. Acceptance supports observed event ordering, arithmetic, resource accounting, and record completeness. These properties concern the ask/tell workflow under its simulator or hardware conditions. The Gaussian search prediction is assessed under the cyclic-grid configuration in Section~\\ref{sec:crosslayer}."
+    },
+    {
+      "line": 261,
+      "term": "property",
+      "text": "The two-stage evaluation examines whether the properties established before execution correspond to the obligations checked during execution, and whether their results agree within the stated assumptions. It fixes the circuit, operator, parameter grid, candidate rule, measurement groups, shot allocation, success predicate, and iteration bound in Table~\\ref{tab:configuration}. It also examines how controlled faults change the verification outcomes. The evaluated claim is consistency of the specified workflow across the two stages."
+    },
+    {
+      "line": 265,
+      "term": "specification",
+      "text": "For logical and numeric obligations, the comparison relates each prospective property result to the check on every observed run. The implementation labels satisfaction \\texttt{AGREEMENT}, violations \\texttt{DISAGREEMENT}, invalid assumptions \\texttt{ASSUMPTION\\_MISMATCH}, and unavailable checks \\texttt{INCONCLUSIVE}. The meaning of each result follows its specification mapping. Numerical tolerances govern deterministic conformance. Stage 2 is gated on successful prospective verification, which restricts the evaluated combinations to executions authorized by Stage 1."
+    },
+    {
+      "line": 265,
+      "term": "property",
+      "text": "For logical and numeric obligations, the comparison relates each prospective property result to the check on every observed run. The implementation labels satisfaction \\texttt{AGREEMENT}, violations \\texttt{DISAGREEMENT}, invalid assumptions \\texttt{ASSUMPTION\\_MISMATCH}, and unavailable checks \\texttt{INCONCLUSIVE}. The meaning of each result follows its specification mapping. Numerical tolerances govern deterministic conformance. Stage 2 is gated on successful prospective verification, which restricts the evaluated combinations to executions authorized by Stage 1."
+    },
+    {
+      "line": 267,
+      "term": "specification",
+      "text": "Probabilistic comparison operates on repeated executions. P1 compares the Gaussian reachability probability with the fraction reaching success by each checkpoint, including unsuccessful runs in the denominator. The probability at $K$ is the primary comparison. Pointwise 95\\% Wilson intervals quantify binomial uncertainty~\\cite{wilson}. P2 compares iterations conditional on bounded success using the original \\BootstrapSamples-resample percentile-bootstrap interval. P3 applies the fixed shots per iteration to that quantity. A stochastic run that exhausts its budget is one permitted outcome of this bounded-success specification."
+    },
+    {
+      "line": 272,
+      "term": "property",
+      "text": "Table~\\ref{tab:contract-results} gives the prospectively established property and runtime count for each logical and numeric obligation. All observed baseline obligations agree on \\BaselineRuns runs under the mapping's assumptions. The result establishes conformance of these observed executions. L4 agreement covers terminal absorption and bound conditions at both stages. The stronger termination-reason obligation is assessed at runtime."
+    },
+    {
+      "line": 272,
+      "term": "contract",
+      "text": "Table~\\ref{tab:contract-results} gives the prospectively established property and runtime count for each logical and numeric obligation. All observed baseline obligations agree on \\BaselineRuns runs under the mapping's assumptions. The result establishes conformance of these observed executions. L4 agreement covers terminal absorption and bound conditions at both stages. The stronger termination-reason obligation is assessed at runtime."
+    },
+    {
+      "line": 276,
+      "term": "property",
+      "text": "\\caption{Logical and numeric results by obligation. The listed prospective properties have successful tool outputs, and the runtime column counts agreeing baseline runs. Agreement is interpreted under Table~\\ref{tab:mapping}'s assumptions. L4's prospective scope covers terminal absorption and budget bounds. Correct termination reasons are checked at runtime.}"
+    },
+    {
+      "line": 277,
+      "term": "contract",
+      "text": "\\label{tab:contract-results}"
+    },
+    {
+      "line": 281,
+      "term": "contract",
+      "text": "\\input{tables/contracts.tex}"
+    },
+    {
+      "line": 286,
+      "term": "specification",
+      "text": "Raw-count reconstruction covers \\TotalEvaluations candidate evaluations and \\TotalMeasurements group executions. The maximum observed energy reconstruction error is $\\EnergyError$, below the specified tolerance. Expectation reconstruction has zero observed error. Total physical consumption is \\TotalShots shots across \\TotalUpdates optimizer iterations. Python online and replay verdicts agree for every run, and all baseline runs pass the DejaVu temporal replay. These counts quantify the checked observations under the logical and numeric specifications."
+    },
+    {
+      "line": 338,
+      "term": "property",
+      "text": "Premature commitment is caught by Python and DejaVu ordering checks. Altering the energy or coefficient pairing violates N2 while temporal properties pass, illustrating their complementary scopes. A shot-allocation change produces an N3 assumption mismatch and makes the probabilistic comparison inapplicable. The injector configures this applicability label, so it records which stochastic assumptions the fault changes."
+    },
+    {
+      "line": 343,
+      "term": "property",
+      "text": "The evaluation begins with properties of the controller, arithmetic kernels, and Gaussian process, then checks the corresponding obligations on executions of the specified configuration. The mapping makes the role of each verification layer explicit. Logical results describe allowed ordering, numeric results describe calculations under input assumptions, and probabilistic results describe bounded search. Runtime checking determines whether the logical and numeric obligations hold in each run, while repeated executions assess the probabilistic predictions."
+    },
+    {
+      "line": 345,
+      "term": "property",
+      "text": "The baseline agreement supports this connection at the level of the established properties. Logical and numeric checks accept every observed baseline run, and the bounded-success and conditional-resource comparisons are statistically compatible under the stated analysis. P3 follows P2 because shots per iteration are fixed. Successful comparisons therefore depend on the meaning and scope of the requirement, as well as on the reported verdict. L4 illustrates the distinction: both stages assess terminal closure and budget bounds, while correct termination reasons have runtime support."
+    },
+    {
+      "line": 349,
+      "term": "property",
+      "text": "The combined assessment thus provides traceable agreement among heterogeneous verification results within the tested configuration. Its practical value is the ability to locate the affected obligation and the limits of its support. Model growth and runtime costs in Section~\\ref{sec:individual} establish the measured expense of the corresponding verification components. Extending the conclusions requires stronger termination properties, broader fault coverage, and evaluations under larger or noisy execution models."
+    },
+    {
+      "line": 354,
+      "term": "specification",
+      "text": "NuXmv, Dafny, Storm, and DejaVu provide established methods for model checking, deductive verification, probabilistic analysis, and temporal monitoring~\\cite{nuxmv,dafny,storm,dejavu}. We use these methods according to the requirements of each layer. The contribution is a specification mapping and two-stage procedure that relates their results to an implemented VQE workflow and identifies the scope of agreement."
+    },
+    {
+      "line": 360,
+      "term": "specification",
+      "text": "\\emph{Verification scope.} NuXmv is exhaustive for its encoded controller. Dafny proves kernels under mathematical semantics and preconditions. Storm is exhaustive for the constructed Gaussian DTMC. Runtime checking covers observed instrumented traces, and repeated executions provide statistical evidence. The framework relates these scoped results through specification mappings. Establishing a formal refinement from every model to the Python program remains future work."
+    },
+    {
+      "line": 364,
+      "term": "specification",
+      "text": "\\emph{Generality and observability.} The two-stage evaluation uses a small two-qubit benchmark with a fixed finite grid, ideal statistics, and an exact-energy stopping oracle. Its target, optimizer, grouped measurements, and finite budget define the evaluated boundary. The hardware execution and larger numeric trace demonstrate the corresponding runtime and arithmetic checks. Extending prospective agreement to those instances requires models and specifications for their configurations and observable stopping rules."
+    },
+    {
+      "line": 366,
+      "term": "property",
+      "text": "\\emph{Statistical and audit boundaries.} The P2/P3 interpretation is a post-audit reporting correction. Original marginal intervals and observations remain visible, and the sample size constrains statistical resolution. Development executions used the same seeds and are excluded from the reported sample counts. Their trajectories were already known before the recorded prospective verification, so this is an engineering evaluation rather than a blinded confirmatory study. The independent audit identified gaps in termination properties and classification of missing records. The reported scopes reflect these findings, with the experiment sources unchanged. The auditor's additional simulations support its statistical interpretation, but their saved arrays are unavailable. Their numerical summaries are therefore excluded. The reproducibility manifest also documents the unavailable scalability model exports."
+    },
+    {
+      "line": 368,
+      "term": "specification",
+      "text": "\\emph{Feedback scope.} The framework detects inconsistencies and supports revising assumptions or specifications before regenerating the verification record and running the next execution. This feedback is manual. The evaluated workflow gates execution on successful prospective results, and the fault scenarios cover the specified boundary."
+    },
+    {
+      "line": 371,
+      "term": "specification",
+      "text": "The four-layer architecture organizes VQE verification around logical, numeric, probabilistic, and runtime requirements. Its two-stage framework connects properties established prospectively with the corresponding obligations checked during concrete execution of a specified configuration. The benchmark results support logical and numeric agreement within the verified scope and statistical compatibility of Gaussian predictions with repeated finite-shot executions. Fault vectors reveal complementary detection capabilities and a limitation in classifying missing records. Model-size and timing measurements quantify the cost of the evaluated components. Together, the results demonstrate a traceable assessment of heterogeneous verification methods. Future work will strengthen termination specifications, examine additional fault locations, and extend the models and runtime checks to larger instances and hardware noise."
+    },
+    {
+      "line": 371,
+      "term": "property",
+      "text": "The four-layer architecture organizes VQE verification around logical, numeric, probabilistic, and runtime requirements. Its two-stage framework connects properties established prospectively with the corresponding obligations checked during concrete execution of a specified configuration. The benchmark results support logical and numeric agreement within the verified scope and statistical compatibility of Gaussian predictions with repeated finite-shot executions. Fault vectors reveal complementary detection capabilities and a limitation in classifying missing records. Model-size and timing measurements quantify the cost of the evaluated components. Together, the results demonstrate a traceable assessment of heterogeneous verification methods. Future work will strengthen termination specifications, examine additional fault locations, and extend the models and runtime checks to larger instances and hardware noise."
+    }
+  ],
+  "remaining_flagged_term": {
+    "term": "statistical evidence",
+    "reason": "Names the statistical inferential scope of repeated executions."
+  },
+  "scientific_qualifications_for_manual_review": [
+    {
+      "line": 80,
+      "text": "L4 & Terminal closure and declared stopping reason & NuXmv: absorbing terminals and budget bounds & No later activity, with reason checked against oracle/budget & Agreement for shared properties. Reason is checked at runtime \\\\"
+    },
+    {
+      "line": 99,
+      "text": "The project's supplied \\texttt{vqe\\_qiskit.py} directly constructs these Pauli terms and coefficients, which match the published example. The implementation uses that operator as input rather than deriving it from electronic integrals. Neither the project nor the cited two-qubit example supplies a molecular geometry, orbital basis, or fermion mapping for this operator. We therefore call it the \\emph{IBM two-qubit VQE benchmark}. Internal ``h2'' filenames are legacy identifiers. Its reference minimum eigenvalue is $E_{\\rm ref}=\\GroundEnergy$ in the operator's numerical units, and the success target is defined relative to this value."
+    },
+    {
+      "line": 201,
+      "text": "For logical verification, NuXmv evaluates the refined controller and its phase-reachability queries. Its budget terminal uses an abort label. Numeric checking uses version 2.0 of the trace checker on a two-qubit Estimator trace and an exact-estimate Heisenberg trace. Both record expectations and contributions, without raw measurement counts. These traces support checking the reported arithmetic and record structure."
+    },
+    {
+      "line": 263,
+      "text": "Stage 1 generates and checks the controller with NuXmv, verifies the numeric modules with Dafny, constructs the Gaussian kernel and DTMC, and runs Storm at the specified checkpoints. It also compiles the temporal monitor and records the results, configuration, and source hashes. Stage 2 checks that the execution uses this record, then performs \\BaselineRuns ideal-Born finite-shot runs with independently seeded count streams. It stores raw counts and all values consumed by the optimizer, checks events online, and replays the traces. Each run stops at first success or at $K=\\UpdateBound$ iterations. The ideal-energy gap defines success, as in the Gaussian model. Error closure handles online violations. No backend noise is introduced in this comparison."
+    },
+    {
+      "line": 269,
+      "text": "The supporting analysis computes two-sided score-test $p$-values at the nonzero-probability checkpoints and a normal-approximation test for P2. Holm adjustment~\\cite{holm} controls multiplicity for that family at $\\alpha=0.05$. The early zero-probability checkpoints are structurally uninformative, and P3 is derived from P2. This post-audit interpretation uses the existing observations and intervals. The comparison tests compatibility at the available sample size, without a preregistered equivalence margin."
+    },
+    {
+      "line": 294,
+      "text": "\\caption{Cumulative probability of first satisfying $E_{\\rm ideal}(z)-E_{\\rm ref}\\leq\\GapThreshold$ versus optimizer iteration. The solid staircase is Gaussian-DTMC forward propagation, circles are Storm checkpoints, and the dashed staircase summarizes \\BaselineRuns independently seeded ideal-Born finite-shot runs with \\ShotsPerGroup shots per group/candidate. The shaded region gives pointwise 95\\% Wilson intervals at each iteration. It is not a simultaneous confidence band. Both processes use the same success predicate, candidate rule, and resource configuration.}"
+    },
+    {
+      "line": 312,
+      "text": "P2 is \\PModelMean modeled iterations conditional on success versus \\PEmpiricalMean empirical iterations, with the original percentile-bootstrap interval [\\PMeanLow, \\PMeanHigh]. Table~\\ref{tab:conditional} preserves that interval, which does not contain the model mean. Marginal interval containment was the automated report's decision rule. The post-audit analysis interprets the supporting comparisons jointly: the raw P2 $p$-value is \\PMeanRawP, becoming \\PMeanAdjustedP after Holm adjustment. All informative comparisons are compatible at the family level. Thus P2 and its derived P3 result agree under the stated statistical comparison. The source report's original labels remain preserved for provenance. Statistical compatibility has the scope of this test and sample size, rather than a claim of distributional equivalence."
+    },
+    {
+      "line": 334,
+      "text": "\\caption{Fault verdict matrix for \\FaultClasses scenarios, each repeated \\FaultRepetitions times with different count streams. Every repetition within a row has the displayed vector. Colors and letters indicate A: AGREEMENT, D: DISAGREEMENT, M: ASSUMPTION\\_MISMATCH, and I: INCONCLUSIVE. ``Expected verdict'' counts the specified target-obligation result, including an inconclusive result for missing counts. ``DejaVu pass'' counts acceptance by the independent temporal replay. Missing counts are removed from a saved trace. Its L1 D reflects the checker's treatment of incomplete records and does not establish a physical ordering violation.}"
+    },
+    {
+      "line": 340,
+      "text": "Missing counts make numeric reconstruction inconclusive. The checker also records an L1 disagreement because its completeness condition treats unavailable records as missing measurements. A deleted record alone does not establish that the original execution aggregated too early. The full vector exposes this classification limitation alongside the expected target detections. The suite covers the specified fault classes at one injection boundary. Terminal-boundary faults, stale inputs, and additional injection sites require further tests."
+    },
+    {
+      "line": 366,
+      "text": "\\emph{Statistical and audit boundaries.} The P2/P3 interpretation is a post-audit reporting correction. Original marginal intervals and observations remain visible, and the sample size constrains statistical resolution. Development executions used the same seeds and are excluded from the reported sample counts. Their trajectories were already known before the recorded prospective verification, so this is an engineering evaluation rather than a blinded confirmatory study. The independent audit identified gaps in termination properties and classification of missing records. The reported scopes reflect these findings, with the experiment sources unchanged. The auditor's additional simulations support its statistical interpretation, but their saved arrays are unavailable. Their numerical summaries are therefore excluded. The reproducibility manifest also documents the unavailable scalability model exports."
+    }
+  ],
+  "semicolon_count_in_main_source": 0,
+  "note": "Occurrences and necessary qualifications are manually checked in the revision log."
+}

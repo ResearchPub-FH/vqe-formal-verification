@@ -1,0 +1,67 @@
+*** This is nuXmv 2.1.0 (compiled on Fri Nov 29 09:05:38 2024)
+*** Copyright (c) 2014-2024, Fondazione Bruno Kessler
+*** For more information on nuXmv see https://nuxmv.fbk.eu
+*** or email to <nuxmv@fbk.eu>.
+*** Please report bugs at Please report bugs to <nusmv-users@fbk.eu>
+*** (click on "Login Anonymously" to access)
+*** Alternatively write to <nuxmv@fbk.eu>.
+
+*** This version of nuXmv is linked to NuSMV 2.7.0.
+*** For more information on NuSMV see <http://nusmv.fbk.eu>
+*** or email to <nusmv-users@fbk.eu>.
+*** Copyright (C) 2010-2024, Fondazione Bruno Kessler
+
+*** This version of nuXmv is linked to the CUDD library version 2.4.1
+*** Copyright (c) 1995-2004, Regents of the University of Colorado
+
+*** This version of nuXmv is linked to the MiniSat SAT solver. 
+*** See http://minisat.se/MiniSat.html
+*** Copyright (c) 2003-2006, Niklas Een, Niklas Sorensson
+*** Copyright (c) 2007-2010, Niklas Sorensson
+
+*** This version of nuXmv is linked to MathSAT
+*** Copyright (C) 2009-2019 by Fondazione Bruno Kessler
+*** Copyright (C) 2009-2019 by University of Trento and others
+*** See http://mathsat.fbk.eu
+
+-- invariant (state = BIND -> ((params_ready & !energy_ready) & terms_done = 0))  is true
+-- invariant (state = EXECUTE_MEASURE -> ((circ_ready & params_ready) & terms_done <= NTERMS))  is true
+-- invariant (state = COMPUTE_ENERGY -> ((circ_ready & all_terms_done) & !params_ready))  is true
+-- invariant (state = CHECK_STOP -> (energy_ready & all_terms_done))  is true
+-- invariant (state = OPTIMIZER_STEP -> ((energy_ready & all_terms_done) & iter < MAX_ITERS))  is true
+-- invariant (state = ABORT -> (term_reason != NO_TERM & term_reason != DONE_CONVERGED))  is true
+-- invariant (!terminal -> term_reason = NO_TERM)  is true
+-- invariant (state = ABORT -> (!circ_ready & !params_ready))  is true
+-- invariant (state = DONE -> (energy_ready & term_reason = DONE_CONVERGED))  is true
+-- specification  G (state = S_INIT ->  X state = BIND)  is true
+-- specification  G (((state = BIND & !bind_error) & params_ready) ->  X state = EXECUTE_MEASURE)  is true
+-- specification  G (((state = EXECUTE_MEASURE & !qpu_error) & !all_terms_done) ->  X state = EXECUTE_MEASURE)  is true
+-- specification  G (((state = EXECUTE_MEASURE & !qpu_error) & all_terms_done) ->  X state = COMPUTE_ENERGY)  is true
+-- specification  G (((state = COMPUTE_ENERGY & !energy_error) & all_terms_done) ->  X state = CHECK_STOP)  is true
+-- specification  G (((state = CHECK_STOP & !converged) & iter < MAX_ITERS) ->  X state = OPTIMIZER_STEP)  is true
+-- specification  G ((state = OPTIMIZER_STEP & !optimizer_error) ->  X state = BIND)  is true
+-- specification  G (state = DONE ->  X state = DONE)  is true
+-- specification  G (state = ABORT ->  X state = ABORT)  is true
+-- specification  G (state = EXECUTE_MEASURE -> params_ready)  is true
+-- specification  G (((state = EXECUTE_MEASURE & !qpu_error) & all_terms_done) ->  X !params_ready)  is true
+-- specification  F (state = DONE | state = ABORT)  is true
+-- specification  G ((state = BIND & (bind_error | !params_ready)) ->  X (state = ABORT & term_reason = ABORT_BIND_ERROR))  is true
+-- specification  G ((state = EXECUTE_MEASURE & qpu_error) ->  X (state = ABORT & term_reason = ABORT_QPU_ERROR))  is true
+-- specification  G ((state = COMPUTE_ENERGY & (energy_error | !all_terms_done)) ->  X (state = ABORT & term_reason = ABORT_ENERGY_ERROR))  is true
+-- specification  G ((state = CHECK_STOP & converged) ->  X (state = DONE & term_reason = DONE_CONVERGED))  is true
+-- specification  G (((state = CHECK_STOP & !converged) & iter = MAX_ITERS) ->  X (state = ABORT & term_reason = ABORT_MAX_ITERS))  is true
+-- specification  G ((state = OPTIMIZER_STEP & optimizer_error) ->  X (state = ABORT & term_reason = ABORT_OPTIMIZER_ERROR))  is true
+-- specification  G (state = OPTIMIZER_STEP -> energy_ready)  is true
+-- specification  G ((state = BIND & iter > 0) -> !energy_ready)  is true
+-- specification  G ((state = OPTIMIZER_STEP & !optimizer_error) ->  X (((state = BIND & params_ready) & !energy_ready) & terms_done = 0))  is true
+-- specification  G (state = DONE -> energy_ready)  is true
+-- specification AF (state = DONE | state = ABORT)  is true
+-- specification AG (state = DONE -> AX state = DONE)  is true
+-- specification AG (state = ABORT -> AX state = ABORT)  is true
+-- specification EF (state = DONE & term_reason = DONE_CONVERGED)  is true
+-- specification EF (state = ABORT & term_reason = ABORT_BIND_ERROR)  is true
+-- specification EF (state = ABORT & term_reason = ABORT_QPU_ERROR)  is true
+-- specification EF (state = ABORT & term_reason = ABORT_ENERGY_ERROR)  is true
+-- specification EF (state = ABORT & term_reason = ABORT_OPTIMIZER_ERROR)  is true
+-- specification EF (state = ABORT & term_reason = ABORT_MAX_ITERS)  is true
+-- specification AG ((state = ABORT & term_reason = ABORT_MAX_ITERS) -> iter = MAX_ITERS)  is true

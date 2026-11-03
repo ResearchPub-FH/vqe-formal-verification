@@ -1,0 +1,229 @@
+-- ============================================================
+--  VQE Hybrid Loop — NuXmv Formal Verification Model
+--  Generated from VQE_state_machine
+-- ============================================================
+--
+--  CONSTANTS (tune to the experiment)
+--    MAX_ITERS : maximum optimiser iterations before forced stop
+--    NTERMS    : number of Pauli terms in the Hamiltonian
+--
+--  ABSTRACTION POLICY
+--    Real-valued quantities (theta, energy, gradients) are
+--    abstracted to boolean readiness flags.  The convergence
+--    test is modelled as a nondeterministic boolean so NuXmv
+--    explores both outcomes on every CHECK_STOP visit.
+-- ============================================================
+
+MODULE main
+
+-- ----------------------------------------------------------------
+-- 1. STATE VARIABLES
+-- ----------------------------------------------------------------
+
+VAR
+  -- Control state
+  state : { INIT, BIND, EXECUTE_MEASURE,
+            COMPUTE_ENERGY, CHECK_STOP,
+            OPTIMIZER_STEP, DONE };
+
+  -- Data-readiness flags (abstracted from real values)
+  circ_ready    : boolean;   -- theta bound into ansatz circuit
+  params_ready  : boolean;   -- fresh parameters available for BIND
+  energy_ready  : boolean;   -- current energy estimate is valid
+
+  -- Bounded counters
+  iter       : 0..MAX_ITERS;   -- iteration counter
+  terms_done : 0..NTERMS;      -- Pauli terms executed so far
+
+  -- Convergence oracle (nondeterministic — models unknown tol test)
+  converged : boolean;
+
+
+-- ----------------------------------------------------------------
+-- 2. DEFINITIONS
+-- ----------------------------------------------------------------
+
+DEFINE
+  MAX_ITERS := 5;   -- adjust as needed
+  NTERMS    := 3;   -- adjust as needed
+
+  all_terms_done  := (terms_done = NTERMS);
+  stop_condition  := (converged | iter = MAX_ITERS);
+
+
+-- ----------------------------------------------------------------
+-- 3. INITIAL STATE
+--
+--    circ_ready is initialised TRUE here so the INIT guard
+--    (state = INIT) is unconditional and cannot deadlock.
+-- ----------------------------------------------------------------
+
+ASSIGN
+  init(state)       := INIT;
+  init(circ_ready)  := TRUE;    -- guaranteed by system reset
+  init(params_ready):= FALSE;
+  init(energy_ready):= FALSE;
+  init(iter)        := 0;
+  init(terms_done)  := 0;
+  -- converged is left nondeterministic at init (no init() clause)
+
+
+-- ----------------------------------------------------------------
+-- 4. TRANSITION RELATION
+-- ----------------------------------------------------------------
+
+  -- ── state ──────────────────────────────────────────────────────
+  next(state) :=
+    case
+      state = INIT                                   : BIND;
+      state = BIND          & circ_ready             : EXECUTE_MEASURE;
+      state = EXECUTE_MEASURE & !all_terms_done      : EXECUTE_MEASURE;
+      state = EXECUTE_MEASURE &  all_terms_done      : COMPUTE_ENERGY;
+      state = COMPUTE_ENERGY & all_terms_done        : CHECK_STOP;
+      state = CHECK_STOP    & stop_condition         : DONE;
+      state = CHECK_STOP    & !stop_condition        : OPTIMIZER_STEP;
+      state = OPTIMIZER_STEP                         : BIND;
+      state = DONE                                   : DONE;
+      TRUE                                           : state;
+    esac;
+
+  -- ── circ_ready ─────────────────────────────────────────────────
+  --   Set TRUE by INIT (already handled above via init()).
+  --   Remains TRUE through EXECUTE_MEASURE and COMPUTE_ENERGY.
+  --   Reset is not needed — circuit stays valid until new BIND.
+  next(circ_ready) :=
+    case
+      state = INIT           : TRUE;
+      state = BIND           : TRUE;   -- binding produces ready circuit
+      TRUE                   : circ_ready;
+    esac;
+
+  -- ── params_ready ───────────────────────────────────────────────
+  --   TRUE  : after OPTIMIZER_STEP supplies new theta
+  --   FALSE : after all Pauli terms executed (params consumed)
+  next(params_ready) :=
+    case
+      state = OPTIMIZER_STEP             : TRUE;
+      state = EXECUTE_MEASURE & all_terms_done : FALSE;
+      TRUE                               : params_ready;
+    esac;
+
+  -- ── energy_ready ───────────────────────────────────────────────
+  --   TRUE  : after COMPUTE_ENERGY
+  --   FALSE : after OPTIMIZER_STEP when energy is being consumed (stale energy invalidated for new iteration)
+  next(energy_ready) :=
+    case
+      state = COMPUTE_ENERGY : TRUE;
+      state = OPTIMIZER_STEP : FALSE;
+      TRUE                   : energy_ready;
+    esac;
+
+  -- ── iter ───────────────────────────────────────────────────────
+  next(iter) :=
+    case
+      state = INIT                              : 0;
+      state = OPTIMIZER_STEP & iter < MAX_ITERS : iter + 1;
+      TRUE                                      : iter;
+    esac;
+
+  -- ── terms_done ─────────────────────────────────────────────────
+  --   Increments each EXECUTE_MEASURE self-loop.
+  --   Resets to 0 after the next iteration starts,
+  --   ready for the next VQE iteration.
+  next(terms_done) :=
+    case
+      state = INIT                              : 0;
+      state = EXECUTE_MEASURE & !all_terms_done : terms_done + 1;
+      state = BIND                              : 0;
+      TRUE                                      : terms_done;
+    esac;
+
+
+-- ----------------------------------------------------------------
+-- 5. FAIRNESS ASSUMPTIONS
+--
+--    No FAIRNESS constraint is required in this model.
+--
+--    Reason:
+--    Although 'converged' is nondeterministic, termination is still
+--    guaranteed by the bounded fallback condition 'iter = MAX_ITERS'.
+--    Therefore, even on paths where converged remains FALSE forever,
+--    the control loop eventually reaches DONE through CHECK_STOP.
+--
+--    This means the model covers both behaviors:
+--      (1) normal convergence-driven termination
+--      (2) bounded non-convergence termination at MAX_ITERS
+-- ----------------------------------------------------------------
+
+-- FAIRNESS converged (we don't need this since even VQE not converged, 
+-- it still can reach DONE when iter = MAX_ITERS.)
+
+
+-- ================================================================
+--  6. SPECIFICATIONS  
+-- ================================================================
+
+-- ── Safety ───────────────────────────────────────────────────────
+
+-- S1: No energy computation before all Pauli measurements are ready
+LTLSPEC G (state = COMPUTE_ENERGY -> terms_done = NTERMS)
+
+-- S2: No optimizer step before energy is ready
+LTLSPEC G (state = OPTIMIZER_STEP -> energy_ready)
+
+
+-- ── Liveness ─────────────────────────────────────────────────────
+
+-- L1: From BIND, EXECUTE_MEASURE is always eventually reached
+LTLSPEC G (state = BIND -> F (state = EXECUTE_MEASURE))
+
+-- L2: From EXECUTE_MEASURE, COMPUTE_ENERGY is always eventually reached
+LTLSPEC G (state = EXECUTE_MEASURE -> F (state = COMPUTE_ENERGY))
+
+-- L3: From COMPUTE_ENERGY, CHECK_STOP is always eventually reached
+LTLSPEC G (state = COMPUTE_ENERGY -> F (state = CHECK_STOP))
+
+-- L4: If not converged and under iteration limit, OPTIMIZER_STEP is reached
+LTLSPEC G ((state = CHECK_STOP & !stop_condition) -> F (state = OPTIMIZER_STEP))
+
+-- L5: After OPTIMIZER_STEP, BIND is always eventually reached
+LTLSPEC G (state = OPTIMIZER_STEP -> F (state = BIND))
+
+
+-- ── Freshness ────────────────────────────────────────────────────
+
+-- F1: Every EXECUTE_MEASURE uses fresh parameters (params_ready must hold)
+LTLSPEC G (state = EXECUTE_MEASURE -> params_ready)
+
+-- F2: Energy is not carried over into a new iteration
+--     (energy_ready is FALSE when BIND starts after first iteration)
+LTLSPEC G (state = BIND & iter > 0 -> !energy_ready)
+
+-- F3: After OPTIMIZER_STEP consumes the current energy, energy_ready is cleared
+LTLSPEC G (state = OPTIMIZER_STEP -> X(!energy_ready))
+
+-- F4: OPTIMIZER_STEP produces fresh parameters for the next iteration
+LTLSPEC G (state = OPTIMIZER_STEP -> X(params_ready))
+
+
+-- ── Control-Flow Conformance ─────────────────────────────────────
+
+-- C1: Once all Pauli terms are finished in EXECUTE_MEASURE,
+--     the next control state is COMPUTE_ENERGY
+LTLSPEC G ((state = EXECUTE_MEASURE & all_terms_done) -> X(state = COMPUTE_ENERGY))
+
+-- C2: Hybrid event ordering — OPTIMIZER_STEP only fires after measurements ready
+LTLSPEC G (state = OPTIMIZER_STEP -> terms_done = NTERMS & energy_ready)
+
+-- C3: Every new BIND starts a fresh Pauli-term accumulation
+LTLSPEC G (state = BIND -> terms_done = 0)
+
+
+-- ── Termination ──────────────────────────────────────────────────
+
+-- T1: The algorithm always eventually reaches DONE
+--     (either by convergence or by hitting MAX_ITERS)
+CTLSPEC AF (state = DONE)
+
+-- T2: If CHECK_STOP is reached with iter = MAX_ITERS, the next state is DONE
+LTLSPEC G ((state = CHECK_STOP & iter = MAX_ITERS) -> X(state = DONE))

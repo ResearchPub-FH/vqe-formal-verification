@@ -1,0 +1,23 @@
+{
+  "all_expected_fault_verdicts_observed": true,
+  "all_logical_numeric_agree": true,
+  "baseline_result_sha256": "2fbcd32c06d50e72237593a4ea4c3fa9a963230bb72ccedf8b2c613bb9997edc",
+  "baseline_runs": 400,
+  "checked_at": "2026-10-05T23:20:31.992125+00:00",
+  "dejavu_baseline_passed": 400,
+  "environment_snapshot_after_execution": {
+    "numpy": "2.5.3",
+    "platform": "macOS-26.6.2-arm64-arm-64bit-Mach-O",
+    "python": "3.14.6 (main, Jun 10 2026, 10:03:53) [Clang 21.0.0 (clang-2100.0.123.102)]",
+    "python_executable": "/opt/homebrew/opt/python@3.14/bin/python3.14"
+  },
+  "fault_result_sha256": "d19c61e6c7858b52da7bd9fc321d5cfd2d87a0b2bb69d3a4c99709d7d1a703fe",
+  "fault_tests": 50,
+  "online_replay_agreement": true,
+  "pre_execution_digest": "b3de315ae48c909ca80e275fafde44deb567ec68cad3b0de366e93a93c53c3ca",
+  "result_sha256": "961b437a104a5582ce7b0219846c33cdad4c916fdc8cc44b36e9ebaa1c3da292",
+  "status": "COMPLETE",
+  "unit_test_command": "python3 -m unittest discover -s tests -v",
+  "unit_test_evidence": "Executed before this final run; 19 tests passed. This audit did not repeat them.",
+  "unit_tests_passed": 19
+}

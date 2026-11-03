@@ -1,0 +1,416 @@
+-- ============================================================================
+-- VQE Hybrid Loop - Refined nuXmv Model with ABORT Handling
+-- ============================================================================
+--
+-- This model refines the original outer-loop VQE state machine.  It keeps the
+-- same abstraction level as the workshop-paper technical section:
+--
+--   S_INIT -> BIND -> EXECUTE_MEASURE* -> COMPUTE_ENERGY -> CHECK_STOP
+--          -> DONE, ABORT, or OPTIMIZER_STEP -> BIND
+--
+-- Real-valued parameters, energies, gradients, and tolerances are abstracted
+-- into readiness flags and nondeterministic environment inputs.  DONE means
+-- successful convergence.  ABORT means a safety stop caused by binding failure,
+-- backend/measurement failure, energy aggregation failure, optimizer failure,
+-- or non-convergence at the iteration bound.
+-- ============================================================================
+
+MODULE main
+
+-- ---------------------------------------------------------------------------
+-- Constants
+-- ---------------------------------------------------------------------------
+DEFINE
+  MAX_ITERS := 20;
+  NTERMS    := 10;
+
+  all_terms_done := (terms_done = NTERMS);
+  terminal       := (state = DONE | state = ABORT);
+
+-- ---------------------------------------------------------------------------
+-- State variables
+-- ---------------------------------------------------------------------------
+VAR
+  state : {
+    S_INIT,
+    BIND,
+    EXECUTE_MEASURE,
+    COMPUTE_ENERGY,
+    CHECK_STOP,
+    OPTIMIZER_STEP,
+    DONE,
+    ABORT
+  };
+
+  -- Abstract data-readiness flags.
+  circ_ready   : boolean; -- current theta has been bound into a circuit
+  params_ready : boolean; -- fresh theta is available for binding/measurement
+  energy_ready : boolean; -- current energy estimate is valid
+
+  -- Bounded counters.
+  iter       : 0..MAX_ITERS;
+  terms_done : 0..NTERMS;
+
+  -- Nondeterministic environment inputs.  They are VARs without next()
+  -- assignments, so nuXmv explores all possible values at each step.
+  converged       : boolean; -- abstraction of abs(E_k - E_{k-1}) < tol
+  bind_error      : boolean; -- parameter binding or circuit construction failed
+  qpu_error       : boolean; -- QPU execution, timeout, or measurement extraction failed
+  energy_error    : boolean; -- classical aggregation/energy computation failed
+  optimizer_error : boolean; -- classical optimizer failed to produce next theta
+
+  -- Terminal cause.  This avoids overloading DONE with failure cases.
+  term_reason : {
+    NO_TERM,
+    DONE_CONVERGED,
+    ABORT_BIND_ERROR,
+    ABORT_QPU_ERROR,
+    ABORT_ENERGY_ERROR,
+    ABORT_OPTIMIZER_ERROR,
+    ABORT_MAX_ITERS
+  };
+
+-- ---------------------------------------------------------------------------
+-- Initial state
+-- ---------------------------------------------------------------------------
+ASSIGN
+  init(state)       := S_INIT;
+  init(circ_ready)  := FALSE;
+  init(params_ready):= TRUE;  -- theta_0 is available at startup
+  init(energy_ready):= FALSE;
+  init(iter)        := 0;
+  init(terms_done)  := 0;
+  init(term_reason) := NO_TERM;
+
+-- ---------------------------------------------------------------------------
+-- Transition relation
+-- ---------------------------------------------------------------------------
+
+  next(state) :=
+    case
+      state = S_INIT :
+        BIND;
+
+      state = BIND & (bind_error | !params_ready) :
+        ABORT;
+      state = BIND & !bind_error & params_ready :
+        EXECUTE_MEASURE;
+
+      state = EXECUTE_MEASURE & qpu_error :
+        ABORT;
+      state = EXECUTE_MEASURE & !qpu_error & !all_terms_done :
+        EXECUTE_MEASURE;
+      state = EXECUTE_MEASURE & !qpu_error & all_terms_done :
+        COMPUTE_ENERGY;
+
+      state = COMPUTE_ENERGY & (energy_error | !all_terms_done) :
+        ABORT;
+      state = COMPUTE_ENERGY & !energy_error & all_terms_done :
+        CHECK_STOP;
+
+      state = CHECK_STOP & converged :
+        DONE;
+      state = CHECK_STOP & !converged & iter = MAX_ITERS :
+        ABORT;
+      state = CHECK_STOP & !converged & iter < MAX_ITERS :
+        OPTIMIZER_STEP;
+
+      state = OPTIMIZER_STEP & optimizer_error :
+        ABORT;
+      state = OPTIMIZER_STEP & !optimizer_error & iter < MAX_ITERS :
+        BIND;
+      state = OPTIMIZER_STEP & !optimizer_error & iter = MAX_ITERS :
+        ABORT;
+
+      state = DONE  : DONE;
+      state = ABORT : ABORT;
+      TRUE          : ABORT;
+    esac;
+
+  next(term_reason) :=
+    case
+      state = CHECK_STOP & converged :
+        DONE_CONVERGED;
+      state = BIND & (bind_error | !params_ready) :
+        ABORT_BIND_ERROR;
+      state = EXECUTE_MEASURE & qpu_error :
+        ABORT_QPU_ERROR;
+      state = COMPUTE_ENERGY & (energy_error | !all_terms_done) :
+        ABORT_ENERGY_ERROR;
+      state = OPTIMIZER_STEP & optimizer_error :
+        ABORT_OPTIMIZER_ERROR;
+      state = CHECK_STOP & !converged & iter = MAX_ITERS :
+        ABORT_MAX_ITERS;
+      state = OPTIMIZER_STEP & !optimizer_error & iter = MAX_ITERS :
+        ABORT_MAX_ITERS;
+      terminal :
+        term_reason;
+      TRUE :
+        NO_TERM;
+    esac;
+
+  next(circ_ready) :=
+    case
+      state = BIND & !bind_error & params_ready :
+        TRUE;
+      state = EXECUTE_MEASURE & !qpu_error :
+        TRUE;
+      state = COMPUTE_ENERGY & !energy_error & all_terms_done :
+        TRUE;
+      state = CHECK_STOP & converged :
+        TRUE;
+      state = CHECK_STOP & !converged & iter < MAX_ITERS :
+        FALSE;
+      state = OPTIMIZER_STEP :
+        FALSE;
+      state = DONE :
+        circ_ready;
+      TRUE :
+        FALSE;
+    esac;
+
+  next(params_ready) :=
+    case
+      state = S_INIT :
+        TRUE;
+      state = BIND & !bind_error & params_ready :
+        TRUE;
+      state = EXECUTE_MEASURE & !qpu_error & !all_terms_done :
+        TRUE;
+      state = OPTIMIZER_STEP & !optimizer_error & iter < MAX_ITERS :
+        TRUE;
+      TRUE :
+        FALSE;
+    esac;
+
+  next(energy_ready) :=
+    case
+      state = COMPUTE_ENERGY & !energy_error & all_terms_done :
+        TRUE;
+      state = CHECK_STOP & converged :
+        TRUE;
+      state = CHECK_STOP & !converged & iter < MAX_ITERS :
+        TRUE;
+      state = DONE :
+        TRUE;
+      TRUE :
+        FALSE;
+    esac;
+
+  next(iter) :=
+    case
+      state = S_INIT :
+        0;
+      state = OPTIMIZER_STEP & !optimizer_error & iter < MAX_ITERS :
+        iter + 1;
+      TRUE :
+        iter;
+    esac;
+
+  next(terms_done) :=
+    case
+      state = S_INIT :
+        0;
+      state = BIND & !bind_error & params_ready :
+        0;
+      state = EXECUTE_MEASURE & !qpu_error & !all_terms_done :
+        terms_done + 1;
+      state = OPTIMIZER_STEP & !optimizer_error & iter < MAX_ITERS :
+        0;
+      TRUE :
+        terms_done;
+    esac;
+
+-- ===========================================================================
+-- Property suite
+-- ===========================================================================
+
+-- ---------------------------------------------------------------------------
+-- A. State invariants and terminal integrity
+-- ---------------------------------------------------------------------------
+
+-- A1: BIND begins each iteration with fresh parameters, no stale energy, and
+--     no accumulated Pauli terms.
+INVARSPEC
+  (state = BIND) -> (params_ready & !energy_ready & terms_done = 0);
+
+-- A2: EXECUTE_MEASURE only runs with a bound circuit and fresh parameters.
+INVARSPEC
+  (state = EXECUTE_MEASURE) -> (circ_ready & params_ready & terms_done <= NTERMS);
+
+-- A3: COMPUTE_ENERGY is only entered after every Pauli term has been measured.
+INVARSPEC
+  (state = COMPUTE_ENERGY) -> (circ_ready & all_terms_done & !params_ready);
+
+-- A4: CHECK_STOP is evaluated only on a current energy value.
+INVARSPEC
+  (state = CHECK_STOP) -> (energy_ready & all_terms_done);
+
+-- A5: OPTIMIZER_STEP is never entered without a current energy and never at the
+--     iteration bound.
+INVARSPEC
+  (state = OPTIMIZER_STEP) -> (energy_ready & all_terms_done & iter < MAX_ITERS);
+
+-- A6: DONE means convergence, not max-iteration or fault termination.
+INVARSPEC
+  (state = DONE) -> (energy_ready & term_reason = DONE_CONVERGED);
+
+-- A7: ABORT always carries a non-success reason.
+INVARSPEC
+  (state = ABORT) -> (term_reason != NO_TERM & term_reason != DONE_CONVERGED);
+
+-- A8: Nonterminal states do not carry a stale terminal reason.
+INVARSPEC
+  (!terminal) -> (term_reason = NO_TERM);
+
+-- A9: ABORT disables further quantum/classical work readiness.
+INVARSPEC
+  (state = ABORT) -> (!circ_ready & !params_ready);
+
+-- ---------------------------------------------------------------------------
+-- B. Control-flow conformance
+-- ---------------------------------------------------------------------------
+
+-- B1: Initialization must enter the binding phase.
+LTLSPEC
+  G (state = S_INIT -> X (state = BIND));
+
+-- B2: Successful binding dispatches measurement.
+LTLSPEC
+  G ((state = BIND & !bind_error & params_ready) -> X (state = EXECUTE_MEASURE));
+
+-- B3: Binding failure aborts immediately.
+LTLSPEC
+  G ((state = BIND & (bind_error | !params_ready)) ->
+     X (state = ABORT & term_reason = ABORT_BIND_ERROR));
+
+-- B4: QPU/measurement failure aborts immediately.
+LTLSPEC
+  G ((state = EXECUTE_MEASURE & qpu_error) ->
+     X (state = ABORT & term_reason = ABORT_QPU_ERROR));
+
+-- B5: Measurement continues until all Pauli terms are done.
+LTLSPEC
+  G ((state = EXECUTE_MEASURE & !qpu_error & !all_terms_done) ->
+     X (state = EXECUTE_MEASURE));
+
+-- B6: Once all terms are done, the next phase is energy computation.
+LTLSPEC
+  G ((state = EXECUTE_MEASURE & !qpu_error & all_terms_done) ->
+     X (state = COMPUTE_ENERGY));
+
+-- B7: Energy computation failure aborts immediately.
+LTLSPEC
+  G ((state = COMPUTE_ENERGY & (energy_error | !all_terms_done)) ->
+     X (state = ABORT & term_reason = ABORT_ENERGY_ERROR));
+
+-- B8: Successful energy computation enters the stopping check.
+LTLSPEC
+  G ((state = COMPUTE_ENERGY & !energy_error & all_terms_done) ->
+     X (state = CHECK_STOP));
+
+-- B9: Convergence terminates successfully.
+LTLSPEC
+  G ((state = CHECK_STOP & converged) ->
+     X (state = DONE & term_reason = DONE_CONVERGED));
+
+-- B10: Non-convergence at MAX_ITERS aborts rather than reporting success.
+LTLSPEC
+  G ((state = CHECK_STOP & !converged & iter = MAX_ITERS) ->
+     X (state = ABORT & term_reason = ABORT_MAX_ITERS));
+
+-- B11: Non-convergence below MAX_ITERS invokes the optimizer.
+LTLSPEC
+  G ((state = CHECK_STOP & !converged & iter < MAX_ITERS) ->
+     X (state = OPTIMIZER_STEP));
+
+-- B12: Optimizer failure aborts immediately.
+LTLSPEC
+  G ((state = OPTIMIZER_STEP & optimizer_error) ->
+     X (state = ABORT & term_reason = ABORT_OPTIMIZER_ERROR));
+
+-- B13: Successful optimizer update starts the next binding phase.
+LTLSPEC
+  G ((state = OPTIMIZER_STEP & !optimizer_error) ->
+     X (state = BIND));
+
+-- B14: Terminal states are absorbing.
+LTLSPEC
+  G (state = DONE -> X (state = DONE));
+
+LTLSPEC
+  G (state = ABORT -> X (state = ABORT));
+
+-- ---------------------------------------------------------------------------
+-- C. Data freshness and no-stale-data properties
+-- ---------------------------------------------------------------------------
+
+-- C1: Every measurement uses the current parameter vector.
+LTLSPEC
+  G (state = EXECUTE_MEASURE -> params_ready);
+
+-- C2: No optimizer step is allowed before energy is ready.
+LTLSPEC
+  G (state = OPTIMIZER_STEP -> energy_ready);
+
+-- C3: New iterations do not carry over the previous iteration's energy.
+LTLSPEC
+  G ((state = BIND & iter > 0) -> !energy_ready);
+
+-- C4: Successful optimizer updates make fresh parameters available and clear
+--     the stale energy before returning to BIND.
+LTLSPEC
+  G ((state = OPTIMIZER_STEP & !optimizer_error) ->
+     X (state = BIND & params_ready & !energy_ready & terms_done = 0));
+
+-- C5: Parameters are consumed before energy computation.
+LTLSPEC
+  G ((state = EXECUTE_MEASURE & !qpu_error & all_terms_done) ->
+     X (!params_ready));
+
+-- C6: DONE keeps the final valid energy available for return.
+LTLSPEC
+  G (state = DONE -> energy_ready);
+
+-- ---------------------------------------------------------------------------
+-- D. Bounds, termination, and reachability
+-- ---------------------------------------------------------------------------
+
+-- D1: Every execution eventually reaches a terminal state.
+LTLSPEC
+  F (state = DONE | state = ABORT);
+
+-- D2: All paths eventually terminate.
+CTLSPEC
+  AF (state = DONE | state = ABORT);
+
+-- D3: There exists a successful convergence path.
+CTLSPEC
+  EF (state = DONE & term_reason = DONE_CONVERGED);
+
+-- D4-D8: Each abort cause is reachable under the nondeterministic environment.
+CTLSPEC
+  EF (state = ABORT & term_reason = ABORT_BIND_ERROR);
+
+CTLSPEC
+  EF (state = ABORT & term_reason = ABORT_QPU_ERROR);
+
+CTLSPEC
+  EF (state = ABORT & term_reason = ABORT_ENERGY_ERROR);
+
+CTLSPEC
+  EF (state = ABORT & term_reason = ABORT_OPTIMIZER_ERROR);
+
+CTLSPEC
+  EF (state = ABORT & term_reason = ABORT_MAX_ITERS);
+
+-- D9-D10: Terminal states are absorbing in CTL as well.
+CTLSPEC
+  AG (state = DONE -> AX (state = DONE));
+
+CTLSPEC
+  AG (state = ABORT -> AX (state = ABORT));
+
+-- D11: A max-iteration abort can only occur at the bound.
+CTLSPEC
+  AG ((state = ABORT & term_reason = ABORT_MAX_ITERS) -> iter = MAX_ITERS);

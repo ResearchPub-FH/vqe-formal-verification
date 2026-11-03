@@ -1,0 +1,26 @@
+Storm 1.13.0
+
+Date: Mon Oct  5 19:07:34 2026
+Command line arguments: --explicit '/Users/rome/Desktop/Implementation of Formal Verification on VQE/2-stage verification (closed-loop)/artifacts/development-smoke-01/stage1/gaussian.tra' '/Users/rome/Desktop/Implementation of Formal Verification on VQE/2-stage verification (closed-loop)/artifacts/development-smoke-01/stage1/gaussian.lab' --prop '/Users/rome/Desktop/Implementation of Formal Verification on VQE/2-stage verification (closed-loop)/artifacts/development-smoke-01/stage1/gaussian.props' --precision 1e-12
+Current working directory: /Users/rome/Desktop/Implementation of Formal Verification on VQE/2-stage verification (closed-loop)
+
+Time for model construction: 0.001s.
+
+-------------------------------------------------------------- 
+Model type: 	DTMC (sparse)
+States: 	1024
+Transitions: 	2356
+Reward Models:  none
+State Labels: 	2 labels
+   * init -> 1 item(s)
+   * success -> 0 item(s)
+Choice Labels: 	none
+-------------------------------------------------------------- 
+
+Model checking property "P1_1": P=? [true U<=1 "success"] ...
+Result (for initial states): 0
+Time for model checking: 0.001s.
+
+Model checking property "P1_3": P=? [true U<=3 "success"] ...
+Result (for initial states): 0
+Time for model checking: 0.000s.

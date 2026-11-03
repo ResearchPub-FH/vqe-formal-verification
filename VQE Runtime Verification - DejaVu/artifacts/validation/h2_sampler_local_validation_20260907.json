@@ -1,0 +1,1006 @@
+{
+  "ansatz": {
+    "constructor": "qiskit.circuit.library.efficient_su2",
+    "display_name": "EfficientSU2",
+    "entanglement": "linear",
+    "initial_theta": [
+      -1.1068913836067251,
+      -2.193779340387185,
+      0.9483492633509023,
+      -2.6864620414936398
+    ],
+    "initial_theta_sha256": "1d0b2ef6b735c9200bcab5237f7b5a700045f4f608dcd9c2c4ca1c748937e609",
+    "num_parameters": 4,
+    "num_qubits": 2,
+    "parameter_order": [
+      "θ[0]",
+      "θ[1]",
+      "θ[2]",
+      "θ[3]"
+    ],
+    "parameterized_qpy_sha256": "e50d0a959bf33217865509317df65de0a5bd14be135b5eaa754e8929619dd475",
+    "reps": 1,
+    "su2_gates": [
+      "ry"
+    ]
+  },
+  "check_summary": {
+    "failed": 0,
+    "passed": 36,
+    "total": 36
+  },
+  "checks": [
+    {
+      "detail": "The validation API surface is pinned to the recorded Qiskit release.",
+      "expected": "2.5.2",
+      "id": "qiskit_exact_version",
+      "observed": "2.5.2",
+      "status": "PASS"
+    },
+    {
+      "detail": "The local comparison must use the finite-shot sampler mode.",
+      "expected": "qiskit-statevector-sampler",
+      "id": "statevector_sampler_mode",
+      "observed": "qiskit-statevector-sampler",
+      "status": "PASS"
+    },
+    {
+      "detail": "The validation target is the representative two-qubit H2 system.",
+      "expected": {
+        "qubits": 2,
+        "system": "h2"
+      },
+      "id": "h2_system",
+      "observed": {
+        "qubits": 2,
+        "system": "h2"
+      },
+      "status": "PASS"
+    },
+    {
+      "detail": "Every PUB must request exactly 1,024 physical shots.",
+      "expected": 1024,
+      "id": "fixed_shots_per_term",
+      "observed": 1024,
+      "status": "PASS"
+    },
+    {
+      "detail": "PUB positions are bound to YZ, ZI, ZZ, XX in that order.",
+      "expected": [
+        "YZ",
+        "ZI",
+        "ZZ",
+        "XX"
+      ],
+      "id": "fixed_term_order",
+      "observed": [
+        "YZ",
+        "ZI",
+        "ZZ",
+        "XX"
+      ],
+      "status": "PASS"
+    },
+    {
+      "detail": "The monitored evaluation maximum is exactly 50.",
+      "expected": 50,
+      "id": "fixed_evaluation_limit",
+      "observed": 50,
+      "status": "PASS"
+    },
+    {
+      "detail": "The configured worst-case physical-shot budget is exact.",
+      "expected": 204800,
+      "id": "fixed_physical_shot_budget",
+      "observed": 204800,
+      "status": "PASS"
+    },
+    {
+      "detail": "The comparable local experiment uses the explicit ask/tell policy.",
+      "expected": "ask-tell with explicit optimizer table",
+      "id": "ask_tell_optimizer_policy",
+      "observed": "ask-tell",
+      "status": "PASS"
+    },
+    {
+      "detail": "No term grouping or shared physical shots are permitted.",
+      "expected": {
+        "pubs_per_evaluation": 4,
+        "separate_pub_per_term": true
+      },
+      "id": "four_independent_pub_policy",
+      "observed": {
+        "bitstring_order": "qiskit-msb-qn-1-to-q0",
+        "dynamical_decoupling": false,
+        "gate_twirling": false,
+        "measurement_mitigation": "not-applicable-to-samplerv2",
+        "measurement_strategy": "independent-pauli-basis-v1",
+        "measurement_twirling": false,
+        "measurement_type": "classified",
+        "pec": "not-applicable-to-samplerv2",
+        "pubs_per_evaluation": 4,
+        "raw_evidence_format": "packed-bitarray-v1",
+        "separate_pub_per_term": true,
+        "zne": "not-applicable-to-samplerv2"
+      },
+      "status": "PASS"
+    },
+    {
+      "detail": "The complete one-qubit 0/1 count dictionary sums to exactly 1,024.",
+      "expected": {
+        "count_sum": 1024,
+        "num_shots": 1024
+      },
+      "id": "hadamard_1024_shot_total",
+      "observed": {
+        "count_sum": 1024,
+        "counts": {
+          "0": 517,
+          "1": 507
+        },
+        "num_shots": 1024
+      },
+      "status": "PASS"
+    },
+    {
+      "detail": "The sampled Z expectation for |+> is inside its two-sided 99% Hoeffding bound.",
+      "expected": {
+        "maximum_absolute_delta": 0.10172647691992058
+      },
+      "id": "hadamard_finite_shot_sanity",
+      "observed": 0.009765625,
+      "status": "PASS"
+    },
+    {
+      "detail": "The configured parameter dimension matches EfficientSU2 exactly.",
+      "expected": 4,
+      "id": "ansatz_parameter_count",
+      "observed": 4,
+      "status": "PASS"
+    },
+    {
+      "detail": "Four distinct circuit objects are submitted as four independent PUBs.",
+      "expected": {
+        "circuit_count": 4,
+        "distinct_object_count": 4
+      },
+      "id": "four_independent_measurement_circuits",
+      "observed": {
+        "circuit_count": 4,
+        "distinct_object_count": 4
+      },
+      "status": "PASS"
+    },
+    {
+      "detail": "X uses H, Y uses S-dagger then H, Z is direct, and I is excluded from parity.",
+      "expected": {
+        "XX": [
+          {
+            "gates": [
+              "h"
+            ],
+            "pauli": "X",
+            "qubit": 0
+          },
+          {
+            "gates": [
+              "h"
+            ],
+            "pauli": "X",
+            "qubit": 1
+          }
+        ],
+        "YZ": [
+          {
+            "gates": [],
+            "pauli": "Z",
+            "qubit": 0
+          },
+          {
+            "gates": [
+              "sdg",
+              "h"
+            ],
+            "pauli": "Y",
+            "qubit": 1
+          }
+        ],
+        "ZI": [
+          {
+            "gates": [],
+            "pauli": "Z",
+            "qubit": 1
+          }
+        ],
+        "ZZ": [
+          {
+            "gates": [],
+            "pauli": "Z",
+            "qubit": 0
+          },
+          {
+            "gates": [],
+            "pauli": "Z",
+            "qubit": 1
+          }
+        ]
+      },
+      "id": "measurement_basis_rotations",
+      "observed": {
+        "XX": [
+          {
+            "gates": [
+              "h"
+            ],
+            "pauli": "X",
+            "qubit": 0
+          },
+          {
+            "gates": [
+              "h"
+            ],
+            "pauli": "X",
+            "qubit": 1
+          }
+        ],
+        "YZ": [
+          {
+            "gates": [],
+            "pauli": "Z",
+            "qubit": 0
+          },
+          {
+            "gates": [
+              "sdg",
+              "h"
+            ],
+            "pauli": "Y",
+            "qubit": 1
+          }
+        ],
+        "ZI": [
+          {
+            "gates": [],
+            "pauli": "Z",
+            "qubit": 1
+          }
+        ],
+        "ZZ": [
+          {
+            "gates": [],
+            "pauli": "Z",
+            "qubit": 0
+          },
+          {
+            "gates": [],
+            "pauli": "Z",
+            "qubit": 1
+          }
+        ]
+      },
+      "status": "PASS"
+    },
+    {
+      "detail": "One sampler job returned one result for each independently submitted term PUB.",
+      "expected": 4,
+      "id": "sampler_returned_four_pubs",
+      "observed": 4,
+      "status": "PASS"
+    },
+    {
+      "detail": "All four raw records validate in their fixed PUB positions.",
+      "expected": 4,
+      "id": "complete_h2_raw_evidence_sequence",
+      "observed": 4,
+      "status": "PASS"
+    },
+    {
+      "detail": "Requested shots, BitArray.num_shots, and complete count sum all agree.",
+      "expected": 1024,
+      "id": "h2_t0_yz_shot_total",
+      "observed": {
+        "count_sum": 1024,
+        "observed_shots": 1024,
+        "requested_shots": 1024
+      },
+      "status": "PASS"
+    },
+    {
+      "detail": "Odd parity over non-identity positions reconstructs the archived expectation.",
+      "expected": {
+        "absolute_tolerance": 1e-12
+      },
+      "id": "h2_t0_yz_parity_reconstruction",
+      "observed": {
+        "archived_expectation": -0.001953125,
+        "negative_eigenvalue_count": 513,
+        "reconstructed_expectation": -0.001953125
+      },
+      "status": "PASS"
+    },
+    {
+      "detail": "The count-derived expectation is within the simultaneous finite-shot bound.",
+      "expected": {
+        "maximum_delta": 0.11426233973112027
+      },
+      "id": "h2_t0_yz_finite_shot_exact_comparison",
+      "observed": {
+        "absolute_delta": 0.001953125
+      },
+      "status": "PASS"
+    },
+    {
+      "detail": "Requested shots, BitArray.num_shots, and complete count sum all agree.",
+      "expected": 1024,
+      "id": "h2_t1_zi_shot_total",
+      "observed": {
+        "count_sum": 1024,
+        "observed_shots": 1024,
+        "requested_shots": 1024
+      },
+      "status": "PASS"
+    },
+    {
+      "detail": "Odd parity over non-identity positions reconstructs the archived expectation.",
+      "expected": {
+        "absolute_tolerance": 1e-12
+      },
+      "id": "h2_t1_zi_parity_reconstruction",
+      "observed": {
+        "archived_expectation": -0.107421875,
+        "negative_eigenvalue_count": 567,
+        "reconstructed_expectation": -0.107421875
+      },
+      "status": "PASS"
+    },
+    {
+      "detail": "The count-derived expectation is within the simultaneous finite-shot bound.",
+      "expected": {
+        "maximum_delta": 0.11426233973112027
+      },
+      "id": "h2_t1_zi_finite_shot_exact_comparison",
+      "observed": {
+        "absolute_delta": 0.015088876081682856
+      },
+      "status": "PASS"
+    },
+    {
+      "detail": "Requested shots, BitArray.num_shots, and complete count sum all agree.",
+      "expected": 1024,
+      "id": "h2_t2_zz_shot_total",
+      "observed": {
+        "count_sum": 1024,
+        "observed_shots": 1024,
+        "requested_shots": 1024
+      },
+      "status": "PASS"
+    },
+    {
+      "detail": "Odd parity over non-identity positions reconstructs the archived expectation.",
+      "expected": {
+        "absolute_tolerance": 1e-12
+      },
+      "id": "h2_t2_zz_parity_reconstruction",
+      "observed": {
+        "archived_expectation": 0.544921875,
+        "negative_eigenvalue_count": 233,
+        "reconstructed_expectation": 0.544921875
+      },
+      "status": "PASS"
+    },
+    {
+      "detail": "The count-derived expectation is within the simultaneous finite-shot bound.",
+      "expected": {
+        "maximum_delta": 0.11426233973112027
+      },
+      "id": "h2_t2_zz_finite_shot_exact_comparison",
+      "observed": {
+        "absolute_delta": 0.013116186348431591
+      },
+      "status": "PASS"
+    },
+    {
+      "detail": "Requested shots, BitArray.num_shots, and complete count sum all agree.",
+      "expected": 1024,
+      "id": "h2_t3_xx_shot_total",
+      "observed": {
+        "count_sum": 1024,
+        "observed_shots": 1024,
+        "requested_shots": 1024
+      },
+      "status": "PASS"
+    },
+    {
+      "detail": "Odd parity over non-identity positions reconstructs the archived expectation.",
+      "expected": {
+        "absolute_tolerance": 1e-12
+      },
+      "id": "h2_t3_xx_parity_reconstruction",
+      "observed": {
+        "archived_expectation": 0.9453125,
+        "negative_eigenvalue_count": 28,
+        "reconstructed_expectation": 0.9453125
+      },
+      "status": "PASS"
+    },
+    {
+      "detail": "The count-derived expectation is within the simultaneous finite-shot bound.",
+      "expected": {
+        "maximum_delta": 0.11426233973112027
+      },
+      "id": "h2_t3_xx_finite_shot_exact_comparison",
+      "observed": {
+        "absolute_delta": 0.0034254849598932546
+      },
+      "status": "PASS"
+    },
+    {
+      "detail": "The reconstructed H2 energy lies inside the coefficient-weighted term bound.",
+      "expected": {
+        "maximum_delta": 0.11292547035627785
+      },
+      "id": "h2_energy_finite_shot_comparison",
+      "observed": {
+        "absolute_delta": 0.00631091655850638
+      },
+      "status": "PASS"
+    },
+    {
+      "detail": "Qiskit displays two-qubit bits as q1q0 and maps the right-most Pauli character to q0.",
+      "expected": {
+        "counts": {
+          "10": 1024
+        },
+        "cross_expectation": 1.0,
+        "measured_expectation": -1.0
+      },
+      "id": "leftmost_pauli_character_is_q1",
+      "observed": {
+        "count_derived_expectation": -1.0,
+        "counts": {
+          "10": 1024
+        },
+        "cross_exact_expectation": 1.0,
+        "exact_expectation": -1.0
+      },
+      "status": "PASS"
+    },
+    {
+      "detail": "Qiskit displays two-qubit bits as q1q0 and maps the right-most Pauli character to q0.",
+      "expected": {
+        "counts": {
+          "01": 1024
+        },
+        "cross_expectation": 1.0,
+        "measured_expectation": -1.0
+      },
+      "id": "rightmost_pauli_character_is_q0",
+      "observed": {
+        "count_derived_expectation": -1.0,
+        "counts": {
+          "01": 1024
+        },
+        "cross_exact_expectation": 1.0,
+        "exact_expectation": -1.0
+      },
+      "status": "PASS"
+    },
+    {
+      "detail": "The invalid evidence was rejected by the production validator.",
+      "expected": "SamplingEvidenceError",
+      "id": "reject_corrupted_counts",
+      "observed": "count dictionary disagrees with ordered shots",
+      "status": "PASS"
+    },
+    {
+      "detail": "The invalid evidence was rejected by the production validator.",
+      "expected": "SamplingEvidenceError",
+      "id": "reject_missing_pub",
+      "observed": "received 3 PUB records; expected 4",
+      "status": "PASS"
+    },
+    {
+      "detail": "The invalid evidence was rejected by the production validator.",
+      "expected": "SamplingEvidenceError",
+      "id": "reject_wrong_term_assignment",
+      "observed": "raw evidence belongs to term 't1', not 't0'",
+      "status": "PASS"
+    },
+    {
+      "detail": "The invalid evidence was rejected by the production validator.",
+      "expected": "SamplingEvidenceError",
+      "id": "reject_wrong_shot_total",
+      "observed": "observed shots 1024 do not equal requested shots 1023",
+      "status": "PASS"
+    },
+    {
+      "detail": "The invalid evidence was rejected by the production validator.",
+      "expected": "SamplingEvidenceError",
+      "id": "reject_corrupted_packed_shots",
+      "observed": "packed BitArray data disagrees with ordered bitstrings",
+      "status": "PASS"
+    }
+  ],
+  "environment": {
+    "numpy": "2.5.3",
+    "platform": "macOS-26.6.2-arm64-arm-64bit",
+    "python_executable": "/private/tmp/vqe-dejavu-qiskit-venv-20260906/bin/python",
+    "python_implementation": "CPython",
+    "python_version": "3.12.14",
+    "qiskit": "2.5.2",
+    "qiskit_ibm_runtime": "0.49.0",
+    "qiskit_module": "/private/tmp/vqe-dejavu-qiskit-venv-20260906/lib/python3.12/site-packages/qiskit/__init__.py",
+    "scipy": "1.18.1",
+    "validated_api_calls": [
+      "qiskit.primitives.StatevectorSampler(default_shots=1024, seed=7)",
+      "StatevectorSampler.run(pubs, shots=1024)",
+      "qiskit.primitives.StatevectorEstimator(default_precision=0.0, seed=7)",
+      "StatevectorEstimator.run(pubs, precision=0.0)",
+      "qiskit.circuit.library.efficient_su2(2, ['ry'], 'linear', reps=1)"
+    ]
+  },
+  "generated_at_utc": "2026-09-08T02:24:58.994119+00:00",
+  "h2_energy": {
+    "absolute_delta": 0.00631091655850638,
+    "conservative_coefficient_weighted_bound": 0.11292547035527785,
+    "count_derived_energy": 0.2069205078125,
+    "statevector_estimator_exact_energy": 0.21323142437100637,
+    "within_bound": true
+  },
+  "h2_terms": [
+    {
+      "absolute_delta": 0.001953125,
+      "coefficient": 0.398,
+      "coefficient_integer": 3980,
+      "coefficient_scale": 10000,
+      "complete_counts": {
+        "00": 180,
+        "01": 337,
+        "10": 176,
+        "11": 331
+      },
+      "count_derived_expectation": -0.001953125,
+      "count_sum": 1024,
+      "negative_eigenvalue_count": 513,
+      "observed_bitarray_num_shots": 1024,
+      "packed_bitarray": {
+        "dtype": "uint8",
+        "encoding": "base64",
+        "packed_bytes_sha256": "99cd81d4047265715ba49522e3a3d091aba82ce079f33c5f29f465413f9edcad",
+        "shape": [
+          1024,
+          1
+        ]
+      },
+      "pauli": "YZ",
+      "pub_index": 0,
+      "pub_metadata": {
+        "circuit_metadata": {},
+        "shots": 1024
+      },
+      "raw_evidence_sha256": "fd99af16cf679d7c276e68c68e0891ef677d30624ab374057dd6b67e02a0b2d0",
+      "reconstruction_formula": "1 - 2*513/1024",
+      "requested_shots": 1024,
+      "simultaneous_hoeffding_bound": 0.11426233973012026,
+      "single_term_theoretical_standard_error": 0.03125,
+      "statevector_estimator_exact_expectation": 0.0,
+      "term_id": "t0",
+      "within_statistical_bound": true
+    },
+    {
+      "absolute_delta": 0.015088876081682856,
+      "coefficient": -0.398,
+      "coefficient_integer": -3980,
+      "coefficient_scale": 10000,
+      "complete_counts": {
+        "00": 290,
+        "01": 167,
+        "10": 66,
+        "11": 501
+      },
+      "count_derived_expectation": -0.107421875,
+      "count_sum": 1024,
+      "negative_eigenvalue_count": 567,
+      "observed_bitarray_num_shots": 1024,
+      "packed_bitarray": {
+        "dtype": "uint8",
+        "encoding": "base64",
+        "packed_bytes_sha256": "38151c2397a5e2c96dea6394f445b129c1f3349e01efb7ff5edb9930119ae13b",
+        "shape": [
+          1024,
+          1
+        ]
+      },
+      "pauli": "ZI",
+      "pub_index": 1,
+      "pub_metadata": {
+        "circuit_metadata": {},
+        "shots": 1024
+      },
+      "raw_evidence_sha256": "e11e9a859209115224692e7e0966faf75f8db543d323fc15fd3bdaf17cfb5c8e",
+      "reconstruction_formula": "1 - 2*567/1024",
+      "requested_shots": 1024,
+      "simultaneous_hoeffding_bound": 0.11426233973012026,
+      "single_term_theoretical_standard_error": 0.0310145995716729,
+      "statevector_estimator_exact_expectation": -0.12251075108168286,
+      "term_id": "t1",
+      "within_statistical_bound": true
+    },
+    {
+      "absolute_delta": 0.013116186348431591,
+      "coefficient": -0.0113,
+      "coefficient_integer": -113,
+      "coefficient_scale": 10000,
+      "complete_counts": {
+        "00": 290,
+        "01": 167,
+        "10": 66,
+        "11": 501
+      },
+      "count_derived_expectation": 0.544921875,
+      "count_sum": 1024,
+      "negative_eigenvalue_count": 233,
+      "observed_bitarray_num_shots": 1024,
+      "packed_bitarray": {
+        "dtype": "uint8",
+        "encoding": "base64",
+        "packed_bytes_sha256": "38151c2397a5e2c96dea6394f445b129c1f3349e01efb7ff5edb9930119ae13b",
+        "shape": [
+          1024,
+          1
+        ]
+      },
+      "pauli": "ZZ",
+      "pub_index": 2,
+      "pub_metadata": {
+        "circuit_metadata": {},
+        "shots": 1024
+      },
+      "raw_evidence_sha256": "f670f449bcb62e4be5899d1ab596d588d1a0324a567d1cf2bb83b90eaf6823ce",
+      "reconstruction_formula": "1 - 2*233/1024",
+      "requested_shots": 1024,
+      "simultaneous_hoeffding_bound": 0.11426233973012026,
+      "single_term_theoretical_standard_error": 0.026464575185774417,
+      "statevector_estimator_exact_expectation": 0.5318056886515684,
+      "term_id": "t2",
+      "within_statistical_bound": true
+    },
+    {
+      "absolute_delta": 0.0034254849598932546,
+      "coefficient": 0.181,
+      "coefficient_integer": 1810,
+      "coefficient_scale": 10000,
+      "complete_counts": {
+        "00": 921,
+        "01": 28,
+        "11": 75
+      },
+      "count_derived_expectation": 0.9453125,
+      "count_sum": 1024,
+      "negative_eigenvalue_count": 28,
+      "observed_bitarray_num_shots": 1024,
+      "packed_bitarray": {
+        "dtype": "uint8",
+        "encoding": "base64",
+        "packed_bytes_sha256": "574e59c23474c5b56c44784ceb35b89da6676bba53fcf5a1fbfdbdd8a0004807",
+        "shape": [
+          1024,
+          1
+        ]
+      },
+      "pauli": "XX",
+      "pub_index": 3,
+      "pub_metadata": {
+        "circuit_metadata": {},
+        "shots": 1024
+      },
+      "raw_evidence_sha256": "90d57e6f8b4487c5f7bfbe1f48620a00f9db32c43cc3e85213dfe3a8ded589a2",
+      "reconstruction_formula": "1 - 2*28/1024",
+      "requested_shots": 1024,
+      "simultaneous_hoeffding_bound": 0.11426233973012026,
+      "single_term_theoretical_standard_error": 0.010497807197500642,
+      "statevector_estimator_exact_expectation": 0.9418870150401067,
+      "term_id": "t3",
+      "within_statistical_bound": true
+    }
+  ],
+  "hadamard_preflight": {
+    "absolute_delta": 0.009765625,
+    "count_derived_z_expectation": 0.009765625,
+    "count_sum": 1024,
+    "counts": {
+      "0": 517,
+      "1": 507
+    },
+    "exact_z_expectation": 0.0,
+    "negative_eigenvalue_count": 507,
+    "observed_shots": 1024,
+    "raw_evidence_sha256": "fcf9e4ec971320d4e8427d447e3d849072d98f3d0a7d6b89af344fcfa792a256",
+    "requested_shots": 1024,
+    "statistical_bound": 0.10172647691992058,
+    "status": "PASS"
+  },
+  "inputs": {
+    "config": {
+      "convergence": {
+        "min_iterations": 10,
+        "patience": 3,
+        "tolerance": 0.005
+      },
+      "execution": {
+        "allow_optimizer_stopped": false,
+        "backend": "StatevectorSampler",
+        "max_iterations": 50,
+        "mode": "qiskit-statevector-sampler",
+        "optimizer_protocol": "ask-tell",
+        "parameter_count": 4,
+        "seed": 7,
+        "shot_budget": 204800,
+        "shots_per_term": 1024,
+        "system": "h2"
+      },
+      "hamiltonian": {
+        "coeff_scale": 10000,
+        "schema_version": 1,
+        "terms": [
+          {
+            "coeff_int": 3980,
+            "pauli": "YZ",
+            "term_id": "t0"
+          },
+          {
+            "coeff_int": -3980,
+            "pauli": "ZI",
+            "term_id": "t1"
+          },
+          {
+            "coeff_int": -113,
+            "pauli": "ZZ",
+            "term_id": "t2"
+          },
+          {
+            "coeff_int": 1810,
+            "pauli": "XX",
+            "term_id": "t3"
+          }
+        ]
+      },
+      "hamiltonian_hash": "aff67cd405a7d3381b3642ff99a5280b793c19e0b50e86eee234bca036afe3f7",
+      "monitor": {
+        "bits_per_variable": 24,
+        "timeout_seconds": 10.0
+      },
+      "numeric": {
+        "energy_abs_tolerance": 1e-12,
+        "expectation_abs_tolerance": 1e-12,
+        "parameter_lower": -3.141592653589793,
+        "parameter_upper": 3.141592653589793
+      },
+      "observability": {
+        "require_raw_counts": true
+      },
+      "optimizer": {
+        "improvement_tolerance": 0.0,
+        "initial_step": 0.4,
+        "initialization": "seeded-uniform-v1",
+        "name": "ask-tell-pattern-search-v1",
+        "step_shrink": 0.5
+      },
+      "sampler": {
+        "bitstring_order": "qiskit-msb-qn-1-to-q0",
+        "dynamical_decoupling": false,
+        "gate_twirling": false,
+        "measurement_mitigation": "not-applicable-to-samplerv2",
+        "measurement_strategy": "independent-pauli-basis-v1",
+        "measurement_twirling": false,
+        "measurement_type": "classified",
+        "pec": "not-applicable-to-samplerv2",
+        "pubs_per_evaluation": 4,
+        "raw_evidence_format": "packed-bitarray-v1",
+        "separate_pub_per_term": true,
+        "zne": "not-applicable-to-samplerv2"
+      },
+      "schema_version": 2
+    },
+    "config_hash": "c914e106ef28e4d98b25eb14b11eeb0448f71d3931f3ae11340efd2299164db7",
+    "config_path": "/Users/rome/Desktop/VQE Runtime Verification - DejaVu/configs/h2_statevector.toml",
+    "fixed_experiment": {
+      "hamiltonian_pauli_order": [
+        "YZ",
+        "ZI",
+        "ZZ",
+        "XX"
+      ],
+      "max_evaluations": 50,
+      "maximum_physical_shots": 204800,
+      "pubs_per_evaluation": 4,
+      "shots_per_term": 1024
+    }
+  },
+  "measurement_design": {
+    "basis_plans": {
+      "XX": [
+        {
+          "gates": [
+            "h"
+          ],
+          "pauli": "X",
+          "qubit": 0
+        },
+        {
+          "gates": [
+            "h"
+          ],
+          "pauli": "X",
+          "qubit": 1
+        }
+      ],
+      "YZ": [
+        {
+          "gates": [],
+          "pauli": "Z",
+          "qubit": 0
+        },
+        {
+          "gates": [
+            "sdg",
+            "h"
+          ],
+          "pauli": "Y",
+          "qubit": 1
+        }
+      ],
+      "ZI": [
+        {
+          "gates": [],
+          "pauli": "Z",
+          "qubit": 1
+        }
+      ],
+      "ZZ": [
+        {
+          "gates": [],
+          "pauli": "Z",
+          "qubit": 0
+        },
+        {
+          "gates": [],
+          "pauli": "Z",
+          "qubit": 1
+        }
+      ]
+    },
+    "bit_order": "qiskit-msb-qn-1-to-q0",
+    "circuit_operations": [
+      {
+        "cx": 1,
+        "h": 1,
+        "measure": 2,
+        "ry": 4,
+        "sdg": 1
+      },
+      {
+        "cx": 1,
+        "measure": 2,
+        "ry": 4
+      },
+      {
+        "cx": 1,
+        "measure": 2,
+        "ry": 4
+      },
+      {
+        "cx": 1,
+        "h": 2,
+        "measure": 2,
+        "ry": 4
+      }
+    ],
+    "circuit_qpy_sha256": [
+      "495caa41cc25ee27e3b911a8b7fdb4c4db1e3cecfdf96ef3b848ed6d28ebab61",
+      "3699fb1603d146f43a9a7ffc8096ae019bc2a98c3681127bd66d07bc5e29fbb0",
+      "3699fb1603d146f43a9a7ffc8096ae019bc2a98c3681127bd66d07bc5e29fbb0",
+      "88c516920a643a25e930d0cb0d9cd0a3e19a787acec7b99b1426417507da96b3"
+    ],
+    "physical_shots_for_validation_evaluation": 4096,
+    "pub_count": 4,
+    "register_name": "meas",
+    "shots_per_pub": 1024,
+    "term_order": [
+      "YZ",
+      "ZI",
+      "ZZ",
+      "XX"
+    ]
+  },
+  "negative_tests": [
+    {
+      "id": "reject_corrupted_counts",
+      "rejection_message": "count dictionary disagrees with ordered shots",
+      "rejection_type": "SamplingEvidenceError",
+      "status": "PASS"
+    },
+    {
+      "id": "reject_missing_pub",
+      "rejection_message": "received 3 PUB records; expected 4",
+      "rejection_type": "SamplingEvidenceError",
+      "status": "PASS"
+    },
+    {
+      "id": "reject_wrong_term_assignment",
+      "rejection_message": "raw evidence belongs to term 't1', not 't0'",
+      "rejection_type": "SamplingEvidenceError",
+      "status": "PASS"
+    },
+    {
+      "id": "reject_wrong_shot_total",
+      "rejection_message": "observed shots 1024 do not equal requested shots 1023",
+      "rejection_type": "SamplingEvidenceError",
+      "status": "PASS"
+    },
+    {
+      "id": "reject_corrupted_packed_shots",
+      "rejection_message": "packed BitArray data disagrees with ordered bitstrings",
+      "rejection_type": "SamplingEvidenceError",
+      "status": "PASS"
+    }
+  ],
+  "overall_status": "PASS",
+  "qiskit_ordering_verification": {
+    "cases": [
+      {
+        "count_derived_expectation": -1.0,
+        "counts": {
+          "10": 1024
+        },
+        "cross_exact_expectation": 1.0,
+        "cross_pauli": "IZ",
+        "exact_expectation": -1.0,
+        "expected_displayed_bitstring": "10",
+        "id": "leftmost_pauli_character_is_q1",
+        "interpretation": "Qiskit displays two-qubit bits as q1q0 and maps the right-most Pauli character to q0.",
+        "measured_pauli": "ZI",
+        "negative_eigenvalue_count": 1024,
+        "prepared_state": "X(q1)|00>",
+        "raw_evidence_sha256": "0c804308879f6eaabe8256b759b3036d3306ae0a192a6e466b4380d374ec2506",
+        "status": "PASS"
+      },
+      {
+        "count_derived_expectation": -1.0,
+        "counts": {
+          "01": 1024
+        },
+        "cross_exact_expectation": 1.0,
+        "cross_pauli": "ZI",
+        "exact_expectation": -1.0,
+        "expected_displayed_bitstring": "01",
+        "id": "rightmost_pauli_character_is_q0",
+        "interpretation": "Qiskit displays two-qubit bits as q1q0 and maps the right-most Pauli character to q0.",
+        "measured_pauli": "IZ",
+        "negative_eigenvalue_count": 1024,
+        "prepared_state": "X(q0)|00>",
+        "raw_evidence_sha256": "cf7e8719b3c2a9843cb8898b030e30a7a76be747dcbc0dd55c0229fa8d2043db",
+        "status": "PASS"
+      }
+    ],
+    "displayed_bitstring_rule": "two-qubit strings are displayed as q1q0",
+    "pauli_label_rule": "left-most character acts on q1; right-most acts on q0"
+  },
+  "report_type": "h2-samplerv2-local-validation",
+  "schema_version": 1,
+  "statistical_acceptance": {
+    "absolute_expectation_bound": 0.11426233973012026,
+    "family_alpha": 0.01,
+    "method": "two-sided Hoeffding inequality with a union bound",
+    "numeric_slack": 1e-12,
+    "outcome_range": [
+      -1,
+      1
+    ],
+    "shots_per_term": 1024,
+    "simultaneous_comparisons": 4,
+    "simultaneous_confidence_at_least": 0.99,
+    "solved_bound": "epsilon = sqrt(2*ln(2*m/family_alpha)/n)",
+    "tail_bound": "2*m*exp(-n*epsilon^2/2) <= family_alpha"
+  }
+}

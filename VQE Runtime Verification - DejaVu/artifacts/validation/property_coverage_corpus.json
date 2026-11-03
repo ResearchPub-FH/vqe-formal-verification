@@ -1,0 +1,1035 @@
+{
+  "fixtures": [
+    {
+      "config": "configs/h2_statevector_converging.toml",
+      "fixture": "converging",
+      "injected_exception": null,
+      "online_findings": [],
+      "online_levels": {
+        "inter_iteration": "pass",
+        "intra_iteration": "pass",
+        "run_level": "pass"
+      },
+      "online_status": "pass",
+      "replay_levels": {
+        "inter_iteration": "pass",
+        "intra_iteration": "pass",
+        "run_level": "pass"
+      },
+      "replay_status": "pass",
+      "terminal_reason": "converged",
+      "trace": "artifacts/traces/h2_statevector_sampler_converging_20261025.jsonl"
+    },
+    {
+      "config": "configs/h2_statevector.toml",
+      "fixture": "injected_failure",
+      "injected_exception": "injected backend failure: job result unavailable",
+      "online_findings": [],
+      "online_levels": {
+        "inter_iteration": "pass",
+        "intra_iteration": "pass",
+        "run_level": "pass"
+      },
+      "online_status": "pass",
+      "replay_levels": {
+        "inter_iteration": "pass",
+        "intra_iteration": "pass",
+        "run_level": "pass"
+      },
+      "replay_status": "pass",
+      "terminal_reason": "aborted",
+      "trace": "artifacts/traces/h2_statevector_sampler_injected_failure_20261025.jsonl"
+    }
+  ],
+  "per_trace_summary": {
+    "h2_ibm_marrakesh_sampler_20260907": {
+      "EXERCISED": 55,
+      "NESTED_NOT_EXERCISED": 1,
+      "NOT_APPLICABLE": 7,
+      "NOT_EXERCISED": 5
+    },
+    "h2_statevector_sampler_20260907": {
+      "EXERCISED": 55,
+      "NESTED_NOT_EXERCISED": 1,
+      "NOT_APPLICABLE": 7,
+      "NOT_EXERCISED": 5
+    },
+    "h2_statevector_sampler_converging_20261025": {
+      "EXERCISED": 54,
+      "NESTED_NOT_EXERCISED": 1,
+      "NOT_APPLICABLE": 7,
+      "NOT_EXERCISED": 6
+    },
+    "h2_statevector_sampler_injected_failure_20261025": {
+      "EXERCISED": 55,
+      "NOT_APPLICABLE": 7,
+      "NOT_EXERCISED": 6
+    }
+  },
+  "properties": {
+    "inter_askTellIntentUsesConfiguredProtocol": {
+      "exercised_by": [
+        "h2_statevector_sampler_20260907",
+        "h2_ibm_marrakesh_sampler_20260907",
+        "h2_statevector_sampler_converging_20261025",
+        "h2_statevector_sampler_injected_failure_20261025"
+      ],
+      "per_trace": {
+        "h2_ibm_marrakesh_sampler_20260907": "EXERCISED",
+        "h2_statevector_sampler_20260907": "EXERCISED",
+        "h2_statevector_sampler_converging_20261025": "EXERCISED",
+        "h2_statevector_sampler_injected_failure_20261025": "EXERCISED"
+      },
+      "status": "EXERCISED"
+    },
+    "inter_askTellProtocolConfiguredOnce": {
+      "exercised_by": [
+        "h2_statevector_sampler_20260907",
+        "h2_ibm_marrakesh_sampler_20260907",
+        "h2_statevector_sampler_converging_20261025",
+        "h2_statevector_sampler_injected_failure_20261025"
+      ],
+      "per_trace": {
+        "h2_ibm_marrakesh_sampler_20260907": "EXERCISED",
+        "h2_statevector_sampler_20260907": "EXERCISED",
+        "h2_statevector_sampler_converging_20261025": "EXERCISED",
+        "h2_statevector_sampler_injected_failure_20261025": "EXERCISED"
+      },
+      "status": "EXERCISED"
+    },
+    "inter_askTellUpdateUsesConfiguredProtocol": {
+      "exercised_by": [
+        "h2_statevector_sampler_20260907",
+        "h2_ibm_marrakesh_sampler_20260907",
+        "h2_statevector_sampler_converging_20261025",
+        "h2_statevector_sampler_injected_failure_20261025"
+      ],
+      "per_trace": {
+        "h2_ibm_marrakesh_sampler_20260907": "EXERCISED",
+        "h2_statevector_sampler_20260907": "EXERCISED",
+        "h2_statevector_sampler_converging_20261025": "EXERCISED",
+        "h2_statevector_sampler_injected_failure_20261025": "EXERCISED"
+      },
+      "status": "EXERCISED"
+    },
+    "inter_backendJobIdentityUnique": {
+      "exercised_by": [
+        "h2_statevector_sampler_20260907",
+        "h2_ibm_marrakesh_sampler_20260907",
+        "h2_statevector_sampler_converging_20261025",
+        "h2_statevector_sampler_injected_failure_20261025"
+      ],
+      "per_trace": {
+        "h2_ibm_marrakesh_sampler_20260907": "EXERCISED",
+        "h2_statevector_sampler_20260907": "EXERCISED",
+        "h2_statevector_sampler_converging_20261025": "EXERCISED",
+        "h2_statevector_sampler_injected_failure_20261025": "EXERCISED"
+      },
+      "status": "EXERCISED"
+    },
+    "inter_closeAfterCommittedUpdate": {
+      "exercised_by": [
+        "h2_statevector_sampler_20260907",
+        "h2_ibm_marrakesh_sampler_20260907",
+        "h2_statevector_sampler_converging_20261025",
+        "h2_statevector_sampler_injected_failure_20261025"
+      ],
+      "per_trace": {
+        "h2_ibm_marrakesh_sampler_20260907": "EXERCISED",
+        "h2_statevector_sampler_20260907": "EXERCISED",
+        "h2_statevector_sampler_converging_20261025": "EXERCISED",
+        "h2_statevector_sampler_injected_failure_20261025": "EXERCISED"
+      },
+      "status": "EXERCISED"
+    },
+    "inter_firstEvaluationIdentityUnique": {
+      "exercised_by": [
+        "h2_statevector_sampler_20260907",
+        "h2_ibm_marrakesh_sampler_20260907",
+        "h2_statevector_sampler_converging_20261025",
+        "h2_statevector_sampler_injected_failure_20261025"
+      ],
+      "per_trace": {
+        "h2_ibm_marrakesh_sampler_20260907": "EXERCISED",
+        "h2_statevector_sampler_20260907": "EXERCISED",
+        "h2_statevector_sampler_converging_20261025": "EXERCISED",
+        "h2_statevector_sampler_injected_failure_20261025": "EXERCISED"
+      },
+      "status": "EXERCISED"
+    },
+    "inter_firstIterationAfterConfiguredProtocol": {
+      "exercised_by": [
+        "h2_statevector_sampler_20260907",
+        "h2_ibm_marrakesh_sampler_20260907",
+        "h2_statevector_sampler_converging_20261025",
+        "h2_statevector_sampler_injected_failure_20261025"
+      ],
+      "per_trace": {
+        "h2_ibm_marrakesh_sampler_20260907": "EXERCISED",
+        "h2_statevector_sampler_20260907": "EXERCISED",
+        "h2_statevector_sampler_converging_20261025": "EXERCISED",
+        "h2_statevector_sampler_injected_failure_20261025": "EXERCISED"
+      },
+      "status": "EXERCISED"
+    },
+    "inter_iterationClosedOnce": {
+      "exercised_by": [
+        "h2_statevector_sampler_20260907",
+        "h2_ibm_marrakesh_sampler_20260907",
+        "h2_statevector_sampler_converging_20261025",
+        "h2_statevector_sampler_injected_failure_20261025"
+      ],
+      "per_trace": {
+        "h2_ibm_marrakesh_sampler_20260907": "EXERCISED",
+        "h2_statevector_sampler_20260907": "EXERCISED",
+        "h2_statevector_sampler_converging_20261025": "EXERCISED",
+        "h2_statevector_sampler_injected_failure_20261025": "EXERCISED"
+      },
+      "status": "EXERCISED"
+    },
+    "inter_nextAfterOptimizerUpdate": {
+      "exercised_by": [
+        "h2_statevector_sampler_20260907",
+        "h2_ibm_marrakesh_sampler_20260907",
+        "h2_statevector_sampler_converging_20261025",
+        "h2_statevector_sampler_injected_failure_20261025"
+      ],
+      "per_trace": {
+        "h2_ibm_marrakesh_sampler_20260907": "EXERCISED",
+        "h2_statevector_sampler_20260907": "EXERCISED",
+        "h2_statevector_sampler_converging_20261025": "EXERCISED",
+        "h2_statevector_sampler_injected_failure_20261025": "EXERCISED"
+      },
+      "status": "EXERCISED"
+    },
+    "inter_nextAfterPreviousClose": {
+      "exercised_by": [
+        "h2_statevector_sampler_20260907",
+        "h2_ibm_marrakesh_sampler_20260907",
+        "h2_statevector_sampler_converging_20261025",
+        "h2_statevector_sampler_injected_failure_20261025"
+      ],
+      "per_trace": {
+        "h2_ibm_marrakesh_sampler_20260907": "EXERCISED",
+        "h2_statevector_sampler_20260907": "EXERCISED",
+        "h2_statevector_sampler_converging_20261025": "EXERCISED",
+        "h2_statevector_sampler_injected_failure_20261025": "EXERCISED"
+      },
+      "status": "EXERCISED"
+    },
+    "inter_nextEvaluationIdentityUnique": {
+      "exercised_by": [
+        "h2_statevector_sampler_20260907",
+        "h2_ibm_marrakesh_sampler_20260907",
+        "h2_statevector_sampler_converging_20261025",
+        "h2_statevector_sampler_injected_failure_20261025"
+      ],
+      "per_trace": {
+        "h2_ibm_marrakesh_sampler_20260907": "EXERCISED",
+        "h2_statevector_sampler_20260907": "EXERCISED",
+        "h2_statevector_sampler_converging_20261025": "EXERCISED",
+        "h2_statevector_sampler_injected_failure_20261025": "EXERCISED"
+      },
+      "status": "EXERCISED"
+    },
+    "inter_nextIterationAfterConfiguredProtocol": {
+      "exercised_by": [
+        "h2_statevector_sampler_20260907",
+        "h2_ibm_marrakesh_sampler_20260907",
+        "h2_statevector_sampler_converging_20261025",
+        "h2_statevector_sampler_injected_failure_20261025"
+      ],
+      "per_trace": {
+        "h2_ibm_marrakesh_sampler_20260907": "EXERCISED",
+        "h2_statevector_sampler_20260907": "EXERCISED",
+        "h2_statevector_sampler_converging_20261025": "EXERCISED",
+        "h2_statevector_sampler_injected_failure_20261025": "EXERCISED"
+      },
+      "status": "EXERCISED"
+    },
+    "inter_opaqueAdvanceAfterClose": {
+      "exercised_by": [],
+      "per_trace": {
+        "h2_ibm_marrakesh_sampler_20260907": "NOT_APPLICABLE",
+        "h2_statevector_sampler_20260907": "NOT_APPLICABLE",
+        "h2_statevector_sampler_converging_20261025": "NOT_APPLICABLE",
+        "h2_statevector_sampler_injected_failure_20261025": "NOT_APPLICABLE"
+      },
+      "status": "NOT_APPLICABLE"
+    },
+    "inter_opaqueAdvanceBeforeLimit": {
+      "exercised_by": [],
+      "per_trace": {
+        "h2_ibm_marrakesh_sampler_20260907": "NOT_APPLICABLE",
+        "h2_statevector_sampler_20260907": "NOT_APPLICABLE",
+        "h2_statevector_sampler_converging_20261025": "NOT_APPLICABLE",
+        "h2_statevector_sampler_injected_failure_20261025": "NOT_APPLICABLE"
+      },
+      "status": "NOT_APPLICABLE"
+    },
+    "inter_opaqueAdvanceOnce": {
+      "exercised_by": [],
+      "per_trace": {
+        "h2_ibm_marrakesh_sampler_20260907": "NOT_APPLICABLE",
+        "h2_statevector_sampler_20260907": "NOT_APPLICABLE",
+        "h2_statevector_sampler_converging_20261025": "NOT_APPLICABLE",
+        "h2_statevector_sampler_injected_failure_20261025": "NOT_APPLICABLE"
+      },
+      "status": "NOT_APPLICABLE"
+    },
+    "inter_opaqueAdvanceUsesConfiguredProtocol": {
+      "exercised_by": [],
+      "per_trace": {
+        "h2_ibm_marrakesh_sampler_20260907": "NOT_APPLICABLE",
+        "h2_statevector_sampler_20260907": "NOT_APPLICABLE",
+        "h2_statevector_sampler_converging_20261025": "NOT_APPLICABLE",
+        "h2_statevector_sampler_injected_failure_20261025": "NOT_APPLICABLE"
+      },
+      "status": "NOT_APPLICABLE"
+    },
+    "inter_opaqueProtocolConfiguredOnce": {
+      "exercised_by": [],
+      "per_trace": {
+        "h2_ibm_marrakesh_sampler_20260907": "NOT_APPLICABLE",
+        "h2_statevector_sampler_20260907": "NOT_APPLICABLE",
+        "h2_statevector_sampler_converging_20261025": "NOT_APPLICABLE",
+        "h2_statevector_sampler_injected_failure_20261025": "NOT_APPLICABLE"
+      },
+      "status": "NOT_APPLICABLE"
+    },
+    "inter_previousEnergyIsLastCheckpoint": {
+      "exercised_by": [
+        "h2_statevector_sampler_20260907",
+        "h2_ibm_marrakesh_sampler_20260907",
+        "h2_statevector_sampler_converging_20261025",
+        "h2_statevector_sampler_injected_failure_20261025"
+      ],
+      "per_trace": {
+        "h2_ibm_marrakesh_sampler_20260907": "EXERCISED",
+        "h2_statevector_sampler_20260907": "EXERCISED",
+        "h2_statevector_sampler_converging_20261025": "EXERCISED",
+        "h2_statevector_sampler_injected_failure_20261025": "EXERCISED"
+      },
+      "status": "EXERCISED"
+    },
+    "inter_submissionIdentityUnique": {
+      "exercised_by": [
+        "h2_statevector_sampler_20260907",
+        "h2_ibm_marrakesh_sampler_20260907",
+        "h2_statevector_sampler_converging_20261025",
+        "h2_statevector_sampler_injected_failure_20261025"
+      ],
+      "per_trace": {
+        "h2_ibm_marrakesh_sampler_20260907": "EXERCISED",
+        "h2_statevector_sampler_20260907": "EXERCISED",
+        "h2_statevector_sampler_converging_20261025": "EXERCISED",
+        "h2_statevector_sampler_injected_failure_20261025": "EXERCISED"
+      },
+      "status": "EXERCISED"
+    },
+    "inter_updateAppliedOnce": {
+      "exercised_by": [
+        "h2_statevector_sampler_20260907",
+        "h2_ibm_marrakesh_sampler_20260907",
+        "h2_statevector_sampler_converging_20261025",
+        "h2_statevector_sampler_injected_failure_20261025"
+      ],
+      "per_trace": {
+        "h2_ibm_marrakesh_sampler_20260907": "EXERCISED",
+        "h2_statevector_sampler_20260907": "EXERCISED",
+        "h2_statevector_sampler_converging_20261025": "EXERCISED",
+        "h2_statevector_sampler_injected_failure_20261025": "EXERCISED"
+      },
+      "status": "EXERCISED"
+    },
+    "inter_updateIntentAfterRelease": {
+      "exercised_by": [
+        "h2_statevector_sampler_20260907",
+        "h2_ibm_marrakesh_sampler_20260907",
+        "h2_statevector_sampler_converging_20261025",
+        "h2_statevector_sampler_injected_failure_20261025"
+      ],
+      "per_trace": {
+        "h2_ibm_marrakesh_sampler_20260907": "EXERCISED",
+        "h2_statevector_sampler_20260907": "EXERCISED",
+        "h2_statevector_sampler_converging_20261025": "EXERCISED",
+        "h2_statevector_sampler_injected_failure_20261025": "EXERCISED"
+      },
+      "status": "EXERCISED"
+    },
+    "inter_updateIntentOnce": {
+      "exercised_by": [
+        "h2_statevector_sampler_20260907",
+        "h2_ibm_marrakesh_sampler_20260907",
+        "h2_statevector_sampler_converging_20261025",
+        "h2_statevector_sampler_injected_failure_20261025"
+      ],
+      "per_trace": {
+        "h2_ibm_marrakesh_sampler_20260907": "EXERCISED",
+        "h2_statevector_sampler_20260907": "EXERCISED",
+        "h2_statevector_sampler_converging_20261025": "EXERCISED",
+        "h2_statevector_sampler_injected_failure_20261025": "EXERCISED"
+      },
+      "status": "EXERCISED"
+    },
+    "inter_updateOnlyWhenNotConverged": {
+      "exercised_by": [
+        "h2_statevector_sampler_20260907",
+        "h2_ibm_marrakesh_sampler_20260907",
+        "h2_statevector_sampler_converging_20261025",
+        "h2_statevector_sampler_injected_failure_20261025"
+      ],
+      "per_trace": {
+        "h2_ibm_marrakesh_sampler_20260907": "EXERCISED",
+        "h2_statevector_sampler_20260907": "EXERCISED",
+        "h2_statevector_sampler_converging_20261025": "EXERCISED",
+        "h2_statevector_sampler_injected_failure_20261025": "EXERCISED"
+      },
+      "status": "EXERCISED"
+    },
+    "inter_updatedAfterIntent": {
+      "exercised_by": [
+        "h2_statevector_sampler_20260907",
+        "h2_ibm_marrakesh_sampler_20260907",
+        "h2_statevector_sampler_converging_20261025",
+        "h2_statevector_sampler_injected_failure_20261025"
+      ],
+      "per_trace": {
+        "h2_ibm_marrakesh_sampler_20260907": "EXERCISED",
+        "h2_statevector_sampler_20260907": "EXERCISED",
+        "h2_statevector_sampler_converging_20261025": "EXERCISED",
+        "h2_statevector_sampler_injected_failure_20261025": "EXERCISED"
+      },
+      "status": "EXERCISED"
+    },
+    "intra_abortAfterFailure": {
+      "exercised_by": [
+        "h2_statevector_sampler_injected_failure_20261025"
+      ],
+      "per_trace": {
+        "h2_ibm_marrakesh_sampler_20260907": "NOT_EXERCISED",
+        "h2_statevector_sampler_20260907": "NOT_EXERCISED",
+        "h2_statevector_sampler_converging_20261025": "NOT_EXERCISED",
+        "h2_statevector_sampler_injected_failure_20261025": "EXERCISED"
+      },
+      "status": "EXERCISED"
+    },
+    "intra_allDeclaredTermsObserved": {
+      "exercised_by": [
+        "h2_statevector_sampler_20260907",
+        "h2_ibm_marrakesh_sampler_20260907",
+        "h2_statevector_sampler_converging_20261025",
+        "h2_statevector_sampler_injected_failure_20261025"
+      ],
+      "per_trace": {
+        "h2_ibm_marrakesh_sampler_20260907": "EXERCISED",
+        "h2_statevector_sampler_20260907": "EXERCISED",
+        "h2_statevector_sampler_converging_20261025": "EXERCISED",
+        "h2_statevector_sampler_injected_failure_20261025": "EXERCISED"
+      },
+      "status": "EXERCISED"
+    },
+    "intra_bindingAfterStart": {
+      "exercised_by": [
+        "h2_statevector_sampler_20260907",
+        "h2_ibm_marrakesh_sampler_20260907",
+        "h2_statevector_sampler_converging_20261025",
+        "h2_statevector_sampler_injected_failure_20261025"
+      ],
+      "per_trace": {
+        "h2_ibm_marrakesh_sampler_20260907": "EXERCISED",
+        "h2_statevector_sampler_20260907": "EXERCISED",
+        "h2_statevector_sampler_converging_20261025": "EXERCISED",
+        "h2_statevector_sampler_injected_failure_20261025": "EXERCISED"
+      },
+      "status": "EXERCISED"
+    },
+    "intra_bindingOnce": {
+      "exercised_by": [
+        "h2_statevector_sampler_20260907",
+        "h2_ibm_marrakesh_sampler_20260907",
+        "h2_statevector_sampler_converging_20261025",
+        "h2_statevector_sampler_injected_failure_20261025"
+      ],
+      "per_trace": {
+        "h2_ibm_marrakesh_sampler_20260907": "EXERCISED",
+        "h2_statevector_sampler_20260907": "EXERCISED",
+        "h2_statevector_sampler_converging_20261025": "EXERCISED",
+        "h2_statevector_sampler_injected_failure_20261025": "EXERCISED"
+      },
+      "status": "EXERCISED"
+    },
+    "intra_closeAfterRelease": {
+      "exercised_by": [
+        "h2_statevector_sampler_20260907",
+        "h2_ibm_marrakesh_sampler_20260907",
+        "h2_statevector_sampler_converging_20261025",
+        "h2_statevector_sampler_injected_failure_20261025"
+      ],
+      "per_trace": {
+        "h2_ibm_marrakesh_sampler_20260907": "EXERCISED",
+        "h2_statevector_sampler_20260907": "EXERCISED",
+        "h2_statevector_sampler_converging_20261025": "EXERCISED",
+        "h2_statevector_sampler_injected_failure_20261025": "EXERCISED"
+      },
+      "status": "EXERCISED"
+    },
+    "intra_energyAfterSeal": {
+      "exercised_by": [
+        "h2_statevector_sampler_20260907",
+        "h2_ibm_marrakesh_sampler_20260907",
+        "h2_statevector_sampler_converging_20261025",
+        "h2_statevector_sampler_injected_failure_20261025"
+      ],
+      "per_trace": {
+        "h2_ibm_marrakesh_sampler_20260907": "EXERCISED",
+        "h2_statevector_sampler_20260907": "EXERCISED",
+        "h2_statevector_sampler_converging_20261025": "EXERCISED",
+        "h2_statevector_sampler_injected_failure_20261025": "EXERCISED"
+      },
+      "status": "EXERCISED"
+    },
+    "intra_energyOnce": {
+      "exercised_by": [
+        "h2_statevector_sampler_20260907",
+        "h2_ibm_marrakesh_sampler_20260907",
+        "h2_statevector_sampler_converging_20261025",
+        "h2_statevector_sampler_injected_failure_20261025"
+      ],
+      "per_trace": {
+        "h2_ibm_marrakesh_sampler_20260907": "EXERCISED",
+        "h2_statevector_sampler_20260907": "EXERCISED",
+        "h2_statevector_sampler_converging_20261025": "EXERCISED",
+        "h2_statevector_sampler_injected_failure_20261025": "EXERCISED"
+      },
+      "status": "EXERCISED"
+    },
+    "intra_firstCheckAfterEnergy": {
+      "exercised_by": [
+        "h2_statevector_sampler_20260907",
+        "h2_ibm_marrakesh_sampler_20260907",
+        "h2_statevector_sampler_converging_20261025",
+        "h2_statevector_sampler_injected_failure_20261025"
+      ],
+      "per_trace": {
+        "h2_ibm_marrakesh_sampler_20260907": "EXERCISED",
+        "h2_statevector_sampler_20260907": "EXERCISED",
+        "h2_statevector_sampler_converging_20261025": "EXERCISED",
+        "h2_statevector_sampler_injected_failure_20261025": "EXERCISED"
+      },
+      "status": "EXERCISED"
+    },
+    "intra_firstCheckOnce": {
+      "exercised_by": [
+        "h2_statevector_sampler_20260907",
+        "h2_ibm_marrakesh_sampler_20260907",
+        "h2_statevector_sampler_converging_20261025",
+        "h2_statevector_sampler_injected_failure_20261025"
+      ],
+      "per_trace": {
+        "h2_ibm_marrakesh_sampler_20260907": "EXERCISED",
+        "h2_statevector_sampler_20260907": "EXERCISED",
+        "h2_statevector_sampler_converging_20261025": "EXERCISED",
+        "h2_statevector_sampler_injected_failure_20261025": "EXERCISED"
+      },
+      "status": "EXERCISED"
+    },
+    "intra_nextCheckAfterEnergy": {
+      "exercised_by": [
+        "h2_statevector_sampler_20260907",
+        "h2_ibm_marrakesh_sampler_20260907",
+        "h2_statevector_sampler_converging_20261025",
+        "h2_statevector_sampler_injected_failure_20261025"
+      ],
+      "per_trace": {
+        "h2_ibm_marrakesh_sampler_20260907": "EXERCISED",
+        "h2_statevector_sampler_20260907": "EXERCISED",
+        "h2_statevector_sampler_converging_20261025": "EXERCISED",
+        "h2_statevector_sampler_injected_failure_20261025": "EXERCISED"
+      },
+      "status": "EXERCISED"
+    },
+    "intra_nextCheckOnce": {
+      "exercised_by": [
+        "h2_statevector_sampler_20260907",
+        "h2_ibm_marrakesh_sampler_20260907",
+        "h2_statevector_sampler_converging_20261025",
+        "h2_statevector_sampler_injected_failure_20261025"
+      ],
+      "per_trace": {
+        "h2_ibm_marrakesh_sampler_20260907": "EXERCISED",
+        "h2_statevector_sampler_20260907": "EXERCISED",
+        "h2_statevector_sampler_converging_20261025": "EXERCISED",
+        "h2_statevector_sampler_injected_failure_20261025": "EXERCISED"
+      },
+      "status": "EXERCISED"
+    },
+    "intra_oneSubmissionPerIteration": {
+      "exercised_by": [
+        "h2_statevector_sampler_20260907",
+        "h2_ibm_marrakesh_sampler_20260907",
+        "h2_statevector_sampler_converging_20261025",
+        "h2_statevector_sampler_injected_failure_20261025"
+      ],
+      "per_trace": {
+        "h2_ibm_marrakesh_sampler_20260907": "EXERCISED",
+        "h2_statevector_sampler_20260907": "EXERCISED",
+        "h2_statevector_sampler_converging_20261025": "EXERCISED",
+        "h2_statevector_sampler_injected_failure_20261025": "EXERCISED"
+      },
+      "status": "EXERCISED"
+    },
+    "intra_passAfterCheck": {
+      "exercised_by": [
+        "h2_statevector_sampler_20260907",
+        "h2_ibm_marrakesh_sampler_20260907",
+        "h2_statevector_sampler_converging_20261025",
+        "h2_statevector_sampler_injected_failure_20261025"
+      ],
+      "per_trace": {
+        "h2_ibm_marrakesh_sampler_20260907": "EXERCISED",
+        "h2_statevector_sampler_20260907": "EXERCISED",
+        "h2_statevector_sampler_converging_20261025": "EXERCISED",
+        "h2_statevector_sampler_injected_failure_20261025": "EXERCISED"
+      },
+      "status": "EXERCISED"
+    },
+    "intra_passOnce": {
+      "exercised_by": [
+        "h2_statevector_sampler_20260907",
+        "h2_ibm_marrakesh_sampler_20260907",
+        "h2_statevector_sampler_converging_20261025",
+        "h2_statevector_sampler_injected_failure_20261025"
+      ],
+      "per_trace": {
+        "h2_ibm_marrakesh_sampler_20260907": "EXERCISED",
+        "h2_statevector_sampler_20260907": "EXERCISED",
+        "h2_statevector_sampler_converging_20261025": "EXERCISED",
+        "h2_statevector_sampler_injected_failure_20261025": "EXERCISED"
+      },
+      "status": "EXERCISED"
+    },
+    "intra_releaseAfterPass": {
+      "exercised_by": [
+        "h2_statevector_sampler_20260907",
+        "h2_ibm_marrakesh_sampler_20260907",
+        "h2_statevector_sampler_converging_20261025",
+        "h2_statevector_sampler_injected_failure_20261025"
+      ],
+      "per_trace": {
+        "h2_ibm_marrakesh_sampler_20260907": "EXERCISED",
+        "h2_statevector_sampler_20260907": "EXERCISED",
+        "h2_statevector_sampler_converging_20261025": "EXERCISED",
+        "h2_statevector_sampler_injected_failure_20261025": "EXERCISED"
+      },
+      "status": "EXERCISED"
+    },
+    "intra_releaseOnce": {
+      "exercised_by": [
+        "h2_statevector_sampler_20260907",
+        "h2_ibm_marrakesh_sampler_20260907",
+        "h2_statevector_sampler_converging_20261025",
+        "h2_statevector_sampler_injected_failure_20261025"
+      ],
+      "per_trace": {
+        "h2_ibm_marrakesh_sampler_20260907": "EXERCISED",
+        "h2_statevector_sampler_20260907": "EXERCISED",
+        "h2_statevector_sampler_converging_20261025": "EXERCISED",
+        "h2_statevector_sampler_injected_failure_20261025": "EXERCISED"
+      },
+      "status": "EXERCISED"
+    },
+    "intra_sealAfterSubmission": {
+      "exercised_by": [
+        "h2_statevector_sampler_20260907",
+        "h2_ibm_marrakesh_sampler_20260907",
+        "h2_statevector_sampler_converging_20261025",
+        "h2_statevector_sampler_injected_failure_20261025"
+      ],
+      "per_trace": {
+        "h2_ibm_marrakesh_sampler_20260907": "EXERCISED",
+        "h2_statevector_sampler_20260907": "EXERCISED",
+        "h2_statevector_sampler_converging_20261025": "EXERCISED",
+        "h2_statevector_sampler_injected_failure_20261025": "EXERCISED"
+      },
+      "status": "EXERCISED"
+    },
+    "intra_sealOnce": {
+      "exercised_by": [
+        "h2_statevector_sampler_20260907",
+        "h2_ibm_marrakesh_sampler_20260907",
+        "h2_statevector_sampler_converging_20261025",
+        "h2_statevector_sampler_injected_failure_20261025"
+      ],
+      "per_trace": {
+        "h2_ibm_marrakesh_sampler_20260907": "EXERCISED",
+        "h2_statevector_sampler_20260907": "EXERCISED",
+        "h2_statevector_sampler_converging_20261025": "EXERCISED",
+        "h2_statevector_sampler_injected_failure_20261025": "EXERCISED"
+      },
+      "status": "EXERCISED"
+    },
+    "intra_submitAfterBinding": {
+      "exercised_by": [
+        "h2_statevector_sampler_20260907",
+        "h2_ibm_marrakesh_sampler_20260907",
+        "h2_statevector_sampler_converging_20261025",
+        "h2_statevector_sampler_injected_failure_20261025"
+      ],
+      "per_trace": {
+        "h2_ibm_marrakesh_sampler_20260907": "EXERCISED",
+        "h2_statevector_sampler_20260907": "EXERCISED",
+        "h2_statevector_sampler_converging_20261025": "EXERCISED",
+        "h2_statevector_sampler_injected_failure_20261025": "EXERCISED"
+      },
+      "status": "EXERCISED"
+    },
+    "intra_submittedAfterIntent": {
+      "exercised_by": [
+        "h2_statevector_sampler_20260907",
+        "h2_ibm_marrakesh_sampler_20260907",
+        "h2_statevector_sampler_converging_20261025",
+        "h2_statevector_sampler_injected_failure_20261025"
+      ],
+      "per_trace": {
+        "h2_ibm_marrakesh_sampler_20260907": "EXERCISED",
+        "h2_statevector_sampler_20260907": "EXERCISED",
+        "h2_statevector_sampler_converging_20261025": "EXERCISED",
+        "h2_statevector_sampler_injected_failure_20261025": "EXERCISED"
+      },
+      "status": "EXERCISED"
+    },
+    "intra_submittedOnce": {
+      "exercised_by": [
+        "h2_statevector_sampler_20260907",
+        "h2_ibm_marrakesh_sampler_20260907",
+        "h2_statevector_sampler_converging_20261025",
+        "h2_statevector_sampler_injected_failure_20261025"
+      ],
+      "per_trace": {
+        "h2_ibm_marrakesh_sampler_20260907": "EXERCISED",
+        "h2_statevector_sampler_20260907": "EXERCISED",
+        "h2_statevector_sampler_converging_20261025": "EXERCISED",
+        "h2_statevector_sampler_injected_failure_20261025": "EXERCISED"
+      },
+      "status": "EXERCISED"
+    },
+    "intra_termAfterSubmission": {
+      "exercised_by": [
+        "h2_statevector_sampler_20260907",
+        "h2_ibm_marrakesh_sampler_20260907",
+        "h2_statevector_sampler_converging_20261025",
+        "h2_statevector_sampler_injected_failure_20261025"
+      ],
+      "per_trace": {
+        "h2_ibm_marrakesh_sampler_20260907": "EXERCISED",
+        "h2_statevector_sampler_20260907": "EXERCISED",
+        "h2_statevector_sampler_converging_20261025": "EXERCISED",
+        "h2_statevector_sampler_injected_failure_20261025": "EXERCISED"
+      },
+      "status": "EXERCISED"
+    },
+    "intra_termDeclaredOnce": {
+      "exercised_by": [
+        "h2_statevector_sampler_20260907",
+        "h2_ibm_marrakesh_sampler_20260907",
+        "h2_statevector_sampler_converging_20261025",
+        "h2_statevector_sampler_injected_failure_20261025"
+      ],
+      "per_trace": {
+        "h2_ibm_marrakesh_sampler_20260907": "EXERCISED",
+        "h2_statevector_sampler_20260907": "EXERCISED",
+        "h2_statevector_sampler_converging_20261025": "EXERCISED",
+        "h2_statevector_sampler_injected_failure_20261025": "EXERCISED"
+      },
+      "status": "EXERCISED"
+    },
+    "intra_termExpectedAfterBinding": {
+      "exercised_by": [
+        "h2_statevector_sampler_20260907",
+        "h2_ibm_marrakesh_sampler_20260907",
+        "h2_statevector_sampler_converging_20261025",
+        "h2_statevector_sampler_injected_failure_20261025"
+      ],
+      "per_trace": {
+        "h2_ibm_marrakesh_sampler_20260907": "EXERCISED",
+        "h2_statevector_sampler_20260907": "EXERCISED",
+        "h2_statevector_sampler_converging_20261025": "EXERCISED",
+        "h2_statevector_sampler_injected_failure_20261025": "EXERCISED"
+      },
+      "status": "EXERCISED"
+    },
+    "intra_termObservedOnce": {
+      "exercised_by": [
+        "h2_statevector_sampler_20260907",
+        "h2_ibm_marrakesh_sampler_20260907",
+        "h2_statevector_sampler_converging_20261025",
+        "h2_statevector_sampler_injected_failure_20261025"
+      ],
+      "per_trace": {
+        "h2_ibm_marrakesh_sampler_20260907": "EXERCISED",
+        "h2_statevector_sampler_20260907": "EXERCISED",
+        "h2_statevector_sampler_converging_20261025": "EXERCISED",
+        "h2_statevector_sampler_injected_failure_20261025": "EXERCISED"
+      },
+      "status": "EXERCISED"
+    },
+    "intra_termWasDeclared": {
+      "exercised_by": [
+        "h2_statevector_sampler_20260907",
+        "h2_ibm_marrakesh_sampler_20260907",
+        "h2_statevector_sampler_converging_20261025",
+        "h2_statevector_sampler_injected_failure_20261025"
+      ],
+      "per_trace": {
+        "h2_ibm_marrakesh_sampler_20260907": "EXERCISED",
+        "h2_statevector_sampler_20260907": "EXERCISED",
+        "h2_statevector_sampler_converging_20261025": "EXERCISED",
+        "h2_statevector_sampler_injected_failure_20261025": "EXERCISED"
+      },
+      "status": "EXERCISED"
+    },
+    "run_abortAfterFailure": {
+      "exercised_by": [
+        "h2_statevector_sampler_injected_failure_20261025"
+      ],
+      "per_trace": {
+        "h2_ibm_marrakesh_sampler_20260907": "NOT_EXERCISED",
+        "h2_statevector_sampler_20260907": "NOT_EXERCISED",
+        "h2_statevector_sampler_converging_20261025": "NOT_EXERCISED",
+        "h2_statevector_sampler_injected_failure_20261025": "EXERCISED"
+      },
+      "status": "EXERCISED"
+    },
+    "run_abortIsFirstTerminal": {
+      "exercised_by": [
+        "h2_statevector_sampler_injected_failure_20261025"
+      ],
+      "per_trace": {
+        "h2_ibm_marrakesh_sampler_20260907": "NOT_EXERCISED",
+        "h2_statevector_sampler_20260907": "NOT_EXERCISED",
+        "h2_statevector_sampler_converging_20261025": "NOT_EXERCISED",
+        "h2_statevector_sampler_injected_failure_20261025": "EXERCISED"
+      },
+      "status": "EXERCISED"
+    },
+    "run_activityAfterMatchingStart": {
+      "exercised_by": [
+        "h2_statevector_sampler_20260907",
+        "h2_ibm_marrakesh_sampler_20260907",
+        "h2_statevector_sampler_converging_20261025",
+        "h2_statevector_sampler_injected_failure_20261025"
+      ],
+      "per_trace": {
+        "h2_ibm_marrakesh_sampler_20260907": "EXERCISED",
+        "h2_statevector_sampler_20260907": "EXERCISED",
+        "h2_statevector_sampler_converging_20261025": "EXERCISED",
+        "h2_statevector_sampler_injected_failure_20261025": "EXERCISED"
+      },
+      "status": "EXERCISED"
+    },
+    "run_closeAfterOptimizerProtocol": {
+      "exercised_by": [
+        "h2_statevector_sampler_20260907",
+        "h2_ibm_marrakesh_sampler_20260907",
+        "h2_statevector_sampler_converging_20261025",
+        "h2_statevector_sampler_injected_failure_20261025"
+      ],
+      "per_trace": {
+        "h2_ibm_marrakesh_sampler_20260907": "EXERCISED",
+        "h2_statevector_sampler_20260907": "EXERCISED",
+        "h2_statevector_sampler_converging_20261025": "EXERCISED",
+        "h2_statevector_sampler_injected_failure_20261025": "EXERCISED"
+      },
+      "status": "EXERCISED"
+    },
+    "run_closeAfterTerminal": {
+      "exercised_by": [
+        "h2_statevector_sampler_20260907",
+        "h2_ibm_marrakesh_sampler_20260907",
+        "h2_statevector_sampler_converging_20261025",
+        "h2_statevector_sampler_injected_failure_20261025"
+      ],
+      "per_trace": {
+        "h2_ibm_marrakesh_sampler_20260907": "EXERCISED",
+        "h2_statevector_sampler_20260907": "EXERCISED",
+        "h2_statevector_sampler_converging_20261025": "EXERCISED",
+        "h2_statevector_sampler_injected_failure_20261025": "EXERCISED"
+      },
+      "status": "EXERCISED"
+    },
+    "run_closeOnce": {
+      "exercised_by": [
+        "h2_statevector_sampler_20260907",
+        "h2_ibm_marrakesh_sampler_20260907",
+        "h2_statevector_sampler_converging_20261025",
+        "h2_statevector_sampler_injected_failure_20261025"
+      ],
+      "per_trace": {
+        "h2_ibm_marrakesh_sampler_20260907": "EXERCISED",
+        "h2_statevector_sampler_20260907": "EXERCISED",
+        "h2_statevector_sampler_converging_20261025": "EXERCISED",
+        "h2_statevector_sampler_injected_failure_20261025": "EXERCISED"
+      },
+      "status": "EXERCISED"
+    },
+    "run_convergedAfterTrueClose": {
+      "exercised_by": [
+        "h2_statevector_sampler_converging_20261025"
+      ],
+      "per_trace": {
+        "h2_ibm_marrakesh_sampler_20260907": "NOT_EXERCISED",
+        "h2_statevector_sampler_20260907": "NOT_EXERCISED",
+        "h2_statevector_sampler_converging_20261025": "EXERCISED",
+        "h2_statevector_sampler_injected_failure_20261025": "NOT_EXERCISED"
+      },
+      "status": "EXERCISED"
+    },
+    "run_convergedIsFirstTerminal": {
+      "exercised_by": [
+        "h2_statevector_sampler_converging_20261025"
+      ],
+      "per_trace": {
+        "h2_ibm_marrakesh_sampler_20260907": "NOT_EXERCISED",
+        "h2_statevector_sampler_20260907": "NOT_EXERCISED",
+        "h2_statevector_sampler_converging_20261025": "EXERCISED",
+        "h2_statevector_sampler_injected_failure_20261025": "NOT_EXERCISED"
+      },
+      "status": "EXERCISED"
+    },
+    "run_failureRequiresAbortAtClose": {
+      "exercised_by": [
+        "h2_statevector_sampler_injected_failure_20261025"
+      ],
+      "per_trace": {
+        "h2_ibm_marrakesh_sampler_20260907": "NESTED_NOT_EXERCISED",
+        "h2_statevector_sampler_20260907": "NESTED_NOT_EXERCISED",
+        "h2_statevector_sampler_converging_20261025": "NESTED_NOT_EXERCISED",
+        "h2_statevector_sampler_injected_failure_20261025": "EXERCISED"
+      },
+      "status": "EXERCISED"
+    },
+    "run_iterationLimitOnce": {
+      "exercised_by": [
+        "h2_statevector_sampler_20260907",
+        "h2_ibm_marrakesh_sampler_20260907"
+      ],
+      "per_trace": {
+        "h2_ibm_marrakesh_sampler_20260907": "EXERCISED",
+        "h2_statevector_sampler_20260907": "EXERCISED",
+        "h2_statevector_sampler_converging_20261025": "NOT_EXERCISED",
+        "h2_statevector_sampler_injected_failure_20261025": "NOT_EXERCISED"
+      },
+      "status": "EXERCISED"
+    },
+    "run_maxAfterLimitAndFalseClose": {
+      "exercised_by": [
+        "h2_statevector_sampler_20260907",
+        "h2_ibm_marrakesh_sampler_20260907"
+      ],
+      "per_trace": {
+        "h2_ibm_marrakesh_sampler_20260907": "EXERCISED",
+        "h2_statevector_sampler_20260907": "EXERCISED",
+        "h2_statevector_sampler_converging_20261025": "NOT_EXERCISED",
+        "h2_statevector_sampler_injected_failure_20261025": "NOT_EXERCISED"
+      },
+      "status": "EXERCISED"
+    },
+    "run_maxIsFirstTerminal": {
+      "exercised_by": [
+        "h2_statevector_sampler_20260907",
+        "h2_ibm_marrakesh_sampler_20260907"
+      ],
+      "per_trace": {
+        "h2_ibm_marrakesh_sampler_20260907": "EXERCISED",
+        "h2_statevector_sampler_20260907": "EXERCISED",
+        "h2_statevector_sampler_converging_20261025": "NOT_EXERCISED",
+        "h2_statevector_sampler_injected_failure_20261025": "NOT_EXERCISED"
+      },
+      "status": "EXERCISED"
+    },
+    "run_noActivityAfterClose": {
+      "exercised_by": [
+        "h2_statevector_sampler_20260907",
+        "h2_ibm_marrakesh_sampler_20260907",
+        "h2_statevector_sampler_converging_20261025",
+        "h2_statevector_sampler_injected_failure_20261025"
+      ],
+      "per_trace": {
+        "h2_ibm_marrakesh_sampler_20260907": "EXERCISED",
+        "h2_statevector_sampler_20260907": "EXERCISED",
+        "h2_statevector_sampler_converging_20261025": "EXERCISED",
+        "h2_statevector_sampler_injected_failure_20261025": "EXERCISED"
+      },
+      "status": "EXERCISED"
+    },
+    "run_noActivityAfterTerminal": {
+      "exercised_by": [
+        "h2_statevector_sampler_20260907",
+        "h2_ibm_marrakesh_sampler_20260907",
+        "h2_statevector_sampler_converging_20261025",
+        "h2_statevector_sampler_injected_failure_20261025"
+      ],
+      "per_trace": {
+        "h2_ibm_marrakesh_sampler_20260907": "EXERCISED",
+        "h2_statevector_sampler_20260907": "EXERCISED",
+        "h2_statevector_sampler_converging_20261025": "EXERCISED",
+        "h2_statevector_sampler_injected_failure_20261025": "EXERCISED"
+      },
+      "status": "EXERCISED"
+    },
+    "run_normalTerminalWithoutFailure": {
+      "exercised_by": [
+        "h2_statevector_sampler_20260907",
+        "h2_ibm_marrakesh_sampler_20260907",
+        "h2_statevector_sampler_converging_20261025"
+      ],
+      "per_trace": {
+        "h2_ibm_marrakesh_sampler_20260907": "EXERCISED",
+        "h2_statevector_sampler_20260907": "EXERCISED",
+        "h2_statevector_sampler_converging_20261025": "EXERCISED",
+        "h2_statevector_sampler_injected_failure_20261025": "NOT_EXERCISED"
+      },
+      "status": "EXERCISED"
+    },
+    "run_optimizerStopAfterFalseClose": {
+      "exercised_by": [],
+      "per_trace": {
+        "h2_ibm_marrakesh_sampler_20260907": "NOT_APPLICABLE",
+        "h2_statevector_sampler_20260907": "NOT_APPLICABLE",
+        "h2_statevector_sampler_converging_20261025": "NOT_APPLICABLE",
+        "h2_statevector_sampler_injected_failure_20261025": "NOT_APPLICABLE"
+      },
+      "status": "NOT_APPLICABLE"
+    },
+    "run_optimizerStopIsFirstTerminal": {
+      "exercised_by": [],
+      "per_trace": {
+        "h2_ibm_marrakesh_sampler_20260907": "NOT_APPLICABLE",
+        "h2_statevector_sampler_20260907": "NOT_APPLICABLE",
+        "h2_statevector_sampler_converging_20261025": "NOT_APPLICABLE",
+        "h2_statevector_sampler_injected_failure_20261025": "NOT_APPLICABLE"
+      },
+      "status": "NOT_APPLICABLE"
+    },
+    "run_startOnce": {
+      "exercised_by": [
+        "h2_statevector_sampler_20260907",
+        "h2_ibm_marrakesh_sampler_20260907",
+        "h2_statevector_sampler_converging_20261025",
+        "h2_statevector_sampler_injected_failure_20261025"
+      ],
+      "per_trace": {
+        "h2_ibm_marrakesh_sampler_20260907": "EXERCISED",
+        "h2_statevector_sampler_20260907": "EXERCISED",
+        "h2_statevector_sampler_converging_20261025": "EXERCISED",
+        "h2_statevector_sampler_injected_failure_20261025": "EXERCISED"
+      },
+      "status": "EXERCISED"
+    }
+  },
+  "summary": {
+    "EXERCISED": 61,
+    "NOT_APPLICABLE": 7
+  }
+}

@@ -1,0 +1,26 @@
+Storm 2.0.0
+
+Date: Wed Oct 28 17:06:46 2026
+Command line arguments: --explicit '/Users/rome/Desktop/Implementation of Formal Verification on VQE/output/storm-reward-validation/run/semantic-tests/ninety_percent_at_twenty/model.tra' '/Users/rome/Desktop/Implementation of Formal Verification on VQE/output/storm-reward-validation/run/semantic-tests/ninety_percent_at_twenty/model.lab' --staterew '/Users/rome/Desktop/Implementation of Formal Verification on VQE/output/storm-reward-validation/run/semantic-tests/ninety_percent_at_twenty/shots.rew' --prop '/Users/rome/Desktop/Implementation of Formal Verification on VQE/output/storm-reward-validation/run/semantic-tests/ninety_percent_at_twenty/shots.props' --precision 1e-12
+Current working directory: /Users/rome/Desktop/Implementation of Formal Verification on VQE
+
+Time for model construction: 0.000s.
+
+-------------------------------------------------------------- 
+Model type: 	DTMC (sparse)
+States: 	22
+Transitions: 	23
+Reward Models:  (default)
+State Labels: 	2 labels
+   * init -> 1 item(s)
+   * success -> 1 item(s)
+Choice Labels: 	none
+-------------------------------------------------------------- 
+
+Model checking property "P1_50": P=? [true U<=50 "success"] ...
+Result (for initial states): 0.9. Exact solution.
+Time for model checking: 0.000s.
+
+Model checking property "cost_50": R=? [C<=50] ...
+Result (for initial states): 211968. Exact solution.
+Time for model checking: 0.000s.

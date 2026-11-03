@@ -1,0 +1,47 @@
+-- Counterexample harness 3: energy is computed before all Pauli terms finish.
+--
+-- Intended bug:
+--   EXECUTE_MEASURE transitions to COMPUTE_ENERGY when only NTERMS - 1 terms
+--   are complete.
+--
+-- Expected failing property:
+--   COMPUTE_ENERGY requires terms_done = NTERMS.
+
+MODULE main
+
+DEFINE
+  NTERMS := 3;
+
+VAR
+  state : {S_INIT, BIND, EXECUTE_MEASURE, COMPUTE_ENERGY, DONE};
+  terms_done : 0..NTERMS;
+
+ASSIGN
+  init(state) := S_INIT;
+  init(terms_done) := 0;
+
+  next(state) :=
+    case
+      state = S_INIT : BIND;
+      state = BIND : EXECUTE_MEASURE;
+
+      -- BUG: leaves EXECUTE_MEASURE one term too early.
+      state = EXECUTE_MEASURE & terms_done < NTERMS - 1 : EXECUTE_MEASURE;
+      state = EXECUTE_MEASURE & terms_done = NTERMS - 1 : COMPUTE_ENERGY;
+
+      state = COMPUTE_ENERGY : DONE;
+      state = DONE : DONE;
+      TRUE : state;
+    esac;
+
+  next(terms_done) :=
+    case
+      state = S_INIT : 0;
+      state = BIND : 0;
+      state = EXECUTE_MEASURE & terms_done < NTERMS - 1 : terms_done + 1;
+      TRUE : terms_done;
+    esac;
+
+-- Must fail: energy cannot be computed from a partial Pauli-term set.
+LTLSPEC
+  G (state = COMPUTE_ENERGY -> terms_done = NTERMS);

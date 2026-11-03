@@ -1,0 +1,30 @@
+{
+  "captured_utc": "2026-09-06T19:32:23Z",
+  "command": [
+    "vqe-dejavu",
+    "run",
+    "--config",
+    "configs/h2_statevector.toml",
+    "--run-id",
+    "h2-statevector-20260906",
+    "--output",
+    "artifacts/traces/h2_statevector_20260906.jsonl",
+    "--report",
+    "artifacts/reports/h2_statevector_20260906.json"
+  ],
+  "machine": "arm64",
+  "numpy": "2.5.3",
+  "platform": "macOS-26.6.2-arm64-arm-64bit",
+  "python": "3.12.14 (main, Aug 25 2026, 13:50:33) [Clang 22.1.3 ]",
+  "qiskit": "2.5.2",
+  "qiskit_ibm_runtime": "0.49.0",
+  "scipy": "1.18.1",
+  "sha256": {
+    "artifacts/reports/h2_statevector_20260906.json": "0efee7ee668d96a35d86cc1016d037f50dd08fadf1b44c79e28d9d0f61b7a052",
+    "artifacts/reports/h2_statevector_20260906_replay.json": "fa11a2aaae7e2b3e20a0fba43ca0b63e03ab9540e7bdec6b0d30a1a2e8317bd4",
+    "artifacts/traces/h2_statevector_20260906.jsonl": "34b0ce539cae8bcc31558cda0e15451828481c3fb6446ec13c4215e102506284",
+    "configs/h2_statevector.toml": "dde394ef775259f3b2b0e341176a8bee7e20f2228698dc2e61982e839b6a2cb1",
+    "data/h2_hamiltonian.json": "8364398979d8e71d268f41d14867ad7f25a505edcd065a90cb8d58c478fa5502",
+    "src/vqe_runtime/qiskit_runner.py": "b4c40e055eae322be3aa616bb2426100dfa36708f21617c71c9cff145f1c1070"
+  }
+}

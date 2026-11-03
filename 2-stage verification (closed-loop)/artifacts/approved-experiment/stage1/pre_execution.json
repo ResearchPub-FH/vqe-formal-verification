@@ -1,0 +1,479 @@
+{
+  "artifacts": {
+    "stage1/configuration.json": "e7ee8cdab1d346598d9722f090b2f731af57093e173779f02eecdf7f97be7174",
+    "stage1/controller.smv": "55fe7eeca10ce9d75a54e2b08ec74d172e277d3e94b9c957251dc1a54e730bb2",
+    "stage1/dafny-GroupGrid.dfy.log": "4e42b7b708d3c1e5049f07230bd54981456a3de9c15a47daa906b4b7891210ed",
+    "stage1/dafny-VQELemmas.dfy.log": "6870efe142567699d97323d3a4f70bc9854da2530f4cc8774a455002f592b712",
+    "stage1/dafny-VQENumericKernels.dfy.log": "e9ba43eaf2d7050f968d0d1f6bd5adb75cfb3239a26df26eab1febab1bd852a1",
+    "stage1/gaussian-kernels.npz": "c718a020b88c97e56475386d4eef069181632543312b6f3e0a5774add82379b0",
+    "stage1/gaussian.lab": "b46cee3de3d2e6184240550ec233ab30ed85dcb8f069ce9f02e4b158819c99ba",
+    "stage1/gaussian.props": "f860e984a0f00d1ef65ec96afd48e7e67c959945cf3bd11dc0cdd5f020194cd1",
+    "stage1/gaussian.tra": "eac2165b799ee0f7d49c1af90c987e11ea77a3330ad48b2cd6518ff00472c498",
+    "stage1/monitor-build-0.log": "dfe05a50691007e7ed2e854cbb51a401231f22379786fd78d2f5f77b047de8e6",
+    "stage1/monitor-build-1.log": "42c9a7a66a5056ded655d9e621f7ca993038d49196e2bce4b9dfecdfb5c089ed",
+    "stage1/monitor-build-2.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "stage1/nuxmv.log": "583c11b51019177781a915db2b126ec6861d3ab68f726643350f9587a3592b7e",
+    "stage1/quantitative.json": "c59cac50cf3a3a01ee17768804f981b94b2b8d51ccdf1cc3b77b664902fdce9b",
+    "stage1/runtime-monitor.jar": "ba5111df1440e0152307e5c534b745a994f350bef4ab997b5c8b1421e3c09063",
+    "stage1/runtime-monitor.json": "37d0540b8e6110f2a559f1ba4594f02cda5d082d0f373c157fd2d2bf9888dfaa",
+    "stage1/storm.log": "b24ddf3ab8b08e73381ecfd456121bf7f569f09ca8db08935616b9a64de50385"
+  },
+  "assumptions": [
+    "Logical model abstracts measurements and arithmetic into counters/readiness and nondeterministic outcomes; L3's epoch abstraction is strengthened by concrete runtime identity checks.",
+    "Dafny verifies real/integer kernels, not the entire Python program or a floating-point compiler refinement. Runtime checks actual observed outputs against exact rational reconstruction within frozen tolerances.",
+    "Circuit generation, measurement-basis interpretation, event instrumentation, proof tools, and the independent checker are in the trusted base.",
+    "Measurements follow ideal Born probabilities, independent across groups/candidates and executions; within-group correlations are retained.",
+    "Gaussian selection is approximate; finite-shot ties use current/minus/plus priority, while the continuous Gaussian model has zero tie probability.",
+    "Ideal-energy success is a simulator benchmark oracle, not a hardware-observed stopping certificate.",
+    "The 50-update probability is the primary comparison. Other checkpoints and conditional means are supporting marginal comparisons, not a simultaneous-confidence claim."
+  ],
+  "configuration": {
+    "ansatz": "h-rz-y-on-both-cx01-h-rz-y-on-both-v1",
+    "bootstrap_samples": 5000,
+    "candidate_order": [
+      "current",
+      "minus",
+      "plus"
+    ],
+    "checkpoints": [
+      10,
+      20,
+      30,
+      40,
+      50
+    ],
+    "confidence_level": 0.95,
+    "coordinate_schedule": [
+      0,
+      1,
+      2,
+      3
+    ],
+    "energy_tolerance": 1e-12,
+    "environment": "ideal-born-finite-shot",
+    "expectation_tolerance": 1e-12,
+    "fault_runs": 10,
+    "gauss_hermite_points": 24,
+    "grid_size": 16,
+    "hamiltonian": {
+      "coefficient_scale": 10000,
+      "terms": {
+        "XX": 1810,
+        "YZ": 3980,
+        "ZI": -3980,
+        "ZZ": -113
+      }
+    },
+    "initial_index": [
+      3,
+      11,
+      6,
+      14
+    ],
+    "maximum_updates": 50,
+    "measurement_groups": [
+      [
+        "ZI",
+        "ZZ"
+      ],
+      [
+        "YZ"
+      ],
+      [
+        "XX"
+      ]
+    ],
+    "name": "h2-two-stage-closed-loop-v1",
+    "parameter_count": 4,
+    "qubit_order": "q1-q0",
+    "runs": 400,
+    "schema_version": 1,
+    "seed": 20260721,
+    "shots_per_group": 1024,
+    "stop_rule": "first-ideal-energy-success-or-update-budget",
+    "success_gap": 0.02
+  },
+  "configuration_digest": "03b387a2e7fede7a78b71b5a25065f673af10bbb9193103dd9895866d10706be",
+  "contracts": {
+    "L1": {
+      "assumptions": [
+        "Group events identify the actual measurement executions"
+      ],
+      "comparison": "PROVED and observed obligations satisfied yield AGREEMENT; missing raw evidence is reported explicitly",
+      "description": "Complete measurements precede candidate energy aggregation",
+      "family": "logical",
+      "pre_execution_verdict": "PROVED",
+      "stage1": "NuXmv L1: aggregate implies three completed groups",
+      "stage2": "DejaVu L1_groupsBeforeEnergy and Python unique candidate/group completeness"
+    },
+    "L2": {
+      "assumptions": [
+        "Recorded commit events correspond to actual controller boundaries"
+      ],
+      "comparison": "A premature observed commit is DISAGREEMENT",
+      "description": "All three candidate validations precede optimizer commitment",
+      "family": "logical",
+      "pre_execution_verdict": "PROVED",
+      "stage1": "NuXmv L2: selection/commit implies three ready candidates",
+      "stage2": "DejaVu L2_validationsBeforeCommit and Python certification of each numericValid event"
+    },
+    "L3": {
+      "assumptions": [
+        "Epoch/readiness abstraction preserves current-versus-stale meaning; concrete unique IDs are a runtime strengthening, not a NuXmv proof over arbitrary strings"
+      ],
+      "comparison": "Compare freshness with the declared abstraction boundary",
+      "description": "Evaluation identity and parameter provenance remain current",
+      "family": "logical",
+      "pre_execution_verdict": "PROVED",
+      "stage1": "NuXmv L3/L3_reset: current epoch and readiness reset",
+      "stage2": "DejaVu causal links and Python run/update/candidate/index/angle identity checks"
+    },
+    "L4": {
+      "assumptions": [
+        "Ideal-energy success is the benchmark oracle; the logical success flag abstracts this classification"
+      ],
+      "comparison": "Missing termination is INCONCLUSIVE; an invalid reason or later activity is DISAGREEMENT",
+      "description": "Termination is final and has the declared reason",
+      "family": "logical",
+      "pre_execution_verdict": "PROVED",
+      "stage1": "NuXmv L4/L4_budget/L4_bound",
+      "stage2": "DejaVu no activity after stop; Python terminal reason, ideal-success oracle, and update budget"
+    },
+    "N1": {
+      "assumptions": [
+        "Correct frozen Pauli/basis/bit-order mapping",
+        "Available valid raw group counts"
+      ],
+      "comparison": "Valid-input output errors: DISAGREEMENT; invalid inputs: ASSUMPTION_MISMATCH; missing counts: INCONCLUSIVE",
+      "description": "Raw counts normalize to the reported expectations",
+      "family": "numeric",
+      "pre_execution_verdict": "PROVED",
+      "stage1": "Dafny NormalizeExpectation: positive shots and valid negative counts imply normalization and [-1,1]",
+      "stage2": "Independent negative-eigenvalue parity counts and exact Fraction expectations"
+    },
+    "N2": {
+      "assumptions": [
+        "Complete uniquely identified term records",
+        "Faithfully instrumented optimizer inputs",
+        "Frozen tolerance for mathematical real versus observed floating-point values"
+      ],
+      "comparison": "Runtime checks actual outputs; Dafny does not prove the entire Python implementation",
+      "description": "Declared coefficients and measurements produce the actual energy",
+      "family": "numeric",
+      "pre_execution_verdict": "PROVED",
+      "stage1": "Dafny TermEnergyContribution, ComputeTermEnergies, AggregateEnergy and supporting lemmas",
+      "stage2": "Exact rational reconstruction; compare contributions, score, reported energy and actual optimizer inputs"
+    },
+    "N3": {
+      "assumptions": [
+        "Records enumerate unique physical executions",
+        "Declared shot allocation per group"
+      ],
+      "comparison": "Accounting errors: DISAGREEMENT; changed allocation: ASSUMPTION_MISMATCH, invalidating P1-P3 applicability",
+      "description": "Unique measurement groups determine physical shot consumption",
+      "family": "numeric",
+      "pre_execution_verdict": "PROVED",
+      "stage1": "Dafny GroupGrid.AccumulatePhysicalGroups",
+      "stage2": "Validate raw group totals and accumulate each candidate/group key once"
+    },
+    "N4": {
+      "assumptions": [
+        "Angle conversion and quantum gate implementation are in the trusted base"
+      ],
+      "comparison": "Compare observed indices, angles, selection and successor with the finite-grid transition",
+      "description": "Candidate generation and selection preserve the parameter grid",
+      "family": "numeric",
+      "pre_execution_verdict": "PROVED",
+      "stage1": "Dafny GroupGrid.WrapCandidate and SelectCandidate",
+      "stage2": "Recompute modular candidates and exact-energy argmin with declared tie priority; check bound angles"
+    },
+    "P1": {
+      "assumptions": [
+        "Same circuit, optimizer, grouping, shots, stopping predicate and update unit",
+        "Declared Gaussian approximation and numerical integration",
+        "Independent run seeds"
+      ],
+      "comparison": "Model probability inside runtime 95% Wilson interval means AGREEMENT; final bound is primary; no joint-coverage or distributional-equivalence claim",
+      "description": "Probability of first success within the update bound",
+      "family": "probabilistic",
+      "pre_execution_verdict": "ESTABLISHED_FOR_GAUSSIAN_MODEL",
+      "stage1": "Storm bounded reachability in the Gaussian DTMC at frozen checkpoints",
+      "stage2": "First-success proportions from repeated independent finite-shot executions"
+    },
+    "P2": {
+      "assumptions": [
+        "P1 assumptions",
+        "Both stages condition on success by the same bound"
+      ],
+      "comparison": "Supporting marginal comparison; fewer than two successes is INCONCLUSIVE",
+      "description": "Expected first-success update conditional on bounded success",
+      "family": "probabilistic",
+      "pre_execution_verdict": "ESTABLISHED_FOR_GAUSSIAN_MODEL",
+      "stage1": "Python propagation of the Gaussian kernel, with checkpoint CDF independently checked by Storm",
+      "stage2": "Mean first-success update over successful runs, with seeded percentile bootstrap interval"
+    },
+    "P3": {
+      "assumptions": [
+        "Fixed candidate/group allocation with no hidden evaluations or retries"
+      ],
+      "comparison": "Supporting statistical/resource comparison; scaled P2, not independent predictive evidence",
+      "description": "Expected physical shots conditional on bounded success",
+      "family": "probabilistic",
+      "pre_execution_verdict": "ESTABLISHED_FOR_GAUSSIAN_MODEL",
+      "stage1": "P2 times configured physical shots per update",
+      "stage2": "Successful-run resource consumption checked by N3 and compared with the conditional model mean"
+    }
+  },
+  "frozen_at": "2026-10-05T23:18:47.275437+00:00",
+  "logical": {
+    "command": [
+      "/Users/rome/Desktop/Implementation of Formal Verification on VQE/NuXmv Files/nuXmv/bin/nuXmv",
+      "/Users/rome/Desktop/Implementation of Formal Verification on VQE/2-stage verification (closed-loop)/artifacts/approved-experiment/stage1/controller.smv"
+    ],
+    "elapsed_seconds": 0.043918624985963106,
+    "exit_code": 0,
+    "log": "/Users/rome/Desktop/Implementation of Formal Verification on VQE/2-stage verification (closed-loop)/artifacts/approved-experiment/stage1/nuxmv.log",
+    "properties": [
+      {
+        "formula": " G (phase = aggregate -> groups = 3) ",
+        "holds": true
+      },
+      {
+        "formula": " G (phase in select union commit -> ready = 3) ",
+        "holds": true
+      },
+      {
+        "formula": " G (phase = start ->  X (ready = 0 & groups = 0)) ",
+        "holds": true
+      },
+      {
+        "formula": " G (terminal ->  X terminal) ",
+        "holds": true
+      },
+      {
+        "formula": " G (phase = done_budget -> updates = 50) ",
+        "holds": true
+      },
+      {
+        "formula": " G (phase = commit -> updates < 50) ",
+        "holds": true
+      },
+      {
+        "formula": " G (phase = commit -> energy_epoch = epoch) ",
+        "holds": true
+      }
+    ],
+    "status": "PROVED"
+  },
+  "numeric": [
+    {
+      "command": [
+        "/Users/rome/Desktop/Implementation of Formal Verification on VQE/Dafny + Python trace checker/dafny/dafny",
+        "verify",
+        "/Users/rome/Desktop/Implementation of Formal Verification on VQE/2-stage verification (closed-loop)/formal/VQELemmas.dfy",
+        "--verification-time-limit",
+        "60"
+      ],
+      "elapsed_seconds": 0.7031681659864262,
+      "exit_code": 0,
+      "log": "/Users/rome/Desktop/Implementation of Formal Verification on VQE/2-stage verification (closed-loop)/artifacts/approved-experiment/stage1/dafny-VQELemmas.dfy.log",
+      "source": "VQELemmas.dfy",
+      "status": "PROVED",
+      "verified_count": 8
+    },
+    {
+      "command": [
+        "/Users/rome/Desktop/Implementation of Formal Verification on VQE/Dafny + Python trace checker/dafny/dafny",
+        "verify",
+        "/Users/rome/Desktop/Implementation of Formal Verification on VQE/2-stage verification (closed-loop)/formal/VQENumericKernels.dfy",
+        "--verification-time-limit",
+        "60"
+      ],
+      "elapsed_seconds": 0.7633774579735473,
+      "exit_code": 0,
+      "log": "/Users/rome/Desktop/Implementation of Formal Verification on VQE/2-stage verification (closed-loop)/artifacts/approved-experiment/stage1/dafny-VQENumericKernels.dfy.log",
+      "source": "VQENumericKernels.dfy",
+      "status": "PROVED",
+      "verified_count": 11
+    },
+    {
+      "command": [
+        "/Users/rome/Desktop/Implementation of Formal Verification on VQE/Dafny + Python trace checker/dafny/dafny",
+        "verify",
+        "/Users/rome/Desktop/Implementation of Formal Verification on VQE/2-stage verification (closed-loop)/formal/GroupGrid.dfy",
+        "--verification-time-limit",
+        "60"
+      ],
+      "elapsed_seconds": 0.6013561669969931,
+      "exit_code": 0,
+      "log": "/Users/rome/Desktop/Implementation of Formal Verification on VQE/2-stage verification (closed-loop)/artifacts/approved-experiment/stage1/dafny-GroupGrid.dfy.log",
+      "source": "GroupGrid.dfy",
+      "status": "PROVED",
+      "verified_count": 5
+    }
+  ],
+  "probabilistic": {
+    "conditional_expectation_provenance": "Python forward propagation of the same Gaussian kernel's first-success distribution; checked against Storm at declared checkpoints. These are not Storm reward-query results.",
+    "dtmc_states": 262144,
+    "expected_shots_given_success": 305152.70030410803,
+    "expected_total_updates": 34.326721872124374,
+    "expected_updates_given_success": 33.111187098970056,
+    "grid_states": 65536,
+    "ground_energy": -0.7029303944595313,
+    "maximum_energy_variance": 0.000341500673828125,
+    "maximum_quadrature_row_correction": 5.089960319892839e-08,
+    "minimum_energy_variance": 0.000154816103515625,
+    "numeric_method": "24-node Gauss-Hermite (configured), normal CDF approximation, normalized rows; no certified approximation-error bound",
+    "storm": {
+      "command": [
+        "/opt/homebrew/bin/storm",
+        "--explicit",
+        "/Users/rome/Desktop/Implementation of Formal Verification on VQE/2-stage verification (closed-loop)/artifacts/approved-experiment/stage1/gaussian.tra",
+        "/Users/rome/Desktop/Implementation of Formal Verification on VQE/2-stage verification (closed-loop)/artifacts/approved-experiment/stage1/gaussian.lab",
+        "--prop",
+        "/Users/rome/Desktop/Implementation of Formal Verification on VQE/2-stage verification (closed-loop)/artifacts/approved-experiment/stage1/gaussian.props",
+        "--precision",
+        "1e-12"
+      ],
+      "elapsed_seconds": 0.4620695000048727,
+      "exit_code": 0,
+      "log": "/Users/rome/Desktop/Implementation of Formal Verification on VQE/2-stage verification (closed-loop)/artifacts/approved-experiment/stage1/storm.log",
+      "maximum_difference_from_forward_propagation": 1.1102230246251565e-16,
+      "results": {
+        "10": 0.0,
+        "20": 0.0,
+        "30": 0.3839401891440446,
+        "40": 0.7562529633830386,
+        "50": 0.92802722250063
+      },
+      "status": "ESTABLISHED_FOR_GAUSSIAN_MODEL"
+    },
+    "success_cdf": [
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      1.5363626802534903e-07,
+      0.20205752834850396,
+      0.20205778800071678,
+      0.330218259152972,
+      0.35601468849854706,
+      0.3839401555901147,
+      0.3839401891440445,
+      0.48450828205469715,
+      0.49469545908800083,
+      0.516421287434196,
+      0.516421310567393,
+      0.6155447753587134,
+      0.624910818874576,
+      0.6472290852247644,
+      0.6472291072286342,
+      0.7469439335232962,
+      0.7562529633830386,
+      0.778660222184848,
+      0.7786602436290898,
+      0.8486843990286221,
+      0.855523806720443,
+      0.8716755875650385,
+      0.8716756024657384,
+      0.9138672150468242,
+      0.9181180525780548,
+      0.9280272135484897,
+      0.9280272225006299
+    ],
+    "transitions": 755176
+  },
+  "ready_for_execution": true,
+  "runtime_monitor": {
+    "dependency_pins": {
+      "artifacts": {
+        "scala-compiler": {
+          "filename": "scala-compiler-2.12.21.jar",
+          "sha256": "fb1bb6b0d7e8e922f03b5294ef0af23b9d2bd1cde6819ecb820c57210db4548e",
+          "url": "https://repo.maven.apache.org/maven2/org/scala-lang/scala-compiler/2.12.21/scala-compiler-2.12.21.jar"
+        },
+        "scala-library": {
+          "filename": "scala-library-2.12.21.jar",
+          "sha256": "e2f4040c95cc4dd1cfeaae38bdde596e4b36933632451efa7d8564c6a359510c",
+          "url": "https://repo.maven.apache.org/maven2/org/scala-lang/scala-library/2.12.21/scala-library-2.12.21.jar"
+        },
+        "scala-reflect": {
+          "filename": "scala-reflect-2.12.21.jar",
+          "sha256": "8b91a08ba69a0564689793e732f06768d0914ec9e90fa8c3d1b55c5bf4600c14",
+          "url": "https://repo.maven.apache.org/maven2/org/scala-lang/scala-reflect/2.12.21/scala-reflect-2.12.21.jar"
+        }
+      },
+      "bundled_dejavu": {
+        "commit": "ffffac2ee04679f09ee11bf6f142d97fd6d39403",
+        "path": "src/vqe_runtime/vendor/dejavu/dejavu.jar",
+        "sha256": "99fbc72ac9ba0dbf8051691f4c15958e1694345a025840acfd344d1eb66d58e1",
+        "upstream": "https://github.com/havelund/dejavu"
+      },
+      "scala_version": "2.12.21",
+      "schema_version": 1
+    },
+    "monitor_jar": "stage1/runtime-monitor.jar",
+    "monitor_sha256": "ba5111df1440e0152307e5c534b745a994f350bef4ab997b5c8b1421e3c09063",
+    "runtime_jar": "/Users/rome/Desktop/Implementation of Formal Verification on VQE/VQE Runtime Verification - DejaVu copy/src/vqe_runtime/vendor/dejavu/dejavu.jar",
+    "runtime_sha256": "99fbc72ac9ba0dbf8051691f4c15958e1694345a025840acfd344d1eb66d58e1",
+    "semantics": "DejaVu checks temporal projections during independent saved-trace replay; Python performs online numeric/protocol gating and replay.",
+    "specification_sha256": "d87c3eb02896c85d3120850dca59d4fd40ec1e484513c8d4a58c004bc06940a5"
+  },
+  "schema_version": 1,
+  "sources": {
+    "closed_loop/__init__.py": "311ec979c8bcd9749cb9b8e48ec378c7e6d8808bc244a22f3f4f302a2d92e39a",
+    "closed_loop/checker.py": "026c79bf08b5ed97ae9ff7b8e90c8a0e0996067f9a91aa17e83e46ef8bc5d85d",
+    "closed_loop/common.py": "5bd83b0ed388ed50d3a33b47c176b28ec8572397a4f071a70c864206f34b6bb6",
+    "closed_loop/comparison.py": "5d0dabd4c267499b4444cc6edeec191250ab9ddd1f1766b254b2e01be173c977",
+    "closed_loop/execution.py": "b1e9d92aef8304ae54a38db4e6c1dfe653f4b398d710ea90d90c3d8d745c1f69",
+    "closed_loop/logical.py": "961343dfc7abbab826ac3328391df4261e6f986c8d3900e9d129cf412961faf8",
+    "closed_loop/physics.py": "7221648d1e244110f66bee84ad9bcea4aa2ffab1bcf883d9b25ebab91ce07ded",
+    "closed_loop/pre_execution.py": "4b4941ba0c3886be8ba69e3d52ba27cff41f6451ab379176d23b516e2e027bd4",
+    "closed_loop/temporal.py": "18d9038798802f445d0acafe4b084a92d452787143814b3071ec4ba95e22c16e",
+    "config/contracts.json": "58de9bd27ad128441c4f32e68384e1cba72ea9953b0016cf765d1b2df9b6f2d8",
+    "experiment.py": "2d205b16f21a2d5d0869545fb0c0f8f226903cc8c3d9a43bbce1925cf4c1dad2",
+    "formal/ClosedLoopBridge.scala": "355a40b41e7b08776b903b2076404f2f3e51c0ace397ac9fb43b985ed2043a57",
+    "formal/GroupGrid.dfy": "187eb1106370a040c9ee3d6a6b6182aa97221f4e21bdb2ab9b4a391d3cf0713d",
+    "formal/VQEContracts.dfy": "e4428d4586933323eac02da97b43481fde1750d48efce320dcbfebd69e9df185",
+    "formal/VQELemmas.dfy": "9d32075ac3868cc677ade6b16d02ce0d0ed0f6742911fe35d0d5436fb27123d7",
+    "formal/VQENumericKernels.dfy": "0e9ea0081a31036364da33f2d7075c95d4a724e27d88eb9c507c2211ec01dd23",
+    "formal/VQETypes.dfy": "fb87ff809ffcb85f5159f9159f37a02b4bcf4e0eb9ca4a1006ace5d7be09a306",
+    "formal/runtime.qtl": "d87c3eb02896c85d3120850dca59d4fd40ec1e484513c8d4a58c004bc06940a5",
+    "requirements.txt": "a83a2a4ed7ab2e022b9b8a83cfa2b8cf52cc243006c597e8b96f90a8365590ac"
+  },
+  "started_at": "2026-10-05T23:18:41.528982+00:00",
+  "tool_binaries": {
+    "dafny": {
+      "path": "/Users/rome/Desktop/Implementation of Formal Verification on VQE/Dafny + Python trace checker/dafny/dafny",
+      "sha256": "5d02cbb88300aef0726e933bd6f19754960b7409a9e0e2212a5e07edd1686012"
+    },
+    "nuXmv": {
+      "path": "/Users/rome/Desktop/Implementation of Formal Verification on VQE/NuXmv Files/nuXmv/bin/nuXmv",
+      "sha256": "ea792e7c91017476e83cc2d923f1e8de59cb309e98db87046c73c092c950dbc1"
+    },
+    "storm": {
+      "path": "/opt/homebrew/bin/storm",
+      "sha256": "a5a107c38f6ad69136f1032a7a5c10537cac37b1ce7f802747b50fd3bfd01d34"
+    }
+  }
+}

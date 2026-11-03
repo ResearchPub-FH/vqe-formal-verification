@@ -1,0 +1,40 @@
+{
+  "command": [
+    "/opt/homebrew/opt/python@3.14/bin/python3.14",
+    "tools/benchmark_overhead.py",
+    "--out-dir",
+    "artifacts/benchmarks/h2_monitor_baseline_20260906",
+    "--warmups",
+    "5",
+    "--repetitions",
+    "30",
+    "--scales",
+    "10,25,50,60,75,100,125,150,175,200",
+    "--scaling-repetitions",
+    "1",
+    "--stop-jvm-rss-mb",
+    "1800",
+    "--stop-gate-p95-seconds",
+    "2.0"
+  ],
+  "created_utc": "2026-09-06T19:22:25.507659+00:00",
+  "cwd": "/Users/rome/Desktop/VQE Runtime Verification - DejaVu",
+  "java_version": "openjdk version \"17.0.4.1\" 2022-08-12\nOpenJDK Runtime Environment Temurin-17.0.4.1+1 (build 17.0.4.1+1)\nOpenJDK 64-Bit Server VM Temurin-17.0.4.1+1 (build 17.0.4.1+1, mixed mode)",
+  "machine": "arm64",
+  "pip_freeze": [
+    "wheel==0.47.0"
+  ],
+  "platform": "macOS-26.6.2-arm64-arm-64bit-Mach-O",
+  "processor": "arm",
+  "python": "3.14.6 (main, Jun 10 2026, 10:03:53) [Clang 21.0.0 (clang-2100.0.123.102)]",
+  "python_executable": "/opt/homebrew/opt/python@3.14/bin/python3.14",
+  "schema_version": 1,
+  "sha256": {
+    "configs/h2_demo.toml": "2f17830b7f633ab70e51cce551fd3bb3b5d815c2d1247b27bba5c694b010b2e4",
+    "data/h2_hamiltonian.json": "8364398979d8e71d268f41d14867ad7f25a505edcd065a90cb8d58c478fa5502",
+    "specs/vqe_runtime.qtl": "8a9e2dd660d1eb5dbf93eae8d60b7844faf792710a8337cb9910ac553c4b7729",
+    "src/vqe_runtime/vendor/dejavu/dejavu.jar": "99fbc72ac9ba0dbf8051691f4c15958e1694345a025840acfd344d1eb66d58e1",
+    "src/vqe_runtime/vendor/dejavu/vqe-three-level-monitor.jar": "fd94121b102b5e21d161d983973c91a7e229f7f9929b48c04aafec9e5b13a4e7",
+    "tools/SynchronousBridge.scala": "e46bfca48e9135503e146c677f310b28bee58110571abdca54d185a30a47af86"
+  }
+}

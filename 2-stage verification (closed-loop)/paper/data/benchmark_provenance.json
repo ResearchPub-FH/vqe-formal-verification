@@ -1,0 +1,12 @@
+{
+  "name": "IBM two-qubit VQE benchmark",
+  "published_source": "https://quantum.cloud.ibm.com/learning/en/courses/quantum-diagonalization-algorithms/vqe",
+  "published_section": "3, Example Hamiltonian",
+  "local_sources": {
+    "vqe_qiskit.py": "18fb64c412a11f4bb72139c53bf1bfa79defbf8f4f36cf1c0340d1d18c3f3ba5",
+    "2-stage verification (closed-loop)/PROVENANCE.md": "8a15ee17516d83bffa1e5062510adf4d028375ea4f103cffea3d9a943b3efd50",
+    "Probabilistic verification - 2 methods comparision/h2_prism_fakebackend_workflow.py": "a16dfceb051e31c943941e0029f1dafc4cd6e1b10ece8dd320f6c0a2fd777db8",
+    "Dafny + Python trace checker/python 2.0/instrumented_vqe.py": "666c28aa9fd192fcc259e62bf45e70c3b0cef9b4b0a5eb7cb4043ce4222bb1f9"
+  },
+  "scope": "Pauli operator and ansatz match; no documented molecular geometry, orbital basis, or fermion-mapping derivation for this operator."
+}

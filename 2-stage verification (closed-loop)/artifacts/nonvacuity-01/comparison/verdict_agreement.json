@@ -1,0 +1,484 @@
+{
+  "baseline_runs": 400,
+  "conditional_means": [
+    {
+      "bootstrap_95": [
+        31.85254691689008,
+        33.27620643431635
+      ],
+      "contract": "P2",
+      "model_mean": 33.11118709897007,
+      "runtime_mean": 32.57372654155496,
+      "successful_runs": 373,
+      "verdict_agreement": "AGREEMENT"
+    },
+    {
+      "bootstrap_95": [
+        293553.072386059,
+        306673.5184986595
+      ],
+      "contract": "P3",
+      "model_mean": 305152.70030410815,
+      "runtime_mean": 300199.4638069705,
+      "successful_runs": 373,
+      "verdict_agreement": "AGREEMENT"
+    }
+  ],
+  "configuration_digest": "03b387a2e7fede7a78b71b5a25065f673af10bbb9193103dd9895866d10706be",
+  "dejavu_baseline_passed": 400,
+  "dejavu_property_triggers": {
+    "exercised_runs": {
+      "L1_groupsBeforeEnergy": 400,
+      "L2_validationsBeforeCommit": 400,
+      "L3_energyAfterBegin": 400,
+      "L3_validationAfterEnergy": 400,
+      "L4_noActivityAfterStop": 400
+    },
+    "totals": {
+      "L1_groupsBeforeEnergy": 40500,
+      "L2_validationsBeforeCommit": 13500,
+      "L3_energyAfterBegin": 40500,
+      "L3_validationAfterEnergy": 40500,
+      "L4_noActivityAfterStop": 400
+    }
+  },
+  "fault_detection": [
+    {
+      "detected_as_expected": 10,
+      "expected_contract": "N2",
+      "expected_verdict": "DISAGREEMENT",
+      "fault": "coefficient_swap",
+      "runs": 10,
+      "scope": "controlled execution",
+      "verdict_vector": {
+        "L1": {
+          "AGREEMENT": 10
+        },
+        "L2": {
+          "INCONCLUSIVE": 10
+        },
+        "L3": {
+          "INCONCLUSIVE": 10
+        },
+        "L4": {
+          "AGREEMENT": 10
+        },
+        "N1": {
+          "AGREEMENT": 10
+        },
+        "N2": {
+          "DISAGREEMENT": 10
+        },
+        "N3": {
+          "AGREEMENT": 10
+        },
+        "N4": {
+          "INCONCLUSIVE": 10
+        }
+      }
+    },
+    {
+      "detected_as_expected": 10,
+      "expected_contract": "N2",
+      "expected_verdict": "DISAGREEMENT",
+      "fault": "corrupt_energy",
+      "runs": 10,
+      "scope": "controlled execution",
+      "verdict_vector": {
+        "L1": {
+          "AGREEMENT": 10
+        },
+        "L2": {
+          "INCONCLUSIVE": 10
+        },
+        "L3": {
+          "INCONCLUSIVE": 10
+        },
+        "L4": {
+          "AGREEMENT": 10
+        },
+        "N1": {
+          "AGREEMENT": 10
+        },
+        "N2": {
+          "DISAGREEMENT": 10
+        },
+        "N3": {
+          "AGREEMENT": 10
+        },
+        "N4": {
+          "INCONCLUSIVE": 10
+        }
+      }
+    },
+    {
+      "detected_as_expected": 10,
+      "expected_contract": "N1",
+      "expected_verdict": "INCONCLUSIVE",
+      "fault": "missing_evidence",
+      "runs": 10,
+      "scope": "saved-trace mutation; no execution mutation",
+      "verdict_vector": {
+        "L1": {
+          "DISAGREEMENT": 10
+        },
+        "L2": {
+          "INCONCLUSIVE": 10
+        },
+        "L3": {
+          "AGREEMENT": 10
+        },
+        "L4": {
+          "AGREEMENT": 10
+        },
+        "N1": {
+          "INCONCLUSIVE": 10
+        },
+        "N2": {
+          "INCONCLUSIVE": 10
+        },
+        "N3": {
+          "INCONCLUSIVE": 10
+        },
+        "N4": {
+          "INCONCLUSIVE": 10
+        }
+      }
+    },
+    {
+      "detected_as_expected": 10,
+      "expected_contract": "L2",
+      "expected_verdict": "DISAGREEMENT",
+      "fault": "premature_update",
+      "runs": 10,
+      "scope": "controlled execution",
+      "verdict_vector": {
+        "L1": {
+          "INCONCLUSIVE": 10
+        },
+        "L2": {
+          "DISAGREEMENT": 10
+        },
+        "L3": {
+          "INCONCLUSIVE": 10
+        },
+        "L4": {
+          "AGREEMENT": 10
+        },
+        "N1": {
+          "INCONCLUSIVE": 10
+        },
+        "N2": {
+          "INCONCLUSIVE": 10
+        },
+        "N3": {
+          "INCONCLUSIVE": 10
+        },
+        "N4": {
+          "INCONCLUSIVE": 10
+        }
+      }
+    },
+    {
+      "detected_as_expected": 10,
+      "expected_contract": "N3",
+      "expected_verdict": "ASSUMPTION_MISMATCH",
+      "fault": "shot_mismatch",
+      "runs": 10,
+      "scope": "controlled execution",
+      "verdict_vector": {
+        "L1": {
+          "INCONCLUSIVE": 10
+        },
+        "L2": {
+          "INCONCLUSIVE": 10
+        },
+        "L3": {
+          "INCONCLUSIVE": 10
+        },
+        "L4": {
+          "AGREEMENT": 10
+        },
+        "N1": {
+          "INCONCLUSIVE": 10
+        },
+        "N2": {
+          "INCONCLUSIVE": 10
+        },
+        "N3": {
+          "ASSUMPTION_MISMATCH": 10
+        },
+        "N4": {
+          "INCONCLUSIVE": 10
+        }
+      }
+    }
+  ],
+  "generated_at": "2026-10-25T18:32:31.287666+00:00",
+  "interpretation": "Probabilistic AGREEMENT means statistical compatibility, not equality of distributions. Supporting intervals are marginal; no joint confidence claim. P3 scales P2 by the fixed shots per update.",
+  "logical_nonvacuity": {
+    "mutants": [
+      {
+        "detected_by": [
+          "L1"
+        ],
+        "killed": true,
+        "mutant": "M1_early_aggregate",
+        "target_contract": "L1"
+      },
+      {
+        "detected_by": [
+          "L2"
+        ],
+        "killed": true,
+        "mutant": "M2_skip_candidate",
+        "target_contract": "L2"
+      },
+      {
+        "detected_by": [
+          "L3",
+          "L4"
+        ],
+        "killed": true,
+        "mutant": "M3_no_ready_reset",
+        "target_contract": "L3"
+      },
+      {
+        "detected_by": [
+          "L4"
+        ],
+        "killed": true,
+        "mutant": "M4_budget_as_abort",
+        "target_contract": "L4"
+      },
+      {
+        "detected_by": [
+          "L3"
+        ],
+        "killed": true,
+        "mutant": "M5_stale_energy",
+        "target_contract": "L3"
+      },
+      {
+        "detected_by": [
+          "L4"
+        ],
+        "killed": true,
+        "mutant": "M6_success_as_abort",
+        "target_contract": "L4"
+      }
+    ],
+    "properties": 10,
+    "properties_holding": 10,
+    "queries": 39,
+    "queries_as_expected": 39,
+    "status": "PROVED",
+    "unreachable_defensive_branches": [
+      "TRUE : aborted"
+    ]
+  },
+  "logical_numeric": [
+    {
+      "contract": "L1",
+      "description": "Complete measurements precede candidate energy aggregation",
+      "runtime_checks": 324000,
+      "runtime_counts": {
+        "AGREEMENT": 400
+      },
+      "runtime_triggers": {
+        "groups_before_energy": 40500
+      },
+      "stage1": "PROVED",
+      "verdict_agreement": "AGREEMENT"
+    },
+    {
+      "contract": "L2",
+      "description": "All three candidate validations precede optimizer commitment",
+      "runtime_checks": 135000,
+      "runtime_counts": {
+        "AGREEMENT": 400
+      },
+      "runtime_triggers": {
+        "validation_certified": 40500,
+        "validations_before_commit": 13500
+      },
+      "stage1": "PROVED",
+      "verdict_agreement": "AGREEMENT"
+    },
+    {
+      "contract": "L3",
+      "description": "Evaluation identity and parameter provenance remain current",
+      "runtime_checks": 1353600,
+      "runtime_counts": {
+        "AGREEMENT": 400
+      },
+      "runtime_triggers": {
+        "commit_identity_current": 13500,
+        "evaluation_identity_current": 202500
+      },
+      "stage1": "PROVED",
+      "verdict_agreement": "AGREEMENT"
+    },
+    {
+      "contract": "L4",
+      "description": "Termination is final and has the declared reason",
+      "runtime_checks": 244200,
+      "runtime_counts": {
+        "AGREEMENT": 400
+      },
+      "runtime_triggers": {
+        "terminal_reason": 400
+      },
+      "stage1": "PROVED",
+      "verdict_agreement": "AGREEMENT"
+    },
+    {
+      "contract": "N1",
+      "description": "Raw counts normalize to the reported expectations",
+      "runtime_checks": 445500,
+      "runtime_counts": {
+        "AGREEMENT": 400
+      },
+      "runtime_triggers": {
+        "expectation_reconstructed": 162000
+      },
+      "stage1": "PROVED",
+      "verdict_agreement": "AGREEMENT"
+    },
+    {
+      "contract": "N2",
+      "description": "Declared coefficients and measurements produce the actual energy",
+      "runtime_checks": 351000,
+      "runtime_counts": {
+        "AGREEMENT": 400
+      },
+      "runtime_triggers": {
+        "energy_reconstructed": 40500
+      },
+      "stage1": "PROVED",
+      "verdict_agreement": "AGREEMENT"
+    },
+    {
+      "contract": "N3",
+      "description": "Unique measurement groups determine physical shot consumption",
+      "runtime_checks": 256900,
+      "runtime_counts": {
+        "AGREEMENT": 400
+      },
+      "runtime_triggers": {
+        "allocation_checked": 121500,
+        "cumulative_total_checked": 13900
+      },
+      "stage1": "PROVED",
+      "verdict_agreement": "AGREEMENT"
+    },
+    {
+      "contract": "N4",
+      "description": "Candidate generation and selection preserve the parameter grid",
+      "runtime_checks": 459400,
+      "runtime_counts": {
+        "AGREEMENT": 400
+      },
+      "runtime_triggers": {
+        "candidates_generated": 13500,
+        "selection_checked": 13500
+      },
+      "stage1": "PROVED",
+      "verdict_agreement": "AGREEMENT"
+    }
+  ],
+  "maximum_energy_reconstruction_error": 5.542233338928781e-17,
+  "maximum_expectation_reconstruction_error": 0.0,
+  "mean_absolute_probability_difference": 0.010355924994457765,
+  "online_replay_agreement": true,
+  "pre_execution_digest": "034f7081b3741d577f38dad670fe8fa37e336f1b7c196d8c6de148ccc9afee31",
+  "probabilistic_eligibility": "APPLICABLE_UNDER_DECLARED_APPROXIMATION",
+  "probability_comparison": [
+    {
+      "absolute_difference": 0.0,
+      "contract": "P1@10",
+      "model_probability": 0.0,
+      "primary": false,
+      "runtime_probability": 0.0,
+      "runtime_runs": 400,
+      "runtime_successes": 0,
+      "update_bound": 10,
+      "verdict_agreement": "AGREEMENT",
+      "wilson_95": [
+        0.0,
+        0.009512294334296503
+      ]
+    },
+    {
+      "absolute_difference": 0.0,
+      "contract": "P1@20",
+      "model_probability": 0.0,
+      "primary": false,
+      "runtime_probability": 0.0,
+      "runtime_runs": 400,
+      "runtime_successes": 0,
+      "update_bound": 20,
+      "verdict_agreement": "AGREEMENT",
+      "wilson_95": [
+        0.0,
+        0.009512294334296503
+      ]
+    },
+    {
+      "absolute_difference": 0.036059810855956664,
+      "contract": "P1@30",
+      "model_probability": 0.3839401891440433,
+      "primary": false,
+      "runtime_probability": 0.42,
+      "runtime_runs": 400,
+      "runtime_successes": 168,
+      "update_bound": 30,
+      "verdict_agreement": "AGREEMENT",
+      "wilson_95": [
+        0.3726177182254857,
+        0.4689042488680017
+      ]
+    },
+    {
+      "absolute_difference": 0.011247036616962025,
+      "contract": "P1@40",
+      "model_probability": 0.7562529633830379,
+      "primary": false,
+      "runtime_probability": 0.7675,
+      "runtime_runs": 400,
+      "runtime_successes": 307,
+      "update_bound": 40,
+      "verdict_agreement": "AGREEMENT",
+      "wilson_95": [
+        0.7236773296522552,
+        0.8062335928788962
+      ]
+    },
+    {
+      "absolute_difference": 0.00447277749937014,
+      "contract": "P1@50",
+      "model_probability": 0.9280272225006299,
+      "primary": true,
+      "runtime_probability": 0.9325,
+      "runtime_runs": 400,
+      "runtime_successes": 373,
+      "update_bound": 50,
+      "verdict_agreement": "AGREEMENT",
+      "wilson_95": [
+        0.9035733345645931,
+        0.9531985308362403
+      ]
+    }
+  ],
+  "result_files": {
+    "baseline": "08b338e50fc470ed8903e3ed166500196af8f930bc512ecffa92de00e729d93c",
+    "faults": "95128aa99795b8480eca6970007a411c013d31d672421ec8e707445d6d87a6cf"
+  },
+  "successes": 373,
+  "total_physical_shots": 124416000,
+  "trigger_coverage": "every completed baseline run matches the update-count equations",
+  "two_stages": [
+    "pre-execution verification",
+    "runtime verification and verdict agreement"
+  ]
+}

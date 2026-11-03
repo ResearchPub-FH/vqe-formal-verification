@@ -1,0 +1,296 @@
+--- paper/manuscript_review2.tex
++++ paper/manuscript_review3/manuscript_review3.tex
+@@ -5,14 +5,14 @@
+ \newcolumntype{Y}{>{\raggedright\arraybackslash}X}
+ \newcommand{\Ehat}{\widehat E}
+ \newcommand{\AG}{\textsc{Agreement}}
+-\input{data/numbers.tex}
++\input{../data/numbers.tex}
+ \author{}
+ \title{Layered Verification of VQE:\\From Specifications to Execution}
+ \begin{document}
+ \raggedbottom
+ \maketitle
+ \begin{abstract}
+-The variational quantum eigensolver (VQE) combines quantum energy estimation with classical parameter optimization. Reliable execution requires correct control flow, numerical calculations, and reasoning about measurement uncertainty. We propose a four-layer verification architecture covering logical, numeric, probabilistic, and runtime properties. A shared execution model and specification library organize the requirements and their assumptions. A two-stage framework implements and evaluates the architecture: NuXmv, Dafny, and Storm establish properties before execution, and runtime verification checks the corresponding obligations in concrete executions. Probabilistic predictions are compared with repeated finite-shot executions. On a two-qubit benchmark, all \BaselineRuns executions satisfy the observed logical and numeric obligations within the verified scope. The Gaussian model and empirical executions show statistical agreement on bounded success and conditional resource use. Fault injection reveals complementary detection capabilities and limits in handling missing measurement records. Model growth and timing measurements quantify the cost of verification. These results demonstrate how heterogeneous verification methods can support a common assessment of VQE execution. Future work will strengthen the model-to-implementation correspondence and extend the framework to larger instances and hardware noise.
++The variational quantum eigensolver (VQE) combines quantum energy estimation with classical parameter optimization. Reliable execution requires correct control flow, numerical calculations, and reasoning about measurement uncertainty. We propose a four-layer verification architecture covering logical, numeric, probabilistic, and runtime properties. A shared execution model and specification library organize the requirements and their assumptions. A two-stage framework implements and evaluates the architecture: NuXmv, Dafny, and Storm establish properties before execution, and runtime verification checks the corresponding requirements in concrete executions. Probabilistic predictions are compared with repeated finite-shot executions. On a two-qubit benchmark, all \BaselineRuns executions satisfy the observed logical and numeric requirements within the verified scope. The Gaussian model and empirical executions show statistical agreement on bounded success and conditional resource use. Fault injection reveals complementary detection capabilities and limits in handling missing measurement records. Model growth and timing measurements quantify the cost of verification. These results demonstrate how heterogeneous verification methods can support a common assessment of VQE execution. Future work will strengthen the model-to-implementation correspondence and extend the framework to larger instances and hardware noise.
+ \end{abstract}
+ \begin{IEEEkeywords}
+ VQE, layered verification, runtime verification, probabilistic model checking, specification traceability.
+@@ -22,7 +22,7 @@
+ \label{sec:introduction}
+ VQE estimates a Hamiltonian expectation using a parameterized quantum state and adjusts the parameters with a classical optimizer~\cite{peruzzo2014,mcclean2016}. Its hybrid execution combines circuit preparation, measurement, numerical aggregation, and classical decisions. The reliability of these interactions matters alongside the quality of the resulting energy estimate. Measurements must belong to the current candidate. Aggregation must use the declared observables and coefficients, and the optimizer must consume validated values. Stopping must follow the specified policy. Finite-shot uncertainty also makes reaching a target within a resource bound a probabilistic question~\cite{tilly2022}.
+ 
+-These requirements span four verification aspects. Logical verification addresses control flow and ordering. Numeric verification establishes calculations under explicit input assumptions. Probabilistic verification analyzes the effect of uncertain estimates on bounded search. Runtime verification determines whether corresponding obligations hold during observed executions. Each aspect contributes a distinct kind of result, so an integrated assessment must relate those results to the implementation and identify the assumptions on which they depend.
++These requirements span four verification aspects. Logical verification addresses control flow and ordering. Numeric verification establishes calculations under explicit input assumptions. Probabilistic verification analyzes the effect of uncertain estimates on bounded search. Runtime verification determines whether corresponding requirements hold during observed executions. Each aspect contributes a distinct kind of result, so an integrated assessment must relate those results to the implementation and identify the assumptions on which they depend.
+ 
+ VQE research has extensively studied ansatz design, measurement, optimization, and noise~\cite{tilly2022}. The verification problem addressed here concerns their interaction in an implemented workflow. A controller proof, an arithmetic proof, and a success-probability prediction become useful together when the reader can identify which requirement each establishes and how that requirement is checked during execution. This motivates a shared execution model, explicit specification mappings, and a procedure for comparing prospective results with observed behavior.
+ 
+@@ -30,13 +30,13 @@
+ \begin{quote}
+ The contract library defines what the VQE implementation is expected to satisfy. Pre-execution verification establishes these contracts prospectively, while runtime verification determines whether the corresponding obligations hold for concrete executions.
+ \end{quote}
+-The library records the assumptions and obligations of each contract. The comparison then identifies the property established before execution, the corresponding runtime check, and the scope in which their results can agree.
++The library records the assumptions and requirements of each contract. The comparison then identifies the property established before execution, the corresponding runtime check, and the scope in which their results can agree.
+ 
+ Section~\ref{sec:model} introduces the shared execution model and specifications. Section~\ref{sec:methods} explains the verification methods. Section~\ref{sec:individual} evaluates the individual layers, and Section~\ref{sec:crosslayer} evaluates their relationships through the two-stage framework. The contributions are:
+ \begin{itemize}
+ \item A four-layer VQE verification architecture that addresses logical, numeric, probabilistic, and runtime requirements through appropriate verification methods.
+ \item A specification library that assigns properties and assumptions to each verification family and maps them to corresponding checks on executions.
+-\item A two-stage framework that records prospective verification results, executes the specified VQE instance, and assesses agreement with runtime results at the level of individual obligations.
++\item A two-stage framework that records prospective verification results, executes the specified VQE instance, and assesses agreement with runtime results at the level of individual requirements.
+ \item An implementation and artifact-based evaluation demonstrating observed conformance, statistical agreement, complementary fault detection, and measured model growth and runtime cost within explicit experimental boundaries.
+ \end{itemize}
+ 
+@@ -45,7 +45,7 @@
+ \subsection{Execution Model and Specification Semantics}
+ The shared execution model is a labeled transition system whose modes are initialization, preparation, measurement, aggregation, validation, optimizer commitment, stopping checks, and terminal closure. Its state contains a run identifier, candidate and evaluation identities, parameters, available measurement groups, validation readiness, an iteration counter, and resource totals. An epoch identifies the current iteration in the abstract controller. Concrete run and evaluation identifiers allow the runtime checker to determine which iteration a measurement or energy belongs to. The implementation maps these identifiers to the controller's counters and epoch flags.
+ 
+-A \emph{specification} formally states an expected behavior or condition. A \emph{property} is a particular condition verified or monitored under that specification. A \emph{contract} connects stated assumptions or preconditions to an obligation or guarantee. The specification library stores these requirements and their verification mappings. We use ``contract'' when the assumption--obligation relationship is material, including the organizing principle above.
++A \emph{requirement} describes expected system behavior. A \emph{specification} formally states that requirement. A \emph{property} is a particular condition verified or monitored under that specification. A \emph{contract} connects stated assumptions or preconditions to an obligation or guarantee. The specification library stores these requirements and their verification mappings. We use ``contract'' when the assumption--obligation relationship is material, including the organizing principle above. In this technical usage, an obligation is the guarantee required when the contract's assumptions hold.
+ 
+ For a Pauli decomposition $H=\sum_i c_iP_i$, VQE evaluates
+ \begin{equation}
+@@ -53,26 +53,30 @@
+  \qquad \Ehat(\theta)=\sum_i c_i\hat e_i.
+  \label{eq:energy}
+ \end{equation}
+-Each library entry records a verification family, obligation, pre-execution check, runtime counterpart, assumptions, and comparison rule. The implemented library, \texttt{config/contracts.json}, documents these links. Each family supplies its own specifications and properties in the appropriate formalism. Logical and numeric obligations are checked for individual runs. Probabilistic requirements are evaluated through repeated executions of the specified process.
++Each library entry records a verification family, requirement, pre-execution check, runtime counterpart, assumptions, and comparison rule. The implemented library, \texttt{config/contracts.json}, documents these links. Each family supplies its own specifications and properties in the appropriate formalism. Logical and numeric requirements are checked for individual runs. Probabilistic requirements are evaluated through repeated executions of the specified process.
++
++Cross-stage verdicts describe both satisfaction and applicability. \texttt{AGREEMENT} records satisfaction of a corresponding requirement within its mapped scope, and \texttt{DISAGREEMENT} records a violation. \texttt{ASSUMPTION\_MISMATCH} identifies an input or execution condition that differs from a declared assumption. This verdict is needed because a prospective result applies under its assumptions: those conditions must be restored or the model revised before the results can be compared. For example, changing the shot allocation changes the estimator variance used by the Gaussian model and the allocation premise of numeric checking. \texttt{INCONCLUSIVE} identifies a check for which the available records are insufficient. These categories distinguish requirement violations from changes in applicability and limits of observation.
+ 
+ Figure~\ref{fig:architecture} shows how the four layers are organized into two stages. Pre-execution verification produces model-checking results, proof logs, and quantitative predictions. A verification record stores these results with the configuration, tool identities, and hashes of the source and result files. Before execution, the framework checks those hashes against the record. Runtime observations then support contract matching and verdict agreement. Revising the model or implementation requires regenerating the record and recording the next execution separately. This feedback procedure is manual.
+ 
+ \begin{figure*}[!t]
+ \centering
+ \includegraphics[width=.94\textwidth]{figures/architecture.pdf}
+-\caption{Four verification layers organized into two stages for the specified VQE instance. Logical, numeric, and probabilistic verification produce results before execution using their own formalisms. Runtime verification checks logical and numeric obligations for individual runs and compares probabilistic predictions with repeated executions. The verification record associates these checks with the same configuration and source files. The displayed verdict names match the implementation. Probabilistic verdicts are interpreted under the stated assumptions and statistical decision rule.}
++\caption{Four verification layers organized into two stages. Each pre-execution family uses its own formalism. Runtime verification checks logical and numeric requirements per run and compares probabilistic predictions with repeated executions of the specified VQE instance.}
+ \label{fig:architecture}
+ \end{figure*}
+ 
+-Table~\ref{tab:mapping} maps the specifications to prospective checks and runtime observations. For a numeric contract, the checker interprets concrete counts and optimizer inputs as the kernel's mathematical inputs, checks the preconditions, and compares the observed output with the specified arithmetic. The Dafny proof establishes the kernel's mathematical property. Runtime reconstruction assesses that property on observed Python inputs and outputs. For a probabilistic requirement, the runtime counterpart is an estimate over repeated executions of the specified process.
++Table~\ref{tab:mapping} summarizes the system-level requirements evaluated in this study and maps their specifications to prospective checks and runtime observations. We select requirements at the interfaces where measurements enter numerical calculations and those calculations drive optimizer decisions. L1--L4 address ordering, provenance, and termination. N1--N4 address arithmetic, physical-shot accounting, and valid deterministic selection. P1--P3 address bounded success and the resources used by successful paths. Each selected requirement has an explicit verification object and a corresponding recorded observation or empirical statistic. This scope supports evaluation of the implemented workflow. Broader VQE requirements, such as ansatz adequacy and hardware-noise characterization, need additional specifications and evaluation conditions.
++
++For a numeric contract, the checker interprets concrete counts and optimizer inputs as the kernel's mathematical inputs, checks the preconditions, and compares the observed output with the specified arithmetic. The Dafny proof establishes the kernel's mathematical property. Runtime reconstruction assesses that property on observed Python inputs and outputs. For a probabilistic requirement, the runtime counterpart is an estimate over repeated executions of the specified process.
+ 
+ \begin{table*}[!t]
+ \centering\footnotesize
+-\caption{System-level specification mapping. Each row identifies an obligation, its prospective verification, the corresponding runtime observations, and the interpretation of their relationship. The assumption--obligation scope determines the contract match.}
++\caption{Selected system-level requirements evaluated in this study and their pre-execution/runtime mappings.}
+ \label{tab:mapping}
+ \begin{tabularx}{\textwidth}{@{}p{.04\textwidth}>{\raggedright\arraybackslash}p{.20\textwidth}>{\raggedright\arraybackslash}p{.25\textwidth}>{\raggedright\arraybackslash}p{.25\textwidth}Y@{}}
+ \toprule
+-ID & Obligation & Pre-execution verification & Runtime observations & Cross-stage interpretation \\
++ID & Requirement & Pre-execution verification & Runtime observations & Cross-stage interpretation \\
+ \midrule
+ L1 & Complete measurements before energy aggregation & NuXmv: aggregation implies three group completions & Unique candidate/group records and DejaVu past-group facts & Ordering agreement when required records are present \\
+ L2 & Candidate validation before optimizer commitment & NuXmv: selection/commit requires three ready candidates & Three validation events precede commit, with consumed scores recorded & Ordering agreement with fail-stop enforcement \\
+@@ -104,7 +108,7 @@
+ 
+ \begin{table}[!t]
+ \centering\footnotesize
+-\caption{VQE configuration used for the two-stage evaluation. One iteration contains three candidate energy evaluations and nine measurement-group executions.}
++\caption{Configuration of the two-stage VQE evaluation.}
+ \label{tab:configuration}
+ \begin{tabularx}{\columnwidth}{@{}p{.43\columnwidth}Y@{}}
+ \toprule
+@@ -128,7 +132,7 @@
+ \end{tabularx}
+ \end{table}
+ 
+-Table~\ref{tab:configuration} specifies the execution boundary. An \emph{iteration} completes one three-candidate selection, while an \emph{evaluation} estimates the energy of one candidate. A run stops when the selected point first satisfies the ideal-energy success predicate or when it exhausts the iteration budget. An online contract violation triggers error closure. The success oracle uses exact simulation of the selected point and is available within this simulator experiment. Hardware-observed convergence requires a stopping policy based on measurable quantities. There are \SuccessPoints successful grid points. Every unsuccessful run remains in the probability denominator and consumes its budget.
++Table~\ref{tab:configuration} specifies the execution boundary. An \emph{iteration} completes one three-candidate selection, while an \emph{evaluation} estimates the energy of one candidate. Each candidate uses three measurement groups, giving nine group executions per iteration. A run stops when the selected point first satisfies the ideal-energy success predicate or when it exhausts the iteration budget. An online contract violation triggers error closure. The success oracle uses exact simulation of the selected point and is available within this simulator experiment. Hardware-observed convergence requires a stopping policy based on measurable quantities. There are \SuccessPoints successful grid points. Every unsuccessful run remains in the probability denominator and consumes its budget.
+ 
+ \section{Layered Verification Methodology}
+ \label{sec:methods}
+@@ -142,7 +146,7 @@
+ \end{align}
+ Readiness resets at the next iteration, and terminal states are absorbing. The procedure generates the controller using the specified iteration bound, runs NuXmv, and stores each property and verdict. The result is exhaustive for the encoded model.
+ 
+-L4 covers terminal absorption, the counter value at budget termination, and commitment below the bound. The audit found that redirecting either the success or budget branch to abort leaves the checked properties true. The prospective result therefore establishes those three conditions. Correct selection of the termination reason is an additional obligation checked at runtime. This distinction identifies the exact part of the specification supported by each stage.
++L4 covers terminal absorption, the counter value at budget termination, and commitment below the bound. The audit found that redirecting either the success or budget branch to abort leaves the checked properties true. The prospective result therefore establishes those three conditions. Correct selection of the termination reason is an additional requirement checked at runtime. This distinction identifies the exact part of the specification supported by each stage.
+ 
+ \subsection{Numeric Verification and Its Runtime Match}
+ \label{sec:numeric}
+@@ -165,6 +169,8 @@
+ 
+ \subsection{Probabilistic Verification}
+ \label{sec:probabilistic}
++We use a Gaussian approximation to summarize uncertainty in the finite-shot energy estimate. Each estimate is a weighted sum of sample means of bounded measurement outcomes. Independent repeated shots and finite variance motivate a normal approximation through the central limit theorem~\cite{mcclean2016}. The approximation retains the ideal mean and grouped-measurement variance while making the probabilities of selecting among three candidates computable without enumerating every possible count record. The fixed grid and cyclic coordinate phase give a finite state space. Fresh independent candidate measurements make the next selection depend only on the current point and phase. A discrete-time Markov chain (DTMC) represents one optimizer iteration per transition and supports bounded-success and conditional-resource analysis. The central limit theorem motivates the approximation asymptotically. Its accuracy at the configured shot count is assessed empirically, and the implementation supplies no certified finite-shot approximation-error bound.
++
+ For each candidate, the Gaussian abstraction matches the ideal mean energy and the shot-estimator variance. Terms measured in the same group retain their covariance:
+ \begin{equation}
+  \sigma^2(z)=\frac{1}{N_g}\sum_g
+@@ -218,12 +224,12 @@
+ The scalability study builds a reachable, time-unrolled DTMC for each iteration bound. It merges successful paths into an absorbing success state and exhausted paths into an absorbing timeout state. Figure~\ref{fig:storm-scalability} shows the model sizes and costs. At the largest bound, it contains \ScaleMaxStates states and \ScaleMaxTransitions transitions. The homogeneous grid/coordinate-phase DTMC used for the two-stage evaluation has \ModelStates states and \ModelTransitions transitions. Its fixed representation supports queries at different horizons, while time unrolling explicitly includes the iteration depth in the state space.
+ 
+ \begin{figure}[!t]
+-\centering\includegraphics[width=\columnwidth]{figures/storm-scalability.pdf}
+-\caption{Time-unrolled Gaussian DTMC scalability at the grid and shot allocation in Table~\ref{tab:configuration}. Top: reachable states and transitions, with a logarithmic vertical axis. Bottom: construction time from one measurement and median Storm checking time from three recorded invocations at each bound. Construction excludes Gaussian-kernel preparation, and checking excludes parsing. A displayed zero is below the tool's timing resolution. This representation includes iteration depth, whereas the homogeneous phase DTMC used in Section~\ref{sec:crosslayer} has fixed size.}
++\centering\includegraphics[width=\columnwidth]{../figures/storm-scalability.pdf}
++\caption{Time-unrolled Gaussian DTMC scalability under Table~\ref{tab:configuration}. Top: reachable states and transitions on a logarithmic scale. Bottom: one construction-time measurement and the median of three Storm checking times per iteration bound.}
+ \label{fig:storm-scalability}
+ \end{figure}
+ 
+-The cost panel separates construction from model checking. Source artifacts contain per-depth state counts, timings, the CSV summary, metadata, and generation source. The exported explicit scalability models are unavailable. The reported growth and costs can therefore be reconstructed from the recorded metadata and measurements, with direct model-file inspection available for the homogeneous DTMC.
++The cost panel separates construction from model checking. Construction excludes Gaussian-kernel preparation, and checking excludes parsing. A recorded zero checking time is below the tool's timing resolution. Source artifacts contain per-depth state counts, timings, the CSV summary, metadata, and generation source. The exported explicit scalability models are unavailable. The reported growth and costs can therefore be reconstructed from the recorded metadata and measurements, with direct model-file inspection available for the homogeneous DTMC.
+ 
+ The FakeJakarta density-matrix study records \NoisySuccess/\NoisyRuns successes (\NoisyPercent\%). It assesses robustness under backend noise and compiled circuits. Those conditions extend beyond the ideal-Born assumptions of the Gaussian model, so the result describes noisy execution under its own configuration. The probability comparison in Section~\ref{sec:crosslayer} uses ideal finite-shot runs and the model's success predicate.
+ 
+@@ -231,11 +237,11 @@
+ \label{sec:runtime-cost}
+ The runtime cost study has \TimingWarmup warm-ups and \TimingMeasured measured runs under the setup described above. Reusing the workload seed holds the sampled trajectory fixed while repetitions measure timing variation.
+ 
+-Figure~\ref{fig:runtime-overhead} reports total runtime and the difference of condition medians. Verified timing includes VQE setup and sampling, monitor startup, synchronous checking and acknowledgments, trace and measurement-record persistence, and finalization. Baseline post-run serialization, fidelity analysis, and offline replay are excluded from the timing boundary. Bootstrap samples independently resample each condition's measured times. The intervals describe uncertainty in the timing summaries for this fixed workload.
++Figure~\ref{fig:runtime-overhead} reports total runtime and the difference of condition medians. Verified timing includes VQE setup and sampling, monitor startup, synchronous checking and acknowledgments, trace and measurement-record persistence, and finalization. Baseline post-run serialization, fidelity analysis, and offline replay are excluded from the timing boundary. Bootstrap intervals use 10,000 independent-condition resamples of the measured times. The intervals describe uncertainty in the timing summaries for this fixed workload.
+ 
+ \begin{figure}[!t]
+-\centering\includegraphics[width=\columnwidth]{figures/runtime-overhead.pdf}
+-\caption{Simulator runtime cost with synchronous ask/tell monitoring. Top: baseline and verified medians. Bottom: verified median minus baseline median. Error bars are 95\% percentile bootstrap intervals from 10,000 independent-condition resamples, using \TimingRepetitions measured runs per condition/count after \TimingWarmupsPerCell warm-ups. Timing covers setup, execution, online checking and persistence, and finalization. Baseline post-run serialization, fidelity analysis, and offline replay are excluded. Repetitions use the same workload seed.}
++\centering\includegraphics[width=\columnwidth]{../figures/runtime-overhead.pdf}
++\caption{Simulator runtime cost for a fixed workload seed. Top: baseline and verified medians. Bottom: their difference. Error bars are 95\% percentile-bootstrap intervals from \TimingRepetitions measured runs per condition/count after \TimingWarmupsPerCell warm-ups.}
+ \label{fig:runtime-overhead}
+ \end{figure}
+ 
+@@ -245,12 +251,12 @@
+ 
+ \begin{table}[!t]
+ \centering\footnotesize
+-\caption{Runtime simulator and hardware results verified against stored hashes and reports. ``pass/pass'' denotes online/replay conformance. Both executions terminate at the evaluation budget.}
++\caption{Simulator and hardware runtime results. ``pass/pass'' denotes online/replay conformance.}
+ \label{tab:hardware}
+ \begin{tabular}{@{}lrrrl@{}}\toprule
+-Execution & Evals. & PUBs & Shots & Online/replay \\
+-\midrule
+-\input{tables/hardware.tex}
++Execution & Evals. & Submissions & Shots & Online/replay \\
++\midrule
++\input{../tables/hardware.tex}
+ 
+ \end{tabular}
+ \end{table}
+@@ -258,22 +264,22 @@
+ \section{Cross-Layer Relationships and Agreement}
+ \label{sec:crosslayer}
+ \subsection{Goals and Procedure}
+-The two-stage evaluation examines whether the properties established before execution correspond to the obligations checked during execution, and whether their results agree within the stated assumptions. It fixes the circuit, operator, parameter grid, candidate rule, measurement groups, shot allocation, success predicate, and iteration bound in Table~\ref{tab:configuration}. It also examines how controlled faults change the verification outcomes. The evaluated claim is consistency of the specified workflow across the two stages.
++The two-stage evaluation examines whether the properties established before execution correspond to the requirements checked during execution, and whether their results agree within the stated assumptions. It fixes the circuit, operator, parameter grid, candidate rule, measurement groups, shot allocation, success predicate, and iteration bound in Table~\ref{tab:configuration}. It also examines how controlled faults change the verification outcomes. The evaluated claim is consistency of the specified workflow across the two stages.
+ 
+ Stage 1 generates and checks the controller with NuXmv, verifies the numeric modules with Dafny, constructs the Gaussian kernel and DTMC, and runs Storm at the specified checkpoints. It also compiles the temporal monitor and records the results, configuration, and source hashes. Stage 2 checks that the execution uses this record, then performs \BaselineRuns ideal-Born finite-shot runs with independently seeded count streams. It stores raw counts and all values consumed by the optimizer, checks events online, and replays the traces. Each run stops at first success or at $K=\UpdateBound$ iterations. The ideal-energy gap defines success, as in the Gaussian model. Error closure handles online violations. No backend noise is introduced in this comparison.
+ 
+-For logical and numeric obligations, the comparison relates each prospective property result to the check on every observed run. The implementation labels satisfaction \texttt{AGREEMENT}, violations \texttt{DISAGREEMENT}, invalid assumptions \texttt{ASSUMPTION\_MISMATCH}, and unavailable checks \texttt{INCONCLUSIVE}. The meaning of each result follows its specification mapping. Numerical tolerances govern deterministic conformance. Stage 2 is gated on successful prospective verification, which restricts the evaluated combinations to executions authorized by Stage 1.
++For logical and numeric requirements, the comparison relates each prospective property result to the check on every observed run. The verdict categories defined in Section~\ref{sec:model} distinguish satisfaction, violation, assumption mismatch, and unavailable checks. The meaning of each result follows its specification mapping. Numerical tolerances govern deterministic conformance. Stage 2 is gated on successful prospective verification, which restricts the evaluated combinations to executions authorized by Stage 1.
+ 
+ Probabilistic comparison operates on repeated executions. P1 compares the Gaussian reachability probability with the fraction reaching success by each checkpoint, including unsuccessful runs in the denominator. The probability at $K$ is the primary comparison. Pointwise 95\% Wilson intervals quantify binomial uncertainty~\cite{wilson}. P2 compares iterations conditional on bounded success using the original \BootstrapSamples-resample percentile-bootstrap interval. P3 applies the fixed shots per iteration to that quantity. A stochastic run that exhausts its budget is one permitted outcome of this bounded-success specification.
+ 
+ The supporting analysis computes two-sided score-test $p$-values at the nonzero-probability checkpoints and a normal-approximation test for P2. Holm adjustment~\cite{holm} controls multiplicity for that family at $\alpha=0.05$. The early zero-probability checkpoints are structurally uninformative, and P3 is derived from P2. This post-audit interpretation uses the existing observations and intervals. The comparison tests compatibility at the available sample size, without a preregistered equivalence margin.
+ 
+ \subsection{Logical and Numeric Verification Agreement}
+-Table~\ref{tab:contract-results} gives the prospectively established property and runtime count for each logical and numeric obligation. All observed baseline obligations agree on \BaselineRuns runs under the mapping's assumptions. The result establishes conformance of these observed executions. L4 agreement covers terminal absorption and bound conditions at both stages. The stronger termination-reason obligation is assessed at runtime.
++Table~\ref{tab:contract-results} gives the prospectively established property and runtime count for each logical and numeric requirement. The corresponding pre-execution and runtime results agree for all \BaselineRuns baseline runs under the mapping's assumptions. The result establishes conformance of these observed executions. L4 agreement covers terminal absorption and bound conditions at both stages. The stronger termination-reason requirement is assessed at runtime.
+ 
+ \begin{table*}[!t]
+ \centering\footnotesize
+-\caption{Logical and numeric results by obligation. The listed prospective properties have successful tool outputs, and the runtime column counts agreeing baseline runs. Agreement is interpreted under Table~\ref{tab:mapping}'s assumptions. L4's prospective scope covers terminal absorption and budget bounds. Correct termination reasons are checked at runtime.}
++\caption{Logical and numeric verification results. Runtime counts give agreeing baseline runs. Each classification applies under the prospective scope and assumptions in Table~\ref{tab:mapping}.}
+ \label{tab:contract-results}
+ \begin{tabularx}{\textwidth}{@{}p{.045\textwidth}p{.44\textwidth}p{.14\textwidth}Y@{}}\toprule
+ ID & Prospectively established scope & Runtime agreement & Cross-stage classification \\
+@@ -290,48 +296,37 @@
+ Figure~\ref{fig:probability-comparison} compares the Gaussian first-success curve with empirical execution using the same success predicate. Forward propagation of the Gaussian kernel produces the curve, and Storm independently checks the specified checkpoint probabilities. Their maximum recorded numerical difference is $\StormDifference$. The maximum quadrature row-normalization correction is $\QuadratureCorrection$. These quantities assess numerical processing of the constructed model. The empirical comparison assesses its prediction for finite-shot execution.
+ 
+ \begin{figure}[!t]
+-\centering\includegraphics[width=\columnwidth]{figures/probability-comparison.pdf}
+-\caption{Cumulative probability of first satisfying $E_{\rm ideal}(z)-E_{\rm ref}\leq\GapThreshold$ versus optimizer iteration. The solid staircase is Gaussian-DTMC forward propagation, circles are Storm checkpoints, and the dashed staircase summarizes \BaselineRuns independently seeded ideal-Born finite-shot runs with \ShotsPerGroup shots per group/candidate. The shaded region gives pointwise 95\% Wilson intervals at each iteration. It is not a simultaneous confidence band. Both processes use the same success predicate, candidate rule, and resource configuration.}
++\centering\includegraphics[width=\columnwidth]{../figures/probability-comparison.pdf}
++\caption{Cumulative success probability for $E_{\rm ideal}(z)-E_{\rm ref}\leq\GapThreshold$. Solid: Gaussian-DTMC propagation. Circles: Storm checkpoints. Dashed: \BaselineRuns independently seeded ideal-Born finite-shot executions under Table~\ref{tab:configuration}. Shading: pointwise 95\% Wilson intervals.}
+ \label{fig:probability-comparison}
+ \end{figure}
+ 
+-At the primary bound, \SuccessRuns/\BaselineRuns runs succeed and \BudgetRuns terminate normally at budget. The empirical probability is \PrimaryEmpiricalPercent\%, with Wilson interval [\PrimaryCILower\%, \PrimaryCIUpper\%], compared with \PrimaryModelPercent\% modeled probability. The absolute difference is \PrimaryDeviationPP percentage points. Table~\ref{tab:probabilities} gives exact checkpoint counts, intervals, deviations, and supporting comparisons with multiplicity adjustment. Agreement here denotes statistical compatibility at the tested resolution.
++At the primary bound, \SuccessRuns/\BaselineRuns runs succeed and \BudgetRuns terminate normally at budget. The empirical probability is \PrimaryEmpiricalPercent\%, with Wilson interval [\PrimaryCILower\%, \PrimaryCIUpper\%], compared with \PrimaryModelPercent\% modeled probability. The absolute difference is \PrimaryDeviationPP percentage points. Table~\ref{tab:probabilistic-results} combines checkpoint predictions, empirical counts, and original intervals with the conditional-resource results. Deviations and the supporting statistical interpretation are discussed here. Agreement here denotes statistical compatibility at the tested resolution.
+ 
+ \begin{table*}[!t]
+ \centering\footnotesize
+-\caption{P1 results for the specified two-stage evaluation. Probabilities and Wilson limits are percentages, and deviations are percentage points. Holm values adjust the informative checkpoint and P2 comparisons jointly. The early zero-probability checkpoints are structural.}
+-\label{tab:probabilities}
+-\begin{tabular}{@{}rrrrlrr@{}}\toprule
+-$k$ & Successes/runs & Model (\%) & Empirical (\%) & Wilson 95\% (\%) & $|\Delta p|$ (pp) & Holm $p$ \\
+-\midrule
+-\input{tables/probabilities.tex}
+-
+-\end{tabular}
++\caption{Gaussian predictions and empirical results from \BaselineRuns executions. Probability intervals are pointwise Wilson intervals. Resource intervals are the original percentile-bootstrap intervals for \SuccessRuns successful runs. Intervals use the nominal 95\% level.}
++\label{tab:probabilistic-results}
++\begin{tabularx}{\textwidth}{@{}Yrr>{\raggedleft\arraybackslash}p{.25\textwidth}@{}}\toprule
++Quantity / unit & Gaussian model & Empirical result & 95\% interval \\
++\midrule
++\input{tables/probabilistic_results.tex}
++\end{tabularx}
+ \end{table*}
+ 
+-P2 is \PModelMean modeled iterations conditional on success versus \PEmpiricalMean empirical iterations, with the original percentile-bootstrap interval [\PMeanLow, \PMeanHigh]. Table~\ref{tab:conditional} preserves that interval, which does not contain the model mean. Marginal interval containment was the automated report's decision rule. The post-audit analysis interprets the supporting comparisons jointly: the raw P2 $p$-value is \PMeanRawP, becoming \PMeanAdjustedP after Holm adjustment. All informative comparisons are compatible at the family level. Thus P2 and its derived P3 result agree under the stated statistical comparison. The source report's original labels remain preserved for provenance. Statistical compatibility has the scope of this test and sample size, rather than a claim of distributional equivalence.
+-
+-\begin{table*}[!t]
+-\centering\footnotesize
+-\caption{Resources conditional on bounded success in the two-stage evaluation, based on \SuccessRuns successful executions. Intervals are the original 95\% percentile-bootstrap intervals from \BootstrapSamples resamples. P2 is statistically compatible after Holm adjustment. P3 scales P2 by \ShotsPerUpdate shots/iteration and is therefore a derived result.}
+-\label{tab:conditional}
+-\begin{tabular}{@{}lrrlrl@{}}\toprule
+-Quantity / unit & Model mean & Empirical mean & Bootstrap 95\% & Absolute deviation & Holm $p$ \\
+-\midrule
+-\input{tables/conditional.tex}
+-
+-\end{tabular}
+-\end{table*}
++P2 is \PModelMean modeled iterations conditional on success versus \PEmpiricalMean empirical iterations, with the original percentile-bootstrap interval [\PMeanLow, \PMeanHigh]. Table~\ref{tab:probabilistic-results} preserves that interval, which does not contain the model mean. Marginal interval containment was the automated report's decision rule. The post-audit analysis interprets the supporting comparisons jointly: the raw P2 $p$-value is \PMeanRawP, becoming \PMeanAdjustedP after Holm adjustment. All informative comparisons are compatible at the family level. Thus P2 and its derived P3 result agree under the stated statistical comparison. The source report's original labels remain preserved for provenance. Statistical compatibility has the scope of this test and sample size, rather than a claim of distributional equivalence.
++
++
+ 
+ Including unsuccessful runs, mean expenditure is \UnconditionalEmpirical iterations versus \UnconditionalModel modeled iterations. Total shot consumption includes budget-terminated paths, whereas P2 and P3 describe successful paths. The primary probability comparison's approximate normal-theory deviation detectable at 80\% power is \DetectablePP percentage points at this sample size. This local planning approximation describes statistical resolution. An equivalence claim would require a declared margin and corresponding test. Supporting checkpoints are correlated, and the confidence band is pointwise.
+ 
+ \subsection{Faults and Cross-Stage Discrepancies}
+ \label{sec:faults}
+-Figure~\ref{fig:fault-discrepancies} reports the full logical and numeric verdict vector. The matrix shows which obligations respond to each fault, with distinct symbols for violations, changed assumptions, and unavailable checks. There are \FaultClasses fault scenarios, each repeated \FaultRepetitions times, for \FaultRuns tests. Execution faults use the first iteration/candidate boundary. The missing-count scenario deletes counts from a saved trace while preserving the corresponding control execution. It assesses how the checker handles incomplete records.
++Figure~\ref{fig:fault-discrepancies} reports the full logical and numeric verdict vector. The matrix shows which requirements respond to each fault, with distinct symbols for violations, changed assumptions, and unavailable checks. There are \FaultClasses fault scenarios, each repeated \FaultRepetitions times, for \FaultRuns tests. Execution faults use the first iteration/candidate boundary. The missing-count scenario deletes counts from a saved trace while preserving the corresponding control execution. It assesses how the checker handles incomplete records.
+ 
+ \begin{figure*}[!t]
+-\centering\includegraphics[width=\textwidth]{figures/fault-discrepancies.pdf}
+-\caption{Fault verdict matrix for \FaultClasses scenarios, each repeated \FaultRepetitions times with different count streams. Every repetition within a row has the displayed vector. Colors and letters indicate A: AGREEMENT, D: DISAGREEMENT, M: ASSUMPTION\_MISMATCH, and I: INCONCLUSIVE. ``Expected verdict'' counts the specified target-obligation result, including an inconclusive result for missing counts. ``DejaVu pass'' counts acceptance by the independent temporal replay. Missing counts are removed from a saved trace. Its L1 D reflects the checker's treatment of incomplete records and does not establish a physical ordering violation.}
++\centering\includegraphics[width=\textwidth]{../figures/fault-discrepancies.pdf}
++\caption{Logical/numeric verdicts for \FaultClasses fault scenarios, each repeated \FaultRepetitions times. Every repetition in a row has the displayed vector. The legend defines the verdict symbols. Right-hand counts show the expected target verdict and acceptance by DejaVu temporal replay.}
+ \label{fig:fault-discrepancies}
+ \end{figure*}
+ 
+@@ -340,13 +335,13 @@
+ Missing counts make numeric reconstruction inconclusive. The checker also records an L1 disagreement because its completeness condition treats unavailable records as missing measurements. A deleted record alone does not establish that the original execution aggregated too early. The full vector exposes this classification limitation alongside the expected target detections. The suite covers the specified fault classes at one injection boundary. Terminal-boundary faults, stale inputs, and additional injection sites require further tests.
+ 
+ \subsection{Summary of Verification Results}
+-The evaluation begins with properties of the controller, arithmetic kernels, and Gaussian process, then checks the corresponding obligations on executions of the specified configuration. The mapping makes the role of each verification layer explicit. Logical results describe allowed ordering, numeric results describe calculations under input assumptions, and probabilistic results describe bounded search. Runtime checking determines whether the logical and numeric obligations hold in each run, while repeated executions assess the probabilistic predictions.
++The evaluation begins with properties of the controller, arithmetic kernels, and Gaussian process, then checks the corresponding requirements on executions of the specified configuration. The mapping makes the role of each verification layer explicit. Logical results describe allowed ordering, numeric results describe calculations under input assumptions, and probabilistic results describe bounded search. Runtime checking determines whether the logical and numeric requirements hold in each run, while repeated executions assess the probabilistic predictions.
+ 
+ The baseline agreement supports this connection at the level of the established properties. Logical and numeric checks accept every observed baseline run, and the bounded-success and conditional-resource comparisons are statistically compatible under the stated analysis. P3 follows P2 because shots per iteration are fixed. Successful comparisons therefore depend on the meaning and scope of the requirement, as well as on the reported verdict. L4 illustrates the distinction: both stages assess terminal closure and budget bounds, while correct termination reasons have runtime support.
+ 
+ Fault results show why the four aspects are useful together. Temporal checking detects premature commitment, whereas numeric reconstruction detects energy and coefficient errors that preserve temporal order. Changed shot allocations identify assumptions that must be restored before comparing stochastic outcomes. Missing counts reveal a further requirement for the implementation: it must distinguish incomplete observations from observed violations. Preserving the full verdict vector exposes this limitation.
+ 
+-The combined assessment thus provides traceable agreement among heterogeneous verification results within the tested configuration. Its practical value is the ability to locate the affected obligation and the limits of its support. Model growth and runtime costs in Section~\ref{sec:individual} establish the measured expense of the corresponding verification components. Extending the conclusions requires stronger termination properties, broader fault coverage, and evaluations under larger or noisy execution models.
++The combined assessment thus provides traceable agreement among heterogeneous verification results within the tested configuration. Its practical value is the ability to locate the affected requirement and the limits of its support. Model growth and runtime costs in Section~\ref{sec:individual} establish the measured expense of the corresponding verification components. Extending the conclusions requires stronger termination properties, broader fault coverage, and evaluations under larger or noisy execution models.
+ 
+ \section{Related Work}
+ VQE and variational hybrid algorithms combine classical decisions with quantum measurements~\cite{peruzzo2014,mcclean2016}. Reviews of VQE examine measurement strategies, optimization, noise, and their impact on practical performance~\cite{tilly2022}. Direct-search literature provides the optimization context for choosing candidates using objective values~\cite{kolda2003}. Here, the finite-grid search makes these decisions explicit enough to model their probability and inspect their execution.
+@@ -368,12 +363,12 @@
+ \emph{Feedback scope.} The framework detects inconsistencies and supports revising assumptions or specifications before regenerating the verification record and running the next execution. This feedback is manual. The evaluated workflow gates execution on successful prospective results, and the fault scenarios cover the specified boundary.
+ 
+ \section{Conclusion}
+-The four-layer architecture organizes VQE verification around logical, numeric, probabilistic, and runtime requirements. Its two-stage framework connects properties established prospectively with the corresponding obligations checked during concrete execution of a specified configuration. The benchmark results support logical and numeric agreement within the verified scope and statistical compatibility of Gaussian predictions with repeated finite-shot executions. Fault vectors reveal complementary detection capabilities and a limitation in classifying missing records. Model-size and timing measurements quantify the cost of the evaluated components. Together, the results demonstrate a traceable assessment of heterogeneous verification methods. Future work will strengthen termination specifications, examine additional fault locations, and extend the models and runtime checks to larger instances and hardware noise.
++The four-layer architecture organizes VQE verification around logical, numeric, probabilistic, and runtime requirements. Its two-stage framework connects properties established prospectively with the corresponding requirements checked during concrete execution of a specified configuration. The benchmark results support logical and numeric agreement within the verified scope and statistical compatibility of Gaussian predictions with repeated finite-shot executions. Fault vectors reveal complementary detection capabilities and a limitation in classifying missing records. Model-size and timing measurements quantify the cost of the evaluated components. Together, the results demonstrate a traceable assessment of heterogeneous verification methods. Future work will strengthen termination specifications, examine additional fault locations, and extend the models and runtime checks to larger instances and hardware noise.
+ 
+ \section*{Artifact Availability}
+ The local reproducibility bundle includes this source, vector figures, editable architecture source, figure-generation scripts, generated numerical tables, \path{FIGURE_PLAN.md}, \path{FIGURE_MANIFEST.md}, and \path{PAPER_RESULT_TRACEABILITY.md}. The source manifest records hashes of the verification record, models, proof logs, raw traces, and individual-layer inputs. Original experimental artifacts and the reference manuscript are preserved. The bundle is currently a local research artifact.
+ 
+ \bibliographystyle{IEEEtran}
+ \IEEEtriggeratref{4}
+-\bibliography{references}
++\bibliography{../references}
+ \end{document}

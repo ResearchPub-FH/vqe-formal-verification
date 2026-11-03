@@ -1,0 +1,8 @@
+property,prism_result
+success_by_10,
+success_by_20,
+success_by_30,
+success_by_40,
+success_by_50,
+expected_updates_given_success_by_50,
+expected_shots_given_success_by_50,

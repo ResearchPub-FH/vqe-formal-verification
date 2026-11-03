@@ -1,0 +1,1651 @@
+{
+  "artifacts": {
+    "stage1/configuration.json": "e7ee8cdab1d346598d9722f090b2f731af57093e173779f02eecdf7f97be7174",
+    "stage1/controller.smv": "e913a3e1d6369e5952a288d3143ef998dff42963e34fcfd66d185565cff4d5e9",
+    "stage1/dafny-GroupGrid.dfy.log": "4e42b7b708d3c1e5049f07230bd54981456a3de9c15a47daa906b4b7891210ed",
+    "stage1/dafny-VQELemmas.dfy.log": "6870efe142567699d97323d3a4f70bc9854da2530f4cc8774a455002f592b712",
+    "stage1/dafny-VQENumericKernels.dfy.log": "e9ba43eaf2d7050f968d0d1f6bd5adb75cfb3239a26df26eab1febab1bd852a1",
+    "stage1/gaussian-kernels.npz": "c718a020b88c97e56475386d4eef069181632543312b6f3e0a5774add82379b0",
+    "stage1/gaussian.lab": "b46cee3de3d2e6184240550ec233ab30ed85dcb8f069ce9f02e4b158819c99ba",
+    "stage1/gaussian.props": "f860e984a0f00d1ef65ec96afd48e7e67c959945cf3bd11dc0cdd5f020194cd1",
+    "stage1/gaussian.tra": "eac2165b799ee0f7d49c1af90c987e11ea77a3330ad48b2cd6518ff00472c498",
+    "stage1/monitor-build-0.log": "ed33e23834cbffa6a651c525556fad0fdde8533bc26bc1c633b5d6ad2adb7082",
+    "stage1/monitor-build-1.log": "42c9a7a66a5056ded655d9e621f7ca993038d49196e2bce4b9dfecdfb5c089ed",
+    "stage1/monitor-build-2.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "stage1/mutant-M10_budget_as_abort-witnesses.cmd": "29cc8ab7285513f3282d003d5cc06860758b5a6f802fd1a43fb98247a2413404",
+    "stage1/mutant-M10_budget_as_abort-witnesses.log": "031bca3017f1e0572e81757657d9bf0f90cb62a4bf4cde937a195a27eeea8a2e",
+    "stage1/mutant-M10_budget_as_abort.log": "2a70fb0f589559dbd08b401b2662d9d0f8591c037842c5ade24f58a5397780d7",
+    "stage1/mutant-M10_budget_as_abort.smv": "d80d3ef9ee6294424d0245f654a531d39c881cc6f5fb2c69acc2f217fb758767",
+    "stage1/mutant-M11_success_as_abort-witnesses.cmd": "bab0b779adcc2877b702fe5e4052e3c4ec7294727c9bb941d2d096579c3c650f",
+    "stage1/mutant-M11_success_as_abort-witnesses.log": "031bca3017f1e0572e81757657d9bf0f90cb62a4bf4cde937a195a27eeea8a2e",
+    "stage1/mutant-M11_success_as_abort.log": "80938ae4e6f6bf8e584dba6a7ee019c9e9c761390569f2a0eb8fb663e25d615c",
+    "stage1/mutant-M11_success_as_abort.smv": "28df69bfdcea18464ee041ecedca18654dad31a90342e03ee1837277eff61690",
+    "stage1/mutant-M12_budget_overrun-witnesses.cmd": "56bba2337b016fb83b4169a42001384124f3595b684281af4ce9335f31fd3363",
+    "stage1/mutant-M12_budget_overrun-witnesses.log": "031bca3017f1e0572e81757657d9bf0f90cb62a4bf4cde937a195a27eeea8a2e",
+    "stage1/mutant-M12_budget_overrun.log": "33d1382a9d7d63b18ac9526f8d2600423ce2858a7bebcf678411435bb8aa7f2e",
+    "stage1/mutant-M12_budget_overrun.smv": "c50e0674799d29590c0ca5340de2f9df3804a1d8e659b9e6fbab696765e1f38c",
+    "stage1/mutant-M1_early_aggregation-witnesses.cmd": "3ceececd2521a5b7b8536bd1f3ff02f403056319f17f913f5a52dbd7df3d29a3",
+    "stage1/mutant-M1_early_aggregation-witnesses.log": "031bca3017f1e0572e81757657d9bf0f90cb62a4bf4cde937a195a27eeea8a2e",
+    "stage1/mutant-M1_early_aggregation.log": "3344679222f8282e468e8852dcad38204dbec79a62ff7e3c7609210a11b2f8f1",
+    "stage1/mutant-M1_early_aggregation.smv": "9d78b042f990010299046ab37b290e23247359a15b90de9cedb0884c28d62208",
+    "stage1/mutant-M2_skipped_candidate-witnesses.cmd": "a92261b2e980a1e63bd8eeace7923ba1a457730fa71479c3a0efa75cc0155b82",
+    "stage1/mutant-M2_skipped_candidate-witnesses.log": "031bca3017f1e0572e81757657d9bf0f90cb62a4bf4cde937a195a27eeea8a2e",
+    "stage1/mutant-M2_skipped_candidate.log": "c89207d2b25655c68a102e3678c8a33b1ee680850891513358d5589d7e18d931",
+    "stage1/mutant-M2_skipped_candidate.smv": "499b5169ad7ad27cb522695616c1c0eb4d8432ab7804d30e60c3b862202a52d1",
+    "stage1/mutant-M3_no_candidate_reset-witnesses.cmd": "83a2bf4ce6c025155b3a942d4f836781421ffc9621832da35c8c0511be6d31ec",
+    "stage1/mutant-M3_no_candidate_reset-witnesses.log": "04467931695d6540d134cec4c64b110f73a39f96ad1d93c37818f44e31f2898a",
+    "stage1/mutant-M3_no_candidate_reset.log": "f1660417817a9ee04544fb04a0f6059c92de26a4e00edff74b6b6e0ff70aea2f",
+    "stage1/mutant-M3_no_candidate_reset.smv": "ccd3637c17c8f8739badb799c9278f52a282d4eb7d2ab3e481f472d6967e3e06",
+    "stage1/mutant-M4_stale_energy_ready-witnesses.cmd": "568ff39ef3550ff5a6b69caf534b276942f073eb0e164527cacbea3f5e687e9f",
+    "stage1/mutant-M4_stale_energy_ready-witnesses.log": "031bca3017f1e0572e81757657d9bf0f90cb62a4bf4cde937a195a27eeea8a2e",
+    "stage1/mutant-M4_stale_energy_ready.log": "174b55066a2ac24360db875c6d91150756751e1ea04541f3159578d64dee4ca5",
+    "stage1/mutant-M4_stale_energy_ready.smv": "19a5912b0a0b9c79370bef986222c959bf4b8c92d5177d69218ca4c37cd42572",
+    "stage1/mutant-M5_skipped_rebind-witnesses.cmd": "d13e8ff4db9042854e1338f7e6d01e90fd69d8f04334d101cbc2af2abc53048b",
+    "stage1/mutant-M5_skipped_rebind-witnesses.log": "031bca3017f1e0572e81757657d9bf0f90cb62a4bf4cde937a195a27eeea8a2e",
+    "stage1/mutant-M5_skipped_rebind.log": "888dd2a71696a82a23e126eee32f957170a755306a87d55639dacd704f42d589",
+    "stage1/mutant-M5_skipped_rebind.smv": "4ba369c987da4cffba84386d9badfb558671df1b951cbcf1835a6b018a017d73",
+    "stage1/mutant-M6_stale_binding-witnesses.cmd": "3eca75b1262c69fb3d6ccd701b5b37815117d7035f0a1fb2087b07439df605de",
+    "stage1/mutant-M6_stale_binding-witnesses.log": "031bca3017f1e0572e81757657d9bf0f90cb62a4bf4cde937a195a27eeea8a2e",
+    "stage1/mutant-M6_stale_binding.log": "76a873e9719ba39f5137e34ec6985023a247eec59df1230a359a2f37c9ea3d90",
+    "stage1/mutant-M6_stale_binding.smv": "2ab72e0857863a9dc626105743b62fb1edcf6de36d191a9533beef1bf8a2b3d3",
+    "stage1/mutant-M7_wrong_candidate-witnesses.cmd": "40ad3b87c2c4ef9a72b1fcaaea3ad33fc4b08043d8fb5e4990e3d2d1ed7620da",
+    "stage1/mutant-M7_wrong_candidate-witnesses.log": "031bca3017f1e0572e81757657d9bf0f90cb62a4bf4cde937a195a27eeea8a2e",
+    "stage1/mutant-M7_wrong_candidate.log": "0d309359c8288e72ea21272937c9624fccd6348daff9175e9e338c55eeedaa3c",
+    "stage1/mutant-M7_wrong_candidate.smv": "23e3bb1421426ab01dd4b2db2ad390a0c80a3162b5950dbd67a337cb47b76663",
+    "stage1/mutant-M8_stale_energy_epoch-witnesses.cmd": "47886e59a5694aa558fe4f16f4b9b9ed234fa5e4e2ef7bbfdb9792d246a2e2b9",
+    "stage1/mutant-M8_stale_energy_epoch-witnesses.log": "031bca3017f1e0572e81757657d9bf0f90cb62a4bf4cde937a195a27eeea8a2e",
+    "stage1/mutant-M8_stale_energy_epoch.log": "c95cdbd6b6ec9322bc8475e0880cb05a2fcac3c6a4efb13c6911f865f52870cc",
+    "stage1/mutant-M8_stale_energy_epoch.smv": "dd80f18f5cbbf806633e18e91aac03d05837b3042608104e96f3b01737461a21",
+    "stage1/mutant-M9_measurement_error_ignored-witnesses.cmd": "06afd4197f8e07f5cec6a85d49a5523059c48ec10cc087bb20a21d673dff9162",
+    "stage1/mutant-M9_measurement_error_ignored-witnesses.log": "031bca3017f1e0572e81757657d9bf0f90cb62a4bf4cde937a195a27eeea8a2e",
+    "stage1/mutant-M9_measurement_error_ignored.log": "c2f64d022e26c0771c8e4cf443fb7eba40e745ac73646674d8834f887678e64e",
+    "stage1/mutant-M9_measurement_error_ignored.smv": "d434227b1321b57759e1d5b7659b1013e6cbe921e5b3d8f92b05c3e478b9f672",
+    "stage1/nuxmv-witnesses.cmd": "54bf189323a9fa20b5c87549a42677fe452aeffa6d93218626bc9f12777315ab",
+    "stage1/nuxmv-witnesses.log": "7ecfb460f7b9c31be0bd393fb94fcb7525f1e75993cb3d47acb9733c9b1dacea",
+    "stage1/nuxmv.log": "253a4b1e3e0a74da9c41aa52cca21df8c47d2d2f9748831cd74ac4996f5d8764",
+    "stage1/quantitative.json": "2df5c58a4992e8f520d5b0da5f885accae330cbdf9a4327b80ed64869fe0f49e",
+    "stage1/runtime-monitor.jar": "b9131b82964cc460bef6534ba546d67fb097a854019742b6084ab4e50cc63c0e",
+    "stage1/runtime-monitor.json": "1353e402f5eec12237c58ae41d9b2572c3b0744ef54bba4732dbb335e1711e9d",
+    "stage1/storm.log": "0261e9d696d5884238b70f24ac628c743f464ae20d21e3e4349cc3a6f0fce6f2"
+  },
+  "assumptions": [
+    "Logical model abstracts measurements and arithmetic into counters, readiness flags and nondeterministic outcomes; L3's (iteration, candidate) version abstraction is strengthened by concrete runtime identity checks.",
+    "Logical non-vacuity is checked on the same bounded abstraction: every antecedent disjunct is reachable, no consequent is invariant on its own, the defensive default branch is unreachable, and each seeded control mutant is detected by its contract.",
+    "Dafny verifies real/integer kernels, not the entire Python program or a floating-point compiler refinement. Runtime checks actual observed outputs against exact rational reconstruction within frozen tolerances.",
+    "Circuit generation, measurement-basis interpretation, event instrumentation, proof tools, and the independent checker are in the trusted base.",
+    "Measurements follow ideal Born probabilities, independent across groups/candidates and executions; within-group correlations are retained.",
+    "Gaussian selection is approximate; finite-shot ties use current/minus/plus priority, while the continuous Gaussian model has zero tie probability.",
+    "Ideal-energy success is a simulator benchmark oracle, not a hardware-observed stopping certificate.",
+    "The 50-update probability is the primary comparison. Other checkpoints and conditional means are supporting marginal comparisons, not a simultaneous-confidence claim."
+  ],
+  "configuration": {
+    "ansatz": "h-rz-y-on-both-cx01-h-rz-y-on-both-v1",
+    "bootstrap_samples": 5000,
+    "candidate_order": [
+      "current",
+      "minus",
+      "plus"
+    ],
+    "checkpoints": [
+      10,
+      20,
+      30,
+      40,
+      50
+    ],
+    "confidence_level": 0.95,
+    "coordinate_schedule": [
+      0,
+      1,
+      2,
+      3
+    ],
+    "energy_tolerance": 1e-12,
+    "environment": "ideal-born-finite-shot",
+    "expectation_tolerance": 1e-12,
+    "fault_runs": 10,
+    "gauss_hermite_points": 24,
+    "grid_size": 16,
+    "hamiltonian": {
+      "coefficient_scale": 10000,
+      "terms": {
+        "XX": 1810,
+        "YZ": 3980,
+        "ZI": -3980,
+        "ZZ": -113
+      }
+    },
+    "initial_index": [
+      3,
+      11,
+      6,
+      14
+    ],
+    "maximum_updates": 50,
+    "measurement_groups": [
+      [
+        "ZI",
+        "ZZ"
+      ],
+      [
+        "YZ"
+      ],
+      [
+        "XX"
+      ]
+    ],
+    "name": "h2-two-stage-closed-loop-v1",
+    "parameter_count": 4,
+    "qubit_order": "q1-q0",
+    "runs": 400,
+    "schema_version": 1,
+    "seed": 20260721,
+    "shots_per_group": 1024,
+    "stop_rule": "first-ideal-energy-success-or-update-budget",
+    "success_gap": 0.02
+  },
+  "configuration_digest": "03b387a2e7fede7a78b71b5a25065f673af10bbb9193103dd9895866d10706be",
+  "contracts": {
+    "L1": {
+      "assumptions": [
+        "Group events identify the actual measurement executions"
+      ],
+      "comparison": "PROVED and observed obligations satisfied yield AGREEMENT; missing raw evidence is reported explicitly",
+      "description": "Complete measurements precede candidate energy aggregation",
+      "family": "logical",
+      "killed_mutants": [
+        "M1_early_aggregation",
+        "M9_measurement_error_ignored"
+      ],
+      "non_vacuity": "Stage 1: witness EF COMPUTE_ENERGY holds and the early-aggregation mutant is detected. Stage 2: Python obligation groups_before_energy fires at every evaluation; DejaVu L1 fires on every energy event, and the two counts must match",
+      "pre_execution_verdict": "PROVED",
+      "stage1": "NuXmv R1: COMPUTE_ENERGY implies all NTERMS groups of the evaluation are measured",
+      "stage2": "DejaVu L1_groupsBeforeEnergy and Python unique candidate/group completeness",
+      "witnesses": [
+        "EF (state = COMPUTE_ENERGY)"
+      ]
+    },
+    "L2": {
+      "assumptions": [
+        "Recorded commit events correspond to actual controller boundaries"
+      ],
+      "comparison": "A premature observed commit is DISAGREEMENT",
+      "description": "All three candidate validations precede optimizer commitment",
+      "family": "logical",
+      "killed_mutants": [
+        "M2_skipped_candidate"
+      ],
+      "non_vacuity": "Stage 1: witnesses EF OPTIMIZER_STEP and EF (CHECK_STOP & iter > 0) hold and the skipped-candidate mutant is detected. Stage 2: Python obligations validation_certified (each numericValid) and validations_before_commit (each commit) fire; DejaVu commit and validated counts must match them",
+      "pre_execution_verdict": "PROVED",
+      "stage1": "NuXmv R4: OPTIMIZER_STEP implies NCANDS validated candidate energies; R2: a stop decision after an update follows validated energies",
+      "stage2": "DejaVu L2_validationsBeforeCommit and Python certification of each numericValid event",
+      "witnesses": [
+        "EF (state = CHECK_STOP & iter > 0)",
+        "EF (state = OPTIMIZER_STEP)"
+      ]
+    },
+    "L3": {
+      "assumptions": [
+        "Iteration/candidate version numbers preserve current-versus-stale meaning; concrete unique IDs are a runtime strengthening, not a NuXmv proof over arbitrary strings"
+      ],
+      "comparison": "Compare freshness with the declared abstraction boundary",
+      "description": "Evaluation identity and parameter provenance remain current",
+      "family": "logical",
+      "killed_mutants": [
+        "M3_no_candidate_reset",
+        "M4_stale_energy_ready",
+        "M5_skipped_rebind",
+        "M6_stale_binding",
+        "M7_wrong_candidate",
+        "M8_stale_energy_epoch",
+        "M12_budget_overrun"
+      ],
+      "non_vacuity": "Stage 1: witnesses for measurement, aggregation, commitment, binding and iteration restart hold, and the no-reset, stale-readiness, skipped-rebind, stale-binding, wrong-candidate and stale-energy mutants are detected. Stage 2: Python obligations evaluation_identity_current (each measurement/evaluation/validation) and commit_identity_current (each commit) fire",
+      "pre_execution_verdict": "PROVED",
+      "stage1": "NuXmv R3/F1-F4: bound circuit before measurement, (iteration, candidate) version of the binding and the energy, readiness reset per evaluation and per iteration",
+      "stage2": "DejaVu causal links and Python run/update/candidate/index/angle identity checks",
+      "witnesses": [
+        "EF (state = EXECUTE_MEASURE)",
+        "EF (state = EXECUTE_MEASURE)",
+        "EF (state = COMPUTE_ENERGY)",
+        "EF (state = OPTIMIZER_STEP)",
+        "EF (state = BIND)",
+        "EF (state = CHECK_STOP & !converged & iter < MAX_ITERS)"
+      ]
+    },
+    "L4": {
+      "assumptions": [
+        "Ideal-energy success is the benchmark oracle; the logical success flag abstracts this classification"
+      ],
+      "comparison": "Missing termination is INCONCLUSIVE; an invalid reason or later activity is DISAGREEMENT",
+      "description": "Termination is final and has the declared reason",
+      "family": "logical",
+      "killed_mutants": [
+        "M2_skipped_candidate",
+        "M3_no_candidate_reset",
+        "M6_stale_binding",
+        "M8_stale_energy_epoch",
+        "M9_measurement_error_ignored",
+        "M10_budget_as_abort",
+        "M11_success_as_abort",
+        "M12_budget_overrun"
+      ],
+      "non_vacuity": "Stage 1: witnesses for every terminal state, the last commitment, each termination cause and each error cause hold; the defensive default branch is unreachable; the ignored-error, budget-to-abort, success-to-abort and budget-overrun mutants are detected. Stage 2: Python obligation terminal_reason fires once per closed trace; DejaVu stopped count must match",
+      "pre_execution_verdict": "PROVED",
+      "stage1": "NuXmv T1-T9 and E1-E6: termination, absorbing DONE/ABORT, DONE by convergence or exhausted budget with its reason, every error aborts at once with its cause and nothing else aborts, update accounting and bound, returned energy",
+      "stage2": "DejaVu no activity after stop; Python terminal reason, ideal-success oracle, and update budget",
+      "witnesses": [
+        "EF (state = DONE & iter > 0)",
+        "EF !terminal",
+        "EF (state = DONE)",
+        "EF (state = DONE)",
+        "EF (state = ABORT)",
+        "EF (state = CHECK_STOP & converged)",
+        "EF (state = CHECK_STOP & !converged & iter = MAX_ITERS)",
+        "EF (state = ABORT)",
+        "EF !terminal",
+        "EF (state = OPTIMIZER_STEP & !optimizer_error)",
+        "EF bind_fails",
+        "EF measure_fails",
+        "EF energy_fails",
+        "EF optimizer_fails",
+        "EF (!terminal & EX state = ABORT)",
+        "EF (state = OPTIMIZER_STEP)"
+      ]
+    },
+    "N1": {
+      "assumptions": [
+        "Correct frozen Pauli/basis/bit-order mapping",
+        "Available valid raw group counts"
+      ],
+      "comparison": "Valid-input output errors: DISAGREEMENT; invalid inputs: ASSUMPTION_MISMATCH; missing counts: INCONCLUSIVE",
+      "description": "Raw counts normalize to the reported expectations",
+      "family": "numeric",
+      "non_vacuity": "Stage 2: obligation expectation_reconstructed fires for every term of every complete evaluation (4 terms x 3 candidates per update)",
+      "pre_execution_verdict": "PROVED",
+      "stage1": "Dafny NormalizeExpectation: positive shots and valid negative counts imply normalization and [-1,1]",
+      "stage2": "Independent negative-eigenvalue parity counts and exact Fraction expectations"
+    },
+    "N2": {
+      "assumptions": [
+        "Complete uniquely identified term records",
+        "Faithfully instrumented optimizer inputs",
+        "Frozen tolerance for mathematical real versus observed floating-point values"
+      ],
+      "comparison": "Runtime checks actual outputs; Dafny does not prove the entire Python implementation",
+      "description": "Declared coefficients and measurements produce the actual energy",
+      "family": "numeric",
+      "non_vacuity": "Stage 2: obligation energy_reconstructed fires for every complete candidate evaluation (3 per update)",
+      "pre_execution_verdict": "PROVED",
+      "stage1": "Dafny TermEnergyContribution, ComputeTermEnergies, AggregateEnergy and supporting lemmas",
+      "stage2": "Exact rational reconstruction; compare contributions, score, reported energy and actual optimizer inputs"
+    },
+    "N3": {
+      "assumptions": [
+        "Records enumerate unique physical executions",
+        "Declared shot allocation per group"
+      ],
+      "comparison": "Accounting errors: DISAGREEMENT; changed allocation: ASSUMPTION_MISMATCH, invalidating P1-P3 applicability",
+      "description": "Unique measurement groups determine physical shot consumption",
+      "family": "numeric",
+      "non_vacuity": "Stage 2: obligations allocation_checked (each valid group measurement, 9 per update) and cumulative_total_checked (each commit and the terminal event) fire",
+      "pre_execution_verdict": "PROVED",
+      "stage1": "Dafny GroupGrid.AccumulatePhysicalGroups",
+      "stage2": "Validate raw group totals and accumulate each candidate/group key once"
+    },
+    "N4": {
+      "assumptions": [
+        "Angle conversion and quantum gate implementation are in the trusted base"
+      ],
+      "comparison": "Compare observed indices, angles, selection and successor with the finite-grid transition",
+      "description": "Candidate generation and selection preserve the parameter grid",
+      "family": "numeric",
+      "non_vacuity": "Stage 2: obligations candidates_generated (each update start) and selection_checked (each commit) fire",
+      "pre_execution_verdict": "PROVED",
+      "stage1": "Dafny GroupGrid.WrapCandidate and SelectCandidate",
+      "stage2": "Recompute modular candidates and exact-energy argmin with declared tie priority; check bound angles"
+    },
+    "P1": {
+      "assumptions": [
+        "Same circuit, optimizer, grouping, shots, stopping predicate and update unit",
+        "Declared Gaussian approximation and numerical integration",
+        "Independent run seeds"
+      ],
+      "comparison": "Model probability inside runtime 95% Wilson interval means AGREEMENT; final bound is primary; no joint-coverage or distributional-equivalence claim",
+      "description": "Probability of first success within the update bound",
+      "family": "probabilistic",
+      "pre_execution_verdict": "ESTABLISHED_FOR_GAUSSIAN_MODEL",
+      "stage1": "Storm bounded reachability in the Gaussian DTMC at frozen checkpoints",
+      "stage2": "First-success proportions from repeated independent finite-shot executions"
+    },
+    "P2": {
+      "assumptions": [
+        "P1 assumptions",
+        "Both stages condition on success by the same bound"
+      ],
+      "comparison": "Supporting marginal comparison; fewer than two successes is INCONCLUSIVE",
+      "description": "Expected first-success update conditional on bounded success",
+      "family": "probabilistic",
+      "pre_execution_verdict": "ESTABLISHED_FOR_GAUSSIAN_MODEL",
+      "stage1": "Python propagation of the Gaussian kernel, with checkpoint CDF independently checked by Storm",
+      "stage2": "Mean first-success update over successful runs, with seeded percentile bootstrap interval"
+    },
+    "P3": {
+      "assumptions": [
+        "Fixed candidate/group allocation with no hidden evaluations or retries"
+      ],
+      "comparison": "Supporting statistical/resource comparison; scaled P2, not independent predictive evidence",
+      "description": "Expected physical shots conditional on bounded success",
+      "family": "probabilistic",
+      "pre_execution_verdict": "ESTABLISHED_FOR_GAUSSIAN_MODEL",
+      "stage1": "P2 times configured physical shots per update",
+      "stage2": "Successful-run resource consumption checked by N3 and compared with the conditional model mean"
+    }
+  },
+  "frozen_at": "2026-10-27T15:36:01.414049+00:00",
+  "logical": {
+    "command": [
+      "/Users/rome/Desktop/Implementation of Formal Verification on VQE/NuXmv Files/nuXmv/bin/nuXmv",
+      "/Users/rome/Desktop/Implementation of Formal Verification on VQE/2-stage verification (closed-loop)/artifacts/merged-model-01/stage1/controller.smv"
+    ],
+    "elapsed_seconds": 0.40185145795112476,
+    "established": true,
+    "exit_code": 0,
+    "log": "/Users/rome/Desktop/Implementation of Formal Verification on VQE/2-stage verification (closed-loop)/artifacts/merged-model-01/stage1/nuxmv.log",
+    "mutation": [
+      {
+        "detected_by": [
+          "L1"
+        ],
+        "edits": [
+          [
+            "state = EXECUTE_MEASURE & terms_done + 1 < NTERMS : EXECUTE_MEASURE;",
+            "state = EXECUTE_MEASURE & terms_done + 1 < 1 : EXECUTE_MEASURE;"
+          ],
+          [
+            "state = EXECUTE_MEASURE & terms_done + 1 = NTERMS : COMPUTE_ENERGY;",
+            "state = EXECUTE_MEASURE & terms_done + 1 >= 1 : COMPUTE_ENERGY;"
+          ]
+        ],
+        "failing_properties": [
+          "R1_groups_before_aggregation"
+        ],
+        "failing_witnesses": [],
+        "killed": true,
+        "logs": [
+          "/Users/rome/Desktop/Implementation of Formal Verification on VQE/2-stage verification (closed-loop)/artifacts/merged-model-01/stage1/mutant-M1_early_aggregation.log",
+          "/Users/rome/Desktop/Implementation of Formal Verification on VQE/2-stage verification (closed-loop)/artifacts/merged-model-01/stage1/mutant-M1_early_aggregation-witnesses.log"
+        ],
+        "mutant": "M1_early_aggregation",
+        "target_contract": "L1",
+        "tool_ok": true
+      },
+      {
+        "detected_by": [
+          "L2",
+          "L4"
+        ],
+        "edits": [
+          [
+            "state = COMPUTE_ENERGY & cands_done + 1 < NCANDS : BIND;",
+            "state = COMPUTE_ENERGY & cands_done + 1 < 1 : BIND;"
+          ],
+          [
+            "state = COMPUTE_ENERGY & cands_done + 1 = NCANDS : OPTIMIZER_STEP;",
+            "state = COMPUTE_ENERGY & cands_done + 1 >= 1 : OPTIMIZER_STEP;"
+          ]
+        ],
+        "failing_properties": [
+          "R2_energy_before_check",
+          "R4_candidates_before_commit",
+          "F5_returned_energy"
+        ],
+        "failing_witnesses": [],
+        "killed": true,
+        "logs": [
+          "/Users/rome/Desktop/Implementation of Formal Verification on VQE/2-stage verification (closed-loop)/artifacts/merged-model-01/stage1/mutant-M2_skipped_candidate.log",
+          "/Users/rome/Desktop/Implementation of Formal Verification on VQE/2-stage verification (closed-loop)/artifacts/merged-model-01/stage1/mutant-M2_skipped_candidate-witnesses.log"
+        ],
+        "mutant": "M2_skipped_candidate",
+        "target_contract": "L2",
+        "tool_ok": true
+      },
+      {
+        "detected_by": [
+          "L3",
+          "L4"
+        ],
+        "edits": [
+          [
+            "next(cands_done) := case\n    state = CHECK_STOP : 0;",
+            "next(cands_done) := case\n    state = CHECK_STOP : cands_done;"
+          ]
+        ],
+        "failing_properties": [
+          "F4_iteration_reset",
+          "T7_abort_reason",
+          "E5_abort_only_on_error"
+        ],
+        "failing_witnesses": [
+          "W_T6_budget_reason_0",
+          "C_E6_update_bound"
+        ],
+        "killed": true,
+        "logs": [
+          "/Users/rome/Desktop/Implementation of Formal Verification on VQE/2-stage verification (closed-loop)/artifacts/merged-model-01/stage1/mutant-M3_no_candidate_reset.log",
+          "/Users/rome/Desktop/Implementation of Formal Verification on VQE/2-stage verification (closed-loop)/artifacts/merged-model-01/stage1/mutant-M3_no_candidate_reset-witnesses.log"
+        ],
+        "mutant": "M3_no_candidate_reset",
+        "target_contract": "L3",
+        "tool_ok": true
+      },
+      {
+        "detected_by": [
+          "L3"
+        ],
+        "edits": [
+          [
+            "state = CHECK_STOP & !converged & iter < MAX_ITERS : FALSE;",
+            "state = CHECK_STOP & !converged & iter < MAX_ITERS : energy_ready;"
+          ]
+        ],
+        "failing_properties": [
+          "F3_evaluation_reset"
+        ],
+        "failing_witnesses": [],
+        "killed": true,
+        "logs": [
+          "/Users/rome/Desktop/Implementation of Formal Verification on VQE/2-stage verification (closed-loop)/artifacts/merged-model-01/stage1/mutant-M4_stale_energy_ready.log",
+          "/Users/rome/Desktop/Implementation of Formal Verification on VQE/2-stage verification (closed-loop)/artifacts/merged-model-01/stage1/mutant-M4_stale_energy_ready-witnesses.log"
+        ],
+        "mutant": "M4_stale_energy_ready",
+        "target_contract": "L3",
+        "tool_ok": true
+      },
+      {
+        "detected_by": [
+          "L3"
+        ],
+        "edits": [
+          [
+            "state = COMPUTE_ENERGY & cands_done + 1 < NCANDS : BIND;",
+            "state = COMPUTE_ENERGY & cands_done + 1 < NCANDS : EXECUTE_MEASURE;"
+          ]
+        ],
+        "failing_properties": [
+          "R3_bound_before_measure",
+          "F1_current_evaluation"
+        ],
+        "failing_witnesses": [],
+        "killed": true,
+        "logs": [
+          "/Users/rome/Desktop/Implementation of Formal Verification on VQE/2-stage verification (closed-loop)/artifacts/merged-model-01/stage1/mutant-M5_skipped_rebind.log",
+          "/Users/rome/Desktop/Implementation of Formal Verification on VQE/2-stage verification (closed-loop)/artifacts/merged-model-01/stage1/mutant-M5_skipped_rebind-witnesses.log"
+        ],
+        "mutant": "M5_skipped_rebind",
+        "target_contract": "L3",
+        "tool_ok": true
+      },
+      {
+        "detected_by": [
+          "L3",
+          "L4"
+        ],
+        "edits": [
+          [
+            "state = BIND & !bind_error : iter;",
+            "state = BIND & !bind_error & iter = 0 : iter;"
+          ]
+        ],
+        "failing_properties": [
+          "F1_current_evaluation",
+          "F2_current_energy",
+          "F5_returned_energy"
+        ],
+        "failing_witnesses": [],
+        "killed": true,
+        "logs": [
+          "/Users/rome/Desktop/Implementation of Formal Verification on VQE/2-stage verification (closed-loop)/artifacts/merged-model-01/stage1/mutant-M6_stale_binding.log",
+          "/Users/rome/Desktop/Implementation of Formal Verification on VQE/2-stage verification (closed-loop)/artifacts/merged-model-01/stage1/mutant-M6_stale_binding-witnesses.log"
+        ],
+        "mutant": "M6_stale_binding",
+        "target_contract": "L3",
+        "tool_ok": true
+      },
+      {
+        "detected_by": [
+          "L3"
+        ],
+        "edits": [
+          [
+            "state = BIND & !bind_error : cands_done;",
+            "state = BIND & !bind_error : 0;"
+          ]
+        ],
+        "failing_properties": [
+          "F1_current_evaluation"
+        ],
+        "failing_witnesses": [],
+        "killed": true,
+        "logs": [
+          "/Users/rome/Desktop/Implementation of Formal Verification on VQE/2-stage verification (closed-loop)/artifacts/merged-model-01/stage1/mutant-M7_wrong_candidate.log",
+          "/Users/rome/Desktop/Implementation of Formal Verification on VQE/2-stage verification (closed-loop)/artifacts/merged-model-01/stage1/mutant-M7_wrong_candidate-witnesses.log"
+        ],
+        "mutant": "M7_wrong_candidate",
+        "target_contract": "L3",
+        "tool_ok": true
+      },
+      {
+        "detected_by": [
+          "L3",
+          "L4"
+        ],
+        "edits": [
+          [
+            "state = COMPUTE_ENERGY & !energy_error : bound_version;",
+            "state = COMPUTE_ENERGY & !energy_error & iter = 0 : bound_version;"
+          ]
+        ],
+        "failing_properties": [
+          "F2_current_energy",
+          "F5_returned_energy"
+        ],
+        "failing_witnesses": [],
+        "killed": true,
+        "logs": [
+          "/Users/rome/Desktop/Implementation of Formal Verification on VQE/2-stage verification (closed-loop)/artifacts/merged-model-01/stage1/mutant-M8_stale_energy_epoch.log",
+          "/Users/rome/Desktop/Implementation of Formal Verification on VQE/2-stage verification (closed-loop)/artifacts/merged-model-01/stage1/mutant-M8_stale_energy_epoch-witnesses.log"
+        ],
+        "mutant": "M8_stale_energy_epoch",
+        "target_contract": "L3",
+        "tool_ok": true
+      },
+      {
+        "detected_by": [
+          "L1",
+          "L4"
+        ],
+        "edits": [
+          [
+            "error := bind_fails | measure_fails | energy_fails | optimizer_fails;",
+            "error := bind_fails | energy_fails | optimizer_fails;"
+          ]
+        ],
+        "failing_properties": [
+          "R1_groups_before_aggregation",
+          "T1_termination",
+          "T8_no_early_reason",
+          "E2_measure_fails"
+        ],
+        "failing_witnesses": [],
+        "killed": true,
+        "logs": [
+          "/Users/rome/Desktop/Implementation of Formal Verification on VQE/2-stage verification (closed-loop)/artifacts/merged-model-01/stage1/mutant-M9_measurement_error_ignored.log",
+          "/Users/rome/Desktop/Implementation of Formal Verification on VQE/2-stage verification (closed-loop)/artifacts/merged-model-01/stage1/mutant-M9_measurement_error_ignored-witnesses.log"
+        ],
+        "mutant": "M9_measurement_error_ignored",
+        "target_contract": "L4",
+        "tool_ok": true
+      },
+      {
+        "detected_by": [
+          "L4"
+        ],
+        "edits": [
+          [
+            "state = CHECK_STOP & !converged & iter = MAX_ITERS : DONE;",
+            "state = CHECK_STOP & !converged & iter = MAX_ITERS : ABORT;"
+          ]
+        ],
+        "failing_properties": [
+          "T6_budget_reason",
+          "T7_abort_reason",
+          "E5_abort_only_on_error"
+        ],
+        "failing_witnesses": [],
+        "killed": true,
+        "logs": [
+          "/Users/rome/Desktop/Implementation of Formal Verification on VQE/2-stage verification (closed-loop)/artifacts/merged-model-01/stage1/mutant-M10_budget_as_abort.log",
+          "/Users/rome/Desktop/Implementation of Formal Verification on VQE/2-stage verification (closed-loop)/artifacts/merged-model-01/stage1/mutant-M10_budget_as_abort-witnesses.log"
+        ],
+        "mutant": "M10_budget_as_abort",
+        "target_contract": "L4",
+        "tool_ok": true
+      },
+      {
+        "detected_by": [
+          "L4"
+        ],
+        "edits": [
+          [
+            "state = CHECK_STOP & converged : DONE;",
+            "state = CHECK_STOP & converged & iter = MAX_ITERS : DONE;"
+          ]
+        ],
+        "failing_properties": [
+          "T5_success_reason",
+          "T7_abort_reason",
+          "E5_abort_only_on_error"
+        ],
+        "failing_witnesses": [],
+        "killed": true,
+        "logs": [
+          "/Users/rome/Desktop/Implementation of Formal Verification on VQE/2-stage verification (closed-loop)/artifacts/merged-model-01/stage1/mutant-M11_success_as_abort.log",
+          "/Users/rome/Desktop/Implementation of Formal Verification on VQE/2-stage verification (closed-loop)/artifacts/merged-model-01/stage1/mutant-M11_success_as_abort-witnesses.log"
+        ],
+        "mutant": "M11_success_as_abort",
+        "target_contract": "L4",
+        "tool_ok": true
+      },
+      {
+        "detected_by": [
+          "L3",
+          "L4"
+        ],
+        "edits": [
+          [
+            "state = CHECK_STOP & !converged & iter = MAX_ITERS : DONE;",
+            "state = CHECK_STOP & !converged & iter = MAX_ITERS : BIND;"
+          ]
+        ],
+        "failing_properties": [
+          "F3_evaluation_reset",
+          "F5_returned_energy",
+          "T1_termination",
+          "T6_budget_reason",
+          "T8_no_early_reason",
+          "T9_update_accounting",
+          "E6_update_bound"
+        ],
+        "failing_witnesses": [],
+        "killed": true,
+        "logs": [
+          "/Users/rome/Desktop/Implementation of Formal Verification on VQE/2-stage verification (closed-loop)/artifacts/merged-model-01/stage1/mutant-M12_budget_overrun.log",
+          "/Users/rome/Desktop/Implementation of Formal Verification on VQE/2-stage verification (closed-loop)/artifacts/merged-model-01/stage1/mutant-M12_budget_overrun-witnesses.log"
+        ],
+        "mutant": "M12_budget_overrun",
+        "target_contract": "L4",
+        "tool_ok": true
+      }
+    ],
+    "nonvacuity": {
+      "command": [
+        "/Users/rome/Desktop/Implementation of Formal Verification on VQE/NuXmv Files/nuXmv/bin/nuXmv",
+        "-s",
+        "-source",
+        "nuxmv-witnesses.cmd"
+      ],
+      "elapsed_seconds": 0.12091250001685694,
+      "exit_code": 0,
+      "log": "/Users/rome/Desktop/Implementation of Formal Verification on VQE/2-stage verification (closed-loop)/artifacts/merged-model-01/stage1/nuxmv-witnesses.log",
+      "results": [
+        {
+          "as_expected": true,
+          "contract": "L1",
+          "expected": true,
+          "formula": "EF (state = COMPUTE_ENERGY)",
+          "holds": true,
+          "id": "W_R1_groups_before_aggregation_0",
+          "kind": "antecedent",
+          "property": "R1_groups_before_aggregation"
+        },
+        {
+          "as_expected": true,
+          "contract": "L1",
+          "expected": true,
+          "formula": "EF !(terms_done = NTERMS)",
+          "holds": true,
+          "id": "C_R1_groups_before_aggregation",
+          "kind": "consequent",
+          "property": "R1_groups_before_aggregation"
+        },
+        {
+          "as_expected": true,
+          "contract": "L2",
+          "expected": true,
+          "formula": "EF (state = CHECK_STOP & iter > 0)",
+          "holds": true,
+          "id": "W_R2_energy_before_check_0",
+          "kind": "antecedent",
+          "property": "R2_energy_before_check"
+        },
+        {
+          "as_expected": true,
+          "contract": "L2",
+          "expected": true,
+          "formula": "EF !energy_ready",
+          "holds": true,
+          "id": "C_R2_energy_before_check",
+          "kind": "consequent",
+          "property": "R2_energy_before_check"
+        },
+        {
+          "as_expected": true,
+          "contract": "L3",
+          "expected": true,
+          "formula": "EF (state = EXECUTE_MEASURE)",
+          "holds": true,
+          "id": "W_R3_bound_before_measure_0",
+          "kind": "antecedent",
+          "property": "R3_bound_before_measure"
+        },
+        {
+          "as_expected": true,
+          "contract": "L3",
+          "expected": true,
+          "formula": "EF !(circ_ready & params_ready)",
+          "holds": true,
+          "id": "C_R3_bound_before_measure",
+          "kind": "consequent",
+          "property": "R3_bound_before_measure"
+        },
+        {
+          "as_expected": true,
+          "contract": "L2",
+          "expected": true,
+          "formula": "EF (state = OPTIMIZER_STEP)",
+          "holds": true,
+          "id": "W_R4_candidates_before_commit_0",
+          "kind": "antecedent",
+          "property": "R4_candidates_before_commit"
+        },
+        {
+          "as_expected": true,
+          "contract": "L2",
+          "expected": true,
+          "formula": "EF !(cands_done = NCANDS & energy_ready)",
+          "holds": true,
+          "id": "C_R4_candidates_before_commit",
+          "kind": "consequent",
+          "property": "R4_candidates_before_commit"
+        },
+        {
+          "as_expected": true,
+          "contract": "L3",
+          "expected": true,
+          "formula": "EF (state = EXECUTE_MEASURE)",
+          "holds": true,
+          "id": "W_F1_current_evaluation_0",
+          "kind": "antecedent",
+          "property": "F1_current_evaluation"
+        },
+        {
+          "as_expected": true,
+          "contract": "L3",
+          "expected": true,
+          "formula": "EF (state = COMPUTE_ENERGY)",
+          "holds": true,
+          "id": "W_F1_current_evaluation_1",
+          "kind": "antecedent",
+          "property": "F1_current_evaluation"
+        },
+        {
+          "as_expected": true,
+          "contract": "L3",
+          "expected": true,
+          "formula": "EF !(bound_version = iter & bound_cand = cands_done)",
+          "holds": true,
+          "id": "C_F1_current_evaluation",
+          "kind": "consequent",
+          "property": "F1_current_evaluation"
+        },
+        {
+          "as_expected": true,
+          "contract": "L3",
+          "expected": true,
+          "formula": "EF (state = OPTIMIZER_STEP)",
+          "holds": true,
+          "id": "W_F2_current_energy_0",
+          "kind": "antecedent",
+          "property": "F2_current_energy"
+        },
+        {
+          "as_expected": true,
+          "contract": "L3",
+          "expected": true,
+          "formula": "EF !(energy_version = iter)",
+          "holds": true,
+          "id": "C_F2_current_energy",
+          "kind": "consequent",
+          "property": "F2_current_energy"
+        },
+        {
+          "as_expected": true,
+          "contract": "L3",
+          "expected": true,
+          "formula": "EF (state = BIND)",
+          "holds": true,
+          "id": "W_F3_evaluation_reset_0",
+          "kind": "antecedent",
+          "property": "F3_evaluation_reset"
+        },
+        {
+          "as_expected": true,
+          "contract": "L3",
+          "expected": true,
+          "formula": "EF !(terms_done = 0 & !energy_ready)",
+          "holds": true,
+          "id": "C_F3_evaluation_reset",
+          "kind": "consequent",
+          "property": "F3_evaluation_reset"
+        },
+        {
+          "as_expected": true,
+          "contract": "L3",
+          "expected": true,
+          "formula": "EF (state = CHECK_STOP & !converged & iter < MAX_ITERS)",
+          "holds": true,
+          "id": "W_F4_iteration_reset_0",
+          "kind": "antecedent",
+          "property": "F4_iteration_reset"
+        },
+        {
+          "as_expected": true,
+          "contract": "L3",
+          "expected": true,
+          "formula": "EF !(state = BIND & cands_done = 0)",
+          "holds": true,
+          "id": "C_F4_iteration_reset",
+          "kind": "consequent",
+          "property": "F4_iteration_reset"
+        },
+        {
+          "as_expected": true,
+          "contract": "L4",
+          "expected": true,
+          "formula": "EF (state = DONE & iter > 0)",
+          "holds": true,
+          "id": "W_F5_returned_energy_0",
+          "kind": "antecedent",
+          "property": "F5_returned_energy"
+        },
+        {
+          "as_expected": true,
+          "contract": "L4",
+          "expected": true,
+          "formula": "EF !(energy_ready & energy_version + 1 = iter)",
+          "holds": true,
+          "id": "C_F5_returned_energy",
+          "kind": "consequent",
+          "property": "F5_returned_energy"
+        },
+        {
+          "as_expected": true,
+          "contract": "L4",
+          "expected": true,
+          "formula": "EF !terminal",
+          "holds": true,
+          "id": "W_T1_termination_0",
+          "kind": "antecedent",
+          "property": "T1_termination"
+        },
+        {
+          "as_expected": true,
+          "contract": "L4",
+          "expected": true,
+          "formula": "EF !terminal",
+          "holds": true,
+          "id": "C_T1_termination",
+          "kind": "consequent",
+          "property": "T1_termination"
+        },
+        {
+          "as_expected": true,
+          "contract": "L4",
+          "expected": true,
+          "formula": "EF (state = DONE)",
+          "holds": true,
+          "id": "W_T2_done_reason_0",
+          "kind": "antecedent",
+          "property": "T2_done_reason"
+        },
+        {
+          "as_expected": true,
+          "contract": "L4",
+          "expected": true,
+          "formula": "EF !(term_reason = DONE_CONVERGED | (term_reason = DONE_MAX_ITERS & iter = MAX_ITERS))",
+          "holds": true,
+          "id": "C_T2_done_reason",
+          "kind": "consequent",
+          "property": "T2_done_reason"
+        },
+        {
+          "as_expected": true,
+          "contract": "L4",
+          "expected": true,
+          "formula": "EF (state = DONE)",
+          "holds": true,
+          "id": "W_T3_done_absorbing_0",
+          "kind": "antecedent",
+          "property": "T3_done_absorbing"
+        },
+        {
+          "as_expected": true,
+          "contract": "L4",
+          "expected": true,
+          "formula": "EF !(state = DONE)",
+          "holds": true,
+          "id": "C_T3_done_absorbing",
+          "kind": "consequent",
+          "property": "T3_done_absorbing"
+        },
+        {
+          "as_expected": true,
+          "contract": "L4",
+          "expected": true,
+          "formula": "EF (state = ABORT)",
+          "holds": true,
+          "id": "W_T4_abort_absorbing_0",
+          "kind": "antecedent",
+          "property": "T4_abort_absorbing"
+        },
+        {
+          "as_expected": true,
+          "contract": "L4",
+          "expected": true,
+          "formula": "EF !(state = ABORT)",
+          "holds": true,
+          "id": "C_T4_abort_absorbing",
+          "kind": "consequent",
+          "property": "T4_abort_absorbing"
+        },
+        {
+          "as_expected": true,
+          "contract": "L4",
+          "expected": true,
+          "formula": "EF (state = CHECK_STOP & converged)",
+          "holds": true,
+          "id": "W_T5_success_reason_0",
+          "kind": "antecedent",
+          "property": "T5_success_reason"
+        },
+        {
+          "as_expected": true,
+          "contract": "L4",
+          "expected": true,
+          "formula": "EF !(state = DONE & term_reason = DONE_CONVERGED)",
+          "holds": true,
+          "id": "C_T5_success_reason",
+          "kind": "consequent",
+          "property": "T5_success_reason"
+        },
+        {
+          "as_expected": true,
+          "contract": "L4",
+          "expected": true,
+          "formula": "EF (state = CHECK_STOP & !converged & iter = MAX_ITERS)",
+          "holds": true,
+          "id": "W_T6_budget_reason_0",
+          "kind": "antecedent",
+          "property": "T6_budget_reason"
+        },
+        {
+          "as_expected": true,
+          "contract": "L4",
+          "expected": true,
+          "formula": "EF !(state = DONE & term_reason = DONE_MAX_ITERS)",
+          "holds": true,
+          "id": "C_T6_budget_reason",
+          "kind": "consequent",
+          "property": "T6_budget_reason"
+        },
+        {
+          "as_expected": true,
+          "contract": "L4",
+          "expected": true,
+          "formula": "EF (state = ABORT)",
+          "holds": true,
+          "id": "W_T7_abort_reason_0",
+          "kind": "antecedent",
+          "property": "T7_abort_reason"
+        },
+        {
+          "as_expected": true,
+          "contract": "L4",
+          "expected": true,
+          "formula": "EF (term_reason in {NO_TERM, DONE_CONVERGED, DONE_MAX_ITERS})",
+          "holds": true,
+          "id": "C_T7_abort_reason",
+          "kind": "consequent",
+          "property": "T7_abort_reason"
+        },
+        {
+          "as_expected": true,
+          "contract": "L4",
+          "expected": true,
+          "formula": "EF !terminal",
+          "holds": true,
+          "id": "W_T8_no_early_reason_0",
+          "kind": "antecedent",
+          "property": "T8_no_early_reason"
+        },
+        {
+          "as_expected": true,
+          "contract": "L4",
+          "expected": true,
+          "formula": "EF !(term_reason = NO_TERM)",
+          "holds": true,
+          "id": "C_T8_no_early_reason",
+          "kind": "consequent",
+          "property": "T8_no_early_reason"
+        },
+        {
+          "as_expected": true,
+          "contract": "L4",
+          "expected": true,
+          "formula": "EF (state = OPTIMIZER_STEP & !optimizer_error)",
+          "holds": true,
+          "id": "W_T9_update_accounting_0",
+          "kind": "antecedent",
+          "property": "T9_update_accounting"
+        },
+        {
+          "as_expected": true,
+          "contract": "L4",
+          "expected": true,
+          "formula": "EF !(state = OPTIMIZER_STEP & !optimizer_error)",
+          "holds": true,
+          "id": "C_T9_update_accounting",
+          "kind": "consequent",
+          "property": "T9_update_accounting"
+        },
+        {
+          "as_expected": true,
+          "contract": "L4",
+          "expected": true,
+          "formula": "EF bind_fails",
+          "holds": true,
+          "id": "W_E1_bind_fails_0",
+          "kind": "antecedent",
+          "property": "E1_bind_fails"
+        },
+        {
+          "as_expected": true,
+          "contract": "L4",
+          "expected": true,
+          "formula": "EF !(state = ABORT & term_reason = ABORT_BIND_ERROR)",
+          "holds": true,
+          "id": "C_E1_bind_fails",
+          "kind": "consequent",
+          "property": "E1_bind_fails"
+        },
+        {
+          "as_expected": true,
+          "contract": "L4",
+          "expected": true,
+          "formula": "EF measure_fails",
+          "holds": true,
+          "id": "W_E2_measure_fails_0",
+          "kind": "antecedent",
+          "property": "E2_measure_fails"
+        },
+        {
+          "as_expected": true,
+          "contract": "L4",
+          "expected": true,
+          "formula": "EF !(state = ABORT & term_reason = ABORT_QPU_ERROR)",
+          "holds": true,
+          "id": "C_E2_measure_fails",
+          "kind": "consequent",
+          "property": "E2_measure_fails"
+        },
+        {
+          "as_expected": true,
+          "contract": "L4",
+          "expected": true,
+          "formula": "EF energy_fails",
+          "holds": true,
+          "id": "W_E3_energy_fails_0",
+          "kind": "antecedent",
+          "property": "E3_energy_fails"
+        },
+        {
+          "as_expected": true,
+          "contract": "L4",
+          "expected": true,
+          "formula": "EF !(state = ABORT & term_reason = ABORT_ENERGY_ERROR)",
+          "holds": true,
+          "id": "C_E3_energy_fails",
+          "kind": "consequent",
+          "property": "E3_energy_fails"
+        },
+        {
+          "as_expected": true,
+          "contract": "L4",
+          "expected": true,
+          "formula": "EF optimizer_fails",
+          "holds": true,
+          "id": "W_E4_optimizer_fails_0",
+          "kind": "antecedent",
+          "property": "E4_optimizer_fails"
+        },
+        {
+          "as_expected": true,
+          "contract": "L4",
+          "expected": true,
+          "formula": "EF !(state = ABORT & term_reason = ABORT_OPTIMIZER_ERROR)",
+          "holds": true,
+          "id": "C_E4_optimizer_fails",
+          "kind": "consequent",
+          "property": "E4_optimizer_fails"
+        },
+        {
+          "as_expected": true,
+          "contract": "L4",
+          "expected": true,
+          "formula": "EF (!terminal & EX state = ABORT)",
+          "holds": true,
+          "id": "W_E5_abort_only_on_error_0",
+          "kind": "antecedent",
+          "property": "E5_abort_only_on_error"
+        },
+        {
+          "as_expected": true,
+          "contract": "L4",
+          "expected": true,
+          "formula": "EF !error",
+          "holds": true,
+          "id": "C_E5_abort_only_on_error",
+          "kind": "consequent",
+          "property": "E5_abort_only_on_error"
+        },
+        {
+          "as_expected": true,
+          "contract": "L4",
+          "expected": true,
+          "formula": "EF (state = OPTIMIZER_STEP)",
+          "holds": true,
+          "id": "W_E6_update_bound_0",
+          "kind": "antecedent",
+          "property": "E6_update_bound"
+        },
+        {
+          "as_expected": true,
+          "contract": "L4",
+          "expected": true,
+          "formula": "EF !(iter < MAX_ITERS)",
+          "holds": true,
+          "id": "C_E6_update_bound",
+          "kind": "consequent",
+          "property": "E6_update_bound"
+        },
+        {
+          "as_expected": true,
+          "branch": "terminal : state",
+          "expected": true,
+          "formula": "EF ((terminal))",
+          "holds": true,
+          "id": "B_0",
+          "kind": "branch"
+        },
+        {
+          "as_expected": true,
+          "branch": "error : ABORT",
+          "expected": true,
+          "formula": "EF ((error) & !(terminal))",
+          "holds": true,
+          "id": "B_1",
+          "kind": "branch"
+        },
+        {
+          "as_expected": true,
+          "branch": "state = S_INIT : CHECK_STOP",
+          "expected": true,
+          "formula": "EF ((state = S_INIT) & !(terminal) & !(error))",
+          "holds": true,
+          "id": "B_2",
+          "kind": "branch"
+        },
+        {
+          "as_expected": true,
+          "branch": "state = CHECK_STOP & converged : DONE",
+          "expected": true,
+          "formula": "EF ((state = CHECK_STOP & converged) & !(terminal) & !(error) & !(state = S_INIT))",
+          "holds": true,
+          "id": "B_3",
+          "kind": "branch"
+        },
+        {
+          "as_expected": true,
+          "branch": "state = CHECK_STOP & !converged & iter = MAX_ITERS : DONE",
+          "expected": true,
+          "formula": "EF ((state = CHECK_STOP & !converged & iter = MAX_ITERS) & !(terminal) & !(error) & !(state = S_INIT) & !(state = CHECK_STOP & converged))",
+          "holds": true,
+          "id": "B_4",
+          "kind": "branch"
+        },
+        {
+          "as_expected": true,
+          "branch": "state = CHECK_STOP & !converged & iter < MAX_ITERS : BIND",
+          "expected": true,
+          "formula": "EF ((state = CHECK_STOP & !converged & iter < MAX_ITERS) & !(terminal) & !(error) & !(state = S_INIT) & !(state = CHECK_STOP & converged) & !(state = CHECK_STOP & !converged & iter = MAX_ITERS))",
+          "holds": true,
+          "id": "B_5",
+          "kind": "branch"
+        },
+        {
+          "as_expected": true,
+          "branch": "state = BIND : EXECUTE_MEASURE",
+          "expected": true,
+          "formula": "EF ((state = BIND) & !(terminal) & !(error) & !(state = S_INIT) & !(state = CHECK_STOP & converged) & !(state = CHECK_STOP & !converged & iter = MAX_ITERS) & !(state = CHECK_STOP & !converged & iter < MAX_ITERS))",
+          "holds": true,
+          "id": "B_6",
+          "kind": "branch"
+        },
+        {
+          "as_expected": true,
+          "branch": "state = EXECUTE_MEASURE & terms_done + 1 < NTERMS : EXECUTE_MEASURE",
+          "expected": true,
+          "formula": "EF ((state = EXECUTE_MEASURE & terms_done + 1 < NTERMS) & !(terminal) & !(error) & !(state = S_INIT) & !(state = CHECK_STOP & converged) & !(state = CHECK_STOP & !converged & iter = MAX_ITERS) & !(state = CHECK_STOP & !converged & iter < MAX_ITERS) & !(state = BIND))",
+          "holds": true,
+          "id": "B_7",
+          "kind": "branch"
+        },
+        {
+          "as_expected": true,
+          "branch": "state = EXECUTE_MEASURE & terms_done + 1 = NTERMS : COMPUTE_ENERGY",
+          "expected": true,
+          "formula": "EF ((state = EXECUTE_MEASURE & terms_done + 1 = NTERMS) & !(terminal) & !(error) & !(state = S_INIT) & !(state = CHECK_STOP & converged) & !(state = CHECK_STOP & !converged & iter = MAX_ITERS) & !(state = CHECK_STOP & !converged & iter < MAX_ITERS) & !(state = BIND) & !(state = EXECUTE_MEASURE & terms_done + 1 < NTERMS))",
+          "holds": true,
+          "id": "B_8",
+          "kind": "branch"
+        },
+        {
+          "as_expected": true,
+          "branch": "state = COMPUTE_ENERGY & cands_done + 1 < NCANDS : BIND",
+          "expected": true,
+          "formula": "EF ((state = COMPUTE_ENERGY & cands_done + 1 < NCANDS) & !(terminal) & !(error) & !(state = S_INIT) & !(state = CHECK_STOP & converged) & !(state = CHECK_STOP & !converged & iter = MAX_ITERS) & !(state = CHECK_STOP & !converged & iter < MAX_ITERS) & !(state = BIND) & !(state = EXECUTE_MEASURE & terms_done + 1 < NTERMS) & !(state = EXECUTE_MEASURE & terms_done + 1 = NTERMS))",
+          "holds": true,
+          "id": "B_9",
+          "kind": "branch"
+        },
+        {
+          "as_expected": true,
+          "branch": "state = COMPUTE_ENERGY & cands_done + 1 = NCANDS : OPTIMIZER_STEP",
+          "expected": true,
+          "formula": "EF ((state = COMPUTE_ENERGY & cands_done + 1 = NCANDS) & !(terminal) & !(error) & !(state = S_INIT) & !(state = CHECK_STOP & converged) & !(state = CHECK_STOP & !converged & iter = MAX_ITERS) & !(state = CHECK_STOP & !converged & iter < MAX_ITERS) & !(state = BIND) & !(state = EXECUTE_MEASURE & terms_done + 1 < NTERMS) & !(state = EXECUTE_MEASURE & terms_done + 1 = NTERMS) & !(state = COMPUTE_ENERGY & cands_done + 1 < NCANDS))",
+          "holds": true,
+          "id": "B_10",
+          "kind": "branch"
+        },
+        {
+          "as_expected": true,
+          "branch": "state = OPTIMIZER_STEP : CHECK_STOP",
+          "expected": true,
+          "formula": "EF ((state = OPTIMIZER_STEP) & !(terminal) & !(error) & !(state = S_INIT) & !(state = CHECK_STOP & converged) & !(state = CHECK_STOP & !converged & iter = MAX_ITERS) & !(state = CHECK_STOP & !converged & iter < MAX_ITERS) & !(state = BIND) & !(state = EXECUTE_MEASURE & terms_done + 1 < NTERMS) & !(state = EXECUTE_MEASURE & terms_done + 1 = NTERMS) & !(state = COMPUTE_ENERGY & cands_done + 1 < NCANDS) & !(state = COMPUTE_ENERGY & cands_done + 1 = NCANDS))",
+          "holds": true,
+          "id": "B_11",
+          "kind": "branch"
+        },
+        {
+          "as_expected": true,
+          "branch": "TRUE : ABORT",
+          "expected": false,
+          "formula": "EF ((TRUE) & !(terminal) & !(error) & !(state = S_INIT) & !(state = CHECK_STOP & converged) & !(state = CHECK_STOP & !converged & iter = MAX_ITERS) & !(state = CHECK_STOP & !converged & iter < MAX_ITERS) & !(state = BIND) & !(state = EXECUTE_MEASURE & terms_done + 1 < NTERMS) & !(state = EXECUTE_MEASURE & terms_done + 1 = NTERMS) & !(state = COMPUTE_ENERGY & cands_done + 1 < NCANDS) & !(state = COMPUTE_ENERGY & cands_done + 1 = NCANDS) & !(state = OPTIMIZER_STEP))",
+          "holds": false,
+          "id": "B_12",
+          "kind": "branch"
+        }
+      ]
+    },
+    "properties": [
+      {
+        "contract": "L1",
+        "formula": "state = COMPUTE_ENERGY -> terms_done = NTERMS",
+        "holds": true,
+        "name": "R1_groups_before_aggregation"
+      },
+      {
+        "contract": "L2",
+        "formula": "(state = CHECK_STOP & iter > 0) -> energy_ready",
+        "holds": true,
+        "name": "R2_energy_before_check"
+      },
+      {
+        "contract": "L3",
+        "formula": "state = EXECUTE_MEASURE -> (circ_ready & params_ready)",
+        "holds": true,
+        "name": "R3_bound_before_measure"
+      },
+      {
+        "contract": "L2",
+        "formula": "state = OPTIMIZER_STEP -> (cands_done = NCANDS & energy_ready)",
+        "holds": true,
+        "name": "R4_candidates_before_commit"
+      },
+      {
+        "contract": "L3",
+        "formula": "(state = EXECUTE_MEASURE | state = COMPUTE_ENERGY) -> (bound_version = iter & bound_cand = cands_done)",
+        "holds": true,
+        "name": "F1_current_evaluation"
+      },
+      {
+        "contract": "L3",
+        "formula": "state = OPTIMIZER_STEP -> energy_version = iter",
+        "holds": true,
+        "name": "F2_current_energy"
+      },
+      {
+        "contract": "L3",
+        "formula": "state = BIND -> (terms_done = 0 & !energy_ready)",
+        "holds": true,
+        "name": "F3_evaluation_reset"
+      },
+      {
+        "contract": "L3",
+        "formula": "G ((state = CHECK_STOP & !converged & iter < MAX_ITERS) -> X (state = BIND & cands_done = 0))",
+        "holds": true,
+        "name": "F4_iteration_reset"
+      },
+      {
+        "contract": "L4",
+        "formula": "(state = DONE & iter > 0) -> (energy_ready & energy_version + 1 = iter)",
+        "holds": true,
+        "name": "F5_returned_energy"
+      },
+      {
+        "contract": "L4",
+        "formula": "AG (!terminal -> AF terminal)",
+        "holds": true,
+        "name": "T1_termination"
+      },
+      {
+        "contract": "L4",
+        "formula": "state = DONE -> (term_reason = DONE_CONVERGED | (term_reason = DONE_MAX_ITERS & iter = MAX_ITERS))",
+        "holds": true,
+        "name": "T2_done_reason"
+      },
+      {
+        "contract": "L4",
+        "formula": "AG (state = DONE -> AX state = DONE)",
+        "holds": true,
+        "name": "T3_done_absorbing"
+      },
+      {
+        "contract": "L4",
+        "formula": "AG (state = ABORT -> AX state = ABORT)",
+        "holds": true,
+        "name": "T4_abort_absorbing"
+      },
+      {
+        "contract": "L4",
+        "formula": "G ((state = CHECK_STOP & converged) -> X (state = DONE & term_reason = DONE_CONVERGED))",
+        "holds": true,
+        "name": "T5_success_reason"
+      },
+      {
+        "contract": "L4",
+        "formula": "G ((state = CHECK_STOP & !converged & iter = MAX_ITERS) -> X (state = DONE & term_reason = DONE_MAX_ITERS))",
+        "holds": true,
+        "name": "T6_budget_reason"
+      },
+      {
+        "contract": "L4",
+        "formula": "state = ABORT -> !(term_reason in {NO_TERM, DONE_CONVERGED, DONE_MAX_ITERS})",
+        "holds": true,
+        "name": "T7_abort_reason"
+      },
+      {
+        "contract": "L4",
+        "formula": "!terminal -> term_reason = NO_TERM",
+        "holds": true,
+        "name": "T8_no_early_reason"
+      },
+      {
+        "contract": "L4",
+        "formula": "G ((next(iter) = iter | next(iter) = iter + 1) & (next(iter) = iter + 1 <-> (state = OPTIMIZER_STEP & !optimizer_error)))",
+        "holds": true,
+        "name": "T9_update_accounting"
+      },
+      {
+        "contract": "L4",
+        "formula": "G (bind_fails -> X (state = ABORT & term_reason = ABORT_BIND_ERROR))",
+        "holds": true,
+        "name": "E1_bind_fails"
+      },
+      {
+        "contract": "L4",
+        "formula": "G (measure_fails -> X (state = ABORT & term_reason = ABORT_QPU_ERROR))",
+        "holds": true,
+        "name": "E2_measure_fails"
+      },
+      {
+        "contract": "L4",
+        "formula": "G (energy_fails -> X (state = ABORT & term_reason = ABORT_ENERGY_ERROR))",
+        "holds": true,
+        "name": "E3_energy_fails"
+      },
+      {
+        "contract": "L4",
+        "formula": "G (optimizer_fails -> X (state = ABORT & term_reason = ABORT_OPTIMIZER_ERROR))",
+        "holds": true,
+        "name": "E4_optimizer_fails"
+      },
+      {
+        "contract": "L4",
+        "formula": "G ((!terminal & X state = ABORT) -> error)",
+        "holds": true,
+        "name": "E5_abort_only_on_error"
+      },
+      {
+        "contract": "L4",
+        "formula": "state = OPTIMIZER_STEP -> iter < MAX_ITERS",
+        "holds": true,
+        "name": "E6_update_bound"
+      }
+    ],
+    "status": "PROVED",
+    "tool_ok": true
+  },
+  "numeric": [
+    {
+      "command": [
+        "/Users/rome/Desktop/Implementation of Formal Verification on VQE/Dafny + Python trace checker/dafny/dafny",
+        "verify",
+        "/Users/rome/Desktop/Implementation of Formal Verification on VQE/2-stage verification (closed-loop)/formal/VQELemmas.dfy",
+        "--verification-time-limit",
+        "60"
+      ],
+      "elapsed_seconds": 0.9301236669998616,
+      "exit_code": 0,
+      "log": "/Users/rome/Desktop/Implementation of Formal Verification on VQE/2-stage verification (closed-loop)/artifacts/merged-model-01/stage1/dafny-VQELemmas.dfy.log",
+      "source": "VQELemmas.dfy",
+      "status": "PROVED",
+      "verified_count": 8
+    },
+    {
+      "command": [
+        "/Users/rome/Desktop/Implementation of Formal Verification on VQE/Dafny + Python trace checker/dafny/dafny",
+        "verify",
+        "/Users/rome/Desktop/Implementation of Formal Verification on VQE/2-stage verification (closed-loop)/formal/VQENumericKernels.dfy",
+        "--verification-time-limit",
+        "60"
+      ],
+      "elapsed_seconds": 0.7621147920144722,
+      "exit_code": 0,
+      "log": "/Users/rome/Desktop/Implementation of Formal Verification on VQE/2-stage verification (closed-loop)/artifacts/merged-model-01/stage1/dafny-VQENumericKernels.dfy.log",
+      "source": "VQENumericKernels.dfy",
+      "status": "PROVED",
+      "verified_count": 11
+    },
+    {
+      "command": [
+        "/Users/rome/Desktop/Implementation of Formal Verification on VQE/Dafny + Python trace checker/dafny/dafny",
+        "verify",
+        "/Users/rome/Desktop/Implementation of Formal Verification on VQE/2-stage verification (closed-loop)/formal/GroupGrid.dfy",
+        "--verification-time-limit",
+        "60"
+      ],
+      "elapsed_seconds": 0.6351610000128858,
+      "exit_code": 0,
+      "log": "/Users/rome/Desktop/Implementation of Formal Verification on VQE/2-stage verification (closed-loop)/artifacts/merged-model-01/stage1/dafny-GroupGrid.dfy.log",
+      "source": "GroupGrid.dfy",
+      "status": "PROVED",
+      "verified_count": 5
+    }
+  ],
+  "probabilistic": {
+    "conditional_expectation_provenance": "Python forward propagation of the same Gaussian kernel's first-success distribution; checked against Storm at declared checkpoints. These are not Storm reward-query results.",
+    "dtmc_states": 262144,
+    "expected_shots_given_success": 305152.70030410803,
+    "expected_total_updates": 34.326721872124374,
+    "expected_updates_given_success": 33.111187098970056,
+    "grid_states": 65536,
+    "ground_energy": -0.7029303944595313,
+    "maximum_energy_variance": 0.000341500673828125,
+    "maximum_quadrature_row_correction": 5.089960319892839e-08,
+    "minimum_energy_variance": 0.000154816103515625,
+    "numeric_method": "24-node Gauss-Hermite (configured), normal CDF approximation, normalized rows; no certified approximation-error bound",
+    "storm": {
+      "command": [
+        "/opt/homebrew/bin/storm",
+        "--explicit",
+        "/Users/rome/Desktop/Implementation of Formal Verification on VQE/2-stage verification (closed-loop)/artifacts/merged-model-01/stage1/gaussian.tra",
+        "/Users/rome/Desktop/Implementation of Formal Verification on VQE/2-stage verification (closed-loop)/artifacts/merged-model-01/stage1/gaussian.lab",
+        "--prop",
+        "/Users/rome/Desktop/Implementation of Formal Verification on VQE/2-stage verification (closed-loop)/artifacts/merged-model-01/stage1/gaussian.props",
+        "--precision",
+        "1e-12"
+      ],
+      "elapsed_seconds": 0.5586088329437189,
+      "exit_code": 0,
+      "log": "/Users/rome/Desktop/Implementation of Formal Verification on VQE/2-stage verification (closed-loop)/artifacts/merged-model-01/stage1/storm.log",
+      "maximum_difference_from_forward_propagation": 1.1102230246251565e-16,
+      "results": {
+        "10": 0.0,
+        "20": 0.0,
+        "30": 0.3839401891440446,
+        "40": 0.7562529633830386,
+        "50": 0.92802722250063
+      },
+      "status": "ESTABLISHED_FOR_GAUSSIAN_MODEL"
+    },
+    "success_cdf": [
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      1.5363626802534903e-07,
+      0.20205752834850396,
+      0.20205778800071678,
+      0.330218259152972,
+      0.35601468849854706,
+      0.3839401555901147,
+      0.3839401891440445,
+      0.48450828205469715,
+      0.49469545908800083,
+      0.516421287434196,
+      0.516421310567393,
+      0.6155447753587134,
+      0.624910818874576,
+      0.6472290852247644,
+      0.6472291072286342,
+      0.7469439335232962,
+      0.7562529633830386,
+      0.778660222184848,
+      0.7786602436290898,
+      0.8486843990286221,
+      0.855523806720443,
+      0.8716755875650385,
+      0.8716756024657384,
+      0.9138672150468242,
+      0.9181180525780548,
+      0.9280272135484897,
+      0.9280272225006299
+    ],
+    "transitions": 755176
+  },
+  "ready_for_execution": true,
+  "runtime_monitor": {
+    "dependency_pins": {
+      "artifacts": {
+        "scala-compiler": {
+          "filename": "scala-compiler-2.12.21.jar",
+          "sha256": "fb1bb6b0d7e8e922f03b5294ef0af23b9d2bd1cde6819ecb820c57210db4548e",
+          "url": "https://repo.maven.apache.org/maven2/org/scala-lang/scala-compiler/2.12.21/scala-compiler-2.12.21.jar"
+        },
+        "scala-library": {
+          "filename": "scala-library-2.12.21.jar",
+          "sha256": "e2f4040c95cc4dd1cfeaae38bdde596e4b36933632451efa7d8564c6a359510c",
+          "url": "https://repo.maven.apache.org/maven2/org/scala-lang/scala-library/2.12.21/scala-library-2.12.21.jar"
+        },
+        "scala-reflect": {
+          "filename": "scala-reflect-2.12.21.jar",
+          "sha256": "8b91a08ba69a0564689793e732f06768d0914ec9e90fa8c3d1b55c5bf4600c14",
+          "url": "https://repo.maven.apache.org/maven2/org/scala-lang/scala-reflect/2.12.21/scala-reflect-2.12.21.jar"
+        }
+      },
+      "bundled_dejavu": {
+        "commit": "ffffac2ee04679f09ee11bf6f142d97fd6d39403",
+        "path": "src/vqe_runtime/vendor/dejavu/dejavu.jar",
+        "sha256": "99fbc72ac9ba0dbf8051691f4c15958e1694345a025840acfd344d1eb66d58e1",
+        "upstream": "https://github.com/havelund/dejavu"
+      },
+      "scala_version": "2.12.21",
+      "schema_version": 1
+    },
+    "monitor_jar": "stage1/runtime-monitor.jar",
+    "monitor_sha256": "b9131b82964cc460bef6534ba546d67fb097a854019742b6084ab4e50cc63c0e",
+    "runtime_jar": "/Users/rome/Desktop/Implementation of Formal Verification on VQE/VQE Runtime Verification - DejaVu/src/vqe_runtime/vendor/dejavu/dejavu.jar",
+    "runtime_sha256": "99fbc72ac9ba0dbf8051691f4c15958e1694345a025840acfd344d1eb66d58e1",
+    "semantics": "DejaVu checks temporal projections during independent saved-trace replay; Python performs online numeric/protocol gating and replay.",
+    "specification_sha256": "d87c3eb02896c85d3120850dca59d4fd40ec1e484513c8d4a58c004bc06940a5"
+  },
+  "schema_version": 1,
+  "sources": {
+    "closed_loop/__init__.py": "311ec979c8bcd9749cb9b8e48ec378c7e6d8808bc244a22f3f4f302a2d92e39a",
+    "closed_loop/checker.py": "75847f1a817ab4a6c85050dc5c510122996dd3efd6ba9769bf7d5254bfe68f42",
+    "closed_loop/common.py": "5bd83b0ed388ed50d3a33b47c176b28ec8572397a4f071a70c864206f34b6bb6",
+    "closed_loop/comparison.py": "e48dc03e46c2fa4c5309fece8aa55970ab50df927d074d4dfe8fd4c0e15e21e8",
+    "closed_loop/execution.py": "b1e9d92aef8304ae54a38db4e6c1dfe653f4b398d710ea90d90c3d8d745c1f69",
+    "closed_loop/logical.py": "e78e518f9aa98ce67ead6128cac7d6240d8e60cfda5eaae0f71971a2ab4a8f17",
+    "closed_loop/physics.py": "7221648d1e244110f66bee84ad9bcea4aa2ffab1bcf883d9b25ebab91ce07ded",
+    "closed_loop/pre_execution.py": "078c3d92d7e7996b0160f2e92620ff816cc682c05b8e8094466f8a57fe2273de",
+    "closed_loop/temporal.py": "4ba3be668f8ef0522dce33af39ddacf2bb995609056adc194a8a0634af17e3b0",
+    "config/contracts.json": "781d44f5f2c053809abb73c6f05ebe503ca8505109fca9a1563175e8fd7a178b",
+    "experiment.py": "2d205b16f21a2d5d0869545fb0c0f8f226903cc8c3d9a43bbce1925cf4c1dad2",
+    "formal/ClosedLoopBridge.scala": "09d7f0cc071cb17083c9f6bfc0376b376f718585c17e9cbff4d6e45a9947011e",
+    "formal/GroupGrid.dfy": "187eb1106370a040c9ee3d6a6b6182aa97221f4e21bdb2ab9b4a391d3cf0713d",
+    "formal/VQEContracts.dfy": "e4428d4586933323eac02da97b43481fde1750d48efce320dcbfebd69e9df185",
+    "formal/VQELemmas.dfy": "9d32075ac3868cc677ade6b16d02ce0d0ed0f6742911fe35d0d5436fb27123d7",
+    "formal/VQENumericKernels.dfy": "0e9ea0081a31036364da33f2d7075c95d4a724e27d88eb9c507c2211ec01dd23",
+    "formal/VQETypes.dfy": "fb87ff809ffcb85f5159f9159f37a02b4bcf4e0eb9ca4a1006ace5d7be09a306",
+    "formal/runtime.qtl": "d87c3eb02896c85d3120850dca59d4fd40ec1e484513c8d4a58c004bc06940a5",
+    "requirements.txt": "a83a2a4ed7ab2e022b9b8a83cfa2b8cf52cc243006c597e8b96f90a8365590ac"
+  },
+  "started_at": "2026-10-27T15:35:35.511499+00:00",
+  "tool_binaries": {
+    "dafny": {
+      "path": "/Users/rome/Desktop/Implementation of Formal Verification on VQE/Dafny + Python trace checker/dafny/dafny",
+      "sha256": "5d02cbb88300aef0726e933bd6f19754960b7409a9e0e2212a5e07edd1686012"
+    },
+    "nuXmv": {
+      "path": "/Users/rome/Desktop/Implementation of Formal Verification on VQE/NuXmv Files/nuXmv/bin/nuXmv",
+      "sha256": "ea792e7c91017476e83cc2d923f1e8de59cb309e98db87046c73c092c950dbc1"
+    },
+    "storm": {
+      "path": "/opt/homebrew/bin/storm",
+      "sha256": "7509915057fa84e9a2deedbf4d7363990cf878b041ab57804d4f86a8a3dc7857"
+    }
+  }
+}

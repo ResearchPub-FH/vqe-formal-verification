@@ -1,0 +1,346 @@
+{
+  "comparisons": [
+    {
+      "absolute_difference_recomputed": null,
+      "budget_exhausted_cost_contribution": 10.0,
+      "k": 10,
+      "python_all_run_cost": 10.0,
+      "recomputed_python_conditional_mean": null,
+      "status": "PASS",
+      "storm_all_run_cost": 10.0,
+      "storm_conditional_mean": null,
+      "storm_success_weighted_cost": 0.0,
+      "success_probability": 0.0,
+      "unit": "iterations"
+    },
+    {
+      "absolute_difference_recomputed": null,
+      "budget_exhausted_cost_contribution": 20.0,
+      "k": 20,
+      "python_all_run_cost": 20.0,
+      "recomputed_python_conditional_mean": null,
+      "status": "PASS",
+      "storm_all_run_cost": 20.0,
+      "storm_conditional_mean": null,
+      "storm_success_weighted_cost": 0.0,
+      "success_probability": 0.0,
+      "unit": "iterations"
+    },
+    {
+      "absolute_difference_recomputed": 3.552713678800501e-15,
+      "budget_exhausted_cost_contribution": 18.481794325678663,
+      "k": 30,
+      "python_all_run_cost": 28.52571142677288,
+      "recomputed_python_conditional_mean": 26.16010874893327,
+      "status": "PASS",
+      "storm_all_run_cost": 28.52571142677288,
+      "storm_conditional_mean": 26.160108748933272,
+      "storm_success_weighted_cost": 10.043917101094216,
+      "success_probability": 0.3839401891440446,
+      "unit": "iterations"
+    },
+    {
+      "absolute_difference_recomputed": 1.0658141036401503e-14,
+      "budget_exhausted_cost_contribution": 9.749881464678456,
+      "k": 40,
+      "python_all_run_cost": 32.84786717827456,
+      "recomputed_python_conditional_mean": 30.54267134408184,
+      "status": "PASS",
+      "storm_all_run_cost": 32.84786717827457,
+      "storm_conditional_mean": 30.54267134408185,
+      "storm_success_weighted_cost": 23.097985713596113,
+      "success_probability": 0.7562529633830386,
+      "unit": "iterations"
+    },
+    {
+      "absolute_difference_recomputed": 7.105427357601002e-15,
+      "absolute_difference_saved": 7.105427357601002e-15,
+      "budget_exhausted_cost_contribution": 3.5986388749685014,
+      "k": 50,
+      "python_all_run_cost": 34.326721872124374,
+      "recomputed_python_conditional_mean": 33.111187098970056,
+      "saved_python_primary_mean": 33.111187098970056,
+      "status": "PASS",
+      "storm_all_run_cost": 34.32672187212438,
+      "storm_conditional_mean": 33.11118709897006,
+      "storm_success_weighted_cost": 30.72808299715588,
+      "success_probability": 0.92802722250063,
+      "unit": "iterations"
+    },
+    {
+      "absolute_difference_recomputed": null,
+      "budget_exhausted_cost_contribution": 92160.0,
+      "k": 10,
+      "python_all_run_cost": 92160.0,
+      "recomputed_python_conditional_mean": null,
+      "status": "PASS",
+      "storm_all_run_cost": 92160.0,
+      "storm_conditional_mean": null,
+      "storm_success_weighted_cost": 0.0,
+      "success_probability": 0.0,
+      "unit": "shots"
+    },
+    {
+      "absolute_difference_recomputed": null,
+      "budget_exhausted_cost_contribution": 184320.0,
+      "k": 20,
+      "python_all_run_cost": 184320.0,
+      "recomputed_python_conditional_mean": null,
+      "status": "PASS",
+      "storm_all_run_cost": 184320.0,
+      "storm_conditional_mean": null,
+      "storm_success_weighted_cost": 0.0,
+      "success_probability": 0.0,
+      "unit": "shots"
+    },
+    {
+      "absolute_difference_recomputed": 1.7462298274040222e-10,
+      "budget_exhausted_cost_contribution": 170328.21650545456,
+      "k": 30,
+      "python_all_run_cost": 262892.95650913886,
+      "recomputed_python_conditional_mean": 241091.56223016902,
+      "status": "PASS",
+      "storm_all_run_cost": 262892.9565091389,
+      "storm_conditional_mean": 241091.5622301692,
+      "storm_success_weighted_cost": 92564.74000368436,
+      "success_probability": 0.3839401891440446,
+      "unit": "shots"
+    },
+    {
+      "absolute_difference_recomputed": 5.820766091346741e-11,
+      "budget_exhausted_cost_contribution": 89854.90757847665,
+      "k": 40,
+      "python_all_run_cost": 302725.94391497836,
+      "recomputed_python_conditional_mean": 281481.2591070582,
+      "status": "PASS",
+      "storm_all_run_cost": 302725.9439149784,
+      "storm_conditional_mean": 281481.2591070583,
+      "storm_success_weighted_cost": 212871.03633650177,
+      "success_probability": 0.7562529633830386,
+      "unit": "shots"
+    },
+    {
+      "absolute_difference_recomputed": 5.820766091346741e-11,
+      "absolute_difference_saved": 5.820766091346741e-11,
+      "budget_exhausted_cost_contribution": 33165.05587170971,
+      "k": 50,
+      "python_all_run_cost": 316355.06877349823,
+      "recomputed_python_conditional_mean": 305152.70030410803,
+      "saved_python_primary_mean": 305152.70030410803,
+      "status": "PASS",
+      "storm_all_run_cost": 316355.0687734983,
+      "storm_conditional_mean": 305152.7003041081,
+      "storm_success_weighted_cost": 283190.0129017886,
+      "success_probability": 0.92802722250063,
+      "unit": "shots"
+    }
+  ],
+  "conditional_mean_method": "(Storm bounded cumulative cost - scale*K*(1-Storm success probability)) / Storm success probability",
+  "configuration": {
+    "checkpoints": [
+      10,
+      20,
+      30,
+      40,
+      50
+    ],
+    "iteration_bound": 50,
+    "name": "h2-two-stage-closed-loop-v1",
+    "shots_per_iteration": 9216,
+    "source": "/Users/rome/Desktop/Implementation of Formal Verification on VQE/2-stage verification (closed-loop)/artifacts/approved-experiment/stage1/configuration.json"
+  },
+  "created_utc": "2026-10-28T21:06:48.558970+00:00",
+  "input_hashes": {
+    "/Users/rome/Desktop/Implementation of Formal Verification on VQE/2-stage verification (closed-loop)/artifacts/approved-experiment/stage1/configuration.json": "e7ee8cdab1d346598d9722f090b2f731af57093e173779f02eecdf7f97be7174",
+    "/Users/rome/Desktop/Implementation of Formal Verification on VQE/2-stage verification (closed-loop)/artifacts/approved-experiment/stage1/gaussian-kernels.npz": "c718a020b88c97e56475386d4eef069181632543312b6f3e0a5774add82379b0",
+    "/Users/rome/Desktop/Implementation of Formal Verification on VQE/2-stage verification (closed-loop)/artifacts/approved-experiment/stage1/gaussian.lab": "b46cee3de3d2e6184240550ec233ab30ed85dcb8f069ce9f02e4b158819c99ba",
+    "/Users/rome/Desktop/Implementation of Formal Verification on VQE/2-stage verification (closed-loop)/artifacts/approved-experiment/stage1/gaussian.props": "f860e984a0f00d1ef65ec96afd48e7e67c959945cf3bd11dc0cdd5f020194cd1",
+    "/Users/rome/Desktop/Implementation of Formal Verification on VQE/2-stage verification (closed-loop)/artifacts/approved-experiment/stage1/gaussian.tra": "eac2165b799ee0f7d49c1af90c987e11ea77a3330ad48b2cd6518ff00472c498",
+    "/Users/rome/Desktop/Implementation of Formal Verification on VQE/2-stage verification (closed-loop)/artifacts/approved-experiment/stage1/pre_execution.json": "b3de315ae48c909ca80e275fafde44deb567ec68cad3b0de366e93a93c53c3ca",
+    "/Users/rome/Desktop/Implementation of Formal Verification on VQE/2-stage verification (closed-loop)/artifacts/approved-experiment/stage1/quantitative.json": "c59cac50cf3a3a01ee17768804f981b94b2b8d51ccdf1cc3b77b664902fdce9b",
+    "/Users/rome/Desktop/Implementation of Formal Verification on VQE/2-stage verification (closed-loop)/artifacts/approved-experiment/stage1/storm.log": "b24ddf3ab8b08e73381ecfd456121bf7f569f09ca8db08935616b9a64de50385",
+    "/Users/rome/Desktop/Implementation of Formal Verification on VQE/2-stage verification (closed-loop)/closed_loop/physics.py": "7221648d1e244110f66bee84ad9bcea4aa2ffab1bcf883d9b25ebab91ce07ded"
+  },
+  "model": {
+    "maximum_row_sum_error": 2.220446049250313e-16,
+    "states": 262144,
+    "success_states": 32,
+    "transitions": 755176
+  },
+  "numpy_version": "2.3.5",
+  "original_inputs_unchanged": true,
+  "original_storm_version": "Storm 1.13.0",
+  "python_version": "3.12.14",
+  "reproduction": {
+    "arguments": [
+      "output/storm-reward-validation/verify_rewards.py"
+    ],
+    "executable": "/Users/rome/.cache/codex-runtimes/codex-primary-runtime/dependencies/python/bin/python3"
+  },
+  "script_sha256": "9e7da61ffc31f2a607bcda329a6b70dff13322e11f17297a9eb8a6a12ba25e64",
+  "semantic_tests": [
+    {
+      "case": "initial_success",
+      "conditional_mean": 0.0,
+      "status": "PASS",
+      "storm_cost": 0.0,
+      "success_probability": 1.0,
+      "unit": "iterations"
+    },
+    {
+      "case": "initial_success",
+      "conditional_mean": 0.0,
+      "status": "PASS",
+      "storm_cost": 0.0,
+      "success_probability": 1.0,
+      "unit": "shots"
+    },
+    {
+      "case": "first_iteration_success",
+      "conditional_mean": 1.0,
+      "status": "PASS",
+      "storm_cost": 1.0,
+      "success_probability": 1.0,
+      "unit": "iterations"
+    },
+    {
+      "case": "first_iteration_success",
+      "conditional_mean": 9216.0,
+      "status": "PASS",
+      "storm_cost": 9216.0,
+      "success_probability": 1.0,
+      "unit": "shots"
+    },
+    {
+      "case": "success_at_bound",
+      "conditional_mean": 50.0,
+      "status": "PASS",
+      "storm_cost": 50.0,
+      "success_probability": 1.0,
+      "unit": "iterations"
+    },
+    {
+      "case": "success_at_bound",
+      "conditional_mean": 460800.0,
+      "status": "PASS",
+      "storm_cost": 460800.0,
+      "success_probability": 1.0,
+      "unit": "shots"
+    },
+    {
+      "case": "ninety_percent_at_twenty",
+      "conditional_mean": 20.0,
+      "status": "PASS",
+      "storm_cost": 23.0,
+      "success_probability": 0.9,
+      "unit": "iterations"
+    },
+    {
+      "case": "ninety_percent_at_twenty",
+      "conditional_mean": 184320.0,
+      "status": "PASS",
+      "storm_cost": 211968.0,
+      "success_probability": 0.9,
+      "unit": "shots"
+    },
+    {
+      "case": "mixed_first_success_times",
+      "conditional_mean": 33.333333333333336,
+      "status": "PASS",
+      "storm_cost": 35.0,
+      "success_probability": 0.8999999999999999,
+      "unit": "iterations"
+    },
+    {
+      "case": "mixed_first_success_times",
+      "conditional_mean": 307199.99999999994,
+      "status": "PASS",
+      "storm_cost": 322560.0,
+      "success_probability": 0.8999999999999999,
+      "unit": "shots"
+    },
+    {
+      "case": "no_success",
+      "conditional_mean": null,
+      "status": "PASS",
+      "storm_cost": 50.0,
+      "success_probability": 0.0,
+      "unit": "iterations"
+    },
+    {
+      "case": "no_success",
+      "conditional_mean": null,
+      "status": "PASS",
+      "storm_cost": 460800.0,
+      "success_probability": 0.0,
+      "unit": "shots"
+    }
+  ],
+  "status": "PASS",
+  "storm_runs": {
+    "iterations": {
+      "command": [
+        "/opt/homebrew/bin/storm",
+        "--explicit",
+        "/Users/rome/Desktop/Implementation of Formal Verification on VQE/2-stage verification (closed-loop)/artifacts/approved-experiment/stage1/gaussian.tra",
+        "/Users/rome/Desktop/Implementation of Formal Verification on VQE/2-stage verification (closed-loop)/artifacts/approved-experiment/stage1/gaussian.lab",
+        "--staterew",
+        "/Users/rome/Desktop/Implementation of Formal Verification on VQE/output/storm-reward-validation/run/iterations.rew",
+        "--prop",
+        "/Users/rome/Desktop/Implementation of Formal Verification on VQE/output/storm-reward-validation/run/iterations.props",
+        "--precision",
+        "1e-12"
+      ],
+      "elapsed_seconds": 0.4200863750302233,
+      "exit_code": 0,
+      "log": "/Users/rome/Desktop/Implementation of Formal Verification on VQE/output/storm-reward-validation/run/storm-iterations.log",
+      "results": {
+        "P1_10": 0.0,
+        "P1_20": 0.0,
+        "P1_30": 0.3839401891440446,
+        "P1_40": 0.7562529633830386,
+        "P1_50": 0.92802722250063,
+        "cost_10": 10.0,
+        "cost_20": 20.0,
+        "cost_30": 28.52571142677288,
+        "cost_40": 32.84786717827457,
+        "cost_50": 34.32672187212438
+      }
+    },
+    "shots": {
+      "command": [
+        "/opt/homebrew/bin/storm",
+        "--explicit",
+        "/Users/rome/Desktop/Implementation of Formal Verification on VQE/2-stage verification (closed-loop)/artifacts/approved-experiment/stage1/gaussian.tra",
+        "/Users/rome/Desktop/Implementation of Formal Verification on VQE/2-stage verification (closed-loop)/artifacts/approved-experiment/stage1/gaussian.lab",
+        "--staterew",
+        "/Users/rome/Desktop/Implementation of Formal Verification on VQE/output/storm-reward-validation/run/shots.rew",
+        "--prop",
+        "/Users/rome/Desktop/Implementation of Formal Verification on VQE/output/storm-reward-validation/run/shots.props",
+        "--precision",
+        "1e-12"
+      ],
+      "elapsed_seconds": 0.41666983399773017,
+      "exit_code": 0,
+      "log": "/Users/rome/Desktop/Implementation of Formal Verification on VQE/output/storm-reward-validation/run/storm-shots.log",
+      "results": {
+        "P1_10": 0.0,
+        "P1_20": 0.0,
+        "P1_30": 0.3839401891440446,
+        "P1_40": 0.7562529633830386,
+        "P1_50": 0.92802722250063,
+        "cost_10": 92160.0,
+        "cost_20": 184320.0,
+        "cost_30": 262892.9565091389,
+        "cost_40": 302725.9439149784,
+        "cost_50": 316355.0687734983
+      }
+    }
+  },
+  "storm_version": "Storm 2.0.0",
+  "tolerances": {
+    "iterations_absolute": 1e-10,
+    "probability_absolute": 1e-12,
+    "shots_absolute": 9.216e-07
+  }
+}

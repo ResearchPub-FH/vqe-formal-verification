@@ -1,0 +1,57 @@
+# Coverage fixture: the h2_statevector profile with a 100-evaluation budget.
+# Convergence policy, seed, shots and optimizer are unchanged; with seed 7 the
+# run converges at evaluation 58, exercising the runConverged properties that
+# the 50-evaluation Table VII runs could not reach.
+schema_version = 2
+hamiltonian = "../data/h2_hamiltonian.json"
+
+[execution]
+mode = "qiskit-statevector-sampler"
+system = "h2"
+backend = "StatevectorSampler"
+parameter_count = 4
+max_iterations = 100
+shots_per_term = 1024
+shot_budget = 409600
+seed = 7
+optimizer_protocol = "ask-tell"
+allow_optimizer_stopped = false
+
+[numeric]
+parameter_lower = -3.141592653589793
+parameter_upper = 3.141592653589793
+energy_abs_tolerance = 1e-12
+expectation_abs_tolerance = 1e-12
+
+[convergence]
+tolerance = 0.005
+min_iterations = 10
+patience = 3
+
+[observability]
+require_raw_counts = true
+
+[sampler]
+pubs_per_evaluation = 4
+separate_pub_per_term = true
+measurement_type = "classified"
+measurement_strategy = "independent-pauli-basis-v1"
+bitstring_order = "qiskit-msb-qn-1-to-q0"
+raw_evidence_format = "packed-bitarray-v1"
+gate_twirling = false
+measurement_twirling = false
+dynamical_decoupling = false
+measurement_mitigation = "not-applicable-to-samplerv2"
+zne = "not-applicable-to-samplerv2"
+pec = "not-applicable-to-samplerv2"
+
+[optimizer]
+name = "ask-tell-pattern-search-v1"
+initialization = "seeded-uniform-v1"
+initial_step = 0.4
+step_shrink = 0.5
+improvement_tolerance = 0.0
+
+[monitor]
+timeout_seconds = 10.0
+bits_per_variable = 24

@@ -1,0 +1,231 @@
+{
+  "configuration": {
+    "ansatz": "h-rz-y-on-both-cx01-h-rz-y-on-both-v1",
+    "bootstrap_samples": 5000,
+    "candidate_order": [
+      "current",
+      "minus",
+      "plus"
+    ],
+    "checkpoints": [
+      10,
+      20,
+      30,
+      40,
+      50
+    ],
+    "confidence_level": 0.95,
+    "coordinate_schedule": [
+      0,
+      1,
+      2,
+      3
+    ],
+    "energy_tolerance": 1e-12,
+    "environment": "ideal-born-finite-shot",
+    "expectation_tolerance": 1e-12,
+    "fault_runs": 10,
+    "gauss_hermite_points": 24,
+    "grid_size": 16,
+    "hamiltonian": {
+      "coefficient_scale": 10000,
+      "terms": {
+        "XX": 1810,
+        "YZ": 3980,
+        "ZI": -3980,
+        "ZZ": -113
+      }
+    },
+    "initial_index": [
+      3,
+      11,
+      6,
+      14
+    ],
+    "maximum_updates": 50,
+    "measurement_groups": [
+      [
+        "ZI",
+        "ZZ"
+      ],
+      [
+        "YZ"
+      ],
+      [
+        "XX"
+      ]
+    ],
+    "name": "h2-two-stage-closed-loop-v1",
+    "parameter_count": 4,
+    "qubit_order": "q1-q0",
+    "runs": 400,
+    "schema_version": 1,
+    "seed": 20260721,
+    "shots_per_group": 1024,
+    "stop_rule": "first-ideal-energy-success-or-update-budget",
+    "success_gap": 0.02
+  },
+  "configuration_sha256": "03b387a2e7fede7a78b71b5a25065f673af10bbb9193103dd9895866d10706be",
+  "n": 400,
+  "successes": 366,
+  "budget_exhausted": 34,
+  "checkpoints": [
+    {
+      "k": 10,
+      "gaussian": 0.0,
+      "storm": 0.0,
+      "empirical": 0.0,
+      "successes": 0,
+      "n": 400,
+      "wilson_95": [
+        0.0,
+        0.009512294334296501
+      ],
+      "residual_pp": 0.0
+    },
+    {
+      "k": 20,
+      "gaussian": 0.0,
+      "storm": 0.0,
+      "empirical": 0.0,
+      "successes": 0,
+      "n": 400,
+      "wilson_95": [
+        0.0,
+        0.009512294334296501
+      ],
+      "residual_pp": 0.0
+    },
+    {
+      "k": 30,
+      "gaussian": 0.3839401891440445,
+      "storm": 0.3839401891440446,
+      "empirical": 0.4225,
+      "successes": 169,
+      "n": 400,
+      "wilson_95": [
+        0.37505542374751966,
+        0.4714189818742963
+      ],
+      "residual_pp": 3.85598108559555
+    },
+    {
+      "k": 40,
+      "gaussian": 0.7562529633830386,
+      "storm": 0.7562529633830386,
+      "empirical": 0.7675,
+      "successes": 307,
+      "n": 400,
+      "wilson_95": [
+        0.7236773296522552,
+        0.8062335928788962
+      ],
+      "residual_pp": 1.124703661696136
+    },
+    {
+      "k": 50,
+      "gaussian": 0.9280272225006299,
+      "storm": 0.92802722250063,
+      "empirical": 0.915,
+      "successes": 366,
+      "n": 400,
+      "wilson_95": [
+        0.8835678157264721,
+        0.9385369799760619
+      ],
+      "residual_pp": -1.302722250062982
+    }
+  ],
+  "conditional_iterations": {
+    "model_mean": 33.111187098970056,
+    "empirical_mean": 32.2896174863388,
+    "empirical_bootstrap_95": [
+      31.579234972677597,
+      32.994535519125684
+    ],
+    "successful_runs": 366,
+    "bootstrap_resamples": 5000,
+    "bootstrap_seed_words": [
+      20260721,
+      99
+    ],
+    "p_raw": 0.02350101019575835,
+    "p_holm": 0.0940040407830334,
+    "model_outside_marginal_interval": true
+  },
+  "conditional_shots": {
+    "model_mean": 305152.70030410803,
+    "empirical_mean": 297581.11475409835,
+    "empirical_bootstrap_95": [
+      291034.2295081967,
+      304077.6393442623
+    ],
+    "shots_per_iteration": 9216,
+    "derived_from": "P2; not an independent test"
+  },
+  "existing_post_audit_tests": {
+    "P1@30": {
+      "p_raw": 0.11280685044939133,
+      "p_holm": 0.338420551348174
+    },
+    "P1@40": {
+      "p_raw": 0.6003342587246439,
+      "p_holm": 0.6267823351996076
+    },
+    "P1@50": {
+      "p_raw": 0.3133911675998038,
+      "p_holm": 0.6267823351996076
+    },
+    "P2": {
+      "p_raw": 0.02350101019575835,
+      "p_holm": 0.0940040407830334
+    }
+  },
+  "first_success_groups": [
+    {
+      "category": "1-20",
+      "lower": 1,
+      "upper": 20,
+      "model_probability": 0.0,
+      "empirical_count": 0,
+      "empirical_probability": 0.0
+    },
+    {
+      "category": "21-30",
+      "lower": 21,
+      "upper": 30,
+      "model_probability": 0.38394018914404454,
+      "empirical_count": 169,
+      "empirical_probability": 0.4225
+    },
+    {
+      "category": "31-40",
+      "lower": 31,
+      "upper": 40,
+      "model_probability": 0.3723127742389941,
+      "empirical_count": 138,
+      "empirical_probability": 0.345
+    },
+    {
+      "category": "41-50",
+      "lower": 41,
+      "upper": 50,
+      "model_probability": 0.17177425911759125,
+      "empirical_count": 59,
+      "empirical_probability": 0.1475
+    },
+    {
+      "category": "No success by K=50",
+      "lower": null,
+      "upper": null,
+      "model_probability": 0.07197277749937014,
+      "empirical_count": 34,
+      "empirical_probability": 0.085
+    }
+  ],
+  "storm_propagation_max_difference": 1.1102230246251565e-16,
+  "first_success_source": "Exact original per-run records, cross-checked against every optimizer successor and retained success mask",
+  "intervals": "Pointwise 95% Wilson (a,b); original 95% percentile bootstrap, 5000 resamples (d). No simultaneous band.",
+  "resource_provenance": "Gaussian-kernel first-passage propagation. The saved Storm log contains reachability queries and no reward model.",
+  "conclusion_scope": "Statistical compatibility at the tested resolution under the existing post-audit four-comparison Holm analysis; no equivalence margin/test or certified approximation-error bound."
+}

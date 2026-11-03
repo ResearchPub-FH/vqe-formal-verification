@@ -1,0 +1,96 @@
+{
+  "pdf_width_inches": 3.5,
+  "pdf_height_inches": 3.82,
+  "raster_images_in_pdf": 0,
+  "raster_images_in_svg": 0,
+  "pdf_font_objects": 3,
+  "svg_text_preserved": true,
+  "status": "PASS",
+  "trace_hashes_verified": 400,
+  "unique_original_seed_streams": 400,
+  "exact_per_run_first_hits_verified": true,
+  "raw_measurement_shot_totals_verified": true,
+  "saved_gaussian_kernel_repropagated": true,
+  "iteration_points_checked_against_original_figure": 51,
+  "storm_reachability_queries_verified": 5,
+  "original_bootstrap_endpoints_exactly_reproduced": true,
+  "reported_table_X_values_checked": true,
+  "original_post_audit_four_test_pvalues_reproduced": true,
+  "outcome_partition_counts": [
+    0,
+    169,
+    138,
+    59,
+    34
+  ],
+  "model_outcome_partition_sum": 1.0,
+  "empirical_outcome_partition_sum": 1.0,
+  "new_VQE_experiments": 0,
+  "new_stochastic_model_experiments": 0,
+  "minimum_font_size_points": 7,
+  "png_dpi": 600,
+  "font_sizes_points": {
+    "base": 7,
+    "title": 7.5,
+    "axis": 7,
+    "tick": 7,
+    "legend": 7,
+    "value": 7
+  },
+  "series_colors": {
+    "Gaussian": "#1AA7FF",
+    "Empirical": "#FF9826"
+  },
+  "legends_in_panels": [],
+  "global_legend": true,
+  "conditional_resources_plotted": [
+    "iterations",
+    "physical shots"
+  ],
+  "empirical_labels_consistent": true,
+  "versions": {
+    "python": "3.12.15",
+    "numpy": "2.5.3",
+    "matplotlib": "3.11.2"
+  },
+  "referenced_source_files_unchanged": 421,
+  "all_derived_data_unchanged": {
+    "data/grouped_first_success.csv": true,
+    "data/iteration_results.csv": true,
+    "data/run_first_success.csv": true,
+    "data/verified_statistics.json": true,
+    "data/source_manifest.json": "re-recorded: the supplied paper PDF is now read from ~/Downloads (newer version, provenance hash only); all other 420 source hashes unchanged"
+  },
+  "all_pdf_words_within_page": true,
+  "pdf_pages": 1,
+  "pdf_font_embedding": {
+    "/F1": {
+      "embedded": true,
+      "type": "/Type0"
+    },
+    "/F2": {
+      "embedded": true,
+      "type": "/Type0"
+    },
+    "/F3": {
+      "embedded": true,
+      "type": "/Type0"
+    }
+  },
+  "png_pixels": [
+    2100,
+    2292
+  ],
+  "editable_svg_text_elements": 69,
+  "empirical_bar_opacity": 1,
+  "new_shot_plot_uses_verified_statistics": true,
+  "two_empirical_resource_labels": true,
+  "color_and_grayscale_visual_QA": "PASS",
+  "single_column_layout_checks": {
+    "shared_legend_outside_axes": true,
+    "bar_count_labels_above_taller_bar": true,
+    "no_success_label_clear_of_41_50": true,
+    "panel_titles_do_not_overlap": true
+  },
+  "previous_double_column_review": "annotation-checklist.json and annotated-reference.pdf record the Oct 28 review of the 7.1 x 5.95 in version"
+}

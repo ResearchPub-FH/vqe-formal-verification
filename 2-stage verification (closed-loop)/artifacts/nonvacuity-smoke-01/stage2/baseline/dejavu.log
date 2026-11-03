@@ -1,0 +1,21 @@
+Could not load BDD package buddy: Can't load library: /Users/rome/Desktop/Implementation of Formal Verification on VQE/2-stage verification (closed-loop)/libbuddy.dylib
+Could not load BDD package buddy: Could not initialize class net.sf.javabdd.BuDDyFactory
+Could not load BDD package buddy: Could not initialize class net.sf.javabdd.BuDDyFactory
+Could not load BDD package buddy: Could not initialize class net.sf.javabdd.BuDDyFactory
+Could not load BDD package buddy: Could not initialize class net.sf.javabdd.BuDDyFactory
+TRIGGERS	baseline-0000	activity:53,begin:3,commit:3,energy:9,groupOne:9,groupTwo:9,groupZero:9,stopped:1,validOne:3,validTwo:3,validZero:3,validated:9
+RESULT	baseline-0000	
+Could not load BDD package buddy: Could not initialize class net.sf.javabdd.BuDDyFactory
+Could not load BDD package buddy: Could not initialize class net.sf.javabdd.BuDDyFactory
+Could not load BDD package buddy: Could not initialize class net.sf.javabdd.BuDDyFactory
+Could not load BDD package buddy: Could not initialize class net.sf.javabdd.BuDDyFactory
+Could not load BDD package buddy: Could not initialize class net.sf.javabdd.BuDDyFactory
+TRIGGERS	baseline-0001	activity:53,begin:3,commit:3,energy:9,groupOne:9,groupTwo:9,groupZero:9,stopped:1,validOne:3,validTwo:3,validZero:3,validated:9
+RESULT	baseline-0001	
+Could not load BDD package buddy: Could not initialize class net.sf.javabdd.BuDDyFactory
+Could not load BDD package buddy: Could not initialize class net.sf.javabdd.BuDDyFactory
+Could not load BDD package buddy: Could not initialize class net.sf.javabdd.BuDDyFactory
+Could not load BDD package buddy: Could not initialize class net.sf.javabdd.BuDDyFactory
+Could not load BDD package buddy: Could not initialize class net.sf.javabdd.BuDDyFactory
+TRIGGERS	baseline-0002	activity:53,begin:3,commit:3,energy:9,groupOne:9,groupTwo:9,groupZero:9,stopped:1,validOne:3,validTwo:3,validZero:3,validated:9
+RESULT	baseline-0002	

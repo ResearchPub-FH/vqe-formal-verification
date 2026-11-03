@@ -1,0 +1,60 @@
+{
+  "backend": {
+    "backend": "fake_jakarta",
+    "backend_class": "FakeJakarta",
+    "backend_properties_last_update": "2021-07-26 11:47:01-04:00",
+    "optimization_level": 3,
+    "platform": "macOS-26.5.2-x86_64-i386-64bit",
+    "python": "3.8.10 (default, May 19 2021, 11:01:55) \n[Clang 10.0.0 ]",
+    "qiskit_versions": {
+      "qiskit": "0.38.0",
+      "qiskit-aer": "0.11.0",
+      "qiskit-finance": null,
+      "qiskit-ibmq-provider": "0.19.2",
+      "qiskit-ignis": null,
+      "qiskit-machine-learning": null,
+      "qiskit-nature": null,
+      "qiskit-optimization": null,
+      "qiskit-terra": "0.21.2"
+    },
+    "simulation_method": "density_matrix",
+    "transpile_seed": 20260721,
+    "transpiled_depths": [
+      14,
+      14,
+      15
+    ],
+    "transpiled_operations": [
+      {
+        "barrier": 1,
+        "cx": 1,
+        "measure": 2,
+        "rz": 16,
+        "sx": 4,
+        "x": 4
+      },
+      {
+        "barrier": 1,
+        "cx": 1,
+        "measure": 2,
+        "rz": 16,
+        "sx": 5,
+        "x": 3
+      },
+      {
+        "barrier": 1,
+        "cx": 1,
+        "measure": 2,
+        "rz": 18,
+        "sx": 6,
+        "x": 2
+      }
+    ]
+  },
+  "no_empirical_dtmc_constructed": true,
+  "outcomes": {
+    "not_converged_by_50": 53,
+    "success": 347
+  },
+  "runs": 400
+}

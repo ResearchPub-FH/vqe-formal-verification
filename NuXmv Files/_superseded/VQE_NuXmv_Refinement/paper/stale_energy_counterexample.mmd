@@ -1,0 +1,27 @@
+flowchart LR
+    s11["1.1 S_INIT<br/>iter = 0<br/>energy_ready = FALSE"]
+    s12["1.2 BIND<br/>iter = 0<br/>energy_ready = FALSE"]
+    s13["1.3 EXECUTE_MEASURE<br/>term 0<br/>terms_done = 1"]
+    s14["1.4 EXECUTE_MEASURE<br/>term 1<br/>terms_done = 2"]
+    s15["1.5 EXECUTE_MEASURE<br/>term N-1<br/>terms_done = NTERMS"]
+    s16["1.6 COMPUTE_ENERGY<br/>iter = 0<br/>energy_ready = FALSE"]
+    s17["1.7 CHECK_STOP<br/>iter = 0<br/>energy_ready = TRUE"]
+    s18["1.8 OPTIMIZER_STEP<br/>iter = 0<br/>energy_ready = TRUE"]
+    s19["1.9 BIND<br/>iter = 1<br/>energy_ready = TRUE<br/><b>VIOLATION</b>"]
+
+    s11 --> s12 --> s13 --> s14 --> s15 --> s16 --> s17 --> s18 --> s19
+
+    prop["Violated property:<br/>Always: if state is BIND and iter is greater than 0,<br/>then energy_ready must be FALSE"]
+    leak["Stale energy from iteration 0<br/>is still marked valid<br/>at the start of iteration 1"]
+
+    s19 -.-> prop
+    s17 -. "energy becomes valid" .-> leak
+    leak -. "not cleared by optimizer step" .-> s19
+
+    classDef normal fill:#fff7cc,stroke:#c99a00,color:#222,stroke-width:1px;
+    classDef bad fill:#ffe0e0,stroke:#c00000,color:#222,stroke-width:2px;
+    classDef note fill:#eef6ff,stroke:#3a6ea5,color:#222,stroke-width:1px;
+
+    class s11,s12,s13,s14,s15,s16,s17,s18 normal;
+    class s19 bad;
+    class prop,leak note;

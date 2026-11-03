@@ -1,0 +1,650 @@
+                                                                                                                              1
+
+
+
+
+   Formal Verification in Hybrid Quantum–Classical
+                 Computing Systems
+
+  Abstract—                                                            Section X discusses limitations and scope. Section XI
+   Index Terms—Formal verification, variational quantum eigen-         concludes the paper.
+solver (VQE), hybrid quantum–classical algorithms.
+                                                                                      II. BACKGROUND
+                     I. I NTRODUCTION                              • VQE essentials. Hamiltonian decomposition into Pauli
+  • Motivation. VQE is a widely-used near-term hybrid                strings, ansatz U (θ), classical optimizer, expecta-
+    algorithm for ground-state estimation; correctness de-           tion estimation Ê(θ) from finite shots. Cite Pe-
+    pends on both the quantum subroutine and the classical           ruzzo et al. 2014 [1], McClean et al. 2016 [2],
+    optimization loop interacting under noise and finite shot        Cerezo et al. 2021 [3], Tilly et al. 2022 [4].
+    budgets.                                                       • Symbolic model checking. CTL/LTL specification,
+  • The verification gap. Current efforts are empirical              NuXmv tooling.
+    (benchmarks, ablations) or singular formal models on           • Probabilistic model checking. PRISM and Storm.
+    algorithm correctness or mathematical proof. No unified        • Runtime verification. Past-time first-order LTL, DejaVu,
+    framework spans logical safety, numeric invariants, prob-        event-based instrumentation.
+    abilistic reliability, and runtime trace conformance in a      • Why no single formalism suffices. Brief argument
+    formal verification way.                                         that the VQE property space is heterogeneous (safety +
+  • Motivating       example. A single natural-language              quantitative + stochastic + observational), motivating the
+    property—“no optimizer update before energy                      layered design.
+    aggregation”—admits four distinct formal encodings
+    (CTL in NuXmv, an SMT obligation, a PRISM                               III. S HARED VQE E XECUTION M ODEL
+    probability bound, and a DejaVu past-time monitor).
+                                                                   •   Definition. Reference execution model
+    Each catches a different class of failure. Use this as the
+    running example throughout the paper.                                   M = (Modes, State, →, L),
+  • Research questions.                                                 Modes = {I NIT, P REPARE, M EASURE, AGGREGATE,
+      – RQ1: Can VQE properties be systematically orga-                             C HECK, O PTIMIZE, D ONE, A BORT}.
+         nized into a layered architecture grounded in one
+         shared execution model?                                   • State vector. θ (parameters), k (iteration counter), per-
+      – RQ2: For each layer, which property classes are              group shot accumulators, Ê, optional ĝ, status flags
+         tractable, and which are infeasible?                        (aggregated, updated, converged, error).
+                                                                   • Mode semantics. Formal description of each mode’s
+      – RQ3: When do guarantees compose across layers?
+      – RQ4: What is the verification cost and bug-class             pre/post-conditions.
+                                                                   • Transition relation. Mode automaton diagram; guards,
+         coverage of each layer?
+                                                                     updates, and terminal modes D ONE/A BORT.
+  • Paper organization. The rest of the paper is organized as
+                                                                   • Well-formedness theorem. Every non-terminal mode
+    follows. Section II provides the necessary background on
+                                                                     has an outgoing transition; absorbing terminal modes;
+    the variational quantum eigensolver and the four formal
+                                                                     iteration counter monotonically non-decreasing.
+    methods underlying our architecture. Section III defines
+                                                                   • Design rationale. The model is intentionally minimal:
+    the shared VQE execution model. Section IV introduces
+                                                                     it abstracts away ansatz internals and hardware noise so
+    our property taxonomy and contract library, organizing
+                                                                     the same skeleton can be instantiated in each verification
+    the VQE property space into eleven categories. Section V
+                                                                     backend.
+    presents the four-layer verification architecture, detailing
+    the encoding, coverage, and expressiveness limits of
+    each layer. Section VI establishes cross-layer guaran-         IV. P ROPERTY TAXONOMY AND C ONTRACT L IBRARY
+    tees, including refinement relationships among encodings       •   Eleven categories: control-flow and ordering; iteration
+    and assume-guarantee composition results. Section VII              and state-consistency; parameter-binding and optimizer-
+    demonstrates the architecture on representative VQE in-            update; measurement and shot-consistency; expectation-
+    stances. Section VIII evaluates the framework against our          value aggregation; numeric-bound and interval-safety;
+    research questions through mutation testing and scalabil-          convergence and termination; probabilistic reliability;
+    ity analysis. Section IX introduces the related work on            backend, compilation, and execution-environment; run-
+    the verification of the hybrid quantum-classical systems.          time trace-conformance; error-handling and recovery.
+                                                                                                                                                              2
+
+
+
+
+Fig. 1. Four-layer formal verification framework for VQE. Each layer verifies
+a different projection of the same VQE reference execution model with its
+corresponding outcomes, while all layers derive their verification obligations   Fig. 2. The shared VQE execution model serves as the core verification
+from a unified property contract library.                                        object, while the logical, numeric, probabilistic, and runtime verification
+                                                                                 layers analyze complementary aspects of the same execution semantics using
+                                                                                 their corresponding formal method tools. Each layer targets different stages
+                                                                                 or modes of the execution model. For instance, logical verification and
+   •  Per-category schema. Informal description, formal tem-                     runtime verification cover the entire execution process, whereas numeric and
+      plate parameterized over M , example instance, mapping                     probabilistic verification focus on specific execution stages where numerical
+                                                                                 consistency, sampling uncertainty, and convergence reliability become critical.
+      to verification layers.
+   • Library as artifact. The taxonomy is released as a
+      versioned, extensible contract library; new properties slot
+      into an existing category or motivate a new one.
+   • Coverage argument. A table mapping each category to
+      which layer(s) can verify it, with rationale.
+   In Table I, a bullet indicates that the corresponding ver-
+ification layer can directly encode, check, or monitor the
+property category. Some categories are covered by multiple                       Fig. 3. Scheme of logical verification with NuXmv for VQE. Natural-
+                                                                                 language requirements are first defined and specified with respect to the
+layers because the same semantic requirement may appear as                       canonical VQE execution process with the refined model. The model is ab-
+an abstract model property, a numeric invariant, a probabilistic                 stracted into a bounded NuXmv state machine and transition system, while the
+reliability condition, or a runtime trace constraint.                            requirements are translated into CTL/LTL formulas. NuXmv then exhaustively
+                                                                                 checks these properties and produces a logical verification report that serves
+                                                                                 as the correctness baseline for future VQE verification implementations.
+           V. L AYERED V ERIFICATION F RAMEWORK
+   Figure 1 illustrates the VQE verification framework, includ-
+ing the most essential and fundamental components of the                         correspond to the logical property categories summarized and
+VQE workflow, the abstract shared execution model spanning                       marked in Table I, especially control-flow and ordering, itera-
+the four verification layers, the specifications and function-                   tion, and state consistency. Numerical consistency, parameter
+alities of each layer, and their corresponding verification out-                 bounds, runtime trace conformance, etc., all other aspects
+comes. Figure 2 presents the detailed verification architecture,                 of the properties are then strengthened by the subsequent
+specifying each verification layer, its corresponding formal                     verification layers.
+verification tools, and the specific stages of the VQE execution                    To implement the logical verification, we enrich and refine
+process it covers.                                                               the shared execution model of VQE introduced in Section III
+                                                                                 into the concrete NuXmv states as shown in Table II. This
+                                                                                 table explicitly shows how the shared VQE execution model
+A. Logical Verification (NuXmv)
+                                                                                 used throughout the four-layer framework maps to the NuXmv
+   The insights and findings we contribute:                                      encoding and instantiation. The workflow of NuXmv checking
+   • VQE has a verifiable control plane (confirmed).                             is demonstrated in Figure 3.
+   • we can manually create some counterexamples.                                   We group the logical properties into three concrete classes.
+   • cost and scalability (time, property number, other ver-                     Readiness properties ensure that a VQE phase is entered only
+     sions).                                                                     after its required inputs are available: measurements require
+The role of the logical verification layer is to check the                       bound parameters, energy computation requires all Pauli-term
+control-structural correctness of the VQE execution loop. In                     measurements, and optimizer updates require a valid energy
+the proposed framework, this layer is mainly responsible for                     estimate. Freshness properties ensure that each optimization
+verifying ordering constraints, state consistency, parameter-                    iteration uses data from the current iteration rather than
+update guarantees, termination behavior, and error-state safety                  stale values from a previous one; for example, measurement
+of the hybrid quantum–classical workflow. These requirements                     counters and energy-readiness flags are reset after a parameter
+                                                                                                                                                       3
+
+
+
+                                                              TABLE I
+                              C OVERAGE OF VQE PROPERTY CATEGORIES ACROSS THE FOUR VERIFICATION LAYERS .
+
+                  Property category                                       Logical    Numeric        Probabilistic      Runtime
+                  Control-flow and ordering                                 •                                             •
+                  Iteration and state consistency                           •                                             •
+                  Parameter binding and optimizer update                                  •                               •
+                  Measurement and shot consistency                                        •                •              •
+                  Expectation-value aggregation                                           •                •              •
+                  Numeric-bound and interval safety                                       •                               •
+                  Convergence and termination                               •             •                •              •
+                  Probabilistic reliability                                                                •
+                  Backend, compilation, and execution environ-                                                             •
+                  ment
+                  Runtime trace conformance                                                                                •
+                  Error-state safety                                        •                              •               •
+
+
+                            TABLE II
+   R EFINEMENT OF THE SHARED VQE EXECUTION MODEL INTO THE
+                N U X MV LOGICAL STATE MACHINE .
+
+ Shared mode    NuXmv state             Operational meaning
+ INIT           INIT                    Initialize            theta,
+                                        prev_energy, and iter.
+ PREPARE        BIND                    Bind the current parameter
+                                        vector into the ansatz circuit.
+ MEASURE        EXECUTE_MEASURE         Execute the bound circuit and
+                                        collect per-term measurement
+                                        outcomes.
+ AGGREGATE      COMPUTE_ENERGY          Estimate the current objective
+                                        value from the collected mea-
+                                        surements.
+ CHECK          CHECK_STOP              Evaluate convergence and
+                                        iteration-bound      stopping
+                                        conditions.
+ OPTIMIZE       OPTIMIZER_STEP          Update the parameter vector
+                                        and advance the optimization
+                                        loop.
+ DONE           DONE                    Return the final parameters
+                                        and energy.
+ ABORT          ABORT                   Terminate execution after an
+                                        error condition.
+
+
+
+update, and the next measurement phase uses the newly bound
+parameters. Termination properties ensure that the control
+loop exits only through well-defined terminal states: successful
+completion occurs through DONE after convergence or the
+maximum iteration bound, while invalid execution paths are
+represented by ABORT when error handling is modeled. Some
+representative CTL/LTL specifications checked by NuXmv
+over the VQE state-machine are:
+                                                                          Fig. 4. Symbolic trace for the NuXmv logical verification hybrid VQE
+G state = COMPUTE_ENERGY →                                                loop. The trace illustrates the complete symbolic execution between the
+                                                                         classical host and the quantum backend, as verified by NuXmv. Starting from
+   terms_done = NTERMS ,                                                  INIT, the trace proceeds through BIND, repeated EXECUTE_MEASURE steps
+G(state = OPTIMIZER_STEP → energy_ready),                                 until terms_done = NTERMS, COMPUTE_ENERGY, CHECK_STOP, and
+                                                                          OPTIMIZER_STEP, before returning to BIND for the next iteration. The
+G(state = EXECUTE_MEASURE → params_ready),                                rejected paths in the lower part of the trace correspond to invalid transitions
+                                                                          such as stale parameters being reused and etc.
+AF(state = DONE ∨ state = ABORT).
+                                                          (1)
+Additional specifications check whether each iteration resets
+properly, outdated energy values are cleared, execution stops             not restart after reaching DONE or ABORT.
+at MAX_ITERS, errors lead to ABORT, and the workflow does                   Figure 4 visualizes how the core contracts in Eq. (1) con-
+                                                                                                                                               4
+
+
+
+strain symbolic executions along with other important spec-                                  TABLE III
+ifications in this hybrid loop. The successful path represents       N UMERIC OPERATIONS INVOLVED IN THE SHARED VQE EXECUTION
+                                                                                              MODEL .
+the normal hybrid workflow, while the rejected paths show
+transitions that are not allowed by the verified model. Namely,     Shared mode        Numeric operations
+the rejected paths include entering COMPUTE_ENERGY be-              AGGREGATE          The numeric layer checks that all Pauli terms are
+                                                                                       present, coefficients and expectation values are cor-
+fore all terms are measured, entering OPTIMIZER_STEP                                   rectly paired, expectation values stay within their
+before a valid energy value is available, and entering                                 valid domain, and the final energy is aggregated
+EXECUTE_MEASURE with stale parameters. Thus, the trace                                 within the expected bound.
+                                                                    CHECK              The numeric layer checks that the convergence deci-
+is not used as a substitute for model checking, but as an                              sion is based on the current valid energy values, the
+interpretability artifact that exposes the accepted and rejected                       previous energy value, and the declared tolerance.
+symbolic behaviors induced by the NuXmv specifications.             OPTIMIZE           The numeric layer checks that the parameters remain
+                                                                                       numerically admissible and that consecutive itera-
+These results show that the abstract hybrid loop is logically                          tions are consistent with each other.
+well-formed and that the principal control dependencies be-         MEASURE            The numeric layer does not verify the physical mea-
+tween the classical optimizer and the quantum backend are           output interface   surement process itself. Instead, it checks whether
+                                                                                       the measurement-derived shot counts and expectation
+consistently preserved.                                                                estimates are numerically valid before they are used
+   Overall, the NuXmv formal verification establishes that                             for energy computation.
+the VQE hybrid execution loop satisfies the logical protocol
+required by the shared execution model: parameters are bound
+before measurement, all required measurement terms are com-        These properties are also marked in Table I for the numeric
+pleted before aggregation, optimizer updates are performed         verification layer. Out of these four property domains, the
+only after valid energy computation, iteration progress is well    most important one for VQE is energy computation, which
+structured, and execution terminates in valid conditions. These    involves five property subdomains: energy aggregation sound-
+guarantees form the logical foundation of the verification         ness, term completeness, coefficient-expectation alignment,
+framework. The subsequent layers strengthen this foundation        expectation-domain validity, and energy-bound validity. The
+by checking numerical validity, probabilistic reliability under    energy computation can be mathematically expressed as:
+finite-shot uncertainty, and runtime conformance of observed                                                   N
+                                                                                                               X −1
+executions to the intended semantics.                                    E(θ) = ⟨ψ(θ)|H|ψ(θ)⟩ =                       ci ⟨ψ(θ)|Pi |ψ(θ)⟩,   (2)
+   Summary: The goal of the logical verification layer is not                                                  i=0
+to find defects in a deliberately correct canonical VQE shared     where ci ∈ R is the coefficient of the i-th Pauli operator Pi
+execution model. Rather, it is to formalize the VQE control        for a Hamiltonian decomposition, N is the number of Pauli
+loop as a machine-checkable reference semantics. The NuXmv         terms, and the VQE objective value E(θ) is evaluated over an
+model specifies the legal ordering of preparation, measure-        ansatz state |ψ(θ)⟩.
+ment, aggregation, convergence checking, optimization, and            In the actual implementation, each Pauli term is represented
+termination. Verifying the model establishes that the reference    by a numeric value ei calculated from the measurement to
+execution protocol is internally coherent: optimizer updates       estimate the expectation. Therefore, the Dafny-based contract
+cannot occur before energy aggregation, terminal states are        abstracts the quantum expectation computation into the fol-
+reached only through valid convergence or error conditions,        lowing form:
+and non-terminal modes preserve progress. These results pro-                                N −1
+vide a logical correctness baseline for the remaining layers.                               X
+                                                                                  Ê(θ) =           ci êi ,     êi ∈ [−1, 1],             (3)
+                                                                                             i=0
+B. Numeric Verification (Dafny + Python trace checker)             since each Pauli observable has eigenvalues in {−1, +1},
+  In the shared execution model, the numeric layer is centered     every valid expectation value satisfies êi ∈ [−1, 1]. Under this
+on the AGGREGATE, CHECK, and OPTIMIZE modes. The                   assumption, the aggregated energy must satisfy the coefficient-
+numeric operations involved in each mode are presented in          induced interval bound
+Table III. More specifically, we categorize related properties                             N
+                                                                                           X −1                  N
+                                                                                                                 X −1
+and specifications into four domains:                                                  −          |ci | ≤ Ê ≤           |ci |.             (4)
+  • Shot      consistency. This class verifies whether                                     i=0                    i=0
+
+     measurement-shot data are numerically valid and                  After defining these properties and specifications, we split
+     consistently recorded before being converted into             the numeric verification into two stages that combine the
+     expectation values.                                           Dafny formal methods and the Python trace checker, as
+  • Energy computation. This class verifies that the methods       shown in Figure 5. Dafny verifies the correctness of the
+     in VQE compute the correct energy value for all valid         numeric kernels with respect to formally specified precondi-
+     inputs.                                                       tions, postconditions, and loop invariants. The Python trace
+  • Parameter bounds. This class checks whether the vari-          checker validates that the actual VQE execution satisfies the
+     ational parameter vector θ is within the allowed range.       assumptions underlying the Dafny-backed properties. More
+  • Convergence check. This class verifies whether the             formally, if the trace contains complete Pauli terms, valid shot
+     stopping condition is implemented correctly.                  counts, aligned coefficients and expectation values, bounded
+                                                                                                                                                              5
+
+
+
+                                                                                                              TABLE IV
+                                                                                  T HE VERIFICATION RESULTS FROM P YTHON TRACE CHECKING FOR VQE
+                                                                                  CIRCUIT INSTANCES WITH INCREASING QUBIT COUNTS AND PAULI - TERM
+                                                                                   COUNTS , EVALUATED ON AN IDEAL STATEVECTOR SIMULATOR AND AN
+                                                                                                      IBM Q UANTUM BACKEND .
+
+                                                                                   Case                      Backend           Qubits    Pauli terms    Result
+                                                                                   H2                       statevector          2            4         PASS
+                                                                                   LiH                      statevector          4            8         PASS
+                                                                                   H2                    ibm marrakesh           2            4         PASS
+                                                                                   Heisenberg14             statevector         14          287         PASS
+                                                                                   Fault-injected H2        statevector          2            4          FAIL
+Fig. 5. The demonstration of the pipeline of Dafny formal verification
+with Python trace checking for the numeric behavior of the VQE. First,
+VQE numeric properties are defined, including energy computation, shot
+consistency, parameter bounds, and convergence checks. These properties are
+then encoded as Dafny contracts with preconditions, postconditions, helper
+functions, and loop invariants, and the corresponding numeric kernels are
+formally verified for all admissible inputs. During execution, the example
+VQE instances are instrumented to record coefficients, expectation values,
+shot counts, parameters, energies, and convergence-related values. A Python
+trace checker then validates that the actual execution trace satisfies the
+Dafny-verified assumptions and numeric properties. The two-stage verification
+process produces its corresponding outputs: the Dafny-based verification result
+and the Python trace-checking validation.
+
+
+
+parameters, and current iteration values, then the computed
+energy, convergence decision, and trace-level numeric state                       Fig. 6. H2 Qiskit Runtime energy trace with per-iteration numeric verification
+satisfy the VQE numeric contracts.                                                results. The black curve shows the energy computed and returned from IBM
+                                                                                  Quantum at each iteration, the blue line shows the reference ground-state
+   1) Dafny Results: The implementation of Dafny                                  energy, and the check markers indicate that each executed iteration passed
+formal verification is divided into five modules.                                 the trace checker for verification.
+VQETypes.dfy defines the basic data structure of
+iterative VQE. VQEContracts.dfy defines the rules
+and preconditions, including valid expectation values, shot                       energy shows a clear trend toward the reference ground-
+consistency, parameter state, and energy computation.                             state energy of H2 as the number of iterations increases, and
+VQELemmas.dfy             proves    supporting     mathematical                   the verification check passes at each iteration. This indicates
+facts, including the bound as Equation 4 shows.                                   that the four main numerical-correctness properties of VQE:
+VQENumericKernels.dfy implements formal methods                                   shot consistency, energy computation, parameter bounds, and
+such as NormalizeExpectation, AggregateEnergy,                                    convergence checking, are satisfied both theoretically and
+etc., which verify the per-iteration numerical correctness of                     empirically.
+VQE. Finally, VQETraceContracts.dfy verifies the                                     The 14-qubit Heisenberg14 has a larger Hamiltonian with
+cross-iteration validity.                                                         287 Pauli terms, 60 iterations, and passes all checker properties
+   The Dafny verifier completed successfully for the numeric                      on statevector. This shows that the verification method scales
+kernel and trace contract modules, reporting 11 verified prop-                    to hundreds of Pauli terms and reinforces that trace validity is
+erties, 0 errors. At the design level, this covers eight numeric                  separate from variational ansatz quality or optimizer success.
+kernel routines and three trace-level validity conditions for full                However, the overhead increased after integrating the trace
+iteration records and consecutive trace steps.                                    checker into the execution leaves as future work.
+   2) Trace Checker Validation: After Dafny verification on                          3) Fault-Injection Examples: To further evaluate property
+the numerical correctness of VQE, the Python trace checker                        violations in the numeric layer of VQE, as well as the capabil-
+was then evaluated on valid VQE traces to validate the                            ity and effectiveness of our verification methods, we manually
+Dafny-proved properties. We test on a couple of standard                          create some possible errors and faults, then inject them into
+VQE instances, including H2 and LiH, as well as a larger                          the normal execution of H2 on statevector. The examples and
+Hamiltonian example, Heisenberg14. For H2, we also run the                        results in Table V show that the checker detects numeric
+trace checker on both the simulator statevector and the IBM                       defects, such as missing Pauli terms and shot inconsistencies,
+Quantum computer ibm marrakesh through Qiskit Runtime.                            as intended.
+   For the H2 experiment on IBM Quantum, we set the                                  These results support the role of the Python trace checker
+maximum number of iterations to 60, the number of shots                           as the concrete bridge between Dafny formal verification and
+per term to 4096, and the convergence tolerance to 0.01. Each                     actual VQE executions. Dafny proves the numerical correct-
+iteration submits one Estimator job containing one PUB with                       ness of VQE under explicit assumptions, while the checker
+all four Hamiltonian observables. The execution used 409,600                      ensures that execution traces satisfy those assumptions.
+shots in total and stopped after 25 iterations upon convergence.                     Summary: The numeric layer is not intended to prove that
+The checker reports PASS for all per-iteration and cross-                         a physical experiment is correct, that the backend behaved, or
+iteration properties as demonstrated in Figure 6. The reported                    that VQE reached the true ground state, which can possibly
+                                                                                                                                                       6
+
+
+
+                            TABLE V
+    FAULT- INJECTION EXAMPLES AND DETECTION RESULTS FOR THE
+                   NUMERIC VERIFICATION LAYER .
+
+ Injected fault       Operational meaning and scenario            Detected?
+ Wrong     per-term   One Pauli-term expectation contribu-        Yes
+ energy               tion is modified before energy com-
+                      putation. An incorrect bitstring-to-
+                      eigenvalue mapping, a sign error, an                    Fig. 7. The overview of probabilistic verification by Storm for VQE.
+                      endian mismatch, or an incorrect nor-
+                      malization could cause this error.
+ Missing Pauli term   One Hamiltonian term is removed from        Yes
+                      the trace. A Hamiltonian term can be
+                                                                              finite-shot VQE process. The pipeline of Storm probabilistic
+                      dropped because of a parsing error,                     verification is illustrated in Figure 7.
+                      coefficient filtering, failed observable                   1) Gaussian DTMC Construction: The Hamiltonian has
+                      grouping, or incomplete backend result
+                      retrieval.
+                                                                              been introduced in Equation 2. At optimization iteration k,
+ Shot inconsistency   The recorded shot count is changed so       Yes         the optimizer
+                                                                                        n     evaluates the o candidate parameter configurations
+                      that it no longer matches the observed                               (0) (−) (+)
+                                                                              θk = θk , θk , θk                 which correspond to the current,
+                      measurement counts. This error can be
+                      caused by partial job failure, mixed                    minus, and plus candidates.
+                      backend jobs, per-observable shot mis-                     For each candidate j ∈ {0, −, +}, the corresponding ansatz
+                      match, or incorrect result-schema pars-
+                      ing.
+                                                                              circuit is constructed and its Born probabilities are calculated
+ Parameter out of     The parameter vector θ is changed to        Yes         for the required measurement groups. These probabilities
+ bounds               contain a value outside the admissible                  determine the distribution of the finite-shot observable esti-
+                      range. It could happen when an un-
+                      constrained optimizer proposes invalid
+                                                                              matesnand therefore the     o distribution of the estimated energy
+                                                                                         (0) (−) (+)
+                      values, a parameter update produces                     θk = θk , θk , θk             .
+                      NaN/Inf, etc.
+ False convergence    The trace is marked as converged even       Yes
+                                                                                 From the Born probabilities and the hdeclared        i shot count,
+                                                                                                                    (j)          b (j) and variance
+                      though the energy difference does not                   we derive the exact mean µk = E E                   k
+                      satisfy the declared tolerance condition.                      2        h       i
+                      Early stopping or an incorrect stopping                     (j)               (j)
+                                                                                σk       = Var E  b
+                                                                                                   k       of the candidate energy estimator. The
+                      condition could happen due to miscal-
+                      culations by the optimizer.                             discrete finite-shot
+                                                                                                    energy    distribution is then approximated as
+                                                                                                         2 
+                                                                                (j)
+                                                                               b ≈N µ , σ     (j)     (j)
+                                                                              E k             k       k         .
+
+be reasoned by the probability layer. What it does establish                     At each optimizer step, the model constructs one Gaussian
+is twofold: first, the numeric kernels preserve the mathematical              distribution for each candidate and calculates the probability
+meaning of the VQE energy objective for all admissible                        that each candidate produces the minimum measured energy.
+inputs, and second, recorded iterative runs remain internally                 For candidate j, this probability is
+consistent with that meaning and are free of the injected                                    h                                    i
+numeric fault classes. Together with the logical layer’s control-                      (j)
+                                                                                      pk = Pr Eb (j) ≤ E
+                                                                                                       b (ℓ) for all ℓ ∈ {0, −, +} ,                 (5)
+                                                                                                k        k
+plane guarantees, this provides a numeric correctness baseline
+on which the probabilistic and runtime layers build.                                                P              (j)
+                                                                                where they satisfy j∈{0,−,+} pk = 1 and are used as the
+                                                                              outgoing transition probabilities of the current DTMC state. If
+C. Probabilistic Verification (Storm)                                         U denotes the deterministic optimizer update associated with
+                                                                              the selected candidate, the transition relation is
+   The probabilistic verification layer analyzes the effects                                       
+of finite-shot measurement uncertainty on VQE convergence                                       (j)
+                                                                                       P sk , sk+1 = pk ,
+                                                                                                          (j)        (j)
+                                                                                                                    sk+1 = U (sk , j).   (6)
+decisions, the bounded convergence probability, the expected
+iteration count, and the expected shot consumption. Due to                       The construction continues until either the convergence
+measurement stochasticity, at each iteration, the VQE process                 criterion is satisfied or the maximum iteration count is reached.
+can take a different path with probability because of the                     Probability mass entering the convergence set is accumulated
+energy evaluation and parameter update. However, an exact                     as successful termination probability. Any probability mass
+Discrete-Time Markov Chain (DTMC) for formal verifica-                        that has not entered the convergence set by the final iteration
+tion requires enumeration of the possible finite-shot count                   represents paths that do not converge within the declared
+outcomes for the measured Pauli groups and calculation of                     bound.
+their induced energy-estimator probabilities. The number of                      The resulting DTMC does not enumerate the original count-
+combinations grows rapidly with the shot count and number                     level finite-shot process. Instead, it captures how approximated
+of measurement groups, making direct construction imprac-                     finite-shot energy uncertainty changes candidate selection and
+tical at meaningful shot budgets. We therefore approximate                    propagates through the optimizer.
+each candidate’s finite-shot energy estimator using a Gaussian                   2) Storm Model Encoding: The Gaussian DTMC is passed
+distribution parameterized by its analytically derived mean and               to Storm through a compatible probabilistic model representa-
+variance. Storm exhaustively analyzes all paths of the Gaussian               tion. Each state records the information needed to continue the
+DTMC, rather than all measurement outcomes of the original                    abstract optimization process, including the current iteration,
+                                                                                                                                      7
+
+
+
+the current optimizer state, the convergence status, and the             4) Empirical Finite-Shot Evaluation: In parallel with the
+terminal status.                                                      analytical model, we repeatedly execute the same VQE in-
+   Each nonterminal state has one outgoing probabilistic tran-        stance with the same configuration using direct finite-shot
+sition for every candidate update. The corresponding proba-           sampling. Each run samples actual measurement outcomes and
+              (0)       (−)        (+)
+bilities are pk ,      pk ,       pk .                                follows one concrete optimizer trajectory.
+   A state satisfying the convergence criterion is labeled               Let R denote the total number of independent empirical
+success and becomes absorbing. A separate terminal con-               runs. For run r, define
+dition represents exhaustion of the maximum iteration budget
+without convergence. The current model focuses on conver-
+                                                                                   (
+                                                                                    1,    if run r converges by iteration k,
+gence under finite-shot uncertainty and does not introduce                Ir (k) =                                                (12)
+                                                                                    0,    otherwise.
+backend-failure or other error terminal states.
+   The model also records iteration and shot rewards. The               The empirical convergence probability is estimated as
+iteration reward represents the number of optimizer steps
+                                                                                                          R
+consumed along a path, while the shot reward represents                                                1 X
+                                                                                           pbE (k) =         Ir (k).              (13)
+the measurement cost accumulated during candidate evalu-                                               R r=1
+ation. These reward structures allow convergence reliability
+and resource consumption to be analyzed under the same                  For convergence proportions, we additionally report 95%
+probabilistic transition semantics.                                   Wilson confidence intervals. For each successful execution,
+   The generated Storm model therefore contains the reachable         we record the convergence iteration Tr and the total shot
+states, probabilistic transitions, convergence labels, iteration      consumption Sr . If Rsucc runs converge within the iteration
+rewards, shot rewards, and the probabilistic properties to be         bound, the corresponding empirical averages are
+checked.                                                                                                   1      X
+   3) Probabilistic Property Specification: The main reacha-                        b [T | success] =
+                                                                                    E                                      Tr     (14)
+                                                                                                         Rsucc r:success
+bility property is the bounded probability of convergence,
+                                                                        and
+                   P=? F≤K success ,
+                                 
+                                                                (7)
+                                                                                   b [S | success] =       1     X
+  which asks for the probability that the DTMC reaches a                           E                                      Sr .    (15)
+                                                                                                        Rsucc r:success
+converged state within at most K transitions. In formal-style
+syntax, this property is written as                                      The analytical and empirical branches use the same Hamil-
+                                                                      tonian, ansatz, optimizer configuration, initial parameters, shot
+              P=? [ F<=K "success" ].                           (8)   count, convergence threshold, and iteration bound. This keeps
+                                                                      the comparison focused on the Gaussian approximation rather
+  Rather than checking only the final iteration bound, we             than on configuration differences.
+evaluate the property for a sequence of bounds,                          The empirical branch serves as an execution-based refer-
+                                                                      ence. We do not expect it to numerically coincide with the
+      pG (k) = P F≤k success ,
+                           
+                                           k = 1, . . . , K,    (9)   Gaussian DTMC, since the two branches use different stochas-
+                                                                      tic representations and the empirical estimates themselves vary
+   which produces the cumulative convergence-probability pro-
+                                                                      across finite batches of runs.
+file.
+                                                                         5) Analytical–Empirical Comparison: For iteration bound
+   We additionally calculate the expected iteration at conver-
+                                                                      k, we define the observed analytical–empirical discrepancy as
+gence,
+                                                                                          ∆(k) = pG (k) − pbE (k).                (16)
+                    E [Tconv | Tconv ≤ K] ,                    (10)
+  and the expected shot consumption at convergence,                     The observed difference contains both the effect of the
+                                                                      Gaussian abstraction and the statistical uncertainty of the
+                    E [Sconv | Tconv ≤ K] .                    (11)   empirical estimate. More precisely,
+
+   These quantities are reported over successful paths reaching                          pG − pbE = (pG − pFS )
+convergence within the maximum iteration bound. They are                                                                          (17)
+referred to as expected iteration and shot rewards rather                                              + (pFS − pbE ) ,
+than minimum reachability properties, since they quantify                where pFS is the unknown true probability of the original
+accumulated costs instead of reachability probabilities.              finite-shot execution process. The first term represents the
+   Storm exhaustively explores the reachable state space of the       abstraction discrepancy, while the second represents empirical
+Gaussian DTMC and aggregates the probability mass of every            estimation error.
+abstract path satisfying each property. The exhaustiveness               This discrepancy examines whether the Gaussian DTMC
+claim is therefore restricted to the Gaussian abstraction: Storm      preserves the main convergence behavior and VQE semantics,
+analyzes every reachable path of the constructed DTMC, not            whether it produces systematically optimistic or pessimistic
+every count-level execution of the original finite-shot VQE           estimates, and how large the execution effect is for the
+process.                                                              evaluated configuration.
+                                                                                                                                              8
+
+
+
+                                                                                 Overall, the Gaussian DTMC verified with Storm provides a
+                                                                              practical probabilistic verification approach for analyzing VQE
+                                                                              convergence reliability and resource consumption under finite-
+                                                                              shot uncertainty. By exhaustively evaluating probabilistic and
+                                                                              reward properties over the analytical abstraction, the model
+                                                                              provides quantitative information that can guide the choice of
+                                                                              iteration and shot budgets before costly VQE executions.
+                                                                                 Summary:The probabilistic verification layer constructs a
+                                                                              tractable Gaussian DTMC from the finite-shot energy statistics
+                                                                              of VQE candidate circuits and uses Storm to exhaustively
+                                                                              evaluate bounded-convergence and resource properties over
+                                                                              this abstraction. Repeated finite-shot executions provide an
+Fig. 8. Comparison of convergence probability across VQE iterations between
+the analytical Gaussian DTMC and repeated empirical executions for the H2     independent empirical reference for comparison. For the eval-
+instance.                                                                     uated H2 configuration, both approaches exhibit the same
+                                                                              broad convergence progression, while the Gaussian DTMC
+                                                                              predicts systematically earlier and more likely convergence.
+   6) Results: We evaluate the probabilistic layer using the H2
+                                                                              The observed analytical–empirical discrepancy is reported
+VQE instance. The experiment uses 1024 shots per commuting
+                                                                              explicitly to characterize the approximation behavior of the
+group, four tunable Ry gates, a maximum of 50 iterations, and
+                                                                              Gaussian abstraction under finite empirical estimation.
+a convergence tolerance of ϵ = 0.02, which follows the similar
+setup as previous configurations and practical norms in VQE
+experiment.                                                                   D. Runtime Verification (DejaVu + Python Instrumentation)
+   For the analytical Gaussian DTMC, Storm reports                              The runtime verification layer checks a concrete VQE
+                                                                              execution follows the shared execution model and satisfied the
+                 P F≤50 success = 0.928027,
+                              
+                                                                      (18)    specifications required at each interaction between the classical
+                                                                              controller and quantum backend.
+  corresponding to a bounded convergence probability of
+92.80%.
+  For the empirical process, 347 out of 400 independent                                     VI. C ROSS -L AYER G UARANTEES
+executions converge within 50 iterations, giving an empirical                   • Property equivalence and refinement. A refinement
+convergence estimate of                                                           lattice over encodings: when are the NuXmv, SMT,
+                                                                                  PRISM, and DejaVu encodings of a property logically
+                              347                                                 equivalent, and when do they diverge by design (e.g., the
+                     pbE (50) =   = 86.75%.                 (19)
+                              400                                                 probabilistic encoding strictly weakens the logical one).
+   The remaining 53 executions do not converge within the                       • Soundness w.r.t. the shared model. For every property
+iteration bound. No additional terminal outcome is included                       P in the taxonomy, the projection πL (P ) onto layer L
+in the current experiment.                                                        is sound w.r.t. satisfaction in M ; completeness where
+   Figure 8 shows that convergence probabilities increase as                      attainable.
+iteration increases for both the analytical Gaussian DTMC                       • Assume-guarantee       composition. Conditions under
+for Storm and the empirical runs, which reflects the realistic                    which (logical proof of P ) ∧ (numeric invariant Q) ∧
+VQE behavior. Table VI selects and presents a couple of                           (probabilistic bound R) ∧ (runtime monitor S) yields a
+representative property results in terms of convergence, ex-                      stronger system-level guarantee than any layer alone.
+pected iterations, and expected shots budget at convergence                     • Lifting Boolean to probabilistic guarantees. Formal
+for comparison.                                                                   statement of the lifting under a declared noise model.
+   These results indicate an optimistic analytical–empirical dis-               • Cost-of-assurance trade-off. Per property class, the ratio
+crepancy for the evaluated configuration. Storm exhaustively                      of assurance strength to verification cost across layers, as
+checks all the possible paths with Gaussian approximation,                        a measurable claim.
+whereas every empirical run follows the original finite-shot
+sampling semantics. In addition, the empirical quantities are                                      VII. C ASE S TUDIES
+estimated from a finite number of executions with measure-
+                                                                                • Case 1: H2 with hardware-efficient ansatz.
+ment noise and potential same paths.
+                                                                                • Case 2: LiH with UCC ansatz.
+   The current model isolates finite-shot measurement un-
+                                                                                • Case 3: Bug-seeded VQE.
+certainty. It does not yet include gate noise, readout error,
+                                                                                • Per case, report.
+backend failure, hardware drift, crosstalk, leakage, or other
+device-specific effects. Although Gaussian abstraction avoids
+direct enumeration of high-shot measurement outcomes, the                                           VIII. E VALUATION
+reachable state space can still grow with the iteration bound,                  •   RQ1 (architecture). Demonstrate that the taxonomy and
+the number of optimizer candidates, and the number of distinct                      shared model accommodate all properties drawn from the
+optimizer states.                                                                   case studies and the literature without ad-hoc extensions.
+                                                                                                                                                 9
+
+
+
+                                                              TABLE VI
+    A NALYTICAL G AUSSIAN -DTMC AND EMPIRICAL FINITE - SHOT RESULTS FOR THE H2 VQE INSTANCE . T HE EMPIRICAL COLUMN REPORTS 95%
+                                                        CONFIDENCE INTERVALS .
+
+
+Property                                           Analytical Gaussian DTMC                    Empirical execution, 400 runs
+Convergence by iteration 10                                   0.00%                                  0.00% (0–0.95%)
+Convergence by iteration 20                                   0.00%                                  0.00% (0–0.95%)
+Convergence by iteration 30                                  38.39%                              28.75% (24.53–33.37%)
+Convergence by iteration 40                                  75.63%                              68.00% (63.28–72.38%)
+Convergence by iteration 50                                  92.80%                              86.75% (83.08–89.73%)
+Expected iterations at convergence                            33.11                                34.31 (33.55–35.07)
+Expected shots at convergence                                305,153                            316,186 (309,188–323,184)
+
+
+• RQ2 (per-layer coverage). Bug-class coverage via mu-                                        XI. C ONCLUSION
+  tation testing: which mutants are caught by which layer.                                       R EFERENCES
+• RQ3 (composition). Show one concrete example where
+                                                                  [1] A. Peruzzo, J. McClean, P. Shadbolt, M.-H. Yung, X.-Q. Zhou, P. J. Love,
+  no single layer detects the defect but the composed                 A. Aspuru-Guzik, and J. L. O’Brien, “A variational eigenvalue solver on
+  guarantee does.                                                     a photonic quantum processor,” Nature Communications, vol. 5, p. 4213,
+• RQ4 (cost). Verification time, memory, and state-space              2014.
+                                                                  [2] J. R. McClean, J. Romero, R. Babbush, and A. Aspuru-Guzik, “The
+  size per layer as a function of qubit count, parameter              theory of variational hybrid quantum-classical algorithms,” New Journal
+  count, and iteration budget.                                        of Physics, vol. 18, no. 2, p. 023023, 2016.
+• Threats to validity. Internal (instrumentation fidelity,        [3] M. Cerezo, A. Arrasmith, R. Babbush, S. C. Benjamin, S. Endo, K. Fujii,
+                                                                      J. R. McClean, K. Mitarai, X. Yuan, L. Cincio, and P. J. Coles, “Varia-
+  abstraction soundness), external (generalization beyond             tional quantum algorithms,” Nature Reviews Physics, vol. 3, pp. 625–644,
+  chosen ansatze and Hamiltonians), construct (mutation               2021.
+  operators as proxies for real bugs).                            [4] J. Tilly, H. Chen, S. Cao, D. Picozzi, K. Setia, Y. Li, E. Grant, L. Wossnig,
+                                                                      I. Rungger, G. H. Booth, and J. Tennyson, “The variational quantum
+                                                                      eigensolver: A review of methods and best practices,” Physics Reports,
+                    IX. R ELATED W ORK                                vol. 986, pp. 1–128, 2022.
+• Verification of quantum programs. Qbricks, CoqQ,
+  quantum Hoare logic, quantum abstract interpretation.
+• Probabilistic model checking of stochastic systems.
+  PRISM/Storm applications outside quantum.
+• Runtime verification of cyber-physical and hybrid
+  systems. DejaVu, Copilot, MOP; parallels to the hybrid
+  quantum-classical setting.
+• Empirical VQE studies and benchmarks. Position this
+  paper as integrative (assurance framework) rather than
+  competitive with any single tool or benchmark.
+• Other layered or compositional verification frame-
+  works. SeL4 verification stack, AUTOSAR-style assur-
+  ance cases.
+
+             X. D ISCUSSION AND L IMITATIONS
+• Hardware noise modeling. Current abstraction assumes
+  a declared shot-noise model; richer hardware-specific
+  noise (crosstalk, leakage, drift) is future work.
+• Concurrent and distributed VQE. The shared model
+  is sequential; extending to multi-backend or batched
+  execution is open.
+• Floating-point semantics in the classical optimizer. Not
+  currently modeled; bounded by numeric-layer invariants
+  but not formally verified.
+• Adversarial backends. The architecture assumes a co-
+  operative cloud backend; security verification is out of
+  scope.
+• Generalization to other hybrid algorithms. QAOA,
+  VQD, and quantum machine learning loops fit the same
+  skeleton; sketch the migration path.
+

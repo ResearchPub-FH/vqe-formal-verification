@@ -1,0 +1,59 @@
+sequenceDiagram
+    participant C as Classical Host / Optimizer
+    participant M as NuXmv Logical Model
+    participant Q as Quantum Backend
+
+    C->>M: S_INIT
+    Note over C,M: iter := 0, cands_done := 0, terms_done := 0<br/>params_ready = TRUE (theta_0), circ_ready = FALSE<br/>energy_ready = FALSE, term_reason = NO_TERM
+
+    C->>M: CHECK_STOP (initial point, iter = 0)
+    Note over M: converged = FALSE, iter < MAX_ITERS<br/>start iteration k = 0, cands_done := 0
+
+    loop Iteration k, until DONE or ABORT
+        loop Candidate j = current, minus, plus (cands_done = j)
+            C->>M: BIND(theta_k^(j))
+            Note over M: circ_ready = TRUE, terms_done = 0<br/>energy_ready = FALSE<br/>bound_version := iter, bound_cand := j
+
+            loop Measurement group g = 0 .. NTERMS-1
+                M->>Q: EXECUTE_MEASURE(group g, theta_k^(j))
+                Q-->>M: counts[g]
+                Note over M: terms_done := g + 1
+            end
+
+            M->>C: COMPUTE_ENERGY (terms_done = NTERMS)
+            Note over C,M: E_k^(j) := EstimateEnergy(H, counts), numerically validated<br/>energy_version := bound_version, cands_done := j + 1<br/>circ_ready := FALSE, terms_done := 0
+        end
+
+        Note over C,M: cands_done = NCANDS, energy_ready = TRUE<br/>energy_version = iter
+
+        C->>M: OPTIMIZER_STEP
+        Note over C,M: select j* = argmin score (ties: current, minus, plus)<br/>commit theta_(k+1) := theta_k^(j*), iter := iter + 1<br/>params_ready = TRUE
+
+        C->>M: CHECK_STOP (committed point)
+        alt converged
+            M->>C: DONE, term_reason = DONE_CONVERGED
+        else not converged and iter = MAX_ITERS
+            M->>C: DONE, term_reason = DONE_MAX_ITERS
+        else not converged and iter < MAX_ITERS
+            M->>C: next iteration: cands_done := 0, energy_ready := FALSE
+        end
+    end
+
+    Note over C,Q: An error in BIND, EXECUTE_MEASURE, COMPUTE_ENERGY or OPTIMIZER_STEP<br/>goes to ABORT at the next step with its cause (E1-E4), and nothing else aborts (E5)
+
+    M--xC: Rejected: COMPUTE_ENERGY when terms_done < NTERMS
+    Note over M: Violates R1: AG(state = COMPUTE_ENERGY -> terms_done = NTERMS)
+
+    C--xM: Rejected: OPTIMIZER_STEP before all candidates are validated
+    Note over M: Violates R4: AG(state = OPTIMIZER_STEP -> cands_done = NCANDS & energy_ready)
+
+    M--xQ: Rejected: EXECUTE_MEASURE on a stale or wrong-candidate binding
+    Note over M: Violates F1: AG(state = EXECUTE_MEASURE -> bound_version = iter & bound_cand = cands_done)
+
+    C--xM: Rejected: BIND with stale energy_ready = TRUE
+    Note over M: Violates F3: AG(state = BIND -> terms_done = 0 & !energy_ready)
+
+    M--xC: Rejected: qpu_error ignored in EXECUTE_MEASURE
+    Note over M: Violates E2: G(measure_fails -> X(state = ABORT & term_reason = ABORT_QPU_ERROR))
+
+    Note over C,Q: DONE and ABORT are absorbing (T3, T4), and every run reaches one of them (T1)

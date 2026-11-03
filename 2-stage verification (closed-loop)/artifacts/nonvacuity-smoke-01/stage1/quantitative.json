@@ -1,0 +1,41 @@
+{
+  "conditional_expectation_provenance": "Python forward propagation of the same Gaussian kernel's first-success distribution; checked against Storm at declared checkpoints. These are not Storm reward-query results.",
+  "dtmc_states": 1024,
+  "expected_shots_given_success": null,
+  "expected_total_updates": 3.0,
+  "expected_updates_given_success": null,
+  "grid_states": 256,
+  "ground_energy": -0.7029303944595314,
+  "maximum_energy_variance": 0.000341500673828125,
+  "maximum_quadrature_row_correction": 9.336129203063592e-09,
+  "minimum_energy_variance": 0.000154816103515625,
+  "numeric_method": "24-node Gauss-Hermite (configured), normal CDF approximation, normalized rows; no certified approximation-error bound",
+  "storm": {
+    "command": [
+      "/opt/homebrew/bin/storm",
+      "--explicit",
+      "/Users/rome/Desktop/Implementation of Formal Verification on VQE/2-stage verification (closed-loop)/artifacts/nonvacuity-smoke-01/stage1/gaussian.tra",
+      "/Users/rome/Desktop/Implementation of Formal Verification on VQE/2-stage verification (closed-loop)/artifacts/nonvacuity-smoke-01/stage1/gaussian.lab",
+      "--prop",
+      "/Users/rome/Desktop/Implementation of Formal Verification on VQE/2-stage verification (closed-loop)/artifacts/nonvacuity-smoke-01/stage1/gaussian.props",
+      "--precision",
+      "1e-12"
+    ],
+    "elapsed_seconds": 0.055444750003516674,
+    "exit_code": 0,
+    "log": "/Users/rome/Desktop/Implementation of Formal Verification on VQE/2-stage verification (closed-loop)/artifacts/nonvacuity-smoke-01/stage1/storm.log",
+    "maximum_difference_from_forward_propagation": 0.0,
+    "results": {
+      "1": 0.0,
+      "3": 0.0
+    },
+    "status": "ESTABLISHED_FOR_GAUSSIAN_MODEL"
+  },
+  "success_cdf": [
+    0.0,
+    0.0,
+    0.0,
+    0.0
+  ],
+  "transitions": 2356
+}

@@ -1,0 +1,850 @@
+{
+  "completed_at": "2026-10-25T18:27:18.830145+00:00",
+  "configuration_digest": "0988fc089b0bbec6c0095dd1b4a7d94d35e54c6962f005c1f1d64bde8cfa0c15",
+  "pre_execution_digest": "224d6047bd4339b646d374aa239ef59c4a0ea6053d1c0bdf2c1ff069039774f9",
+  "results": [
+    {
+      "contracts": {
+        "L1": {
+          "assumption_mismatches": [],
+          "checks": 0,
+          "inconclusive": [
+            {
+              "message": "obligation groups_before_energy not exercised (0 triggers)",
+              "seq": 4
+            }
+          ],
+          "runtime_verdict": "INCONCLUSIVE",
+          "triggers": {
+            "groups_before_energy": 0
+          },
+          "violations": []
+        },
+        "L2": {
+          "assumption_mismatches": [],
+          "checks": 3,
+          "inconclusive": [
+            {
+              "message": "obligation validation_certified not exercised (0 triggers)",
+              "seq": 4
+            }
+          ],
+          "runtime_verdict": "DISAGREEMENT",
+          "triggers": {
+            "validation_certified": 0,
+            "validations_before_commit": 1
+          },
+          "violations": [
+            {
+              "message": "optimizer committed before all three numeric validation events",
+              "seq": 3
+            }
+          ]
+        },
+        "L3": {
+          "assumption_mismatches": [],
+          "checks": 18,
+          "inconclusive": [
+            {
+              "message": "obligation evaluation_identity_current not exercised (0 triggers)",
+              "seq": 4
+            }
+          ],
+          "runtime_verdict": "INCONCLUSIVE",
+          "triggers": {
+            "commit_identity_current": 1,
+            "evaluation_identity_current": 0
+          },
+          "violations": []
+        },
+        "L4": {
+          "assumption_mismatches": [],
+          "checks": 6,
+          "inconclusive": [],
+          "runtime_verdict": "AGREEMENT",
+          "triggers": {
+            "terminal_reason": 1
+          },
+          "violations": []
+        },
+        "N1": {
+          "assumption_mismatches": [],
+          "checks": 0,
+          "inconclusive": [
+            {
+              "message": "obligation expectation_reconstructed not exercised (0 triggers)",
+              "seq": 4
+            }
+          ],
+          "runtime_verdict": "INCONCLUSIVE",
+          "triggers": {
+            "expectation_reconstructed": 0
+          },
+          "violations": []
+        },
+        "N2": {
+          "assumption_mismatches": [],
+          "checks": 0,
+          "inconclusive": [
+            {
+              "message": "obligation energy_reconstructed not exercised (0 triggers)",
+              "seq": 4
+            }
+          ],
+          "runtime_verdict": "INCONCLUSIVE",
+          "triggers": {
+            "energy_reconstructed": 0
+          },
+          "violations": []
+        },
+        "N3": {
+          "assumption_mismatches": [],
+          "checks": 1,
+          "inconclusive": [
+            {
+              "message": "obligation allocation_checked not exercised (0 triggers)",
+              "seq": 4
+            }
+          ],
+          "runtime_verdict": "INCONCLUSIVE",
+          "triggers": {
+            "allocation_checked": 0,
+            "cumulative_total_checked": 1
+          },
+          "violations": []
+        },
+        "N4": {
+          "assumption_mismatches": [],
+          "checks": 2,
+          "inconclusive": [
+            {
+              "message": "obligation selection_checked not exercised (0 triggers)",
+              "seq": 4
+            }
+          ],
+          "runtime_verdict": "INCONCLUSIVE",
+          "triggers": {
+            "candidates_generated": 1,
+            "selection_checked": 0
+          },
+          "violations": []
+        }
+      },
+      "dejavu": {
+        "passed": false,
+        "trigger_agreement": true,
+        "triggers": {
+          "L1_groupsBeforeEnergy": 0,
+          "L2_validationsBeforeCommit": 1,
+          "L3_energyAfterBegin": 0,
+          "L3_validationAfterEnergy": 0,
+          "L4_noActivityAfterStop": 1
+        },
+        "violations": {
+          "L2_validationsBeforeCommit": 1
+        }
+      },
+      "detected_as_expected": true,
+      "events": 4,
+      "expected_contract": "L2",
+      "expected_verdict": "DISAGREEMENT",
+      "fault": "premature_update",
+      "fault_scope": "controlled execution",
+      "injected_fault": "premature_update",
+      "max_energy_error": 0.0,
+      "max_expectation_error": 0.0,
+      "online_replay_agreement": true,
+      "physical_shots": 0,
+      "probabilistic_applicability": "INCONCLUSIVE",
+      "run_id": "premature_update-000",
+      "seed_words": [
+        20260721,
+        1,
+        0
+      ],
+      "shot_evidence_complete": true,
+      "success_step": null,
+      "terminal_reason": "contract_abort",
+      "trace": "stage2/faults/premature_update-000.jsonl.gz",
+      "trace_sha256": "c36127c0d45ece7576530f0dcc02723f3d6c2020acd7a7e26da74f9278c88254",
+      "updates": 0
+    },
+    {
+      "contracts": {
+        "L1": {
+          "assumption_mismatches": [],
+          "checks": 8,
+          "inconclusive": [],
+          "runtime_verdict": "AGREEMENT",
+          "triggers": {
+            "groups_before_energy": 1
+          },
+          "violations": []
+        },
+        "L2": {
+          "assumption_mismatches": [],
+          "checks": 1,
+          "inconclusive": [
+            {
+              "message": "obligation validation_certified not exercised (0 triggers)",
+              "seq": 7
+            },
+            {
+              "message": "obligation validations_before_commit not exercised (0 triggers)",
+              "seq": 7
+            }
+          ],
+          "runtime_verdict": "INCONCLUSIVE",
+          "triggers": {
+            "validation_certified": 0,
+            "validations_before_commit": 0
+          },
+          "violations": []
+        },
+        "L3": {
+          "assumption_mismatches": [],
+          "checks": 38,
+          "inconclusive": [
+            {
+              "message": "obligation commit_identity_current not exercised (0 triggers)",
+              "seq": 7
+            }
+          ],
+          "runtime_verdict": "INCONCLUSIVE",
+          "triggers": {
+            "commit_identity_current": 0,
+            "evaluation_identity_current": 4
+          },
+          "violations": []
+        },
+        "L4": {
+          "assumption_mismatches": [],
+          "checks": 9,
+          "inconclusive": [],
+          "runtime_verdict": "AGREEMENT",
+          "triggers": {
+            "terminal_reason": 1
+          },
+          "violations": []
+        },
+        "N1": {
+          "assumption_mismatches": [],
+          "checks": 11,
+          "inconclusive": [],
+          "runtime_verdict": "AGREEMENT",
+          "triggers": {
+            "expectation_reconstructed": 4
+          },
+          "violations": []
+        },
+        "N2": {
+          "assumption_mismatches": [],
+          "checks": 8,
+          "inconclusive": [],
+          "runtime_verdict": "DISAGREEMENT",
+          "triggers": {
+            "energy_reconstructed": 1
+          },
+          "violations": [
+            {
+              "message": "candidate energy differs from exact rational reconstruction",
+              "seq": 6
+            }
+          ]
+        },
+        "N3": {
+          "assumption_mismatches": [],
+          "checks": 7,
+          "inconclusive": [],
+          "runtime_verdict": "AGREEMENT",
+          "triggers": {
+            "allocation_checked": 3,
+            "cumulative_total_checked": 1
+          },
+          "violations": []
+        },
+        "N4": {
+          "assumption_mismatches": [],
+          "checks": 10,
+          "inconclusive": [
+            {
+              "message": "obligation selection_checked not exercised (0 triggers)",
+              "seq": 7
+            }
+          ],
+          "runtime_verdict": "INCONCLUSIVE",
+          "triggers": {
+            "candidates_generated": 1,
+            "selection_checked": 0
+          },
+          "violations": []
+        }
+      },
+      "dejavu": {
+        "passed": true,
+        "trigger_agreement": true,
+        "triggers": {
+          "L1_groupsBeforeEnergy": 1,
+          "L2_validationsBeforeCommit": 0,
+          "L3_energyAfterBegin": 1,
+          "L3_validationAfterEnergy": 0,
+          "L4_noActivityAfterStop": 1
+        },
+        "violations": {}
+      },
+      "detected_as_expected": true,
+      "events": 7,
+      "expected_contract": "N2",
+      "expected_verdict": "DISAGREEMENT",
+      "fault": "corrupt_energy",
+      "fault_scope": "controlled execution",
+      "injected_fault": "corrupt_energy",
+      "max_energy_error": 0.125,
+      "max_expectation_error": 0.0,
+      "online_replay_agreement": true,
+      "physical_shots": 3072,
+      "probabilistic_applicability": "INCONCLUSIVE",
+      "run_id": "corrupt_energy-000",
+      "seed_words": [
+        20260721,
+        2,
+        0
+      ],
+      "shot_evidence_complete": true,
+      "success_step": null,
+      "terminal_reason": "contract_abort",
+      "trace": "stage2/faults/corrupt_energy-000.jsonl.gz",
+      "trace_sha256": "6e7fd1bb1ebb2c3fd72c140fdbd79e9b29286ddcd42158e26738879a9d89c1f0",
+      "updates": 0
+    },
+    {
+      "contracts": {
+        "L1": {
+          "assumption_mismatches": [],
+          "checks": 8,
+          "inconclusive": [],
+          "runtime_verdict": "AGREEMENT",
+          "triggers": {
+            "groups_before_energy": 1
+          },
+          "violations": []
+        },
+        "L2": {
+          "assumption_mismatches": [],
+          "checks": 1,
+          "inconclusive": [
+            {
+              "message": "obligation validation_certified not exercised (0 triggers)",
+              "seq": 7
+            },
+            {
+              "message": "obligation validations_before_commit not exercised (0 triggers)",
+              "seq": 7
+            }
+          ],
+          "runtime_verdict": "INCONCLUSIVE",
+          "triggers": {
+            "validation_certified": 0,
+            "validations_before_commit": 0
+          },
+          "violations": []
+        },
+        "L3": {
+          "assumption_mismatches": [],
+          "checks": 38,
+          "inconclusive": [
+            {
+              "message": "obligation commit_identity_current not exercised (0 triggers)",
+              "seq": 7
+            }
+          ],
+          "runtime_verdict": "INCONCLUSIVE",
+          "triggers": {
+            "commit_identity_current": 0,
+            "evaluation_identity_current": 4
+          },
+          "violations": []
+        },
+        "L4": {
+          "assumption_mismatches": [],
+          "checks": 9,
+          "inconclusive": [],
+          "runtime_verdict": "AGREEMENT",
+          "triggers": {
+            "terminal_reason": 1
+          },
+          "violations": []
+        },
+        "N1": {
+          "assumption_mismatches": [],
+          "checks": 11,
+          "inconclusive": [],
+          "runtime_verdict": "AGREEMENT",
+          "triggers": {
+            "expectation_reconstructed": 4
+          },
+          "violations": []
+        },
+        "N2": {
+          "assumption_mismatches": [],
+          "checks": 8,
+          "inconclusive": [],
+          "runtime_verdict": "DISAGREEMENT",
+          "triggers": {
+            "energy_reconstructed": 1
+          },
+          "violations": [
+            {
+              "message": "coefficient-to-term association differs from the frozen Hamiltonian",
+              "seq": 6
+            },
+            {
+              "message": "YZ contribution is incorrect",
+              "seq": 6
+            },
+            {
+              "message": "XX contribution is incorrect",
+              "seq": 6
+            },
+            {
+              "message": "candidate energy differs from exact rational reconstruction",
+              "seq": 6
+            },
+            {
+              "message": "candidate selection score is incorrect",
+              "seq": 6
+            }
+          ]
+        },
+        "N3": {
+          "assumption_mismatches": [],
+          "checks": 7,
+          "inconclusive": [],
+          "runtime_verdict": "AGREEMENT",
+          "triggers": {
+            "allocation_checked": 3,
+            "cumulative_total_checked": 1
+          },
+          "violations": []
+        },
+        "N4": {
+          "assumption_mismatches": [],
+          "checks": 10,
+          "inconclusive": [
+            {
+              "message": "obligation selection_checked not exercised (0 triggers)",
+              "seq": 7
+            }
+          ],
+          "runtime_verdict": "INCONCLUSIVE",
+          "triggers": {
+            "candidates_generated": 1,
+            "selection_checked": 0
+          },
+          "violations": []
+        }
+      },
+      "dejavu": {
+        "passed": true,
+        "trigger_agreement": true,
+        "triggers": {
+          "L1_groupsBeforeEnergy": 1,
+          "L2_validationsBeforeCommit": 0,
+          "L3_energyAfterBegin": 1,
+          "L3_validationAfterEnergy": 0,
+          "L4_noActivityAfterStop": 1
+        },
+        "violations": {}
+      },
+      "detected_as_expected": true,
+      "events": 7,
+      "expected_contract": "N2",
+      "expected_verdict": "DISAGREEMENT",
+      "fault": "coefficient_swap",
+      "fault_scope": "controlled execution",
+      "injected_fault": "coefficient_swap",
+      "max_energy_error": 0.007628906250000019,
+      "max_expectation_error": 0.0,
+      "online_replay_agreement": true,
+      "physical_shots": 3072,
+      "probabilistic_applicability": "INCONCLUSIVE",
+      "run_id": "coefficient_swap-000",
+      "seed_words": [
+        20260721,
+        3,
+        0
+      ],
+      "shot_evidence_complete": true,
+      "success_step": null,
+      "terminal_reason": "contract_abort",
+      "trace": "stage2/faults/coefficient_swap-000.jsonl.gz",
+      "trace_sha256": "ace13f03345bf77f20367708dbaaf3a05b1dec580c56f2b45790ff0b01c3bda8",
+      "updates": 0
+    },
+    {
+      "contracts": {
+        "L1": {
+          "assumption_mismatches": [],
+          "checks": 2,
+          "inconclusive": [
+            {
+              "message": "obligation groups_before_energy not exercised (0 triggers)",
+              "seq": 4
+            }
+          ],
+          "runtime_verdict": "INCONCLUSIVE",
+          "triggers": {
+            "groups_before_energy": 0
+          },
+          "violations": []
+        },
+        "L2": {
+          "assumption_mismatches": [],
+          "checks": 1,
+          "inconclusive": [
+            {
+              "message": "obligation validation_certified not exercised (0 triggers)",
+              "seq": 4
+            },
+            {
+              "message": "obligation validations_before_commit not exercised (0 triggers)",
+              "seq": 4
+            }
+          ],
+          "runtime_verdict": "INCONCLUSIVE",
+          "triggers": {
+            "validation_certified": 0,
+            "validations_before_commit": 0
+          },
+          "violations": []
+        },
+        "L3": {
+          "assumption_mismatches": [],
+          "checks": 20,
+          "inconclusive": [
+            {
+              "message": "obligation commit_identity_current not exercised (0 triggers)",
+              "seq": 4
+            }
+          ],
+          "runtime_verdict": "INCONCLUSIVE",
+          "triggers": {
+            "commit_identity_current": 0,
+            "evaluation_identity_current": 1
+          },
+          "violations": []
+        },
+        "L4": {
+          "assumption_mismatches": [],
+          "checks": 6,
+          "inconclusive": [],
+          "runtime_verdict": "AGREEMENT",
+          "triggers": {
+            "terminal_reason": 1
+          },
+          "violations": []
+        },
+        "N1": {
+          "assumption_mismatches": [],
+          "checks": 2,
+          "inconclusive": [
+            {
+              "message": "obligation expectation_reconstructed not exercised (0 triggers)",
+              "seq": 4
+            }
+          ],
+          "runtime_verdict": "INCONCLUSIVE",
+          "triggers": {
+            "expectation_reconstructed": 0
+          },
+          "violations": []
+        },
+        "N2": {
+          "assumption_mismatches": [],
+          "checks": 0,
+          "inconclusive": [
+            {
+              "message": "obligation energy_reconstructed not exercised (0 triggers)",
+              "seq": 4
+            }
+          ],
+          "runtime_verdict": "INCONCLUSIVE",
+          "triggers": {
+            "energy_reconstructed": 0
+          },
+          "violations": []
+        },
+        "N3": {
+          "assumption_mismatches": [
+            {
+              "message": "physical shots differ from the frozen allocation",
+              "seq": 3
+            }
+          ],
+          "checks": 3,
+          "inconclusive": [],
+          "runtime_verdict": "ASSUMPTION_MISMATCH",
+          "triggers": {
+            "allocation_checked": 1,
+            "cumulative_total_checked": 1
+          },
+          "violations": []
+        },
+        "N4": {
+          "assumption_mismatches": [],
+          "checks": 4,
+          "inconclusive": [
+            {
+              "message": "obligation selection_checked not exercised (0 triggers)",
+              "seq": 4
+            }
+          ],
+          "runtime_verdict": "INCONCLUSIVE",
+          "triggers": {
+            "candidates_generated": 1,
+            "selection_checked": 0
+          },
+          "violations": []
+        }
+      },
+      "dejavu": {
+        "passed": true,
+        "trigger_agreement": true,
+        "triggers": {
+          "L1_groupsBeforeEnergy": 0,
+          "L2_validationsBeforeCommit": 0,
+          "L3_energyAfterBegin": 0,
+          "L3_validationAfterEnergy": 0,
+          "L4_noActivityAfterStop": 1
+        },
+        "violations": {}
+      },
+      "detected_as_expected": true,
+      "events": 4,
+      "expected_contract": "N3",
+      "expected_verdict": "ASSUMPTION_MISMATCH",
+      "fault": "shot_mismatch",
+      "fault_scope": "controlled execution",
+      "injected_fault": "shot_mismatch",
+      "max_energy_error": 0.0,
+      "max_expectation_error": 0.0,
+      "online_replay_agreement": true,
+      "physical_shots": 512,
+      "probabilistic_applicability": "ASSUMPTION_MISMATCH",
+      "run_id": "shot_mismatch-000",
+      "seed_words": [
+        20260721,
+        4,
+        0
+      ],
+      "shot_evidence_complete": true,
+      "success_step": null,
+      "terminal_reason": "contract_abort",
+      "trace": "stage2/faults/shot_mismatch-000.jsonl.gz",
+      "trace_sha256": "a7e316a56663369a47cf96411e65d427715c1921fa46c91d4f62d8a1a624b7cc",
+      "updates": 0
+    },
+    {
+      "contracts": {
+        "L1": {
+          "assumption_mismatches": [],
+          "checks": 73,
+          "inconclusive": [],
+          "runtime_verdict": "DISAGREEMENT",
+          "triggers": {
+            "groups_before_energy": 9
+          },
+          "violations": [
+            {
+              "message": "required raw measurement evidence is missing",
+              "seq": 3
+            },
+            {
+              "message": "aggregation lacks complete raw measurements",
+              "seq": 6
+            }
+          ]
+        },
+        "L2": {
+          "assumption_mismatches": [],
+          "checks": 28,
+          "inconclusive": [
+            {
+              "message": "cannot certify numeric validity because measurement evidence is incomplete",
+              "seq": 7
+            },
+            {
+              "message": "commit ordering was observed but one numeric certificate is uncheckable",
+              "seq": 18
+            }
+          ],
+          "runtime_verdict": "INCONCLUSIVE",
+          "triggers": {
+            "validation_certified": 9,
+            "validations_before_commit": 3
+          },
+          "violations": []
+        },
+        "L3": {
+          "assumption_mismatches": [],
+          "checks": 309,
+          "inconclusive": [],
+          "runtime_verdict": "AGREEMENT",
+          "triggers": {
+            "commit_identity_current": 3,
+            "evaluation_identity_current": 45
+          },
+          "violations": []
+        },
+        "L4": {
+          "assumption_mismatches": [],
+          "checks": 57,
+          "inconclusive": [],
+          "runtime_verdict": "AGREEMENT",
+          "triggers": {
+            "terminal_reason": 1
+          },
+          "violations": []
+        },
+        "N1": {
+          "assumption_mismatches": [],
+          "checks": 92,
+          "inconclusive": [
+            {
+              "message": "raw counts unavailable",
+              "seq": 3
+            }
+          ],
+          "runtime_verdict": "INCONCLUSIVE",
+          "triggers": {
+            "expectation_reconstructed": 32
+          },
+          "violations": []
+        },
+        "N2": {
+          "assumption_mismatches": [],
+          "checks": 70,
+          "inconclusive": [
+            {
+              "message": "cannot reconstruct energy without all group counts",
+              "seq": 6
+            },
+            {
+              "message": "some optimizer inputs lack complete reference measurements",
+              "seq": 18
+            }
+          ],
+          "runtime_verdict": "INCONCLUSIVE",
+          "triggers": {
+            "energy_reconstructed": 8
+          },
+          "violations": []
+        },
+        "N3": {
+          "assumption_mismatches": [],
+          "checks": 52,
+          "inconclusive": [
+            {
+              "message": "reported shot total cannot be certified without raw counts",
+              "seq": 3
+            },
+            {
+              "message": "cumulative physical shots depend on missing or invalid count evidence",
+              "seq": 18
+            },
+            {
+              "message": "cumulative physical shots depend on missing or invalid count evidence",
+              "seq": 35
+            },
+            {
+              "message": "cumulative physical shots depend on missing or invalid count evidence",
+              "seq": 52
+            },
+            {
+              "message": "terminal physical shot total cannot be fully certified",
+              "seq": 53
+            },
+            {
+              "message": "obligation cumulative_total_checked not exercised (0 triggers)",
+              "seq": 53
+            }
+          ],
+          "runtime_verdict": "INCONCLUSIVE",
+          "triggers": {
+            "allocation_checked": 26,
+            "cumulative_total_checked": 0
+          },
+          "violations": []
+        },
+        "N4": {
+          "assumption_mismatches": [],
+          "checks": 102,
+          "inconclusive": [
+            {
+              "message": "cannot determine the minimum-energy candidate without complete measurements",
+              "seq": 18
+            }
+          ],
+          "runtime_verdict": "INCONCLUSIVE",
+          "triggers": {
+            "candidates_generated": 3,
+            "selection_checked": 3
+          },
+          "violations": []
+        }
+      },
+      "control_trace": "stage2/faults/missing_evidence-000-complete.jsonl.gz",
+      "control_trace_sha256": "f68604f966f8c2e45c691225ea229caade2c18dadcc77e051eebe5a67a92a374",
+      "dejavu": {
+        "passed": true,
+        "trigger_agreement": true,
+        "triggers": {
+          "L1_groupsBeforeEnergy": 9,
+          "L2_validationsBeforeCommit": 3,
+          "L3_energyAfterBegin": 9,
+          "L3_validationAfterEnergy": 9,
+          "L4_noActivityAfterStop": 1
+        },
+        "violations": {}
+      },
+      "detected_as_expected": true,
+      "events": 53,
+      "expected_contract": "N1",
+      "expected_verdict": "INCONCLUSIVE",
+      "fault": "missing_evidence",
+      "fault_scope": "saved-trace mutation; no execution mutation",
+      "max_energy_error": 2.3359092438113294e-17,
+      "max_expectation_error": 0.0,
+      "physical_shots": 27648,
+      "probabilistic_applicability": "INCONCLUSIVE",
+      "run_id": "missing_evidence-000",
+      "shot_evidence_complete": false,
+      "success_step": null,
+      "terminal_reason": "budget",
+      "trace": "stage2/faults/missing_evidence-000.jsonl.gz",
+      "trace_sha256": "113e5f51f49cb2998f9828f1494610281c78fbb657556729de2a7eae6bfb17a6",
+      "updates": 3
+    }
+  ],
+  "temporal_monitor": {
+    "exercised_runs": {
+      "L1_groupsBeforeEnergy": 3,
+      "L2_validationsBeforeCommit": 2,
+      "L3_energyAfterBegin": 3,
+      "L3_validationAfterEnergy": 1,
+      "L4_noActivityAfterStop": 5
+    },
+    "input_sha256": "90df39ce96f281a24dc9d3619e51abcca568865d22ae1fdb0e0c7b4bded2f314",
+    "log_sha256": "449690df8cdaa4635ede332cf84f9259bee129a6a990fc6ee23a3ce3d5844495",
+    "passed_runs": 4,
+    "tool": "DejaVu",
+    "total_runs": 5,
+    "trigger_totals": {
+      "L1_groupsBeforeEnergy": 11,
+      "L2_validationsBeforeCommit": 4,
+      "L3_energyAfterBegin": 11,
+      "L3_validationAfterEnergy": 9,
+      "L4_noActivityAfterStop": 5
+    }
+  }
+}

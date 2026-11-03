@@ -1,0 +1,69 @@
+-- Generated from the frozen configuration. Numerical values are abstracted.
+MODULE main
+VAR
+  phase : {start, measure, aggregate, validate, select, commit, check,
+            done_success, done_budget, aborted};
+  updates : 0..50;
+  groups : 0..3;
+  ready : 0..3;
+  epoch : boolean;
+  energy_epoch : boolean;
+  environment_error : boolean;
+  success : boolean;
+DEFINE
+  terminal := phase in {done_success, done_budget, aborted};
+ASSIGN
+  init(phase) := start;
+  init(updates) := 0;
+  init(groups) := 0;
+  init(ready) := 0;
+  init(epoch) := FALSE;
+  init(energy_epoch) := FALSE;
+  next(phase) := case
+    terminal : phase;
+    phase = start : measure;
+    phase = measure & environment_error : aborted;
+    phase = measure & groups < 1 : measure;
+    phase = measure & groups >= 1 : aggregate;
+    phase = aggregate : validate;
+    phase = validate & environment_error : aborted;
+    phase = validate & ready < 2 : measure;
+    phase = validate & ready = 2 : select;
+    phase = select : commit;
+    phase = commit : check;
+    phase = check & success : done_success;
+    phase = check & !success & updates = 50 : done_budget;
+    phase = check & !success & updates < 50 : start;
+    TRUE : aborted;
+  esac;
+  next(updates) := case
+    phase = commit & updates < 50 : updates + 1;
+    TRUE : updates;
+  esac;
+  next(groups) := case
+    phase = start | phase = validate : 0;
+    phase = measure & !environment_error & groups < 3 : groups + 1;
+    TRUE : groups;
+  esac;
+  next(ready) := case
+    phase = start : 0;
+    phase = validate & !environment_error & ready < 3 : ready + 1;
+    TRUE : ready;
+  esac;
+  next(epoch) := case phase = start : !epoch; TRUE : epoch; esac;
+  next(energy_epoch) := case phase = validate : epoch; TRUE : energy_epoch; esac;
+-- L1: current candidate has all three measurement groups before aggregation.
+LTLSPEC NAME L1 := G (phase = aggregate -> groups = 3);
+-- L2: all candidate validations precede selecting and committing.
+LTLSPEC NAME L2 := G (phase in {select, commit} -> ready = 3);
+-- L3: last validation belongs to the current update; readiness resets each update.
+LTLSPEC NAME L3 := G (phase = commit -> energy_epoch = epoch);
+LTLSPEC NAME L3_reset := G (phase = start -> X (ready = 0 & groups = 0));
+-- L4: terminal states stay terminal; budget completion differs from error abort.
+LTLSPEC NAME L4 := G (terminal -> X terminal);
+LTLSPEC NAME L4_budget := G (phase = done_budget -> updates = 50);
+LTLSPEC NAME L4_bound := G (phase = commit -> updates < 50);
+-- L4 termination reasons: each stop is classified by its cause.
+LTLSPEC NAME L4_success_reason := G ((phase = check & success) -> X phase = done_success);
+LTLSPEC NAME L4_budget_reason := G ((phase = check & !success & updates = 50) -> X phase = done_budget);
+LTLSPEC NAME L4_abort_cause := G ((!terminal & X phase = aborted) -> environment_error);

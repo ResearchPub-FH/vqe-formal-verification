@@ -1,0 +1,165 @@
+-- ============================================================================
+--  Mutant M1 — Premature aggregation
+--  ----------------------------------------------------------------------------
+--  BUG (one-line injection in next(state)):
+--      The guard `all_terms_done` on the EXECUTE_MEASURE -> COMPUTE_ENERGY
+--      transition is removed.  Energy aggregation can therefore start after
+--      a single Pauli term has been measured, in violation of the readiness
+--      contract for COMPUTE_ENERGY.
+--
+--  EXPECTED VIOLATION:
+--      [R3]  G (state = COMPUTE_ENERGY -> all_terms_done)        FAIL
+--      [F5]  G (state = CHECK_STOP -> energy_version = bound_version)
+--                                                                 still holds
+--            (because energy_version is still synced from bound_version)
+-- ============================================================================
+
+MODULE main
+
+VAR
+  state : { S_INIT, BIND, EXECUTE_MEASURE, COMPUTE_ENERGY,
+            CHECK_STOP, OPTIMIZER_STEP, DONE, ABORT };
+  circ_ready    : boolean;
+  params_ready  : boolean;
+  energy_ready  : boolean;
+  iter           : 0..MAX_ITERS;
+  terms_done     : 0..NTERMS;
+  theta_version  : 0..MAX_ITERS;
+  bound_version  : 0..MAX_ITERS;
+  energy_version : 0..MAX_ITERS;
+  term_reason    : { NO_TERM, DONE_CONVERGED,
+                     ABORT_BIND_ERR, ABORT_QPU_ERR, ABORT_ENERGY_ERR,
+                     ABORT_OPT_ERR, ABORT_MAX_ITERS };
+
+IVAR
+  converged  : boolean;
+  bind_err   : boolean;
+  qpu_err    : boolean;
+  energy_err : boolean;
+  opt_err    : boolean;
+
+DEFINE
+  MAX_ITERS := 5;
+  NTERMS    := 3;
+  all_terms_done := (terms_done = NTERMS);
+  terminal       := (state = DONE | state = ABORT);
+  bind_aborts    := (state = BIND           & bind_err);
+  qpu_aborts     := (state = EXECUTE_MEASURE & qpu_err);
+  energy_aborts  := (state = COMPUTE_ENERGY & energy_err);
+  opt_aborts     := (state = OPTIMIZER_STEP & opt_err);
+  max_aborts     := (state = CHECK_STOP & !converged & iter = MAX_ITERS);
+  abort_now      := bind_aborts | qpu_aborts | energy_aborts
+                    | opt_aborts | max_aborts;
+
+ASSIGN
+  init(state)          := S_INIT;
+  init(circ_ready)     := FALSE;
+  init(params_ready)   := TRUE;
+  init(energy_ready)   := FALSE;
+  init(iter)           := 0;
+  init(terms_done)     := 0;
+  init(theta_version)  := 0;
+  init(bound_version)  := 0;
+  init(energy_version) := 0;
+  init(term_reason)    := NO_TERM;
+
+  next(state) :=
+    case
+      state = S_INIT                                            : BIND;
+      bind_aborts                                               : ABORT;
+      qpu_aborts                                                : ABORT;
+      energy_aborts                                             : ABORT;
+      opt_aborts                                                : ABORT;
+      max_aborts                                                : ABORT;
+      state = BIND                                              : EXECUTE_MEASURE;
+      -- *** BUG INJECTED HERE ***
+      -- Correct: state = EXECUTE_MEASURE & !all_terms_done : EXECUTE_MEASURE;
+      --          state = EXECUTE_MEASURE &  all_terms_done : COMPUTE_ENERGY;
+      state = EXECUTE_MEASURE                                   : COMPUTE_ENERGY;
+      -- *** END BUG ***
+      state = COMPUTE_ENERGY                                    : CHECK_STOP;
+      state = CHECK_STOP        &  converged                    : DONE;
+      state = CHECK_STOP        & !converged & iter < MAX_ITERS : OPTIMIZER_STEP;
+      state = OPTIMIZER_STEP                                    : BIND;
+      state = DONE                                              : DONE;
+      state = ABORT                                             : ABORT;
+      TRUE                                                      : state;
+    esac;
+
+  next(term_reason) :=
+    case
+      state = CHECK_STOP & converged   : DONE_CONVERGED;
+      bind_aborts                      : ABORT_BIND_ERR;
+      qpu_aborts                       : ABORT_QPU_ERR;
+      energy_aborts                    : ABORT_ENERGY_ERR;
+      opt_aborts                       : ABORT_OPT_ERR;
+      max_aborts                       : ABORT_MAX_ITERS;
+      terminal                         : term_reason;
+      TRUE                             : NO_TERM;
+    esac;
+
+  next(circ_ready) :=
+    case
+      abort_now                : FALSE;
+      state = BIND             : TRUE;
+      state = OPTIMIZER_STEP   : FALSE;
+      state = ABORT            : FALSE;
+      TRUE                     : circ_ready;
+    esac;
+
+  next(params_ready) :=
+    case
+      abort_now                                        : FALSE;
+      state = S_INIT                                   : TRUE;
+      state = OPTIMIZER_STEP                           : TRUE;
+      state = EXECUTE_MEASURE & all_terms_done         : FALSE;
+      state = ABORT                                    : FALSE;
+      TRUE                                             : params_ready;
+    esac;
+
+  next(energy_ready) :=
+    case
+      abort_now                : FALSE;
+      state = COMPUTE_ENERGY   : TRUE;
+      state = OPTIMIZER_STEP   : FALSE;
+      state = ABORT            : FALSE;
+      TRUE                     : energy_ready;
+    esac;
+
+  next(iter) :=
+    case
+      state = S_INIT                                            : 0;
+      state = OPTIMIZER_STEP & !opt_err & iter < MAX_ITERS      : iter + 1;
+      TRUE                                                      : iter;
+    esac;
+
+  next(terms_done) :=
+    case
+      state = S_INIT                                            : 0;
+      state = BIND                                              : 0;
+      state = OPTIMIZER_STEP & !opt_err                         : 0;
+      state = EXECUTE_MEASURE & !qpu_err & !all_terms_done      : terms_done + 1;
+      TRUE                                                      : terms_done;
+    esac;
+
+  next(theta_version) :=
+    case
+      state = OPTIMIZER_STEP & !opt_err
+                              & theta_version < MAX_ITERS       : theta_version + 1;
+      TRUE                                                      : theta_version;
+    esac;
+
+  next(bound_version) :=
+    case
+      state = BIND & !bind_err                                  : theta_version;
+      TRUE                                                      : bound_version;
+    esac;
+
+  next(energy_version) :=
+    case
+      state = COMPUTE_ENERGY & !energy_err                      : bound_version;
+      TRUE                                                      : energy_version;
+    esac;
+
+-- Targeted property (subset of the full suite that this mutant breaks).
+LTLSPEC G (state = COMPUTE_ENERGY -> all_terms_done);   -- [R3]  expected FAIL

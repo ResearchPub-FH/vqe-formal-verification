@@ -1,0 +1,32 @@
+# OS
+.DS_Store
+
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+.venv/
+venv/
+.cache/
+
+# Matplotlib config caches
+.matplotlib/
+.mplconfig/
+
+# Node
+node_modules/
+
+# Tool binaries: macOS builds that don't run on Linux; nuXmv is not redistributable
+/NuXmv Files/nuXmv/
+/Dafny + Python trace checker/dafny/
+
+# .NET build output
+/Dafny + Python trace checker/test_dafny/bin/
+/Dafny + Python trace checker/test_dafny/obj/
+
+# Scratch build folders
+/VQE Runtime Verification - DejaVu/.chart-data-*/
+/VQE Runtime Verification - DejaVu/.codex-pptx-build/
+
+# Runs excluded from the results
+/VQE Runtime Verification - DejaVu/artifacts/excluded_scaling_campaign_*/

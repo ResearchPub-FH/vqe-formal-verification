@@ -1,0 +1,76 @@
+{
+  "purpose": "Standalone illustrative proposal; not integrated into the manuscript",
+  "intended_width": "double column, 7.2 inches; body text 7 pt, auxiliary labels 6.5 pt, circuit symbols 6 pt",
+  "editable_source": "scripts/figures/end_to_end_software_schematic.py",
+  "outputs": [
+    "figures/end-to-end-software-schematic.pdf",
+    "figures/end-to-end-software-schematic.svg",
+    "figures/end-to-end-software-schematic.png"
+  ],
+  "quantitative_results": "None; mathematical/object icons and symbolic field names only",
+  "actual_apis_checked": {
+    "closed_loop/pre_execution.py": [
+      "run_pre_execution"
+    ],
+    "closed_loop/logical.py": [
+      "model"
+    ],
+    "closed_loop/execution.py": [
+      "execute_run",
+      "execution_values",
+      "emit",
+      "run_baseline",
+      "replay"
+    ],
+    "closed_loop/physics.py": [
+      "point",
+      "candidate_indices",
+      "build_gaussian",
+      "export_dtmc"
+    ],
+    "closed_loop/checker.py": [
+      "RuntimeChecker",
+      "consume",
+      "reconstruct"
+    ],
+    "closed_loop/temporal.py": [
+      "build_monitor",
+      "project",
+      "verify_traces"
+    ],
+    "closed_loop/comparison.py": [
+      "compare",
+      "wilson",
+      "mean_interval"
+    ]
+  },
+  "actual_event_names_checked": [
+    "measurement",
+    "evaluation",
+    "numeric_valid",
+    "optimizer_commit",
+    "terminal"
+  ],
+  "source_sha256": {
+    "closed_loop/pre_execution.py": "4b4941ba0c3886be8ba69e3d52ba27cff41f6451ab379176d23b516e2e027bd4",
+    "closed_loop/logical.py": "961343dfc7abbab826ac3328391df4261e6f986c8d3900e9d129cf412961faf8",
+    "closed_loop/execution.py": "b1e9d92aef8304ae54a38db4e6c1dfe653f4b398d710ea90d90c3d8d745c1f69",
+    "closed_loop/physics.py": "7221648d1e244110f66bee84ad9bcea4aa2ffab1bcf883d9b25ebab91ce07ded",
+    "closed_loop/checker.py": "026c79bf08b5ed97ae9ff7b8e90c8a0e0996067f9a91aa17e83e46ef8bc5d85d",
+    "closed_loop/temporal.py": "18d9038798802f445d0acafe4b084a92d452787143814b3071ec4ba95e22c16e",
+    "closed_loop/comparison.py": "5d0dabd4c267499b4444cc6edeec191250ab9ddd1f1766b254b2e01be173c977",
+    "experiment.py": "2d205b16f21a2d5d0869545fb0c0f8f226903cc8c3d9a43bbce1925cf4c1dad2",
+    "config/contracts.json": "58de9bd27ad128441c4f32e68384e1cba72ea9953b0016cf765d1b2df9b6f2d8",
+    "config/h2.json": "78187be9bab07a509abec8b7561d60ca3d6667ad6b1d83ec6742bd5d2e02e426",
+    "paper/scripts/extract_results.py": "aecebd6de1601cd1b93545d23fbd515f37eec84d6935e0f6aafaee6ad5d45771",
+    "formal/VQELemmas.dfy": "9d32075ac3868cc677ade6b16d02ce0d0ed0f6742911fe35d0d5436fb27123d7",
+    "formal/VQENumericKernels.dfy": "0e9ea0081a31036364da33f2d7075c95d4a724e27d88eb9c507c2211ec01dd23",
+    "formal/GroupGrid.dfy": "187eb1106370a040c9ee3d6a6b6182aa97221f4e21bdb2ab9b4a391d3cf0713d",
+    "formal/runtime.qtl": "d87c3eb02896c85d3120850dca59d4fd40ec1e484513c8d4a58c004bc06940a5"
+  },
+  "existing_manuscript_and_architecture_hashes": {
+    "manuscript_review3.tex": "378d92b04419b91fed85a38b91aa1f2c08375aec0fb3626adb7264b5cfa40a3d",
+    "manuscript_review3.pdf": "fa37ce17576fd5e2c8ac8d99c9b1046d2817792c51393fca66e00061de3d1e51",
+    "architecture.pdf": "11c68784222acb6448f462825470a3f9f5a8c82ab080f3ccf03de7b0786abff0"
+  }
+}

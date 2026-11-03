@@ -1,0 +1,19 @@
+\begin{table}[!t]
+\centering
+\caption{Concrete NuXmv counterexample excerpt for stale energy reuse across iterations.}
+\label{tab:ce-trace}
+\renewcommand{\arraystretch}{1.08}
+\scriptsize
+\begin{tabularx}{\columnwidth}{p{0.13\columnwidth}p{0.27\columnwidth}p{0.13\columnwidth}p{0.18\columnwidth}Y}
+\toprule
+\textbf{Step} & \textbf{\texttt{state}} & \textbf{\texttt{iter}} & \textbf{\energyready{}} & \textbf{Interpretation} \\
+\midrule
+1.1 & \texttt{S\_INIT} & 0 & \false{} & Initial state. \\
+1.2 & \bind{} & 0 & \false{} & First iteration starts with no energy estimate. \\
+1.3 & \computeenergy{} & 0 & \false{} & Energy computation phase is reached. \\
+1.4 & \checkstop{} & 0 & \true{} & Current iteration's energy is now valid. \\
+1.5 & \optimizerstep{} & 0 & \true{} & Optimizer consumes the current energy. \\
+1.6 & \bind{} & 1 & \true{} & Violation: next iteration starts while stale energy is still marked valid. \\
+\bottomrule
+\end{tabularx}
+\end{table}

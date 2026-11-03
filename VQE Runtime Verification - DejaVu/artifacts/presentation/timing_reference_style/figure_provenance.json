@@ -1,0 +1,33 @@
+{
+  "source_summary": "/Users/rome/Desktop/VQE Runtime Verification - DejaVu/artifacts/sampler_verification_scaling_restart02_20260930/summary.json",
+  "source_sha256": "3e35c9eb60146968001da373c6833de8d3ccd257bb6a6c905f3598591f1f1ce7",
+  "data": [
+    {
+      "evaluations": 10,
+      "baseline": 0.04427908298384864,
+      "verified": 0.6304735000012442
+    },
+    {
+      "evaluations": 20,
+      "baseline": 0.0865754164988175,
+      "verified": 0.9586325210111681
+    },
+    {
+      "evaluations": 30,
+      "baseline": 0.12962435399822425,
+      "verified": 1.2684504165081307
+    },
+    {
+      "evaluations": 40,
+      "baseline": 0.17352462500275578,
+      "verified": 1.5616673749900656
+    },
+    {
+      "evaluations": 50,
+      "baseline": 0.21514731251227204,
+      "verified": 1.8757471464923583
+    }
+  ],
+  "change": "Presentation only; saved medians used without recomputation.",
+  "font": "DejaVu Sans; PDF embeds TrueType fonts; SVG uses font outlines."
+}

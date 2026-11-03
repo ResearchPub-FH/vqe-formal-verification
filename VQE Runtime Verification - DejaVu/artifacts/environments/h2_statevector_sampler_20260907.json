@@ -1,0 +1,77 @@
+{
+  "captured_utc": "2026-09-08T02:46:30Z",
+  "commands": [
+    [
+      "python",
+      "-m",
+      "vqe_runtime.cli",
+      "run",
+      "--config",
+      "configs/h2_statevector.toml",
+      "--output",
+      "artifacts/traces/h2_statevector_sampler_20260907.jsonl",
+      "--report",
+      "artifacts/reports/h2_statevector_sampler_20260907_online.json",
+      "--evidence-output",
+      "artifacts/evidence/h2_statevector_sampler_20260907.jsonl",
+      "--run-id",
+      "h2-statevector-sampler-20260907"
+    ],
+    [
+      "python",
+      "-m",
+      "vqe_runtime.cli",
+      "check",
+      "artifacts/traces/h2_statevector_sampler_20260907.jsonl",
+      "--config",
+      "configs/h2_statevector.toml",
+      "--evidence",
+      "artifacts/evidence/h2_statevector_sampler_20260907.jsonl",
+      "--report",
+      "artifacts/reports/h2_statevector_sampler_20260907_replay.json"
+    ]
+  ],
+  "java": "OpenJDK 17.0.4.1+1",
+  "machine": "arm64",
+  "packages": {
+    "numpy": "2.5.3",
+    "qiskit": "2.5.2",
+    "qiskit-ibm-runtime": "0.49.0",
+    "scipy": "1.18.1",
+    "vqe-dejavu-runtime": "0.1.0"
+  },
+  "platform": "macOS-26.6.2-arm64-arm-64bit",
+  "python": "3.12.14",
+  "python_executable": "/private/tmp/vqe-dejavu-qiskit-venv-20260906/bin/python",
+  "run_summary": {
+    "evaluations": 50,
+    "events": 2103,
+    "observed_physical_shots": 204800,
+    "online_status": "pass",
+    "optimizer_commits": 49,
+    "pubs": 200,
+    "replay_status": "pass",
+    "terminal_reason": "max_iterations"
+  },
+  "sha256": {
+    "artifacts/evidence/h2_statevector_sampler_20260907.jsonl": "781d2e094a8b2e835256ef98a64d0dab2178d9e2ba6c6f4aa601f9a865bce60f",
+    "artifacts/reports/h2_statevector_sampler_20260907_online.json": "7495a048c525554cc331fe2c8ebf44b73b0b9f52d4a6e12ce721f1bc8d871784",
+    "artifacts/reports/h2_statevector_sampler_20260907_replay.json": "70a2433e9a65eedd976049f7e9d95ade9fb005b69278310617c6cb478facddc7",
+    "artifacts/traces/h2_statevector_sampler_20260907.jsonl": "a4cbbe00bfad23550d11687334bf400945a9cea7ee353acec949b17477703064",
+    "artifacts/validation/h2_sampler_local_validation_20260907.json": "29b4f617429ee2e11c0a47c87923fd5eec832569656752707e4019424f02ecf0",
+    "configs/h2_ibm_sampler_50.toml": "1c34c3c174684a2146939784e0e85d79c3d2ce19988b4d4392a4d44dfcd25fd8",
+    "configs/h2_ibm_sampler_preflight.toml": "cae26f46b2e463c1c2f11f8842a8a8ad8a881e31e787f69fc7de49ab424bf0dd",
+    "configs/h2_statevector.toml": "bde4d9d24e7ad2406b0ee0186ba737eec8c34a148b5e9e771013bafda8c03ef9",
+    "data/h2_hamiltonian.json": "8364398979d8e71d268f41d14867ad7f25a505edcd065a90cb8d58c478fa5502",
+    "specs/vqe_runtime.qtl": "8a9e2dd660d1eb5dbf93eae8d60b7844faf792710a8337cb9910ac553c4b7729",
+    "src/vqe_runtime/evidence.py": "6c26a8d03d9bc83c616d9192c3f0cb4798e481380063dfadae0b2dee21fbf2eb",
+    "src/vqe_runtime/evidence_replay.py": "b363de6796b112ded071691c0bdd2142739f9f14ed2bc1cda58255957a34a904",
+    "src/vqe_runtime/optimizer.py": "15ddadc97b952a9309b3ceca2c4ecc5880aaf20af37a5bec99950d3fa5eac110",
+    "src/vqe_runtime/sampler_runner.py": "8cadcd58be2db4536eb0a95bebc22d097bec07e66dc010716d4965525bb22ada",
+    "src/vqe_runtime/sampling.py": "6923394c28432586ea2c5cb0b80730dbd0b3c202d460ccdef4822bf29decfa77",
+    "src/vqe_runtime/vendor/dejavu/dejavu.jar": "99fbc72ac9ba0dbf8051691f4c15958e1694345a025840acfd344d1eb66d58e1",
+    "src/vqe_runtime/vendor/dejavu/vqe-three-level-monitor.jar": "fd94121b102b5e21d161d983973c91a7e229f7f9929b48c04aafec9e5b13a4e7",
+    "tools/SynchronousBridge.scala": "e46bfca48e9135503e146c677f310b28bee58110571abdca54d185a30a47af86",
+    "tools/monitor_build_dependencies.json": "13407f57197fb8692f4e4970b09829fc3cffeae9c11d34c9a6d1a9130fe65ec1"
+  }
+}

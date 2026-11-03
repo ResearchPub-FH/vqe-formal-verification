@@ -1,0 +1,80 @@
+{
+  "run_utc": "2026-10-25T18:29:44.463276+00:00",
+  "nuXmv": "/Users/rome/Desktop/Implementation of Formal Verification on VQE/NuXmv Files/nuXmv/bin/nuXmv",
+  "nuXmv_sha256": "ea792e7c91017476e83cc2d923f1e8de59cb309e98db87046c73c092c950dbc1",
+  "engine": "BDD LTL model checking of G !(condition) / G (consequent) queries",
+  "models": {
+    "refined_abort": {
+      "source": "VQE_NuXmv_Refinement/vqe_refined_abort.smv",
+      "source_sha256": "c3c7a26098b2f044ffb671b5945e18d6ec0ed3536cdb38c79e5dc23a8b55a03c",
+      "original_properties": 41,
+      "original_properties_true": 41,
+      "queries": 94,
+      "findings": [
+        {
+          "item": "B3",
+          "index": 1,
+          "kind": "antecedent",
+          "condition": "state = BIND & !params_ready",
+          "result": "unreachable",
+          "class": "redundant_disjunct"
+        },
+        {
+          "item": "B7",
+          "index": 1,
+          "kind": "antecedent",
+          "condition": "state = COMPUTE_ENERGY & !all_terms_done",
+          "result": "unreachable",
+          "class": "redundant_disjunct"
+        },
+        {
+          "item": "next(state)",
+          "index": 13,
+          "kind": "branch",
+          "condition": "state = OPTIMIZER_STEP & !optimizer_error & iter = MAX_ITERS : ABORT",
+          "result": "unreachable",
+          "class": "intended_dead_guard"
+        },
+        {
+          "item": "next(state)",
+          "index": 16,
+          "kind": "branch",
+          "condition": "TRUE : ABORT",
+          "result": "unreachable",
+          "class": "intended_dead_guard"
+        },
+        {
+          "item": "next(term_reason)",
+          "index": 6,
+          "kind": "branch",
+          "condition": "state = OPTIMIZER_STEP & !optimizer_error & iter = MAX_ITERS : ABORT_MAX_ITERS",
+          "result": "unreachable",
+          "class": "intended_dead_guard"
+        }
+      ]
+    },
+    "canonical": {
+      "source": "claude/vqe_canonical.smv",
+      "source_sha256": "5efd8c46e7acdfa3505fd6e854fa523b525d09c05947e4ef83038036a30963e4",
+      "original_properties": 32,
+      "original_properties_true": 32,
+      "queries": 66,
+      "findings": [
+        {
+          "item": "next(state)",
+          "index": 15,
+          "kind": "branch",
+          "condition": "TRUE : state",
+          "result": "unreachable",
+          "class": "intended_dead_guard"
+        }
+      ]
+    }
+  },
+  "integrity": {
+    "method": "SHA-256 of every file in NuXmv Files outside VQE_NonVacuity, excluding .DS_Store",
+    "files_checked": 2262,
+    "changed_or_missing": [],
+    "new_files_outside_isolated_folder": []
+  }
+}

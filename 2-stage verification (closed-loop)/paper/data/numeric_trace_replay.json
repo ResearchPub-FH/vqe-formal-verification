@@ -1,0 +1,26 @@
+{
+  "command": [
+    "/Users/rome/.cache/codex-runtimes/codex-primary-runtime/dependencies/python/bin/python3",
+    "/Users/rome/Desktop/Implementation of Formal Verification on VQE/Dafny + Python trace checker/python 2.0/trace_checker.py",
+    "--json",
+    "/Users/rome/Desktop/Implementation of Formal Verification on VQE/Dafny + Python trace checker/traces/myTests/h2_ibm_runtime_paper.jsonl",
+    "/Users/rome/Desktop/Implementation of Formal Verification on VQE/Dafny + Python trace checker/traces/myTests/heisenberg14_statevector.jsonl"
+  ],
+  "report": {
+    "results": [
+      {
+        "path": "/Users/rome/Desktop/Implementation of Formal Verification on VQE/Dafny + Python trace checker/traces/myTests/h2_ibm_runtime_paper.jsonl",
+        "records": 25,
+        "valid": true,
+        "violations": []
+      },
+      {
+        "path": "/Users/rome/Desktop/Implementation of Formal Verification on VQE/Dafny + Python trace checker/traces/myTests/heisenberg14_statevector.jsonl",
+        "records": 60,
+        "valid": true,
+        "violations": []
+      }
+    ],
+    "valid": true
+  }
+}

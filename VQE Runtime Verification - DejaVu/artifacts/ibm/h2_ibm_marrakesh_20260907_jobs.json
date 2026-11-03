@@ -1,0 +1,732 @@
+{
+  "captured_utc": "2026-09-07T16:36:57.892264+00:00",
+  "instance": "test",
+  "job_count": 10,
+  "jobs": [
+    {
+      "data": {
+        "ensemble_standard_error": [
+          0.016217661497721587,
+          0.015897939436912843,
+          0.013878332413489557,
+          0.0066858040134390555
+        ],
+        "evs": [
+          0.013177901672579827,
+          -0.16403547392917794,
+          0.5397871262037507,
+          0.9503294475418145
+        ],
+        "stds": [
+          0.01597057497914916,
+          0.02106786546068453,
+          0.01111765794065077,
+          0.008297839747039775
+        ]
+      },
+      "evaluation_id": "eval0",
+      "iteration": 0,
+      "job_id": "dafe67bdd5gc73d9nkkg",
+      "metrics": {
+        "caller": "qiskit_ibm_runtime~estimator.py",
+        "circuits_execution_time_ns": 11886408448,
+        "qiskit_version": "qiskit_ibm_runtime-0.49.0,qiskit-2.5.2*",
+        "timestamps": {
+          "created": "2026-09-07T16:15:25.568542Z",
+          "finished": "2026-09-07T16:27:04.715982Z",
+          "running": "2026-09-07T16:24:59.312697Z"
+        },
+        "usage": {
+          "qpu_charge_time_seconds": 14,
+          "status": "complete"
+        }
+      },
+      "pub_metadata": {
+        "circuit_metadata": {},
+        "num_randomizations": 32,
+        "resilience": {},
+        "shots": 4096,
+        "target_precision": 0.015625
+      },
+      "result_metadata": {
+        "dynamical_decoupling": {
+          "enable": false,
+          "extra_slack_distribution": "middle",
+          "scheduling_method": "alap",
+          "sequence_type": "XX"
+        },
+        "resilience": {
+          "measure_mitigation": true,
+          "pec_mitigation": false,
+          "zne_mitigation": false
+        },
+        "twirling": {
+          "enable_gates": false,
+          "enable_measure": true,
+          "interleave_randomizations": true,
+          "num_randomizations": "auto",
+          "shots_per_randomization": "auto",
+          "strategy": "active-accum"
+        },
+        "version": 2
+      },
+      "status": "DONE",
+      "usage_estimation": {
+        "quantum_seconds": 14.434200011
+      }
+    },
+    {
+      "data": {
+        "ensemble_standard_error": [
+          0.016201136779278515,
+          0.015946901342081522,
+          0.016075662431813676,
+          0.009520561817901115
+        ],
+        "evs": [
+          -0.013670886075949367,
+          0.1382865044943114,
+          0.130126582278481,
+          0.8430379746835444
+        ],
+        "stds": [
+          0.01196288041956783,
+          0.01935755450980297,
+          0.016004489909932446,
+          0.008492732116733995
+        ]
+      },
+      "evaluation_id": "eval1",
+      "iteration": 1,
+      "job_id": "dafebmdnj4cs73ag91dg",
+      "metrics": {
+        "caller": "qiskit_ibm_runtime~estimator.py",
+        "circuits_execution_time_ns": 11886408448,
+        "qiskit_version": "qiskit_ibm_runtime-0.49.0,qiskit-2.5.2*",
+        "timestamps": {
+          "created": "2026-09-07T16:27:05.764612Z",
+          "finished": "2026-09-07T16:27:33.280618Z",
+          "running": "2026-09-07T16:27:06.943485Z"
+        },
+        "usage": {
+          "qpu_charge_time_seconds": 14,
+          "status": "complete"
+        }
+      },
+      "pub_metadata": {
+        "circuit_metadata": {},
+        "num_randomizations": 32,
+        "resilience": {},
+        "shots": 4096,
+        "target_precision": 0.015625
+      },
+      "result_metadata": {
+        "dynamical_decoupling": {
+          "enable": false,
+          "extra_slack_distribution": "middle",
+          "scheduling_method": "alap",
+          "sequence_type": "XX"
+        },
+        "resilience": {
+          "measure_mitigation": true,
+          "pec_mitigation": false,
+          "zne_mitigation": false
+        },
+        "twirling": {
+          "enable_gates": false,
+          "enable_measure": true,
+          "interleave_randomizations": true,
+          "num_randomizations": "auto",
+          "shots_per_randomization": "auto",
+          "strategy": "active-accum"
+        },
+        "version": 2
+      },
+      "status": "DONE",
+      "usage_estimation": {
+        "quantum_seconds": 14.434200011
+      }
+    },
+    {
+      "data": {
+        "ensemble_standard_error": [
+          0.016270466306432318,
+          0.011431037013342893,
+          0.015201421673757968,
+          0.012970706015723445
+        ],
+        "evs": [
+          -0.002033812126604805,
+          -0.7314429741650914,
+          -0.3732045252319817,
+          0.6320071183424432
+        ],
+        "stds": [
+          0.012470063697131111,
+          0.01430644902316713,
+          0.01787023638513784,
+          0.015706138180552585
+        ]
+      },
+      "evaluation_id": "eval2",
+      "iteration": 2,
+      "job_id": "dafebtm42tqs73avrem0",
+      "metrics": {
+        "caller": "qiskit_ibm_runtime~estimator.py",
+        "circuits_execution_time_ns": 11886408448,
+        "qiskit_version": "qiskit_ibm_runtime-0.49.0,qiskit-2.5.2*",
+        "timestamps": {
+          "created": "2026-09-07T16:27:34.178874Z",
+          "finished": "2026-09-07T16:28:27.37286Z",
+          "running": "2026-09-07T16:27:35.148235Z"
+        },
+        "usage": {
+          "qpu_charge_time_seconds": 14,
+          "status": "complete"
+        }
+      },
+      "pub_metadata": {
+        "circuit_metadata": {},
+        "num_randomizations": 32,
+        "resilience": {},
+        "shots": 4096,
+        "target_precision": 0.015625
+      },
+      "result_metadata": {
+        "dynamical_decoupling": {
+          "enable": false,
+          "extra_slack_distribution": "middle",
+          "scheduling_method": "alap",
+          "sequence_type": "XX"
+        },
+        "resilience": {
+          "measure_mitigation": true,
+          "pec_mitigation": false,
+          "zne_mitigation": false
+        },
+        "twirling": {
+          "enable_gates": false,
+          "enable_measure": true,
+          "interleave_randomizations": true,
+          "num_randomizations": "auto",
+          "shots_per_randomization": "auto",
+          "strategy": "active-accum"
+        },
+        "version": 2
+      },
+      "status": "DONE",
+      "usage_estimation": {
+        "quantum_seconds": 14.434200011
+      }
+    },
+    {
+      "data": {
+        "ensemble_standard_error": [
+          0.016249394263619252,
+          0.015911688640159,
+          0.016260191610466268,
+          0.009032926962517852
+        ],
+        "evs": [
+          0.04319928848230735,
+          0.1667611310535928,
+          -0.020329076932850517,
+          0.8700844927260022
+        ],
+        "stds": [
+          0.01649380093953881,
+          0.014596889597132033,
+          0.01586127350687692,
+          0.006336689098106476
+        ]
+      },
+      "evaluation_id": "eval3",
+      "iteration": 3,
+      "job_id": "dafecb642tqs73avrf80",
+      "metrics": {
+        "caller": "qiskit_ibm_runtime~estimator.py",
+        "circuits_execution_time_ns": 11886408448,
+        "qiskit_version": "qiskit_ibm_runtime-0.49.0,qiskit-2.5.2*",
+        "timestamps": {
+          "created": "2026-09-07T16:28:28.185388Z",
+          "finished": "2026-09-07T16:29:09.320834Z",
+          "running": "2026-09-07T16:28:29.085535Z"
+        },
+        "usage": {
+          "qpu_charge_time_seconds": 14,
+          "status": "complete"
+        }
+      },
+      "pub_metadata": {
+        "circuit_metadata": {},
+        "num_randomizations": 32,
+        "resilience": {},
+        "shots": 4096,
+        "target_precision": 0.015625
+      },
+      "result_metadata": {
+        "dynamical_decoupling": {
+          "enable": false,
+          "extra_slack_distribution": "middle",
+          "scheduling_method": "alap",
+          "sequence_type": "XX"
+        },
+        "resilience": {
+          "measure_mitigation": true,
+          "pec_mitigation": false,
+          "zne_mitigation": false
+        },
+        "twirling": {
+          "enable_gates": false,
+          "enable_measure": true,
+          "interleave_randomizations": true,
+          "num_randomizations": "auto",
+          "shots_per_randomization": "auto",
+          "strategy": "active-accum"
+        },
+        "version": 2
+      },
+      "status": "DONE",
+      "usage_estimation": {
+        "quantum_seconds": 14.434200011
+      }
+    },
+    {
+      "data": {
+        "ensemble_standard_error": [
+          0.01620150432055632,
+          0.01125387263134211,
+          0.015358766303967085,
+          0.013642053912454297
+        ],
+        "evs": [
+          0.0005062970698057085,
+          -0.7375494567606606,
+          -0.3316245807227391,
+          0.5619897474843364
+        ],
+        "stds": [
+          0.015364833609595521,
+          0.012442967264485658,
+          0.010751546148852592,
+          0.013334954154026383
+        ]
+      },
+      "evaluation_id": "eval4",
+      "iteration": 4,
+      "job_id": "dafeclm42tqs73avrfl0",
+      "metrics": {
+        "caller": "qiskit_ibm_runtime~estimator.py",
+        "circuits_execution_time_ns": 11886408448,
+        "qiskit_version": "qiskit_ibm_runtime-0.49.0,qiskit-2.5.2*",
+        "timestamps": {
+          "created": "2026-09-07T16:29:10.436914Z",
+          "finished": "2026-09-07T16:29:53.460736Z",
+          "running": "2026-09-07T16:29:11.835654Z"
+        },
+        "usage": {
+          "qpu_charge_time_seconds": 14,
+          "status": "complete"
+        }
+      },
+      "pub_metadata": {
+        "circuit_metadata": {},
+        "num_randomizations": 32,
+        "resilience": {},
+        "shots": 4096,
+        "target_precision": 0.015625
+      },
+      "result_metadata": {
+        "dynamical_decoupling": {
+          "enable": false,
+          "extra_slack_distribution": "middle",
+          "scheduling_method": "alap",
+          "sequence_type": "XX"
+        },
+        "resilience": {
+          "measure_mitigation": true,
+          "pec_mitigation": false,
+          "zne_mitigation": false
+        },
+        "twirling": {
+          "enable_gates": false,
+          "enable_measure": true,
+          "interleave_randomizations": true,
+          "num_randomizations": "auto",
+          "shots_per_randomization": "auto",
+          "strategy": "active-accum"
+        },
+        "version": 2
+      },
+      "status": "DONE",
+      "usage_estimation": {
+        "quantum_seconds": 14.434200011
+      }
+    },
+    {
+      "data": {
+        "ensemble_standard_error": [
+          0.01620647958323148,
+          0.006216761024091491,
+          0.013375416838780853,
+          0.016197521057913746
+        ],
+        "evs": [
+          0.004558115978728792,
+          0.9531230363202212,
+          0.5885034185869841,
+          -0.03494555583692074
+        ],
+        "stds": [
+          0.02213669861700469,
+          0.006679994311418523,
+          0.01332281100743883,
+          0.0153133617158601
+        ]
+      },
+      "evaluation_id": "eval5",
+      "iteration": 5,
+      "job_id": "dafed0jdd5gc73d9ntug",
+      "metrics": {
+        "caller": "qiskit_ibm_runtime~estimator.py",
+        "circuits_execution_time_ns": 11886408448,
+        "qiskit_version": "qiskit_ibm_runtime-0.49.0,qiskit-2.5.2*",
+        "timestamps": {
+          "created": "2026-09-07T16:29:54.572133Z",
+          "finished": "2026-09-07T16:30:15.993326Z",
+          "running": "2026-09-07T16:29:55.395031Z"
+        },
+        "usage": {
+          "qpu_charge_time_seconds": 14,
+          "status": "complete"
+        }
+      },
+      "pub_metadata": {
+        "circuit_metadata": {},
+        "num_randomizations": 32,
+        "resilience": {},
+        "shots": 4096,
+        "target_precision": 0.015625
+      },
+      "result_metadata": {
+        "dynamical_decoupling": {
+          "enable": false,
+          "extra_slack_distribution": "middle",
+          "scheduling_method": "alap",
+          "sequence_type": "XX"
+        },
+        "resilience": {
+          "measure_mitigation": true,
+          "pec_mitigation": false,
+          "zne_mitigation": false
+        },
+        "twirling": {
+          "enable_gates": false,
+          "enable_measure": true,
+          "interleave_randomizations": true,
+          "num_randomizations": "auto",
+          "shots_per_randomization": "auto",
+          "strategy": "active-accum"
+        },
+        "version": 2
+      },
+      "status": "DONE",
+      "usage_estimation": {
+        "quantum_seconds": 14.434200011
+      }
+    },
+    {
+      "data": {
+        "ensemble_standard_error": [
+          0.01620765299708049,
+          0.012833759135062883,
+          0.01093394304888028,
+          0.013172193337335075
+        ],
+        "evs": [
+          0.0010129787907565686,
+          -0.622730414022743,
+          0.7693573915796138,
+          -0.6072807850585629
+        ],
+        "stds": [
+          0.01574094572482195,
+          0.012200610185368976,
+          0.013771653076084028,
+          0.01421153433750476
+        ]
+      },
+      "evaluation_id": "eval6",
+      "iteration": 6,
+      "job_id": "dafed65nj4cs73ag93cg",
+      "metrics": {
+        "caller": "qiskit_ibm_runtime~estimator.py",
+        "circuits_execution_time_ns": 11886408448,
+        "qiskit_version": "qiskit_ibm_runtime-0.49.0,qiskit-2.5.2*",
+        "timestamps": {
+          "created": "2026-09-07T16:30:16.785615Z",
+          "finished": "2026-09-07T16:31:15.509759Z",
+          "running": "2026-09-07T16:30:17.94219Z"
+        },
+        "usage": {
+          "qpu_charge_time_seconds": 14,
+          "status": "complete"
+        }
+      },
+      "pub_metadata": {
+        "circuit_metadata": {},
+        "num_randomizations": 32,
+        "resilience": {},
+        "shots": 4096,
+        "target_precision": 0.015625
+      },
+      "result_metadata": {
+        "dynamical_decoupling": {
+          "enable": false,
+          "extra_slack_distribution": "middle",
+          "scheduling_method": "alap",
+          "sequence_type": "XX"
+        },
+        "resilience": {
+          "measure_mitigation": true,
+          "pec_mitigation": false,
+          "zne_mitigation": false
+        },
+        "twirling": {
+          "enable_gates": false,
+          "enable_measure": true,
+          "interleave_randomizations": true,
+          "num_randomizations": "auto",
+          "shots_per_randomization": "auto",
+          "strategy": "active-accum"
+        },
+        "version": 2
+      },
+      "status": "DONE",
+      "usage_estimation": {
+        "quantum_seconds": 14.434200011
+      }
+    },
+    {
+      "data": {
+        "ensemble_standard_error": [
+          0.01625571663454434,
+          0.011402668370916056,
+          0.012336658780162066,
+          0.014369806907941195
+        ],
+        "evs": [
+          0.03965177606913643,
+          0.7326782564877803,
+          0.6822138908305267,
+          0.4905636398297007
+        ],
+        "stds": [
+          0.018370519456171026,
+          0.011861269879936385,
+          0.01247791264092564,
+          0.015706505381195838
+        ]
+      },
+      "evaluation_id": "eval7",
+      "iteration": 7,
+      "job_id": "dafedl5nj4cs73ag93rg",
+      "metrics": {
+        "caller": "qiskit_ibm_runtime~estimator.py",
+        "circuits_execution_time_ns": 11886408448,
+        "qiskit_version": "qiskit_ibm_runtime-0.49.0,qiskit-2.5.2*",
+        "timestamps": {
+          "created": "2026-09-07T16:31:16.381018Z",
+          "finished": "2026-09-07T16:32:15.389408Z",
+          "running": "2026-09-07T16:31:17.366691Z"
+        },
+        "usage": {
+          "qpu_charge_time_seconds": 14,
+          "status": "complete"
+        }
+      },
+      "pub_metadata": {
+        "circuit_metadata": {},
+        "num_randomizations": 32,
+        "resilience": {},
+        "shots": 4096,
+        "target_precision": 0.015625
+      },
+      "result_metadata": {
+        "dynamical_decoupling": {
+          "enable": false,
+          "extra_slack_distribution": "middle",
+          "scheduling_method": "alap",
+          "sequence_type": "XX"
+        },
+        "resilience": {
+          "measure_mitigation": true,
+          "pec_mitigation": false,
+          "zne_mitigation": false
+        },
+        "twirling": {
+          "enable_gates": false,
+          "enable_measure": true,
+          "interleave_randomizations": true,
+          "num_randomizations": "auto",
+          "shots_per_randomization": "auto",
+          "strategy": "active-accum"
+        },
+        "version": 2
+      },
+      "status": "DONE",
+      "usage_estimation": {
+        "quantum_seconds": 14.434200011
+      }
+    },
+    {
+      "data": {
+        "ensemble_standard_error": [
+          0.01624777095520845,
+          0.011258199341577851,
+          0.012933202967732529,
+          0.01483344381896242
+        ],
+        "evs": [
+          0.0010154861640010156,
+          0.7426266700277288,
+          0.6326478801726326,
+          -0.4265041888804265
+        ],
+        "stds": [
+          0.016823659297419885,
+          0.00971531030226112,
+          0.013659394186037259,
+          0.012701198445551705
+        ]
+      },
+      "evaluation_id": "eval8",
+      "iteration": 8,
+      "job_id": "dafee4642tqs73avrh50",
+      "metrics": {
+        "caller": "qiskit_ibm_runtime~estimator.py",
+        "circuits_execution_time_ns": 11886408448,
+        "qiskit_version": "qiskit_ibm_runtime-0.49.0,qiskit-2.5.2*",
+        "timestamps": {
+          "created": "2026-09-07T16:32:16.836107Z",
+          "finished": "2026-09-07T16:33:56.315787Z",
+          "running": "2026-09-07T16:32:18.417086Z"
+        },
+        "usage": {
+          "qpu_charge_time_seconds": 14,
+          "status": "complete"
+        }
+      },
+      "pub_metadata": {
+        "circuit_metadata": {},
+        "num_randomizations": 32,
+        "resilience": {},
+        "shots": 4096,
+        "target_precision": 0.015625
+      },
+      "result_metadata": {
+        "dynamical_decoupling": {
+          "enable": false,
+          "extra_slack_distribution": "middle",
+          "scheduling_method": "alap",
+          "sequence_type": "XX"
+        },
+        "resilience": {
+          "measure_mitigation": true,
+          "pec_mitigation": false,
+          "zne_mitigation": false
+        },
+        "twirling": {
+          "enable_gates": false,
+          "enable_measure": true,
+          "interleave_randomizations": true,
+          "num_randomizations": "auto",
+          "shots_per_randomization": "auto",
+          "strategy": "active-accum"
+        },
+        "version": 2
+      },
+      "status": "DONE",
+      "usage_estimation": {
+        "quantum_seconds": 14.434200011
+      }
+    },
+    {
+      "data": {
+        "ensemble_standard_error": [
+          0.016223669516207996,
+          0.0070407702773332345,
+          0.013582348108321977,
+          0.016225598449221067
+        ],
+        "evs": [
+          0.01825442099258414,
+          0.9303729794326687,
+          0.5709577232680484,
+          -0.008620143246498067
+        ],
+        "stds": [
+          0.015342476668161922,
+          0.005823192174618096,
+          0.012336536270080845,
+          0.012482193861596276
+        ]
+      },
+      "evaluation_id": "eval9",
+      "iteration": 9,
+      "job_id": "dafeetd1ierc738n92l0",
+      "metrics": {
+        "caller": "qiskit_ibm_runtime~estimator.py",
+        "circuits_execution_time_ns": 11886408448,
+        "qiskit_version": "qiskit_ibm_runtime-0.49.0,qiskit-2.5.2*",
+        "timestamps": {
+          "created": "2026-09-07T16:33:57.191175Z",
+          "finished": "2026-09-07T16:34:35.587388Z",
+          "running": "2026-09-07T16:33:58.344326Z"
+        },
+        "usage": {
+          "qpu_charge_time_seconds": 14,
+          "status": "complete"
+        }
+      },
+      "pub_metadata": {
+        "circuit_metadata": {},
+        "num_randomizations": 32,
+        "resilience": {},
+        "shots": 4096,
+        "target_precision": 0.015625
+      },
+      "result_metadata": {
+        "dynamical_decoupling": {
+          "enable": false,
+          "extra_slack_distribution": "middle",
+          "scheduling_method": "alap",
+          "sequence_type": "XX"
+        },
+        "resilience": {
+          "measure_mitigation": true,
+          "pec_mitigation": false,
+          "zne_mitigation": false
+        },
+        "twirling": {
+          "enable_gates": false,
+          "enable_measure": true,
+          "interleave_randomizations": true,
+          "num_randomizations": "auto",
+          "shots_per_randomization": "auto",
+          "strategy": "active-accum"
+        },
+        "version": 2
+      },
+      "status": "DONE",
+      "usage_estimation": {
+        "quantum_seconds": 14.434200011
+      }
+    }
+  ],
+  "schema_version": 1,
+  "total_circuits_execution_time_ns": 118864084480,
+  "total_qpu_charge_time_seconds": 140,
+  "trace": "artifacts/traces/h2_ibm_marrakesh_20260907.jsonl",
+  "trace_sha256": "8474e4d31d3107fe95653ffcf8a4f299141d250fcc384fe0e2db2806ab2363ea"
+}

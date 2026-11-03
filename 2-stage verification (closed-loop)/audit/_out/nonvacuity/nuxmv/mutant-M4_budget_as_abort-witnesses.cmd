@@ -1,0 +1,21 @@
+read_model -i mutant-M4_budget_as_abort.smv
+go
+check_ctlspec -p "EF (phase = aggregate)"
+check_ctlspec -p "EF !(groups = 3)"
+check_ctlspec -p "EF (phase = select)"
+check_ctlspec -p "EF (phase = commit)"
+check_ctlspec -p "EF !(ready = 3)"
+check_ctlspec -p "EF (phase = commit)"
+check_ctlspec -p "EF !(energy_epoch = epoch)"
+check_ctlspec -p "EF (phase = start)"
+check_ctlspec -p "EF !(ready = 0 & groups = 0)"
+check_ctlspec -p "EF (phase = done_success)"
+check_ctlspec -p "EF (phase = done_budget)"
+check_ctlspec -p "EF (phase = aborted)"
+check_ctlspec -p "EF !terminal"
+check_ctlspec -p "EF (phase = done_budget)"
+check_ctlspec -p "EF !(updates = 50)"
+check_ctlspec -p "EF (phase = commit)"
+check_ctlspec -p "EF (phase = commit & updates = 49)"
+check_ctlspec -p "EF !(updates < 50)"
+quit

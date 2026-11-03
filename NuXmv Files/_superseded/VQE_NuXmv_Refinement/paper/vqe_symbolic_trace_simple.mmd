@@ -1,0 +1,46 @@
+sequenceDiagram
+    participant C as Classical Host / Optimizer
+    participant M as NuXmv Monitor
+    participant Q as Quantum Backend
+
+    C->>M: S_INIT
+    Note over C,M: iter := 0<br/>terms_done := 0<br/>params_ready = TRUE<br/>energy_ready = FALSE
+
+    C->>M: BIND(theta_i)
+    Note over M: circ_ready = TRUE<br/>params_ready = TRUE<br/>energy_ready = FALSE<br/>terms_done = 0
+
+    M->>Q: EXECUTE_MEASURE(term 0, theta_i)
+    Q-->>M: measurement_data[0]
+    Note over M: terms_done := 1
+
+    M->>Q: EXECUTE_MEASURE(term 1, theta_i)
+    Q-->>M: measurement_data[1]
+    Note over M: terms_done := 2
+
+    M->>Q: EXECUTE_MEASURE(term N-1, theta_i)
+    Q-->>M: measurement_data[N-1]
+    Note over M: terms_done = NTERMS
+
+    M->>C: COMPUTE_ENERGY
+    Note over C,M: energy_i := EstimateEnergy(H, measurement_data)<br/>energy_ready = TRUE
+
+    C->>M: CHECK_STOP
+    Note over M: converged = FALSE<br/>iter < MAX_ITERS
+
+    C->>M: OPTIMIZER_STEP
+    Note over C,M: theta_{i+1} := OptimizerStep(theta_i, energy_i)<br/>iter := iter + 1
+
+    C->>M: BIND(theta_{i+1})
+    Note over M: params_ready = TRUE<br/>energy_ready = FALSE<br/>terms_done = 0
+
+    M--xC: Rejected: qpu_error ignored in EXECUTE_MEASURE
+    Note over M: Violates G((state = EXECUTE_MEASURE & qpu_error) -> X(state = ABORT))
+
+    C--xM: Rejected: BIND with stale energy_ready = TRUE
+    Note over M: Violates G((state = BIND & iter > 0) -> !energy_ready)
+
+    M--xC: Rejected: COMPUTE_ENERGY when terms_done < NTERMS
+    Note over M: Violates G(state = COMPUTE_ENERGY -> terms_done = NTERMS)
+
+    C->>M: DONE
+    DONE and ABORT are the terminal states

@@ -1,0 +1,753 @@
+{
+  "configuration": {
+    "allow_optimizer_stopped": false,
+    "max_iterations": 50,
+    "optimizer_protocol": "ask-tell"
+  },
+  "events": {
+    "activity": 1050,
+    "convergenceFalse": 50,
+    "firstConvergenceChecked": 1,
+    "firstIterationStarted": 1,
+    "iterationClosed": 50,
+    "iterationLimitReached": 1,
+    "iterationPass": 50,
+    "jobSubmitIntent": 50,
+    "jobSubmitted": 50,
+    "measurementsSealed": 50,
+    "nextConvergenceChecked": 49,
+    "nextIterationStarted": 49,
+    "numericValid": 50,
+    "objectiveReleaseIntent": 50,
+    "optimizerAskTellConfigured": 1,
+    "optimizerUpdateIntent": 49,
+    "optimizerUpdated": 49,
+    "parametersBound": 50,
+    "runClosed": 1,
+    "runMaxIterations": 1,
+    "runStarted": 1,
+    "termExpected": 200,
+    "termObserved": 200
+  },
+  "properties": 68,
+  "rows": {
+    "inter_askTellIntentUsesConfiguredProtocol": {
+      "inapplicable_triggers": [],
+      "nested_antecedent": null,
+      "nested_count": null,
+      "status": "EXERCISED",
+      "trigger_counts": {
+        "optimizerUpdateIntent": 49
+      },
+      "unfired_triggers": []
+    },
+    "inter_askTellProtocolConfiguredOnce": {
+      "inapplicable_triggers": [],
+      "nested_antecedent": null,
+      "nested_count": null,
+      "status": "EXERCISED",
+      "trigger_counts": {
+        "optimizerAskTellConfigured": 1
+      },
+      "unfired_triggers": []
+    },
+    "inter_askTellUpdateUsesConfiguredProtocol": {
+      "inapplicable_triggers": [],
+      "nested_antecedent": null,
+      "nested_count": null,
+      "status": "EXERCISED",
+      "trigger_counts": {
+        "optimizerUpdated": 49
+      },
+      "unfired_triggers": []
+    },
+    "inter_backendJobIdentityUnique": {
+      "inapplicable_triggers": [],
+      "nested_antecedent": null,
+      "nested_count": null,
+      "status": "EXERCISED",
+      "trigger_counts": {
+        "jobSubmitted": 50
+      },
+      "unfired_triggers": []
+    },
+    "inter_closeAfterCommittedUpdate": {
+      "inapplicable_triggers": [],
+      "nested_antecedent": "optimizerUpdateIntent",
+      "nested_count": 49,
+      "status": "EXERCISED",
+      "trigger_counts": {
+        "iterationClosed": 50
+      },
+      "unfired_triggers": []
+    },
+    "inter_firstEvaluationIdentityUnique": {
+      "inapplicable_triggers": [],
+      "nested_antecedent": null,
+      "nested_count": null,
+      "status": "EXERCISED",
+      "trigger_counts": {
+        "firstIterationStarted": 1
+      },
+      "unfired_triggers": []
+    },
+    "inter_firstIterationAfterConfiguredProtocol": {
+      "inapplicable_triggers": [],
+      "nested_antecedent": null,
+      "nested_count": null,
+      "status": "EXERCISED",
+      "trigger_counts": {
+        "firstIterationStarted": 1
+      },
+      "unfired_triggers": []
+    },
+    "inter_iterationClosedOnce": {
+      "inapplicable_triggers": [],
+      "nested_antecedent": null,
+      "nested_count": null,
+      "status": "EXERCISED",
+      "trigger_counts": {
+        "iterationClosed": 50
+      },
+      "unfired_triggers": []
+    },
+    "inter_nextAfterOptimizerUpdate": {
+      "inapplicable_triggers": [],
+      "nested_antecedent": null,
+      "nested_count": null,
+      "status": "EXERCISED",
+      "trigger_counts": {
+        "nextIterationStarted": 49
+      },
+      "unfired_triggers": []
+    },
+    "inter_nextAfterPreviousClose": {
+      "inapplicable_triggers": [],
+      "nested_antecedent": null,
+      "nested_count": null,
+      "status": "EXERCISED",
+      "trigger_counts": {
+        "nextIterationStarted": 49
+      },
+      "unfired_triggers": []
+    },
+    "inter_nextEvaluationIdentityUnique": {
+      "inapplicable_triggers": [],
+      "nested_antecedent": null,
+      "nested_count": null,
+      "status": "EXERCISED",
+      "trigger_counts": {
+        "nextIterationStarted": 49
+      },
+      "unfired_triggers": []
+    },
+    "inter_nextIterationAfterConfiguredProtocol": {
+      "inapplicable_triggers": [],
+      "nested_antecedent": null,
+      "nested_count": null,
+      "status": "EXERCISED",
+      "trigger_counts": {
+        "nextIterationStarted": 49
+      },
+      "unfired_triggers": []
+    },
+    "inter_opaqueAdvanceAfterClose": {
+      "inapplicable_triggers": [
+        "opaqueOptimizerAdvanced"
+      ],
+      "nested_antecedent": null,
+      "nested_count": null,
+      "status": "NOT_APPLICABLE",
+      "trigger_counts": {
+        "opaqueOptimizerAdvanced": 0
+      },
+      "unfired_triggers": []
+    },
+    "inter_opaqueAdvanceBeforeLimit": {
+      "inapplicable_triggers": [
+        "opaqueOptimizerAdvanced"
+      ],
+      "nested_antecedent": null,
+      "nested_count": null,
+      "status": "NOT_APPLICABLE",
+      "trigger_counts": {
+        "opaqueOptimizerAdvanced": 0
+      },
+      "unfired_triggers": []
+    },
+    "inter_opaqueAdvanceOnce": {
+      "inapplicable_triggers": [
+        "opaqueOptimizerAdvanced"
+      ],
+      "nested_antecedent": null,
+      "nested_count": null,
+      "status": "NOT_APPLICABLE",
+      "trigger_counts": {
+        "opaqueOptimizerAdvanced": 0
+      },
+      "unfired_triggers": []
+    },
+    "inter_opaqueAdvanceUsesConfiguredProtocol": {
+      "inapplicable_triggers": [
+        "opaqueOptimizerAdvanced"
+      ],
+      "nested_antecedent": null,
+      "nested_count": null,
+      "status": "NOT_APPLICABLE",
+      "trigger_counts": {
+        "opaqueOptimizerAdvanced": 0
+      },
+      "unfired_triggers": []
+    },
+    "inter_opaqueProtocolConfiguredOnce": {
+      "inapplicable_triggers": [
+        "optimizerOpaqueConfigured"
+      ],
+      "nested_antecedent": null,
+      "nested_count": null,
+      "status": "NOT_APPLICABLE",
+      "trigger_counts": {
+        "optimizerOpaqueConfigured": 0
+      },
+      "unfired_triggers": []
+    },
+    "inter_previousEnergyIsLastCheckpoint": {
+      "inapplicable_triggers": [],
+      "nested_antecedent": null,
+      "nested_count": null,
+      "status": "EXERCISED",
+      "trigger_counts": {
+        "nextConvergenceChecked": 49
+      },
+      "unfired_triggers": []
+    },
+    "inter_submissionIdentityUnique": {
+      "inapplicable_triggers": [],
+      "nested_antecedent": null,
+      "nested_count": null,
+      "status": "EXERCISED",
+      "trigger_counts": {
+        "jobSubmitIntent": 50
+      },
+      "unfired_triggers": []
+    },
+    "inter_updateAppliedOnce": {
+      "inapplicable_triggers": [],
+      "nested_antecedent": null,
+      "nested_count": null,
+      "status": "EXERCISED",
+      "trigger_counts": {
+        "optimizerUpdated": 49
+      },
+      "unfired_triggers": []
+    },
+    "inter_updateIntentAfterRelease": {
+      "inapplicable_triggers": [],
+      "nested_antecedent": null,
+      "nested_count": null,
+      "status": "EXERCISED",
+      "trigger_counts": {
+        "optimizerUpdateIntent": 49
+      },
+      "unfired_triggers": []
+    },
+    "inter_updateIntentOnce": {
+      "inapplicable_triggers": [],
+      "nested_antecedent": null,
+      "nested_count": null,
+      "status": "EXERCISED",
+      "trigger_counts": {
+        "optimizerUpdateIntent": 49
+      },
+      "unfired_triggers": []
+    },
+    "inter_updateOnlyWhenNotConverged": {
+      "inapplicable_triggers": [],
+      "nested_antecedent": null,
+      "nested_count": null,
+      "status": "EXERCISED",
+      "trigger_counts": {
+        "optimizerUpdateIntent": 49
+      },
+      "unfired_triggers": []
+    },
+    "inter_updatedAfterIntent": {
+      "inapplicable_triggers": [],
+      "nested_antecedent": null,
+      "nested_count": null,
+      "status": "EXERCISED",
+      "trigger_counts": {
+        "optimizerUpdated": 49
+      },
+      "unfired_triggers": []
+    },
+    "intra_abortAfterFailure": {
+      "inapplicable_triggers": [],
+      "nested_antecedent": null,
+      "nested_count": null,
+      "status": "NOT_EXERCISED",
+      "trigger_counts": {
+        "iterationAborted": 0
+      },
+      "unfired_triggers": [
+        "iterationAborted"
+      ]
+    },
+    "intra_allDeclaredTermsObserved": {
+      "inapplicable_triggers": [],
+      "nested_antecedent": "termExpected",
+      "nested_count": 200,
+      "status": "EXERCISED",
+      "trigger_counts": {
+        "measurementsSealed": 50
+      },
+      "unfired_triggers": []
+    },
+    "intra_bindingAfterStart": {
+      "inapplicable_triggers": [],
+      "nested_antecedent": null,
+      "nested_count": null,
+      "status": "EXERCISED",
+      "trigger_counts": {
+        "parametersBound": 50
+      },
+      "unfired_triggers": []
+    },
+    "intra_bindingOnce": {
+      "inapplicable_triggers": [],
+      "nested_antecedent": null,
+      "nested_count": null,
+      "status": "EXERCISED",
+      "trigger_counts": {
+        "parametersBound": 50
+      },
+      "unfired_triggers": []
+    },
+    "intra_closeAfterRelease": {
+      "inapplicable_triggers": [],
+      "nested_antecedent": null,
+      "nested_count": null,
+      "status": "EXERCISED",
+      "trigger_counts": {
+        "iterationClosed": 50
+      },
+      "unfired_triggers": []
+    },
+    "intra_energyAfterSeal": {
+      "inapplicable_triggers": [],
+      "nested_antecedent": null,
+      "nested_count": null,
+      "status": "EXERCISED",
+      "trigger_counts": {
+        "numericValid": 50
+      },
+      "unfired_triggers": []
+    },
+    "intra_energyOnce": {
+      "inapplicable_triggers": [],
+      "nested_antecedent": null,
+      "nested_count": null,
+      "status": "EXERCISED",
+      "trigger_counts": {
+        "numericValid": 50
+      },
+      "unfired_triggers": []
+    },
+    "intra_firstCheckAfterEnergy": {
+      "inapplicable_triggers": [],
+      "nested_antecedent": null,
+      "nested_count": null,
+      "status": "EXERCISED",
+      "trigger_counts": {
+        "firstConvergenceChecked": 1
+      },
+      "unfired_triggers": []
+    },
+    "intra_firstCheckOnce": {
+      "inapplicable_triggers": [],
+      "nested_antecedent": null,
+      "nested_count": null,
+      "status": "EXERCISED",
+      "trigger_counts": {
+        "firstConvergenceChecked": 1
+      },
+      "unfired_triggers": []
+    },
+    "intra_nextCheckAfterEnergy": {
+      "inapplicable_triggers": [],
+      "nested_antecedent": null,
+      "nested_count": null,
+      "status": "EXERCISED",
+      "trigger_counts": {
+        "nextConvergenceChecked": 49
+      },
+      "unfired_triggers": []
+    },
+    "intra_nextCheckOnce": {
+      "inapplicable_triggers": [],
+      "nested_antecedent": null,
+      "nested_count": null,
+      "status": "EXERCISED",
+      "trigger_counts": {
+        "nextConvergenceChecked": 49
+      },
+      "unfired_triggers": []
+    },
+    "intra_oneSubmissionPerIteration": {
+      "inapplicable_triggers": [],
+      "nested_antecedent": null,
+      "nested_count": null,
+      "status": "EXERCISED",
+      "trigger_counts": {
+        "jobSubmitIntent": 50
+      },
+      "unfired_triggers": []
+    },
+    "intra_passAfterCheck": {
+      "inapplicable_triggers": [],
+      "nested_antecedent": null,
+      "nested_count": null,
+      "status": "EXERCISED",
+      "trigger_counts": {
+        "iterationPass": 50
+      },
+      "unfired_triggers": []
+    },
+    "intra_passOnce": {
+      "inapplicable_triggers": [],
+      "nested_antecedent": null,
+      "nested_count": null,
+      "status": "EXERCISED",
+      "trigger_counts": {
+        "iterationPass": 50
+      },
+      "unfired_triggers": []
+    },
+    "intra_releaseAfterPass": {
+      "inapplicable_triggers": [],
+      "nested_antecedent": null,
+      "nested_count": null,
+      "status": "EXERCISED",
+      "trigger_counts": {
+        "objectiveReleaseIntent": 50
+      },
+      "unfired_triggers": []
+    },
+    "intra_releaseOnce": {
+      "inapplicable_triggers": [],
+      "nested_antecedent": null,
+      "nested_count": null,
+      "status": "EXERCISED",
+      "trigger_counts": {
+        "objectiveReleaseIntent": 50
+      },
+      "unfired_triggers": []
+    },
+    "intra_sealAfterSubmission": {
+      "inapplicable_triggers": [],
+      "nested_antecedent": null,
+      "nested_count": null,
+      "status": "EXERCISED",
+      "trigger_counts": {
+        "measurementsSealed": 50
+      },
+      "unfired_triggers": []
+    },
+    "intra_sealOnce": {
+      "inapplicable_triggers": [],
+      "nested_antecedent": null,
+      "nested_count": null,
+      "status": "EXERCISED",
+      "trigger_counts": {
+        "measurementsSealed": 50
+      },
+      "unfired_triggers": []
+    },
+    "intra_submitAfterBinding": {
+      "inapplicable_triggers": [],
+      "nested_antecedent": null,
+      "nested_count": null,
+      "status": "EXERCISED",
+      "trigger_counts": {
+        "jobSubmitIntent": 50
+      },
+      "unfired_triggers": []
+    },
+    "intra_submittedAfterIntent": {
+      "inapplicable_triggers": [],
+      "nested_antecedent": null,
+      "nested_count": null,
+      "status": "EXERCISED",
+      "trigger_counts": {
+        "jobSubmitted": 50
+      },
+      "unfired_triggers": []
+    },
+    "intra_submittedOnce": {
+      "inapplicable_triggers": [],
+      "nested_antecedent": null,
+      "nested_count": null,
+      "status": "EXERCISED",
+      "trigger_counts": {
+        "jobSubmitted": 50
+      },
+      "unfired_triggers": []
+    },
+    "intra_termAfterSubmission": {
+      "inapplicable_triggers": [],
+      "nested_antecedent": null,
+      "nested_count": null,
+      "status": "EXERCISED",
+      "trigger_counts": {
+        "termObserved": 200
+      },
+      "unfired_triggers": []
+    },
+    "intra_termDeclaredOnce": {
+      "inapplicable_triggers": [],
+      "nested_antecedent": null,
+      "nested_count": null,
+      "status": "EXERCISED",
+      "trigger_counts": {
+        "termExpected": 200
+      },
+      "unfired_triggers": []
+    },
+    "intra_termExpectedAfterBinding": {
+      "inapplicable_triggers": [],
+      "nested_antecedent": null,
+      "nested_count": null,
+      "status": "EXERCISED",
+      "trigger_counts": {
+        "termExpected": 200
+      },
+      "unfired_triggers": []
+    },
+    "intra_termObservedOnce": {
+      "inapplicable_triggers": [],
+      "nested_antecedent": null,
+      "nested_count": null,
+      "status": "EXERCISED",
+      "trigger_counts": {
+        "termObserved": 200
+      },
+      "unfired_triggers": []
+    },
+    "intra_termWasDeclared": {
+      "inapplicable_triggers": [],
+      "nested_antecedent": null,
+      "nested_count": null,
+      "status": "EXERCISED",
+      "trigger_counts": {
+        "termObserved": 200
+      },
+      "unfired_triggers": []
+    },
+    "run_abortAfterFailure": {
+      "inapplicable_triggers": [],
+      "nested_antecedent": null,
+      "nested_count": null,
+      "status": "NOT_EXERCISED",
+      "trigger_counts": {
+        "runAborted": 0
+      },
+      "unfired_triggers": [
+        "runAborted"
+      ]
+    },
+    "run_abortIsFirstTerminal": {
+      "inapplicable_triggers": [],
+      "nested_antecedent": null,
+      "nested_count": null,
+      "status": "NOT_EXERCISED",
+      "trigger_counts": {
+        "runAborted": 0
+      },
+      "unfired_triggers": [
+        "runAborted"
+      ]
+    },
+    "run_activityAfterMatchingStart": {
+      "inapplicable_triggers": [],
+      "nested_antecedent": null,
+      "nested_count": null,
+      "status": "EXERCISED",
+      "trigger_counts": {
+        "activity": 1050
+      },
+      "unfired_triggers": []
+    },
+    "run_closeAfterOptimizerProtocol": {
+      "inapplicable_triggers": [],
+      "nested_antecedent": null,
+      "nested_count": null,
+      "status": "EXERCISED",
+      "trigger_counts": {
+        "runClosed": 1
+      },
+      "unfired_triggers": []
+    },
+    "run_closeAfterTerminal": {
+      "inapplicable_triggers": [],
+      "nested_antecedent": null,
+      "nested_count": null,
+      "status": "EXERCISED",
+      "trigger_counts": {
+        "runClosed": 1
+      },
+      "unfired_triggers": []
+    },
+    "run_closeOnce": {
+      "inapplicable_triggers": [],
+      "nested_antecedent": null,
+      "nested_count": null,
+      "status": "EXERCISED",
+      "trigger_counts": {
+        "runClosed": 1
+      },
+      "unfired_triggers": []
+    },
+    "run_convergedAfterTrueClose": {
+      "inapplicable_triggers": [],
+      "nested_antecedent": null,
+      "nested_count": null,
+      "status": "NOT_EXERCISED",
+      "trigger_counts": {
+        "runConverged": 0
+      },
+      "unfired_triggers": [
+        "runConverged"
+      ]
+    },
+    "run_convergedIsFirstTerminal": {
+      "inapplicable_triggers": [],
+      "nested_antecedent": null,
+      "nested_count": null,
+      "status": "NOT_EXERCISED",
+      "trigger_counts": {
+        "runConverged": 0
+      },
+      "unfired_triggers": [
+        "runConverged"
+      ]
+    },
+    "run_failureRequiresAbortAtClose": {
+      "inapplicable_triggers": [],
+      "nested_antecedent": "criticalFail",
+      "nested_count": 0,
+      "status": "NESTED_NOT_EXERCISED",
+      "trigger_counts": {
+        "runClosed": 1
+      },
+      "unfired_triggers": []
+    },
+    "run_iterationLimitOnce": {
+      "inapplicable_triggers": [],
+      "nested_antecedent": null,
+      "nested_count": null,
+      "status": "EXERCISED",
+      "trigger_counts": {
+        "iterationLimitReached": 1
+      },
+      "unfired_triggers": []
+    },
+    "run_maxAfterLimitAndFalseClose": {
+      "inapplicable_triggers": [],
+      "nested_antecedent": null,
+      "nested_count": null,
+      "status": "EXERCISED",
+      "trigger_counts": {
+        "runMaxIterations": 1
+      },
+      "unfired_triggers": []
+    },
+    "run_maxIsFirstTerminal": {
+      "inapplicable_triggers": [],
+      "nested_antecedent": null,
+      "nested_count": null,
+      "status": "EXERCISED",
+      "trigger_counts": {
+        "runMaxIterations": 1
+      },
+      "unfired_triggers": []
+    },
+    "run_noActivityAfterClose": {
+      "inapplicable_triggers": [],
+      "nested_antecedent": null,
+      "nested_count": null,
+      "status": "EXERCISED",
+      "trigger_counts": {
+        "activity": 1050
+      },
+      "unfired_triggers": []
+    },
+    "run_noActivityAfterTerminal": {
+      "inapplicable_triggers": [],
+      "nested_antecedent": null,
+      "nested_count": null,
+      "status": "EXERCISED",
+      "trigger_counts": {
+        "activity": 1050
+      },
+      "unfired_triggers": []
+    },
+    "run_normalTerminalWithoutFailure": {
+      "inapplicable_triggers": [
+        "runOptimizerStopped"
+      ],
+      "nested_antecedent": null,
+      "nested_count": null,
+      "status": "EXERCISED",
+      "trigger_counts": {
+        "runConverged": 0,
+        "runMaxIterations": 1,
+        "runOptimizerStopped": 0
+      },
+      "unfired_triggers": [
+        "runConverged"
+      ]
+    },
+    "run_optimizerStopAfterFalseClose": {
+      "inapplicable_triggers": [
+        "runOptimizerStopped"
+      ],
+      "nested_antecedent": null,
+      "nested_count": null,
+      "status": "NOT_APPLICABLE",
+      "trigger_counts": {
+        "runOptimizerStopped": 0
+      },
+      "unfired_triggers": []
+    },
+    "run_optimizerStopIsFirstTerminal": {
+      "inapplicable_triggers": [
+        "runOptimizerStopped"
+      ],
+      "nested_antecedent": null,
+      "nested_count": null,
+      "status": "NOT_APPLICABLE",
+      "trigger_counts": {
+        "runOptimizerStopped": 0
+      },
+      "unfired_triggers": []
+    },
+    "run_startOnce": {
+      "inapplicable_triggers": [],
+      "nested_antecedent": null,
+      "nested_count": null,
+      "status": "EXERCISED",
+      "trigger_counts": {
+        "runStarted": 1
+      },
+      "unfired_triggers": []
+    }
+  },
+  "specification": "specs/vqe_runtime.qtl",
+  "summary": {
+    "EXERCISED": 55,
+    "NESTED_NOT_EXERCISED": 1,
+    "NOT_APPLICABLE": 7,
+    "NOT_EXERCISED": 5
+  },
+  "trace": "/Users/rome/Desktop/Implementation of Formal Verification on VQE/VQE Runtime Verification - DejaVu/artifacts/traces/h2_ibm_marrakesh_sampler_20260907.jsonl"
+}

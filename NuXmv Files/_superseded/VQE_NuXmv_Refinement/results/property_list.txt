@@ -1,0 +1,110 @@
+*** This is nuXmv 2.1.0 (compiled on Thu Nov 28 18:33:21 2024)
+*** Copyright (c) 2014-2024, Fondazione Bruno Kessler
+*** For more information on nuXmv see https://nuxmv.fbk.eu
+*** or email to <nuxmv@fbk.eu>.
+*** Please report bugs at Please report bugs to <nusmv-users@fbk.eu>
+*** (click on "Login Anonymously" to access)
+*** Alternatively write to <nuxmv@fbk.eu>.
+
+*** This version of nuXmv is linked to NuSMV 2.7.0.
+*** For more information on NuSMV see <http://nusmv.fbk.eu>
+*** or email to <nusmv-users@fbk.eu>.
+*** Copyright (C) 2010-2024, Fondazione Bruno Kessler
+
+*** This version of nuXmv is linked to the CUDD library version 2.4.1
+*** Copyright (c) 1995-2004, Regents of the University of Colorado
+
+*** This version of nuXmv is linked to the MiniSat SAT solver. 
+*** See http://minisat.se/MiniSat.html
+*** Copyright (c) 2003-2006, Niklas Een, Niklas Sorensson
+*** Copyright (c) 2007-2010, Niklas Sorensson
+
+*** This version of nuXmv is linked to MathSAT
+*** Copyright (C) 2009-2019 by Fondazione Bruno Kessler
+*** Copyright (C) 2009-2019 by University of Trento and others
+*** See http://mathsat.fbk.eu
+
+**** PROPERTY LIST [ Type, Status, Counter-example Number, Name ] ****
+--------------------------  PROPERTY LIST  -------------------------
+000 :AF (state = DONE | state = ABORT) 
+  [CTL            Unchecked      N/A    N/A]
+001 :EF (state = DONE & term_reason = DONE_CONVERGED) 
+  [CTL            Unchecked      N/A    N/A]
+002 :EF (state = ABORT & term_reason = ABORT_BIND_ERROR) 
+  [CTL            Unchecked      N/A    N/A]
+003 :EF (state = ABORT & term_reason = ABORT_QPU_ERROR) 
+  [CTL            Unchecked      N/A    N/A]
+004 :EF (state = ABORT & term_reason = ABORT_ENERGY_ERROR) 
+  [CTL            Unchecked      N/A    N/A]
+005 :EF (state = ABORT & term_reason = ABORT_OPTIMIZER_ERROR) 
+  [CTL            Unchecked      N/A    N/A]
+006 :EF (state = ABORT & term_reason = ABORT_MAX_ITERS) 
+  [CTL            Unchecked      N/A    N/A]
+007 :AG (state = DONE -> AX state = DONE) 
+  [CTL            Unchecked      N/A    N/A]
+008 :AG (state = ABORT -> AX state = ABORT) 
+  [CTL            Unchecked      N/A    N/A]
+009 :AG ((state = ABORT & term_reason = ABORT_MAX_ITERS) -> iter = MAX_ITERS) 
+  [CTL            Unchecked      N/A    N/A]
+010 : G (state = S_INIT ->  X state = BIND) 
+  [LTL            Unchecked      N/A    N/A]
+011 : G (((state = BIND & !bind_error) & params_ready) ->  X state = EXECUTE_MEASURE) 
+  [LTL            Unchecked      N/A    N/A]
+012 : G ((state = BIND & (bind_error | !params_ready)) ->  X (state = ABORT & term_reason = ABORT_BIND_ERROR)) 
+  [LTL            Unchecked      N/A    N/A]
+013 : G ((state = EXECUTE_MEASURE & qpu_error) ->  X (state = ABORT & term_reason = ABORT_QPU_ERROR)) 
+  [LTL            Unchecked      N/A    N/A]
+014 : G (((state = EXECUTE_MEASURE & !qpu_error) & !all_terms_done) ->  X state = EXECUTE_MEASURE) 
+  [LTL            Unchecked      N/A    N/A]
+015 : G (((state = EXECUTE_MEASURE & !qpu_error) & all_terms_done) ->  X state = COMPUTE_ENERGY) 
+  [LTL            Unchecked      N/A    N/A]
+016 : G ((state = COMPUTE_ENERGY & (energy_error | !all_terms_done)) ->  X (state = ABORT & term_reason = ABORT_ENERGY_ERROR)) 
+  [LTL            Unchecked      N/A    N/A]
+017 : G (((state = COMPUTE_ENERGY & !energy_error) & all_terms_done) ->  X state = CHECK_STOP) 
+  [LTL            Unchecked      N/A    N/A]
+018 : G ((state = CHECK_STOP & converged) ->  X (state = DONE & term_reason = DONE_CONVERGED)) 
+  [LTL            Unchecked      N/A    N/A]
+019 : G (((state = CHECK_STOP & !converged) & iter = MAX_ITERS) ->  X (state = ABORT & term_reason = ABORT_MAX_ITERS)) 
+  [LTL            Unchecked      N/A    N/A]
+020 : G (((state = CHECK_STOP & !converged) & iter < MAX_ITERS) ->  X state = OPTIMIZER_STEP) 
+  [LTL            Unchecked      N/A    N/A]
+021 : G ((state = OPTIMIZER_STEP & optimizer_error) ->  X (state = ABORT & term_reason = ABORT_OPTIMIZER_ERROR)) 
+  [LTL            Unchecked      N/A    N/A]
+022 : G ((state = OPTIMIZER_STEP & !optimizer_error) ->  X state = BIND) 
+  [LTL            Unchecked      N/A    N/A]
+023 : G (state = DONE ->  X state = DONE) 
+  [LTL            Unchecked      N/A    N/A]
+024 : G (state = ABORT ->  X state = ABORT) 
+  [LTL            Unchecked      N/A    N/A]
+025 : G (state = EXECUTE_MEASURE -> params_ready) 
+  [LTL            Unchecked      N/A    N/A]
+026 : G (state = OPTIMIZER_STEP -> energy_ready) 
+  [LTL            Unchecked      N/A    N/A]
+027 : G ((state = BIND & iter > 0) -> !energy_ready) 
+  [LTL            Unchecked      N/A    N/A]
+028 : G ((state = OPTIMIZER_STEP & !optimizer_error) ->  X (((state = BIND & params_ready) & !energy_ready) & terms_done = 0)) 
+  [LTL            Unchecked      N/A    N/A]
+029 : G (((state = EXECUTE_MEASURE & !qpu_error) & all_terms_done) ->  X !params_ready) 
+  [LTL            Unchecked      N/A    N/A]
+030 : G (state = DONE -> energy_ready) 
+  [LTL            Unchecked      N/A    N/A]
+031 : F (state = DONE | state = ABORT) 
+  [LTL            Unchecked      N/A    N/A]
+032 :(state = BIND -> ((params_ready & !energy_ready) & terms_done = 0)) 
+  [Invar          Unchecked      N/A    N/A]
+033 :(state = EXECUTE_MEASURE -> ((circ_ready & params_ready) & terms_done <= NTERMS)) 
+  [Invar          Unchecked      N/A    N/A]
+034 :(state = COMPUTE_ENERGY -> ((circ_ready & all_terms_done) & !params_ready)) 
+  [Invar          Unchecked      N/A    N/A]
+035 :(state = CHECK_STOP -> (energy_ready & all_terms_done)) 
+  [Invar          Unchecked      N/A    N/A]
+036 :(state = OPTIMIZER_STEP -> ((energy_ready & all_terms_done) & iter < MAX_ITERS)) 
+  [Invar          Unchecked      N/A    N/A]
+037 :(state = DONE -> (energy_ready & term_reason = DONE_CONVERGED)) 
+  [Invar          Unchecked      N/A    N/A]
+038 :(state = ABORT -> (term_reason != NO_TERM & term_reason != DONE_CONVERGED)) 
+  [Invar          Unchecked      N/A    N/A]
+039 :(!terminal -> term_reason = NO_TERM) 
+  [Invar          Unchecked      N/A    N/A]
+040 :(state = ABORT -> (!circ_ready & !params_ready)) 
+  [Invar          Unchecked      N/A    N/A]

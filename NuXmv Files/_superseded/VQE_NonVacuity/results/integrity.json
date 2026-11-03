@@ -1,0 +1,6 @@
+{
+  "method": "SHA-256 of every file in NuXmv Files outside VQE_NonVacuity, excluding .DS_Store",
+  "files_checked": 2262,
+  "changed_or_missing": [],
+  "new_files_outside_isolated_folder": []
+}

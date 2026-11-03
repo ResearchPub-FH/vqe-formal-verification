@@ -1,0 +1,264 @@
+*** This is nuXmv 2.1.0 (compiled on Thu Nov 28 18:33:21 2024)
+*** Copyright (c) 2014-2024, Fondazione Bruno Kessler
+*** For more information on nuXmv see https://nuxmv.fbk.eu
+*** or email to <nuxmv@fbk.eu>.
+*** Please report bugs at Please report bugs to <nusmv-users@fbk.eu>
+*** (click on "Login Anonymously" to access)
+*** Alternatively write to <nuxmv@fbk.eu>.
+
+*** This version of nuXmv is linked to NuSMV 2.7.0.
+*** For more information on NuSMV see <http://nusmv.fbk.eu>
+*** or email to <nusmv-users@fbk.eu>.
+*** Copyright (C) 2010-2024, Fondazione Bruno Kessler
+
+*** This version of nuXmv is linked to the CUDD library version 2.4.1
+*** Copyright (c) 1995-2004, Regents of the University of Colorado
+
+*** This version of nuXmv is linked to the MiniSat SAT solver. 
+*** See http://minisat.se/MiniSat.html
+*** Copyright (c) 2003-2006, Niklas Een, Niklas Sorensson
+*** Copyright (c) 2007-2010, Niklas Sorensson
+
+*** This version of nuXmv is linked to MathSAT
+*** Copyright (C) 2009-2019 by Fondazione Bruno Kessler
+*** Copyright (C) 2009-2019 by University of Trento and others
+*** See http://mathsat.fbk.eu
+
+-- specification AG !(state = BIND)  is false
+-- as demonstrated by the following execution sequence
+Trace Description: CTL Counterexample 
+Trace Type: Counterexample 
+  -> State: 1.1 <-
+    state = S_INIT
+    circ_ready = TRUE
+    params_ready = TRUE
+    energy_ready = FALSE
+    iter = 0
+    terms_done = 0
+    converged = FALSE
+    stop_condition = FALSE
+    all_terms_done = FALSE
+    NTERMS = 3
+    MAX_ITERS = 5
+  -> State: 1.2 <-
+    state = BIND
+-- specification AG !(state = EXECUTE_MEASURE)  is false
+-- as demonstrated by the following execution sequence
+Trace Description: CTL Counterexample 
+Trace Type: Counterexample 
+  -> State: 2.1 <-
+    state = S_INIT
+    circ_ready = TRUE
+    params_ready = TRUE
+    energy_ready = FALSE
+    iter = 0
+    terms_done = 0
+    converged = FALSE
+    stop_condition = FALSE
+    all_terms_done = FALSE
+    NTERMS = 3
+    MAX_ITERS = 5
+  -> State: 2.2 <-
+    state = BIND
+  -> State: 2.3 <-
+    state = EXECUTE_MEASURE
+-- specification AG !(state = COMPUTE_ENERGY)  is false
+-- as demonstrated by the following execution sequence
+Trace Description: CTL Counterexample 
+Trace Type: Counterexample 
+  -> State: 3.1 <-
+    state = S_INIT
+    circ_ready = TRUE
+    params_ready = TRUE
+    energy_ready = FALSE
+    iter = 0
+    terms_done = 0
+    converged = FALSE
+    stop_condition = FALSE
+    all_terms_done = FALSE
+    NTERMS = 3
+    MAX_ITERS = 5
+  -> State: 3.2 <-
+    state = BIND
+  -> State: 3.3 <-
+    state = EXECUTE_MEASURE
+  -> State: 3.4 <-
+    terms_done = 1
+  -> State: 3.5 <-
+    terms_done = 2
+  -> State: 3.6 <-
+    terms_done = 3
+    all_terms_done = TRUE
+  -> State: 3.7 <-
+    state = COMPUTE_ENERGY
+    params_ready = FALSE
+-- specification AG !(state = CHECK_STOP)  is false
+-- as demonstrated by the following execution sequence
+Trace Description: CTL Counterexample 
+Trace Type: Counterexample 
+  -> State: 4.1 <-
+    state = S_INIT
+    circ_ready = TRUE
+    params_ready = TRUE
+    energy_ready = FALSE
+    iter = 0
+    terms_done = 0
+    converged = FALSE
+    stop_condition = FALSE
+    all_terms_done = FALSE
+    NTERMS = 3
+    MAX_ITERS = 5
+  -> State: 4.2 <-
+    state = BIND
+  -> State: 4.3 <-
+    state = EXECUTE_MEASURE
+  -> State: 4.4 <-
+    terms_done = 1
+  -> State: 4.5 <-
+    terms_done = 2
+  -> State: 4.6 <-
+    terms_done = 3
+    all_terms_done = TRUE
+  -> State: 4.7 <-
+    state = COMPUTE_ENERGY
+    params_ready = FALSE
+  -> State: 4.8 <-
+    state = CHECK_STOP
+    energy_ready = TRUE
+-- specification AG !(state = OPTIMIZER_STEP)  is false
+-- as demonstrated by the following execution sequence
+Trace Description: CTL Counterexample 
+Trace Type: Counterexample 
+  -> State: 5.1 <-
+    state = S_INIT
+    circ_ready = TRUE
+    params_ready = TRUE
+    energy_ready = FALSE
+    iter = 0
+    terms_done = 0
+    converged = FALSE
+    stop_condition = FALSE
+    all_terms_done = FALSE
+    NTERMS = 3
+    MAX_ITERS = 5
+  -> State: 5.2 <-
+    state = BIND
+  -> State: 5.3 <-
+    state = EXECUTE_MEASURE
+  -> State: 5.4 <-
+    terms_done = 1
+  -> State: 5.5 <-
+    terms_done = 2
+  -> State: 5.6 <-
+    terms_done = 3
+    all_terms_done = TRUE
+  -> State: 5.7 <-
+    state = COMPUTE_ENERGY
+    params_ready = FALSE
+  -> State: 5.8 <-
+    state = CHECK_STOP
+    energy_ready = TRUE
+  -> State: 5.9 <-
+    state = OPTIMIZER_STEP
+-- specification AG !(state = DONE)  is false
+-- as demonstrated by the following execution sequence
+Trace Description: CTL Counterexample 
+Trace Type: Counterexample 
+  -> State: 6.1 <-
+    state = S_INIT
+    circ_ready = TRUE
+    params_ready = TRUE
+    energy_ready = FALSE
+    iter = 0
+    terms_done = 0
+    converged = FALSE
+    stop_condition = FALSE
+    all_terms_done = FALSE
+    NTERMS = 3
+    MAX_ITERS = 5
+  -> State: 6.2 <-
+    state = BIND
+  -> State: 6.3 <-
+    state = EXECUTE_MEASURE
+  -> State: 6.4 <-
+    terms_done = 1
+  -> State: 6.5 <-
+    terms_done = 2
+  -> State: 6.6 <-
+    terms_done = 3
+    all_terms_done = TRUE
+  -> State: 6.7 <-
+    state = COMPUTE_ENERGY
+    params_ready = FALSE
+  -> State: 6.8 <-
+    state = CHECK_STOP
+    energy_ready = TRUE
+    converged = TRUE
+    stop_condition = TRUE
+  -> State: 6.9 <-
+    state = DONE
+    converged = FALSE
+    stop_condition = FALSE
+-- specification AG !(state = DONE & iter > 0)  is false
+-- as demonstrated by the following execution sequence
+Trace Description: CTL Counterexample 
+Trace Type: Counterexample 
+  -> State: 7.1 <-
+    state = S_INIT
+    circ_ready = TRUE
+    params_ready = TRUE
+    energy_ready = FALSE
+    iter = 0
+    terms_done = 0
+    converged = FALSE
+    stop_condition = FALSE
+    all_terms_done = FALSE
+    NTERMS = 3
+    MAX_ITERS = 5
+  -> State: 7.2 <-
+    state = BIND
+  -> State: 7.3 <-
+    state = EXECUTE_MEASURE
+  -> State: 7.4 <-
+    terms_done = 1
+  -> State: 7.5 <-
+    terms_done = 2
+  -> State: 7.6 <-
+    terms_done = 3
+    all_terms_done = TRUE
+  -> State: 7.7 <-
+    state = COMPUTE_ENERGY
+    params_ready = FALSE
+  -> State: 7.8 <-
+    state = CHECK_STOP
+    energy_ready = TRUE
+  -> State: 7.9 <-
+    state = OPTIMIZER_STEP
+  -> State: 7.10 <-
+    state = BIND
+    params_ready = TRUE
+    energy_ready = FALSE
+    iter = 1
+    terms_done = 0
+    all_terms_done = FALSE
+  -> State: 7.11 <-
+    state = EXECUTE_MEASURE
+  -> State: 7.12 <-
+    terms_done = 1
+  -> State: 7.13 <-
+    terms_done = 2
+  -> State: 7.14 <-
+    terms_done = 3
+    all_terms_done = TRUE
+  -> State: 7.15 <-
+    state = COMPUTE_ENERGY
+    params_ready = FALSE
+  -> State: 7.16 <-
+    state = CHECK_STOP
+    energy_ready = TRUE
+    converged = TRUE
+    stop_condition = TRUE
+  -> State: 7.17 <-
+    state = DONE
+    converged = FALSE
+    stop_condition = FALSE

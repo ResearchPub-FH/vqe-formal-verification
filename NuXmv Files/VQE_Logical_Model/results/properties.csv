@@ -1,0 +1,25 @@
+name,contract,kind,formula,holds
+R1_groups_before_aggregation,L1,INVARSPEC,state = COMPUTE_ENERGY -> terms_done = NTERMS,True
+R2_energy_before_check,L2,INVARSPEC,(state = CHECK_STOP & iter > 0) -> energy_ready,True
+R3_bound_before_measure,L3,INVARSPEC,state = EXECUTE_MEASURE -> (circ_ready & params_ready),True
+R4_candidates_before_commit,L2,INVARSPEC,state = OPTIMIZER_STEP -> (cands_done = NCANDS & energy_ready),True
+F1_current_evaluation,L3,INVARSPEC,(state = EXECUTE_MEASURE | state = COMPUTE_ENERGY) -> (bound_version = iter & bound_cand = cands_done),True
+F2_current_energy,L3,INVARSPEC,state = OPTIMIZER_STEP -> energy_version = iter,True
+F3_evaluation_reset,L3,INVARSPEC,state = BIND -> (terms_done = 0 & !energy_ready),True
+F4_iteration_reset,L3,LTLSPEC,G ((state = CHECK_STOP & !converged & iter < MAX_ITERS) -> X (state = BIND & cands_done = 0)),True
+F5_returned_energy,L4,INVARSPEC,(state = DONE & iter > 0) -> (energy_ready & energy_version + 1 = iter),True
+T1_termination,L4,CTLSPEC,AG (!terminal -> AF terminal),True
+T2_done_reason,L4,INVARSPEC,state = DONE -> (term_reason = DONE_CONVERGED | (term_reason = DONE_MAX_ITERS & iter = MAX_ITERS)),True
+T3_done_absorbing,L4,CTLSPEC,AG (state = DONE -> AX state = DONE),True
+T4_abort_absorbing,L4,CTLSPEC,AG (state = ABORT -> AX state = ABORT),True
+T5_success_reason,L4,LTLSPEC,G ((state = CHECK_STOP & converged) -> X (state = DONE & term_reason = DONE_CONVERGED)),True
+T6_budget_reason,L4,LTLSPEC,G ((state = CHECK_STOP & !converged & iter = MAX_ITERS) -> X (state = DONE & term_reason = DONE_MAX_ITERS)),True
+T7_abort_reason,L4,INVARSPEC,"state = ABORT -> !(term_reason in {NO_TERM, DONE_CONVERGED, DONE_MAX_ITERS})",True
+T8_no_early_reason,L4,INVARSPEC,!terminal -> term_reason = NO_TERM,True
+T9_update_accounting,L4,LTLSPEC,G ((next(iter) = iter | next(iter) = iter + 1) & (next(iter) = iter + 1 <-> (state = OPTIMIZER_STEP & !optimizer_error))),True
+E1_bind_fails,L4,LTLSPEC,G (bind_fails -> X (state = ABORT & term_reason = ABORT_BIND_ERROR)),True
+E2_measure_fails,L4,LTLSPEC,G (measure_fails -> X (state = ABORT & term_reason = ABORT_QPU_ERROR)),True
+E3_energy_fails,L4,LTLSPEC,G (energy_fails -> X (state = ABORT & term_reason = ABORT_ENERGY_ERROR)),True
+E4_optimizer_fails,L4,LTLSPEC,G (optimizer_fails -> X (state = ABORT & term_reason = ABORT_OPTIMIZER_ERROR)),True
+E5_abort_only_on_error,L4,LTLSPEC,G ((!terminal & X state = ABORT) -> error),True
+E6_update_bound,L4,INVARSPEC,state = OPTIMIZER_STEP -> iter < MAX_ITERS,True

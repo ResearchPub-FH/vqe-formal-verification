@@ -1,0 +1,310 @@
+Could not load BDD package buddy: Can't load library: /Users/rome/Desktop/Implementation of Formal Verification on VQE/2-stage verification (closed-loop)/libbuddy.dylib
+Could not load BDD package buddy: Could not initialize class net.sf.javabdd.BuDDyFactory
+Could not load BDD package buddy: Could not initialize class net.sf.javabdd.BuDDyFactory
+Could not load BDD package buddy: Could not initialize class net.sf.javabdd.BuDDyFactory
+Could not load BDD package buddy: Could not initialize class net.sf.javabdd.BuDDyFactory
+VIOLATION	premature_update-000	3	L2_validationsBeforeCommit
+RESULT	premature_update-000	L2_validationsBeforeCommit:1
+Could not load BDD package buddy: Could not initialize class net.sf.javabdd.BuDDyFactory
+Could not load BDD package buddy: Could not initialize class net.sf.javabdd.BuDDyFactory
+Could not load BDD package buddy: Could not initialize class net.sf.javabdd.BuDDyFactory
+Could not load BDD package buddy: Could not initialize class net.sf.javabdd.BuDDyFactory
+Could not load BDD package buddy: Could not initialize class net.sf.javabdd.BuDDyFactory
+VIOLATION	premature_update-001	3	L2_validationsBeforeCommit
+RESULT	premature_update-001	L2_validationsBeforeCommit:1
+Could not load BDD package buddy: Could not initialize class net.sf.javabdd.BuDDyFactory
+Could not load BDD package buddy: Could not initialize class net.sf.javabdd.BuDDyFactory
+Could not load BDD package buddy: Could not initialize class net.sf.javabdd.BuDDyFactory
+Could not load BDD package buddy: Could not initialize class net.sf.javabdd.BuDDyFactory
+Could not load BDD package buddy: Could not initialize class net.sf.javabdd.BuDDyFactory
+VIOLATION	premature_update-002	3	L2_validationsBeforeCommit
+RESULT	premature_update-002	L2_validationsBeforeCommit:1
+Could not load BDD package buddy: Could not initialize class net.sf.javabdd.BuDDyFactory
+Could not load BDD package buddy: Could not initialize class net.sf.javabdd.BuDDyFactory
+Could not load BDD package buddy: Could not initialize class net.sf.javabdd.BuDDyFactory
+Could not load BDD package buddy: Could not initialize class net.sf.javabdd.BuDDyFactory
+Could not load BDD package buddy: Could not initialize class net.sf.javabdd.BuDDyFactory
+VIOLATION	premature_update-003	3	L2_validationsBeforeCommit
+RESULT	premature_update-003	L2_validationsBeforeCommit:1
+Could not load BDD package buddy: Could not initialize class net.sf.javabdd.BuDDyFactory
+Could not load BDD package buddy: Could not initialize class net.sf.javabdd.BuDDyFactory
+Could not load BDD package buddy: Could not initialize class net.sf.javabdd.BuDDyFactory
+Could not load BDD package buddy: Could not initialize class net.sf.javabdd.BuDDyFactory
+Could not load BDD package buddy: Could not initialize class net.sf.javabdd.BuDDyFactory
+VIOLATION	premature_update-004	3	L2_validationsBeforeCommit
+RESULT	premature_update-004	L2_validationsBeforeCommit:1
+Could not load BDD package buddy: Could not initialize class net.sf.javabdd.BuDDyFactory
+Could not load BDD package buddy: Could not initialize class net.sf.javabdd.BuDDyFactory
+Could not load BDD package buddy: Could not initialize class net.sf.javabdd.BuDDyFactory
+Could not load BDD package buddy: Could not initialize class net.sf.javabdd.BuDDyFactory
+Could not load BDD package buddy: Could not initialize class net.sf.javabdd.BuDDyFactory
+VIOLATION	premature_update-005	3	L2_validationsBeforeCommit
+RESULT	premature_update-005	L2_validationsBeforeCommit:1
+Could not load BDD package buddy: Could not initialize class net.sf.javabdd.BuDDyFactory
+Could not load BDD package buddy: Could not initialize class net.sf.javabdd.BuDDyFactory
+Could not load BDD package buddy: Could not initialize class net.sf.javabdd.BuDDyFactory
+Could not load BDD package buddy: Could not initialize class net.sf.javabdd.BuDDyFactory
+Could not load BDD package buddy: Could not initialize class net.sf.javabdd.BuDDyFactory
+VIOLATION	premature_update-006	3	L2_validationsBeforeCommit
+RESULT	premature_update-006	L2_validationsBeforeCommit:1
+Could not load BDD package buddy: Could not initialize class net.sf.javabdd.BuDDyFactory
+Could not load BDD package buddy: Could not initialize class net.sf.javabdd.BuDDyFactory
+Could not load BDD package buddy: Could not initialize class net.sf.javabdd.BuDDyFactory
+Could not load BDD package buddy: Could not initialize class net.sf.javabdd.BuDDyFactory
+Could not load BDD package buddy: Could not initialize class net.sf.javabdd.BuDDyFactory
+VIOLATION	premature_update-007	3	L2_validationsBeforeCommit
+RESULT	premature_update-007	L2_validationsBeforeCommit:1
+Could not load BDD package buddy: Could not initialize class net.sf.javabdd.BuDDyFactory
+Could not load BDD package buddy: Could not initialize class net.sf.javabdd.BuDDyFactory
+Could not load BDD package buddy: Could not initialize class net.sf.javabdd.BuDDyFactory
+Could not load BDD package buddy: Could not initialize class net.sf.javabdd.BuDDyFactory
+Could not load BDD package buddy: Could not initialize class net.sf.javabdd.BuDDyFactory
+VIOLATION	premature_update-008	3	L2_validationsBeforeCommit
+RESULT	premature_update-008	L2_validationsBeforeCommit:1
+Could not load BDD package buddy: Could not initialize class net.sf.javabdd.BuDDyFactory
+Could not load BDD package buddy: Could not initialize class net.sf.javabdd.BuDDyFactory
+Could not load BDD package buddy: Could not initialize class net.sf.javabdd.BuDDyFactory
+Could not load BDD package buddy: Could not initialize class net.sf.javabdd.BuDDyFactory
+Could not load BDD package buddy: Could not initialize class net.sf.javabdd.BuDDyFactory
+VIOLATION	premature_update-009	3	L2_validationsBeforeCommit
+RESULT	premature_update-009	L2_validationsBeforeCommit:1
+Could not load BDD package buddy: Could not initialize class net.sf.javabdd.BuDDyFactory
+Could not load BDD package buddy: Could not initialize class net.sf.javabdd.BuDDyFactory
+Could not load BDD package buddy: Could not initialize class net.sf.javabdd.BuDDyFactory
+Could not load BDD package buddy: Could not initialize class net.sf.javabdd.BuDDyFactory
+Could not load BDD package buddy: Could not initialize class net.sf.javabdd.BuDDyFactory
+RESULT	corrupt_energy-000	
+Could not load BDD package buddy: Could not initialize class net.sf.javabdd.BuDDyFactory
+Could not load BDD package buddy: Could not initialize class net.sf.javabdd.BuDDyFactory
+Could not load BDD package buddy: Could not initialize class net.sf.javabdd.BuDDyFactory
+Could not load BDD package buddy: Could not initialize class net.sf.javabdd.BuDDyFactory
+Could not load BDD package buddy: Could not initialize class net.sf.javabdd.BuDDyFactory
+RESULT	corrupt_energy-001	
+Could not load BDD package buddy: Could not initialize class net.sf.javabdd.BuDDyFactory
+Could not load BDD package buddy: Could not initialize class net.sf.javabdd.BuDDyFactory
+Could not load BDD package buddy: Could not initialize class net.sf.javabdd.BuDDyFactory
+Could not load BDD package buddy: Could not initialize class net.sf.javabdd.BuDDyFactory
+Could not load BDD package buddy: Could not initialize class net.sf.javabdd.BuDDyFactory
+RESULT	corrupt_energy-002	
+Could not load BDD package buddy: Could not initialize class net.sf.javabdd.BuDDyFactory
+Could not load BDD package buddy: Could not initialize class net.sf.javabdd.BuDDyFactory
+Could not load BDD package buddy: Could not initialize class net.sf.javabdd.BuDDyFactory
+Could not load BDD package buddy: Could not initialize class net.sf.javabdd.BuDDyFactory
+Could not load BDD package buddy: Could not initialize class net.sf.javabdd.BuDDyFactory
+RESULT	corrupt_energy-003	
+Could not load BDD package buddy: Could not initialize class net.sf.javabdd.BuDDyFactory
+Could not load BDD package buddy: Could not initialize class net.sf.javabdd.BuDDyFactory
+Could not load BDD package buddy: Could not initialize class net.sf.javabdd.BuDDyFactory
+Could not load BDD package buddy: Could not initialize class net.sf.javabdd.BuDDyFactory
+Could not load BDD package buddy: Could not initialize class net.sf.javabdd.BuDDyFactory
+RESULT	corrupt_energy-004	
+Could not load BDD package buddy: Could not initialize class net.sf.javabdd.BuDDyFactory
+Could not load BDD package buddy: Could not initialize class net.sf.javabdd.BuDDyFactory
+Could not load BDD package buddy: Could not initialize class net.sf.javabdd.BuDDyFactory
+Could not load BDD package buddy: Could not initialize class net.sf.javabdd.BuDDyFactory
+Could not load BDD package buddy: Could not initialize class net.sf.javabdd.BuDDyFactory
+RESULT	corrupt_energy-005	
+Could not load BDD package buddy: Could not initialize class net.sf.javabdd.BuDDyFactory
+Could not load BDD package buddy: Could not initialize class net.sf.javabdd.BuDDyFactory
+Could not load BDD package buddy: Could not initialize class net.sf.javabdd.BuDDyFactory
+Could not load BDD package buddy: Could not initialize class net.sf.javabdd.BuDDyFactory
+Could not load BDD package buddy: Could not initialize class net.sf.javabdd.BuDDyFactory
+RESULT	corrupt_energy-006	
+Could not load BDD package buddy: Could not initialize class net.sf.javabdd.BuDDyFactory
+Could not load BDD package buddy: Could not initialize class net.sf.javabdd.BuDDyFactory
+Could not load BDD package buddy: Could not initialize class net.sf.javabdd.BuDDyFactory
+Could not load BDD package buddy: Could not initialize class net.sf.javabdd.BuDDyFactory
+Could not load BDD package buddy: Could not initialize class net.sf.javabdd.BuDDyFactory
+RESULT	corrupt_energy-007	
+Could not load BDD package buddy: Could not initialize class net.sf.javabdd.BuDDyFactory
+Could not load BDD package buddy: Could not initialize class net.sf.javabdd.BuDDyFactory
+Could not load BDD package buddy: Could not initialize class net.sf.javabdd.BuDDyFactory
+Could not load BDD package buddy: Could not initialize class net.sf.javabdd.BuDDyFactory
+Could not load BDD package buddy: Could not initialize class net.sf.javabdd.BuDDyFactory
+RESULT	corrupt_energy-008	
+Could not load BDD package buddy: Could not initialize class net.sf.javabdd.BuDDyFactory
+Could not load BDD package buddy: Could not initialize class net.sf.javabdd.BuDDyFactory
+Could not load BDD package buddy: Could not initialize class net.sf.javabdd.BuDDyFactory
+Could not load BDD package buddy: Could not initialize class net.sf.javabdd.BuDDyFactory
+Could not load BDD package buddy: Could not initialize class net.sf.javabdd.BuDDyFactory
+RESULT	corrupt_energy-009	
+Could not load BDD package buddy: Could not initialize class net.sf.javabdd.BuDDyFactory
+Could not load BDD package buddy: Could not initialize class net.sf.javabdd.BuDDyFactory
+Could not load BDD package buddy: Could not initialize class net.sf.javabdd.BuDDyFactory
+Could not load BDD package buddy: Could not initialize class net.sf.javabdd.BuDDyFactory
+Could not load BDD package buddy: Could not initialize class net.sf.javabdd.BuDDyFactory
+RESULT	coefficient_swap-000	
+Could not load BDD package buddy: Could not initialize class net.sf.javabdd.BuDDyFactory
+Could not load BDD package buddy: Could not initialize class net.sf.javabdd.BuDDyFactory
+Could not load BDD package buddy: Could not initialize class net.sf.javabdd.BuDDyFactory
+Could not load BDD package buddy: Could not initialize class net.sf.javabdd.BuDDyFactory
+Could not load BDD package buddy: Could not initialize class net.sf.javabdd.BuDDyFactory
+RESULT	coefficient_swap-001	
+Could not load BDD package buddy: Could not initialize class net.sf.javabdd.BuDDyFactory
+Could not load BDD package buddy: Could not initialize class net.sf.javabdd.BuDDyFactory
+Could not load BDD package buddy: Could not initialize class net.sf.javabdd.BuDDyFactory
+Could not load BDD package buddy: Could not initialize class net.sf.javabdd.BuDDyFactory
+Could not load BDD package buddy: Could not initialize class net.sf.javabdd.BuDDyFactory
+RESULT	coefficient_swap-002	
+Could not load BDD package buddy: Could not initialize class net.sf.javabdd.BuDDyFactory
+Could not load BDD package buddy: Could not initialize class net.sf.javabdd.BuDDyFactory
+Could not load BDD package buddy: Could not initialize class net.sf.javabdd.BuDDyFactory
+Could not load BDD package buddy: Could not initialize class net.sf.javabdd.BuDDyFactory
+Could not load BDD package buddy: Could not initialize class net.sf.javabdd.BuDDyFactory
+RESULT	coefficient_swap-003	
+Could not load BDD package buddy: Could not initialize class net.sf.javabdd.BuDDyFactory
+Could not load BDD package buddy: Could not initialize class net.sf.javabdd.BuDDyFactory
+Could not load BDD package buddy: Could not initialize class net.sf.javabdd.BuDDyFactory
+Could not load BDD package buddy: Could not initialize class net.sf.javabdd.BuDDyFactory
+Could not load BDD package buddy: Could not initialize class net.sf.javabdd.BuDDyFactory
+RESULT	coefficient_swap-004	
+Could not load BDD package buddy: Could not initialize class net.sf.javabdd.BuDDyFactory
+Could not load BDD package buddy: Could not initialize class net.sf.javabdd.BuDDyFactory
+Could not load BDD package buddy: Could not initialize class net.sf.javabdd.BuDDyFactory
+Could not load BDD package buddy: Could not initialize class net.sf.javabdd.BuDDyFactory
+Could not load BDD package buddy: Could not initialize class net.sf.javabdd.BuDDyFactory
+RESULT	coefficient_swap-005	
+Could not load BDD package buddy: Could not initialize class net.sf.javabdd.BuDDyFactory
+Could not load BDD package buddy: Could not initialize class net.sf.javabdd.BuDDyFactory
+Could not load BDD package buddy: Could not initialize class net.sf.javabdd.BuDDyFactory
+Could not load BDD package buddy: Could not initialize class net.sf.javabdd.BuDDyFactory
+Could not load BDD package buddy: Could not initialize class net.sf.javabdd.BuDDyFactory
+RESULT	coefficient_swap-006	
+Could not load BDD package buddy: Could not initialize class net.sf.javabdd.BuDDyFactory
+Could not load BDD package buddy: Could not initialize class net.sf.javabdd.BuDDyFactory
+Could not load BDD package buddy: Could not initialize class net.sf.javabdd.BuDDyFactory
+Could not load BDD package buddy: Could not initialize class net.sf.javabdd.BuDDyFactory
+Could not load BDD package buddy: Could not initialize class net.sf.javabdd.BuDDyFactory
+RESULT	coefficient_swap-007	
+Could not load BDD package buddy: Could not initialize class net.sf.javabdd.BuDDyFactory
+Could not load BDD package buddy: Could not initialize class net.sf.javabdd.BuDDyFactory
+Could not load BDD package buddy: Could not initialize class net.sf.javabdd.BuDDyFactory
+Could not load BDD package buddy: Could not initialize class net.sf.javabdd.BuDDyFactory
+Could not load BDD package buddy: Could not initialize class net.sf.javabdd.BuDDyFactory
+RESULT	coefficient_swap-008	
+Could not load BDD package buddy: Could not initialize class net.sf.javabdd.BuDDyFactory
+Could not load BDD package buddy: Could not initialize class net.sf.javabdd.BuDDyFactory
+Could not load BDD package buddy: Could not initialize class net.sf.javabdd.BuDDyFactory
+Could not load BDD package buddy: Could not initialize class net.sf.javabdd.BuDDyFactory
+Could not load BDD package buddy: Could not initialize class net.sf.javabdd.BuDDyFactory
+RESULT	coefficient_swap-009	
+Could not load BDD package buddy: Could not initialize class net.sf.javabdd.BuDDyFactory
+Could not load BDD package buddy: Could not initialize class net.sf.javabdd.BuDDyFactory
+Could not load BDD package buddy: Could not initialize class net.sf.javabdd.BuDDyFactory
+Could not load BDD package buddy: Could not initialize class net.sf.javabdd.BuDDyFactory
+Could not load BDD package buddy: Could not initialize class net.sf.javabdd.BuDDyFactory
+RESULT	shot_mismatch-000	
+Could not load BDD package buddy: Could not initialize class net.sf.javabdd.BuDDyFactory
+Could not load BDD package buddy: Could not initialize class net.sf.javabdd.BuDDyFactory
+Could not load BDD package buddy: Could not initialize class net.sf.javabdd.BuDDyFactory
+Could not load BDD package buddy: Could not initialize class net.sf.javabdd.BuDDyFactory
+Could not load BDD package buddy: Could not initialize class net.sf.javabdd.BuDDyFactory
+RESULT	shot_mismatch-001	
+Could not load BDD package buddy: Could not initialize class net.sf.javabdd.BuDDyFactory
+Could not load BDD package buddy: Could not initialize class net.sf.javabdd.BuDDyFactory
+Could not load BDD package buddy: Could not initialize class net.sf.javabdd.BuDDyFactory
+Could not load BDD package buddy: Could not initialize class net.sf.javabdd.BuDDyFactory
+Could not load BDD package buddy: Could not initialize class net.sf.javabdd.BuDDyFactory
+RESULT	shot_mismatch-002	
+Could not load BDD package buddy: Could not initialize class net.sf.javabdd.BuDDyFactory
+Could not load BDD package buddy: Could not initialize class net.sf.javabdd.BuDDyFactory
+Could not load BDD package buddy: Could not initialize class net.sf.javabdd.BuDDyFactory
+Could not load BDD package buddy: Could not initialize class net.sf.javabdd.BuDDyFactory
+Could not load BDD package buddy: Could not initialize class net.sf.javabdd.BuDDyFactory
+RESULT	shot_mismatch-003	
+Could not load BDD package buddy: Could not initialize class net.sf.javabdd.BuDDyFactory
+Could not load BDD package buddy: Could not initialize class net.sf.javabdd.BuDDyFactory
+Could not load BDD package buddy: Could not initialize class net.sf.javabdd.BuDDyFactory
+Could not load BDD package buddy: Could not initialize class net.sf.javabdd.BuDDyFactory
+Could not load BDD package buddy: Could not initialize class net.sf.javabdd.BuDDyFactory
+RESULT	shot_mismatch-004	
+Could not load BDD package buddy: Could not initialize class net.sf.javabdd.BuDDyFactory
+Could not load BDD package buddy: Could not initialize class net.sf.javabdd.BuDDyFactory
+Could not load BDD package buddy: Could not initialize class net.sf.javabdd.BuDDyFactory
+Could not load BDD package buddy: Could not initialize class net.sf.javabdd.BuDDyFactory
+Could not load BDD package buddy: Could not initialize class net.sf.javabdd.BuDDyFactory
+RESULT	shot_mismatch-005	
+Could not load BDD package buddy: Could not initialize class net.sf.javabdd.BuDDyFactory
+Could not load BDD package buddy: Could not initialize class net.sf.javabdd.BuDDyFactory
+Could not load BDD package buddy: Could not initialize class net.sf.javabdd.BuDDyFactory
+Could not load BDD package buddy: Could not initialize class net.sf.javabdd.BuDDyFactory
+Could not load BDD package buddy: Could not initialize class net.sf.javabdd.BuDDyFactory
+RESULT	shot_mismatch-006	
+Could not load BDD package buddy: Could not initialize class net.sf.javabdd.BuDDyFactory
+Could not load BDD package buddy: Could not initialize class net.sf.javabdd.BuDDyFactory
+Could not load BDD package buddy: Could not initialize class net.sf.javabdd.BuDDyFactory
+Could not load BDD package buddy: Could not initialize class net.sf.javabdd.BuDDyFactory
+Could not load BDD package buddy: Could not initialize class net.sf.javabdd.BuDDyFactory
+RESULT	shot_mismatch-007	
+Could not load BDD package buddy: Could not initialize class net.sf.javabdd.BuDDyFactory
+Could not load BDD package buddy: Could not initialize class net.sf.javabdd.BuDDyFactory
+Could not load BDD package buddy: Could not initialize class net.sf.javabdd.BuDDyFactory
+Could not load BDD package buddy: Could not initialize class net.sf.javabdd.BuDDyFactory
+Could not load BDD package buddy: Could not initialize class net.sf.javabdd.BuDDyFactory
+RESULT	shot_mismatch-008	
+Could not load BDD package buddy: Could not initialize class net.sf.javabdd.BuDDyFactory
+Could not load BDD package buddy: Could not initialize class net.sf.javabdd.BuDDyFactory
+Could not load BDD package buddy: Could not initialize class net.sf.javabdd.BuDDyFactory
+Could not load BDD package buddy: Could not initialize class net.sf.javabdd.BuDDyFactory
+Could not load BDD package buddy: Could not initialize class net.sf.javabdd.BuDDyFactory
+RESULT	shot_mismatch-009	
+Could not load BDD package buddy: Could not initialize class net.sf.javabdd.BuDDyFactory
+Could not load BDD package buddy: Could not initialize class net.sf.javabdd.BuDDyFactory
+Could not load BDD package buddy: Could not initialize class net.sf.javabdd.BuDDyFactory
+Could not load BDD package buddy: Could not initialize class net.sf.javabdd.BuDDyFactory
+Could not load BDD package buddy: Could not initialize class net.sf.javabdd.BuDDyFactory
+RESULT	missing_evidence-000	
+Could not load BDD package buddy: Could not initialize class net.sf.javabdd.BuDDyFactory
+Could not load BDD package buddy: Could not initialize class net.sf.javabdd.BuDDyFactory
+Could not load BDD package buddy: Could not initialize class net.sf.javabdd.BuDDyFactory
+Could not load BDD package buddy: Could not initialize class net.sf.javabdd.BuDDyFactory
+Could not load BDD package buddy: Could not initialize class net.sf.javabdd.BuDDyFactory
+RESULT	missing_evidence-001	
+Could not load BDD package buddy: Could not initialize class net.sf.javabdd.BuDDyFactory
+Could not load BDD package buddy: Could not initialize class net.sf.javabdd.BuDDyFactory
+Could not load BDD package buddy: Could not initialize class net.sf.javabdd.BuDDyFactory
+Could not load BDD package buddy: Could not initialize class net.sf.javabdd.BuDDyFactory
+Could not load BDD package buddy: Could not initialize class net.sf.javabdd.BuDDyFactory
+RESULT	missing_evidence-002	
+Could not load BDD package buddy: Could not initialize class net.sf.javabdd.BuDDyFactory
+Could not load BDD package buddy: Could not initialize class net.sf.javabdd.BuDDyFactory
+Could not load BDD package buddy: Could not initialize class net.sf.javabdd.BuDDyFactory
+Could not load BDD package buddy: Could not initialize class net.sf.javabdd.BuDDyFactory
+Could not load BDD package buddy: Could not initialize class net.sf.javabdd.BuDDyFactory
+RESULT	missing_evidence-003	
+Could not load BDD package buddy: Could not initialize class net.sf.javabdd.BuDDyFactory
+Could not load BDD package buddy: Could not initialize class net.sf.javabdd.BuDDyFactory
+Could not load BDD package buddy: Could not initialize class net.sf.javabdd.BuDDyFactory
+Could not load BDD package buddy: Could not initialize class net.sf.javabdd.BuDDyFactory
+Could not load BDD package buddy: Could not initialize class net.sf.javabdd.BuDDyFactory
+RESULT	missing_evidence-004	
+Could not load BDD package buddy: Could not initialize class net.sf.javabdd.BuDDyFactory
+Could not load BDD package buddy: Could not initialize class net.sf.javabdd.BuDDyFactory
+Could not load BDD package buddy: Could not initialize class net.sf.javabdd.BuDDyFactory
+Could not load BDD package buddy: Could not initialize class net.sf.javabdd.BuDDyFactory
+Could not load BDD package buddy: Could not initialize class net.sf.javabdd.BuDDyFactory
+RESULT	missing_evidence-005	
+Could not load BDD package buddy: Could not initialize class net.sf.javabdd.BuDDyFactory
+Could not load BDD package buddy: Could not initialize class net.sf.javabdd.BuDDyFactory
+Could not load BDD package buddy: Could not initialize class net.sf.javabdd.BuDDyFactory
+Could not load BDD package buddy: Could not initialize class net.sf.javabdd.BuDDyFactory
+Could not load BDD package buddy: Could not initialize class net.sf.javabdd.BuDDyFactory
+RESULT	missing_evidence-006	
+Could not load BDD package buddy: Could not initialize class net.sf.javabdd.BuDDyFactory
+Could not load BDD package buddy: Could not initialize class net.sf.javabdd.BuDDyFactory
+Could not load BDD package buddy: Could not initialize class net.sf.javabdd.BuDDyFactory
+Could not load BDD package buddy: Could not initialize class net.sf.javabdd.BuDDyFactory
+Could not load BDD package buddy: Could not initialize class net.sf.javabdd.BuDDyFactory
+RESULT	missing_evidence-007	
+Could not load BDD package buddy: Could not initialize class net.sf.javabdd.BuDDyFactory
+Could not load BDD package buddy: Could not initialize class net.sf.javabdd.BuDDyFactory
+Could not load BDD package buddy: Could not initialize class net.sf.javabdd.BuDDyFactory
+Could not load BDD package buddy: Could not initialize class net.sf.javabdd.BuDDyFactory
+Could not load BDD package buddy: Could not initialize class net.sf.javabdd.BuDDyFactory
+RESULT	missing_evidence-008	
+Could not load BDD package buddy: Could not initialize class net.sf.javabdd.BuDDyFactory
+Could not load BDD package buddy: Could not initialize class net.sf.javabdd.BuDDyFactory
+Could not load BDD package buddy: Could not initialize class net.sf.javabdd.BuDDyFactory
+Could not load BDD package buddy: Could not initialize class net.sf.javabdd.BuDDyFactory
+Could not load BDD package buddy: Could not initialize class net.sf.javabdd.BuDDyFactory
+RESULT	missing_evidence-009	

@@ -1,0 +1,279 @@
+RESET	compliant
+EVENT	2	activity	ok
+EVENT	2	begin	ok	1
+EVENT	3	activity	ok
+EVENT	3	groupZero	ok	1	0
+EVENT	4	activity	ok
+EVENT	4	groupOne	ok	1	0
+EVENT	5	activity	ok
+EVENT	5	groupTwo	ok	1	0
+EVENT	6	activity	ok
+EVENT	6	energy	ok	1	0
+EVENT	7	activity	ok
+EVENT	7	validated	ok	1	0
+EVENT	7	validZero	ok	1
+EVENT	8	activity	ok
+EVENT	8	groupZero	ok	1	1
+EVENT	9	activity	ok
+EVENT	9	groupOne	ok	1	1
+EVENT	10	activity	ok
+EVENT	10	groupTwo	ok	1	1
+EVENT	11	activity	ok
+EVENT	11	energy	ok	1	1
+EVENT	12	activity	ok
+EVENT	12	validated	ok	1	1
+EVENT	12	validOne	ok	1
+EVENT	13	activity	ok
+EVENT	13	groupZero	ok	1	2
+EVENT	14	activity	ok
+EVENT	14	groupOne	ok	1	2
+EVENT	15	activity	ok
+EVENT	15	groupTwo	ok	1	2
+EVENT	16	activity	ok
+EVENT	16	energy	ok	1	2
+EVENT	17	activity	ok
+EVENT	17	validated	ok	1	2
+EVENT	17	validTwo	ok	1
+EVENT	18	activity	ok
+EVENT	18	commit	ok	1
+EVENT	19	activity	ok
+EVENT	19	begin	ok	2
+EVENT	20	activity	ok
+EVENT	20	groupZero	ok	2	0
+EVENT	21	activity	ok
+EVENT	21	groupOne	ok	2	0
+EVENT	22	activity	ok
+EVENT	22	groupTwo	ok	2	0
+EVENT	23	activity	ok
+EVENT	23	energy	ok	2	0
+EVENT	24	activity	ok
+EVENT	24	validated	ok	2	0
+EVENT	24	validZero	ok	2
+EVENT	25	activity	ok
+EVENT	25	groupZero	ok	2	1
+EVENT	26	activity	ok
+EVENT	26	groupOne	ok	2	1
+EVENT	27	activity	ok
+EVENT	27	groupTwo	ok	2	1
+EVENT	28	activity	ok
+EVENT	28	energy	ok	2	1
+EVENT	29	activity	ok
+EVENT	29	validated	ok	2	1
+EVENT	29	validOne	ok	2
+EVENT	30	activity	ok
+EVENT	30	groupZero	ok	2	2
+EVENT	31	activity	ok
+EVENT	31	groupOne	ok	2	2
+EVENT	32	activity	ok
+EVENT	32	groupTwo	ok	2	2
+EVENT	33	activity	ok
+EVENT	33	energy	ok	2	2
+EVENT	34	activity	ok
+EVENT	34	validated	ok	2	2
+EVENT	34	validTwo	ok	2
+EVENT	35	activity	ok
+EVENT	35	commit	ok	2
+EVENT	36	activity	ok
+EVENT	36	stopped	ok
+END
+RESET	L2_commit_missing_validTwo
+EVENT	2	activity	v
+EVENT	2	begin	v	1
+EVENT	3	activity	v
+EVENT	3	groupZero	v	1	0
+EVENT	4	activity	v
+EVENT	4	groupOne	v	1	0
+EVENT	5	activity	v
+EVENT	5	groupTwo	v	1	0
+EVENT	6	activity	v
+EVENT	6	energy	v	1	0
+EVENT	7	activity	v
+EVENT	7	validated	v	1	0
+EVENT	7	validZero	v	1
+EVENT	8	activity	v
+EVENT	8	groupZero	v	1	1
+EVENT	9	activity	v
+EVENT	9	groupOne	v	1	1
+EVENT	10	activity	v
+EVENT	10	groupTwo	v	1	1
+EVENT	11	activity	v
+EVENT	11	energy	v	1	1
+EVENT	12	activity	v
+EVENT	12	validated	v	1	1
+EVENT	12	validOne	v	1
+EVENT	13	activity	v
+EVENT	13	groupZero	v	1	2
+EVENT	14	activity	v
+EVENT	14	groupOne	v	1	2
+EVENT	15	activity	v
+EVENT	15	groupTwo	v	1	2
+EVENT	16	activity	v
+EVENT	16	energy	v	1	2
+EVENT	17	activity	v
+EVENT	17	validated	v	1	2
+EVENT	18	activity	v
+EVENT	18	commit	v	1
+END
+RESET	L1_energy_missing_groupTwo_c0
+EVENT	2	activity	v
+EVENT	2	begin	v	1
+EVENT	3	activity	v
+EVENT	3	groupZero	v	1	0
+EVENT	4	activity	v
+EVENT	4	groupOne	v	1	0
+EVENT	5	activity	v
+EVENT	6	activity	v
+EVENT	6	energy	v	1	0
+EVENT	7	activity	v
+EVENT	7	validated	v	1	0
+EVENT	7	validZero	v	1
+EVENT	8	activity	v
+EVENT	8	groupZero	v	1	1
+EVENT	9	activity	v
+EVENT	9	groupOne	v	1	1
+EVENT	10	activity	v
+EVENT	10	groupTwo	v	1	1
+EVENT	11	activity	v
+EVENT	11	energy	v	1	1
+EVENT	12	activity	v
+EVENT	12	validated	v	1	1
+EVENT	12	validOne	v	1
+EVENT	13	activity	v
+EVENT	13	groupZero	v	1	2
+EVENT	14	activity	v
+EVENT	14	groupOne	v	1	2
+EVENT	15	activity	v
+EVENT	15	groupTwo	v	1	2
+EVENT	16	activity	v
+EVENT	16	energy	v	1	2
+EVENT	17	activity	v
+EVENT	17	validated	v	1	2
+EVENT	17	validTwo	v	1
+EVENT	18	activity	v
+EVENT	18	commit	v	1
+END
+RESET	L3_energy_without_begin
+EVENT	2	activity	v
+EVENT	3	activity	v
+EVENT	3	groupZero	v	1	0
+EVENT	4	activity	v
+EVENT	4	groupOne	v	1	0
+EVENT	5	activity	v
+EVENT	5	groupTwo	v	1	0
+EVENT	6	activity	v
+EVENT	6	energy	v	1	0
+EVENT	7	activity	v
+EVENT	7	validated	v	1	0
+EVENT	7	validZero	v	1
+EVENT	8	activity	v
+EVENT	8	groupZero	v	1	1
+EVENT	9	activity	v
+EVENT	9	groupOne	v	1	1
+EVENT	10	activity	v
+EVENT	10	groupTwo	v	1	1
+EVENT	11	activity	v
+EVENT	11	energy	v	1	1
+EVENT	12	activity	v
+EVENT	12	validated	v	1	1
+EVENT	12	validOne	v	1
+EVENT	13	activity	v
+EVENT	13	groupZero	v	1	2
+EVENT	14	activity	v
+EVENT	14	groupOne	v	1	2
+EVENT	15	activity	v
+EVENT	15	groupTwo	v	1	2
+EVENT	16	activity	v
+EVENT	16	energy	v	1	2
+EVENT	17	activity	v
+EVENT	17	validated	v	1	2
+EVENT	17	validTwo	v	1
+EVENT	18	activity	v
+EVENT	18	commit	v	1
+END
+RESET	L3_validated_without_energy_c1
+EVENT	2	activity	v
+EVENT	2	begin	v	1
+EVENT	3	activity	v
+EVENT	3	groupZero	v	1	0
+EVENT	4	activity	v
+EVENT	4	groupOne	v	1	0
+EVENT	5	activity	v
+EVENT	5	groupTwo	v	1	0
+EVENT	6	activity	v
+EVENT	6	energy	v	1	0
+EVENT	7	activity	v
+EVENT	7	validated	v	1	0
+EVENT	7	validZero	v	1
+EVENT	8	activity	v
+EVENT	8	groupZero	v	1	1
+EVENT	9	activity	v
+EVENT	9	groupOne	v	1	1
+EVENT	10	activity	v
+EVENT	10	groupTwo	v	1	1
+EVENT	11	activity	v
+EVENT	12	activity	v
+EVENT	12	validated	v	1	1
+EVENT	12	validOne	v	1
+EVENT	13	activity	v
+EVENT	13	groupZero	v	1	2
+EVENT	14	activity	v
+EVENT	14	groupOne	v	1	2
+EVENT	15	activity	v
+EVENT	15	groupTwo	v	1	2
+EVENT	16	activity	v
+EVENT	16	energy	v	1	2
+EVENT	17	activity	v
+EVENT	17	validated	v	1	2
+EVENT	17	validTwo	v	1
+EVENT	18	activity	v
+EVENT	18	commit	v	1
+END
+RESET	L4_activity_after_stop
+EVENT	2	activity	v
+EVENT	2	begin	v	1
+EVENT	3	activity	v
+EVENT	4	activity	v
+EVENT	4	stopped	v
+EVENT	5	activity	v
+END
+RESET	L1_cross_update_identity
+EVENT	2	activity	v
+EVENT	2	begin	v	2
+EVENT	2	activity	v
+EVENT	2	begin	v	1
+EVENT	3	activity	v
+EVENT	3	groupZero	v	1	0
+EVENT	4	activity	v
+EVENT	4	groupOne	v	1	0
+EVENT	5	activity	v
+EVENT	5	groupTwo	v	1	0
+EVENT	6	activity	v
+EVENT	6	energy	v	2	0
+EVENT	7	activity	v
+EVENT	7	validated	v	2	0
+EVENT	7	validZero	v	1
+EVENT	8	activity	v
+EVENT	8	groupZero	v	1	1
+EVENT	9	activity	v
+EVENT	9	groupOne	v	1	1
+EVENT	10	activity	v
+EVENT	10	groupTwo	v	1	1
+EVENT	11	activity	v
+EVENT	11	energy	v	2	1
+EVENT	12	activity	v
+EVENT	12	validated	v	2	1
+EVENT	12	validOne	v	1
+EVENT	13	activity	v
+EVENT	13	groupZero	v	1	2
+EVENT	14	activity	v
+EVENT	14	groupOne	v	1	2
+EVENT	15	activity	v
+EVENT	15	groupTwo	v	1	2
+EVENT	16	activity	v
+EVENT	16	energy	v	2	2
+EVENT	17	activity	v
+EVENT	17	validated	v	2	2
+EVENT	17	validTwo	v	1
+EVENT	18	activity	v
+EVENT	18	commit	v	1
+END

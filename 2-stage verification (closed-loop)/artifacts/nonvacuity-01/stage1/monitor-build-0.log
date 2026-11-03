@@ -1,0 +1,16 @@
+prop L1_groupsBeforeEnergy : Forall r . Forall u . Forall c . (energy(r,u,c) -> (P groupZero(r,u,c) & P groupOne(r,u,c) & P groupTwo(r,u,c))) 
+prop L2_validationsBeforeCommit : Forall r . Forall u . (commit(r,u) -> (P validZero(r,u) & P validOne(r,u) & P validTwo(r,u))) 
+prop L3_energyAfterBegin : Forall r . Forall u . Forall c . (energy(r,u,c) -> P begin(r,u)) 
+prop L3_validationAfterEnergy : Forall r . Forall u . Forall c . (validated(r,u,c) -> P energy(r,u,c)) 
+prop L4_noActivityAfterStop : Forall r . (activity(r) -> !(P stopped(r))) 
+0 time bits allocated!
+0 time bits allocated!
+0 time bits allocated!
+0 time bits allocated!
+0 time bits allocated!
+
+--- Elapsed monitor synthesis time: 0.099s
+
+
+--- Elapsed total time: 0.1s
+

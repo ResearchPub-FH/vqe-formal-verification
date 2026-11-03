@@ -1,0 +1,161 @@
+\section{Evaluation}
+\label{sec:evaluation}
+
+The evaluation answers three questions. First, does the refined VQE control
+model satisfy the logical property suite? Second, do bug-seeded variants produce
+counterexamples for representative protocol defects? Third, how does checking
+cost change as the finite control bounds \maxiters{} and \ntermss{} increase?
+All experiments were run with NuXmv 2.1.0 on the refined model
+\texttt{vqe\_refined\_abort.smv}. The canonical configuration uses
+\maxiters{} $=5$ and \ntermss{} $=3$.
+
+\subsection{Canonical Model Checking Result}
+
+Table~\ref{tab:canonical-results} summarizes the canonical verification run.
+The refined model contains 41 checked properties: 10 CTL properties, 22 LTL
+properties, and 9 invariant properties. NuXmv reports all 41 properties as
+true. These properties cover reachability of successful and aborting terminal
+states, control-flow conformance, data readiness, stale-data rejection,
+terminal-state absorbency, and bounded termination.
+
+\begin{table}[!t]
+\centering
+\caption{Canonical NuXmv verification result for the refined VQE control model.}
+\label{tab:canonical-results}
+\renewcommand{\arraystretch}{1.08}
+\scriptsize
+\begin{tabularx}{\columnwidth}{p{0.30\columnwidth}p{0.20\columnwidth}p{0.16\columnwidth}Y}
+\toprule
+\textbf{Property group} & \textbf{Logic} & \textbf{Count} & \textbf{NuXmv result} \\
+\midrule
+Reachability and termination & CTL & 10 & 10 true, 0 false \\
+Control-flow and freshness & LTL & 22 & 22 true, 0 false \\
+State consistency invariants & Invariant & 9 & 9 true, 0 false \\
+\midrule
+\textbf{Total} & CTL/LTL/INV & \textbf{41} & \textbf{41 true, 0 false} \\
+\bottomrule
+\end{tabularx}
+\end{table}
+
+The most important result is the separation between successful termination and
+error termination. In the refined model, \done{} is reachable only through
+successful convergence, whereas \abort{} is reachable for binding failure,
+QPU or measurement failure, energy-computation failure, optimizer failure, and
+non-convergence at the iteration bound. Thus the model does not silently treat
+bounded non-convergence or backend failure as a successful VQE result.
+
+\subsection{Counterexample-Based Mutation Tests}
+
+To test whether the property suite detects meaningful logical faults, we checked
+three intentionally faulty NuXmv variants. Each mutant changes one part of the
+transition relation while keeping the same abstraction style. The expected
+outcome is that NuXmv rejects the mutant and returns a counterexample trace.
+Table~\ref{tab:mutation-results} summarizes the observed failures.
+
+\begin{table*}[!t]
+\centering
+\caption{Mutation-test counterexamples produced by NuXmv.}
+\label{tab:mutation-results}
+\renewcommand{\arraystretch}{1.08}
+\scriptsize
+\begin{tabularx}{\textwidth}{p{0.07\textwidth}p{0.25\textwidth}p{0.31\textwidth}Y}
+\toprule
+\textbf{ID} & \textbf{Seeded logical fault} & \textbf{Violated representative property} & \textbf{Counterexample interpretation} \\
+\midrule
+M1 & Ignore a QPU or measurement error in \execmeasure{}. &
+$\mathbf{G}((\texttt{state}=\execmeasure{} \wedge \texttt{qpu\_error}) \rightarrow \mathbf{X}(\texttt{state}=\abort{}))$ &
+The trace reaches \execmeasure{} with \texttt{qpu\_error} true, but the model continues measuring, enters \computeenergy{}, and reaches \done{} instead of aborting. \\
+\midrule
+M2 & Keep stale \energyready{} true when returning to the next \bind{} state. &
+$\mathbf{G}((\texttt{state}=\bind{} \wedge \texttt{iter}>0) \rightarrow \neg\energyready{})$ &
+After \computeenergy{} and \optimizerstep{}, the next iteration reaches \bind{} with \texttt{iter}=1 while \energyready{} is still true, meaning the previous iteration's energy is incorrectly reusable. \\
+\midrule
+M3 & Enter \computeenergy{} before all Pauli terms have been measured. &
+$\mathbf{G}(\texttt{state}=\computeenergy{} \rightarrow \termss{}=\ntermss{})$ &
+With \ntermss{} $=3$, the trace reaches \computeenergy{} when \termss{} $=2$, demonstrating premature aggregation from an incomplete Hamiltonian-term measurement set. \\
+\bottomrule
+\end{tabularx}
+\end{table*}
+
+These counterexamples are useful because they show diagnostic value rather than
+only positive verification. For M1, the trace exposes missing error handling at
+the quantum-backend boundary. For M2, the trace exposes stale classical data
+crossing an iteration boundary. For M3, the trace exposes premature aggregation
+before all required Hamiltonian terms have been measured. Together, the three
+mutants exercise the main classes of protocol errors that the model is intended
+to rule out: missing abort behavior, stale-data reuse, and invalid phase
+ordering.
+
+Table~\ref{tab:ce-trace} gives a concrete excerpt from the M2 NuXmv trace. NuXmv
+prints only variables whose values change at each step; the table expands the
+unchanged values for readability. The violated formula is
+$\mathbf{G}((\texttt{state}=\bind{} \wedge \texttt{iter}>0) \rightarrow
+\neg\energyready{})$. The trace shows that after the first energy estimate is
+computed, the mutant returns to \bind{} for iteration 1 while
+\energyready{} is still true. This represents stale energy reuse across
+iterations.
+
+\begin{table}[!t]
+\centering
+\caption{Concrete NuXmv counterexample excerpt for stale energy reuse across iterations.}
+\label{tab:ce-trace}
+\renewcommand{\arraystretch}{1.08}
+\scriptsize
+\begin{tabularx}{\columnwidth}{p{0.13\columnwidth}p{0.27\columnwidth}p{0.13\columnwidth}p{0.18\columnwidth}Y}
+\toprule
+\textbf{Step} & \textbf{\texttt{state}} & \textbf{\texttt{iter}} & \textbf{\energyready{}} & \textbf{Interpretation} \\
+\midrule
+1.1 & \texttt{S\_INIT} & 0 & \false{} & Initial state. \\
+1.2 & \bind{} & 0 & \false{} & First iteration starts with no energy estimate. \\
+1.3 & \computeenergy{} & 0 & \false{} & Energy computation phase is reached. \\
+1.4 & \checkstop{} & 0 & \true{} & Current iteration's energy is now valid. \\
+1.5 & \optimizerstep{} & 0 & \true{} & Optimizer consumes the current energy. \\
+1.6 & \bind{} & 1 & \true{} & Violation: next iteration starts while stale energy is still marked valid. \\
+\bottomrule
+\end{tabularx}
+\end{table}
+
+\subsection{Bounded Scaling Check}
+
+Because this abstraction tracks the VQE control protocol rather than quantum
+amplitudes, verification cost is primarily affected by the control bounds
+\maxiters{} and \ntermss{}, not by Hilbert-space dimension. We therefore ran a
+small bounded sweep over these two parameters. Table~\ref{tab:scaling-results}
+reports local wall-clock time measured with \texttt{/usr/bin/time -p}. The times
+are intended only as evidence that the finite control abstraction remains small
+for the workshop-scale bounds.
+
+\begin{table}[!t]
+\centering
+\caption{Bounded scaling results for the refined control abstraction.}
+\label{tab:scaling-results}
+\renewcommand{\arraystretch}{1.08}
+\scriptsize
+\begin{tabularx}{\columnwidth}{p{0.18\columnwidth}p{0.18\columnwidth}p{0.24\columnwidth}Y}
+\toprule
+\textbf{\maxiters{}} & \textbf{\ntermss{}} & \textbf{Properties true} & \textbf{Wall time} \\
+\midrule
+3 & 2 & 41/41 & 0.04 s \\
+5 & 3 & 41/41 & 0.02 s \\
+10 & 5 & 41/41 & 0.03 s \\
+20 & 10 & 41/41 & 0.07 s \\
+\bottomrule
+\end{tabularx}
+\end{table}
+
+The sweep supports the intended scope of the model. It is not a quantum-state
+scaling experiment and should not be interpreted as evidence about large-qubit
+simulation. Instead, it shows that the protocol-level model checking remains
+tractable as the bounded number of optimizer iterations and Hamiltonian-term
+measurement groups increases within the finite abstraction.
+
+\subsection{Evaluation Summary}
+
+The evaluation supports three claims. First, the canonical refined VQE control
+model satisfies the complete 41-property suite. Second, the property suite
+rejects representative bug-seeded variants and returns short, interpretable
+counterexample traces. Third, the bounded control abstraction is inexpensive to
+check for the parameter settings considered here. These results establish the
+intended workshop contribution: a machine-checkable logical baseline for the VQE
+execution protocol, including explicit distinction between successful
+termination and safety-preserving abort behavior.

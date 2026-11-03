@@ -1,0 +1,38 @@
+Storm 1.13.0
+
+Date: Mon Oct  5 19:16:29 2026
+Command line arguments: --explicit '/Users/rome/Desktop/Implementation of Formal Verification on VQE/2-stage verification (closed-loop)/artifacts/primary-v2/stage1/gaussian.tra' '/Users/rome/Desktop/Implementation of Formal Verification on VQE/2-stage verification (closed-loop)/artifacts/primary-v2/stage1/gaussian.lab' --prop '/Users/rome/Desktop/Implementation of Formal Verification on VQE/2-stage verification (closed-loop)/artifacts/primary-v2/stage1/gaussian.props' --precision 1e-12
+Current working directory: /Users/rome/Desktop/Implementation of Formal Verification on VQE/2-stage verification (closed-loop)
+
+Time for model construction: 0.064s.
+
+-------------------------------------------------------------- 
+Model type: 	DTMC (sparse)
+States: 	262144
+Transitions: 	755176
+Reward Models:  none
+State Labels: 	2 labels
+   * init -> 1 item(s)
+   * success -> 32 item(s)
+Choice Labels: 	none
+-------------------------------------------------------------- 
+
+Model checking property "P1_10": P=? [true U<=10 "success"] ...
+Result (for initial states): 0
+Time for model checking: 0.011s.
+
+Model checking property "P1_20": P=? [true U<=20 "success"] ...
+Result (for initial states): 0
+Time for model checking: 0.040s.
+
+Model checking property "P1_30": P=? [true U<=30 "success"] ...
+Result (for initial states): 0.3839401891440446
+Time for model checking: 0.074s.
+
+Model checking property "P1_40": P=? [true U<=40 "success"] ...
+Result (for initial states): 0.7562529633830386
+Time for model checking: 0.115s.
+
+Model checking property "P1_50": P=? [true U<=50 "success"] ...
+Result (for initial states): 0.92802722250063
+Time for model checking: 0.156s.

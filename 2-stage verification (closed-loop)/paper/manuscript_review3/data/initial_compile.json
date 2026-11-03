@@ -1,0 +1,8 @@
+{
+  "status": "PASS",
+  "stage": "Before editorial edits; only relative input paths adapted",
+  "baseline": "../manuscript_review2.tex",
+  "main": "manuscript_review3.tex",
+  "pdf_sha256": "7d28e597a4472356a0eb0227cf1da1d527e9aa0c099bb6b8d9d5e1656ec44595",
+  "log_has_overfull": false
+}

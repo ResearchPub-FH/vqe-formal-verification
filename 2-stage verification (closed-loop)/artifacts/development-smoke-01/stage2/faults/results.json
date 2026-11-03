@@ -1,0 +1,685 @@
+{
+  "completed_at": "2026-10-05T23:07:34.885632+00:00",
+  "configuration_digest": "0988fc089b0bbec6c0095dd1b4a7d94d35e54c6962f005c1f1d64bde8cfa0c15",
+  "pre_execution_digest": "d50141687a846be860663f1e17a2806d94b7b23ff5fe31d5cfadd436fdf696f4",
+  "results": [
+    {
+      "contracts": {
+        "L1": {
+          "assumption_mismatches": [],
+          "checks": 0,
+          "inconclusive": [],
+          "runtime_verdict": "INCONCLUSIVE",
+          "violations": []
+        },
+        "L2": {
+          "assumption_mismatches": [],
+          "checks": 3,
+          "inconclusive": [],
+          "runtime_verdict": "DISAGREEMENT",
+          "violations": [
+            {
+              "message": "optimizer committed before all three numeric validations",
+              "seq": 3
+            }
+          ]
+        },
+        "L3": {
+          "assumption_mismatches": [],
+          "checks": 18,
+          "inconclusive": [],
+          "runtime_verdict": "AGREEMENT",
+          "violations": []
+        },
+        "L4": {
+          "assumption_mismatches": [],
+          "checks": 6,
+          "inconclusive": [],
+          "runtime_verdict": "AGREEMENT",
+          "violations": []
+        },
+        "N1": {
+          "assumption_mismatches": [],
+          "checks": 0,
+          "inconclusive": [],
+          "runtime_verdict": "INCONCLUSIVE",
+          "violations": []
+        },
+        "N2": {
+          "assumption_mismatches": [],
+          "checks": 0,
+          "inconclusive": [],
+          "runtime_verdict": "INCONCLUSIVE",
+          "violations": []
+        },
+        "N3": {
+          "assumption_mismatches": [],
+          "checks": 1,
+          "inconclusive": [],
+          "runtime_verdict": "AGREEMENT",
+          "violations": []
+        },
+        "N4": {
+          "assumption_mismatches": [],
+          "checks": 2,
+          "inconclusive": [],
+          "runtime_verdict": "AGREEMENT",
+          "violations": []
+        }
+      },
+      "dejavu": {
+        "passed": false,
+        "violations": {
+          "L2_validationsBeforeCommit": 1
+        }
+      },
+      "detected_as_expected": true,
+      "events": 4,
+      "expected_contract": "L2",
+      "expected_verdict": "DISAGREEMENT",
+      "fault": "premature_update",
+      "fault_scope": "controlled execution",
+      "injected_fault": "premature_update",
+      "max_energy_error": 0.0,
+      "max_expectation_error": 0.0,
+      "online_replay_agreement": true,
+      "physical_shots": 0,
+      "run_id": "premature_update-000",
+      "seed_words": [
+        20260721,
+        1,
+        0
+      ],
+      "success_step": null,
+      "terminal_reason": "contract_abort",
+      "trace": "stage2/faults/premature_update-000.jsonl.gz",
+      "trace_sha256": "b458b6fbf3753b2fa38e35b5aa9ff1719ee30e1e65db671de2b19489a5b0f04e",
+      "updates": 0
+    },
+    {
+      "contracts": {
+        "L1": {
+          "assumption_mismatches": [],
+          "checks": 8,
+          "inconclusive": [],
+          "runtime_verdict": "AGREEMENT",
+          "violations": []
+        },
+        "L2": {
+          "assumption_mismatches": [],
+          "checks": 1,
+          "inconclusive": [],
+          "runtime_verdict": "AGREEMENT",
+          "violations": []
+        },
+        "L3": {
+          "assumption_mismatches": [],
+          "checks": 38,
+          "inconclusive": [],
+          "runtime_verdict": "AGREEMENT",
+          "violations": []
+        },
+        "L4": {
+          "assumption_mismatches": [],
+          "checks": 9,
+          "inconclusive": [],
+          "runtime_verdict": "AGREEMENT",
+          "violations": []
+        },
+        "N1": {
+          "assumption_mismatches": [],
+          "checks": 11,
+          "inconclusive": [],
+          "runtime_verdict": "AGREEMENT",
+          "violations": []
+        },
+        "N2": {
+          "assumption_mismatches": [],
+          "checks": 8,
+          "inconclusive": [],
+          "runtime_verdict": "DISAGREEMENT",
+          "violations": [
+            {
+              "message": "candidate energy differs from exact rational reconstruction",
+              "seq": 6
+            }
+          ]
+        },
+        "N3": {
+          "assumption_mismatches": [],
+          "checks": 7,
+          "inconclusive": [],
+          "runtime_verdict": "AGREEMENT",
+          "violations": []
+        },
+        "N4": {
+          "assumption_mismatches": [],
+          "checks": 6,
+          "inconclusive": [],
+          "runtime_verdict": "AGREEMENT",
+          "violations": []
+        }
+      },
+      "dejavu": {
+        "passed": true,
+        "violations": {}
+      },
+      "detected_as_expected": true,
+      "events": 7,
+      "expected_contract": "N2",
+      "expected_verdict": "DISAGREEMENT",
+      "fault": "corrupt_energy",
+      "fault_scope": "controlled execution",
+      "injected_fault": "corrupt_energy",
+      "max_energy_error": 0.12500000000000006,
+      "max_expectation_error": 0.0,
+      "online_replay_agreement": true,
+      "physical_shots": 3072,
+      "run_id": "corrupt_energy-000",
+      "seed_words": [
+        20260721,
+        2,
+        0
+      ],
+      "success_step": null,
+      "terminal_reason": "contract_abort",
+      "trace": "stage2/faults/corrupt_energy-000.jsonl.gz",
+      "trace_sha256": "8a0776a29d9aea5d859c59c733ffb875da110bdd4b7fd715543eb9b995ddfd52",
+      "updates": 0
+    },
+    {
+      "contracts": {
+        "L1": {
+          "assumption_mismatches": [],
+          "checks": 8,
+          "inconclusive": [],
+          "runtime_verdict": "AGREEMENT",
+          "violations": []
+        },
+        "L2": {
+          "assumption_mismatches": [],
+          "checks": 1,
+          "inconclusive": [],
+          "runtime_verdict": "AGREEMENT",
+          "violations": []
+        },
+        "L3": {
+          "assumption_mismatches": [],
+          "checks": 38,
+          "inconclusive": [],
+          "runtime_verdict": "AGREEMENT",
+          "violations": []
+        },
+        "L4": {
+          "assumption_mismatches": [],
+          "checks": 9,
+          "inconclusive": [],
+          "runtime_verdict": "AGREEMENT",
+          "violations": []
+        },
+        "N1": {
+          "assumption_mismatches": [],
+          "checks": 11,
+          "inconclusive": [],
+          "runtime_verdict": "AGREEMENT",
+          "violations": []
+        },
+        "N2": {
+          "assumption_mismatches": [],
+          "checks": 8,
+          "inconclusive": [],
+          "runtime_verdict": "DISAGREEMENT",
+          "violations": [
+            {
+              "message": "coefficient-to-term association differs from the frozen Hamiltonian",
+              "seq": 6
+            },
+            {
+              "message": "YZ contribution is incorrect",
+              "seq": 6
+            },
+            {
+              "message": "XX contribution is incorrect",
+              "seq": 6
+            },
+            {
+              "message": "candidate energy differs from exact rational reconstruction",
+              "seq": 6
+            },
+            {
+              "message": "candidate selection score is incorrect",
+              "seq": 6
+            }
+          ]
+        },
+        "N3": {
+          "assumption_mismatches": [],
+          "checks": 7,
+          "inconclusive": [],
+          "runtime_verdict": "AGREEMENT",
+          "violations": []
+        },
+        "N4": {
+          "assumption_mismatches": [],
+          "checks": 6,
+          "inconclusive": [],
+          "runtime_verdict": "AGREEMENT",
+          "violations": []
+        }
+      },
+      "dejavu": {
+        "passed": true,
+        "violations": {}
+      },
+      "detected_as_expected": true,
+      "events": 7,
+      "expected_contract": "N2",
+      "expected_verdict": "DISAGREEMENT",
+      "fault": "coefficient_swap",
+      "fault_scope": "controlled execution",
+      "injected_fault": "coefficient_swap",
+      "max_energy_error": 0.0016953124999999902,
+      "max_expectation_error": 0.0,
+      "online_replay_agreement": true,
+      "physical_shots": 3072,
+      "run_id": "coefficient_swap-000",
+      "seed_words": [
+        20260721,
+        3,
+        0
+      ],
+      "success_step": null,
+      "terminal_reason": "contract_abort",
+      "trace": "stage2/faults/coefficient_swap-000.jsonl.gz",
+      "trace_sha256": "77ba87663e157a5776fab6be727d9e17a0e87a75ad276b43bccbba2a98b1911b",
+      "updates": 0
+    },
+    {
+      "contracts": {
+        "L1": {
+          "assumption_mismatches": [],
+          "checks": 2,
+          "inconclusive": [],
+          "runtime_verdict": "AGREEMENT",
+          "violations": []
+        },
+        "L2": {
+          "assumption_mismatches": [],
+          "checks": 1,
+          "inconclusive": [],
+          "runtime_verdict": "AGREEMENT",
+          "violations": []
+        },
+        "L3": {
+          "assumption_mismatches": [],
+          "checks": 20,
+          "inconclusive": [],
+          "runtime_verdict": "AGREEMENT",
+          "violations": []
+        },
+        "L4": {
+          "assumption_mismatches": [],
+          "checks": 6,
+          "inconclusive": [],
+          "runtime_verdict": "AGREEMENT",
+          "violations": []
+        },
+        "N1": {
+          "assumption_mismatches": [],
+          "checks": 2,
+          "inconclusive": [],
+          "runtime_verdict": "AGREEMENT",
+          "violations": []
+        },
+        "N2": {
+          "assumption_mismatches": [],
+          "checks": 0,
+          "inconclusive": [],
+          "runtime_verdict": "INCONCLUSIVE",
+          "violations": []
+        },
+        "N3": {
+          "assumption_mismatches": [
+            {
+              "message": "physical shots differ from the frozen allocation",
+              "seq": 3
+            }
+          ],
+          "checks": 3,
+          "inconclusive": [],
+          "runtime_verdict": "ASSUMPTION_MISMATCH",
+          "violations": []
+        },
+        "N4": {
+          "assumption_mismatches": [],
+          "checks": 3,
+          "inconclusive": [],
+          "runtime_verdict": "AGREEMENT",
+          "violations": []
+        }
+      },
+      "dejavu": {
+        "passed": true,
+        "violations": {}
+      },
+      "detected_as_expected": true,
+      "events": 4,
+      "expected_contract": "N3",
+      "expected_verdict": "ASSUMPTION_MISMATCH",
+      "fault": "shot_mismatch",
+      "fault_scope": "controlled execution",
+      "injected_fault": "shot_mismatch",
+      "max_energy_error": 0.0,
+      "max_expectation_error": 0.0,
+      "online_replay_agreement": true,
+      "physical_shots": 512,
+      "run_id": "shot_mismatch-000",
+      "seed_words": [
+        20260721,
+        4,
+        0
+      ],
+      "success_step": null,
+      "terminal_reason": "contract_abort",
+      "trace": "stage2/faults/shot_mismatch-000.jsonl.gz",
+      "trace_sha256": "3620937927976bcd6887fe7a04a36e4f6f20fd6c79af525139e2f839336bfab2",
+      "updates": 0
+    },
+    {
+      "contracts": {
+        "L1": {
+          "assumption_mismatches": [],
+          "checks": 73,
+          "inconclusive": [],
+          "runtime_verdict": "DISAGREEMENT",
+          "violations": [
+            {
+              "message": "required raw measurement evidence is missing",
+              "seq": 3
+            },
+            {
+              "message": "aggregation lacks complete raw measurements",
+              "seq": 6
+            }
+          ]
+        },
+        "L2": {
+          "assumption_mismatches": [],
+          "checks": 18,
+          "inconclusive": [],
+          "runtime_verdict": "DISAGREEMENT",
+          "violations": [
+            {
+              "message": "numeric validity lacks a unique successfully checked evaluation",
+              "seq": 7
+            },
+            {
+              "message": "optimizer committed before all three numeric validations",
+              "seq": 18
+            },
+            {
+              "message": "previous update was not committed",
+              "seq": 19
+            }
+          ]
+        },
+        "L3": {
+          "assumption_mismatches": [],
+          "checks": 308,
+          "inconclusive": [],
+          "runtime_verdict": "DISAGREEMENT",
+          "violations": [
+            {
+              "message": "incorrect update number",
+              "seq": 19
+            },
+            {
+              "message": "stale update parameter state",
+              "seq": 19
+            },
+            {
+              "message": "measurement/evaluation belongs to wrong parameters",
+              "seq": 20
+            },
+            {
+              "message": "measurement/evaluation belongs to wrong parameters",
+              "seq": 21
+            },
+            {
+              "message": "measurement/evaluation belongs to wrong parameters",
+              "seq": 22
+            },
+            {
+              "message": "measurement/evaluation belongs to wrong parameters",
+              "seq": 23
+            },
+            {
+              "message": "measurement/evaluation belongs to wrong parameters",
+              "seq": 24
+            },
+            {
+              "message": "measurement/evaluation belongs to wrong parameters",
+              "seq": 25
+            },
+            {
+              "message": "measurement/evaluation belongs to wrong parameters",
+              "seq": 26
+            },
+            {
+              "message": "measurement/evaluation belongs to wrong parameters",
+              "seq": 27
+            },
+            {
+              "message": "measurement/evaluation belongs to wrong parameters",
+              "seq": 28
+            },
+            {
+              "message": "measurement/evaluation belongs to wrong parameters",
+              "seq": 29
+            },
+            {
+              "message": "measurement/evaluation belongs to wrong parameters",
+              "seq": 30
+            },
+            {
+              "message": "measurement/evaluation belongs to wrong parameters",
+              "seq": 31
+            },
+            {
+              "message": "measurement/evaluation belongs to wrong parameters",
+              "seq": 32
+            },
+            {
+              "message": "measurement/evaluation belongs to wrong parameters",
+              "seq": 33
+            },
+            {
+              "message": "measurement/evaluation belongs to wrong parameters",
+              "seq": 34
+            },
+            {
+              "message": "incorrect update number",
+              "seq": 36
+            },
+            {
+              "message": "stale update parameter state",
+              "seq": 36
+            },
+            {
+              "message": "measurement/evaluation belongs to wrong parameters",
+              "seq": 37
+            },
+            {
+              "message": "measurement/evaluation belongs to wrong parameters",
+              "seq": 38
+            },
+            {
+              "message": "measurement/evaluation belongs to wrong parameters",
+              "seq": 39
+            },
+            {
+              "message": "measurement/evaluation belongs to wrong parameters",
+              "seq": 40
+            },
+            {
+              "message": "measurement/evaluation belongs to wrong parameters",
+              "seq": 41
+            },
+            {
+              "message": "measurement/evaluation belongs to wrong parameters",
+              "seq": 42
+            },
+            {
+              "message": "measurement/evaluation belongs to wrong parameters",
+              "seq": 43
+            },
+            {
+              "message": "measurement/evaluation belongs to wrong parameters",
+              "seq": 44
+            },
+            {
+              "message": "measurement/evaluation belongs to wrong parameters",
+              "seq": 45
+            },
+            {
+              "message": "measurement/evaluation belongs to wrong parameters",
+              "seq": 46
+            },
+            {
+              "message": "measurement/evaluation belongs to wrong parameters",
+              "seq": 47
+            },
+            {
+              "message": "measurement/evaluation belongs to wrong parameters",
+              "seq": 48
+            },
+            {
+              "message": "measurement/evaluation belongs to wrong parameters",
+              "seq": 49
+            },
+            {
+              "message": "measurement/evaluation belongs to wrong parameters",
+              "seq": 50
+            },
+            {
+              "message": "measurement/evaluation belongs to wrong parameters",
+              "seq": 51
+            },
+            {
+              "message": "terminal state disagrees with observed commits",
+              "seq": 53
+            }
+          ]
+        },
+        "L4": {
+          "assumption_mismatches": [],
+          "checks": 57,
+          "inconclusive": [],
+          "runtime_verdict": "DISAGREEMENT",
+          "violations": [
+            {
+              "message": "incorrect budget termination",
+              "seq": 53
+            }
+          ]
+        },
+        "N1": {
+          "assumption_mismatches": [],
+          "checks": 92,
+          "inconclusive": [
+            {
+              "message": "raw counts unavailable",
+              "seq": 3
+            }
+          ],
+          "runtime_verdict": "INCONCLUSIVE",
+          "violations": []
+        },
+        "N2": {
+          "assumption_mismatches": [],
+          "checks": 66,
+          "inconclusive": [
+            {
+              "message": "cannot reconstruct energy without all group counts",
+              "seq": 6
+            }
+          ],
+          "runtime_verdict": "INCONCLUSIVE",
+          "violations": []
+        },
+        "N3": {
+          "assumption_mismatches": [],
+          "checks": 55,
+          "inconclusive": [],
+          "runtime_verdict": "DISAGREEMENT",
+          "violations": [
+            {
+              "message": "cumulative physical shot count is incorrect",
+              "seq": 35
+            },
+            {
+              "message": "cumulative physical shot count is incorrect",
+              "seq": 52
+            },
+            {
+              "message": "terminal shot total differs from raw evidence",
+              "seq": 53
+            }
+          ]
+        },
+        "N4": {
+          "assumption_mismatches": [],
+          "checks": 53,
+          "inconclusive": [],
+          "runtime_verdict": "DISAGREEMENT",
+          "violations": [
+            {
+              "message": "wrong coordinate/candidate generation",
+              "seq": 19
+            },
+            {
+              "message": "optimizer successor is not the selected grid state",
+              "seq": 35
+            },
+            {
+              "message": "wrong coordinate/candidate generation",
+              "seq": 36
+            },
+            {
+              "message": "optimizer successor is not the selected grid state",
+              "seq": 52
+            }
+          ]
+        }
+      },
+      "control_trace": "stage2/faults/missing_evidence-000-complete.jsonl.gz",
+      "control_trace_sha256": "e3e198ff4f76a91ca2830b36c1b814a5c0bdb1acc3c626d97ebf1e7f042381fd",
+      "dejavu": {
+        "passed": true,
+        "violations": {}
+      },
+      "detected_as_expected": true,
+      "events": 53,
+      "expected_contract": "N1",
+      "expected_verdict": "INCONCLUSIVE",
+      "fault": "missing_evidence",
+      "fault_scope": "saved-trace mutation; no execution mutation",
+      "max_energy_error": 0.0,
+      "max_expectation_error": 0.0,
+      "physical_shots": 26624,
+      "run_id": "missing_evidence-000",
+      "success_step": null,
+      "terminal_reason": "budget",
+      "trace": "stage2/faults/missing_evidence-000.jsonl.gz",
+      "trace_sha256": "809fc15941cef8b4632d65608153b1a284b2df6d1ce41a30057e2a3277a98855",
+      "updates": 2
+    }
+  ],
+  "temporal_monitor": {
+    "input_sha256": "90df39ce96f281a24dc9d3619e51abcca568865d22ae1fdb0e0c7b4bded2f314",
+    "log_sha256": "390ffa959769013e9f0b065311cb33a37f65d6b8d6b7fad5471679fd1ff65b2f",
+    "passed_runs": 4,
+    "tool": "DejaVu",
+    "total_runs": 5
+  }
+}

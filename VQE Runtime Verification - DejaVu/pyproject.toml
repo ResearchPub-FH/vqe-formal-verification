@@ -1,0 +1,28 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "vqe-dejavu-runtime"
+version = "0.1.0"
+description = "Three-level DejaVu runtime verification for hybrid VQE loops"
+readme = "README.md"
+requires-python = ">=3.11"
+dependencies = []
+
+[project.optional-dependencies]
+qiskit = [
+  "qiskit>=2.3,<3",
+  "qiskit-ibm-runtime>=0.48,<1",
+  "scipy>=1.11,<2",
+]
+
+[project.scripts]
+vqe-dejavu = "vqe_runtime.cli:main"
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.setuptools.package-data]
+vqe_runtime = ["vendor/dejavu/*"]
+

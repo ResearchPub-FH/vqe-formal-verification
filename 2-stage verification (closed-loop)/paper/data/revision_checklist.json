@@ -1,0 +1,171 @@
+{
+  "source": "/Users/rome/Desktop/Review.docx",
+  "substantive_item_count": 27,
+  "blank_contents_17": "No comment text",
+  "embedded_word_comments": 0,
+  "tracked_changes": 0,
+  "items": [
+    {
+      "review_item": 1,
+      "source_item": "Contents 1",
+      "comment": "The title is too broad and detailed, \u201ca two-stage contract framework\u201d sounds too specific and technical. We need to capture the most important and distinct aspect using the title for our work",
+      "status": "ADDRESSED"
+    },
+    {
+      "review_item": 2,
+      "source_item": "Contents 2",
+      "comment": "\u201c366 executions succeed, giving 91.50 % with a 95% Wilson interval of [88.36 %, 93.85 %].\u201d This sentence should be removed from abstract",
+      "status": "ADDRESSED"
+    },
+    {
+      "review_item": 3,
+      "source_item": "Contents 3",
+      "comment": "\u201can earlier marginal-interval disagreement was a statistical false alarm.\u201d This sentence should be removed from abstract",
+      "status": "ADDRESSED"
+    },
+    {
+      "review_item": 4,
+      "source_item": "Contents 4",
+      "comment": "The abstract should introduce the VQE briefly; then explain why we need the formal verification, and out of what points; we propose such 4-layer architecture and 2-stage framework for implementation; what\u2019s the results we get and information and analysis to conclude; then what to do in the future and envision our work",
+      "status": "ADDRESSED"
+    },
+    {
+      "review_item": 5,
+      "source_item": "Contents 5",
+      "comment": "Remove the 4 RQ component in section Introduction, but this section should be drafted around the need and importance to address these RQs, and make this section more intuitive and straightforward",
+      "status": "ADDRESSED"
+    },
+    {
+      "review_item": 6,
+      "source_item": "Contents 6",
+      "comment": "Make the contributions in section Introduction bullet points. First, the 4-layer architecture of VQE formal verification, then the proposed specification and property to ensure the requirements, the 2-stage framework to evaluate the implementation, lastly the results we got",
+      "status": "ADDRESSED"
+    },
+    {
+      "review_item": 7,
+      "source_item": "Contents 7",
+      "comment": "When you try to explain or introduce things or terms, just say it intuitively and expand with actual indication and meaning, don\u2019t use negative statement to complement unless its necessary. Some meaningless examples such as \u201cnot a machine-checked refinement theorem\u201d, \u201cit is not a generator translating one specification into all three formalisms.\u201d There are so many such sentences.",
+      "status": "ADDRESSED"
+    },
+    {
+      "review_item": 8,
+      "source_item": "Contents 8",
+      "comment": "Don\u2019t use so many Semicolon (;), avoid them as much as possible, only use them when needed",
+      "status": "ADDRESSED"
+    },
+    {
+      "review_item": 9,
+      "source_item": "Contents 9",
+      "comment": "\u201cThe repository retains legacy \u201ch2\u201d names, but the operator has no documented molecular mapping and is not presented as a molecular-hydrogen Hamiltonian.\u201d The how you get this H2, relabel the name and find the source",
+      "status": "ADDRESSED"
+    },
+    {
+      "review_item": 10,
+      "source_item": "Contents 10",
+      "comment": "Cite papers where needed",
+      "status": "ADDRESSED"
+    },
+    {
+      "review_item": 11,
+      "source_item": "Contents 11",
+      "comment": "Explain the why we choose such optimization method in section II-B",
+      "status": "ADDRESSED"
+    },
+    {
+      "review_item": 12,
+      "source_item": "Contents 12",
+      "comment": "Rename the title of Section III to \u201cLayered Verification Methodology\u201d",
+      "status": "ADDRESSED"
+    },
+    {
+      "review_item": 13,
+      "source_item": "Contents 13",
+      "comment": "Section IV-A, this whole subsection sounds awkward and confusing, we need to more explicitly and intuitively to introduce the experimental setup, configurations, selections, and boundaries etc. ",
+      "status": "ADDRESSED"
+    },
+    {
+      "review_item": 14,
+      "source_item": "Contents 14",
+      "comment": "There are only two evaluations we have done for the paper, one is the individual 4 layer verifications, another is the 2-stage framework evaluation. Don\u2019t mingle them, but also don\u2019t need to mention they are different or note them. Avoid using \u201cfinal run\u201d, \u201cmatched experiment\u201d, \u201cretained\u201d, etc. just clearly state what are they",
+      "status": "ADDRESSED"
+    },
+    {
+      "review_item": 15,
+      "source_item": "Contents 15",
+      "comment": "Rename title of  Section V-A to \u201cGoals and Procedure\u201d",
+      "status": "ADDRESSED"
+    },
+    {
+      "review_item": 16,
+      "source_item": "Contents 16",
+      "comment": "There are too many tables,  replace the tables with figures when appropriate",
+      "status": "ADDRESSED"
+    },
+    {
+      "review_item": 17,
+      "source_item": "Terms 1",
+      "comment": "The contract/specification/property can refer to the same meaning but have their specific characteristic, we need to clearly separate and use them appropriately across the whole paper",
+      "status": "ADDRESSED"
+    },
+    {
+      "review_item": 18,
+      "source_item": "Terms 2",
+      "comment": "\u201cfrozen\u201d in abstract and many other places in the paper sounds award and not intuitive, replace this",
+      "status": "ADDRESSED"
+    },
+    {
+      "review_item": 19,
+      "source_item": "Terms 3",
+      "comment": "\u201c50 updates\u201d can be replaced by \u201c50 iterations\u201d or \u201c50 evaluations\u201d",
+      "status": "ADDRESSED"
+    },
+    {
+      "review_item": 20,
+      "source_item": "Terms 4",
+      "comment": "Section \u201cShared Execution Model and Contract Library\u201d, the term \u201ccontract\u201d should be replaced by specification or property, if not, justify",
+      "status": "ADDRESSED"
+    },
+    {
+      "review_item": 21,
+      "source_item": "Terms 5",
+      "comment": "\u201cThe shared execution view\u201d in section II replace it with \u201cThe shared execution model\u201d, stick with the term we have confirmed",
+      "status": "ADDRESSED"
+    },
+    {
+      "review_item": 22,
+      "source_item": "Terms 6",
+      "comment": "In section II-B, the word  \u201ccanonical\u201d should be replaced, also elsewhere in the paper, don\u2019t use the term \u201ccanonical\u201d it sounds awkward and indirect",
+      "status": "ADDRESSED"
+    },
+    {
+      "review_item": 23,
+      "source_item": "Terms 7",
+      "comment": "Don\u2019t use too many compound words unless its needed",
+      "status": "ADDRESSED"
+    },
+    {
+      "review_item": 24,
+      "source_item": "Terms 8",
+      "comment": "Replace the term \u201cevidence\u201d across the whole paper when appropriate",
+      "status": "ADDRESSED"
+    },
+    {
+      "review_item": 25,
+      "source_item": "Terms 9",
+      "comment": "Replace the term \u201cseal\u201d across the whole paper when appropriate",
+      "status": "ADDRESSED"
+    },
+    {
+      "review_item": 26,
+      "source_item": "Terms 10",
+      "comment": " What does the term \u201csubclaim\u201d mean in Section V? replace this with a word that\u2019s more intuitive and understandable",
+      "status": "ADDRESSED"
+    },
+    {
+      "review_item": 27,
+      "source_item": "Terms 11",
+      "comment": "Rename the title of Section V-E to \u201cSummary of Verification Results\u201d, then analyze and summarize the verification process and results, add some insights and conclusions from the experiment",
+      "status": "ADDRESSED"
+    }
+  ]
+}

@@ -1,0 +1,77 @@
+{
+  "status": "PASS",
+  "scope": "numerical/artifact/reference/vector consistency; manual layout review recorded separately",
+  "checks": {
+    "source_inputs_unchanged": {
+      "passed": true,
+      "files": 881
+    },
+    "numerical_prose_macros": {
+      "passed": true,
+      "defined": 57,
+      "used": 57
+    },
+    "fixed_parameters_match": {
+      "passed": true
+    },
+    "all_plotted_points": {
+      "passed": true,
+      "probability_points": 51,
+      "model_size_pairs": 5,
+      "timing_groups": 5
+    },
+    "generated_tables": {
+      "passed": true,
+      "tables": 9
+    },
+    "P2_P3_reporting_correction": {
+      "passed": true,
+      "original_observations_and_intervals_preserved": true,
+      "method": "post-audit Holm adjustment; P3 derived",
+      "holm_p": 0.09400404078303333
+    },
+    "figure_table_and_citation_references": {
+      "passed": true,
+      "figures": 4,
+      "tables": 11,
+      "labels": 36
+    },
+    "latex_compilation": {
+      "passed": true,
+      "overfull_boxes": 0,
+      "undefined_references": 0,
+      "underfull_notes": 6
+    },
+    "pdf_outputs": {
+      "passed": true,
+      "manuscript_pages": 10,
+      "manuscript_sha256": "526567c2a96e1342d6d5c32e6433b7a7ae7f10976f2d6fe063e9fcf35bad7114",
+      "vector_figures": {
+        "architecture.pdf": {
+          "pages": 1,
+          "retained_text_characters": 880,
+          "raster_images": 0,
+          "sha256": "f205a5e9e70b99a5fb5bd7f2060c65605908c3091dc1ee9af6f8318c5220e5e3"
+        },
+        "probability-comparison.pdf": {
+          "pages": 1,
+          "retained_text_characters": 143,
+          "raster_images": 0,
+          "sha256": "c84747b4605b2b3c8becd2f4b34faf2e3f77bfba0908848578d0706ba4a4abe9"
+        },
+        "runtime-overhead.pdf": {
+          "pages": 1,
+          "retained_text_characters": 138,
+          "raster_images": 0,
+          "sha256": "5511bee45057c903b8419f45bbacf6d6087c2ab373417295fc39f1f334f5d1c8"
+        },
+        "storm-scalability.pdf": {
+          "pages": 1,
+          "retained_text_characters": 109,
+          "raster_images": 0,
+          "sha256": "286041ea6afe18daf460d9cce228ccbe24e40ce06f8509d455a4440875188209"
+        }
+      }
+    }
+  }
+}

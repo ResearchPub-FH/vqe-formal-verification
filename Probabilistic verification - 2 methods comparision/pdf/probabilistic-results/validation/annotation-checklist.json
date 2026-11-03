@@ -1,0 +1,79 @@
+{
+  "annotated_reference": "validation/annotated-reference.pdf",
+  "comments": [
+    {
+      "annotation_index": 2,
+      "text": "1 move this in legend, rename “Finite-shot executions (n=400) to “Empirical executions (n=400)”",
+      "review_item": 1,
+      "status": "ADDRESSED",
+      "location": "Panel (a), panel (c), panel (d)",
+      "change": "Moved the two-series legend inside panel (a); use Empirical executions (n=400) in both legends and Empirical in both resource plots."
+    },
+    {
+      "annotation_index": 4,
+      "text": "2 remove this",
+      "review_item": 2,
+      "status": "ADDRESSED",
+      "location": "Panels (a,b) and caption.tex",
+      "change": "Removed the endpoint text summaries from both trend panels; exact values remain in the caption and data."
+    },
+    {
+      "annotation_index": 6,
+      "text": "3 change this title to\n “Success probability comparison”",
+      "review_item": 3,
+      "status": "ADDRESSED",
+      "location": "Panel (a)",
+      "change": "Renamed the title Success probability comparison."
+    },
+    {
+      "annotation_index": 8,
+      "text": "4 remove this",
+      "review_item": 4,
+      "status": "ADDRESSED",
+      "location": "Global legend, caption.tex",
+      "change": "Removed both requested legend entries and the global legend. Storm diamonds and Wilson shading remain plotted and are explained in the caption."
+    },
+    {
+      "annotation_index": 10,
+      "text": "5 remove this, and replace it with the figure \n “Conditional mean shots” just like above",
+      "review_item": 5,
+      "status": "ADDRESSED",
+      "location": "Panel (d), caption.tex",
+      "change": "Replaced the lower statistical text block with a conditional-mean-shots point/interval plot using the original means and bootstrap interval. Captions retain interpretation and the fixed scaling relation."
+    },
+    {
+      "annotation_index": 12,
+      "text": "6 remove this and replace it \nwith the legend in the figure",
+      "review_item": 6,
+      "status": "ADDRESSED",
+      "location": "Panel (c), caption.tex",
+      "change": "Replaced the empirical-label note with a local legend using the actual hatched model and filled empirical bar styles. Bar counts remain and their meaning is explained in the caption."
+    },
+    {
+      "annotation_index": 14,
+      "text": "7 rename it to “Empirical”",
+      "review_item": 7,
+      "status": "ADDRESSED",
+      "location": "Both resource plots and both local legends",
+      "change": "Renamed Finite-shot to Empirical consistently across all plotted series labels."
+    }
+  ],
+  "collective_edits_applied": true,
+  "followup_styling_requests": [
+    {
+      "item": 1,
+      "status": "ADDRESSED",
+      "change": "Lightened both colors consistently across curves, bars, markers, error bars, reference lines, and legends."
+    },
+    {
+      "item": 2,
+      "status": "ADDRESSED",
+      "change": "Enlarged all typography to 9.5-11.5 pt; adjusted panel spacing, legend dimensions, bar headroom, and resource-plot separation at the unchanged publication size."
+    },
+    {
+      "item": 3,
+      "status": "ADDRESSED",
+      "change": "Brightened both series to vivid sky blue #1AA7FF and orange #FF9826 throughout; empirical bars and their legend swatch use full opacity. The enlarged type and layout are unchanged."
+    }
+  ]
+}

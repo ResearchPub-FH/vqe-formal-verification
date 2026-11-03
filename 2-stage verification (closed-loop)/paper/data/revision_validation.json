@@ -1,0 +1,125 @@
+{
+  "status": "PASS",
+  "round": 2,
+  "original": "manuscript_review1.tex",
+  "revised": "manuscript_review2.tex",
+  "checks": {
+    "preservation": {
+      "passed": true,
+      "original_tex_sha256": "7172622c38eb474f799d4f9cbc0e933d9f2582d51250271221c0a0c254abfb83",
+      "original_pdf_sha256": "45dffacd7712d1ba910a89d66a6717e54261edc65ad8f1387f420793c802bad8",
+      "baseline_tex_sha256": "95ac8d7b67e010f1203026b8a80fa6a36be3284e437aa481898457259bab371d",
+      "baseline_pdf_sha256": "526567c2a96e1342d6d5c32e6433b7a7ae7f10976f2d6fe063e9fcf35bad7114",
+      "all_derived_scientific_results_unchanged": true,
+      "experiment_inputs_unchanged": 881,
+      "relocated_inputs_checksum_verified": 362,
+      "review_document_unchanged": true,
+      "followup_reference_files_unchanged": {
+        "manuscript.tex": "95ac8d7b67e010f1203026b8a80fa6a36be3284e437aa481898457259bab371d",
+        "manuscript.pdf": "526567c2a96e1342d6d5c32e6433b7a7ae7f10976f2d6fe063e9fcf35bad7114",
+        "manuscript_review1.tex": "7172622c38eb474f799d4f9cbc0e933d9f2582d51250271221c0a0c254abfb83",
+        "manuscript_review1.pdf": "45dffacd7712d1ba910a89d66a6717e54261edc65ad8f1387f420793c802bad8",
+        "references.bib": "79bc70c79d9c34ec5aea49019631341efd963d6b755d1c773c7fd41a1ffe32a9",
+        "data/derived_results.json": "23ac4e9bdb05b9f73da0c86b8a5d71a42910c456b65716fce66a9761de21eab9",
+        "data/source_manifest.json": "fa8b6d21ead56627c78be99ca291fd2c7c9dc3684d117d61a1b99ac866dc7774",
+        "data/claim_values.json": "752689ce1bcd6206538907489498c40396c0232c20f0e223f264b7caeb59878f",
+        "data/numbers.tex": "08f6c706b6a0571a9c0f2eafba08b145a93bbac89f6496ee6431d49fcf62c8e0",
+        "data/probability_figure_points.csv": "7739e28e4e9a797a119dcf2a7b82ee32c2a623f86edceb5ffb4671d15bea1289",
+        "data/scalability_figure_points.csv": "ac79d7690760b2d68c2cd4520b3e14848ca2a02ba981d9ac22cb23fe2c51a4de",
+        "data/runtime_figure_points.csv": "25b9dc6cc120d27babaf812a2086a711053e89a96a9a764d9747c470df542c81",
+        "tables/faults.tex": "d11c36759c377dcc02305c194e6f32ce9e54a1fcab21e74afb46247cb75b637c"
+      }
+    },
+    "existing_quantities_and_references": {
+      "passed": true,
+      "existing_numeric_macros_unchanged": 57,
+      "new_artifact_generated_prose_macros": 8,
+      "previous_bibliography_entries_unchanged": true,
+      "added_references": [
+        "ibmvqe",
+        "kolda2003",
+        "tilly2022"
+      ]
+    },
+    "structure_and_abstract": {
+      "passed": true,
+      "ordered_contributions": 4,
+      "section_V_subsections": [
+        "Goals and Procedure",
+        "Logical and Numeric Verification Agreement",
+        "Gaussian Prediction and Finite-Shot Execution",
+        "Faults and Cross-Stage Discrepancies",
+        "Summary of Verification Results"
+      ],
+      "central_principle_preserved": true
+    },
+    "terminology": {
+      "passed": true,
+      "remaining_evidence_occurrences": 1,
+      "semicolon_count": 0,
+      "manual_audit": "data/terminology_audit.json"
+    },
+    "clarified_configuration_literals": {
+      "passed": true
+    },
+    "review_checklist": {
+      "passed": true,
+      "statuses": {
+        "ADDRESSED": 27
+      },
+      "manual_second_pass": "Complete Review.docx reread; all locations checked individually."
+    },
+    "requested_followup": {
+      "passed": true,
+      "requests_addressed": 2,
+      "only_main_section_changed": "V-D: Faults and Cross-Stage Discrepancies",
+      "layout_adjustment": "IEEE reference break for final-page column balance",
+      "prior_main_source_and_pdf_preserved": true,
+      "numerical_macro_set_preserved": true,
+      "initial_identical_copy_compiled": true
+    },
+    "versioning_and_diff": {
+      "passed": true,
+      "one_main_source_for_this_round": "manuscript_review2.tex",
+      "existing_rounds": [
+        1,
+        2
+      ],
+      "ancillary_files_shared": true,
+      "raw_patch_matches": true
+    },
+    "paper_validation": {
+      "passed": true,
+      "report": "data/paper_validation.json"
+    }
+  },
+  "changed_shared_files": [
+    "references.bib",
+    "FIGURE_MANIFEST.md",
+    "README.md",
+    "FIGURE_PLAN.md",
+    "PAPER_RESULT_TRACEABILITY.md",
+    "LAYOUT_REVIEW.md",
+    "tables/contracts.tex",
+    "tables/conditional.tex",
+    "tables/faults.tex",
+    "figures/architecture.log",
+    "figures/storm-scalability.pdf",
+    "figures/probability-comparison.pdf",
+    "figures/runtime-overhead.pdf",
+    "figures/architecture.tex",
+    "figures/architecture.pdf",
+    "scripts/build_paper.py",
+    "scripts/validate_paper.py",
+    "scripts/extract_results.py",
+    "data/numbers.tex",
+    "data/paper_validation.json",
+    "data/literal_numeric_lines.json",
+    "data/claim_values.json",
+    "data/scalability_figure_points.csv",
+    "scripts/figures/runtime_overhead.py",
+    "scripts/figures/storm_scalability.py",
+    "scripts/figures/probability_comparison.py"
+  ],
+  "visual_review": "LAYOUT_REVIEW.md"
+}

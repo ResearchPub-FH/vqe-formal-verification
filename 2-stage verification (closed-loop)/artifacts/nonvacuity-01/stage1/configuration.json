@@ -1,0 +1,66 @@
+{
+  "ansatz": "h-rz-y-on-both-cx01-h-rz-y-on-both-v1",
+  "bootstrap_samples": 5000,
+  "candidate_order": [
+    "current",
+    "minus",
+    "plus"
+  ],
+  "checkpoints": [
+    10,
+    20,
+    30,
+    40,
+    50
+  ],
+  "confidence_level": 0.95,
+  "coordinate_schedule": [
+    0,
+    1,
+    2,
+    3
+  ],
+  "energy_tolerance": 1e-12,
+  "environment": "ideal-born-finite-shot",
+  "expectation_tolerance": 1e-12,
+  "fault_runs": 10,
+  "gauss_hermite_points": 24,
+  "grid_size": 16,
+  "hamiltonian": {
+    "coefficient_scale": 10000,
+    "terms": {
+      "XX": 1810,
+      "YZ": 3980,
+      "ZI": -3980,
+      "ZZ": -113
+    }
+  },
+  "initial_index": [
+    3,
+    11,
+    6,
+    14
+  ],
+  "maximum_updates": 50,
+  "measurement_groups": [
+    [
+      "ZI",
+      "ZZ"
+    ],
+    [
+      "YZ"
+    ],
+    [
+      "XX"
+    ]
+  ],
+  "name": "h2-two-stage-closed-loop-v1",
+  "parameter_count": 4,
+  "qubit_order": "q1-q0",
+  "runs": 400,
+  "schema_version": 1,
+  "seed": 20260721,
+  "shots_per_group": 1024,
+  "stop_rule": "first-ideal-energy-success-or-update-budget",
+  "success_gap": 0.02
+}

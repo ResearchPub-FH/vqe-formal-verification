@@ -1,0 +1,178 @@
+{
+  "run_id": "approved-experiment",
+  "configuration_digest": "03b387a2e7fede7a78b71b5a25065f673af10bbb9193103dd9895866d10706be",
+  "pre_execution_digest": "b3de315ae48c909ca80e275fafde44deb567ec68cad3b0de366e93a93c53c3ca",
+  "processed_input": "../data/derived_results.json",
+  "processed_input_sha256": "23ac4e9bdb05b9f73da0c86b8a5d71a42910c456b65716fce66a9761de21eab9",
+  "raw_source_manifest": "../data/source_manifest.json",
+  "statistical_transformation": "None: format existing estimates and original intervals only",
+  "rows": [
+    {
+      "kind": "P1",
+      "source": {
+        "absolute_difference": 0.0,
+        "empirical": 0.0,
+        "k": 10,
+        "model": 0.0,
+        "n": 400,
+        "successes": 0,
+        "wilson_95": [
+          0.0,
+          0.009512294334296508
+        ]
+      },
+      "cells": [
+        "$k=10$",
+        "0.00",
+        "0.00 (0/400)",
+        "[0.00, 0.95]"
+      ]
+    },
+    {
+      "kind": "P1",
+      "source": {
+        "absolute_difference": 0.0,
+        "empirical": 0.0,
+        "k": 20,
+        "model": 0.0,
+        "n": 400,
+        "successes": 0,
+        "wilson_95": [
+          0.0,
+          0.009512294334296508
+        ]
+      },
+      "cells": [
+        "$k=20$",
+        "0.00",
+        "0.00 (0/400)",
+        "[0.00, 0.95]"
+      ]
+    },
+    {
+      "kind": "P1",
+      "source": {
+        "absolute_difference": 0.03855981085595539,
+        "empirical": 0.4225,
+        "k": 30,
+        "model": 0.3839401891440446,
+        "n": 400,
+        "p_holm": 0.33842055134817384,
+        "p_raw": 0.11280685044939129,
+        "successes": 169,
+        "wilson_95": [
+          0.3750554237475196,
+          0.47141898187429637
+        ]
+      },
+      "cells": [
+        "$k=30$",
+        "38.39",
+        "42.25 (169/400)",
+        "[37.51, 47.14]"
+      ]
+    },
+    {
+      "kind": "P1",
+      "source": {
+        "absolute_difference": 0.011247036616961359,
+        "empirical": 0.7675,
+        "k": 40,
+        "model": 0.7562529633830386,
+        "n": 400,
+        "p_holm": 0.6267823351996076,
+        "p_raw": 0.6003342587246439,
+        "successes": 307,
+        "wilson_95": [
+          0.7236773296522552,
+          0.8062335928788962
+        ]
+      },
+      "cells": [
+        "$k=40$",
+        "75.63",
+        "76.75 (307/400)",
+        "[72.37, 80.62]"
+      ]
+    },
+    {
+      "kind": "P1",
+      "source": {
+        "absolute_difference": 0.013027222500629931,
+        "empirical": 0.915,
+        "k": 50,
+        "model": 0.92802722250063,
+        "n": 400,
+        "p_holm": 0.6267823351996076,
+        "p_raw": 0.3133911675998038,
+        "successes": 366,
+        "wilson_95": [
+          0.8835678157264721,
+          0.9385369799760619
+        ]
+      },
+      "cells": [
+        "$k=50$",
+        "92.80",
+        "91.50 (366/400)",
+        "[88.36, 93.85]"
+      ]
+    },
+    {
+      "kind": "P2",
+      "source": {
+        "absolute_difference": 0.8215696126312579,
+        "bootstrap_95": [
+          31.579234972677597,
+          32.994535519125684
+        ],
+        "classification": "AGREEMENT (statistically compatible after Holm adjustment)",
+        "empirical": 32.2896174863388,
+        "model": 33.111187098970056,
+        "p_holm": 0.09400404078303333,
+        "p_raw": 0.023501010195758332,
+        "successful_runs": 366
+      },
+      "cells": [
+        "P2: iterations",
+        "33.111",
+        "32.290",
+        "[31.579, 32.995]"
+      ]
+    },
+    {
+      "kind": "P3",
+      "source": {
+        "absolute_difference": 7571.585550009673,
+        "bootstrap_95": [
+          291034.2295081967,
+          304077.6393442623
+        ],
+        "classification": "AGREEMENT (derived from P2; not an independent test)",
+        "derived_from": "P2",
+        "empirical": 297581.11475409835,
+        "model": 305152.70030410803
+      },
+      "cells": [
+        "P3: physical shots",
+        "305,152.7",
+        "297,581.1",
+        "[291,034.2, 304,077.6]"
+      ]
+    }
+  ],
+  "L4": {
+    "raw_result": {
+      "contract": "L4",
+      "description": "Termination is final and has the declared reason",
+      "qualification": "Only terminal absorption and budget bounds prospectively; reason checks at runtime",
+      "runtime_checks": 244524,
+      "runtime_counts": {
+        "AGREEMENT": 400
+      },
+      "stage1": "PROVED",
+      "verdict_agreement": "AGREEMENT"
+    },
+    "display": "Agreement under mapping"
+  }
+}

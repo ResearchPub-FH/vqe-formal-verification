@@ -1,0 +1,40 @@
+{
+  "unchanged_control": {
+    "status": "pass",
+    "findings": []
+  },
+  "stale_checkpoint": {
+    "status": "fail",
+    "findings": [
+      {
+        "property": "inter_previous_energy_continuity",
+        "source": "python",
+        "seq": 117,
+        "status": "fail"
+      },
+      {
+        "property": "inter_previous_energy_continuity",
+        "source": "python",
+        "seq": 117,
+        "status": "fail"
+      }
+    ]
+  },
+  "duplicate_commit_event": {
+    "status": "fail",
+    "findings": [
+      {
+        "property": "inter_update_applied_once",
+        "source": "python",
+        "seq": 45,
+        "status": "fail"
+      },
+      {
+        "property": "inter_updateAppliedOnce",
+        "source": "dejavu",
+        "seq": 45,
+        "status": "fail"
+      }
+    ]
+  }
+}

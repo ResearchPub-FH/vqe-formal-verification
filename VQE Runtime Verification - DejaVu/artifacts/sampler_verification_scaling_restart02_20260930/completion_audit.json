@@ -1,0 +1,928 @@
+{
+  "campaign_directory": "/Users/rome/Desktop/VQE Runtime Verification - DejaVu/artifacts/sampler_verification_scaling_restart02_20260930",
+  "excluded_directories": [
+    "/Users/rome/Desktop/VQE Runtime Verification - DejaVu/artifacts/excluded_scaling_campaign_20260930_restart02",
+    "/Users/rome/Desktop/VQE Runtime Verification - DejaVu/artifacts/excluded_scaling_campaign_20260930_restart01"
+  ],
+  "implementation_unchanged": true,
+  "expected_group_counts_pass": true,
+  "warmups_precede_measured_pass": true,
+  "run_count": 350,
+  "warmup_runs": 50,
+  "measured_runs": 300,
+  "evaluation_count": 10500,
+  "pub_count": 42000,
+  "observed_shots": 43008000,
+  "online_replay_agreement_count": 175,
+  "verified_reports": [
+    {
+      "run": "runs/warmup/verified/n010/r001",
+      "online": "pass",
+      "replay": "pass"
+    },
+    {
+      "run": "runs/warmup/verified/n010/r002",
+      "online": "pass",
+      "replay": "pass"
+    },
+    {
+      "run": "runs/warmup/verified/n010/r003",
+      "online": "pass",
+      "replay": "pass"
+    },
+    {
+      "run": "runs/warmup/verified/n010/r004",
+      "online": "pass",
+      "replay": "pass"
+    },
+    {
+      "run": "runs/warmup/verified/n010/r005",
+      "online": "pass",
+      "replay": "pass"
+    },
+    {
+      "run": "runs/warmup/verified/n020/r001",
+      "online": "pass",
+      "replay": "pass"
+    },
+    {
+      "run": "runs/warmup/verified/n020/r002",
+      "online": "pass",
+      "replay": "pass"
+    },
+    {
+      "run": "runs/warmup/verified/n020/r003",
+      "online": "pass",
+      "replay": "pass"
+    },
+    {
+      "run": "runs/warmup/verified/n020/r004",
+      "online": "pass",
+      "replay": "pass"
+    },
+    {
+      "run": "runs/warmup/verified/n020/r005",
+      "online": "pass",
+      "replay": "pass"
+    },
+    {
+      "run": "runs/warmup/verified/n030/r001",
+      "online": "pass",
+      "replay": "pass"
+    },
+    {
+      "run": "runs/warmup/verified/n030/r002",
+      "online": "pass",
+      "replay": "pass"
+    },
+    {
+      "run": "runs/warmup/verified/n030/r003",
+      "online": "pass",
+      "replay": "pass"
+    },
+    {
+      "run": "runs/warmup/verified/n030/r004",
+      "online": "pass",
+      "replay": "pass"
+    },
+    {
+      "run": "runs/warmup/verified/n030/r005",
+      "online": "pass",
+      "replay": "pass"
+    },
+    {
+      "run": "runs/warmup/verified/n040/r001",
+      "online": "pass",
+      "replay": "pass"
+    },
+    {
+      "run": "runs/warmup/verified/n040/r002",
+      "online": "pass",
+      "replay": "pass"
+    },
+    {
+      "run": "runs/warmup/verified/n040/r003",
+      "online": "pass",
+      "replay": "pass"
+    },
+    {
+      "run": "runs/warmup/verified/n040/r004",
+      "online": "pass",
+      "replay": "pass"
+    },
+    {
+      "run": "runs/warmup/verified/n040/r005",
+      "online": "pass",
+      "replay": "pass"
+    },
+    {
+      "run": "runs/warmup/verified/n050/r001",
+      "online": "pass",
+      "replay": "pass"
+    },
+    {
+      "run": "runs/warmup/verified/n050/r002",
+      "online": "pass",
+      "replay": "pass"
+    },
+    {
+      "run": "runs/warmup/verified/n050/r003",
+      "online": "pass",
+      "replay": "pass"
+    },
+    {
+      "run": "runs/warmup/verified/n050/r004",
+      "online": "pass",
+      "replay": "pass"
+    },
+    {
+      "run": "runs/warmup/verified/n050/r005",
+      "online": "pass",
+      "replay": "pass"
+    },
+    {
+      "run": "runs/measured/verified/n010/r001",
+      "online": "pass",
+      "replay": "pass"
+    },
+    {
+      "run": "runs/measured/verified/n010/r002",
+      "online": "pass",
+      "replay": "pass"
+    },
+    {
+      "run": "runs/measured/verified/n010/r003",
+      "online": "pass",
+      "replay": "pass"
+    },
+    {
+      "run": "runs/measured/verified/n010/r004",
+      "online": "pass",
+      "replay": "pass"
+    },
+    {
+      "run": "runs/measured/verified/n010/r005",
+      "online": "pass",
+      "replay": "pass"
+    },
+    {
+      "run": "runs/measured/verified/n010/r006",
+      "online": "pass",
+      "replay": "pass"
+    },
+    {
+      "run": "runs/measured/verified/n010/r007",
+      "online": "pass",
+      "replay": "pass"
+    },
+    {
+      "run": "runs/measured/verified/n010/r008",
+      "online": "pass",
+      "replay": "pass"
+    },
+    {
+      "run": "runs/measured/verified/n010/r009",
+      "online": "pass",
+      "replay": "pass"
+    },
+    {
+      "run": "runs/measured/verified/n010/r010",
+      "online": "pass",
+      "replay": "pass"
+    },
+    {
+      "run": "runs/measured/verified/n010/r011",
+      "online": "pass",
+      "replay": "pass"
+    },
+    {
+      "run": "runs/measured/verified/n010/r012",
+      "online": "pass",
+      "replay": "pass"
+    },
+    {
+      "run": "runs/measured/verified/n010/r013",
+      "online": "pass",
+      "replay": "pass"
+    },
+    {
+      "run": "runs/measured/verified/n010/r014",
+      "online": "pass",
+      "replay": "pass"
+    },
+    {
+      "run": "runs/measured/verified/n010/r015",
+      "online": "pass",
+      "replay": "pass"
+    },
+    {
+      "run": "runs/measured/verified/n010/r016",
+      "online": "pass",
+      "replay": "pass"
+    },
+    {
+      "run": "runs/measured/verified/n010/r017",
+      "online": "pass",
+      "replay": "pass"
+    },
+    {
+      "run": "runs/measured/verified/n010/r018",
+      "online": "pass",
+      "replay": "pass"
+    },
+    {
+      "run": "runs/measured/verified/n010/r019",
+      "online": "pass",
+      "replay": "pass"
+    },
+    {
+      "run": "runs/measured/verified/n010/r020",
+      "online": "pass",
+      "replay": "pass"
+    },
+    {
+      "run": "runs/measured/verified/n010/r021",
+      "online": "pass",
+      "replay": "pass"
+    },
+    {
+      "run": "runs/measured/verified/n010/r022",
+      "online": "pass",
+      "replay": "pass"
+    },
+    {
+      "run": "runs/measured/verified/n010/r023",
+      "online": "pass",
+      "replay": "pass"
+    },
+    {
+      "run": "runs/measured/verified/n010/r024",
+      "online": "pass",
+      "replay": "pass"
+    },
+    {
+      "run": "runs/measured/verified/n010/r025",
+      "online": "pass",
+      "replay": "pass"
+    },
+    {
+      "run": "runs/measured/verified/n010/r026",
+      "online": "pass",
+      "replay": "pass"
+    },
+    {
+      "run": "runs/measured/verified/n010/r027",
+      "online": "pass",
+      "replay": "pass"
+    },
+    {
+      "run": "runs/measured/verified/n010/r028",
+      "online": "pass",
+      "replay": "pass"
+    },
+    {
+      "run": "runs/measured/verified/n010/r029",
+      "online": "pass",
+      "replay": "pass"
+    },
+    {
+      "run": "runs/measured/verified/n010/r030",
+      "online": "pass",
+      "replay": "pass"
+    },
+    {
+      "run": "runs/measured/verified/n020/r001",
+      "online": "pass",
+      "replay": "pass"
+    },
+    {
+      "run": "runs/measured/verified/n020/r002",
+      "online": "pass",
+      "replay": "pass"
+    },
+    {
+      "run": "runs/measured/verified/n020/r003",
+      "online": "pass",
+      "replay": "pass"
+    },
+    {
+      "run": "runs/measured/verified/n020/r004",
+      "online": "pass",
+      "replay": "pass"
+    },
+    {
+      "run": "runs/measured/verified/n020/r005",
+      "online": "pass",
+      "replay": "pass"
+    },
+    {
+      "run": "runs/measured/verified/n020/r006",
+      "online": "pass",
+      "replay": "pass"
+    },
+    {
+      "run": "runs/measured/verified/n020/r007",
+      "online": "pass",
+      "replay": "pass"
+    },
+    {
+      "run": "runs/measured/verified/n020/r008",
+      "online": "pass",
+      "replay": "pass"
+    },
+    {
+      "run": "runs/measured/verified/n020/r009",
+      "online": "pass",
+      "replay": "pass"
+    },
+    {
+      "run": "runs/measured/verified/n020/r010",
+      "online": "pass",
+      "replay": "pass"
+    },
+    {
+      "run": "runs/measured/verified/n020/r011",
+      "online": "pass",
+      "replay": "pass"
+    },
+    {
+      "run": "runs/measured/verified/n020/r012",
+      "online": "pass",
+      "replay": "pass"
+    },
+    {
+      "run": "runs/measured/verified/n020/r013",
+      "online": "pass",
+      "replay": "pass"
+    },
+    {
+      "run": "runs/measured/verified/n020/r014",
+      "online": "pass",
+      "replay": "pass"
+    },
+    {
+      "run": "runs/measured/verified/n020/r015",
+      "online": "pass",
+      "replay": "pass"
+    },
+    {
+      "run": "runs/measured/verified/n020/r016",
+      "online": "pass",
+      "replay": "pass"
+    },
+    {
+      "run": "runs/measured/verified/n020/r017",
+      "online": "pass",
+      "replay": "pass"
+    },
+    {
+      "run": "runs/measured/verified/n020/r018",
+      "online": "pass",
+      "replay": "pass"
+    },
+    {
+      "run": "runs/measured/verified/n020/r019",
+      "online": "pass",
+      "replay": "pass"
+    },
+    {
+      "run": "runs/measured/verified/n020/r020",
+      "online": "pass",
+      "replay": "pass"
+    },
+    {
+      "run": "runs/measured/verified/n020/r021",
+      "online": "pass",
+      "replay": "pass"
+    },
+    {
+      "run": "runs/measured/verified/n020/r022",
+      "online": "pass",
+      "replay": "pass"
+    },
+    {
+      "run": "runs/measured/verified/n020/r023",
+      "online": "pass",
+      "replay": "pass"
+    },
+    {
+      "run": "runs/measured/verified/n020/r024",
+      "online": "pass",
+      "replay": "pass"
+    },
+    {
+      "run": "runs/measured/verified/n020/r025",
+      "online": "pass",
+      "replay": "pass"
+    },
+    {
+      "run": "runs/measured/verified/n020/r026",
+      "online": "pass",
+      "replay": "pass"
+    },
+    {
+      "run": "runs/measured/verified/n020/r027",
+      "online": "pass",
+      "replay": "pass"
+    },
+    {
+      "run": "runs/measured/verified/n020/r028",
+      "online": "pass",
+      "replay": "pass"
+    },
+    {
+      "run": "runs/measured/verified/n020/r029",
+      "online": "pass",
+      "replay": "pass"
+    },
+    {
+      "run": "runs/measured/verified/n020/r030",
+      "online": "pass",
+      "replay": "pass"
+    },
+    {
+      "run": "runs/measured/verified/n030/r001",
+      "online": "pass",
+      "replay": "pass"
+    },
+    {
+      "run": "runs/measured/verified/n030/r002",
+      "online": "pass",
+      "replay": "pass"
+    },
+    {
+      "run": "runs/measured/verified/n030/r003",
+      "online": "pass",
+      "replay": "pass"
+    },
+    {
+      "run": "runs/measured/verified/n030/r004",
+      "online": "pass",
+      "replay": "pass"
+    },
+    {
+      "run": "runs/measured/verified/n030/r005",
+      "online": "pass",
+      "replay": "pass"
+    },
+    {
+      "run": "runs/measured/verified/n030/r006",
+      "online": "pass",
+      "replay": "pass"
+    },
+    {
+      "run": "runs/measured/verified/n030/r007",
+      "online": "pass",
+      "replay": "pass"
+    },
+    {
+      "run": "runs/measured/verified/n030/r008",
+      "online": "pass",
+      "replay": "pass"
+    },
+    {
+      "run": "runs/measured/verified/n030/r009",
+      "online": "pass",
+      "replay": "pass"
+    },
+    {
+      "run": "runs/measured/verified/n030/r010",
+      "online": "pass",
+      "replay": "pass"
+    },
+    {
+      "run": "runs/measured/verified/n030/r011",
+      "online": "pass",
+      "replay": "pass"
+    },
+    {
+      "run": "runs/measured/verified/n030/r012",
+      "online": "pass",
+      "replay": "pass"
+    },
+    {
+      "run": "runs/measured/verified/n030/r013",
+      "online": "pass",
+      "replay": "pass"
+    },
+    {
+      "run": "runs/measured/verified/n030/r014",
+      "online": "pass",
+      "replay": "pass"
+    },
+    {
+      "run": "runs/measured/verified/n030/r015",
+      "online": "pass",
+      "replay": "pass"
+    },
+    {
+      "run": "runs/measured/verified/n030/r016",
+      "online": "pass",
+      "replay": "pass"
+    },
+    {
+      "run": "runs/measured/verified/n030/r017",
+      "online": "pass",
+      "replay": "pass"
+    },
+    {
+      "run": "runs/measured/verified/n030/r018",
+      "online": "pass",
+      "replay": "pass"
+    },
+    {
+      "run": "runs/measured/verified/n030/r019",
+      "online": "pass",
+      "replay": "pass"
+    },
+    {
+      "run": "runs/measured/verified/n030/r020",
+      "online": "pass",
+      "replay": "pass"
+    },
+    {
+      "run": "runs/measured/verified/n030/r021",
+      "online": "pass",
+      "replay": "pass"
+    },
+    {
+      "run": "runs/measured/verified/n030/r022",
+      "online": "pass",
+      "replay": "pass"
+    },
+    {
+      "run": "runs/measured/verified/n030/r023",
+      "online": "pass",
+      "replay": "pass"
+    },
+    {
+      "run": "runs/measured/verified/n030/r024",
+      "online": "pass",
+      "replay": "pass"
+    },
+    {
+      "run": "runs/measured/verified/n030/r025",
+      "online": "pass",
+      "replay": "pass"
+    },
+    {
+      "run": "runs/measured/verified/n030/r026",
+      "online": "pass",
+      "replay": "pass"
+    },
+    {
+      "run": "runs/measured/verified/n030/r027",
+      "online": "pass",
+      "replay": "pass"
+    },
+    {
+      "run": "runs/measured/verified/n030/r028",
+      "online": "pass",
+      "replay": "pass"
+    },
+    {
+      "run": "runs/measured/verified/n030/r029",
+      "online": "pass",
+      "replay": "pass"
+    },
+    {
+      "run": "runs/measured/verified/n030/r030",
+      "online": "pass",
+      "replay": "pass"
+    },
+    {
+      "run": "runs/measured/verified/n040/r001",
+      "online": "pass",
+      "replay": "pass"
+    },
+    {
+      "run": "runs/measured/verified/n040/r002",
+      "online": "pass",
+      "replay": "pass"
+    },
+    {
+      "run": "runs/measured/verified/n040/r003",
+      "online": "pass",
+      "replay": "pass"
+    },
+    {
+      "run": "runs/measured/verified/n040/r004",
+      "online": "pass",
+      "replay": "pass"
+    },
+    {
+      "run": "runs/measured/verified/n040/r005",
+      "online": "pass",
+      "replay": "pass"
+    },
+    {
+      "run": "runs/measured/verified/n040/r006",
+      "online": "pass",
+      "replay": "pass"
+    },
+    {
+      "run": "runs/measured/verified/n040/r007",
+      "online": "pass",
+      "replay": "pass"
+    },
+    {
+      "run": "runs/measured/verified/n040/r008",
+      "online": "pass",
+      "replay": "pass"
+    },
+    {
+      "run": "runs/measured/verified/n040/r009",
+      "online": "pass",
+      "replay": "pass"
+    },
+    {
+      "run": "runs/measured/verified/n040/r010",
+      "online": "pass",
+      "replay": "pass"
+    },
+    {
+      "run": "runs/measured/verified/n040/r011",
+      "online": "pass",
+      "replay": "pass"
+    },
+    {
+      "run": "runs/measured/verified/n040/r012",
+      "online": "pass",
+      "replay": "pass"
+    },
+    {
+      "run": "runs/measured/verified/n040/r013",
+      "online": "pass",
+      "replay": "pass"
+    },
+    {
+      "run": "runs/measured/verified/n040/r014",
+      "online": "pass",
+      "replay": "pass"
+    },
+    {
+      "run": "runs/measured/verified/n040/r015",
+      "online": "pass",
+      "replay": "pass"
+    },
+    {
+      "run": "runs/measured/verified/n040/r016",
+      "online": "pass",
+      "replay": "pass"
+    },
+    {
+      "run": "runs/measured/verified/n040/r017",
+      "online": "pass",
+      "replay": "pass"
+    },
+    {
+      "run": "runs/measured/verified/n040/r018",
+      "online": "pass",
+      "replay": "pass"
+    },
+    {
+      "run": "runs/measured/verified/n040/r019",
+      "online": "pass",
+      "replay": "pass"
+    },
+    {
+      "run": "runs/measured/verified/n040/r020",
+      "online": "pass",
+      "replay": "pass"
+    },
+    {
+      "run": "runs/measured/verified/n040/r021",
+      "online": "pass",
+      "replay": "pass"
+    },
+    {
+      "run": "runs/measured/verified/n040/r022",
+      "online": "pass",
+      "replay": "pass"
+    },
+    {
+      "run": "runs/measured/verified/n040/r023",
+      "online": "pass",
+      "replay": "pass"
+    },
+    {
+      "run": "runs/measured/verified/n040/r024",
+      "online": "pass",
+      "replay": "pass"
+    },
+    {
+      "run": "runs/measured/verified/n040/r025",
+      "online": "pass",
+      "replay": "pass"
+    },
+    {
+      "run": "runs/measured/verified/n040/r026",
+      "online": "pass",
+      "replay": "pass"
+    },
+    {
+      "run": "runs/measured/verified/n040/r027",
+      "online": "pass",
+      "replay": "pass"
+    },
+    {
+      "run": "runs/measured/verified/n040/r028",
+      "online": "pass",
+      "replay": "pass"
+    },
+    {
+      "run": "runs/measured/verified/n040/r029",
+      "online": "pass",
+      "replay": "pass"
+    },
+    {
+      "run": "runs/measured/verified/n040/r030",
+      "online": "pass",
+      "replay": "pass"
+    },
+    {
+      "run": "runs/measured/verified/n050/r001",
+      "online": "pass",
+      "replay": "pass"
+    },
+    {
+      "run": "runs/measured/verified/n050/r002",
+      "online": "pass",
+      "replay": "pass"
+    },
+    {
+      "run": "runs/measured/verified/n050/r003",
+      "online": "pass",
+      "replay": "pass"
+    },
+    {
+      "run": "runs/measured/verified/n050/r004",
+      "online": "pass",
+      "replay": "pass"
+    },
+    {
+      "run": "runs/measured/verified/n050/r005",
+      "online": "pass",
+      "replay": "pass"
+    },
+    {
+      "run": "runs/measured/verified/n050/r006",
+      "online": "pass",
+      "replay": "pass"
+    },
+    {
+      "run": "runs/measured/verified/n050/r007",
+      "online": "pass",
+      "replay": "pass"
+    },
+    {
+      "run": "runs/measured/verified/n050/r008",
+      "online": "pass",
+      "replay": "pass"
+    },
+    {
+      "run": "runs/measured/verified/n050/r009",
+      "online": "pass",
+      "replay": "pass"
+    },
+    {
+      "run": "runs/measured/verified/n050/r010",
+      "online": "pass",
+      "replay": "pass"
+    },
+    {
+      "run": "runs/measured/verified/n050/r011",
+      "online": "pass",
+      "replay": "pass"
+    },
+    {
+      "run": "runs/measured/verified/n050/r012",
+      "online": "pass",
+      "replay": "pass"
+    },
+    {
+      "run": "runs/measured/verified/n050/r013",
+      "online": "pass",
+      "replay": "pass"
+    },
+    {
+      "run": "runs/measured/verified/n050/r014",
+      "online": "pass",
+      "replay": "pass"
+    },
+    {
+      "run": "runs/measured/verified/n050/r015",
+      "online": "pass",
+      "replay": "pass"
+    },
+    {
+      "run": "runs/measured/verified/n050/r016",
+      "online": "pass",
+      "replay": "pass"
+    },
+    {
+      "run": "runs/measured/verified/n050/r017",
+      "online": "pass",
+      "replay": "pass"
+    },
+    {
+      "run": "runs/measured/verified/n050/r018",
+      "online": "pass",
+      "replay": "pass"
+    },
+    {
+      "run": "runs/measured/verified/n050/r019",
+      "online": "pass",
+      "replay": "pass"
+    },
+    {
+      "run": "runs/measured/verified/n050/r020",
+      "online": "pass",
+      "replay": "pass"
+    },
+    {
+      "run": "runs/measured/verified/n050/r021",
+      "online": "pass",
+      "replay": "pass"
+    },
+    {
+      "run": "runs/measured/verified/n050/r022",
+      "online": "pass",
+      "replay": "pass"
+    },
+    {
+      "run": "runs/measured/verified/n050/r023",
+      "online": "pass",
+      "replay": "pass"
+    },
+    {
+      "run": "runs/measured/verified/n050/r024",
+      "online": "pass",
+      "replay": "pass"
+    },
+    {
+      "run": "runs/measured/verified/n050/r025",
+      "online": "pass",
+      "replay": "pass"
+    },
+    {
+      "run": "runs/measured/verified/n050/r026",
+      "online": "pass",
+      "replay": "pass"
+    },
+    {
+      "run": "runs/measured/verified/n050/r027",
+      "online": "pass",
+      "replay": "pass"
+    },
+    {
+      "run": "runs/measured/verified/n050/r028",
+      "online": "pass",
+      "replay": "pass"
+    },
+    {
+      "run": "runs/measured/verified/n050/r029",
+      "online": "pass",
+      "replay": "pass"
+    },
+    {
+      "run": "runs/measured/verified/n050/r030",
+      "online": "pass",
+      "replay": "pass"
+    }
+  ],
+  "trajectory_audit": [
+    {
+      "evaluations": 10,
+      "distinct_baseline_trajectories": 1,
+      "distinct_verified_trajectories": 1,
+      "trajectories_agree": true
+    },
+    {
+      "evaluations": 20,
+      "distinct_baseline_trajectories": 1,
+      "distinct_verified_trajectories": 1,
+      "trajectories_agree": true
+    },
+    {
+      "evaluations": 30,
+      "distinct_baseline_trajectories": 1,
+      "distinct_verified_trajectories": 1,
+      "trajectories_agree": true
+    },
+    {
+      "evaluations": 40,
+      "distinct_baseline_trajectories": 1,
+      "distinct_verified_trajectories": 1,
+      "trajectories_agree": true
+    },
+    {
+      "evaluations": 50,
+      "distinct_baseline_trajectories": 1,
+      "distinct_verified_trajectories": 1,
+      "trajectories_agree": true
+    }
+  ],
+  "convergence_reached_runs": 0,
+  "convergence_interpretation": "No stable convergence candidate within any configured bound; time-to-convergence is unobserved within the 50-evaluation limit."
+}

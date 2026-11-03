@@ -1,0 +1,17 @@
+{
+  "command": [
+    "/opt/homebrew/bin/storm",
+    "--explicit",
+    "/Users/rome/Desktop/Implementation of Formal Verification on VQE/2-stage verification (closed-loop)/artifacts/approved-experiment/stage1/gaussian.tra",
+    "/Users/rome/Desktop/Implementation of Formal Verification on VQE/2-stage verification (closed-loop)/artifacts/approved-experiment/stage1/gaussian.lab",
+    "--staterew",
+    "/Users/rome/Desktop/Implementation of Formal Verification on VQE/output/storm-reward-validation/run/iterations.rew",
+    "--prop",
+    "/Users/rome/Desktop/Implementation of Formal Verification on VQE/output/storm-reward-validation/run/iterations.props",
+    "--precision",
+    "1e-12"
+  ],
+  "elapsed_seconds": 0.4200863750302233,
+  "exit_code": 0,
+  "log": "/Users/rome/Desktop/Implementation of Formal Verification on VQE/output/storm-reward-validation/run/storm-iterations.log"
+}

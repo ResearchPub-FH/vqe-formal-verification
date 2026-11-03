@@ -1,0 +1,2382 @@
+                                                                                                                                                 You Asked
+
+
+                                                                                   how to build an analytical probabilistic model checking from VQE semantics
+
+
+
+
+       ChatGPT gpt-5-6-thinking
+
+
+I’ll frame this as a semantics-to-model construction, then give a concrete DTMC/MDP kernel and a minimal worked example you could implement in PRISM
+or Storm.
+
+The key distinction is this: exact VQE semantics gives a continuous-state stochastic kernel; PRISM/Storm require a finite abstraction. The main research
+problem is therefore not writing the property—it is deriving a sound finite transition relation from the measurement and optimizer semantics.
+
+Core construction
+An analytical probabilistic VQE model should be built through the following semantic refinement:
+
+VQE operational semantics → concrete stochastic kernel → finite probabilistic abstraction → DTMC/MDP/IDTMC/IMDP → prob
+
+The transition probabilities are not learned from execution frequencies. They are derived from:
+
+  1. the Born-rule distribution of quantum measurements;
+
+  2. the finite-shot estimator;
+
+  3. the optimizer update rule;
+
+  4. the stopping rule;
+
+  5. any explicitly assumed noise, failure, or retry model.
+
+VQE itself combines quantum expectation-value evaluation with classical optimization. Under ideal exact expectation evaluation and a deterministic
+optimizer, the process is deterministic. Probability enters through finite-shot measurement, physical noise, randomized optimization, initialization, and
+execution failures. (Nature)
+
+
+
+1. Fix the VQE configuration
+You cannot derive a universal VQE transition model from VQE semantics alone. You must first fix a configuration
+
+                                                        C = (H, ρ0 , U, O, M, N , N , Θ0 , ϕconv , K ) ,
+                                                                     ​                        ​     ​
+
+
+
+
+where:
+
+                           Component                                                                Meaning
+
+  H = ∑j cj Pj     ​   ​   ​
+                                                  Hamiltonian
+
+  ρ0   ​                                          Initial quantum state
+
+  U(θ)                                            Parameterized ansatz
+
+  O                                               Optimizer and update rule
+
+  M                                               Measurement grouping and basis rotations
+
+  N                                               Shot allocation
+
+  N                                               Quantum and measurement noise model
+
+  Θ0       ​                                      Initial-parameter distribution
+
+  ϕconv        ​                                  Convergence predicate
+
+  K                                               Iteration bound
+
+
+The analytical result is therefore configuration-specific:
+
+   Given configuration C and its stochastic semantics, what is the probability that the execution reaches valid convergence within 50 iterations?
+
+That qualification remains necessary even when all probabilities are derived analytically.
+
+
+
+
+  Exported with AI Exporter                                                                                                                                 1 / 21
+2. Define the concrete semantic state
+A suitable concrete state is
+
+                                                                   xt = (t, θt , zt , ht , bt , qt ) ,
+                                                                       ​                    ​   ​               ​                               ​
+
+
+
+
+where:
+
+    t: optimizer iteration;
+    θt : current variational parameters;
+             ​
+
+
+
+
+    zt : optimizer-internal state;
+             ​
+
+
+
+
+    ht : convergence-relevant execution history;
+                 ​
+
+
+
+
+    bt : accumulated resource usage;
+         ​
+
+
+
+
+    qt : execution status.
+             ​
+
+
+
+
+For example,
+
+                                                        qt ∈ {running, converged, failed, timeout}.
+                                                          ​
+
+
+
+
+The state must contain everything needed to determine the distribution of the next state.
+
+This is particularly important for optimizers:
+
+    Adam requires its first- and second-moment vectors.
+
+    SPSA requires its iteration-dependent gain parameters and random perturbation semantics.
+
+    Momentum methods require the momentum vector.
+
+    A stagnation-based stopping rule requires either recent energies or a sufficient summary such as a stagnation counter.
+
+Without these variables,
+
+                                                                                P (xt+1 ∣ xt )  ​                       ​
+
+
+
+
+may not be well-defined. The model would not actually satisfy the Markov property.
+
+Energy regions alone are generally insufficient
+Suppose two parameter vectors satisfy
+
+                                                                            E(θ1 ) ≈ E(θ2 ),
+                                                                                        ​                                   ​
+
+
+
+
+but have different gradients:
+
+                                                                       ∇E(θ1 ) =
+                                                                                ∇E(θ2 ).
+                                                                                        ​                                           ​
+
+
+
+
+Their next-iteration distributions can be completely different despite belonging to the same energy bucket.
+
+Therefore, a state such as
+
+                                                                           (t, energy-region)
+
+is not normally an exact semantic state. You must either:
+
+  1. include parameter or gradient information;
+
+  2. prove that the abstraction is lumpable;
+
+  3. or use probability intervals covering every parameter point in the region.
+
+
+
+3. Derive the quantum measurement distribution
+For the current parameters θt , the ideal state is
+                                ​
+
+
+
+
+                                                                   ρ(θt ) = U(θt )ρ0 U (θt )† .
+                                                                            ​                       ​               ​                       ​
+
+
+
+
+With a specified noise channel,
+
+                                                                       ρ(θt ) = Nθt (ρ(θt )) .
+                                                                                ​
+
+                                                                                                        ​
+                                                                                                            ​                   ​
+
+
+
+
+For measurement group g, let Mg,y be the POVM element corresponding to outcome y. Then
+                                     ​
+
+
+
+
+                                                                pg (y ∣ θt ) = Tr [Mg,y ρ(θt )] .
+                                                                   ​                ​                                           ​       ​           ​
+
+
+
+
+  Exported with AI Exporter                                                                                                                             2 / 21
+With Ng shots, the count vector follows
+                      ​
+
+
+
+
+                                                                       Cg ∼ Multinomial (Ng , {pg (y ∣ θt )}y ) .
+                                                                           ​                                                                                               ​                                                    ​                                               ​           ​
+
+
+
+
+This is the most general finite-shot semantics.
+
+The full quantum state does not have to appear in the PRISM or Storm state. It can be used denotationally to calculate pg (y ∣ θ), after which it is eliminated                                                                                                                                             ​
+
+
+
+
+from the finite model.
+
+Separately measured Pauli terms
+For a Pauli observable Pj , define its noisy expectation
+                            ​
+
+
+
+
+                                                                                                        μj (θ) = Tr [Pj ρ(θ)] .
+                                                                                                         ​   ​                                                                     ​                    ​
+
+
+
+
+The two possible eigenvalues are +1 and −1, with
+
+                                                                                                                                                             1 + μj (θ)
+                                                                                                        p+
+                                                                                                         j ( θ) =                                                       .
+                                                                                                                                                                                                ​
+
+
+
+
+                                                                                                                                                                 2
+                                                                                                                             ​                                                                                                          ​
+
+
+
+
+If Kj is the number of +1 outcomes,
+      ​
+
+
+
+
+                                                                                       Kj ∼ Binomial (Nj , p+
+                                                                                               ​
+
+
+
+
+                                                                                                            j (θ) ) ,                                                                               ​                                   ​
+
+
+
+
+and
+
+                                                                                               Kj − (Nj − Kj )    Kj
+                                                                        μj =                                   =2    − 1.
+                                                                                                         ​                                           ​                         ​                                                                            ​
+
+
+
+
+                                                                               ​   ​                                                                                                        ​                                                                   ​
+
+
+
+
+                                                                                                     Nj           Nj                                 ​                                                                                                      ​
+
+
+
+
+The estimated energy is
+
+                                                                                                             E (θ) = ∑ cj μj .                                         ​                            ​       ​           ​
+
+
+
+
+                                                                                                                                                              j
+
+Hamiltonian expectation estimation through separately or jointly measured Pauli components, and the resulting finite-sampling error, are standard
+components of practical VQE measurement. (arXiv)
+
+For separately measured terms, the exact energy-region probability is
+
+                                         Pr (E (θ) ∈ I ∣ θ)
+                                            N1            Nm
+                                         = ∑ ⋯ ∑ 1 [∑ cj (2                                                − 1) ∈ I ] ∏ ( )pj (θ)kj [1 − pj (θ)]Nj −kj .
+                                                                       m                                                                                                                                m
+                                                                                                        kj               Nj
+                                                 ​             ​
+
+
+
+
+                                     ​                                                                                                                                                                                                                                                                          ​
+
+
+                                                                                                                     ​                                                                                                                                              ​
+
+
+
+
+                                                                                                                                                                                                                                                                                                ​       ​   ​
+
+
+
+
+                                                     ​             ​           ​       ​                                         ​                                                                                          ​                                           ​               ​           ​
+
+
+
+
+                                                                                                        Nj               kj
+                                           k1 = 0        km = 0
+                                                                                                                         ​                                                                                                                              ​
+
+
+
+
+                                             ​             ​           j=1                                                                                                             j=1
+
+
+This is an analytical, finite expression.
+
+When commuting Pauli terms are measured together, their estimators are correlated. You should derive them from the common multinomial bitstring
+distribution rather than multiplying independent binomial distributions.
+
+
+
+4. Compose measurement semantics with optimizer semantics
+Write the optimizer update in general form as
+
+                                                                                   (θt+1 , zt+1 ) = FO (θt , zt , Yt , ξt ) ,
+                                                                                                    ​                                    ​                     ​                           ​                        ​                               ​                       ​
+
+
+
+
+where:
+
+      Yt is the collection of finite-shot energy or gradient observations;
+                  ​
+
+
+
+
+      ξt represents optimizer randomness;
+          ​
+
+
+
+
+      zt is optimizer memory.
+              ​
+
+
+
+
+The convergence history is updated by
+
+                                                                                                   ht+1 = Fh (ht , Yt , θt+1 ).      ​                   ​         ​                   ​                                                    ​
+
+
+
+
+The resource variables are updated by
+
+                                                                                               bt+1 = bt + cost(xt , Yt ).
+                                                                                                                 ​                               ​                                                              ​                               ​
+
+
+
+
+Finally,
+
+                                                                                   qt+1 = Fq (qt , t, θt+1 , ht+1 , bt+1 ) .
+                                                                                           ​                                                 ​                                 ​                                                    ​                                               ​
+
+
+
+
+  Exported with AI Exporter                                                                                                                                                                                                                                                                                         3 / 21
+This produces a concrete transition kernel
+
+                                                         K(A ∣ x, a) = Pr(xt+1 ∈ A ∣ xt = x, at = a).                   ​                              ​                   ​
+
+
+
+
+More explicitly,
+
+
+                                  K(A ∣ x, a) = ∑ Pr(C = c, F = f ∣ x, a) ∫ 1 [T (x, a, c, f, ξ) ∈ A] p(dξ ∣ x, a).
+                                                         ​
+
+
+
+
+                                                   c,f
+
+Here:
+
+      C contains measurement counts;
+      F is a backend event such as success, retryable failure, or permanent failure;
+      T is the complete deterministic state-update function once all random outcomes are fixed.
+This kernel is the actual analytical stochastic semantics of VQE.
+
+
+
+5. Example: one-parameter VQE with parameter-shift gradient
+Consider
+
+                                                             H = c0 I + c1 Z ,
+                                                                             ​              ​                               ∣ψ(θ)⟩ = Ry (θ)∣0⟩.            ​
+
+
+
+
+Then
+
+                                                                                                ⟨Z⟩θ = cos θ
+                                                                                                        ​
+
+
+
+
+and
+
+                                                                                     E(θ) = c0 + c1 cos θ.          ​              ​
+
+
+
+
+Suppose gradient descent uses a parameter-shift estimate:
+
+                                                                                     E (θ + π/2) − E (θ − π/2)
+                                                               g(θ) =                                          .
+                                                                                                 2
+                                                                 ​                                                                                                             ​
+
+
+
+
+Parameter-shift rules express circuit gradients through expectation values evaluated at shifted parameters. (arXiv)
+
+Let
+
+                                                                                                                                           1 − sin θ
+                                                                K+ ∼ Binomial (N ,                                                                   ),
+                                                                                                                                              2
+                                                                         ​                                                                                     ​
+
+
+
+
+and
+
+                                                                                                                                           1 + sin θ
+                                                                K− ∼ Binomial (N ,                                                                   ).
+                                                                                                                                              2
+                                                                         ​                                                                                     ​
+
+
+
+
+The estimated shifted energies are
+
+                                                                     E+ = c0 + c1 (2K+ /N − 1) ,
+                                                                                 ​              ​           ​                          ​
+
+
+
+
+                                                                     E− = c0 + c1 (2K− /N − 1) .
+                                                                                 ​              ​           ​                          ​
+
+
+
+
+Therefore,
+
+                                                                                     E+ − E−      K+ − K−
+                                                                     g=                      = c1         .
+                                                                                        ​                   ​                                      ​               ​
+
+
+
+
+                                                                                        2
+                                                                     ​                                          ​              ​                                       ​
+
+
+
+
+                                                                                                     N
+For learning rate α,
+
+                                                                                      θ′ = clip (θ − αg) .                                     ​
+
+
+
+
+Partition the parameter domain into cells
+
+                                                                                                B1 , … , BM .
+                                                                                                    ​                                      ​
+
+
+
+
+The exact transition probability into cell Bj is
+                                             ​
+
+
+
+
+  Exported with AI Exporter                                                                                                                                                        4 / 21
+                                                  Pj (θ) = Pr(θ′ ∈ Bj ∣ θ)
+                                                     ​                                                              ​
+
+
+
+
+                                                                   N                N
+                                                                                                                                                                                                   k+ − k−
+                                                             = ∑ ∑ 1 [clip (θ − αc1                                                                                                                        ) ∈ Bj ]
+                                                                                                                                                                                                        ​               ​
+
+
+
+
+                                                                        ​                           ​                                                                                          ​                            ​   ​
+
+
+
+
+                                                                                                                                                                                                      N
+                                                               k+ = 0 k− = 0
+                                                                   ​                ​
+
+
+
+
+                                                              ⋅ ( ) p+ (θ)k+ [1 − p+ (θ)]N −k+
+                                                         ​
+
+
+
+                                                                 N                                                                    ​                                                                         ​
+                                                                                                                                                                                                                                    ​
+
+
+
+
+                                                                            ​                                   ​                                                              ​
+
+
+
+
+                                                                 k +
+
+                                                              ⋅ ( ) p− (θ)k− [1 − p− (θ)]N −k− .
+                                                                 N                                                                    ​                                                                         ​
+
+
+
+
+                                                                            ​                                   ​                                                              ​
+
+
+
+
+                                                                 k −
+
+That equation is a complete analytical one-iteration transition rule.
+
+Repeatedly applying it produces a stochastic parameter-optimization process.
+
+
+
+6. Convert the continuous kernel into a finite model
+The concrete state contains continuous parameters, so PRISM or Storm cannot usually model it directly. Define an abstraction
+
+                                                                                                                        α : X → S,
+
+where X is the concrete state space and S is finite.
+
+A useful state might be
+                                                                                                                                                                  stag
+                                                             st = (t, Btθ , Bt , BtΔ , Bt
+                                                                                                                            g
+                                                               ​                                        ​                       ​             ​
+                                                                                                                                                                               , Btz , Btb , qt ) ,
+                                                                                                                                                                               ​                    ​       ​       ​
+
+
+
+
+where each B denotes a finite region.
+
+Option A: exact quotient
+For abstract cell Ci = α−1 (i), an exact transition probability exists when
+                    ​
+
+
+
+
+                                                                       K(Cj ∣ x, a) = K(Cj ∣ x′ , a)
+                                                                                                ​                                                                                  ​
+
+
+
+
+for every
+
+                                                                                                                            x, x′ ∈ Ci .                               ​
+
+
+
+
+Then define
+
+                                                                                    Pij (a) = K(Cj ∣ x, a)  ​                                                      ​
+
+
+
+
+for any x ∈ Ci .​
+
+
+
+
+This is a lumpability condition. It is rarely satisfied by coarse VQE energy bins.
+
+Option B: representative-point DTMC
+Choose one representative xi ∈ Ci and define
+                              ​      ​
+
+
+
+
+                                                                                                Pij = K(Cj ∣ xi ).      ​                                     ​                        ​
+
+
+
+
+This is computationally straightforward, but it is only an approximation. It does not formally cover all concrete VQE states represented by Ci .                                                                                        ​
+
+
+
+
+Option C: interval abstraction
+For every abstract transition, calculate
+
+                                                                       P ij (a) = inf K(Cj ∣ x, a),
+                                                                                ​       ​                                                             ​                    ​
+
+
+
+
+                                                                                                                                    x∈Ci          ​
+
+
+
+
+                                                                       P ij (a) = sup K(Cj ∣ x, a).
+                                                                                        ​                                                             ​                    ​
+
+
+
+
+                                                                                                                                    x∈Ci          ​
+
+
+
+
+The resulting transition is
+
+                                                                            Pij (a) ∈ [P ij (a), P ij (a)].
+                                                                                            ​                                             ​               ​                                ​
+
+
+
+
+This creates:
+
+    an IDTMC for a fixed VQE policy;
+
+    an IMDP when adaptive actions are present.
+
+For your project, this is the most defensible semantics-based abstraction because it accounts for variation among continuous concrete states inside each
+abstract region. PRISM currently supports interval DTMCs and interval MDPs and performs robust best- or worst-case verification over their transition
+
+
+  Exported with AI Exporter                                                                                                                                                                                                                 5 / 21
+intervals. (Prism Model Checker)
+
+A limitation is that independent intervals can permit combinations of probabilities that cannot arise from any single θ. This can make the result excessively
+conservative. Parameterized transitions or tighter joint uncertainty sets can reduce this problem.
+
+Option D: parametric model
+Keep quantities such as
+
+                                                                preadout ,
+                                                                         ​
+                                                                                   pbackend ,   ​
+                                                                                                    λnoise   ​
+
+
+
+
+as symbolic parameters.
+
+Storm supports verification over parameter regions, parameter-space partitioning, and—in supported cases—closed-form solution functions for parametric
+models. (Stormchecker)
+
+This is useful when probabilities are analytically structured but not known as exact numbers.
+
+
+
+7. Select the correct model class
+
+DTMC
+Use a DTMC when all execution choices are fixed:
+
+    fixed optimizer;
+
+    fixed shot allocation;
+
+    fixed backend;
+
+    fixed retry policy;
+
+    fixed stopping policy;
+
+    fixed noise model.
+
+The only remaining variation must be probabilistic.
+
+                                                                      D = (S, s0 , P , L).
+                                                                                        ​
+
+
+
+
+For your first analytical model, this is the cleanest choice.
+
+MDP
+Use an MDP when the execution protocol chooses among actions:
+
+                                                                             at ∈ A(st ),
+                                                                               ​            ​
+
+
+
+
+such as:
+
+    low-shot versus high-shot evaluation;
+
+    optimizer selection;
+
+    backend selection;
+
+    retry versus abort;
+
+    continue versus stop;
+
+    conservative versus aggressive update.
+
+PRISM interprets Pmin and Pmax over strategies resolving these nondeterministic choices and can export optimizing strategies. (Prism Model Checker)
+
+IDTMC or IMDP
+Use interval models when:
+
+    the abstract state contains multiple concrete parameter values;
+
+    hardware noise is bounded rather than exactly known;
+
+    an analytical approximation produces certified probability bounds;
+
+    backend reliability is only known within an interval.
+
+For an IMDP, PRISM separates quantification over strategies from quantification over probability intervals. For example:
+
+ text
+
+  Pmaxmin=? [ F "valid_converged" ]
+
+
+  Exported with AI Exporter                                                                                                                             6 / 21
+means:
+
+                                                     max    ​              min               ​       Pr(F valid_converged).
+                                                    strategy admissible probabilities
+
+This corresponds to the best policy under the worst admissible stochastic model.
+
+By contrast,
+
+ text
+
+  Pminmin=? [ F "valid_converged" ]
+
+
+takes the worst strategy and the worst admissible probability realization. The ordering of the two quantifiers is defined explicitly in the current PRISM
+uncertain-model semantics. (Prism Model Checker)
+
+
+
+8. Define convergence semantically
+You should distinguish three concepts.
+
+Declared convergence
+The implemented stopping rule fires:
+
+                                                                  ϕdeclared = Et − Et−1 ≤ δ
+                                                                                 ​       ​           ​        ​   ​
+
+
+
+
+for some number of iterations.
+
+Valid convergence
+For a benchmark where the reference energy is available:
+
+                                                           ϕvalid = ϕdeclared ∧ ∣E(θt ) − E∗ ∣ ≤ ϵ.
+                                                                   ​                 ​                    ​           ​
+
+
+
+
+Premature convergence
+
+                                                         ϕpremature = ϕdeclared ∧ ∣E(θt ) − E∗ ∣ > ϵ.
+                                                                       ​                         ​                        ​
+
+
+
+
+Without access to E∗ or another correctness certificate, the model can verify the probability of operational stopping, but it cannot claim that the VQE found
+                         ​
+
+
+
+
+the true ground state.
+
+For a research evaluation on small Hamiltonians, using a classically known E∗ allows you to verify both declared and valid convergence.
+                                                                                                     ​
+
+
+
+
+9. Use iteration counters correctly
+A property such as
+
+ text
+
+  P=? [ F<=50 "converged" ]
+
+
+bounds the number of model transitions, not automatically the number of VQE optimizer iterations.
+
+If your model contains separate transitions
+
+                                                      prepare → measure → aggregate → update,
+
+then one VQE iteration may consume four or more model transitions.
+
+For bounded VQE convergence, either:
+
+  1. make one model transition correspond to one complete VQE iteration; or
+
+  2. use an explicit iteration counter:
+
+ text
+
+  P=? [ F ("valid_converged" & iter<=50) ]
+
+
+The second formulation is safer when the execution model includes retries, failures, and internal phases. PRISM expresses reachability and bounded
+temporal properties through its probabilistic temporal-logic property language. (Prism Model Checker)
+
+
+  Exported with AI Exporter                                                                                                                                 7 / 21
+10. Add rewards
+Define reward structures for:
+
+                                                  rshots (s, a),
+                                                          ​              rjobs (s, a),
+                                                                                     ​       rtime (s, a),
+                                                                                                      ​           rcost (s, a).
+                                                                                                                       ​
+
+
+
+
+For example,
+
+                                                                        rshots (s, a) = ∑ Ng (a).
+                                                                                 ​                ​        ​
+
+
+
+
+                                                                                              g
+
+Then verify:
+
+ text
+
+  R{"shots"}=? [ F ("valid_converged" | "failed" | "timeout") ]
+
+
+or, for an MDP,
+
+ text
+
+  Rmin{"shots"}=? [ F ("valid_converged" | "failed" | "timeout") ]
+
+
+Useful properties include:
+
+                                                               P=? [F (valid_converged ∧ t ≤ 50)] ,
+                                                                    ​
+
+
+
+
+                                                                        P=? [F premature_stop] ,
+                                                                            ​
+
+
+
+
+                                                                                P=? [F timeout] ,
+                                                                                         ​
+
+
+
+
+and
+
+                                                    shots
+                                                   R=?    [F (valid_converged ∨ failed ∨ timeout)] .
+                                                               ​
+
+
+
+
+11. What can actually be derived from VQE semantics?
+The sources of probability should be separated carefully:
+
+                  Randomness                                  Derivable from VQE semantics?                                              Required input
+
+  Finite-shot measurement                                                                             Yes      Circuit, state, measurement scheme, shots
+
+  Noisy measurement outcomes                                       Yes, after fixing noise model               CPTP channel or readout matrix
+
+  Parameter-shift estimator                                                                           Yes      Shift rule and shot allocation
+
+  Random initialization                                                                               Yes      Explicit initialization distribution
+
+  SPSA perturbations                                                                                  Yes      Explicit perturbation distribution
+
+  Backend job failure                                                                                     No   External reliability model
+
+  Queue timeout                                                                                           No   External execution model
+
+  Hardware drift                                                                                          No   Time-dependent noise assumptions or calibration
+
+  Optimizer choice                                    Not probability unless randomized                        Policy or nondeterministic action
+
+
+Therefore, a completely semantics-derived model can rigorously cover finite-shot stochasticity. Hardware reliability and queue behavior require additional
+environmental assumptions or empirical calibration.
+
+That boundary should be stated explicitly in the paper.
+
+
+
+12. Recommended implementation architecture
+For your first model, use:
+
+                        fixed configuration + finite-shot semantics + parameter-grid abstraction + DTMC or IDTMC                                           ​
+
+
+
+
+A practical workflow is:
+
+
+
+  Exported with AI Exporter                                                                                                                                      8 / 21
+Semantic specification
+Specify:
+
+                                                           H,       U(θ),   Nj , ​       O,   Θ0 ,
+                                                                                                 ​   ϵ,   K.
+
+Probability generator
+For each abstract state:
+
+  1. calculate the exact or bounded Pauli outcome probabilities;
+
+  2. enumerate possible count outcomes;
+
+  3. apply the estimator;
+
+  4. apply the optimizer update;
+
+  5. classify the resulting next state;
+
+  6. sum the probabilities reaching each abstract state.
+
+Model export
+Generate an explicit:
+
+    transition matrix;
+
+    state-label mapping;
+
+    reward structure;
+
+    initial distribution.
+
+Export it as PRISM explicit files or JANI for Storm rather than manually writing thousands of guarded commands.
+
+Verification
+Check bounded valid convergence, premature stopping, timeout, failure, and expected shot usage.
+
+Validation
+Even though probabilities are analytical, verify that:
+
+                                                                            ∑ Pij = 1​   ​
+
+
+
+
+                                                                             j
+
+for every state, and compare:
+
+    analytical one-step distributions;
+
+    Monte Carlo one-step simulations;
+
+    analytical means and variances;
+
+    model-checking bounded probabilities;
+
+    direct repeated VQE simulations.
+
+Simulation here validates the analytical model; it does not supply its transition probabilities.
+
+
+
+Recommended first case for your project
+A credible initial case study would be:
+
+                                                         H2 Hamiltonian,
+                                                            ​
+
+
+
+
+                                                         one- or two-parameter ansatz,
+                                                         fixed parameter-shift gradient descent,
+                                                         fixed shots per Pauli term,
+                                                         ideal finite-shot measurements initially,
+                                                         known reference ground-state energy,
+                                                         K = 50.
+
+Build the exact count-level transition kernel, abstract the parameter space into intervals, and verify
+
+                                                           P=? [F (valid_converged ∧ t ≤ 50)] .
+                                                                ​
+
+
+
+
+Then extend the model incrementally:
+
+
+
+  Exported with AI Exporter                                                                                       9 / 21
+DTMC → IDTMC for abstraction/noise uncertainty → MDP for adaptive shot or optimizer choices → IMDP for both choices and un
+
+The central methodological contribution would not merely be “using PRISM on VQE.” It would be:
+
+  A semantics-preserving construction that derives a finite probabilistic abstraction of bounded VQE execution from Born-rule measurement distributions,
+  finite-shot estimators, optimizer update semantics, and explicit execution assumptions, enabling sound verification of temporal reliability and resource
+  properties.
+
+
+
+
+                                                                                                                                                 You Asked
+
+
+                                                                                                                                                 vqe_qiskit(2).py
+                                                                                                                                                 4.6 KB
+
+
+
+                                                     So my plan is to build one analytical model checking from VQE semantics, and another statistical
+                                                     model checking from empirical repeated VQE executions. Both of them come from the same VQE
+                                                     implementation that I just uploaded, which means that many of the randomizations for the analytical
+                                                     model checking are fixed, such as no optimizer choice, fixed optimizer, DTMC not MDP, etc, but for
+                                                     those that cannot be derived from VQE semantics, we can exclude them to build a pure analytical
+                                                     model. In other words, you can modify and instrument the current VQE implementation to make it an
+                                                     analytical model-centered and VQE semantics-preserved. Therefore, can you show me the concrete
+                                                     steps for building this analytical model checking of VQE, with your thinking process and model
+                                                     assumptions
+
+
+
+
+    ChatGPT gpt-5-6-thinking
+
+
+I’m inspecting the uploaded implementation for every stochastic or hidden state source, because the exact optimizer semantics determine whether a finite
+DTMC can be derived without silently changing the VQE process.
+
+The main incompatibility is now clear: the uploaded trace records only parameters and energies, but SciPy COBYLA’s next query depends on hidden trust-
+region/interpolation state. An exact DTMC cannot use COBYLA as an opaque call without modeling that internal state.
+
+Yes. The defensible formulation is:
+
+
+                       one instrumented finite-state VQE implementation ⟶ {
+                                                                                             semantics-derived analytical DTMC
+                                                                                             trace-derived empirical DTMC/SMC
+                                                                                                                                         ​   ​
+
+
+
+
+The analytical and empirical models must share exactly the same:
+
+    Hamiltonian and ansatz;
+
+    initial parameters;
+
+    optimizer semantics;
+
+    measurement grouping;
+
+    shot allocation;
+
+    parameter abstraction;
+
+    convergence definition;
+
+    iteration semantics.
+
+They differ only in how transition probabilities are obtained:
+
+                                           PA (s, s′ ) = derived from Born-rule measurement semantics,
+                                               ​
+
+
+
+
+whereas
+
+                                                                                    N (s, s′ )
+                                                                   PE (s, s′ ) =
+                                                                                   ∑u N (s, u)
+                                                                      ​                          ​
+
+
+
+
+                                                                                      ​
+
+
+
+
+is estimated from repeated executions.
+
+The current script is a good VQE example, but it is not yet suitable as the common semantic reference implementation.
+
+
+
+1. What the uploaded implementation currently contains
+
+  Exported with AI Exporter                                                                                                                               10 / 21
+Your code fixes:
+
+                                                  H = 0.398 Y Z − 0.398 ZI − 0.0113 ZZ + 0.181 XX,
+
+a two-qubit efficient_su2 ansatz, 10,000 shots, COBYLA, and a maximum setting of 50. It also selects the least-busy hardware backend, transpiles to that
+backend, randomly initializes four parameters, and obtains energies through Runtime EstimatorV2 .
+
+The corresponding Qiskit example reports four ansatz parameters and the exact ground-state energy
+
+                                                               E∗ = −0.702930394459531.
+                                                                    ​
+
+
+
+
+(IBM Quantum Documentation)
+
+The existing implementation contains the following sources of variation:
+
+                Component                            Current behavior                                              Pure analytical treatment
+
+  Hamiltonian                                Fixed                                      Preserve
+
+  Ansatz                                     Fixed                                      Preserve logical circuit
+
+  Initial parameters                         Random                                     Fix one vector
+
+  Backend                                    Least busy                                 Remove from analytical semantics
+
+  Transpilation                              Backend-dependent                          Remove or freeze completely
+
+  Measurement                                Runtime Estimator                          Replace with explicit Pauli measurement semantics
+
+  Shot count                                 10,000 default shots                       Define exact shots per measurement group
+
+  Optimizer                                  COBYLA                                     Reimplement fully or replace with explicit optimizer
+
+  Hardware noise                             Present                                    Exclude
+
+  Readout error                              Present                                    Exclude
+
+  Runtime transformations                    Potentially present                        Exclude
+
+  Queue and job failures                     Possible                                   Exclude
+
+  Maximum iterations                            maxiter=50                              Redefine explicitly as 50 VQE update steps
+
+Runtime primitives are cloud execution implementations and may include provider-side error-suppression or mitigation behavior; this is more complicated
+than the logical Born-rule semantics needed by your analytical model. (IBM Quantum)
+
+
+
+2. The critical problem with COBYLA
+The most important issue is not hardware noise. It is the optimizer.
+
+Your trace currently records:
+
+                                                                            (θt , Et ),
+                                                                                ​         ​
+
+
+
+
+but COBYLA’s next parameter vector is not determined only by this pair. COBYLA maintains an internal interpolation model and trust-region-related state.
+Current SciPy documentation describes COBYLA as a linear-approximation method, and also notes that an optimizer iteration can require multiple objective-
+function evaluations. (SciPy Documentation)
+
+Consequently:
+
+                                                                        P (θt+1 ∣ θt , Et )
+                                                                                    ​         ​   ​
+
+
+
+
+is not well-defined for your existing implementation.
+
+Two executions can reach the same θt and obtain the same current energy but have different future proposals because their earlier objective observations
+                                       ​
+
+
+
+
+produced different internal COBYLA states.
+
+There is also a counting issue. Your variable
+
+ text
+
+  cost_history_dict["iters"]
+
+
+counts calls to cost_func , which are objective-function evaluations. It does not necessarily count complete optimizer iterations. SciPy explicitly
+distinguishes iterations from function evaluations. (SciPy Documentation)
+
+
+  Exported with AI Exporter                                                                                                                           11 / 21
+Available choices
+
+Choice A: retain COBYLA exactly
+You would need to reimplement or instrument COBYLA so that the DTMC state includes its complete sufficient internal state:
+
+                                                                        st = (t, θt , It , ρt , Vt , Ft , …) ,
+                                                                          ​                            ​           ​           ​        ​           ​
+
+
+
+
+where the additional variables represent the interpolation points, their objective values, trust-region radius, current best point, and termination state.
+
+This is theoretically possible but unsuitable for the first analytical VQE model because:
+
+    the state is continuous and high-dimensional;
+
+    every noisy objective outcome changes the internal model;
+
+    the transition branching becomes extremely large;
+
+    SciPy does not expose all of this state through the ordinary callback;
+
+    any coarse abstraction would require interval probabilities or approximation.
+
+Choice B: use a model-centered explicit optimizer
+This is the recommended approach.
+
+Replace COBYLA in both the analytical and empirical branches with a fixed, finite-state optimizer whose update is completely specified.
+
+This changes the classical optimizer used by the original example, but it does not violate general VQE semantics: VQE does not require COBYLA. It requires a
+classical procedure that proposes parameters based on measured objective values.
+
+Your resulting claim should be:
+
+   We preserve the quantum and measurement semantics of the VQE instance while using an explicitly defined finite-state classical optimizer to enable
+   exact probabilistic model construction.
+
+You should not claim that it is behaviorally identical to the original COBYLA implementation.
+
+
+
+3. Recommended common VQE reference implementation
+I recommend a finite-grid stochastic coordinate-search VQE.
+
+3.1 Fixed parameter domain
+The ansatz has four parameters:
+
+                                                                                       θ = (θ0 , θ1 , θ2 , θ3 ).
+                                                                                                               ​           ​        ​           ​
+
+
+
+
+Because rotation angles are periodic, define a finite circular grid:
+
+                                                                                           2π 4π     2π(M − 1)
+                                                           ΘM = {0,
+                                                                ​                            ,   ,…,
+                                                                                                   ​           }.      ​                                      ​
+
+
+
+
+                                                                                           M M          M
+
+Each parameter vector becomes
+
+                                                             2π
+                                                    θ(i) =      (i0 , i1 , i2 , i3 ),
+                                                                    ​         ​        ​       ​           ​                       ik ∈ {0, … , M − 1}.
+                                                                                                                                            ​
+
+
+
+
+                                                             M
+A reasonable first model is:
+
+                                                                                                                                                        π
+                                                                                  M = 16,                                          Δθ =                   .
+                                                                                                                                                        8
+                                                                                                                                            ​            ​
+
+
+
+
+The theoretical parameter space contains
+
+                                                                                               164 = 65,536
+
+parameter states, but you should generate only states reachable from the fixed initial state.
+
+3.2 Fixed initial state
+Replace
+
+                                                                              θ0 ∼ Uniform([0, 2π)4 )
+                                                                                   ​
+
+
+
+
+with one recorded grid point, for example:
+
+                                                                                       i0 = (3, 11, 6, 14).
+                                                                                           ​
+
+
+
+
+  Exported with AI Exporter                                                                                                                                       12 / 21
+The exact value is not important, but it must be:
+
+    fixed before experimentation;
+
+    used by both model branches;
+
+    reported in the experiment configuration;
+
+    not selected after observing the results.
+
+You can later repeat the complete analysis for several predefined initial states.
+
+3.3 Explicit coordinate schedule
+At step t, optimize parameter
+
+                                                                            kt = t mod 4.
+                                                                                     ​
+
+
+
+
+Define three candidate points:
+
+                                                                                                 (0)
+                                                                                         θt = θt ,     ​                   ​
+
+
+
+
+                                                                           (−)
+                                                                       θt        ​       = θt − Δθ ekt ,   ​                               ​
+
+
+                                                                                                                                                    ​
+                                                                                                                                                        ​
+
+
+
+
+                                                                           (+)
+                                                                       θt        ​       = θt + Δθ ekt ,   ​                               ​
+
+
+                                                                                                                                                    ​
+                                                                                                                                                        ​
+
+
+
+
+with circular wrapping modulo 2π .
+
+Evaluate all three candidates using independent finite-shot measurements and select the candidate with the smallest estimated energy:
+
+                                                                                                                                                   (a)
+                                                                      at = arg min E (θt ).
+                                                                       ​                                           ​                                        ​
+
+
+
+
+                                                                             a∈{0,−,+}
+
+Use a fixed tie-breaking order, such as
+
+                                                                             0 ≺ − ≺ +.
+
+Then
+
+                                                                                                                   (a )
+                                                                             θt+1 = θt t .
+                                                                                                                                   ​
+
+
+
+
+                                                                                                   ​                                   ​
+
+
+
+
+Although this involves a “selection,” it is not MDP nondeterminism. The selection rule is fixed, and the selected candidate is random only because the
+measured energies are random. The result is a DTMC.
+
+
+
+4. Explicit measurement semantics
+Do not use EstimatorV2 as the semantic definition of the analytical measurement.
+
+Instead, construct explicit measurement groups and derive their probabilities from the statevector.
+
+The Hamiltonian is
+
+                                                                                                           4
+                                                                            H = ∑ cj Pj .                      ​               ​               ​
+
+
+
+
+                                                                                                       j=1
+
+A qubit-wise commuting grouping is:
+
+                                                                           G1 = {ZI , ZZ},
+                                                                             ​
+
+
+
+
+                                                                            G2 = {Y Z},      ​
+
+
+
+
+                                                                            G3 = {XX}.   ​
+
+
+
+
+Thus one energy evaluation uses three measurement circuits.
+
+4.1 State semantics
+For parameter vector θ,
+
+                                                                       ∣ψ(θ)⟩ = U(θ)∣00⟩.
+
+For measurement group g, let Bg be its basis-change circuit. The probability of observing bitstring b ∈ {00, 01, 10, 11} is
+                                  ​
+
+
+
+
+                                                                                                                                                                2
+                                                               pg (b ∣ θ) = ∣⟨b∣Bg U (θ)∣00⟩∣ .
+                                                                  ​                                                    ​
+
+
+
+
+  Exported with AI Exporter                                                                                                                                         13 / 21
+The basis changes are constructed from:
+
+    Z : no basis change;
+    X : apply H ;
+    Y : apply S † H .
+The analytical generator should calculate these probabilities directly from the logical circuit statevector. Qiskit’s statevector reference estimator produces
+ideal expectation values with zero estimator error when no artificial precision noise is requested, which makes it suitable for evaluating the underlying logical
+state semantics—but the finite-shot distribution must still be constructed explicitly. (IBM Quantum Documentation)
+
+4.2 Shot allocation
+The existing default_shots=10000 does not explicitly define how many shots each analytical measurement group receives.
+
+Define this in the reference semantics. For example:
+
+                                                       N1 = 3334,
+                                                         ​                                      N2 = 3333,
+                                                                                                      ​                                                                       N3 = 3333.
+                                                                                                                                                                                  ​
+
+
+
+
+Then every candidate-energy evaluation consumes exactly
+
+                                                                            N1 + N2 + N3 = 10,000
+                                                                                  ​               ​                           ​
+
+
+
+
+shots.
+
+Because three candidate points are evaluated at each optimizer step, each DTMC transition costs
+
+                                                                                                      30,000
+
+shots.
+
+4.3 Count distributions
+For each group,
+
+                                                               Cg = (Cg,00 , Cg,01 , Cg,10 , Cg,11 )
+                                                                        ​                         ​                               ​                               ​                   ​
+
+
+
+
+follows
+
+                                                             Cg ∼ Multinomial (Ng , pg (⋅ ∣ θ)) .
+                                                                ​                                                                                     ​               ​
+
+
+
+
+For Pauli term Pj ∈ Gg , let
+                    ​     ​
+
+
+
+
+                                                                                          λj (b) ∈ {−1, +1}
+                                                                                            ​
+
+
+
+
+be the eigenvalue associated with bitstring b. Then
+
+                                                                                                1
+                                                                            μj =
+                                                                              ​       ​            ∑ λj (b)Cg,b .
+                                                                                                              ​           ​               ​                               ​
+
+
+
+
+                                                                                                Ng        ​
+
+
+
+
+                                                                                                                  b
+
+The estimated energy is
+
+                                                                                          E (θ) = ∑ cj μj .                           ​           ​       ​   ​
+
+
+
+
+                                                                                                                      j
+
+Therefore, its probability mass function is
+
+                                                                                                                                      3
+                                                             fθ (e) =
+                                                                    ​                           ∑                     ​       ∏ Pr(Cg ∣ θ).   ​                               ​
+
+
+
+
+                                                                                           C:E (θ,C)=e g=1
+
+No empirical execution frequency appears in this equation. Every probability comes from:
+
+                                                        U(θ),               H,              measurement bases,                                                                            Ng ,
+                                                                                                                                                                                             ​
+
+
+
+
+and the Born rule.
+
+
+
+5. Analytical optimizer-transition probability
+At abstract state
+
+                                                                                                s = (t, i),
+
+the three candidates have energy-estimator distributions:
+
+
+  Exported with AI Exporter                                                                                                                                                                      14 / 21
+                                                                      f0 (e),
+                                                                           ​                                 f− (e),  ​                                       f+ (e).
+                                                                                                                                                                ​
+
+
+
+
+Assume their measurement executions are independent.
+
+For tie-breaking order
+
+                                                                                                           0 ≺ − ≺ +,
+
+the probability of remaining at the current parameter point is
+
+                                                         P0 = ∑ f0 (e) Pr(E− > e) Pr(E+ > e).
+                                                             ​                 ​       ​                                  ​                                             ​
+
+
+
+
+                                                                       e
+
+The probability of choosing the negative candidate is
+
+                                                         P− = ∑ f− (e) Pr(E0 ≥ e) Pr(E+ > e).
+                                                                 ​                 ​           ​                              ​                                             ​
+
+
+
+
+                                                                       e
+
+The probability of choosing the positive candidate is
+
+                                                         P+ = ∑ f+ (e) Pr(E0 ≥ e) Pr(E− ≥ e).
+                                                                 ​                 ​           ​                              ​                                             ​
+
+
+
+
+                                                                       e
+
+The strict and non-strict inequalities implement the tie-breaking order.
+
+Then the DTMC transitions are
+
+                                                                           P ((t, i), (t + 1, i)) = P0 ,                                                            ​
+
+
+
+
+                                                                     P ((t, i), (t + 1, i − ekt )) = P− ,                                         ​
+                                                                                                                                                      ​                         ​
+
+
+
+
+                                                                     P ((t, i), (t + 1, i + ekt )) = P+ .                                         ​
+                                                                                                                                                      ​                         ​
+
+
+
+
+You must verify numerically that
+
+                                                                                       P0 + P− + P+ = 1​          ​                           ​
+
+
+
+
+within a strict numerical tolerance.
+
+This gives at most three outgoing transitions from every running state.
+
+
+
+6. Exact versus approximate finite-shot distributions
+With 10,000 shots, directly enumerating every multinomial count vector is generally impractical.
+
+You have three implementation levels.
+
+Level 1: exact small-shot DTMC
+Use, for example,
+
+                                                                               N1 = N2 = N3 = 128
+                                                                                           ​                  ​                           ​
+
+
+
+
+or 256 shots per group.
+
+Compute the exact discrete energy distributions using:
+
+    multinomial enumeration;
+
+    dynamic programming;
+
+    probability-generating functions;
+
+    discrete convolution.
+
+This should be your first correctness prototype.
+
+It produces an ordinary DTMC whose probabilities are numerically evaluated directly from the finite-shot semantics.
+
+Level 2: 10,000-shot analytical approximation
+For each group, define the single-shot energy contribution
+
+                                                                                   Wg (b) = ∑ cj λj (b).
+                                                                                                   ​                                  ​       ​           ​
+
+
+
+
+                                                                                                                  j∈Gg            ​
+
+
+
+
+Then
+
+
+  Exported with AI Exporter                                                                                                                                                         15 / 21
+                                                                                    E[E (θ)] = E(θ),
+
+and, because groups are independently measured,
+
+                                                                                                                                                Var[Wg ∣ θ]
+                                                              Var[E (θ)] = ∑                                                                                .
+                                                                                                                                                                      ​
+
+
+
+
+                                                                                                                                        ​                                         ​
+
+
+
+
+                                                                                                                g
+                                                                                                                                                   Ng             ​
+
+
+
+
+For 10,000 total shots, approximate
+
+                                                                       E (θ) ≈ N (E(θ), σ 2 (θ)) .
+
+For candidate a, let its density and cumulative distribution be fa and Fa . Ignoring zero-probability ties in the continuous approximation,
+                                                                       ​                        ​
+
+
+
+
+                                                                                   ∞
+                                                            Pa = ∫
+                                                              ​                         ​   fa (x) ∏ [1 − Fb (x)] dx.
+                                                                                                    ​                                       ​                 ​
+
+
+
+
+                                                                                   −∞                            
+                                                                                                                b=a
+
+This produces an ordinary DTMC, but it must be labelled an analytical approximation, not an exact finite-shot DTMC.
+
+Level 3: rigorous interval DTMC
+Bound the approximation and numerical errors:
+
+                                                                                            Pa ∈ [P a , P a ].
+                                                                                                        ​               ​           ​                 ​
+
+
+
+
+This creates an interval DTMC rather than an ordinary DTMC. It is more rigorous for the 10,000-shot configuration because model checking can return lower
+and upper convergence-probability bounds.
+
+My recommendation is:
+
+  1. exact small-shot DTMC as the methodological proof;
+
+  2. 10,000-shot interval or validated approximate DTMC as the realistic configuration.
+
+
+
+7. DTMC state definition
+The minimal state can be
+
+                                                                      st = (t, i0,t , i1,t , i2,t , i3,t , qt ),
+                                                                           ​                                ​               ​                     ​       ​                   ​
+
+
+
+
+where
+
+                                                             qt ∈ {running, success, timeout}.
+                                                                  ​
+
+
+
+
+You do not need to store the sampled energy because all three candidate energy observations are consumed within one transition and then discarded.
+
+Markov-property argument
+Given
+
+                                                                                                            (t, it ),           ​
+
+
+
+
+the following are completely determined:
+
+    the coordinate being updated;
+
+    the three candidate vectors;
+
+    their exact statevectors;
+
+    their measurement-outcome probabilities;
+
+    the distributions of their estimated energies;
+
+    the distribution of the selected next vector.
+
+Therefore,
+
+                                                            P (st+1 ∣ s0 , … , st ) = P (st+1 ∣ st ).
+                                                                               ​            ​                       ​                                                     ​           ​
+
+
+
+
+This is the formal reason the construction is a DTMC.
+
+
+
+8. Define convergence independently of optimizer termination
+Do not use SciPy’s success field as VQE convergence.
+
+
+
+
+  Exported with AI Exporter                                                                                                                                                               16 / 21
+For the analytical benchmark, label a parameter point as validly converged when
+
+                                                                       E(θ) − E∗ ≤ ϵ.     ​
+
+
+
+
+Since E∗ is known by exact diagonalization, calculate
+          ​
+
+
+
+
+                                                                  E(θ) = ⟨ψ(θ)∣H∣ψ(θ)⟩
+
+without shot noise.
+
+Possible thresholds are experiment parameters:
+
+                                                              ϵ ∈ {0.001, 0.005, 0.01, 0.02}.
+
+This permits sensitivity analysis rather than selecting one favorable value.
+
+Define:
+
+                                                            success(θ) ⟺ E(θ) − E∗ ≤ ϵ.       ​
+
+
+
+
+Once success is reached, make the state absorbing:
+
+                                                                         P (s, s) = 1.
+
+At
+
+                                                                               t = 50
+
+without success, enter an absorbing timeout state.
+
+This verifies valid convergence, not merely whether the optimizer declared termination.
+
+
+
+9. Reward model
+Each running transition evaluates three candidates.
+
+If each candidate uses 10,000 shots:
+
+                                                                     rshots (s) = 30,000.
+                                                                           ​
+
+
+
+
+You can also assign:
+
+                                                                     revaluations (s) = 3,
+                                                                                      ​
+
+
+
+
+                                                                      riterations (s) = 1.
+                                                                                  ​
+
+
+
+
+The expected shot cost until termination is then:
+
+ text
+
+  R{"shots"}=? [ F ("success" | "timeout") ]
+
+
+Because one DTMC transition is deliberately defined as one VQE optimizer update, the bounded property is unambiguous:
+
+ text
+
+  P=? [ F<=50 "success" ]
+
+
+
+
+10. Instrumented implementation architecture
+Both model branches should use a common semantic core.
+
+Shared configuration
+Store:
+
+ text
+
+  hamiltonian
+  logical_ansatz
+  parameter_grid_size
+  initial_parameter_index
+  measurement_groups
+
+
+  Exported with AI Exporter                                                                                             17 / 21
+  shots_per_group
+  coordinate_schedule
+  candidate_order
+  tie_breaking_rule
+  maximum_steps
+  convergence_threshold
+  reference_energy
+
+
+Shared semantic functions
+Implement one authoritative version of:
+
+ text
+
+  index_to_parameters
+  candidate_indices
+  measurement_probabilities
+  counts_to_energy
+  exact_energy
+  is_success
+  optimizer_select
+
+
+Analytical branch
+The analytical builder:
+
+  1. starts from the initial state;
+
+  2. computes its three candidate parameter points;
+
+  3. derives candidate measurement distributions;
+
+  4. calculates the three selection probabilities;
+
+  5. creates successor states;
+
+  6. repeats using breadth-first reachable-state exploration;
+
+  7. writes the DTMC transition matrix, labels, and rewards.
+
+Suggested outputs:
+
+ text
+
+  vqe.sta
+  vqe.tra
+  vqe.lab
+  vqe.rew
+  vqe_config.json
+
+
+Storm can load these explicit sparse-model files directly.
+
+Empirical branch
+The empirical executor uses the same candidate-generation and optimizer-selection functions, but samples measurement counts:
+
+                                                                Cg ∼ Multinomial(Ng , pg ).
+                                                                  ​                   ​   ​
+
+
+
+
+For each repeated run, record:
+
+ text
+
+  run_id
+  step
+  source_state
+  parameter_indices
+  candidate_indices
+  candidate_counts
+  candidate_energies
+  selected_candidate
+  target_state
+  exact_energy
+  success
+  shots_used
+
+
+
+
+  Exported with AI Exporter                                                                                                    18 / 21
+This is important: the analytical and empirical branches should not independently implement optimizer logic. Otherwise discrepancies may come from
+duplicated code rather than probabilistic modeling.
+
+
+
+11. Building the empirical comparison model
+Run the instrumented VQE R times from the same initial state.
+
+For every observed transition,
+
+                                                                      N (s, s′ ) ← N (s, s′ ) + 1.
+
+Then calculate
+
+                                                                                                                        N (s, s′ )
+                                                                      PE (s, s′ ) =                                                .
+                                                                                                                       ∑u N (s, u)
+                                                                         ​                                                                     ​
+
+
+
+
+                                                                                                                                   ​
+
+
+
+
+Use the same state identifiers as the analytical DTMC.
+
+You should perform two empirical experiments.
+
+End-to-end repeated executions
+Run complete 50-step VQE executions.
+
+This estimates:
+
+                                                                    #{runs reaching success by step 50}
+                                                   psuccess =
+                                                      ​    ​                                            .                                                      ​
+
+
+
+
+                                                                                    R
+This is direct statistical model checking of the bounded property.
+
+State-conditioned one-step executions
+For each important reachable state s, execute only one optimizer step many times.
+
+This gives a controlled estimate of
+
+                                                                                               PE (s, ⋅)           ​
+
+
+
+
+and is much more efficient for validating individual analytical transitions.
+
+End-to-end executions alone may provide very few observations for rarely reached states.
+
+
+
+12. Analytical versus empirical validation
+For each sufficiently sampled state, compare the analytical and empirical transition distributions.
+
+Absolute transition error
+
+                                                               Δ(s, s′ ) = PA (s, s′ ) − PE (s, s′ ) .
+                                                                                          ​                                                ​           ​
+
+
+
+
+Total-variation distance
+
+                                                                                     1
+                                                          DTV (s) =                    ∑ PA (s, s′ ) − PE (s, s′ ) .
+                                                                                     2 ′
+                                                                ​                     ​        ​           ​           ​                           ​       ​
+
+
+
+
+                                                                                          s
+
+
+Model-checking result difference
+Let
+
+                                                                       pA = PA (F≤50 success)
+                                                                                 ​                     ​                       ​
+
+
+
+
+and
+
+                                                                      pE = PE (F≤50 success).
+                                                                             ​                     ​                       ​
+
+
+
+
+Report
+
+                                                                                              ∣pA − pE ∣.      ​                       ​
+
+
+
+
+Also report a confidence interval around the direct empirical satisfaction probability.
+
+
+
+  Exported with AI Exporter                                                                                                                                        19 / 21
+Under ideal finite-shot execution, the empirical values should converge toward the analytical values as the number of repeated executions increases.
+
+
+
+13. Where real IBM hardware fits
+A real-backend experiment should not be the primary validation of the pure analytical model.
+
+The analytical assumptions exclude:
+
+    gate errors;
+
+    readout errors;
+
+    calibration drift;
+
+    transpilation-dependent physical implementation;
+
+    runtime mitigation;
+
+    provider-side randomization;
+
+    correlated and nonstationary noise.
+
+Therefore, use two empirical configurations:
+
+Controlled empirical validation
+Sample from the ideal statevector-derived Born distributions.
+
+This tests whether the analytical DTMC construction and implementation are correct.
+
+Hardware empirical evaluation
+Execute the same logical protocol on a fixed IBM backend with a fixed transpiled circuit.
+
+This tests the semantic gap:
+
+                                            logical finite-shot model versus            physical VQE execution.
+
+A discrepancy on hardware is then a research result rather than evidence that the analytical construction is incorrect.
+
+
+
+14. Final model assumptions
+Your paper should state these explicitly.
+
+A1: Fixed VQE instance
+The Hamiltonian, ansatz structure, parameter ordering, measurement grouping, shot allocation, optimizer, initial parameters, and iteration bound are fixed.
+
+A2: Logical circuit semantics
+The quantum state is generated by exact unitary execution of the logical ansatz.
+
+A3: Born-rule randomness only
+The only probabilistic source is finite-shot projective measurement.
+
+A4: Independent executions
+Shots are independent and identically distributed within each measurement group, and separately executed groups and candidates are independent.
+
+A5: No physical noise
+Gate noise, readout noise, drift, crosstalk, job failure, and queue behavior are excluded.
+
+A6: Exact classical processing
+Measurement counts are converted to Pauli expectations and energies without arithmetic or parsing errors.
+
+A7: Finite parameter space
+All optimizer parameters lie on a fixed periodic grid.
+
+A8: Explicit optimizer
+The optimizer evaluates a fixed candidate set, follows a fixed coordinate schedule, and uses deterministic tie-breaking.
+
+A9: One transition per update
+One DTMC transition represents one complete optimizer update, not one circuit execution or objective-function call.
+
+
+
+  Exported with AI Exporter                                                                                                                            20 / 21
+A10: Benchmark convergence
+Valid convergence is defined using the exact reference ground energy and a predefined tolerance.
+
+A11: Absorbing terminal states
+Valid convergence and timeout are absorbing.
+
+A12: Fixed horizon
+The execution terminates after at most 50 optimizer updates.
+
+
+
+15. Recommended implementation sequence
+Build it in this order:
+
+  1. Refactor the Hamiltonian and logical ansatz from the uploaded implementation into a shared configuration.
+
+  2. Fix and record the initial four-parameter vector.
+
+  3. Remove backend selection, sessions, transpilation, and Runtime Estimator from the analytical core.
+
+  4. Implement the three explicit Pauli measurement groups.
+
+  5. Verify that exact group expectations reconstruct the exact statevector energy.
+
+  6. Replace COBYLA with the finite-grid coordinate optimizer in both branches.
+
+  7. Implement the empirical finite-shot executor and JSONL trace format.
+
+  8. Implement exact transition generation first with a small shot count.
+
+  9. Generate the reachable analytical DTMC.
+
+10. Verify bounded convergence and expected shot cost in Storm or PRISM.
+
+11. Run repeated ideal finite-shot executions and build the empirical model.
+
+12. Compare transition probabilities and bounded-reachability results.
+
+13. Extend to 10,000 shots using validated approximation or interval transitions.
+
+14. Only afterward evaluate the same protocol on fixed IBM hardware.
+
+The most important methodological statement is:
+
+The analytical DTMC is generated from the semantics of an explicitly finite-state VQE execution protocol, not abstracted retrospect
+
+That design makes the analytical and empirical models genuinely comparable while keeping every analytical probability traceable to the VQE circuit, Born
+rule, finite-shot estimator, and fixed optimizer update semantics.
+
+
+
+
+  Exported with AI Exporter                                                                                                                        21 / 21
+

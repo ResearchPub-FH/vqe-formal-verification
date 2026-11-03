@@ -1,0 +1,64 @@
+{
+  "complete": true,
+  "config_hash": "9a2c01406359167dc9ffbaa67a767f9a1e752cd8b0875cf13ae7c25830ee4d20",
+  "execution_provenance": {
+    "ansatz_qpy_sha256": "7f197ec1624c5ca75457cb66427156dde65c1ec27002c9ec284eb8558b9d9c07",
+    "backend": "StatevectorEstimator",
+    "executable_circuit_qpy_sha256": "7f197ec1624c5ca75457cb66427156dde65c1ec27002c9ec284eb8558b9d9c07",
+    "layout_sha256": "f2953d2931e36d0c55640f51865f8394ebe52194765d04e521017232558f871c",
+    "mode": "qiskit-statevector",
+    "optimizer": "scipy.COBYLA",
+    "requested_shots_per_term": 0,
+    "seed": 7,
+    "seed_transpiler": null,
+    "system": "h2",
+    "transpiler_optimization_level": null
+  },
+  "levels": {
+    "inter_iteration": {
+      "findings": [
+        {
+          "level": "inter_iteration",
+          "message": "opaque optimizers expose the next candidate only after their internal update; candidate-to-binding continuity is checked observationally",
+          "property_id": "inter_optimizer_commit_enforcement",
+          "seq": 1,
+          "source": "python",
+          "status": "inconclusive"
+        }
+      ],
+      "status": "inconclusive"
+    },
+    "intra_iteration": {
+      "findings": [],
+      "status": "pass"
+    },
+    "run_level": {
+      "findings": [],
+      "status": "pass"
+    }
+  },
+  "metrics": {
+    "duration_seconds": 0.241221791,
+    "event_count": 403,
+    "iterations": 10,
+    "recorded_contract_count": 30,
+    "verified_effective_term_samples": 0
+  },
+  "monitor_provenance": {
+    "adapter": "synchronous-dejavu-generated-monitor",
+    "bridge_sha256": "e46bfca48e9135503e146c677f310b28bee58110571abdca54d185a30a47af86",
+    "dejavu_sha256": "99fbc72ac9ba0dbf8051691f4c15958e1694345a025840acfd344d1eb66d58e1",
+    "monitor_sha256": "fd94121b102b5e21d161d983973c91a7e229f7f9929b48c04aafec9e5b13a4e7",
+    "property_levels": [
+      "intra_iteration",
+      "inter_iteration",
+      "run_level"
+    ],
+    "schema": 1,
+    "spec_sha256": "8a9e2dd660d1eb5dbf93eae8d60b7844faf792710a8337cb9910ac553c4b7729"
+  },
+  "run_id": "h2-statevector-20260906",
+  "schema_version": 1,
+  "status": "inconclusive",
+  "terminal_reason": "converged"
+}

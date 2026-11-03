@@ -1,0 +1,29 @@
+{
+  "status": "PASS",
+  "paper_sha256": "fa37ce17576fd5e2c8ac8d99c9b1046d2817792c51393fca66e00061de3d1e51",
+  "architecture_sha256": "11c68784222acb6448f462825470a3f9f5a8c82ab080f3ccf03de7b0786abff0",
+  "pages": 11,
+  "rendering": "Poppler PNGs at 1500-pixel page height; last affected pages reinspected after final wording edit at 1400 pixels. Temporary previews remain outside the deliverable folder.",
+  "page_review": {
+    "1": "Title, abstract, methodological quotation and contribution list remain legible in two columns.",
+    "2": "Requirement/contract definitions, early verdict explanation and selected-requirement justification fit the columns. Long verdict names wrap without protrusion.",
+    "3": "Architecture has readable stage labels, family boxes and verdict categories. Arrows and box text are unclipped. Concise caption fits below the vector diagram.",
+    "4": "Table I mapping and Table II configuration are legible. Equation numbers remain aligned and unique.",
+    "5": "Gaussian rationale, variance equation, selection integral and finite Markov construction are readable. Model/tie and approximation scope are retained.",
+    "6": "Scalability panels, saturated blue/orange lines, markers and axes remain readable at single-column width. Timing exclusions are in prose.",
+    "7": "Runtime-cost panels and intervals remain readable. Hardware Submissions header and exact values fit the single-column table. Stage procedure text is unclipped.",
+    "8": "Probability curve, pointwise shading and concise caption are readable. Primary probability and original P2 interval/p-value interpretation agree with source data.",
+    "9": "L4 label reads Agreement under mapping with original scope. Merged Table V fits four columns and separates probability/resource units. Fault matrix legend, verdict letters and counts are legible.",
+    "10": "Verification synthesis and scientific limitations remain complete and readable across columns.",
+    "11": "Conclusion, artifact statement and all bibliography entries fit without clipped text or malformed URLs. Final-page whitespace is accepted for the existing IEEE conference layout."
+  },
+  "standalone_architecture": "Inspected separately: all text, arrows, stage boxes and verdict labels readable and unclipped. Vector audit confirms retained text and zero raster images.",
+  "automated_checks": {
+    "latex_errors": 0,
+    "undefined_references": 0,
+    "undefined_citations": 0,
+    "overfull_boxes": 0,
+    "underfull_notes": 10
+  },
+  "second_review_audit": "Complete original DOCX reread and its rendered page inspected after compilation; seven numbered comments plus the general comment all addressed."
+}

@@ -1,0 +1,1720 @@
+*** This is nuXmv 2.1.0 (compiled on Fri Nov 29 09:05:38 2024)
+*** Copyright (c) 2014-2024, Fondazione Bruno Kessler
+*** For more information on nuXmv see https://nuxmv.fbk.eu
+*** or email to <nuxmv@fbk.eu>.
+*** Please report bugs at Please report bugs to <nusmv-users@fbk.eu>
+*** (click on "Login Anonymously" to access)
+*** Alternatively write to <nuxmv@fbk.eu>.
+
+*** This version of nuXmv is linked to NuSMV 2.7.0.
+*** For more information on NuSMV see <http://nusmv.fbk.eu>
+*** or email to <nusmv-users@fbk.eu>.
+*** Copyright (C) 2010-2024, Fondazione Bruno Kessler
+
+*** This version of nuXmv is linked to the CUDD library version 2.4.1
+*** Copyright (c) 1995-2004, Regents of the University of Colorado
+
+*** This version of nuXmv is linked to the MiniSat SAT solver. 
+*** See http://minisat.se/MiniSat.html
+*** Copyright (c) 2003-2006, Niklas Een, Niklas Sorensson
+*** Copyright (c) 2007-2010, Niklas Sorensson
+
+*** This version of nuXmv is linked to MathSAT
+*** Copyright (C) 2009-2019 by Fondazione Bruno Kessler
+*** Copyright (C) 2009-2019 by University of Trento and others
+*** See http://mathsat.fbk.eu
+
+-- specification AG (!terminal -> AF terminal)  is false
+-- as demonstrated by the following execution sequence
+Trace Description: CTL Counterexample 
+Trace Type: Counterexample 
+  -> State: 1.1 <-
+    state = S_INIT
+    iter = 0
+    cands_done = 0
+    terms_done = 0
+    circ_ready = FALSE
+    params_ready = TRUE
+    energy_ready = FALSE
+    bound_version = 0
+    bound_cand = 0
+    energy_version = 0
+    term_reason = NO_TERM
+    converged = FALSE
+    bind_error = FALSE
+    qpu_error = FALSE
+    energy_error = FALSE
+    optimizer_error = FALSE
+    NCANDS = 3
+    NTERMS = 5
+    MAX_ITERS = 10
+    error = FALSE
+    optimizer_fails = FALSE
+    energy_fails = FALSE
+    measure_fails = FALSE
+    bind_fails = FALSE
+    terminal = FALSE
+  -> State: 1.2 <-
+    state = CHECK_STOP
+  -> State: 1.3 <-
+    state = BIND
+  -> State: 1.4 <-
+    state = EXECUTE_MEASURE
+    circ_ready = TRUE
+  -> State: 1.5 <-
+    terms_done = 1
+  -> State: 1.6 <-
+    terms_done = 2
+  -> State: 1.7 <-
+    terms_done = 3
+  -> State: 1.8 <-
+    terms_done = 4
+  -> State: 1.9 <-
+    state = COMPUTE_ENERGY
+    terms_done = 5
+    params_ready = FALSE
+  -> State: 1.10 <-
+    state = BIND
+    cands_done = 1
+    terms_done = 0
+    circ_ready = FALSE
+    params_ready = TRUE
+  -> State: 1.11 <-
+    state = EXECUTE_MEASURE
+    circ_ready = TRUE
+    bound_cand = 1
+  -> State: 1.12 <-
+    terms_done = 1
+  -> State: 1.13 <-
+    terms_done = 2
+  -> State: 1.14 <-
+    terms_done = 3
+  -> State: 1.15 <-
+    terms_done = 4
+  -> State: 1.16 <-
+    state = COMPUTE_ENERGY
+    terms_done = 5
+    params_ready = FALSE
+  -> State: 1.17 <-
+    state = BIND
+    cands_done = 2
+    terms_done = 0
+    circ_ready = FALSE
+    params_ready = TRUE
+  -> State: 1.18 <-
+    state = EXECUTE_MEASURE
+    circ_ready = TRUE
+    bound_cand = 2
+  -> State: 1.19 <-
+    terms_done = 1
+  -> State: 1.20 <-
+    terms_done = 2
+  -> State: 1.21 <-
+    terms_done = 3
+  -> State: 1.22 <-
+    terms_done = 4
+  -> State: 1.23 <-
+    state = COMPUTE_ENERGY
+    terms_done = 5
+    params_ready = FALSE
+  -> State: 1.24 <-
+    state = OPTIMIZER_STEP
+    cands_done = 3
+    terms_done = 0
+    circ_ready = FALSE
+    energy_ready = TRUE
+  -> State: 1.25 <-
+    state = CHECK_STOP
+    iter = 1
+    params_ready = TRUE
+  -> State: 1.26 <-
+    state = BIND
+    cands_done = 0
+    energy_ready = FALSE
+  -> State: 1.27 <-
+    state = EXECUTE_MEASURE
+    circ_ready = TRUE
+    bound_version = 1
+    bound_cand = 0
+  -> State: 1.28 <-
+    terms_done = 1
+  -> State: 1.29 <-
+    terms_done = 2
+  -> State: 1.30 <-
+    terms_done = 3
+  -> State: 1.31 <-
+    terms_done = 4
+  -> State: 1.32 <-
+    state = COMPUTE_ENERGY
+    terms_done = 5
+    params_ready = FALSE
+  -> State: 1.33 <-
+    state = BIND
+    cands_done = 1
+    terms_done = 0
+    circ_ready = FALSE
+    params_ready = TRUE
+    energy_version = 1
+  -> State: 1.34 <-
+    state = EXECUTE_MEASURE
+    circ_ready = TRUE
+    bound_cand = 1
+  -> State: 1.35 <-
+    terms_done = 1
+  -> State: 1.36 <-
+    terms_done = 2
+  -> State: 1.37 <-
+    terms_done = 3
+  -> State: 1.38 <-
+    terms_done = 4
+  -> State: 1.39 <-
+    state = COMPUTE_ENERGY
+    terms_done = 5
+    params_ready = FALSE
+  -> State: 1.40 <-
+    state = BIND
+    cands_done = 2
+    terms_done = 0
+    circ_ready = FALSE
+    params_ready = TRUE
+  -> State: 1.41 <-
+    state = EXECUTE_MEASURE
+    circ_ready = TRUE
+    bound_cand = 2
+  -> State: 1.42 <-
+    terms_done = 1
+  -> State: 1.43 <-
+    terms_done = 2
+  -> State: 1.44 <-
+    terms_done = 3
+  -> State: 1.45 <-
+    terms_done = 4
+  -> State: 1.46 <-
+    state = COMPUTE_ENERGY
+    terms_done = 5
+    params_ready = FALSE
+  -> State: 1.47 <-
+    state = OPTIMIZER_STEP
+    cands_done = 3
+    terms_done = 0
+    circ_ready = FALSE
+    energy_ready = TRUE
+  -> State: 1.48 <-
+    state = CHECK_STOP
+    iter = 2
+    params_ready = TRUE
+  -> State: 1.49 <-
+    state = BIND
+    cands_done = 0
+    energy_ready = FALSE
+  -> State: 1.50 <-
+    state = EXECUTE_MEASURE
+    circ_ready = TRUE
+    bound_version = 2
+    bound_cand = 0
+  -> State: 1.51 <-
+    terms_done = 1
+  -> State: 1.52 <-
+    terms_done = 2
+  -> State: 1.53 <-
+    terms_done = 3
+  -> State: 1.54 <-
+    terms_done = 4
+  -> State: 1.55 <-
+    state = COMPUTE_ENERGY
+    terms_done = 5
+    params_ready = FALSE
+  -> State: 1.56 <-
+    state = BIND
+    cands_done = 1
+    terms_done = 0
+    circ_ready = FALSE
+    params_ready = TRUE
+    energy_version = 2
+  -> State: 1.57 <-
+    state = EXECUTE_MEASURE
+    circ_ready = TRUE
+    bound_cand = 1
+  -> State: 1.58 <-
+    terms_done = 1
+  -> State: 1.59 <-
+    terms_done = 2
+  -> State: 1.60 <-
+    terms_done = 3
+  -> State: 1.61 <-
+    terms_done = 4
+  -> State: 1.62 <-
+    state = COMPUTE_ENERGY
+    terms_done = 5
+    params_ready = FALSE
+  -> State: 1.63 <-
+    state = BIND
+    cands_done = 2
+    terms_done = 0
+    circ_ready = FALSE
+    params_ready = TRUE
+  -> State: 1.64 <-
+    state = EXECUTE_MEASURE
+    circ_ready = TRUE
+    bound_cand = 2
+  -> State: 1.65 <-
+    terms_done = 1
+  -> State: 1.66 <-
+    terms_done = 2
+  -> State: 1.67 <-
+    terms_done = 3
+  -> State: 1.68 <-
+    terms_done = 4
+  -> State: 1.69 <-
+    state = COMPUTE_ENERGY
+    terms_done = 5
+    params_ready = FALSE
+  -> State: 1.70 <-
+    state = OPTIMIZER_STEP
+    cands_done = 3
+    terms_done = 0
+    circ_ready = FALSE
+    energy_ready = TRUE
+  -> State: 1.71 <-
+    state = CHECK_STOP
+    iter = 3
+    params_ready = TRUE
+  -> State: 1.72 <-
+    state = BIND
+    cands_done = 0
+    energy_ready = FALSE
+  -> State: 1.73 <-
+    state = EXECUTE_MEASURE
+    circ_ready = TRUE
+    bound_version = 3
+    bound_cand = 0
+  -> State: 1.74 <-
+    terms_done = 1
+  -> State: 1.75 <-
+    terms_done = 2
+  -> State: 1.76 <-
+    terms_done = 3
+  -> State: 1.77 <-
+    terms_done = 4
+  -> State: 1.78 <-
+    state = COMPUTE_ENERGY
+    terms_done = 5
+    params_ready = FALSE
+  -> State: 1.79 <-
+    state = BIND
+    cands_done = 1
+    terms_done = 0
+    circ_ready = FALSE
+    params_ready = TRUE
+    energy_version = 3
+  -> State: 1.80 <-
+    state = EXECUTE_MEASURE
+    circ_ready = TRUE
+    bound_cand = 1
+  -> State: 1.81 <-
+    terms_done = 1
+  -> State: 1.82 <-
+    terms_done = 2
+  -> State: 1.83 <-
+    terms_done = 3
+  -> State: 1.84 <-
+    terms_done = 4
+  -> State: 1.85 <-
+    state = COMPUTE_ENERGY
+    terms_done = 5
+    params_ready = FALSE
+  -> State: 1.86 <-
+    state = BIND
+    cands_done = 2
+    terms_done = 0
+    circ_ready = FALSE
+    params_ready = TRUE
+  -> State: 1.87 <-
+    state = EXECUTE_MEASURE
+    circ_ready = TRUE
+    bound_cand = 2
+  -> State: 1.88 <-
+    terms_done = 1
+  -> State: 1.89 <-
+    terms_done = 2
+  -> State: 1.90 <-
+    terms_done = 3
+  -> State: 1.91 <-
+    terms_done = 4
+  -> State: 1.92 <-
+    state = COMPUTE_ENERGY
+    terms_done = 5
+    params_ready = FALSE
+  -> State: 1.93 <-
+    state = OPTIMIZER_STEP
+    cands_done = 3
+    terms_done = 0
+    circ_ready = FALSE
+    energy_ready = TRUE
+  -> State: 1.94 <-
+    state = CHECK_STOP
+    iter = 4
+    params_ready = TRUE
+  -> State: 1.95 <-
+    state = BIND
+    cands_done = 0
+    energy_ready = FALSE
+  -> State: 1.96 <-
+    state = EXECUTE_MEASURE
+    circ_ready = TRUE
+    bound_version = 4
+    bound_cand = 0
+  -> State: 1.97 <-
+    terms_done = 1
+  -> State: 1.98 <-
+    terms_done = 2
+  -> State: 1.99 <-
+    terms_done = 3
+  -> State: 1.100 <-
+    terms_done = 4
+  -> State: 1.101 <-
+    state = COMPUTE_ENERGY
+    terms_done = 5
+    params_ready = FALSE
+  -> State: 1.102 <-
+    state = BIND
+    cands_done = 1
+    terms_done = 0
+    circ_ready = FALSE
+    params_ready = TRUE
+    energy_version = 4
+  -> State: 1.103 <-
+    state = EXECUTE_MEASURE
+    circ_ready = TRUE
+    bound_cand = 1
+  -> State: 1.104 <-
+    terms_done = 1
+  -> State: 1.105 <-
+    terms_done = 2
+  -> State: 1.106 <-
+    terms_done = 3
+  -> State: 1.107 <-
+    terms_done = 4
+  -> State: 1.108 <-
+    state = COMPUTE_ENERGY
+    terms_done = 5
+    params_ready = FALSE
+  -> State: 1.109 <-
+    state = BIND
+    cands_done = 2
+    terms_done = 0
+    circ_ready = FALSE
+    params_ready = TRUE
+  -> State: 1.110 <-
+    state = EXECUTE_MEASURE
+    circ_ready = TRUE
+    bound_cand = 2
+  -> State: 1.111 <-
+    terms_done = 1
+  -> State: 1.112 <-
+    terms_done = 2
+  -> State: 1.113 <-
+    terms_done = 3
+  -> State: 1.114 <-
+    terms_done = 4
+  -> State: 1.115 <-
+    state = COMPUTE_ENERGY
+    terms_done = 5
+    params_ready = FALSE
+  -> State: 1.116 <-
+    state = OPTIMIZER_STEP
+    cands_done = 3
+    terms_done = 0
+    circ_ready = FALSE
+    energy_ready = TRUE
+  -> State: 1.117 <-
+    state = CHECK_STOP
+    iter = 5
+    params_ready = TRUE
+  -> State: 1.118 <-
+    state = BIND
+    cands_done = 0
+    energy_ready = FALSE
+  -> State: 1.119 <-
+    state = EXECUTE_MEASURE
+    circ_ready = TRUE
+    bound_version = 5
+    bound_cand = 0
+  -> State: 1.120 <-
+    terms_done = 1
+  -> State: 1.121 <-
+    terms_done = 2
+  -> State: 1.122 <-
+    terms_done = 3
+  -> State: 1.123 <-
+    terms_done = 4
+  -> State: 1.124 <-
+    state = COMPUTE_ENERGY
+    terms_done = 5
+    params_ready = FALSE
+  -> State: 1.125 <-
+    state = BIND
+    cands_done = 1
+    terms_done = 0
+    circ_ready = FALSE
+    params_ready = TRUE
+    energy_version = 5
+  -> State: 1.126 <-
+    state = EXECUTE_MEASURE
+    circ_ready = TRUE
+    bound_cand = 1
+  -> State: 1.127 <-
+    terms_done = 1
+  -> State: 1.128 <-
+    terms_done = 2
+  -> State: 1.129 <-
+    terms_done = 3
+  -> State: 1.130 <-
+    terms_done = 4
+  -> State: 1.131 <-
+    state = COMPUTE_ENERGY
+    terms_done = 5
+    params_ready = FALSE
+  -> State: 1.132 <-
+    state = BIND
+    cands_done = 2
+    terms_done = 0
+    circ_ready = FALSE
+    params_ready = TRUE
+  -> State: 1.133 <-
+    state = EXECUTE_MEASURE
+    circ_ready = TRUE
+    bound_cand = 2
+  -> State: 1.134 <-
+    terms_done = 1
+  -> State: 1.135 <-
+    terms_done = 2
+  -> State: 1.136 <-
+    terms_done = 3
+  -> State: 1.137 <-
+    terms_done = 4
+  -> State: 1.138 <-
+    state = COMPUTE_ENERGY
+    terms_done = 5
+    params_ready = FALSE
+  -> State: 1.139 <-
+    state = OPTIMIZER_STEP
+    cands_done = 3
+    terms_done = 0
+    circ_ready = FALSE
+    energy_ready = TRUE
+  -> State: 1.140 <-
+    state = CHECK_STOP
+    iter = 6
+    params_ready = TRUE
+  -> State: 1.141 <-
+    state = BIND
+    cands_done = 0
+    energy_ready = FALSE
+  -> State: 1.142 <-
+    state = EXECUTE_MEASURE
+    circ_ready = TRUE
+    bound_version = 6
+    bound_cand = 0
+  -> State: 1.143 <-
+    terms_done = 1
+  -> State: 1.144 <-
+    terms_done = 2
+  -> State: 1.145 <-
+    terms_done = 3
+  -> State: 1.146 <-
+    terms_done = 4
+  -> State: 1.147 <-
+    state = COMPUTE_ENERGY
+    terms_done = 5
+    params_ready = FALSE
+  -> State: 1.148 <-
+    state = BIND
+    cands_done = 1
+    terms_done = 0
+    circ_ready = FALSE
+    params_ready = TRUE
+    energy_version = 6
+  -> State: 1.149 <-
+    state = EXECUTE_MEASURE
+    circ_ready = TRUE
+    bound_cand = 1
+  -> State: 1.150 <-
+    terms_done = 1
+  -> State: 1.151 <-
+    terms_done = 2
+  -> State: 1.152 <-
+    terms_done = 3
+  -> State: 1.153 <-
+    terms_done = 4
+  -> State: 1.154 <-
+    state = COMPUTE_ENERGY
+    terms_done = 5
+    params_ready = FALSE
+  -> State: 1.155 <-
+    state = BIND
+    cands_done = 2
+    terms_done = 0
+    circ_ready = FALSE
+    params_ready = TRUE
+  -> State: 1.156 <-
+    state = EXECUTE_MEASURE
+    circ_ready = TRUE
+    bound_cand = 2
+  -> State: 1.157 <-
+    terms_done = 1
+  -> State: 1.158 <-
+    terms_done = 2
+  -> State: 1.159 <-
+    terms_done = 3
+  -> State: 1.160 <-
+    terms_done = 4
+  -> State: 1.161 <-
+    state = COMPUTE_ENERGY
+    terms_done = 5
+    params_ready = FALSE
+  -> State: 1.162 <-
+    state = OPTIMIZER_STEP
+    cands_done = 3
+    terms_done = 0
+    circ_ready = FALSE
+    energy_ready = TRUE
+  -> State: 1.163 <-
+    state = CHECK_STOP
+    iter = 7
+    params_ready = TRUE
+  -> State: 1.164 <-
+    state = BIND
+    cands_done = 0
+    energy_ready = FALSE
+  -> State: 1.165 <-
+    state = EXECUTE_MEASURE
+    circ_ready = TRUE
+    bound_version = 7
+    bound_cand = 0
+  -> State: 1.166 <-
+    terms_done = 1
+  -> State: 1.167 <-
+    terms_done = 2
+  -> State: 1.168 <-
+    terms_done = 3
+  -> State: 1.169 <-
+    terms_done = 4
+  -> State: 1.170 <-
+    state = COMPUTE_ENERGY
+    terms_done = 5
+    params_ready = FALSE
+  -> State: 1.171 <-
+    state = BIND
+    cands_done = 1
+    terms_done = 0
+    circ_ready = FALSE
+    params_ready = TRUE
+    energy_version = 7
+  -> State: 1.172 <-
+    state = EXECUTE_MEASURE
+    circ_ready = TRUE
+    bound_cand = 1
+  -> State: 1.173 <-
+    terms_done = 1
+  -> State: 1.174 <-
+    terms_done = 2
+  -> State: 1.175 <-
+    terms_done = 3
+  -> State: 1.176 <-
+    terms_done = 4
+  -> State: 1.177 <-
+    state = COMPUTE_ENERGY
+    terms_done = 5
+    params_ready = FALSE
+  -> State: 1.178 <-
+    state = BIND
+    cands_done = 2
+    terms_done = 0
+    circ_ready = FALSE
+    params_ready = TRUE
+  -> State: 1.179 <-
+    state = EXECUTE_MEASURE
+    circ_ready = TRUE
+    bound_cand = 2
+  -> State: 1.180 <-
+    terms_done = 1
+  -> State: 1.181 <-
+    terms_done = 2
+  -> State: 1.182 <-
+    terms_done = 3
+  -> State: 1.183 <-
+    terms_done = 4
+  -> State: 1.184 <-
+    state = COMPUTE_ENERGY
+    terms_done = 5
+    params_ready = FALSE
+  -> State: 1.185 <-
+    state = OPTIMIZER_STEP
+    cands_done = 3
+    terms_done = 0
+    circ_ready = FALSE
+    energy_ready = TRUE
+  -> State: 1.186 <-
+    state = CHECK_STOP
+    iter = 8
+    params_ready = TRUE
+  -> State: 1.187 <-
+    state = BIND
+    cands_done = 0
+    energy_ready = FALSE
+  -> State: 1.188 <-
+    state = EXECUTE_MEASURE
+    circ_ready = TRUE
+    bound_version = 8
+    bound_cand = 0
+  -> State: 1.189 <-
+    terms_done = 1
+  -> State: 1.190 <-
+    terms_done = 2
+  -> State: 1.191 <-
+    terms_done = 3
+  -> State: 1.192 <-
+    terms_done = 4
+  -> State: 1.193 <-
+    state = COMPUTE_ENERGY
+    terms_done = 5
+    params_ready = FALSE
+  -> State: 1.194 <-
+    state = BIND
+    cands_done = 1
+    terms_done = 0
+    circ_ready = FALSE
+    params_ready = TRUE
+    energy_version = 8
+  -> State: 1.195 <-
+    state = EXECUTE_MEASURE
+    circ_ready = TRUE
+    bound_cand = 1
+  -> State: 1.196 <-
+    terms_done = 1
+  -> State: 1.197 <-
+    terms_done = 2
+  -> State: 1.198 <-
+    terms_done = 3
+  -> State: 1.199 <-
+    terms_done = 4
+  -> State: 1.200 <-
+    state = COMPUTE_ENERGY
+    terms_done = 5
+    params_ready = FALSE
+  -> State: 1.201 <-
+    state = BIND
+    cands_done = 2
+    terms_done = 0
+    circ_ready = FALSE
+    params_ready = TRUE
+  -> State: 1.202 <-
+    state = EXECUTE_MEASURE
+    circ_ready = TRUE
+    bound_cand = 2
+  -> State: 1.203 <-
+    terms_done = 1
+  -> State: 1.204 <-
+    terms_done = 2
+  -> State: 1.205 <-
+    terms_done = 3
+  -> State: 1.206 <-
+    terms_done = 4
+  -> State: 1.207 <-
+    state = COMPUTE_ENERGY
+    terms_done = 5
+    params_ready = FALSE
+  -> State: 1.208 <-
+    state = OPTIMIZER_STEP
+    cands_done = 3
+    terms_done = 0
+    circ_ready = FALSE
+    energy_ready = TRUE
+  -> State: 1.209 <-
+    state = CHECK_STOP
+    iter = 9
+    params_ready = TRUE
+  -> State: 1.210 <-
+    state = BIND
+    cands_done = 0
+    energy_ready = FALSE
+  -> State: 1.211 <-
+    state = EXECUTE_MEASURE
+    circ_ready = TRUE
+    bound_version = 9
+    bound_cand = 0
+  -> State: 1.212 <-
+    terms_done = 1
+  -> State: 1.213 <-
+    terms_done = 2
+  -> State: 1.214 <-
+    terms_done = 3
+  -> State: 1.215 <-
+    terms_done = 4
+  -> State: 1.216 <-
+    state = COMPUTE_ENERGY
+    terms_done = 5
+    params_ready = FALSE
+  -> State: 1.217 <-
+    state = BIND
+    cands_done = 1
+    terms_done = 0
+    circ_ready = FALSE
+    params_ready = TRUE
+    energy_version = 9
+  -> State: 1.218 <-
+    state = EXECUTE_MEASURE
+    circ_ready = TRUE
+    bound_cand = 1
+  -> State: 1.219 <-
+    terms_done = 1
+  -> State: 1.220 <-
+    terms_done = 2
+  -> State: 1.221 <-
+    terms_done = 3
+  -> State: 1.222 <-
+    terms_done = 4
+  -> State: 1.223 <-
+    state = COMPUTE_ENERGY
+    terms_done = 5
+    params_ready = FALSE
+  -> State: 1.224 <-
+    state = BIND
+    cands_done = 2
+    terms_done = 0
+    circ_ready = FALSE
+    params_ready = TRUE
+  -> State: 1.225 <-
+    state = EXECUTE_MEASURE
+    circ_ready = TRUE
+    bound_cand = 2
+  -> State: 1.226 <-
+    terms_done = 1
+  -> State: 1.227 <-
+    terms_done = 2
+  -> State: 1.228 <-
+    terms_done = 3
+    qpu_error = TRUE
+    measure_fails = TRUE
+  -- Loop starts here
+  -> State: 1.229 <-
+    term_reason = ABORT_QPU_ERROR
+  -> State: 1.230 <-
+-- specification AG (state = DONE -> AX state = DONE)  is true
+-- specification AG (state = ABORT -> AX state = ABORT)  is true
+-- specification  G (((state = CHECK_STOP & !converged) & iter < MAX_ITERS) ->  X (state = BIND & cands_done = 0))  is true
+-- specification  G ((next(iter) = iter | next(iter) = iter + 1) & (next(iter) = iter + 1 <-> (state = OPTIMIZER_STEP & !optimizer_error)))  is true
+-- specification  G ((!terminal &  X state = ABORT) -> error)  is true
+-- specification  G ((state = CHECK_STOP & converged) ->  X (state = DONE & term_reason = DONE_CONVERGED))  is true
+-- specification  G (((state = CHECK_STOP & !converged) & iter = MAX_ITERS) ->  X (state = DONE & term_reason = DONE_MAX_ITERS))  is true
+-- specification  G (bind_fails ->  X (state = ABORT & term_reason = ABORT_BIND_ERROR))  is true
+-- specification  G (measure_fails ->  X (state = ABORT & term_reason = ABORT_QPU_ERROR))  is false
+-- as demonstrated by the following execution sequence
+Trace Description: LTL Counterexample 
+Trace Type: Counterexample 
+  -> State: 2.1 <-
+    state = S_INIT
+    iter = 0
+    cands_done = 0
+    terms_done = 0
+    circ_ready = FALSE
+    params_ready = TRUE
+    energy_ready = FALSE
+    bound_version = 0
+    bound_cand = 0
+    energy_version = 0
+    term_reason = NO_TERM
+    converged = FALSE
+    bind_error = FALSE
+    qpu_error = FALSE
+    energy_error = FALSE
+    optimizer_error = FALSE
+    NCANDS = 3
+    NTERMS = 5
+    MAX_ITERS = 10
+    error = FALSE
+    optimizer_fails = FALSE
+    energy_fails = FALSE
+    measure_fails = FALSE
+    bind_fails = FALSE
+    terminal = FALSE
+  -> State: 2.2 <-
+    state = CHECK_STOP
+  -> State: 2.3 <-
+    state = BIND
+  -> State: 2.4 <-
+    state = EXECUTE_MEASURE
+    circ_ready = TRUE
+    qpu_error = TRUE
+    measure_fails = TRUE
+  -> State: 2.5 <-
+    term_reason = ABORT_QPU_ERROR
+    qpu_error = FALSE
+    measure_fails = FALSE
+  -> State: 2.6 <-
+    terms_done = 1
+    term_reason = NO_TERM
+  -> State: 2.7 <-
+    terms_done = 2
+  -> State: 2.8 <-
+    terms_done = 3
+  -> State: 2.9 <-
+    terms_done = 4
+  -> State: 2.10 <-
+    state = COMPUTE_ENERGY
+    terms_done = 5
+    params_ready = FALSE
+  -> State: 2.11 <-
+    state = BIND
+    cands_done = 1
+    terms_done = 0
+    circ_ready = FALSE
+    params_ready = TRUE
+  -> State: 2.12 <-
+    state = EXECUTE_MEASURE
+    circ_ready = TRUE
+    bound_cand = 1
+  -> State: 2.13 <-
+    terms_done = 1
+  -> State: 2.14 <-
+    terms_done = 2
+  -> State: 2.15 <-
+    terms_done = 3
+  -> State: 2.16 <-
+    terms_done = 4
+  -> State: 2.17 <-
+    state = COMPUTE_ENERGY
+    terms_done = 5
+    params_ready = FALSE
+  -> State: 2.18 <-
+    state = BIND
+    cands_done = 2
+    terms_done = 0
+    circ_ready = FALSE
+    params_ready = TRUE
+  -> State: 2.19 <-
+    state = EXECUTE_MEASURE
+    circ_ready = TRUE
+    bound_cand = 2
+  -> State: 2.20 <-
+    terms_done = 1
+  -> State: 2.21 <-
+    terms_done = 2
+  -> State: 2.22 <-
+    terms_done = 3
+  -> State: 2.23 <-
+    terms_done = 4
+  -> State: 2.24 <-
+    state = COMPUTE_ENERGY
+    terms_done = 5
+    params_ready = FALSE
+  -> State: 2.25 <-
+    state = OPTIMIZER_STEP
+    cands_done = 3
+    terms_done = 0
+    circ_ready = FALSE
+    energy_ready = TRUE
+  -> State: 2.26 <-
+    state = CHECK_STOP
+    iter = 1
+    params_ready = TRUE
+  -> State: 2.27 <-
+    state = BIND
+    cands_done = 0
+    energy_ready = FALSE
+  -> State: 2.28 <-
+    state = EXECUTE_MEASURE
+    circ_ready = TRUE
+    bound_version = 1
+    bound_cand = 0
+  -> State: 2.29 <-
+    terms_done = 1
+  -> State: 2.30 <-
+    terms_done = 2
+  -> State: 2.31 <-
+    terms_done = 3
+  -> State: 2.32 <-
+    terms_done = 4
+  -> State: 2.33 <-
+    state = COMPUTE_ENERGY
+    terms_done = 5
+    params_ready = FALSE
+  -> State: 2.34 <-
+    state = BIND
+    cands_done = 1
+    terms_done = 0
+    circ_ready = FALSE
+    params_ready = TRUE
+    energy_version = 1
+  -> State: 2.35 <-
+    state = EXECUTE_MEASURE
+    circ_ready = TRUE
+    bound_cand = 1
+  -> State: 2.36 <-
+    terms_done = 1
+  -> State: 2.37 <-
+    terms_done = 2
+  -> State: 2.38 <-
+    terms_done = 3
+  -> State: 2.39 <-
+    terms_done = 4
+  -> State: 2.40 <-
+    state = COMPUTE_ENERGY
+    terms_done = 5
+    params_ready = FALSE
+  -> State: 2.41 <-
+    state = BIND
+    cands_done = 2
+    terms_done = 0
+    circ_ready = FALSE
+    params_ready = TRUE
+  -> State: 2.42 <-
+    state = EXECUTE_MEASURE
+    circ_ready = TRUE
+    bound_cand = 2
+  -> State: 2.43 <-
+    terms_done = 1
+  -> State: 2.44 <-
+    terms_done = 2
+  -> State: 2.45 <-
+    terms_done = 3
+  -> State: 2.46 <-
+    terms_done = 4
+  -> State: 2.47 <-
+    state = COMPUTE_ENERGY
+    terms_done = 5
+    params_ready = FALSE
+  -> State: 2.48 <-
+    state = OPTIMIZER_STEP
+    cands_done = 3
+    terms_done = 0
+    circ_ready = FALSE
+    energy_ready = TRUE
+  -> State: 2.49 <-
+    state = CHECK_STOP
+    iter = 2
+    params_ready = TRUE
+  -> State: 2.50 <-
+    state = BIND
+    cands_done = 0
+    energy_ready = FALSE
+  -> State: 2.51 <-
+    state = EXECUTE_MEASURE
+    circ_ready = TRUE
+    bound_version = 2
+    bound_cand = 0
+  -> State: 2.52 <-
+    terms_done = 1
+  -> State: 2.53 <-
+    terms_done = 2
+  -> State: 2.54 <-
+    terms_done = 3
+  -> State: 2.55 <-
+    terms_done = 4
+  -> State: 2.56 <-
+    state = COMPUTE_ENERGY
+    terms_done = 5
+    params_ready = FALSE
+  -> State: 2.57 <-
+    state = BIND
+    cands_done = 1
+    terms_done = 0
+    circ_ready = FALSE
+    params_ready = TRUE
+    energy_version = 2
+  -> State: 2.58 <-
+    state = EXECUTE_MEASURE
+    circ_ready = TRUE
+    bound_cand = 1
+  -> State: 2.59 <-
+    terms_done = 1
+  -> State: 2.60 <-
+    terms_done = 2
+  -> State: 2.61 <-
+    terms_done = 3
+  -> State: 2.62 <-
+    terms_done = 4
+  -> State: 2.63 <-
+    state = COMPUTE_ENERGY
+    terms_done = 5
+    params_ready = FALSE
+  -> State: 2.64 <-
+    state = BIND
+    cands_done = 2
+    terms_done = 0
+    circ_ready = FALSE
+    params_ready = TRUE
+  -> State: 2.65 <-
+    state = EXECUTE_MEASURE
+    circ_ready = TRUE
+    bound_cand = 2
+  -> State: 2.66 <-
+    terms_done = 1
+  -> State: 2.67 <-
+    terms_done = 2
+  -> State: 2.68 <-
+    terms_done = 3
+  -> State: 2.69 <-
+    terms_done = 4
+  -> State: 2.70 <-
+    state = COMPUTE_ENERGY
+    terms_done = 5
+    params_ready = FALSE
+  -> State: 2.71 <-
+    state = OPTIMIZER_STEP
+    cands_done = 3
+    terms_done = 0
+    circ_ready = FALSE
+    energy_ready = TRUE
+  -> State: 2.72 <-
+    state = CHECK_STOP
+    iter = 3
+    params_ready = TRUE
+  -> State: 2.73 <-
+    state = BIND
+    cands_done = 0
+    energy_ready = FALSE
+  -> State: 2.74 <-
+    state = EXECUTE_MEASURE
+    circ_ready = TRUE
+    bound_version = 3
+    bound_cand = 0
+  -> State: 2.75 <-
+    terms_done = 1
+  -> State: 2.76 <-
+    terms_done = 2
+  -> State: 2.77 <-
+    terms_done = 3
+  -> State: 2.78 <-
+    terms_done = 4
+  -> State: 2.79 <-
+    state = COMPUTE_ENERGY
+    terms_done = 5
+    params_ready = FALSE
+  -> State: 2.80 <-
+    state = BIND
+    cands_done = 1
+    terms_done = 0
+    circ_ready = FALSE
+    params_ready = TRUE
+    energy_version = 3
+  -> State: 2.81 <-
+    state = EXECUTE_MEASURE
+    circ_ready = TRUE
+    bound_cand = 1
+  -> State: 2.82 <-
+    terms_done = 1
+  -> State: 2.83 <-
+    terms_done = 2
+  -> State: 2.84 <-
+    terms_done = 3
+  -> State: 2.85 <-
+    terms_done = 4
+  -> State: 2.86 <-
+    state = COMPUTE_ENERGY
+    terms_done = 5
+    params_ready = FALSE
+  -> State: 2.87 <-
+    state = BIND
+    cands_done = 2
+    terms_done = 0
+    circ_ready = FALSE
+    params_ready = TRUE
+  -> State: 2.88 <-
+    state = EXECUTE_MEASURE
+    circ_ready = TRUE
+    bound_cand = 2
+  -> State: 2.89 <-
+    terms_done = 1
+  -> State: 2.90 <-
+    terms_done = 2
+  -> State: 2.91 <-
+    terms_done = 3
+  -> State: 2.92 <-
+    terms_done = 4
+  -> State: 2.93 <-
+    state = COMPUTE_ENERGY
+    terms_done = 5
+    params_ready = FALSE
+  -> State: 2.94 <-
+    state = OPTIMIZER_STEP
+    cands_done = 3
+    terms_done = 0
+    circ_ready = FALSE
+    energy_ready = TRUE
+  -> State: 2.95 <-
+    state = CHECK_STOP
+    iter = 4
+    params_ready = TRUE
+  -> State: 2.96 <-
+    state = BIND
+    cands_done = 0
+    energy_ready = FALSE
+  -> State: 2.97 <-
+    state = EXECUTE_MEASURE
+    circ_ready = TRUE
+    bound_version = 4
+    bound_cand = 0
+  -> State: 2.98 <-
+    terms_done = 1
+  -> State: 2.99 <-
+    terms_done = 2
+  -> State: 2.100 <-
+    terms_done = 3
+  -> State: 2.101 <-
+    terms_done = 4
+  -> State: 2.102 <-
+    state = COMPUTE_ENERGY
+    terms_done = 5
+    params_ready = FALSE
+  -> State: 2.103 <-
+    state = BIND
+    cands_done = 1
+    terms_done = 0
+    circ_ready = FALSE
+    params_ready = TRUE
+    energy_version = 4
+  -> State: 2.104 <-
+    state = EXECUTE_MEASURE
+    circ_ready = TRUE
+    bound_cand = 1
+  -> State: 2.105 <-
+    terms_done = 1
+  -> State: 2.106 <-
+    terms_done = 2
+  -> State: 2.107 <-
+    terms_done = 3
+  -> State: 2.108 <-
+    terms_done = 4
+  -> State: 2.109 <-
+    state = COMPUTE_ENERGY
+    terms_done = 5
+    params_ready = FALSE
+  -> State: 2.110 <-
+    state = BIND
+    cands_done = 2
+    terms_done = 0
+    circ_ready = FALSE
+    params_ready = TRUE
+  -> State: 2.111 <-
+    state = EXECUTE_MEASURE
+    circ_ready = TRUE
+    bound_cand = 2
+  -> State: 2.112 <-
+    terms_done = 1
+  -> State: 2.113 <-
+    terms_done = 2
+  -> State: 2.114 <-
+    terms_done = 3
+  -> State: 2.115 <-
+    terms_done = 4
+  -> State: 2.116 <-
+    state = COMPUTE_ENERGY
+    terms_done = 5
+    params_ready = FALSE
+  -> State: 2.117 <-
+    state = OPTIMIZER_STEP
+    cands_done = 3
+    terms_done = 0
+    circ_ready = FALSE
+    energy_ready = TRUE
+  -> State: 2.118 <-
+    state = CHECK_STOP
+    iter = 5
+    params_ready = TRUE
+  -> State: 2.119 <-
+    state = BIND
+    cands_done = 0
+    energy_ready = FALSE
+  -> State: 2.120 <-
+    state = EXECUTE_MEASURE
+    circ_ready = TRUE
+    bound_version = 5
+    bound_cand = 0
+  -> State: 2.121 <-
+    terms_done = 1
+  -> State: 2.122 <-
+    terms_done = 2
+  -> State: 2.123 <-
+    terms_done = 3
+  -> State: 2.124 <-
+    terms_done = 4
+  -> State: 2.125 <-
+    state = COMPUTE_ENERGY
+    terms_done = 5
+    params_ready = FALSE
+  -> State: 2.126 <-
+    state = BIND
+    cands_done = 1
+    terms_done = 0
+    circ_ready = FALSE
+    params_ready = TRUE
+    energy_version = 5
+  -> State: 2.127 <-
+    state = EXECUTE_MEASURE
+    circ_ready = TRUE
+    bound_cand = 1
+  -> State: 2.128 <-
+    terms_done = 1
+  -> State: 2.129 <-
+    terms_done = 2
+  -> State: 2.130 <-
+    terms_done = 3
+  -> State: 2.131 <-
+    terms_done = 4
+  -> State: 2.132 <-
+    state = COMPUTE_ENERGY
+    terms_done = 5
+    params_ready = FALSE
+  -> State: 2.133 <-
+    state = BIND
+    cands_done = 2
+    terms_done = 0
+    circ_ready = FALSE
+    params_ready = TRUE
+  -> State: 2.134 <-
+    state = EXECUTE_MEASURE
+    circ_ready = TRUE
+    bound_cand = 2
+  -> State: 2.135 <-
+    terms_done = 1
+  -> State: 2.136 <-
+    terms_done = 2
+  -> State: 2.137 <-
+    terms_done = 3
+  -> State: 2.138 <-
+    terms_done = 4
+  -> State: 2.139 <-
+    state = COMPUTE_ENERGY
+    terms_done = 5
+    params_ready = FALSE
+  -> State: 2.140 <-
+    state = OPTIMIZER_STEP
+    cands_done = 3
+    terms_done = 0
+    circ_ready = FALSE
+    energy_ready = TRUE
+  -> State: 2.141 <-
+    state = CHECK_STOP
+    iter = 6
+    params_ready = TRUE
+  -> State: 2.142 <-
+    state = BIND
+    cands_done = 0
+    energy_ready = FALSE
+  -> State: 2.143 <-
+    state = EXECUTE_MEASURE
+    circ_ready = TRUE
+    bound_version = 6
+    bound_cand = 0
+  -> State: 2.144 <-
+    terms_done = 1
+  -> State: 2.145 <-
+    terms_done = 2
+  -> State: 2.146 <-
+    terms_done = 3
+  -> State: 2.147 <-
+    terms_done = 4
+  -> State: 2.148 <-
+    state = COMPUTE_ENERGY
+    terms_done = 5
+    params_ready = FALSE
+  -> State: 2.149 <-
+    state = BIND
+    cands_done = 1
+    terms_done = 0
+    circ_ready = FALSE
+    params_ready = TRUE
+    energy_version = 6
+  -> State: 2.150 <-
+    state = EXECUTE_MEASURE
+    circ_ready = TRUE
+    bound_cand = 1
+  -> State: 2.151 <-
+    terms_done = 1
+  -> State: 2.152 <-
+    terms_done = 2
+  -> State: 2.153 <-
+    terms_done = 3
+  -> State: 2.154 <-
+    terms_done = 4
+  -> State: 2.155 <-
+    state = COMPUTE_ENERGY
+    terms_done = 5
+    params_ready = FALSE
+  -> State: 2.156 <-
+    state = BIND
+    cands_done = 2
+    terms_done = 0
+    circ_ready = FALSE
+    params_ready = TRUE
+  -> State: 2.157 <-
+    state = EXECUTE_MEASURE
+    circ_ready = TRUE
+    bound_cand = 2
+  -> State: 2.158 <-
+    terms_done = 1
+  -> State: 2.159 <-
+    terms_done = 2
+  -> State: 2.160 <-
+    terms_done = 3
+  -> State: 2.161 <-
+    terms_done = 4
+  -> State: 2.162 <-
+    state = COMPUTE_ENERGY
+    terms_done = 5
+    params_ready = FALSE
+  -> State: 2.163 <-
+    state = OPTIMIZER_STEP
+    cands_done = 3
+    terms_done = 0
+    circ_ready = FALSE
+    energy_ready = TRUE
+  -> State: 2.164 <-
+    state = CHECK_STOP
+    iter = 7
+    params_ready = TRUE
+  -> State: 2.165 <-
+    state = BIND
+    cands_done = 0
+    energy_ready = FALSE
+  -> State: 2.166 <-
+    state = EXECUTE_MEASURE
+    circ_ready = TRUE
+    bound_version = 7
+    bound_cand = 0
+  -> State: 2.167 <-
+    terms_done = 1
+  -> State: 2.168 <-
+    terms_done = 2
+  -> State: 2.169 <-
+    terms_done = 3
+  -> State: 2.170 <-
+    terms_done = 4
+  -> State: 2.171 <-
+    state = COMPUTE_ENERGY
+    terms_done = 5
+    params_ready = FALSE
+  -> State: 2.172 <-
+    state = BIND
+    cands_done = 1
+    terms_done = 0
+    circ_ready = FALSE
+    params_ready = TRUE
+    energy_version = 7
+  -> State: 2.173 <-
+    state = EXECUTE_MEASURE
+    circ_ready = TRUE
+    bound_cand = 1
+  -> State: 2.174 <-
+    terms_done = 1
+  -> State: 2.175 <-
+    terms_done = 2
+  -> State: 2.176 <-
+    terms_done = 3
+  -> State: 2.177 <-
+    terms_done = 4
+  -> State: 2.178 <-
+    state = COMPUTE_ENERGY
+    terms_done = 5
+    params_ready = FALSE
+  -> State: 2.179 <-
+    state = BIND
+    cands_done = 2
+    terms_done = 0
+    circ_ready = FALSE
+    params_ready = TRUE
+  -> State: 2.180 <-
+    state = EXECUTE_MEASURE
+    circ_ready = TRUE
+    bound_cand = 2
+  -> State: 2.181 <-
+    terms_done = 1
+  -> State: 2.182 <-
+    terms_done = 2
+  -> State: 2.183 <-
+    terms_done = 3
+  -> State: 2.184 <-
+    terms_done = 4
+  -> State: 2.185 <-
+    state = COMPUTE_ENERGY
+    terms_done = 5
+    params_ready = FALSE
+  -> State: 2.186 <-
+    state = OPTIMIZER_STEP
+    cands_done = 3
+    terms_done = 0
+    circ_ready = FALSE
+    energy_ready = TRUE
+  -> State: 2.187 <-
+    state = CHECK_STOP
+    iter = 8
+    params_ready = TRUE
+  -> State: 2.188 <-
+    state = BIND
+    cands_done = 0
+    energy_ready = FALSE
+  -> State: 2.189 <-
+    state = EXECUTE_MEASURE
+    circ_ready = TRUE
+    bound_version = 8
+    bound_cand = 0
+  -> State: 2.190 <-
+    terms_done = 1
+  -> State: 2.191 <-
+    terms_done = 2
+  -> State: 2.192 <-
+    terms_done = 3
+  -> State: 2.193 <-
+    terms_done = 4
+  -> State: 2.194 <-
+    state = COMPUTE_ENERGY
+    terms_done = 5
+    params_ready = FALSE
+  -> State: 2.195 <-
+    state = BIND
+    cands_done = 1
+    terms_done = 0
+    circ_ready = FALSE
+    params_ready = TRUE
+    energy_version = 8
+  -> State: 2.196 <-
+    state = EXECUTE_MEASURE
+    circ_ready = TRUE
+    bound_cand = 1
+  -> State: 2.197 <-
+    terms_done = 1
+  -> State: 2.198 <-
+    terms_done = 2
+  -> State: 2.199 <-
+    terms_done = 3
+  -> State: 2.200 <-
+    terms_done = 4
+  -> State: 2.201 <-
+    state = COMPUTE_ENERGY
+    terms_done = 5
+    params_ready = FALSE
+  -> State: 2.202 <-
+    state = BIND
+    cands_done = 2
+    terms_done = 0
+    circ_ready = FALSE
+    params_ready = TRUE
+  -> State: 2.203 <-
+    state = EXECUTE_MEASURE
+    circ_ready = TRUE
+    bound_cand = 2
+  -> State: 2.204 <-
+    terms_done = 1
+  -> State: 2.205 <-
+    terms_done = 2
+  -> State: 2.206 <-
+    terms_done = 3
+  -> State: 2.207 <-
+    terms_done = 4
+  -> State: 2.208 <-
+    state = COMPUTE_ENERGY
+    terms_done = 5
+    params_ready = FALSE
+  -> State: 2.209 <-
+    state = OPTIMIZER_STEP
+    cands_done = 3
+    terms_done = 0
+    circ_ready = FALSE
+    energy_ready = TRUE
+  -> State: 2.210 <-
+    state = CHECK_STOP
+    iter = 9
+    params_ready = TRUE
+  -> State: 2.211 <-
+    state = BIND
+    cands_done = 0
+    energy_ready = FALSE
+  -> State: 2.212 <-
+    state = EXECUTE_MEASURE
+    circ_ready = TRUE
+    bound_version = 9
+    bound_cand = 0
+  -> State: 2.213 <-
+    terms_done = 1
+  -> State: 2.214 <-
+    terms_done = 2
+  -> State: 2.215 <-
+    terms_done = 3
+  -> State: 2.216 <-
+    terms_done = 4
+  -> State: 2.217 <-
+    state = COMPUTE_ENERGY
+    terms_done = 5
+    params_ready = FALSE
+  -> State: 2.218 <-
+    state = BIND
+    cands_done = 1
+    terms_done = 0
+    circ_ready = FALSE
+    params_ready = TRUE
+    energy_version = 9
+  -> State: 2.219 <-
+    state = EXECUTE_MEASURE
+    circ_ready = TRUE
+    bound_cand = 1
+  -> State: 2.220 <-
+    terms_done = 1
+  -> State: 2.221 <-
+    terms_done = 2
+  -> State: 2.222 <-
+    terms_done = 3
+  -> State: 2.223 <-
+    terms_done = 4
+  -> State: 2.224 <-
+    state = COMPUTE_ENERGY
+    terms_done = 5
+    params_ready = FALSE
+  -> State: 2.225 <-
+    state = BIND
+    cands_done = 2
+    terms_done = 0
+    circ_ready = FALSE
+    params_ready = TRUE
+  -> State: 2.226 <-
+    state = EXECUTE_MEASURE
+    circ_ready = TRUE
+    bound_cand = 2
+  -> State: 2.227 <-
+    terms_done = 1
+  -> State: 2.228 <-
+    terms_done = 2
+  -> State: 2.229 <-
+    terms_done = 3
+  -> State: 2.230 <-
+    terms_done = 4
+  -> State: 2.231 <-
+    state = COMPUTE_ENERGY
+    terms_done = 5
+    params_ready = FALSE
+  -> State: 2.232 <-
+    state = OPTIMIZER_STEP
+    cands_done = 3
+    terms_done = 0
+    circ_ready = FALSE
+    energy_ready = TRUE
+  -> State: 2.233 <-
+    state = CHECK_STOP
+    iter = 10
+    params_ready = TRUE
+  -- Loop starts here
+  -> State: 2.234 <-
+    state = DONE
+    cands_done = 0
+    term_reason = DONE_MAX_ITERS
+    terminal = TRUE
+  -> State: 2.235 <-
+-- specification  G (energy_fails ->  X (state = ABORT & term_reason = ABORT_ENERGY_ERROR))  is true
+-- specification  G (optimizer_fails ->  X (state = ABORT & term_reason = ABORT_OPTIMIZER_ERROR))  is true
+-- invariant (state = COMPUTE_ENERGY -> terms_done = NTERMS)  is false
+-- as demonstrated by the following execution sequence
+Trace Description: AG alpha Counterexample 
+Trace Type: Counterexample 
+  -> State: 3.1 <-
+    state = S_INIT
+    iter = 0
+    cands_done = 0
+    terms_done = 0
+    circ_ready = FALSE
+    params_ready = TRUE
+    energy_ready = FALSE
+    bound_version = 0
+    bound_cand = 0
+    energy_version = 0
+    term_reason = NO_TERM
+    converged = FALSE
+    bind_error = FALSE
+    qpu_error = FALSE
+    energy_error = FALSE
+    optimizer_error = FALSE
+    NCANDS = 3
+    NTERMS = 5
+    MAX_ITERS = 10
+    error = FALSE
+    optimizer_fails = FALSE
+    energy_fails = FALSE
+    measure_fails = FALSE
+    bind_fails = FALSE
+    terminal = FALSE
+  -> State: 3.2 <-
+    state = CHECK_STOP
+  -> State: 3.3 <-
+    state = BIND
+  -> State: 3.4 <-
+    state = EXECUTE_MEASURE
+    circ_ready = TRUE
+  -> State: 3.5 <-
+    terms_done = 1
+  -> State: 3.6 <-
+    terms_done = 2
+  -> State: 3.7 <-
+    terms_done = 3
+  -> State: 3.8 <-
+    terms_done = 4
+    qpu_error = TRUE
+    measure_fails = TRUE
+  -> State: 3.9 <-
+    state = COMPUTE_ENERGY
+    params_ready = FALSE
+    term_reason = ABORT_QPU_ERROR
+    qpu_error = FALSE
+    measure_fails = FALSE
+-- invariant (state = OPTIMIZER_STEP -> iter < MAX_ITERS)  is true
+-- invariant ((state = CHECK_STOP & iter > 0) -> energy_ready)  is true
+-- invariant (state = OPTIMIZER_STEP -> (cands_done = NCANDS & energy_ready))  is true
+-- invariant (state = BIND -> (terms_done = 0 & !energy_ready))  is true
+-- invariant (state = DONE -> (term_reason = DONE_CONVERGED | (term_reason = DONE_MAX_ITERS & iter = MAX_ITERS)))  is true
+-- invariant (state = ABORT -> !(term_reason in (NO_TERM union DONE_CONVERGED) union DONE_MAX_ITERS))  is true
+-- invariant (!terminal -> term_reason = NO_TERM)  is false
+-- as demonstrated by the following execution sequence
+Trace Description: AG alpha Counterexample 
+Trace Type: Counterexample 
+  -> State: 4.1 <-
+    state = S_INIT
+    iter = 0
+    cands_done = 0
+    terms_done = 0
+    circ_ready = FALSE
+    params_ready = TRUE
+    energy_ready = FALSE
+    bound_version = 0
+    bound_cand = 0
+    energy_version = 0
+    term_reason = NO_TERM
+    converged = FALSE
+    bind_error = FALSE
+    qpu_error = FALSE
+    energy_error = FALSE
+    optimizer_error = FALSE
+    NCANDS = 3
+    NTERMS = 5
+    MAX_ITERS = 10
+    error = FALSE
+    optimizer_fails = FALSE
+    energy_fails = FALSE
+    measure_fails = FALSE
+    bind_fails = FALSE
+    terminal = FALSE
+  -> State: 4.2 <-
+    state = CHECK_STOP
+  -> State: 4.3 <-
+    state = BIND
+  -> State: 4.4 <-
+    state = EXECUTE_MEASURE
+    circ_ready = TRUE
+    qpu_error = TRUE
+    measure_fails = TRUE
+  -> State: 4.5 <-
+    term_reason = ABORT_QPU_ERROR
+    qpu_error = FALSE
+    measure_fails = FALSE
+-- invariant (state = EXECUTE_MEASURE -> (circ_ready & params_ready))  is true
+-- invariant ((state = EXECUTE_MEASURE | state = COMPUTE_ENERGY) -> (bound_version = iter & bound_cand = cands_done))  is true
+-- invariant (state = OPTIMIZER_STEP -> energy_version = iter)  is true
+-- invariant ((state = DONE & iter > 0) -> (energy_ready & energy_version + 1 = iter))  is true

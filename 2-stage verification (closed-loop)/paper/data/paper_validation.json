@@ -1,0 +1,86 @@
+{
+  "status": "PASS",
+  "manuscript": "manuscript_review2.tex",
+  "scope": "numerical/artifact/reference/vector consistency; manual layout review recorded separately",
+  "checks": {
+    "source_inputs_unchanged": {
+      "passed": true,
+      "files": 881,
+      "relocated_paths": 362
+    },
+    "numerical_prose_macros": {
+      "passed": true,
+      "defined": 65,
+      "used": 65
+    },
+    "fixed_parameters_match": {
+      "passed": true
+    },
+    "all_plotted_points": {
+      "passed": true,
+      "probability_points": 51,
+      "model_size_pairs": 5,
+      "timing_groups": 5,
+      "fault_matrix_cells": 40
+    },
+    "generated_tables": {
+      "passed": true,
+      "tables": 9
+    },
+    "P2_P3_reporting_correction": {
+      "passed": true,
+      "original_observations_and_intervals_preserved": true,
+      "method": "post-audit Holm adjustment; P3 derived",
+      "holm_p": 0.09400404078303333
+    },
+    "figure_table_and_citation_references": {
+      "passed": true,
+      "figures": 5,
+      "tables": 6,
+      "labels": 33
+    },
+    "latex_compilation": {
+      "passed": true,
+      "overfull_boxes": 0,
+      "undefined_references": 0,
+      "underfull_notes": 11
+    },
+    "pdf_outputs": {
+      "passed": true,
+      "manuscript_pages": 11,
+      "manuscript_sha256": "40bc17631dead0cf83d6b2bcc6f77cf6d652309ee5b159a0d7346ba274547991",
+      "vector_figures": {
+        "architecture.pdf": {
+          "pages": 1,
+          "retained_text_characters": 878,
+          "raster_images": 0,
+          "sha256": "efff5fef917b401b66003d1191add6626d4c7c9e1f881a97636c650883b2be64"
+        },
+        "fault-discrepancies.pdf": {
+          "pages": 1,
+          "retained_text_characters": 367,
+          "raster_images": 0,
+          "sha256": "dd348510a6a1999750ce661915d475a8b68aff18f9a5c10d89f4595a6b766e27"
+        },
+        "probability-comparison.pdf": {
+          "pages": 1,
+          "retained_text_characters": 146,
+          "raster_images": 0,
+          "sha256": "32395ef6ab5fb0812837bfabb6b21f2f030bcf9e9db6d3527b5668162c75000a"
+        },
+        "runtime-overhead.pdf": {
+          "pages": 1,
+          "retained_text_characters": 138,
+          "raster_images": 0,
+          "sha256": "c5743f0f9db15e4acc92e2231c581ef6ca8071870b8170640278854f8ed525e8"
+        },
+        "storm-scalability.pdf": {
+          "pages": 1,
+          "retained_text_characters": 162,
+          "raster_images": 0,
+          "sha256": "c6e89c7513dcaf99984644948543c217c97a26decb27a593e535961ec81f0090"
+        }
+      }
+    }
+  }
+}
