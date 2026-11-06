@@ -1,0 +1,74 @@
+qiskit_runtime_service.__init__:WARNING:2026-11-05 22:57:56,351: Instance was not set at service instantiation. Free and trial plan instances will be prioritized. Based on the following filters: (tags: None, region: us-east, eu-de), and available plans: (open), the available account instances are: test. If you need a specific instance set it explicitly either by using a saved account with a saved default instance or passing it in directly to QiskitRuntimeService(). Alternatively, pass instance='auto' or save it to your account for auto-selection without warning.
+qiskit_runtime_service.backends:WARNING:2026-11-05 22:57:56,351: Using instance: test, plan: open
+{
+  "backend": "ibm_marrakesh",
+  "calibration_after": "2026-11-05 22:44:18-05:00",
+  "calibration_before": "2026-11-05 22:44:18-05:00",
+  "completed_evaluations": 50,
+  "condition": "unverified",
+  "config_hash": "b4b72e2897d930dcfed93a3b7a18a4811c8b1b6697ff0699a7b0ea4ddfb69c62",
+  "failure": null,
+  "finalize_seconds": 6.659975042566657e-07,
+  "finished_utc": "2026-11-06T04:04:37.924791+00:00",
+  "frozen_circuits_sha256": "9b954576c69801ac230bd3b7c2d514f9a2a9b13edd29a416d3350f34a4663414",
+  "ibm_seconds": 399.658472200048,
+  "replay_status": null,
+  "run_id": "hrzy-pair01-unverified",
+  "setup_seconds": 0.00015083299513207749,
+  "started_utc": "2026-11-06T03:57:57.378596+00:00",
+  "status": "completed",
+  "su2_gates": [
+    "h",
+    "rz",
+    "y"
+  ],
+  "terminal_reason": "max_iterations",
+  "total_seconds": 399.9226334579944
+}
+{
+  "backend": "ibm_marrakesh",
+  "calibration_after": "2026-11-05 22:44:18-05:00",
+  "calibration_before": "2026-11-05 22:44:18-05:00",
+  "completed_evaluations": 50,
+  "condition": "verified",
+  "config_hash": "b4b72e2897d930dcfed93a3b7a18a4811c8b1b6697ff0699a7b0ea4ddfb69c62",
+  "failure": null,
+  "finalize_seconds": 0.03262045799783664,
+  "finished_utc": "2026-11-06T04:15:18.729327+00:00",
+  "frozen_circuits_sha256": "9b954576c69801ac230bd3b7c2d514f9a2a9b13edd29a416d3350f34a4663414",
+  "ibm_seconds": 635.6101268839484,
+  "replay_status": "pass",
+  "run_id": "hrzy-pair01-verified",
+  "setup_seconds": 0.2116922919958597,
+  "started_utc": "2026-11-06T04:04:38.830373+00:00",
+  "status": "pass",
+  "su2_gates": [
+    "h",
+    "rz",
+    "y"
+  ],
+  "terminal_reason": "max_iterations",
+  "total_seconds": 638.7680525420001
+}
+# Hardware pair `pair01`: unverified vs verified
+
+- Backend `ibm_marrakesh`, qubits [139, 135], frozen circuits `9b954576c69801ac`.
+- Order: unverified then verified.
+- Unverified: 50 evaluations, stop `max_iterations`, status `completed`.
+- Verified: 50 evaluations, stop `max_iterations`, online `pass`, replay `pass`.
+- Charged QPU: 150 s + 150 s.
+
+| N | Fidelity U | Fidelity V | Change (V-U) | Added client time (s) | Elapsed diff (s) | Held |
+|---:|---:|---:|---:|---:|---:|---|
+| 10 | 0.998788 | 0.998472 | -0.000317 | 0.828 | +60.4 |  |
+| 20 | 0.997374 | 0.997899 | +0.000525 | 1.347 | +169.8 |  |
+| 30 | 0.996822 | 0.997022 | +0.000200 | 1.848 | +183.3 |  |
+| 40 | 0.996520 | 0.996631 | +0.000111 | 2.376 | +189.8 |  |
+| 50 | 0.996324 | 0.996507 | +0.000183 | 2.885 | +238.8 |  |
+
+| Run | Client (s) | IBM wait (s) | Total (s) | Best measured | Exact at final | Gap to E_ref |
+|---|---:|---:|---:|---:|---:|---:|
+| Unverified | 0.264 | 399.7 | 399.9 | -0.6434 | -0.6729 | 0.0300 |
+| Verified | 3.158 | 635.6 | 638.8 | -0.6469 | -0.6770 | 0.0259 |
+
+charged so far: 306 s

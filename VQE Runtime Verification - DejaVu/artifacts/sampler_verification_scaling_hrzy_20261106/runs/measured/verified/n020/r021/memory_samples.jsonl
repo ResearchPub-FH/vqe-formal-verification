@@ -1,0 +1,3 @@
+{"condition":"verified","elapsed_seconds":5.166992195881903e-06,"evaluations":20,"phase":"measured","pid":43090,"repetition":21,"role":"python","rss_bytes":248528896,"run_id":"sampler-scale-verified-n20-r21-measured","source":"getrusage-self-peak"}
+{"condition":"verified","elapsed_seconds":0.9553511249978328,"evaluations":20,"phase":"measured","pid":43090,"repetition":21,"role":"python","rss_bytes":248528896,"run_id":"sampler-scale-verified-n20-r21-measured","source":"getrusage-self-peak"}
+{"condition":"verified","elapsed_seconds":0.9553691670007538,"evaluations":20,"phase":"measured","pid":45900,"repetition":21,"role":"dejavu_jvm","rss_bytes":529498112,"run_id":"sampler-scale-verified-n20-r21-measured","source":"getrusage-children-peak-after-jvm-exit"}

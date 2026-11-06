@@ -1,0 +1,25 @@
+{
+  "backend": "ibm_marrakesh",
+  "calibration_after": "2026-11-05 22:44:18-05:00",
+  "calibration_before": "2026-11-05 22:44:18-05:00",
+  "completed_evaluations": 1,
+  "condition": "verified",
+  "config_hash": "d8d44c955676032949f709f0bfb73465e1c19f7ad07ad132a773a5aaeb04185d",
+  "failure": null,
+  "finalize_seconds": 0.003475416000583209,
+  "finished_utc": "2026-11-06T03:57:25.981314+00:00",
+  "frozen_circuits_sha256": "9b954576c69801ac230bd3b7c2d514f9a2a9b13edd29a416d3350f34a4663414",
+  "ibm_seconds": 7.631002375994285,
+  "replay_status": "inconclusive",
+  "run_id": "hrzy-preflight-verified",
+  "setup_seconds": 0.22576183299679542,
+  "started_utc": "2026-11-06T03:57:17.752259+00:00",
+  "status": "inconclusive",
+  "su2_gates": [
+    "h",
+    "rz",
+    "y"
+  ],
+  "terminal_reason": "max_iterations",
+  "total_seconds": 7.951151916997333
+}
