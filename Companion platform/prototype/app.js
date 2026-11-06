@@ -304,45 +304,60 @@
     L1_groupsBeforeEnergy: "groupsBeforeEnergy", L2_validationsBeforeCommit: "validationsBeforeCommit",
     L3_energyAfterBegin: "energyAfterBegin", L3_validationAfterEnergy: "validationAfterEnergy", L4_noActivityAfterStop: "noActivityAfterStop",
   };
+  // Status of one iteration alone (colours the points on the line).
   function iterationStatus(k) {
-    const online = Object.entries(RTI.contracts).map(([cid, v]) => ({
-      id: cid, label: cid, checks: v.checks[k - 1], problems: v.problems[k - 1],
-      state: v.problems[k - 1] > 0 ? "fail" : v.checks[k - 1] > 0 ? "pass" : "idle", tip: D.contracts[cid].description }));
-    const temporal = Object.entries(RTI.dejavu.triggers).map(([name, v]) => ({
-      id: name, label: name.slice(0, 2) + " " + DV_NAMES[name], checks: v[k - 1], problems: 0,
-      state: v[k - 1] === 0 ? "idle" : RTI.dejavu.passed ? "pass" : "fail", tip: name }));
-    const failed = online.some((r) => r.state === "fail") || temporal.some((r) => r.state === "fail");
-    return { online, temporal, failed };
+    const bad = Object.values(RTI.contracts).some((v) => v.problems[k - 1] > 0) ||
+      (!RTI.dejavu.passed && Object.values(RTI.dejavu.triggers).some((v) => v[k - 1] > 0));
+    return { failed: bad };
   }
-  const OV = { W: 960, H: 340, ml: 56, mr: 16, t: 10, b: 38 };
+  // Running totals up to and including iteration k (drives the panel and its progress bars).
+  const upTo = (arr, k) => arr.slice(0, k).reduce((a, b) => a + b, 0);
+  function runningStatus(k) {
+    const row = (id, label, tip, counts, problems, unit) => {
+      const done = upTo(counts, k), total = upTo(counts, counts.length), bad = upTo(problems, k);
+      return { id, label, tip, unit, done, total, now: counts[k - 1], bad,
+        state: bad > 0 ? "fail" : done > 0 ? "pass" : "idle" };
+    };
+    const online = Object.entries(RTI.contracts).map(([cid, v]) =>
+      row(cid, cid, `${cid}: ${D.contracts[cid].description}`, v.checks, v.problems, "checks"));
+    const zero = Array(N_UPD).fill(0);
+    const temporal = Object.entries(RTI.dejavu.triggers).map(([name, v]) =>
+      row(name, name.slice(0, 2) + " " + DV_NAMES[name], `DejaVu ${name}`, v, RTI.dejavu.passed ? zero : v, "triggers"));
+    return { online, temporal, bad: [...online, ...temporal].reduce((a, r) => a + r.bad, 0) };
+  }
+  const OV = { W: 960, H: 380, ml: 56, mr: 16, t: 10, b: 38 };
   function renderRunOverview() {
     const cw = (OV.W - OV.ml - OV.mr) / (N_UPD + 1);
     const pts = [[0, D.run.ideal_start]].concat(updates.map((x) => [x.update, x.ideal_after]));
     const target = D.ground_energy + cfg.success_gap;
     const k = S.iter;
-    const st = iterationStatus(k);
+    const st = runningStatus(k);
     const glyph = { pass: ["✓", "var(--good)"], fail: ["✗", "var(--bad)"], idle: ["–", "var(--faint)"] };
     const panel = () => {
       const px = OV.ml + 13 * cw + 6, pw = OV.W - OV.mr - 6 - px, py = OV.t + 6;
-      const colW = pw / 2, rowH = 15, top = py + 44;
-      const sum = (rows) => rows.reduce((a, r) => a + r.checks, 0);
+      const colW = pw / 2, rowH = 21, top = py + 44;
+      const tot = (rows, key) => fi(rows.reduce((a, r) => a + r[key], 0));
       let p = `<g class="rt-panel"><rect x="${px}" y="${py}" width="${pw}" height="${44 + 8 * rowH + 6}" rx="8" style="fill:var(--panel);stroke:var(--line)"/>`;
-      p += `<text x="${px + 12}" y="${py + 18}" style="fill:var(--ink);font-size:12.5px;font-weight:600">Runtime properties · iteration ${k}</text>`;
-      p += `<text x="${px + pw - 12}" y="${py + 18}" text-anchor="end" style="font-size:11px">${st.failed ? "violation recorded" : "all passed"}</text>`;
-      const col = (x, title, rows, unit) => {
+      p += `<text x="${px + 12}" y="${py + 18}" style="fill:var(--ink);font-size:12.5px;font-weight:600">Runtime properties · after iteration ${k}</text>`;
+      p += `<text x="${px + pw - 12}" y="${py + 18}" text-anchor="end" style="font-size:11px">${st.bad ? st.bad + " violations so far" : "no violations so far"}</text>`;
+      const col = (x, title, rows) => {
         let c = `<text x="${x}" y="${py + 36}" style="font-size:10.5px;font-weight:600;letter-spacing:.04em">${title}</text>`;
+        const barX = x + 16, barW = colW - 36;
         rows.forEach((r, i) => {
-          const y = top + i * rowH;
+          const y = top + i * rowH + 6;
           const [g, color] = glyph[r.state];
-          c += `<g><title>${esc(r.tip)}: ${r.state === "idle" ? "not triggered in this iteration" : r.checks + " " + unit + (r.problems ? ", " + r.problems + " problems" : ", no violation")}</title>`;
-          c += `<text x="${x}" y="${y + 4}" style="fill:${color};font-weight:700;font-size:12px">${g}</text>`;
-          c += `<text x="${x + 16}" y="${y + 4}" style="fill:var(--ink);font-size:11px">${esc(r.label)}</text>`;
-          c += `<text x="${x + colW - 26}" y="${y + 4}" text-anchor="end" style="font-size:10.5px">${r.state === "idle" ? "not yet" : r.checks}</text></g>`;
+          const frac = r.total ? r.done / r.total : 0;
+          c += `<g><title>${esc(r.tip)}\n${r.state === "idle" ? "not triggered yet" : `${fi(r.done)} of ${fi(r.total)} ${r.unit} passed so far (${fi(r.now)} in iteration ${k})`}${r.bad ? `, ${r.bad} problems` : ""}</title>`;
+          c += `<text x="${x}" y="${y}" style="fill:${color};font-weight:700;font-size:12px">${g}</text>`;
+          c += `<text x="${barX}" y="${y}" style="fill:var(--ink);font-size:11px">${esc(r.label)}</text>`;
+          c += `<text x="${barX + barW}" y="${y}" text-anchor="end" style="font-size:10.5px">${r.state === "idle" ? "not yet" : `${fi(r.done)} / ${fi(r.total)}`}</text>`;
+          c += `<rect x="${barX}" y="${y + 4}" width="${barW}" height="4" rx="2" style="fill:var(--soft)"/>`;
+          c += `<rect x="${barX}" y="${y + 4}" width="${(barW * frac).toFixed(1)}" height="4" rx="2" style="fill:${color}"/></g>`;
         });
         return c;
       };
-      p += col(px + 12, `ONLINE MONITOR · ${sum(st.online)} checks`, st.online, "checks");
-      p += col(px + colW + 6, `DEJAVU · ${sum(st.temporal)} triggers`, st.temporal, "triggers");
+      p += col(px + 12, `ONLINE MONITOR · ${tot(st.online, "done")} / ${tot(st.online, "total")}`, st.online);
+      p += col(px + colW + 6, `DEJAVU · ${tot(st.temporal, "done")} / ${tot(st.temporal, "total")}`, st.temporal);
       return p + `</g>`;
     };
     $("trajChart").innerHTML = chart({
