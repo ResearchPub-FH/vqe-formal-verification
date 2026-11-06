@@ -1,0 +1,35 @@
+{
+  "command": [
+    "tools/benchmark_sampler_hrzy.py",
+    "--config",
+    "configs/h2_statevector.toml",
+    "--out-dir",
+    "artifacts/sampler_verification_scaling_hrzy_20261106",
+    "--scales",
+    "10,20,30,40,50",
+    "--warmups",
+    "5",
+    "--repetitions",
+    "30"
+  ],
+  "created_utc": "2026-11-06T17:08:07.250194+00:00",
+  "java": "openjdk version \"17.0.4.1\" 2022-08-12\nOpenJDK Runtime Environment Temurin-17.0.4.1+1 (build 17.0.4.1+1)\nOpenJDK 64-Bit Server VM Temurin-17.0.4.1+1 (build 17.0.4.1+1, mixed mode)",
+  "machine": "arm64",
+  "packages": {
+    "numpy": "2.5.3",
+    "qiskit": "2.5.2",
+    "qiskit-ibm-runtime": "0.50.0",
+    "scipy": "1.18.1"
+  },
+  "platform": "macOS-26.6.2-arm64-arm-64bit",
+  "python": "3.12.15 (main, Sep 30 2026, 22:04:19) [Clang 21.0.0 (clang-2100.3.34.2)]",
+  "python_executable": "/private/tmp/claude-501/-Users-rome-Desktop-Implementation-of-Formal-Verification-on-VQE/35d85541-fc0b-480a-9fc8-82d3748ab123/scratchpad/venv/bin/python",
+  "sha256": {
+    "configs/h2_statevector.toml": "bde4d9d24e7ad2406b0ee0186ba737eec8c34a148b5e9e771013bafda8c03ef9",
+    "data/h2_hamiltonian.json": "8364398979d8e71d268f41d14867ad7f25a505edcd065a90cb8d58c478fa5502",
+    "specs/vqe_runtime.qtl": "8a9e2dd660d1eb5dbf93eae8d60b7844faf792710a8337cb9910ac553c4b7729",
+    "src/vqe_runtime/vendor/dejavu/dejavu.jar": "99fbc72ac9ba0dbf8051691f4c15958e1694345a025840acfd344d1eb66d58e1",
+    "src/vqe_runtime/vendor/dejavu/vqe-three-level-monitor.jar": "fd94121b102b5e21d161d983973c91a7e229f7f9929b48c04aafec9e5b13a4e7",
+    "tools/benchmark_sampler_verification_scaling.py": "57e81d156bbb6ae03709df65cdb36cbcb4306cefb1079b45b358adc030842a17"
+  }
+}

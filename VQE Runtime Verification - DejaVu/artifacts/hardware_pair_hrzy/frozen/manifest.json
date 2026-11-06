@@ -1,0 +1,64 @@
+{
+  "backend": "ibm_marrakesh",
+  "calibration": "2026-11-05 22:44:18-05:00",
+  "circuits": [
+    {
+      "depth": 13,
+      "gates": {
+        "cz": 1,
+        "measure": 2,
+        "rz": 12,
+        "sx": 5,
+        "x": 2
+      },
+      "parameters": 4
+    },
+    {
+      "depth": 12,
+      "gates": {
+        "cz": 1,
+        "measure": 2,
+        "rz": 11,
+        "sx": 4,
+        "x": 3
+      },
+      "parameters": 4
+    },
+    {
+      "depth": 12,
+      "gates": {
+        "cz": 1,
+        "measure": 2,
+        "rz": 11,
+        "sx": 4,
+        "x": 3
+      },
+      "parameters": 4
+    },
+    {
+      "depth": 13,
+      "gates": {
+        "cz": 1,
+        "measure": 2,
+        "rz": 13,
+        "sx": 6,
+        "x": 1
+      },
+      "parameters": 4
+    }
+  ],
+  "equivalence_error": 1.1657341758564144e-15,
+  "frozen_utc": "2026-11-06T03:56:36.569047+00:00",
+  "logical_to_physical": [
+    139,
+    135
+  ],
+  "sha256": "9b954576c69801ac230bd3b7c2d514f9a2a9b13edd29a416d3350f34a4663414",
+  "su2_gates": [
+    "h",
+    "rz",
+    "y"
+  ],
+  "transpiler_optimization_level": 3,
+  "transpiler_seed": 7
+}

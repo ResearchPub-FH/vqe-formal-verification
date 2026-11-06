@@ -1,0 +1,813 @@
+{
+  "coverage": {
+    "EXERCISED": 55,
+    "NESTED_NOT_EXERCISED": 1,
+    "NOT_APPLICABLE": 7,
+    "NOT_EXERCISED": 5
+  },
+  "events_online": 2103,
+  "events_rejected_online": 0,
+  "events_rejected_replay": 0,
+  "events_replay": 2103,
+  "monitor_latency_median_seconds": 0.00034220799716422334,
+  "obeyed_online": 68,
+  "obeyed_replay": 68,
+  "online_contract_count": 37,
+  "online_levels": {
+    "inter_iteration": {
+      "findings": [],
+      "status": "pass"
+    },
+    "intra_iteration": {
+      "findings": [],
+      "status": "pass"
+    },
+    "run_level": {
+      "findings": [],
+      "status": "pass"
+    }
+  },
+  "online_status": "pass",
+  "properties": 68,
+  "replay_contract_count": 37,
+  "replay_levels": {
+    "inter_iteration": {
+      "findings": [],
+      "status": "pass"
+    },
+    "intra_iteration": {
+      "findings": [],
+      "status": "pass"
+    },
+    "run_level": {
+      "findings": [],
+      "status": "pass"
+    }
+  },
+  "replay_status": "pass",
+  "rows": [
+    {
+      "coverage": "EXERCISED",
+      "level": "intra",
+      "online": "OBEYED",
+      "property": "intra_bindingAfterStart",
+      "replay": "OBEYED",
+      "trigger_events": 50,
+      "unfired_triggers": [],
+      "violated_at_online": [],
+      "violated_at_replay": []
+    },
+    {
+      "coverage": "EXERCISED",
+      "level": "intra",
+      "online": "OBEYED",
+      "property": "intra_bindingOnce",
+      "replay": "OBEYED",
+      "trigger_events": 50,
+      "unfired_triggers": [],
+      "violated_at_online": [],
+      "violated_at_replay": []
+    },
+    {
+      "coverage": "EXERCISED",
+      "level": "intra",
+      "online": "OBEYED",
+      "property": "intra_submitAfterBinding",
+      "replay": "OBEYED",
+      "trigger_events": 50,
+      "unfired_triggers": [],
+      "violated_at_online": [],
+      "violated_at_replay": []
+    },
+    {
+      "coverage": "EXERCISED",
+      "level": "intra",
+      "online": "OBEYED",
+      "property": "intra_termExpectedAfterBinding",
+      "replay": "OBEYED",
+      "trigger_events": 200,
+      "unfired_triggers": [],
+      "violated_at_online": [],
+      "violated_at_replay": []
+    },
+    {
+      "coverage": "EXERCISED",
+      "level": "intra",
+      "online": "OBEYED",
+      "property": "intra_oneSubmissionPerIteration",
+      "replay": "OBEYED",
+      "trigger_events": 50,
+      "unfired_triggers": [],
+      "violated_at_online": [],
+      "violated_at_replay": []
+    },
+    {
+      "coverage": "EXERCISED",
+      "level": "intra",
+      "online": "OBEYED",
+      "property": "intra_submittedAfterIntent",
+      "replay": "OBEYED",
+      "trigger_events": 50,
+      "unfired_triggers": [],
+      "violated_at_online": [],
+      "violated_at_replay": []
+    },
+    {
+      "coverage": "EXERCISED",
+      "level": "intra",
+      "online": "OBEYED",
+      "property": "intra_submittedOnce",
+      "replay": "OBEYED",
+      "trigger_events": 50,
+      "unfired_triggers": [],
+      "violated_at_online": [],
+      "violated_at_replay": []
+    },
+    {
+      "coverage": "EXERCISED",
+      "level": "intra",
+      "online": "OBEYED",
+      "property": "intra_termDeclaredOnce",
+      "replay": "OBEYED",
+      "trigger_events": 200,
+      "unfired_triggers": [],
+      "violated_at_online": [],
+      "violated_at_replay": []
+    },
+    {
+      "coverage": "EXERCISED",
+      "level": "intra",
+      "online": "OBEYED",
+      "property": "intra_termWasDeclared",
+      "replay": "OBEYED",
+      "trigger_events": 200,
+      "unfired_triggers": [],
+      "violated_at_online": [],
+      "violated_at_replay": []
+    },
+    {
+      "coverage": "EXERCISED",
+      "level": "intra",
+      "online": "OBEYED",
+      "property": "intra_termAfterSubmission",
+      "replay": "OBEYED",
+      "trigger_events": 200,
+      "unfired_triggers": [],
+      "violated_at_online": [],
+      "violated_at_replay": []
+    },
+    {
+      "coverage": "EXERCISED",
+      "level": "intra",
+      "online": "OBEYED",
+      "property": "intra_termObservedOnce",
+      "replay": "OBEYED",
+      "trigger_events": 200,
+      "unfired_triggers": [],
+      "violated_at_online": [],
+      "violated_at_replay": []
+    },
+    {
+      "coverage": "EXERCISED",
+      "level": "intra",
+      "online": "OBEYED",
+      "property": "intra_sealAfterSubmission",
+      "replay": "OBEYED",
+      "trigger_events": 50,
+      "unfired_triggers": [],
+      "violated_at_online": [],
+      "violated_at_replay": []
+    },
+    {
+      "coverage": "EXERCISED",
+      "level": "intra",
+      "online": "OBEYED",
+      "property": "intra_allDeclaredTermsObserved",
+      "replay": "OBEYED",
+      "trigger_events": 50,
+      "unfired_triggers": [],
+      "violated_at_online": [],
+      "violated_at_replay": []
+    },
+    {
+      "coverage": "EXERCISED",
+      "level": "intra",
+      "online": "OBEYED",
+      "property": "intra_sealOnce",
+      "replay": "OBEYED",
+      "trigger_events": 50,
+      "unfired_triggers": [],
+      "violated_at_online": [],
+      "violated_at_replay": []
+    },
+    {
+      "coverage": "EXERCISED",
+      "level": "intra",
+      "online": "OBEYED",
+      "property": "intra_energyAfterSeal",
+      "replay": "OBEYED",
+      "trigger_events": 50,
+      "unfired_triggers": [],
+      "violated_at_online": [],
+      "violated_at_replay": []
+    },
+    {
+      "coverage": "EXERCISED",
+      "level": "intra",
+      "online": "OBEYED",
+      "property": "intra_energyOnce",
+      "replay": "OBEYED",
+      "trigger_events": 50,
+      "unfired_triggers": [],
+      "violated_at_online": [],
+      "violated_at_replay": []
+    },
+    {
+      "coverage": "EXERCISED",
+      "level": "intra",
+      "online": "OBEYED",
+      "property": "intra_firstCheckAfterEnergy",
+      "replay": "OBEYED",
+      "trigger_events": 1,
+      "unfired_triggers": [],
+      "violated_at_online": [],
+      "violated_at_replay": []
+    },
+    {
+      "coverage": "EXERCISED",
+      "level": "intra",
+      "online": "OBEYED",
+      "property": "intra_nextCheckAfterEnergy",
+      "replay": "OBEYED",
+      "trigger_events": 49,
+      "unfired_triggers": [],
+      "violated_at_online": [],
+      "violated_at_replay": []
+    },
+    {
+      "coverage": "EXERCISED",
+      "level": "intra",
+      "online": "OBEYED",
+      "property": "intra_firstCheckOnce",
+      "replay": "OBEYED",
+      "trigger_events": 1,
+      "unfired_triggers": [],
+      "violated_at_online": [],
+      "violated_at_replay": []
+    },
+    {
+      "coverage": "EXERCISED",
+      "level": "intra",
+      "online": "OBEYED",
+      "property": "intra_nextCheckOnce",
+      "replay": "OBEYED",
+      "trigger_events": 49,
+      "unfired_triggers": [],
+      "violated_at_online": [],
+      "violated_at_replay": []
+    },
+    {
+      "coverage": "EXERCISED",
+      "level": "intra",
+      "online": "OBEYED",
+      "property": "intra_passAfterCheck",
+      "replay": "OBEYED",
+      "trigger_events": 50,
+      "unfired_triggers": [],
+      "violated_at_online": [],
+      "violated_at_replay": []
+    },
+    {
+      "coverage": "EXERCISED",
+      "level": "intra",
+      "online": "OBEYED",
+      "property": "intra_passOnce",
+      "replay": "OBEYED",
+      "trigger_events": 50,
+      "unfired_triggers": [],
+      "violated_at_online": [],
+      "violated_at_replay": []
+    },
+    {
+      "coverage": "EXERCISED",
+      "level": "intra",
+      "online": "OBEYED",
+      "property": "intra_releaseAfterPass",
+      "replay": "OBEYED",
+      "trigger_events": 50,
+      "unfired_triggers": [],
+      "violated_at_online": [],
+      "violated_at_replay": []
+    },
+    {
+      "coverage": "EXERCISED",
+      "level": "intra",
+      "online": "OBEYED",
+      "property": "intra_releaseOnce",
+      "replay": "OBEYED",
+      "trigger_events": 50,
+      "unfired_triggers": [],
+      "violated_at_online": [],
+      "violated_at_replay": []
+    },
+    {
+      "coverage": "EXERCISED",
+      "level": "intra",
+      "online": "OBEYED",
+      "property": "intra_closeAfterRelease",
+      "replay": "OBEYED",
+      "trigger_events": 50,
+      "unfired_triggers": [],
+      "violated_at_online": [],
+      "violated_at_replay": []
+    },
+    {
+      "coverage": "NOT_EXERCISED",
+      "level": "intra",
+      "online": "OBEYED",
+      "property": "intra_abortAfterFailure",
+      "replay": "OBEYED",
+      "trigger_events": 0,
+      "unfired_triggers": [
+        "iterationAborted"
+      ],
+      "violated_at_online": [],
+      "violated_at_replay": []
+    },
+    {
+      "coverage": "EXERCISED",
+      "level": "inter",
+      "online": "OBEYED",
+      "property": "inter_askTellProtocolConfiguredOnce",
+      "replay": "OBEYED",
+      "trigger_events": 1,
+      "unfired_triggers": [],
+      "violated_at_online": [],
+      "violated_at_replay": []
+    },
+    {
+      "coverage": "NOT_APPLICABLE",
+      "level": "inter",
+      "online": "OBEYED",
+      "property": "inter_opaqueProtocolConfiguredOnce",
+      "replay": "OBEYED",
+      "trigger_events": 0,
+      "unfired_triggers": [],
+      "violated_at_online": [],
+      "violated_at_replay": []
+    },
+    {
+      "coverage": "EXERCISED",
+      "level": "inter",
+      "online": "OBEYED",
+      "property": "inter_askTellIntentUsesConfiguredProtocol",
+      "replay": "OBEYED",
+      "trigger_events": 49,
+      "unfired_triggers": [],
+      "violated_at_online": [],
+      "violated_at_replay": []
+    },
+    {
+      "coverage": "EXERCISED",
+      "level": "inter",
+      "online": "OBEYED",
+      "property": "inter_askTellUpdateUsesConfiguredProtocol",
+      "replay": "OBEYED",
+      "trigger_events": 49,
+      "unfired_triggers": [],
+      "violated_at_online": [],
+      "violated_at_replay": []
+    },
+    {
+      "coverage": "NOT_APPLICABLE",
+      "level": "inter",
+      "online": "OBEYED",
+      "property": "inter_opaqueAdvanceUsesConfiguredProtocol",
+      "replay": "OBEYED",
+      "trigger_events": 0,
+      "unfired_triggers": [],
+      "violated_at_online": [],
+      "violated_at_replay": []
+    },
+    {
+      "coverage": "EXERCISED",
+      "level": "inter",
+      "online": "OBEYED",
+      "property": "inter_firstIterationAfterConfiguredProtocol",
+      "replay": "OBEYED",
+      "trigger_events": 1,
+      "unfired_triggers": [],
+      "violated_at_online": [],
+      "violated_at_replay": []
+    },
+    {
+      "coverage": "EXERCISED",
+      "level": "inter",
+      "online": "OBEYED",
+      "property": "inter_nextIterationAfterConfiguredProtocol",
+      "replay": "OBEYED",
+      "trigger_events": 49,
+      "unfired_triggers": [],
+      "violated_at_online": [],
+      "violated_at_replay": []
+    },
+    {
+      "coverage": "EXERCISED",
+      "level": "inter",
+      "online": "OBEYED",
+      "property": "inter_firstEvaluationIdentityUnique",
+      "replay": "OBEYED",
+      "trigger_events": 1,
+      "unfired_triggers": [],
+      "violated_at_online": [],
+      "violated_at_replay": []
+    },
+    {
+      "coverage": "EXERCISED",
+      "level": "inter",
+      "online": "OBEYED",
+      "property": "inter_nextEvaluationIdentityUnique",
+      "replay": "OBEYED",
+      "trigger_events": 49,
+      "unfired_triggers": [],
+      "violated_at_online": [],
+      "violated_at_replay": []
+    },
+    {
+      "coverage": "EXERCISED",
+      "level": "inter",
+      "online": "OBEYED",
+      "property": "inter_submissionIdentityUnique",
+      "replay": "OBEYED",
+      "trigger_events": 50,
+      "unfired_triggers": [],
+      "violated_at_online": [],
+      "violated_at_replay": []
+    },
+    {
+      "coverage": "EXERCISED",
+      "level": "inter",
+      "online": "OBEYED",
+      "property": "inter_backendJobIdentityUnique",
+      "replay": "OBEYED",
+      "trigger_events": 50,
+      "unfired_triggers": [],
+      "violated_at_online": [],
+      "violated_at_replay": []
+    },
+    {
+      "coverage": "EXERCISED",
+      "level": "inter",
+      "online": "OBEYED",
+      "property": "inter_nextAfterPreviousClose",
+      "replay": "OBEYED",
+      "trigger_events": 49,
+      "unfired_triggers": [],
+      "violated_at_online": [],
+      "violated_at_replay": []
+    },
+    {
+      "coverage": "EXERCISED",
+      "level": "inter",
+      "online": "OBEYED",
+      "property": "inter_nextAfterOptimizerUpdate",
+      "replay": "OBEYED",
+      "trigger_events": 49,
+      "unfired_triggers": [],
+      "violated_at_online": [],
+      "violated_at_replay": []
+    },
+    {
+      "coverage": "NOT_APPLICABLE",
+      "level": "inter",
+      "online": "OBEYED",
+      "property": "inter_opaqueAdvanceAfterClose",
+      "replay": "OBEYED",
+      "trigger_events": 0,
+      "unfired_triggers": [],
+      "violated_at_online": [],
+      "violated_at_replay": []
+    },
+    {
+      "coverage": "NOT_APPLICABLE",
+      "level": "inter",
+      "online": "OBEYED",
+      "property": "inter_opaqueAdvanceOnce",
+      "replay": "OBEYED",
+      "trigger_events": 0,
+      "unfired_triggers": [],
+      "violated_at_online": [],
+      "violated_at_replay": []
+    },
+    {
+      "coverage": "NOT_APPLICABLE",
+      "level": "inter",
+      "online": "OBEYED",
+      "property": "inter_opaqueAdvanceBeforeLimit",
+      "replay": "OBEYED",
+      "trigger_events": 0,
+      "unfired_triggers": [],
+      "violated_at_online": [],
+      "violated_at_replay": []
+    },
+    {
+      "coverage": "EXERCISED",
+      "level": "inter",
+      "online": "OBEYED",
+      "property": "inter_updateIntentAfterRelease",
+      "replay": "OBEYED",
+      "trigger_events": 49,
+      "unfired_triggers": [],
+      "violated_at_online": [],
+      "violated_at_replay": []
+    },
+    {
+      "coverage": "EXERCISED",
+      "level": "inter",
+      "online": "OBEYED",
+      "property": "inter_updateIntentOnce",
+      "replay": "OBEYED",
+      "trigger_events": 49,
+      "unfired_triggers": [],
+      "violated_at_online": [],
+      "violated_at_replay": []
+    },
+    {
+      "coverage": "EXERCISED",
+      "level": "inter",
+      "online": "OBEYED",
+      "property": "inter_updateOnlyWhenNotConverged",
+      "replay": "OBEYED",
+      "trigger_events": 49,
+      "unfired_triggers": [],
+      "violated_at_online": [],
+      "violated_at_replay": []
+    },
+    {
+      "coverage": "EXERCISED",
+      "level": "inter",
+      "online": "OBEYED",
+      "property": "inter_updatedAfterIntent",
+      "replay": "OBEYED",
+      "trigger_events": 49,
+      "unfired_triggers": [],
+      "violated_at_online": [],
+      "violated_at_replay": []
+    },
+    {
+      "coverage": "EXERCISED",
+      "level": "inter",
+      "online": "OBEYED",
+      "property": "inter_updateAppliedOnce",
+      "replay": "OBEYED",
+      "trigger_events": 49,
+      "unfired_triggers": [],
+      "violated_at_online": [],
+      "violated_at_replay": []
+    },
+    {
+      "coverage": "EXERCISED",
+      "level": "inter",
+      "online": "OBEYED",
+      "property": "inter_previousEnergyIsLastCheckpoint",
+      "replay": "OBEYED",
+      "trigger_events": 49,
+      "unfired_triggers": [],
+      "violated_at_online": [],
+      "violated_at_replay": []
+    },
+    {
+      "coverage": "EXERCISED",
+      "level": "inter",
+      "online": "OBEYED",
+      "property": "inter_iterationClosedOnce",
+      "replay": "OBEYED",
+      "trigger_events": 50,
+      "unfired_triggers": [],
+      "violated_at_online": [],
+      "violated_at_replay": []
+    },
+    {
+      "coverage": "EXERCISED",
+      "level": "inter",
+      "online": "OBEYED",
+      "property": "inter_closeAfterCommittedUpdate",
+      "replay": "OBEYED",
+      "trigger_events": 50,
+      "unfired_triggers": [],
+      "violated_at_online": [],
+      "violated_at_replay": []
+    },
+    {
+      "coverage": "EXERCISED",
+      "level": "run",
+      "online": "OBEYED",
+      "property": "run_iterationLimitOnce",
+      "replay": "OBEYED",
+      "trigger_events": 1,
+      "unfired_triggers": [],
+      "violated_at_online": [],
+      "violated_at_replay": []
+    },
+    {
+      "coverage": "EXERCISED",
+      "level": "run",
+      "online": "OBEYED",
+      "property": "run_startOnce",
+      "replay": "OBEYED",
+      "trigger_events": 1,
+      "unfired_triggers": [],
+      "violated_at_online": [],
+      "violated_at_replay": []
+    },
+    {
+      "coverage": "EXERCISED",
+      "level": "run",
+      "online": "OBEYED",
+      "property": "run_activityAfterMatchingStart",
+      "replay": "OBEYED",
+      "trigger_events": 1050,
+      "unfired_triggers": [],
+      "violated_at_online": [],
+      "violated_at_replay": []
+    },
+    {
+      "coverage": "EXERCISED",
+      "level": "run",
+      "online": "OBEYED",
+      "property": "run_noActivityAfterTerminal",
+      "replay": "OBEYED",
+      "trigger_events": 1050,
+      "unfired_triggers": [],
+      "violated_at_online": [],
+      "violated_at_replay": []
+    },
+    {
+      "coverage": "EXERCISED",
+      "level": "run",
+      "online": "OBEYED",
+      "property": "run_noActivityAfterClose",
+      "replay": "OBEYED",
+      "trigger_events": 1050,
+      "unfired_triggers": [],
+      "violated_at_online": [],
+      "violated_at_replay": []
+    },
+    {
+      "coverage": "NOT_EXERCISED",
+      "level": "run",
+      "online": "OBEYED",
+      "property": "run_convergedAfterTrueClose",
+      "replay": "OBEYED",
+      "trigger_events": 0,
+      "unfired_triggers": [
+        "runConverged"
+      ],
+      "violated_at_online": [],
+      "violated_at_replay": []
+    },
+    {
+      "coverage": "EXERCISED",
+      "level": "run",
+      "online": "OBEYED",
+      "property": "run_maxAfterLimitAndFalseClose",
+      "replay": "OBEYED",
+      "trigger_events": 1,
+      "unfired_triggers": [],
+      "violated_at_online": [],
+      "violated_at_replay": []
+    },
+    {
+      "coverage": "NOT_APPLICABLE",
+      "level": "run",
+      "online": "OBEYED",
+      "property": "run_optimizerStopAfterFalseClose",
+      "replay": "OBEYED",
+      "trigger_events": 0,
+      "unfired_triggers": [],
+      "violated_at_online": [],
+      "violated_at_replay": []
+    },
+    {
+      "coverage": "NOT_EXERCISED",
+      "level": "run",
+      "online": "OBEYED",
+      "property": "run_abortAfterFailure",
+      "replay": "OBEYED",
+      "trigger_events": 0,
+      "unfired_triggers": [
+        "runAborted"
+      ],
+      "violated_at_online": [],
+      "violated_at_replay": []
+    },
+    {
+      "coverage": "EXERCISED",
+      "level": "run",
+      "online": "OBEYED",
+      "property": "run_normalTerminalWithoutFailure",
+      "replay": "OBEYED",
+      "trigger_events": 1,
+      "unfired_triggers": [
+        "runConverged"
+      ],
+      "violated_at_online": [],
+      "violated_at_replay": []
+    },
+    {
+      "coverage": "NESTED_NOT_EXERCISED",
+      "level": "run",
+      "online": "OBEYED",
+      "property": "run_failureRequiresAbortAtClose",
+      "replay": "OBEYED",
+      "trigger_events": 1,
+      "unfired_triggers": [],
+      "violated_at_online": [],
+      "violated_at_replay": []
+    },
+    {
+      "coverage": "NOT_EXERCISED",
+      "level": "run",
+      "online": "OBEYED",
+      "property": "run_convergedIsFirstTerminal",
+      "replay": "OBEYED",
+      "trigger_events": 0,
+      "unfired_triggers": [
+        "runConverged"
+      ],
+      "violated_at_online": [],
+      "violated_at_replay": []
+    },
+    {
+      "coverage": "EXERCISED",
+      "level": "run",
+      "online": "OBEYED",
+      "property": "run_maxIsFirstTerminal",
+      "replay": "OBEYED",
+      "trigger_events": 1,
+      "unfired_triggers": [],
+      "violated_at_online": [],
+      "violated_at_replay": []
+    },
+    {
+      "coverage": "NOT_APPLICABLE",
+      "level": "run",
+      "online": "OBEYED",
+      "property": "run_optimizerStopIsFirstTerminal",
+      "replay": "OBEYED",
+      "trigger_events": 0,
+      "unfired_triggers": [],
+      "violated_at_online": [],
+      "violated_at_replay": []
+    },
+    {
+      "coverage": "NOT_EXERCISED",
+      "level": "run",
+      "online": "OBEYED",
+      "property": "run_abortIsFirstTerminal",
+      "replay": "OBEYED",
+      "trigger_events": 0,
+      "unfired_triggers": [
+        "runAborted"
+      ],
+      "violated_at_online": [],
+      "violated_at_replay": []
+    },
+    {
+      "coverage": "EXERCISED",
+      "level": "run",
+      "online": "OBEYED",
+      "property": "run_closeAfterTerminal",
+      "replay": "OBEYED",
+      "trigger_events": 1,
+      "unfired_triggers": [],
+      "violated_at_online": [],
+      "violated_at_replay": []
+    },
+    {
+      "coverage": "EXERCISED",
+      "level": "run",
+      "online": "OBEYED",
+      "property": "run_closeAfterOptimizerProtocol",
+      "replay": "OBEYED",
+      "trigger_events": 1,
+      "unfired_triggers": [],
+      "violated_at_online": [],
+      "violated_at_replay": []
+    },
+    {
+      "coverage": "EXERCISED",
+      "level": "run",
+      "online": "OBEYED",
+      "property": "run_closeOnce",
+      "replay": "OBEYED",
+      "trigger_events": 1,
+      "unfired_triggers": [],
+      "violated_at_online": [],
+      "violated_at_replay": []
+    }
+  ],
+  "violated_online": 0,
+  "violated_replay": 0,
+  "violations_outside_spec": []
+}

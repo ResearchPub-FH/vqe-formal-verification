@@ -1,0 +1,82 @@
+{
+  "convergence": {
+    "min_iterations": 20,
+    "patience": 3,
+    "tolerance": 0.005
+  },
+  "execution": {
+    "allow_optimizer_stopped": false,
+    "backend": "StatevectorSampler",
+    "max_iterations": 20,
+    "mode": "qiskit-statevector-sampler",
+    "optimizer_protocol": "ask-tell",
+    "parameter_count": 4,
+    "seed": 7,
+    "shot_budget": 81920,
+    "shots_per_term": 1024,
+    "system": "h2"
+  },
+  "hamiltonian": {
+    "coeff_scale": 10000,
+    "schema_version": 1,
+    "terms": [
+      {
+        "coeff_int": 3980,
+        "pauli": "YZ",
+        "term_id": "t0"
+      },
+      {
+        "coeff_int": -3980,
+        "pauli": "ZI",
+        "term_id": "t1"
+      },
+      {
+        "coeff_int": -113,
+        "pauli": "ZZ",
+        "term_id": "t2"
+      },
+      {
+        "coeff_int": 1810,
+        "pauli": "XX",
+        "term_id": "t3"
+      }
+    ]
+  },
+  "hamiltonian_hash": "aff67cd405a7d3381b3642ff99a5280b793c19e0b50e86eee234bca036afe3f7",
+  "monitor": {
+    "bits_per_variable": 24,
+    "timeout_seconds": 10.0
+  },
+  "numeric": {
+    "energy_abs_tolerance": 1e-12,
+    "expectation_abs_tolerance": 1e-12,
+    "parameter_lower": -3.141592653589793,
+    "parameter_upper": 3.141592653589793
+  },
+  "observability": {
+    "require_raw_counts": true
+  },
+  "optimizer": {
+    "improvement_tolerance": 0.0,
+    "initial_step": 0.4,
+    "initialization": "seeded-uniform-v1",
+    "name": "ask-tell-pattern-search-v1",
+    "step_shrink": 0.5
+  },
+  "sampler": {
+    "bitstring_order": "qiskit-msb-qn-1-to-q0",
+    "dynamical_decoupling": false,
+    "gate_twirling": false,
+    "measurement_mitigation": "not-applicable-to-samplerv2",
+    "measurement_strategy": "independent-pauli-basis-v1",
+    "measurement_twirling": false,
+    "measurement_type": "classified",
+    "pec": "not-applicable-to-samplerv2",
+    "pubs_per_evaluation": 4,
+    "raw_evidence_format": "packed-bitarray-v1",
+    "separate_pub_per_term": true,
+    "zne": "not-applicable-to-samplerv2"
+  },
+  "schema_version": 2,
+  "source_path": "/Users/rome/Desktop/Implementation of Formal Verification on VQE/VQE Runtime Verification - DejaVu/configs/h2_statevector.toml"
+}
