@@ -145,49 +145,38 @@
   /* ================================================================
      PART 0 — WHY VERIFY
      ================================================================ */
-  // Hardware pair: one declared configuration, an unverified and a verified run on the QPU.
-  // Each evaluation's recorded counts are aggregated with the declared and with swapped coefficients;
-  // a red tick marks a probe whose accept/reject decision would differ (precomputed in build_data.py).
   function renderWhy() {
-    const HW = D.hardware;
-    const TITLE = { unverified: "Unverified run", verified: "Verified run (DejaVu online)" };
-    const all = HW.order.flatMap((c) => HW.runs[c].declared.concat(HW.runs[c].swapped));
-    const lo = Math.min(D.ground_energy, ...all), hi = Math.max(...all);
-    const y0 = Math.floor(lo * 10) / 10 - 0.05, y1 = Math.ceil(hi * 10) / 10;
-    const n = HW.evaluations;
-    const decide = (yes) => (yes ? "accept" : "reject");
-    $("whyCharts").innerHTML = HW.order.map((c) => {
-      const r = HW.runs[c];
-      const flips = new Set(r.flips);
-      const svg = chart({
-        w: 520, h: 270, label: `${TITLE[c]}: energy per evaluation with declared and swapped coefficients`,
-        x: [-0.5, n - 0.5], y: [y0, y1],
-        xticks: [0, 10, 20, 30, 40, 49], yticks: [-0.8, -0.6, -0.4, -0.2, 0, 0.2, 0.4].filter((t) => t >= y0 && t <= y1),
-        yfmt: (t) => f(t, 1), xlabel: "evaluation", ylabel: "measured energy",
-        hlines: [{ y: D.ground_energy, label: "reference minimum " + f(D.ground_energy, 4), color: "var(--muted)", left: true }],
-        under: [(X, Y) => r.flips.map((k) => `<line x1="${X(k)}" x2="${X(k)}" y1="${Y(y0)}" y2="${Y(y0) - 9}" style="stroke:var(--bad);stroke-width:3"/>`).join("")],
-        series: [
-          { pts: r.declared.map((v, k) => [k, v]), color: "var(--series-a)", dots: true, width: 1.6 },
-          { pts: r.swapped.map((v, k) => [k, v]), color: "var(--series-b)", dots: true, dash: "5 3", width: 1.6 },
-        ],
-        hover: r.declared.map((v, k) => ({ x: k, text: k === 0
-          ? `Evaluation 0 (starting point)\nDeclared: ${f(v, 4)}\nSwapped: ${f(r.swapped[k], 4)}`
-          : `Evaluation ${k}\nDeclared: ${f(v, 4)} → ${decide(r.accepted[k])}\nSwapped: ${f(r.swapped[k], 4)} → ${decide(flips.has(k) ? !r.accepted[k] : r.accepted[k])}` })),
-      });
-      return `<div class="card"><div class="card-head"><h3>${TITLE[c]}</h3>
-        <span class="small muted">${r.flips.length} of ${n - 1} decisions differ</span></div>${svg}</div>`;
-    }).join("");
-    $("whyLegend").innerHTML = `<span><i style="background:var(--series-a)"></i>declared execution</span>` +
-      `<span><i style="background:var(--series-b)"></i>coefficients swapped (YZ ↔ XX)</span>` +
-      `<span><i style="background:var(--bad);height:8px;width:3px"></i>a different VQE update would be chosen</span>` +
-      `<span>Hover an evaluation to see both decisions.</span>`;
-    $("whyBackend").textContent = `${HW.backend}, one unverified and one verified run, ${HW.evaluations} evaluations each`;
-    const counts = HW.order.map((c) => `${HW.runs[c].flips.length} of ${n - 1} updates in the ${c} run`);
-    $("whyFlips").textContent = `make a different accept-or-reject decision in ${counts.join(" and ")}`;
+    const rows = D.why.rows;
+    const correct = rows.map((r) => [r.update, r.correct[r.choice]]);
+    const swapped = rows.map((r) => [r.update, r.swapped[r.swapped_choice]]);
+    const flips = rows.filter((r) => r.choice !== r.swapped_choice);
+    const lo = Math.min(D.ground_energy, ...swapped.map((p) => p[1]), ...correct.map((p) => p[1]));
+    const hi = Math.max(...swapped.map((p) => p[1]), ...correct.map((p) => p[1]));
+    const NAMES = ["current", "−1", "+1"];
+    $("whyChart").innerHTML = chart({
+      label: "Reported energy per iteration with declared and swapped coefficients",
+      x: [0.5, rows.length + 0.5], y: [Math.floor(lo * 10) / 10 - 0.05, Math.ceil(hi * 10) / 10],
+      xticks: [1, 5, 10, 15, 20, 25], yticks: [-0.8, -0.6, -0.4, -0.2, 0, 0.2, 0.4].filter((t) => t >= lo - 0.1 && t <= hi + 0.05),
+      yfmt: (t) => f(t, 1), xlabel: "iteration", ylabel: "reported energy of the chosen candidate",
+      hlines: [{ y: D.ground_energy, label: "reference minimum " + f(D.ground_energy, 4), color: "var(--muted)", left: true }],
+      under: [(X, Y) => flips.map((r) => `<line x1="${X(r.update)}" x2="${X(r.update)}" y1="${Y(Math.floor(lo * 10) / 10 - 0.05)}" y2="${Y(Math.floor(lo * 10) / 10 - 0.05) - 8}" style="stroke:var(--bad);stroke-width:3"/>`).join("")],
+      series: [
+        { pts: correct, color: "var(--series-a)", dots: true },
+        { pts: swapped, color: "var(--series-b)", dots: true, dash: "5 3" },
+      ],
+      hover: rows.map((r) => ({ x: r.update, text: `Iteration ${r.update}\nDeclared: ${f(r.correct[r.choice], 4)} → picks ${NAMES[r.choice]}\nSwapped: ${f(r.swapped[r.swapped_choice], 4)} → picks ${NAMES[r.swapped_choice]}` })),
+    });
+    $("whyCaption").innerHTML =
+      `<span class="legend" style="margin:0"><span><i style="background:var(--series-a)"></i>declared execution</span>` +
+      `<span><i style="background:var(--series-b)"></i>YZ ↔ XX coefficients swapped</span><span><i style="background:var(--bad);height:8px;width:3px"></i>a different VQE would be chosen</span></span>` +
+      `Hover an iteration to see both choices.`;
+    $("whyFlips").textContent = `would choose a different candidate in ${flips.length}`;
+    $("whyTotal").textContent = rows.length;
     const fault = D.faults.find((x) => x.fault === "coefficient_swap");
     $("whyFault").innerHTML = `The numeric check N2, which rebuilds each energy from the declared coefficients, reports ${vbadge(fault.vector.N2)} in
       ${fault.detected}/${fault.runs} runs. The temporal replay (DejaVu) accepts ${fault.dejavu_passed}/${fault.runs}, because every step still happens in the right order.`;
   }
+
 
   /* ================================================================
      PART 1 — MECHANICS

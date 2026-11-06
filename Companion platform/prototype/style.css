@@ -263,8 +263,6 @@ footer { max-width: 1120px; margin: 0 auto; padding: 24px 16px 60px; color: var(
 /* ---------- layout added with the review changes ---------- */
 .card-head { display: flex; justify-content: space-between; align-items: baseline; gap: 12px; flex-wrap: wrap; margin-bottom: 8px; }
 .card-head h3 { margin: 0; }
-.why-text { max-width: 52em; }
-.why-legend { margin: 12px 0 4px; }
 .run-overview { margin-top: 6px; }
 .run-overview h4 { margin-bottom: 4px; }
 .chart.tape text { font-size: 12px; }

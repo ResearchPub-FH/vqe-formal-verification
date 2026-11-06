@@ -35,17 +35,23 @@
   <section class="chapter" id="why">
     <div class="kicker">Part 0</div>
     <h2>Why verify? A wrong energy can look right</h2>
-    <div class="why-text">
-      <p>A VQE run is usually judged by its energy curve: if it falls steadily toward a minimum, the run looks healthy.
-        The charts take the measured counts from one declared configuration with two runs on hardware (<span id="whyBackend"></span>) and aggregate
-        every evaluation twice: once with the declared Hamiltonian coefficients, and once with the <span class="mono">YZ</span> and <span class="mono">XX</span> coefficients swapped.</p>
-      <p>The two curves descend together. Nothing in either plot shows that the swapped version uses the wrong operator, yet the optimizer would
-        <b id="whyFlips"></b>.</p>
+    <div class="split">
+      <div class="card">
+        <figure class="figure">
+          <div id="whyChart"></div>
+          <figcaption id="whyCaption"></figcaption>
+        </figure>
+      </div>
+      <div>
+        <p>A VQE run is usually judged by its energy curve: if it falls steadily toward a minimum, the run looks healthy.
+          The chart takes the measured counts from one declared configuration with two runs on hardware: once with the declared Hamiltonian
+          coefficients, and once with the <span class="mono">YZ</span> and <span class="mono">XX</span> coefficients swapped.</p>
+        <p>Both curves fall smoothly. Nothing in the plot shows that the swapped version uses the wrong operator, yet it
+          <b id="whyFlips"></b> of the <span id="whyTotal"></span> iterations.</p>
+        <div class="callout">The paper injects this exact fault (<code>coefficient_swap</code>) into real executions.
+          <span id="whyFault"></span></div>
+      </div>
     </div>
-    <div class="grid2" id="whyCharts"></div>
-    <div class="legend why-legend" id="whyLegend"></div>
-    <div class="callout">The paper injects this exact fault (<code>coefficient_swap</code>) into simulator executions.
-      <span id="whyFault"></span></div>
   </section>
 
   <!-- ===================== 1. MECHANICS ===================== -->
