@@ -82,7 +82,7 @@
     (o.under || []).forEach((u) => { s += u(X, Y); });
     (o.hlines || []).forEach((h) => {
       s += `<line x1="${m.l}" x2="${W - m.r}" y1="${Y(h.y)}" y2="${Y(h.y)}" style="stroke:${h.color || "var(--faint)"};stroke-dasharray:${h.dash || "4 4"}"/>`;
-      if (h.label) s += `<text x="${h.left ? m.l + 6 : W - m.r}" y="${Y(h.y) + (h.left ? 14 : -5)}" text-anchor="${h.left ? "start" : "end"}" style="fill:${h.color || "var(--muted)"}">${esc(h.label)}</text>`;
+      if (h.label) s += `<text x="${h.left ? m.l + 6 : W - m.r}" y="${Y(h.y) + (h.left && !h.above ? 14 : -5)}" text-anchor="${h.left ? "start" : "end"}" style="fill:${h.color || "var(--muted)"}">${esc(h.label)}</text>`;
     });
     (o.series || []).forEach((sr) => {
       let d = "";
@@ -296,54 +296,89 @@
     highlight(modeDg, null, []);
   }
 
-  // Run overview: a parameter tape and the energy chart share one x scale (one column per iteration),
-  // so both SVGs use the same width and margins and line up when scaled.
-  const OV = { W: 960, ml: 56, mr: 16 };
+  // Energy updates by iteration, with the runtime properties of the shown run at the selected iteration.
+  // Per-iteration statuses come from build_data.py: the recorded trace replayed through the project's
+  // online checker (contracts L1-N4) and the recorded DejaVu input (temporal properties).
+  const RTI = D.run.runtime;
+  const DV_NAMES = {
+    L1_groupsBeforeEnergy: "groupsBeforeEnergy", L2_validationsBeforeCommit: "validationsBeforeCommit",
+    L3_energyAfterBegin: "energyAfterBegin", L3_validationAfterEnergy: "validationAfterEnergy", L4_noActivityAfterStop: "noActivityAfterStop",
+  };
+  function iterationStatus(k) {
+    const online = Object.entries(RTI.contracts).map(([cid, v]) => ({
+      id: cid, label: cid, checks: v.checks[k - 1], problems: v.problems[k - 1],
+      state: v.problems[k - 1] > 0 ? "fail" : v.checks[k - 1] > 0 ? "pass" : "idle", tip: D.contracts[cid].description }));
+    const temporal = Object.entries(RTI.dejavu.triggers).map(([name, v]) => ({
+      id: name, label: name.slice(0, 2) + " " + DV_NAMES[name], checks: v[k - 1], problems: 0,
+      state: v[k - 1] === 0 ? "idle" : RTI.dejavu.passed ? "pass" : "fail", tip: name }));
+    const failed = online.some((r) => r.state === "fail") || temporal.some((r) => r.state === "fail");
+    return { online, temporal, failed };
+  }
+  const OV = { W: 960, H: 340, ml: 56, mr: 16, t: 10, b: 38 };
   function renderRunOverview() {
-    const cols = N_UPD + 1;
-    const cw = (OV.W - OV.ml - OV.mr) / cols;
-    const cx = (i) => OV.ml + (i + 0.5) * cw;
-    const idx = [D.run.start_index].concat(updates.map((u) => u.index_after));
-    const rowH = 22, top = 4, H = top + 4 * rowH + 4;
-    let s = `<svg class="chart tape" viewBox="0 0 ${OV.W} ${H}" role="img" aria-label="Grid index of each parameter after every iteration">`;
-    s += `<rect x="${cx(S.iter) - cw / 2}" y="1" width="${cw}" height="${H - 2}" rx="4" style="fill:var(--accent-soft)"/>`;
-    for (let j = 0; j < 4; j++) {
-      const y = top + j * rowH;
-      s += `<text x="${OV.ml - 10}" y="${y + rowH / 2 + 4}" text-anchor="end">z${"₀₁₂₃"[j]}</text>`;
-      for (let i = 0; i < cols; i++) {
-        const u = i > 0 ? updates[i - 1] : null;
-        const searched = u && u.coordinate === j;
-        const moved = searched && u.choice !== 0;
-        const fill = moved ? "var(--series-a)" : "transparent";
-        const stroke = searched ? "var(--series-a)" : "var(--line)";
-        s += `<rect x="${OV.ml + i * cw + 1.5}" y="${y + 2}" width="${cw - 3}" height="${rowH - 4}" rx="3" style="fill:${fill};stroke:${stroke};stroke-width:${searched ? 1.4 : 0.8}"/>`;
-        s += `<text x="${cx(i)}" y="${y + rowH / 2 + 4}" text-anchor="middle" style="${moved ? "fill:var(--bg);font-weight:700" : "fill:var(--ink)"}">${idx[i][j]}</text>`;
-      }
-    }
-    for (let i = 0; i < cols; i++) {
-      s += `<rect data-x="${i}" x="${OV.ml + i * cw}" y="0" width="${cw}" height="${H}" style="fill:transparent"><title>${i === 0 ? "start" : "after iteration " + i}: z = (${idx[i].join(", ")})${i > 0 ? `\ncoordinate ${updates[i - 1].coordinate} searched, ${updates[i - 1].choice === 0 ? "kept current" : "moved " + CAND_NAMES[updates[i - 1].choice]}` : ""}</title></rect>`;
-    }
-    $("paramTape").innerHTML = s + `</svg><div class="legend" style="margin-top:4px"><span><span class="sw" style="background:var(--series-a)"></span>coordinate moved</span>` +
-      `<span><span class="sw" style="border:1.4px solid var(--series-a)"></span>coordinate searched, current kept</span></div>`;
-
+    const cw = (OV.W - OV.ml - OV.mr) / (N_UPD + 1);
     const pts = [[0, D.run.ideal_start]].concat(updates.map((x) => [x.update, x.ideal_after]));
     const target = D.ground_energy + cfg.success_gap;
-    const cur = pts[S.iter];
+    const k = S.iter;
+    const st = iterationStatus(k);
+    const glyph = { pass: ["✓", "var(--good)"], fail: ["✗", "var(--bad)"], idle: ["–", "var(--faint)"] };
+    const panel = () => {
+      const px = OV.ml + 13 * cw + 6, pw = OV.W - OV.mr - 6 - px, py = OV.t + 6;
+      const colW = pw / 2, rowH = 15, top = py + 44;
+      const sum = (rows) => rows.reduce((a, r) => a + r.checks, 0);
+      let p = `<g class="rt-panel"><rect x="${px}" y="${py}" width="${pw}" height="${44 + 8 * rowH + 6}" rx="8" style="fill:var(--panel);stroke:var(--line)"/>`;
+      p += `<text x="${px + 12}" y="${py + 18}" style="fill:var(--ink);font-size:12.5px;font-weight:600">Runtime properties · iteration ${k}</text>`;
+      p += `<text x="${px + pw - 12}" y="${py + 18}" text-anchor="end" style="font-size:11px">${st.failed ? "violation recorded" : "all passed"}</text>`;
+      const col = (x, title, rows, unit) => {
+        let c = `<text x="${x}" y="${py + 36}" style="font-size:10.5px;font-weight:600;letter-spacing:.04em">${title}</text>`;
+        rows.forEach((r, i) => {
+          const y = top + i * rowH;
+          const [g, color] = glyph[r.state];
+          c += `<g><title>${esc(r.tip)}: ${r.state === "idle" ? "not triggered in this iteration" : r.checks + " " + unit + (r.problems ? ", " + r.problems + " problems" : ", no violation")}</title>`;
+          c += `<text x="${x}" y="${y + 4}" style="fill:${color};font-weight:700;font-size:12px">${g}</text>`;
+          c += `<text x="${x + 16}" y="${y + 4}" style="fill:var(--ink);font-size:11px">${esc(r.label)}</text>`;
+          c += `<text x="${x + colW - 26}" y="${y + 4}" text-anchor="end" style="font-size:10.5px">${r.state === "idle" ? "not yet" : r.checks}</text></g>`;
+        });
+        return c;
+      };
+      p += col(px + 12, `ONLINE MONITOR · ${sum(st.online)} checks`, st.online, "checks");
+      p += col(px + colW + 6, `DEJAVU · ${sum(st.temporal)} triggers`, st.temporal, "triggers");
+      return p + `</g>`;
+    };
     $("trajChart").innerHTML = chart({
-      w: OV.W, h: 230, m: { l: OV.ml, r: OV.mr, t: 10, b: 38 }, label: "Ideal energy after each iteration",
+      w: OV.W, h: OV.H, m: { l: OV.ml, r: OV.mr, t: OV.t, b: OV.b }, label: "Ideal energy after each iteration, with runtime property status",
       x: [-0.5, N_UPD + 0.5], y: [-0.8, 0.4], xticks: [0, 5, 10, 15, 20, 25, N_UPD], yticks: [-0.8, -0.4, 0, 0.4], yfmt: (t) => f(t, 1),
       xlabel: "iteration", ylabel: "ideal energy",
-      hlines: [{ y: D.ground_energy, label: "E_ref", color: "var(--muted)" },
-        { y: target, label: "success threshold (E_ref + " + cfg.success_gap + ")", color: "var(--good)", dash: "2 3", left: true }],
-      under: [(X) => `<rect x="${X(S.iter) - cw / 2}" y="10" width="${cw}" height="182" rx="4" style="fill:var(--accent-soft)"/>`],
-      series: [{ pts, color: "var(--series-a)", dots: true }],
-      over: [(X, Y) => `<circle cx="${X(cur[0])}" cy="${Y(cur[1])}" r="6" style="fill:none;stroke:var(--accent);stroke-width:2"/>`],
-      hover: pts.map(([x, y]) => ({ x, text: `${x === 0 ? "start" : "after iteration " + x}: ideal energy ${f(y, 4)}` })),
+      hlines: [{ y: D.ground_energy, label: "E_ref", color: "var(--muted)", left: true },
+        { y: target, label: "success threshold (E_ref + " + cfg.success_gap + ")", color: "var(--good)", dash: "2 3", left: true, above: true }],
+      under: [(X) => `<rect x="${X(k) - cw / 2}" y="${OV.t}" width="${cw}" height="${OV.H - OV.t - OV.b}" rx="4" style="fill:var(--accent-soft)"/>`],
+      series: [
+        { pts: pts.slice(0, k + 1), color: "var(--series-a)", width: 2.2 },
+        { pts: pts.slice(k), color: "var(--faint)", width: 1.2, dash: "3 4" },
+      ],
+      over: [(X, Y) => pts.map(([x, y]) => {
+        if (x > k) return `<circle cx="${X(x)}" cy="${Y(y)}" r="2.5" style="fill:var(--faint);opacity:.6"/>`;
+        if (x === 0) return `<circle cx="${X(x)}" cy="${Y(y)}" r="3.5" style="fill:var(--series-a)"/>`;
+        const bad = iterationStatus(x).failed;
+        return `<circle cx="${X(x)}" cy="${Y(y)}" r="${x === k ? 6 : 4}" style="fill:${bad ? "var(--bad)" : "var(--good)"};stroke:var(--panel);stroke-width:1.5"/>`;
+      }).join("") + `<circle cx="${X(k)}" cy="${Y(pts[k][1])}" r="9" style="fill:none;stroke:var(--accent);stroke-width:2"/>` + panel()],
+      hover: pts.map(([x, y]) => ({ x, text: `${x === 0 ? "start" : "after iteration " + x}: ideal energy ${f(y, 4)}` +
+        (x > 0 ? `\nruntime properties: ${iterationStatus(x).failed ? "violation recorded" : "all passed"}` : "") })),
     });
-    document.querySelectorAll("#paramTape rect[data-x], #trajChart rect[data-x]").forEach((r) => {
+    document.querySelectorAll("#trajChart rect[data-x]").forEach((r) => {
       r.style.cursor = "pointer";
-      r.addEventListener("click", () => S.go(Math.max(1, +r.dataset.x)));
+      r.addEventListener("click", () => { stopRunPlay(); S.go(Math.max(1, +r.dataset.x)); });
     });
+  }
+  function stopRunPlay() {
+    clearInterval(S.runTimer); S.runTimer = null;
+    const b = $("playRun"); if (b) b.textContent = "▶ Play run";
+  }
+  function playRun() {
+    if (S.runTimer) { stopRunPlay(); return; }
+    if (S.iter >= N_UPD) S.go(1);
+    $("playRun").textContent = "■ Pause";
+    S.runTimer = setInterval(() => { if (S.iter >= N_UPD) stopRunPlay(); else S.go(S.iter + 1); }, 900);
   }
 
   function iterationSteps() {
@@ -925,9 +960,10 @@
     $("iterSlider").max = N_UPD;
     const go = (i) => { stopPlay(); clearPlayMarks(); S.iter = Math.max(1, Math.min(N_UPD, i)); S.cand = null; renderIteration(); };
     S.go = go;
-    $("iterSlider").addEventListener("input", (e) => go(+e.target.value));
-    $("iterPrev").addEventListener("click", () => go(S.iter - 1));
-    $("iterNext").addEventListener("click", () => go(S.iter + 1));
+    $("iterSlider").addEventListener("input", (e) => { stopRunPlay(); go(+e.target.value); });
+    $("iterPrev").addEventListener("click", () => { stopRunPlay(); go(S.iter - 1); });
+    $("iterNext").addEventListener("click", () => { stopRunPlay(); go(S.iter + 1); });
+    $("playRun").addEventListener("click", playRun);
     $("playModes").addEventListener("click", playIteration);
     renderIteration();
     setupLensTabs();

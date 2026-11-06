@@ -265,7 +265,6 @@ footer { max-width: 1120px; margin: 0 auto; padding: 24px 16px 60px; color: var(
 .card-head h3 { margin: 0; }
 .run-overview { margin-top: 6px; }
 .run-overview h4 { margin-bottom: 4px; }
-.chart.tape text { font-size: 12px; }
 .iter-detail { border-top: 1px solid var(--line); margin-top: 18px; padding-top: 16px; }
 .cost-row { border-top: 1px solid var(--line); margin-top: 16px; padding-top: 14px; display: grid; grid-template-columns: 1fr 1fr; gap: 24px; }
 .cost-row p { margin: 0; }
@@ -274,8 +273,8 @@ footer { max-width: 1120px; margin: 0 auto; padding: 24px 16px 60px; color: var(
 .cube { display: block; width: 16px; height: 16px; }
 @media (max-width: 700px) {
   .cost-row { grid-template-columns: 1fr; gap: 10px; }
-  #paramTape, #trajChart { overflow-x: auto; }
-  #paramTape svg, #trajChart svg { min-width: 720px; }
+  #trajChart { overflow-x: auto; }
+  #trajChart svg { min-width: 720px; }
 }
 #countLegend { gap: 8px; }
 #nvPanel td.mono { overflow-wrap: normal; }

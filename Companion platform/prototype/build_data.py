@@ -23,6 +23,8 @@ HW = DEJAVU / "artifacts" / "hardware_pair_hrzy" / "pair01"
 sys.path.insert(0, str(CLOSED))
 
 from closed_loop import logical, physics  # noqa: E402
+from closed_loop.checker import RuntimeChecker  # noqa: E402
+from closed_loop.temporal import PROPERTY_TRIGGERS  # noqa: E402
 
 TERMS = ["YZ", "ZI", "ZZ", "XX"]
 
@@ -74,6 +76,46 @@ def swapped_choices(updates, coefficients):
         rows.append({"update": u["update"], "correct": right, "swapped": wrong,
                      "choice": u["choice"], "swapped_choice": min(range(3), key=lambda i: (wrong[i], i))})
     return {"swapped_coefficients": swapped, "rows": rows}
+
+
+def runtime_by_iteration(config, events, recorded, pre_digest):
+    """Runtime property status of the shown run, iteration by iteration.
+
+    Replays the recorded trace through the project's online checker (as execution.replay does),
+    adding each contract's checks and problems to the iteration of the event; run_start counts
+    toward iteration 1 and the terminal event toward the last. The replay must reproduce the
+    recorded contract results exactly. DejaVu triggers per iteration come from the recorded
+    temporal-input.tsv; DejaVu reports violations per run, so its per-run record is kept.
+    """
+    checker = RuntimeChecker(config, events[0]["run_id"], pre_digest)
+    last = max(e.get("update", 0) for e in events)
+    contracts = {cid: {"checks": [0] * last, "problems": [0] * last} for cid in checker.rows}
+    seq_iteration, iteration = {}, 1
+    for e in events:
+        before = {cid: (row["checks"], sum(len(row[k]) for k in ("violations", "assumption_mismatches", "inconclusive")))
+                  for cid, row in checker.rows.items()}
+        checker.consume(e)
+        iteration = e.get("update", iteration) or iteration
+        seq_iteration[e["seq"]] = iteration
+        for cid, row in checker.rows.items():
+            contracts[cid]["checks"][iteration - 1] += row["checks"] - before[cid][0]
+            contracts[cid]["problems"][iteration - 1] += sum(len(row[k]) for k in ("violations", "assumption_mismatches", "inconclusive")) - before[cid][1]
+    result = checker.result()
+    assert result["contracts"] == recorded["contracts"], "replay differs from the recorded runtime result"
+    for cid, row in result["contracts"].items():
+        contracts[cid]["verdict"] = row["runtime_verdict"]
+    triggers = {name: [0] * last for name in PROPERTY_TRIGGERS}
+    with (RUN / "stage2" / "baseline" / "temporal-input.tsv").open() as stream:
+        for line in stream:
+            f = line.rstrip("\n").split("\t")
+            if f[0] == "EVENT" and f[3] == recorded["run_id"]:
+                for name, event in PROPERTY_TRIGGERS.items():
+                    if f[2] == event:
+                        triggers[name][seq_iteration[int(f[1])] - 1] += 1
+    dejavu = recorded["dejavu"]
+    assert {k: sum(v) for k, v in triggers.items()} == dejavu["triggers"], "DejaVu triggers differ from the record"
+    return {"contracts": contracts,
+            "dejavu": {"passed": dejavu["passed"], "violations": dejavu["violations"], "triggers": triggers}}
 
 
 def hardware_pair(coefficients):
@@ -186,7 +228,11 @@ def main():
 
     baseline_dir = RUN / "stage2" / "baseline"
     traces = sorted(baseline_dir.glob("baseline-*.jsonl.gz"))
-    run = run_summary(read_trace(traces[0]))
+    shown = read_trace(traces[0])
+    run = run_summary(shown)
+    baseline_results = json.loads((baseline_dir / "results.json").read_text())
+    recorded = next(r for r in baseline_results["results"] if r["run_id"] == run["run_id"])
+    run["runtime"] = runtime_by_iteration(config, shown, recorded, baseline_results["pre_execution_digest"])
     why = swapped_choices(run["updates"], config["hamiltonian"]["terms"])
 
     first_success = []

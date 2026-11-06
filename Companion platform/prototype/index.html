@@ -86,11 +86,16 @@
         <span class="small muted" id="runMeta"></span>
       </div>
       <div class="run-overview">
-        <h4>Parameter updates by iteration</h4>
-        <div id="paramTape"></div>
-        <h4 style="margin-top:10px">Energy updates by iteration</h4>
+        <div class="card-head">
+          <h4 style="margin:0">Energy updates by iteration</h4>
+          <button type="button" class="primary" id="playRun">▶ Play run</button>
+        </div>
         <div id="trajChart"></div>
-        <p class="small muted" style="margin:4px 0 0">Select a column in either view to open that iteration below.</p>
+        <div class="legend" style="margin-top:4px">
+          <span><span class="sw" style="background:var(--good);border-radius:50%"></span>all runtime properties passed in that iteration</span>
+          <span><span class="sw" style="background:var(--bad);border-radius:50%"></span>a violation was recorded</span>
+          <span>Select a column to open that iteration below.</span>
+        </div>
       </div>
 
       <div class="iter-detail">
