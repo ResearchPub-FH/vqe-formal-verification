@@ -1,4 +1,5 @@
-"""Collect the prototype's data bundle from the delivered closed-loop run (merged-model-01).
+"""Collect the prototype's data bundle from the delivered closed-loop run (merged-model-01)
+and the ibm_marrakesh hardware pair (VQE Runtime Verification - DejaVu/artifacts/hardware_pair_hrzy).
 
 Reads only existing evidence; runs no verification tool. Writes data.js next to this file,
 which defines window.VQE_DATA for index.html.
@@ -10,12 +11,15 @@ import gzip
 import json
 import re
 import sys
+import tomllib
 from pathlib import Path
 
 HERE = Path(__file__).resolve().parent
 PROJECT = HERE.parents[1]
 CLOSED = PROJECT / "2-stage verification (closed-loop)"
 RUN = CLOSED / "artifacts" / "merged-model-01"
+DEJAVU = PROJECT / "VQE Runtime Verification - DejaVu"
+HW = DEJAVU / "artifacts" / "hardware_pair_hrzy" / "pair01"
 sys.path.insert(0, str(CLOSED))
 
 from closed_loop import logical, physics  # noqa: E402
@@ -70,6 +74,51 @@ def swapped_choices(updates, coefficients):
         rows.append({"update": u["update"], "correct": right, "swapped": wrong,
                      "choice": u["choice"], "swapped_choice": min(range(3), key=lambda i: (wrong[i], i))})
     return {"swapped_coefficients": swapped, "rows": rows}
+
+
+def hardware_pair(coefficients):
+    """The ibm_marrakesh pair (unverified then verified run, one declared configuration).
+
+    Energies are recomputed from the recorded per-term expectations with the declared
+    coefficients (checked against the recorded energy) and with YZ and XX swapped. The
+    pattern search accepts a probe iff its energy is below the incumbent's by more than
+    the improvement tolerance; a flip marks a probe whose accept/reject decision would
+    differ under the swapped coefficients, with the incumbent held on the recorded path.
+    """
+    config = tomllib.loads((DEJAVU / "configs" / "h2_ibm_sampler_50.toml").read_text())
+    tolerance = config["optimizer"]["improvement_tolerance"]
+    swapped = dict(coefficients, YZ=coefficients["XX"], XX=coefficients["YZ"])
+    report = json.loads((HW / "pair_report.json").read_text())
+    props = json.loads((HW / "property_report.json").read_text())
+    runs = {}
+    for condition in report["order"]:
+        rows = [json.loads(line) for line in (HW / condition / "evaluations.jsonl").read_text().splitlines()]
+        expectations = [{t["pauli"]: t["expectation"] for t in r["terms"]} for r in rows]
+        declared = [energy(e, coefficients) for e in expectations]
+        for r, e in zip(rows, declared):
+            assert abs(r["energy"] - e) < 1e-12, (condition, r["evaluation"])
+        other = [energy(e, swapped) for e in expectations]
+        incumbent, accepted, flips = 0, [True], []
+        for k in range(1, len(rows)):
+            take = declared[k] < declared[incumbent] - tolerance
+            if take != (other[k] < other[incumbent] - tolerance):
+                flips.append(k)
+            accepted.append(take)
+            if take:
+                incumbent = k
+        summary = report["energy"][condition]
+        runs[condition] = {"run_id": report[condition]["run_id"], "declared": declared, "swapped": other,
+                           "accepted": accepted, "flips": flips, "theta": [r["theta"] for r in rows],
+                           "terminal": report[condition]["terminal_reason"], "best_measured": summary["best_measured"],
+                           "exact_at_final": summary["exact_at_final"], "ibm_seconds": report[condition]["ibm_seconds"]}
+    return {"backend": report["backend"], "qubits": report["logical_to_physical"], "order": report["order"],
+            "evaluations": config["execution"]["max_iterations"], "shots_per_term": config["execution"]["shots_per_term"],
+            "optimizer": config["optimizer"]["name"], "initial_step": config["optimizer"]["initial_step"],
+            "runs": runs,
+            "verified_monitor": {"online": props["online_status"], "replay": props["replay_status"],
+                                 "obeyed_online": props["obeyed_online"], "obeyed_replay": props["obeyed_replay"],
+                                 "properties": len(props["rows"]), "events": props["events_online"],
+                                 "coverage": props["coverage"]}}
 
 
 def squash(formula):
@@ -192,6 +241,7 @@ def main():
                    "max_energy_error": verdicts["maximum_energy_reconstruction_error"],
                    "stage1_digest": verdicts["pre_execution_digest"], "config_digest": verdicts["configuration_digest"]},
         "faults": list(faults.values()),
+        "hardware": hardware_pair(config["hamiltonian"]["terms"]),
     }
     out = HERE / "data.js"
     out.write_text("window.VQE_DATA = " + json.dumps(data, separators=(",", ":")) + ";\n")

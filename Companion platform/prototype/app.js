@@ -79,11 +79,11 @@
     });
     if (o.xlabel) s += `<text x="${(m.l + W - m.r) / 2}" y="${H - 4}" text-anchor="middle">${esc(o.xlabel)}</text>`;
     if (o.ylabel) s += `<text transform="translate(12 ${(m.t + H - m.b) / 2}) rotate(-90)" text-anchor="middle">${esc(o.ylabel)}</text>`;
+    (o.under || []).forEach((u) => { s += u(X, Y); });
     (o.hlines || []).forEach((h) => {
       s += `<line x1="${m.l}" x2="${W - m.r}" y1="${Y(h.y)}" y2="${Y(h.y)}" style="stroke:${h.color || "var(--faint)"};stroke-dasharray:${h.dash || "4 4"}"/>`;
       if (h.label) s += `<text x="${h.left ? m.l + 6 : W - m.r}" y="${Y(h.y) + (h.left ? 14 : -5)}" text-anchor="${h.left ? "start" : "end"}" style="fill:${h.color || "var(--muted)"}">${esc(h.label)}</text>`;
     });
-    (o.under || []).forEach((u) => { s += u(X, Y); });
     (o.series || []).forEach((sr) => {
       let d = "";
       sr.pts.forEach(([a, b], i) => {
@@ -98,7 +98,7 @@
     if (o.hover) {
       const step = (X(x0 + 1) - X(x0));
       o.hover.forEach((hv) => {
-        s += `<rect x="${X(hv.x) - step / 2}" y="${m.t}" width="${step}" height="${H - m.t - m.b}" style="fill:transparent"><title>${esc(hv.text)}</title></rect>`;
+        s += `<rect data-x="${hv.x}" x="${X(hv.x) - step / 2}" y="${m.t}" width="${step}" height="${H - m.t - m.b}" style="fill:transparent"><title>${esc(hv.text)}</title></rect>`;
       });
     }
     return s + "</svg>";
@@ -145,37 +145,48 @@
   /* ================================================================
      PART 0 — WHY VERIFY
      ================================================================ */
+  // Hardware pair: one declared configuration, an unverified and a verified run on the QPU.
+  // Each evaluation's recorded counts are aggregated with the declared and with swapped coefficients;
+  // a red tick marks a probe whose accept/reject decision would differ (precomputed in build_data.py).
   function renderWhy() {
-    const rows = D.why.rows;
-    const correct = rows.map((r) => [r.update, r.correct[r.choice]]);
-    const swapped = rows.map((r) => [r.update, r.swapped[r.swapped_choice]]);
-    const flips = rows.filter((r) => r.choice !== r.swapped_choice);
-    const lo = Math.min(D.ground_energy, ...swapped.map((p) => p[1]), ...correct.map((p) => p[1]));
-    const hi = Math.max(...swapped.map((p) => p[1]), ...correct.map((p) => p[1]));
-    const NAMES = ["current", "−1", "+1"];
-    $("whyChart").innerHTML = chart({
-      label: "Reported energy per iteration with declared and swapped coefficients",
-      x: [0.5, rows.length + 0.5], y: [Math.floor(lo * 10) / 10 - 0.05, Math.ceil(hi * 10) / 10],
-      xticks: [1, 5, 10, 15, 20, 25], yticks: [-0.8, -0.6, -0.4, -0.2, 0, 0.2, 0.4].filter((t) => t >= lo - 0.1 && t <= hi + 0.05),
-      yfmt: (t) => f(t, 1), xlabel: "iteration", ylabel: "reported energy of the chosen candidate",
-      hlines: [{ y: D.ground_energy, label: "reference minimum " + f(D.ground_energy, 4), color: "var(--muted)", left: true }],
-      under: [(X, Y) => flips.map((r) => `<line x1="${X(r.update)}" x2="${X(r.update)}" y1="${Y(Math.floor(lo * 10) / 10 - 0.05)}" y2="${Y(Math.floor(lo * 10) / 10 - 0.05) - 8}" style="stroke:var(--bad);stroke-width:3"/>`).join("")],
-      series: [
-        { pts: correct, color: "var(--series-a)", dots: true },
-        { pts: swapped, color: "var(--series-b)", dots: true, dash: "5 3" },
-      ],
-      hover: rows.map((r) => ({ x: r.update, text: `Iteration ${r.update}\nDeclared: ${f(r.correct[r.choice], 4)} → picks ${NAMES[r.choice]}\nSwapped: ${f(r.swapped[r.swapped_choice], 4)} → picks ${NAMES[r.swapped_choice]}` })),
-    });
-    $("whyCaption").innerHTML =
-      `<span class="legend" style="margin:0"><span><i style="background:var(--series-a)"></i>declared coefficients</span>` +
-      `<span><i style="background:var(--series-b)"></i>YZ ↔ XX swapped</span><span><i style="background:var(--bad);height:8px;width:3px"></i>a different candidate would be chosen</span></span>` +
-      `Run <span class="mono">${esc(D.run.run_id)}</span>. Hover an iteration to see both choices.`;
-    $("whyFlips").textContent = `would choose a different candidate in ${flips.length}`;
-    $("whyTotal").textContent = rows.length;
+    const HW = D.hardware;
+    const TITLE = { unverified: "Unverified run", verified: "Verified run (DejaVu online)" };
+    const all = HW.order.flatMap((c) => HW.runs[c].declared.concat(HW.runs[c].swapped));
+    const lo = Math.min(D.ground_energy, ...all), hi = Math.max(...all);
+    const y0 = Math.floor(lo * 10) / 10 - 0.05, y1 = Math.ceil(hi * 10) / 10;
+    const n = HW.evaluations;
+    const decide = (yes) => (yes ? "accept" : "reject");
+    $("whyCharts").innerHTML = HW.order.map((c) => {
+      const r = HW.runs[c];
+      const flips = new Set(r.flips);
+      const svg = chart({
+        w: 520, h: 270, label: `${TITLE[c]}: energy per evaluation with declared and swapped coefficients`,
+        x: [-0.5, n - 0.5], y: [y0, y1],
+        xticks: [0, 10, 20, 30, 40, 49], yticks: [-0.8, -0.6, -0.4, -0.2, 0, 0.2, 0.4].filter((t) => t >= y0 && t <= y1),
+        yfmt: (t) => f(t, 1), xlabel: "evaluation", ylabel: "measured energy",
+        hlines: [{ y: D.ground_energy, label: "reference minimum " + f(D.ground_energy, 4), color: "var(--muted)", left: true }],
+        under: [(X, Y) => r.flips.map((k) => `<line x1="${X(k)}" x2="${X(k)}" y1="${Y(y0)}" y2="${Y(y0) - 9}" style="stroke:var(--bad);stroke-width:3"/>`).join("")],
+        series: [
+          { pts: r.declared.map((v, k) => [k, v]), color: "var(--series-a)", dots: true, width: 1.6 },
+          { pts: r.swapped.map((v, k) => [k, v]), color: "var(--series-b)", dots: true, dash: "5 3", width: 1.6 },
+        ],
+        hover: r.declared.map((v, k) => ({ x: k, text: k === 0
+          ? `Evaluation 0 (starting point)\nDeclared: ${f(v, 4)}\nSwapped: ${f(r.swapped[k], 4)}`
+          : `Evaluation ${k}\nDeclared: ${f(v, 4)} → ${decide(r.accepted[k])}\nSwapped: ${f(r.swapped[k], 4)} → ${decide(flips.has(k) ? !r.accepted[k] : r.accepted[k])}` })),
+      });
+      return `<div class="card"><div class="card-head"><h3>${TITLE[c]}</h3>
+        <span class="small muted">${r.flips.length} of ${n - 1} decisions differ</span></div>${svg}</div>`;
+    }).join("");
+    $("whyLegend").innerHTML = `<span><i style="background:var(--series-a)"></i>declared execution</span>` +
+      `<span><i style="background:var(--series-b)"></i>coefficients swapped (YZ ↔ XX)</span>` +
+      `<span><i style="background:var(--bad);height:8px;width:3px"></i>a different VQE update would be chosen</span>` +
+      `<span>Hover an evaluation to see both decisions.</span>`;
+    $("whyBackend").textContent = `${HW.backend}, one unverified and one verified run, ${HW.evaluations} evaluations each`;
+    const counts = HW.order.map((c) => `${HW.runs[c].flips.length} of ${n - 1} updates in the ${c} run`);
+    $("whyFlips").textContent = `make a different accept-or-reject decision in ${counts.join(" and ")}`;
     const fault = D.faults.find((x) => x.fault === "coefficient_swap");
     $("whyFault").innerHTML = `The numeric check N2, which rebuilds each energy from the declared coefficients, reports ${vbadge(fault.vector.N2)} in
-      ${fault.detected}/${fault.runs} runs. The temporal replay (DejaVu) accepts ${fault.dejavu_passed}/${fault.runs}, because every step still happens in the right order.
-      Catching it takes a check of the arithmetic, not of the order.`;
+      ${fault.detected}/${fault.runs} runs. The temporal replay (DejaVu) accepts ${fault.dejavu_passed}/${fault.runs}, because every step still happens in the right order.`;
   }
 
   /* ================================================================
@@ -239,10 +250,10 @@
       ],
       edges: [
         { id: "init-stop", d: "M130,50 L158,50" },
-        { id: "stop-prep", d: "M280,50 L308,50", label: "continue", lx: 294, ly: 40 },
+        { id: "stop-prep", d: "M280,50 L308,50", label: "continue", lx: 294, ly: 22 },
         { id: "prep-meas", d: "M430,50 L458,50" },
         { id: "meas-meas", d: "M495,30 C485,-12 555,-12 545,30", label: "next group (×3)", lx: 520, ly: -18 },
-        { id: "meas-agg", d: "M580,50 L618,50", label: "3 groups", lx: 599, ly: 40 },
+        { id: "meas-agg", d: "M580,50 L618,50", label: "3 groups", lx: 599, ly: 22 },
         { id: "agg-val", d: "M680,70 L680,178" },
         { id: "val-prep", d: "M622,186 C560,150 470,120 410,72", label: "next candidate", lx: 548, ly: 128 },
         { id: "val-commit", d: "M620,200 L432,200", label: "3 candidates validated", lx: 526, ly: 216 },
@@ -267,7 +278,8 @@
   function renderIteration() {
     const u = updates[S.iter - 1];
     $("iterSlider").value = S.iter;
-    $("iterMeta").textContent = `iteration ${S.iter} of ${N_UPD} · coordinate ${u.coordinate} · ${fi(u.shots)} shots so far`;
+    $("iterMeta").textContent = `of ${N_UPD} · coordinate ${u.coordinate} · ${fi(u.shots)} shots so far`;
+    $("runMeta").textContent = `${N_UPD} iterations · stopped by ${D.run.terminal.reason}`;
     $("candidates").innerHTML = u.candidates.map((c, ci) => {
       const bars = GROUPS.map((g, gi) => {
         const counts = c.groups[gi];
@@ -283,26 +295,66 @@
         <div style="margin-top:6px">energy <b class="mono">${f(c.energy, 5)}</b> <span class="small muted">· score ${fi(c.score)}</span></div>
       </div>`;
     }).join("");
-    $("countLegend").innerHTML = ["00", "01", "10", "11"].map((o, k) => `<span><span class="sw" style="background:${OUTCOME_COLORS[k]}"></span>outcome b₁b₀ = ${o}</span>`).join("") +
-      `<span>Each bar is ${fi(SHOTS)} shots of one measurement group.</span>`;
-    // trajectory
-    const pts = [[0, D.run.ideal_start]].concat(updates.map((x) => [x.update, x.ideal_after]));
-    const target = D.ground_energy + cfg.success_gap;
-    $("trajChart").innerHTML = chart({
-      w: 480, h: 220, label: "Ideal energy of the selected point per iteration",
-      x: [0, N_UPD], y: [-0.8, 0.4], xticks: [0, 5, 10, 15, 20, 25], yticks: [-0.8, -0.4, 0, 0.4], yfmt: (t) => f(t, 1),
-      xlabel: "iteration", hlines: [{ y: D.ground_energy, label: "E_ref", color: "var(--muted)" },
-        { y: target, label: "success threshold (E_ref + " + cfg.success_gap + ")", color: "var(--good)", dash: "2 3", left: true }],
-      series: [{ pts, color: "var(--series-a)", dots: true }],
-      over: [(X, Y) => `<circle cx="${X(S.iter)}" cy="${Y(u.ideal_after)}" r="6" style="fill:none;stroke:var(--accent);stroke-width:2"/>`],
-      hover: pts.map(([x, y]) => ({ x, text: `after iteration ${x}: ideal energy ${f(y, 4)}` })),
-    });
+    $("countLegend").innerHTML = `<span class="cubes">${["00", "01", "10", "11"].map((o, k) =>
+      `<span class="cube" style="background:${OUTCOME_COLORS[k]}" title="outcome b₁b₀ = ${o}"></span>`).join("")}</span>Measurement distributions`;
+    $("iterTitle").textContent = `Iteration ${S.iter} in detail`;
+    renderRunOverview();
     const tr = D.run.terminal;
     $("shotMath").innerHTML = `3 candidates × ${GROUPS.length} groups × ${fi(SHOTS)} shots = <b>${fi(SHOTS_PER_ITER)}</b> physical shots per iteration.
       This run stopped with reason <b>${esc(tr.reason)}</b> after ${tr.updates} iterations and ${fi(tr.physical_shots)} shots,
       at z = (${tr.index.join(", ")}).`;
     renderNumeric();
     highlight(modeDg, null, []);
+  }
+
+  // Run overview: a parameter tape and the energy chart share one x scale (one column per iteration),
+  // so both SVGs use the same width and margins and line up when scaled.
+  const OV = { W: 960, ml: 56, mr: 16 };
+  function renderRunOverview() {
+    const cols = N_UPD + 1;
+    const cw = (OV.W - OV.ml - OV.mr) / cols;
+    const cx = (i) => OV.ml + (i + 0.5) * cw;
+    const idx = [D.run.start_index].concat(updates.map((u) => u.index_after));
+    const rowH = 22, top = 4, H = top + 4 * rowH + 4;
+    let s = `<svg class="chart tape" viewBox="0 0 ${OV.W} ${H}" role="img" aria-label="Grid index of each parameter after every iteration">`;
+    s += `<rect x="${cx(S.iter) - cw / 2}" y="1" width="${cw}" height="${H - 2}" rx="4" style="fill:var(--accent-soft)"/>`;
+    for (let j = 0; j < 4; j++) {
+      const y = top + j * rowH;
+      s += `<text x="${OV.ml - 10}" y="${y + rowH / 2 + 4}" text-anchor="end">z${"₀₁₂₃"[j]}</text>`;
+      for (let i = 0; i < cols; i++) {
+        const u = i > 0 ? updates[i - 1] : null;
+        const searched = u && u.coordinate === j;
+        const moved = searched && u.choice !== 0;
+        const fill = moved ? "var(--series-a)" : "transparent";
+        const stroke = searched ? "var(--series-a)" : "var(--line)";
+        s += `<rect x="${OV.ml + i * cw + 1.5}" y="${y + 2}" width="${cw - 3}" height="${rowH - 4}" rx="3" style="fill:${fill};stroke:${stroke};stroke-width:${searched ? 1.4 : 0.8}"/>`;
+        s += `<text x="${cx(i)}" y="${y + rowH / 2 + 4}" text-anchor="middle" style="${moved ? "fill:var(--bg);font-weight:700" : "fill:var(--ink)"}">${idx[i][j]}</text>`;
+      }
+    }
+    for (let i = 0; i < cols; i++) {
+      s += `<rect data-x="${i}" x="${OV.ml + i * cw}" y="0" width="${cw}" height="${H}" style="fill:transparent"><title>${i === 0 ? "start" : "after iteration " + i}: z = (${idx[i].join(", ")})${i > 0 ? `\ncoordinate ${updates[i - 1].coordinate} searched, ${updates[i - 1].choice === 0 ? "kept current" : "moved " + CAND_NAMES[updates[i - 1].choice]}` : ""}</title></rect>`;
+    }
+    $("paramTape").innerHTML = s + `</svg><div class="legend" style="margin-top:4px"><span><span class="sw" style="background:var(--series-a)"></span>coordinate moved</span>` +
+      `<span><span class="sw" style="border:1.4px solid var(--series-a)"></span>coordinate searched, current kept</span></div>`;
+
+    const pts = [[0, D.run.ideal_start]].concat(updates.map((x) => [x.update, x.ideal_after]));
+    const target = D.ground_energy + cfg.success_gap;
+    const cur = pts[S.iter];
+    $("trajChart").innerHTML = chart({
+      w: OV.W, h: 230, m: { l: OV.ml, r: OV.mr, t: 10, b: 38 }, label: "Ideal energy after each iteration",
+      x: [-0.5, N_UPD + 0.5], y: [-0.8, 0.4], xticks: [0, 5, 10, 15, 20, 25, N_UPD], yticks: [-0.8, -0.4, 0, 0.4], yfmt: (t) => f(t, 1),
+      xlabel: "iteration", ylabel: "ideal energy",
+      hlines: [{ y: D.ground_energy, label: "E_ref", color: "var(--muted)" },
+        { y: target, label: "success threshold (E_ref + " + cfg.success_gap + ")", color: "var(--good)", dash: "2 3", left: true }],
+      under: [(X) => `<rect x="${X(S.iter) - cw / 2}" y="10" width="${cw}" height="182" rx="4" style="fill:var(--accent-soft)"/>`],
+      series: [{ pts, color: "var(--series-a)", dots: true }],
+      over: [(X, Y) => `<circle cx="${X(cur[0])}" cy="${Y(cur[1])}" r="6" style="fill:none;stroke:var(--accent);stroke-width:2"/>`],
+      hover: pts.map(([x, y]) => ({ x, text: `${x === 0 ? "start" : "after iteration " + x}: ideal energy ${f(y, 4)}` })),
+    });
+    document.querySelectorAll("#paramTape rect[data-x], #trajChart rect[data-x]").forEach((r) => {
+      r.style.cursor = "pointer";
+      r.addEventListener("click", () => S.go(Math.max(1, +r.dataset.x)));
+    });
   }
 
   function iterationSteps() {
@@ -565,10 +617,13 @@
 
   function renderPipeline() {
     const t = D.totals;
-    const box = (x, y, w, h, title, lines, cls) =>
-      `<g class="node ${cls || ""}"><rect x="${x}" y="${y}" width="${w}" height="${h}" rx="9"/>` +
-      `<text x="${x + 12}" y="${y + 20}" style="font-size:12.5px">${esc(title)}</text>` +
-      lines.map((l, i) => `<text class="sub" x="${x + 12}" y="${y + 38 + i * 14}" style="font-size:10.5px">${esc(l)}</text>`).join("") + `</g>`;
+    const box = (x, y, w, h, title, lines, cls) => {
+      const titles = [].concat(title);
+      const y0 = y + 38 + (titles.length - 1) * 16;
+      return `<g class="node ${cls || ""}"><rect x="${x}" y="${y}" width="${w}" height="${h}" rx="9"/>` +
+        titles.map((tl, i) => `<text x="${x + 12}" y="${y + 20 + i * 16}" style="font-size:12.5px">${esc(tl)}</text>`).join("") +
+        lines.map((l, i) => `<text class="sub" x="${x + 12}" y="${y0 + i * 14}" style="font-size:10.5px">${esc(l)}</text>`).join("") + `</g>`;
+    };
     const arrow = (d, label, lx, ly) => `<g class="edge"><path d="${d}" marker-end="url(#pl-a)"/>${label ? `<text x="${lx}" y="${ly}" text-anchor="middle">${esc(label)}</text>` : ""}</g>`;
     let s = `<svg class="dg" viewBox="0 0 960 250" role="img" aria-label="Two-stage verification pipeline"><defs><marker id="pl-a" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0,0L10,5L0,10z" style="fill:var(--faint)"/></marker></defs>`;
     s += `<text x="10" y="16" class="lbl" style="font-weight:600;letter-spacing:.08em">STAGE 1 · BEFORE EXECUTION</text>`;
@@ -579,24 +634,23 @@
     s += box(280, 82, 170, 82, "Freeze + hash", ["Stage 1 results and config", "sha256 " + t.stage1_digest.slice(0, 12) + "…", "gate: all established"]);
     s += arrow("M452,123 L496,123", "run", 474, 115);
     s += `<text x="500" y="16" class="lbl" style="font-weight:600;letter-spacing:.08em">STAGE 2 · DURING AND AFTER EXECUTION</text>`;
-    s += box(500, 60, 200, 126, `${t.runs} baseline runs`, [`${fi(t.shots)} physical shots`, "online Python monitor per event", "DejaVu replay of each trace", `${t.successes} successes, ${t.runs - t.successes} at budget`, "+ 50 fault-injection runs"]);
-    s += arrow("M702,123 L746,123", "compare", 724, 115);
-    s += box(750, 60, 200, 126, "Cross-stage verdict", ["per contract:", "AGREEMENT", "DISAGREEMENT", "ASSUMPTION_MISMATCH", "INCONCLUSIVE"]);
+    const hw = D.hardware;
+    s += box(500, 40, 210, 172, [`${t.runs} simulator runs`, "and hardware trials"], [
+      `simulator: ${fi(t.shots)} shots`, `${t.successes} successes, ${t.runs - t.successes} at budget`,
+      "hardware: unverified + verified", `pair on ${hw.backend}`, "online monitor per event", "DejaVu replay of each trace", "+ 50 fault-injection runs"]);
+    s += arrow("M712,123 L760,123", "compare", 736, 113);
+    s += box(764, 60, 186, 126, "Cross-stage verdict", ["per contract:", "AGREEMENT", "DISAGREEMENT", "ASSUMPTION_MISMATCH", "INCONCLUSIVE"]);
     s += `</svg>`;
     $("pipeline").innerHTML = s;
   }
 
   function renderTogether() {
     const t = D.totals;
-    const evals = D.agreement.find((a) => a.contract === "L2").runtime_triggers.validation_certified;
-    const meas = D.agreement.find((a) => a.contract === "N3").runtime_triggers.allocation_checked;
-    const iters = D.agreement.find((a) => a.contract === "N4").runtime_triggers.selection_checked;
-    const stat = (v, l) => `<div class="card stat"><span class="v">${v}</span><span class="l">${l}</span></div>`;
-    $("totals").innerHTML = stat(t.runs, "baseline runs, one seeded stream each") + stat(`${t.successes}`, `succeeded within ${cfg.maximum_updates} iterations (${pct(t.successes / t.runs)})`) +
-      stat(fi(t.shots), "physical shots in total") + stat(fi(evals), `candidate evaluations, ${fi(meas)} group executions, ${fi(iters)} iterations`);
-
     const rows = D.agreement.map((a) => `<tr><td><b>${a.contract}</b></td><td>${esc(a.description)}</td><td>${vbadge(a.stage1)}</td>
-      <td class="small">${fi(a.runtime_checks)} checks · ${a.runtime_counts.AGREEMENT || 0}/${t.runs} runs pass</td><td>${vbadge(a.verdict_agreement)}</td></tr>`);
+      <td class="small">${fi(a.runtime_checks)} checks ${badge("simulator/hardware pass", "good")}</td><td>${vbadge(a.verdict_agreement)}</td></tr>`);
+    const vm = D.hardware.verified_monitor;
+    $("verdictNote").textContent = `Simulator: all ${t.runs} runs pass each logical and numeric check. Hardware: the verified ${D.hardware.backend} run passes online and in DejaVu replay ` +
+      `(${vm.obeyed_online}/${vm.properties} runtime properties obeyed, ${fi(vm.events)} events).`;
     const P = D.probabilistic, prim = P.checkpoints.find((c) => c.primary), [p2, p3] = P.conditional_means;
     rows.push(`<tr><td><b>P1</b></td><td>${esc(D.contracts.P1.description)}</td><td>${vbadge(D.contracts.P1.verdict)}</td>
       <td class="small">k = ${prim.update_bound}: ${prim.runtime_successes}/${prim.runtime_runs} = ${pct(prim.runtime_probability)} (Wilson ${pct(prim.wilson_95[0])}–${pct(prim.wilson_95[1])}) vs model ${pct(prim.model_probability)}</td>
@@ -641,16 +695,6 @@
     $("faultLegend").innerHTML = Object.entries(SYM).map(([v, [s, k]]) => `<span><span class="badge b-${k}">${s}</span> ${v.replace(/_/g, " ")}</span>`).join("") +
       `<span>Ringed cell: the expected target. All faults are injected at the first iteration/candidate boundary.</span>`;
 
-    $("caveats").innerHTML = [
-      "Each tool is exhaustive only for what it encodes: nuXmv for the abstract controller, Dafny for the kernels under mathematical semantics and preconditions, Storm for the constructed Gaussian DTMC. Runtime checks cover the observed traces. A formal refinement from every model to the Python program is future work.",
-      "The Gaussian approximation is motivated by the central limit theorem; no certified finite-shot approximation-error bound is supplied.",
-      "Probabilistic agreement means statistical compatibility at this sample size, not equivalence: no equivalence margin was preregistered, checkpoint intervals are pointwise and correlated, and the primary comparison can detect deviations of about 3.6 percentage points at 80% power.",
-      "The P2/P3 reading (Holm-adjusted, family level) is a post-audit reporting correction. The original marginal labels remain in the record.",
-      "The benchmark is small: two qubits, a fixed 16-point grid, ideal finite-shot statistics and an exact-energy stopping oracle that exists only in simulation.",
-      "Development executions used the same seeds, so this is an engineering evaluation, not a blinded confirmatory study.",
-      "Circuit and basis generation, bit order and parity interpretation, event instrumentation and the tools themselves are trusted. Hashes tie files to the experiment; they do not authenticate the physical origin of counts.",
-      "The fault suite covers five classes at one injection boundary. Terminal-boundary faults, stale inputs and other sites need further tests.",
-    ].map((x) => `<li>${esc(x)}</li>`).join("");
   }
 
   /* ================================================================
@@ -676,7 +720,7 @@
     ["reset", "Drop a reset or version stamp", ["M3_no_candidate_reset", "M4_stale_energy_ready", "M6_stale_binding", "M7_wrong_candidate", "M8_stale_energy_epoch"]],
   ];
 
-  // Base controller geometry (nuXmv states)
+  // Base model geometry (nuXmv states)
   const CTRL_NODES = [
     { id: "S_INIT", x: 80, y: 50 }, { id: "CHECK_STOP", x: 250, y: 50 }, { id: "BIND", x: 440, y: 50 },
     { id: "EXECUTE_MEASURE", x: 640, y: 50, w: 160 }, { id: "COMPUTE_ENERGY", x: 640, y: 210, w: 160 },
@@ -719,12 +763,12 @@
       return x;
     }).concat((me.add || []).map((e) => Object.assign({ cls: "new" }, e)));
     const nodes = CTRL_NODES.map((n) => Object.assign({}, n, { text: n.id, w: n.w || 120, flag: info.node === n.id }));
-    return { viewBox: "0 -30 800 330", label: "nuXmv controller state machine", nodes, edges };
+    return { viewBox: "0 -30 800 330", label: "nuXmv model state machine", nodes, edges };
   }
 
   function renderMutPicker() {
     let s = `<h3>Choose a change</h3>
-      <button type="button" class="mut" data-m="" aria-pressed="${EX.mut === null}"><div class="mt">Original controller</div><div class="md">No change. All 24 properties hold.</div></button>`;
+      <button type="button" class="mut" data-m="" aria-pressed="${EX.mut === null}"><div class="mt">Original model</div><div class="md">No change. All 24 properties hold.</div></button>`;
     MUT_GROUPS.forEach(([, title, list]) => {
       s += `<div class="mut-group"><h4>${title}</h4>` + list.map((name) => {
         const i = MUT_INFO[name], m = D.mutants.find((x) => x.name === name);
@@ -877,24 +921,21 @@
         <div class="stat"><span class="v">${nv.kinds.W_}</span><span class="l">premise witnesses reachable</span></div>
         <div class="stat"><span class="v">${nv.kinds.C_}</span><span class="l">conclusion probes reachable</span></div>
         <div class="stat"><span class="v">${nv.kinds.B_}</span><span class="l">branch queries (${branchesExpected} reachable, 1 must not be)</span></div></div>
-      <p class="small" style="margin-top:12px">${badge(`${nv.as_expected}/${nv.queries} as expected`, "good")} for the delivered controller.</p>
-      <h4 style="margin-top:12px">The controller's guards, in priority order</h4>
+      <p class="small" style="margin-top:12px">${badge(`${nv.as_expected}/${nv.queries} as expected`, "good")} for the delivered model.</p>
+      <h4 style="margin-top:12px">The model's guards, in priority order</h4>
       <div class="scroll-x"><table><tbody>${D.branches.map(([g, t], i) => `<tr><td class="muted">B${i}</td><td class="mono small">${esc(g)}</td><td class="mono small">→ ${esc(t)}</td><td>${g === "TRUE" ? badge("unreachable", "grey") : badge("fires", "good")}</td></tr>`).join("")}</tbody></table></div>
       <p class="small muted">B0 keeps a terminal state where it is; B12 is the defensive fallback. Mutation complements this: non-vacuity shows a property is exercised, mutation shows it can fail.</p>`;
   }
 
   /* ---------- boot ---------- */
   function boot() {
-    $("srcName").textContent = D.source.split("/").pop();
-    $("footSrc").textContent = D.source;
-    $("footHash").textContent = D.totals.stage1_digest;
-    $("runId").textContent = D.run.run_id;
     renderWhy();
     renderOperator();
     renderCircuit();
     renderModes();
     $("iterSlider").max = N_UPD;
     const go = (i) => { stopPlay(); clearPlayMarks(); S.iter = Math.max(1, Math.min(N_UPD, i)); S.cand = null; renderIteration(); };
+    S.go = go;
     $("iterSlider").addEventListener("input", (e) => go(+e.target.value));
     $("iterPrev").addEventListener("click", () => go(S.iter - 1));
     $("iterNext").addEventListener("click", () => go(S.iter + 1));

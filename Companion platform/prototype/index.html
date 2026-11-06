@@ -3,14 +3,14 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Layered VQE Verification</title>
-<meta name="description" content="Companion to “Layered Verification of VQE: From Specifications to Execution”: a guided tour of the precomputed evidence and a logical explorer.">
+<title>Coordinated VQE Verification</title>
+<meta name="description" content="Companion to “Coordinated Formal Verification of VQE”: a guided tour of the precomputed evidence and a logical explorer.">
 <link rel="stylesheet" href="style.css">
 </head>
 <body>
 <header class="topbar">
   <div class="topbar-inner">
-    <span class="brand">Layered VQE Verification</span>
+    <span class="brand">Coordinated VQE Verification</span>
     <nav class="nav" id="nav">
       <a href="#why">0 · Why verify?</a>
       <a href="#mechanics">1 · How it runs</a>
@@ -25,9 +25,9 @@
 <main>
   <div class="hero">
     <div class="kicker">Companion to the paper</div>
-    <h1>Layered Verification of VQE: From Specifications to Execution</h1>
-    <p class="lede">A guided tour of one verified variational quantum eigensolver, and a logical explorer that lets you break its controller.
-      Every number and trace on this page comes from the delivered run <code id="srcName"></code>.
+    <h1>Coordinated Formal Verification of VQE</h1>
+    <p class="lede">A guided tour of one verified variational quantum eigensolver, and a logical explorer that lets you break its workflow and see what would happen.
+      Every number and trace on this page comes from the experiments and results in this project, the same as in the paper.
       Nothing is recomputed in your browser except simple arithmetic on recorded counts.</p>
   </div>
 
@@ -35,25 +35,17 @@
   <section class="chapter" id="why">
     <div class="kicker">Part 0</div>
     <h2>Why verify? A wrong energy can look right</h2>
-    <div class="split">
-      <div class="card">
-        <figure class="figure">
-          <div id="whyChart"></div>
-          <figcaption id="whyCaption"></figcaption>
-        </figure>
-      </div>
-      <div>
-        <p>A VQE run is usually judged by its energy curve: if it falls steadily toward a minimum, the run looks healthy.
-          The chart takes the measured counts from one real baseline run and aggregates them twice: once with the declared Hamiltonian
-          coefficients, and once with the <span class="mono">YZ</span> and <span class="mono">XX</span> coefficients swapped.</p>
-        <p>Both curves fall smoothly. Nothing in the plot shows that the swapped version uses the wrong operator, yet it
-          <b id="whyFlips"></b> of the <span id="whyTotal"></span> iterations.</p>
-        <div class="callout">The paper injects this exact fault (<code>coefficient_swap</code>) into real executions.
-          <span id="whyFault"></span></div>
-        <p class="small muted">Both curves use the same recorded counts, so this is a recomputation, not a separate run. A real swapped run would
-          leave the baseline trajectory at the first changed choice.</p>
-      </div>
+    <div class="why-text">
+      <p>A VQE run is usually judged by its energy curve: if it falls steadily toward a minimum, the run looks healthy.
+        The charts take the measured counts from one declared configuration with two runs on hardware (<span id="whyBackend"></span>) and aggregate
+        every evaluation twice: once with the declared Hamiltonian coefficients, and once with the <span class="mono">YZ</span> and <span class="mono">XX</span> coefficients swapped.</p>
+      <p>The two curves descend together. Nothing in either plot shows that the swapped version uses the wrong operator, yet the optimizer would
+        <b id="whyFlips"></b>.</p>
     </div>
+    <div class="grid2" id="whyCharts"></div>
+    <div class="legend why-legend" id="whyLegend"></div>
+    <div class="callout">The paper injects this exact fault (<code>coefficient_swap</code>) into simulator executions.
+      <span id="whyFault"></span></div>
   </section>
 
   <!-- ===================== 1. MECHANICS ===================== -->
@@ -66,9 +58,8 @@
       <div class="card">
         <h3>The operator</h3>
         <p class="mono" style="font-size:1rem" id="hamiltonian"></p>
-        <p class="small muted">The IBM two-qubit VQE benchmark operator, written in <span class="mono">q₁ ⊗ q₀</span> order. The repository's
-          files call it “h2”, but the paper treats that name as a legacy identifier: no molecular geometry, basis or mapping is supplied for this operator.
-          Reference minimum <span class="mono" id="eref"></span>. A run succeeds when the selected point's ideal energy is within
+        <p class="small muted">The IBM two-qubit VQE benchmark operator, written in <span class="mono">q₁ ⊗ q₀</span> order.
+          Reference minimum <span class="mono" id="eref"></span>. A run succeeds when the selected parameter vector's energy is within
           <span class="mono" id="gap"></span> of it.</p>
         <h3 style="margin-top:14px">The circuit</h3>
         <div id="circuit"></div>
@@ -77,36 +68,44 @@
       </div>
       <div class="card">
         <h3>The shared execution model</h3>
-        <p class="small">All four verification layers describe the same eight modes. Press play to step through one recorded iteration:
+        <p class="small">All four verification layers come from the same execution model. Press play to step through one recorded iteration:
           three candidates (current, −1, +1 on one coordinate), each prepared, measured in three groups, aggregated and validated, then one commit.</p>
         <div id="modes"></div>
       </div>
     </div>
 
     <div class="card" style="margin-top:16px">
-      <div style="display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;align-items:baseline">
-        <h3 style="margin:0">One real iteration of run <span class="mono" id="runId"></span></h3>
-        <span class="small muted" id="iterMeta"></span>
+      <div class="card-head">
+        <h3>One complete run showing the parameter and energy updates</h3>
+        <span class="small muted" id="runMeta"></span>
       </div>
-      <div class="controls">
-        <button type="button" id="iterPrev" aria-label="Previous iteration">◀</button>
-        <input type="range" id="iterSlider" min="1" max="27" value="1" aria-label="Iteration">
-        <button type="button" id="iterNext" aria-label="Next iteration">▶</button>
-        <button type="button" class="primary" id="playModes">▶ Play this iteration</button>
+      <div class="run-overview">
+        <h4>Parameter updates by iteration</h4>
+        <div id="paramTape"></div>
+        <h4 style="margin-top:10px">Energy updates by iteration</h4>
+        <div id="trajChart"></div>
+        <p class="small muted" style="margin:4px 0 0">Select a column in either view to open that iteration below.</p>
       </div>
-      <div class="cand-grid" id="candidates"></div>
-      <div class="legend" id="countLegend"></div>
-      <div class="grid2" style="margin-top:16px">
-        <div>
-          <h4>Ideal energy of the selected point</h4>
-          <div id="trajChart"></div>
+
+      <div class="iter-detail">
+        <div class="card-head">
+          <h3 id="iterTitle"></h3>
+          <span class="small muted" id="iterMeta"></span>
         </div>
-        <div>
-          <h4>What one iteration costs</h4>
-          <p id="shotMath"></p>
-          <p class="small muted">The optimizer is a cyclic coordinate search: each iteration remeasures the current point and its two neighbours on one coordinate,
-            then picks the smallest integer energy score. Ties prefer current, then −1, then +1. Success is judged by an exact-simulation oracle, which is available only because this is a simulator experiment.</p>
+        <div class="controls">
+          <button type="button" id="iterPrev" aria-label="Previous iteration">◀</button>
+          <input type="range" id="iterSlider" min="1" max="27" value="1" aria-label="Iteration">
+          <button type="button" id="iterNext" aria-label="Next iteration">▶</button>
+          <button type="button" class="primary" id="playModes">▶ Play this iteration</button>
         </div>
+        <div class="cand-grid" id="candidates"></div>
+        <div class="legend" id="countLegend"></div>
+      </div>
+
+      <div class="cost-row">
+        <p id="shotMath"></p>
+        <p class="small muted">The optimizer is a cyclic coordinate search: each iteration remeasures the current point and its two neighbours on one coordinate,
+          then picks the smallest integer energy score. Ties prefer current, then −1, then +1. Success is judged by an exact-simulation oracle, which is available only because this is a simulator experiment.</p>
       </div>
     </div>
   </section>
@@ -120,15 +119,15 @@
       <button type="button" role="tab" data-lens="logical" aria-selected="true">Logical · nuXmv</button>
       <button type="button" role="tab" data-lens="numeric" aria-selected="false">Numeric · Dafny</button>
       <button type="button" role="tab" data-lens="probabilistic" aria-selected="false">Probabilistic · Storm</button>
-      <button type="button" role="tab" data-lens="runtime" aria-selected="false">Runtime · monitors + DejaVu</button>
+      <button type="button" role="tab" data-lens="runtime" aria-selected="false">Runtime · DejaVu</button>
     </div>
 
     <div class="lens" id="lens-logical">
       <div class="split">
         <div class="card">
           <h3>Is the control flow right?</h3>
-          <p>nuXmv explores <i>every</i> path of an abstract controller, the eight modes as a finite state machine, and checks
-            <b id="propCount"></b> properties in four groups. All of them hold.</p>
+          <p>nuXmv explores <i>every</i> path of an abstract model, the eight modes as a finite state machine, and checks
+            <b id="propCount"></b> properties in four groups.</p>
           <div class="prop-cols" id="lensProps"></div>
           <p class="small muted">Select a property to read its formula.</p>
         </div>
@@ -136,11 +135,11 @@
           <div class="card" id="lensPropDetail"></div>
           <div class="card">
             <h3>Green is not enough</h3>
-            <p class="small">A property such as “whenever we aggregate, all groups are measured” is trivially true in a controller that never aggregates.
+            <p class="small">A property such as “whenever we aggregate, all groups are measured” is trivially true in a model that never aggregates.
               To rule that out, every property has reachability witnesses for its premise and a probe showing its conclusion is not automatically true.
               <b id="nvSummary"></b></p>
-            <p class="small">To show the properties can fail at all, 12 seeded mutants of the controller were checked. <b id="mutSummary"></b>
-              <a href="#explorer">Break the controller yourself →</a></p>
+            <p class="small">To show the properties can fail at all, 12 seeded mutants of the model were checked. <b id="mutSummary"></b>
+              <a href="#explorer">Break the model yourself →</a></p>
           </div>
         </div>
       </div>
@@ -220,11 +219,10 @@
       then compares what was promised with what happened.</p>
     <div class="card"><div id="pipeline"></div></div>
 
-    <div class="grid4" style="margin-top:16px" id="totals"></div>
-
     <div class="card" style="margin-top:16px">
-      <h3>Cross-stage verdicts for the baseline</h3>
+      <h3>Cross-stage verdicts</h3>
       <div class="scroll-x"><table id="verdictTable"></table></div>
+      <p class="small muted" style="margin:10px 0 0" id="verdictNote"></p>
     </div>
 
     <h3 style="margin-top:32px">The four verdict words, each with a real example</h3>
@@ -236,18 +234,13 @@
       <div class="scroll-x"><table class="matrix" id="faultMatrix"></table></div>
       <div class="legend" id="faultLegend"></div>
     </div>
-
-    <div class="card" style="margin-top:16px">
-      <h3>What these results do and do not claim</h3>
-      <ul class="small" id="caveats"></ul>
-    </div>
   </section>
 
   <!-- ===================== EXPLORER ===================== -->
   <section class="chapter" id="explorer">
     <div class="kicker">Explorer</div>
-    <h2>Logical explorer: break the controller</h2>
-    <p class="lede">Pick one change to the nuXmv controller: rewire an arrow, change a guard, or drop a reset. You will see which of the 24 properties fail, and you can step through
+    <h2>Logical explorer: break the model</h2>
+    <p class="lede">Pick one change to the nuXmv model: rewire an arrow, change a guard, or drop a reset. You will see which of the 24 properties fail, and you can step through
       the counterexample nuXmv produced, replayed on the diagram. These are the 12 mutants the paper checked; the traces are nuXmv's own output.</p>
 
     <div class="split split-ex">
@@ -273,14 +266,14 @@
       <h3>Why a green property can still be untested</h3>
       <div class="grid2">
         <div class="small">
-          <p>An invariant “if <i>A</i> then <i>B</i>” is satisfied by any controller in which <i>A</i> never happens. Remove the arrow into
+          <p>An invariant “if <i>A</i> then <i>B</i>” is satisfied by any model in which <i>A</i> never happens. Remove the arrow into
             <span class="mono">COMPUTE_ENERGY</span>, and R1 (“aggregation only after all groups”) stays green, because nothing is ever aggregated.
             The property would be vacuously true.</p>
           <p>The verification therefore asks nuXmv three kinds of extra questions, each of which must come out as expected:</p>
           <ul>
             <li><b>Witness (W)</b>: the premise is reachable, e.g. <span class="mono">EF (state = COMPUTE_ENERGY)</span>.</li>
             <li><b>Probe (C)</b>: the conclusion is not true everywhere on its own, e.g. <span class="mono">EF !(terms_done = NTERMS)</span>.</li>
-            <li><b>Branch (B)</b>: every guard of the controller fires somewhere it is the first match, except the defensive fallback <span class="mono">TRUE : ABORT</span>, which must be unreachable.</li>
+            <li><b>Branch (B)</b>: every guard of the model fires somewhere it is the first match, except the defensive fallback <span class="mono">TRUE : ABORT</span>, which must be unreachable.</li>
           </ul>
         </div>
         <div id="nvPanel"></div>
@@ -288,11 +281,6 @@
     </div>
   </section>
 </main>
-
-<footer>
-  Prototype. All evidence is precomputed from <span class="mono" id="footSrc"></span>; readers never run nuXmv, Dafny, Storm or DejaVu.
-  Stage 1 digest <span class="hash" id="footHash"></span>.
-</footer>
 
 <script src="data.js"></script>
 <script src="app.js"></script>
