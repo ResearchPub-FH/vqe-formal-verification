@@ -1,4 +1,5 @@
-"""Collect the prototype's data bundle from the delivered closed-loop run (merged-model-01).
+"""Collect the prototype's data bundle from the delivered closed-loop run (merged-model-01)
+and the ibm_marrakesh hardware pair (VQE Runtime Verification - DejaVu/artifacts/hardware_pair_hrzy).
 
 Reads only existing evidence; runs no verification tool. Writes data.js next to this file,
 which defines window.VQE_DATA for index.html.
@@ -10,15 +11,20 @@ import gzip
 import json
 import re
 import sys
+import tomllib
 from pathlib import Path
 
 HERE = Path(__file__).resolve().parent
 PROJECT = HERE.parents[1]
 CLOSED = PROJECT / "2-stage verification (closed-loop)"
 RUN = CLOSED / "artifacts" / "merged-model-01"
+DEJAVU = PROJECT / "VQE Runtime Verification - DejaVu"
+HW = DEJAVU / "artifacts" / "hardware_pair_hrzy" / "pair01"
 sys.path.insert(0, str(CLOSED))
 
 from closed_loop import logical, physics  # noqa: E402
+from closed_loop.checker import RuntimeChecker  # noqa: E402
+from closed_loop.temporal import PROPERTY_TRIGGERS  # noqa: E402
 
 TERMS = ["YZ", "ZI", "ZZ", "XX"]
 
@@ -70,6 +76,91 @@ def swapped_choices(updates, coefficients):
         rows.append({"update": u["update"], "correct": right, "swapped": wrong,
                      "choice": u["choice"], "swapped_choice": min(range(3), key=lambda i: (wrong[i], i))})
     return {"swapped_coefficients": swapped, "rows": rows}
+
+
+def runtime_by_iteration(config, events, recorded, pre_digest):
+    """Runtime property status of the shown run, iteration by iteration.
+
+    Replays the recorded trace through the project's online checker (as execution.replay does),
+    adding each contract's checks and problems to the iteration of the event; run_start counts
+    toward iteration 1 and the terminal event toward the last. The replay must reproduce the
+    recorded contract results exactly. DejaVu triggers per iteration come from the recorded
+    temporal-input.tsv; DejaVu reports violations per run, so its per-run record is kept.
+    """
+    checker = RuntimeChecker(config, events[0]["run_id"], pre_digest)
+    last = max(e.get("update", 0) for e in events)
+    contracts = {cid: {"checks": [0] * last, "problems": [0] * last} for cid in checker.rows}
+    seq_iteration, iteration = {}, 1
+    for e in events:
+        before = {cid: (row["checks"], sum(len(row[k]) for k in ("violations", "assumption_mismatches", "inconclusive")))
+                  for cid, row in checker.rows.items()}
+        checker.consume(e)
+        iteration = e.get("update", iteration) or iteration
+        seq_iteration[e["seq"]] = iteration
+        for cid, row in checker.rows.items():
+            contracts[cid]["checks"][iteration - 1] += row["checks"] - before[cid][0]
+            contracts[cid]["problems"][iteration - 1] += sum(len(row[k]) for k in ("violations", "assumption_mismatches", "inconclusive")) - before[cid][1]
+    result = checker.result()
+    assert result["contracts"] == recorded["contracts"], "replay differs from the recorded runtime result"
+    for cid, row in result["contracts"].items():
+        contracts[cid]["verdict"] = row["runtime_verdict"]
+    triggers = {name: [0] * last for name in PROPERTY_TRIGGERS}
+    with (RUN / "stage2" / "baseline" / "temporal-input.tsv").open() as stream:
+        for line in stream:
+            f = line.rstrip("\n").split("\t")
+            if f[0] == "EVENT" and f[3] == recorded["run_id"]:
+                for name, event in PROPERTY_TRIGGERS.items():
+                    if f[2] == event:
+                        triggers[name][seq_iteration[int(f[1])] - 1] += 1
+    dejavu = recorded["dejavu"]
+    assert {k: sum(v) for k, v in triggers.items()} == dejavu["triggers"], "DejaVu triggers differ from the record"
+    return {"contracts": contracts,
+            "dejavu": {"passed": dejavu["passed"], "violations": dejavu["violations"], "triggers": triggers}}
+
+
+def hardware_pair(coefficients):
+    """The ibm_marrakesh pair (unverified then verified run, one declared configuration).
+
+    Energies are recomputed from the recorded per-term expectations with the declared
+    coefficients (checked against the recorded energy) and with YZ and XX swapped. The
+    pattern search accepts a probe iff its energy is below the incumbent's by more than
+    the improvement tolerance; a flip marks a probe whose accept/reject decision would
+    differ under the swapped coefficients, with the incumbent held on the recorded path.
+    """
+    config = tomllib.loads((DEJAVU / "configs" / "h2_ibm_sampler_50.toml").read_text())
+    tolerance = config["optimizer"]["improvement_tolerance"]
+    swapped = dict(coefficients, YZ=coefficients["XX"], XX=coefficients["YZ"])
+    report = json.loads((HW / "pair_report.json").read_text())
+    props = json.loads((HW / "property_report.json").read_text())
+    runs = {}
+    for condition in report["order"]:
+        rows = [json.loads(line) for line in (HW / condition / "evaluations.jsonl").read_text().splitlines()]
+        expectations = [{t["pauli"]: t["expectation"] for t in r["terms"]} for r in rows]
+        declared = [energy(e, coefficients) for e in expectations]
+        for r, e in zip(rows, declared):
+            assert abs(r["energy"] - e) < 1e-12, (condition, r["evaluation"])
+        other = [energy(e, swapped) for e in expectations]
+        incumbent, accepted, flips = 0, [True], []
+        for k in range(1, len(rows)):
+            take = declared[k] < declared[incumbent] - tolerance
+            if take != (other[k] < other[incumbent] - tolerance):
+                flips.append(k)
+            accepted.append(take)
+            if take:
+                incumbent = k
+        summary = report["energy"][condition]
+        runs[condition] = {"run_id": report[condition]["run_id"], "declared": declared, "swapped": other,
+                           "accepted": accepted, "flips": flips, "theta": [r["theta"] for r in rows],
+                           "terminal": report[condition]["terminal_reason"], "best_measured": summary["best_measured"],
+                           "exact_at_final": summary["exact_at_final"], "ibm_seconds": report[condition]["ibm_seconds"]}
+    return {"backend": report["backend"], "qubits": report["logical_to_physical"], "order": report["order"],
+            "evaluations": config["execution"]["max_iterations"], "shots_per_term": config["execution"]["shots_per_term"],
+            "optimizer": config["optimizer"]["name"], "initial_step": config["optimizer"]["initial_step"],
+            "runs": runs,
+            "verified_monitor": {"online": props["online_status"], "replay": props["replay_status"],
+                                 "obeyed_online": props["obeyed_online"], "obeyed_replay": props["obeyed_replay"],
+                                 "properties": len(props["rows"]), "events": props["events_online"],
+                                 "coverage": props["coverage"]}}
 
 
 def squash(formula):
@@ -137,7 +228,11 @@ def main():
 
     baseline_dir = RUN / "stage2" / "baseline"
     traces = sorted(baseline_dir.glob("baseline-*.jsonl.gz"))
-    run = run_summary(read_trace(traces[0]))
+    shown = read_trace(traces[0])
+    run = run_summary(shown)
+    baseline_results = json.loads((baseline_dir / "results.json").read_text())
+    recorded = next(r for r in baseline_results["results"] if r["run_id"] == run["run_id"])
+    run["runtime"] = runtime_by_iteration(config, shown, recorded, baseline_results["pre_execution_digest"])
     why = swapped_choices(run["updates"], config["hamiltonian"]["terms"])
 
     first_success = []
@@ -192,6 +287,7 @@ def main():
                    "max_energy_error": verdicts["maximum_energy_reconstruction_error"],
                    "stage1_digest": verdicts["pre_execution_digest"], "config_digest": verdicts["configuration_digest"]},
         "faults": list(faults.values()),
+        "hardware": hardware_pair(config["hamiltonian"]["terms"]),
     }
     out = HERE / "data.js"
     out.write_text("window.VQE_DATA = " + json.dumps(data, separators=(",", ":")) + ";\n")

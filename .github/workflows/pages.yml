@@ -1,0 +1,55 @@
+# Publishes the companion page (Companion platform/prototype) to GitHub Pages.
+# Only the four static page files are deployed; the rest of the repository is not.
+name: Deploy companion page
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - "Companion platform/prototype/index.html"
+      - "Companion platform/prototype/style.css"
+      - "Companion platform/prototype/app.js"
+      - "Companion platform/prototype/data.js"
+      - ".github/workflows/pages.yml"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: pages
+  cancel-in-progress: false
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - name: Check out only the page folder
+        uses: actions/checkout@v4
+        with:
+          sparse-checkout: |
+            Companion platform/prototype
+
+      - name: Collect the page files
+        run: |
+          mkdir _site
+          for f in index.html style.css app.js data.js; do
+            cp "Companion platform/prototype/$f" _site/
+          done
+          touch _site/.nojekyll
+          ls -la _site
+
+      - uses: actions/configure-pages@v5
+
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: _site
+
+      - name: Deploy
+        id: deployment
+        uses: actions/deploy-pages@v4
