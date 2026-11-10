@@ -1,4 +1,4 @@
-"""Collect the prototype's data bundle from the delivered closed-loop run (merged-model-01)
+"""Collect the prototype's data bundle from the reference closed-loop run (artifacts/experiment)
 and the ibm_marrakesh hardware pair (VQE Runtime Verification - DejaVu/artifacts/hardware_pair_hrzy).
 
 Reads only existing evidence; runs no verification tool. Writes data.js next to this file,
@@ -17,7 +17,7 @@ from pathlib import Path
 HERE = Path(__file__).resolve().parent
 PROJECT = HERE.parents[1]
 CLOSED = PROJECT / "2-stage verification (closed-loop)"
-RUN = CLOSED / "artifacts" / "merged-model-01"
+RUN = CLOSED / "artifacts" / "experiment"
 DEJAVU = PROJECT / "VQE Runtime Verification - DejaVu"
 HW = DEJAVU / "artifacts" / "hardware_pair_hrzy" / "pair01"
 sys.path.insert(0, str(CLOSED))
@@ -261,7 +261,7 @@ def main():
         f["vector"][row["contract"]] = row["verdict"]
 
     data = {
-        "source": "2-stage verification (closed-loop)/artifacts/merged-model-01",
+        "source": "2-stage verification (closed-loop)/artifacts/experiment",
         "config": {k: config[k] for k in ("hamiltonian", "measurement_groups", "shots_per_group", "grid_size",
                                           "initial_index", "maximum_updates", "success_gap", "runs", "coordinate_schedule")},
         "ground_energy": physics.GROUND_ENERGY,

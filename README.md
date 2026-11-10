@@ -1,111 +1,111 @@
-# Coordinated formal verification of VQE: logical, numeric, probabilistic and runtime verification of a variational quantum eigensolver
+# Coordinated formal verification of hybrid quantum-classical workflows: from pre-execution guarantees to runtime evidence
 
-Research artifact for the manuscript *Coordinated Formal Verification of VQE* (submitted to IEEE Transactions on Information Forensics and Security, 2026).
+Research artifact for the paper of the same title, submitted to IEEE Transactions on Information Forensics and Security (2026). Apache-2.0.
 
-A four-layer verification architecture for a hybrid quantum-classical VQE loop, and a two-stage framework that connects what is proved before execution with what is observed during execution. **Logical** (nuXmv), **numeric** (Dafny) and **probabilistic** (Storm, Gaussian DTMC) properties are established in Stage 1, which is then frozen and hashed. Stage 2 executes the VQE and checks the corresponding obligations on every run, with an online Python monitor and an independent DejaVu temporal monitor. Each contract of a shared library (L1–L4, N1–N4, P1–P3) ends in one cross-stage verdict: `AGREEMENT`, `DISAGREEMENT`, `ASSUMPTION_MISMATCH` or `INCONCLUSIVE`.
+A four-layer verification architecture for a hybrid quantum-classical VQE loop, and a two-stage framework that connects what is proved before execution with what is observed during execution. **Logical** (nuXmv), **numeric** (Dafny) and **probabilistic** (Storm, Gaussian DTMC) properties are established in Stage 1, which is then frozen and hashed. Stage 2 executes the VQE and checks the corresponding obligations on every run, with an online Python monitor and an independent DejaVu temporal monitor. Each requirement of the specification library (L1–L4, N1–N4, P1–P3; Table I of the paper) ends in one cross-stage verdict: `AGREEMENT`, `DISAGREEMENT`, `ASSUMPTION_MISMATCH` or `INCONCLUSIVE`.
 
-**Interactive companion page:** <https://researchpub-fh.github.io/vqe-formal-verification/>
+**Interactive companion page** (Supplementary Section S4): <https://researchpub-fh.github.io/vqe-formal-verification/>
 
 ## Results at a glance
 
-All numbers come from the delivered run, `2-stage verification (closed-loop)/artifacts/merged-model-01/`.
+The simulator results come from the reference run, `2-stage verification (closed-loop)/artifacts/experiment/`. The hardware results come from `VQE Runtime Verification - DejaVu/artifacts/hardware_pair_hrzy/`.
 
-- **Benchmark:** the IBM two-qubit VQE operator `H = 0.398 YZ − 0.398 ZI − 0.0113 ZZ + 0.181 XX` (reference minimum −0.7029) with a four-parameter `efficient_su2` circuit (H, RZ, Y, CX) on a 16-point angle grid. A cyclic coordinate search evaluates 3 candidates × 3 measurement groups × 1,024 shots, i.e. 9,216 shots per iteration, for at most 50 iterations.
-- **Stage 1:**
-  - nuXmv: 24/24 logical properties hold, 62/62 non-vacuity queries come out as expected, and 12/12 seeded model mutants are detected.
-  - Dafny: the numeric kernels behind N1–N4 are proved.
-  - Storm: bounded success probabilities on a Gaussian DTMC with 262,144 states.
-- **Stage 2 (400 seeded simulator runs, 124,581,888 shots):**
-  - L1–N4 agree in 400/400 runs, and DejaVu accepts 400/400.
-  - P1 at 50 iterations: 366/400 = 91.5% observed (95% Wilson interval 88.4–93.9%) against 92.8% predicted. P2/P3 are statistically compatible under Holm adjustment.
-- **Fault injection:** 5 fault classes × 10 runs, reported as full verdict vectors.
-- **Hardware:** one unverified/verified run pair on `ibm_marrakesh` (50 evaluations each). The verified run obeys all 68 DejaVu runtime properties, online and in replay.
+- **Benchmark (Sec. IV-C, Table II):** the IBM two-qubit VQE operator `H = 0.398 YZ − 0.398 ZI − 0.0113 ZZ + 0.181 XX` (reference minimum −0.7029) with a four-parameter `efficient_su2` circuit (H, RZ, Y, CX) on a 16-point angle grid. A cyclic coordinate search evaluates 3 candidates × 3 measurement groups × 1,024 shots, i.e. 9,216 shots per iteration, for at most 50 iterations.
+- **Logical (Sec. VI-B, VI-F):** nuXmv shows that 24/24 properties hold, 62/62 non-vacuity queries come out as expected, and 12/12 seeded model mutants are detected, at each of six bounds.
+- **Numeric (Sec. VI-C):** Dafny proves the numeric-kernel and trace-contract modules (11 verified, 0 errors).
+- **Probabilistic (Sec. VI-D):** Storm gives P[F≤50 success] = 0.928027 on a Gaussian DTMC with 262,144 states. Its reward queries give 33.111 iterations and 305,152.7 shots on successful paths.
+- **Runtime (Sec. VI-E, VI-F):** the `ibm_marrakesh` run and its simulator counterpart pass online and in replay, and each exercises 55 of the 68 DejaVu properties.
+- **Cross-stage agreement (Sec. VII-B, VII-C):** L1–N4 agree in 400/400 simulator runs (124,581,888 shots) and on hardware (Table VII). P1 at 50 iterations: 366/400 = 91.5% observed (95% Wilson interval 88.4–93.9%) against 92.8% predicted (Fig. 7). P2/P3 are statistically compatible under Holm adjustment.
+- **Fault injection (Sec. VII-D, Fig. 8):** 5 fault classes × 10 runs, reported as full verdict vectors.
 
 ## Companion page
 
-The page presents the recorded evidence for paper readers: a guided tour (why verify, how the VQE runs, the four verification lenses, the two stages together) and a logical explorer that replays nuXmv's counterexamples for the 12 mutants on the model diagram. Nothing is re-verified in the browser.
+The page presents the recorded evidence for readers. A guided tour follows one VQE execution through the shared execution model and shows how each verification layer views it. A logical explorer changes the model and replays nuXmv's counterexample for each of the 12 mutants on the model diagram. For one complete run, it shows the energy after each iteration together with the runtime checks passed so far. Nothing is re-verified in the browser.
 
 - Source: `Companion platform/prototype/` (`index.html`, `style.css`, `app.js`, `data.js`). The page is static, so `index.html` also opens offline from a checkout.
-- `data.js` is generated by `build_data.py` from the delivered artifacts and the hardware pair. The build replays the shown run through the project's own runtime checker and stops if the replay does not reproduce the recorded result:
+- `data.js` is generated by `build_data.py` from the reference run and the hardware pair. The build replays the shown run through the project's own runtime checker and stops if the replay does not reproduce the recorded result:
 
   ```sh
   python3 "Companion platform/prototype/build_data.py"     # Python ≥ 3.11, NumPy 2.5.3
   ```
 - `.github/workflows/pages.yml` publishes the four page files to GitHub Pages on every change to them on `main`.
+- `figures/compose_figure_abc.py` assembles Fig. 12 of the supplement from three page views.
 
 ## Install
 
 ```sh
 python3 -m venv .venv && source .venv/bin/activate
-pip install "numpy==2.5.3"            # the version behind the delivered run (Python 3.12.15)
+pip install "numpy==2.5.3"            # the version behind the reference run (Python 3.12.15)
 ```
 
-The experiment's Python code needs only NumPy. Bitwise reproduction of the delivered sample needs NumPy 2.5.3: with other versions the seeded multinomial draws differ, giving a different (still valid) sample.
+The experiment's Python code needs only NumPy. Bitwise reproduction of the reference sample needs NumPy 2.5.3: with other versions the seeded multinomial draws differ, giving a different (still valid) sample.
 
-External tools, needed only to re-run Stage 1 or to rebuild the DejaVu monitor. They are not included in the repository:
+External tools, needed only to re-run Stage 1 or the stand-alone layer evaluations. They are not included in the repository:
 
 | Tool | Used for | Version behind the paper | Where the code looks for it |
 |---|---|---|---|
 | nuXmv | logical layer (L1–L4) | 2.1.0 | `NuXmv Files/nuXmv/bin/nuXmv`, else `PATH` |
 | Dafny | numeric layer (N1–N4) | binary SHA-256 recorded in `stage1/pre_execution.json` | `Dafny + Python trace checker/dafny/dafny`, else `PATH` |
-| Storm | probabilistic layer (P1) | 2.0.0 (1.13.0 output also parsed) | `PATH` |
+| Storm | probabilistic layer (P1–P3) | 2.0.0 (1.13.0 output also parsed) | `PATH` |
 | Java (JDK 17+) | DejaVu runtime monitor | Temurin 17.0.4.1 | `PATH` |
 
-The DejaVu runtime and the generated monitor are bundled. Rebuilding the monitor also needs three pinned Scala 2.12.21 artifacts, fetched and hash-checked by `VQE Runtime Verification - DejaVu/tools/fetch_monitor_build_deps.py`.
+The DejaVu runtime and the generated monitor are bundled. Rebuilding the monitor also needs three pinned Scala 2.12.21 artifacts, fetched and hash-checked by `VQE Runtime Verification - DejaVu/tools/fetch_monitor_build_deps.py`. The hardware step needs Qiskit and an IBM Quantum account.
 
 ## Quick check (no verification tools needed)
 
 ```sh
 cd "2-stage verification (closed-loop)"
-python3 -m unittest discover -s tests -v                     # 26 tests, ~1 s
-cp -r artifacts/merged-model-01 /tmp/mm01-audit                 # audit rewrites its report, so use a copy
-python3 experiment.py audit --output /tmp/mm01-audit            # ~11 s: 366/400, online/replay agreement True
+python3 -m unittest discover -s tests -v                       # 26 tests, ~1 s
+cp -r artifacts/experiment /tmp/experiment-audit                # audit rewrites its report, so use a copy
+python3 experiment.py audit --output /tmp/experiment-audit      # ~11 s: 366/400, online/replay agreement True
 ```
 
-`audit` checks the frozen Stage 1 seal and every source and evidence hash. It then replays all 400 baseline and 50 fault traces through the runtime checker, checks the DejaVu log against the recorded verdicts, and regenerates `comparison/`. The regenerated `verdict_agreement.json` matches the delivered one apart from its timestamp and last-digit floating-point rounding in two Wilson bounds.
+`audit` checks the frozen Stage 1 seal and every source and evidence hash. It then replays all 400 baseline and 50 fault traces through the runtime checker, checks the DejaVu log against the recorded verdicts, and regenerates `comparison/`. The regenerated `verdict_agreement.json` matches the stored one apart from its timestamp and last-digit floating-point rounding in two Wilson bounds.
 
 ## Layout
 
-- `2-stage verification (closed-loop)/`: the two-stage experiment.
+- `2-stage verification (closed-loop)/`: the two-stage experiment (Sec. VII).
   - `closed_loop/`: the code. `logical.py` generates the nuXmv model, its properties and mutants. `pre_execution.py` runs Stage 1. `physics.py` is the exact statevector and Gaussian kernels. `execution.py` runs the VQE, with fault injection. `checker.py` is the online and replay runtime checker. `temporal.py` holds the DejaVu projections. `comparison.py` produces the cross-stage verdicts.
-  - `config/`: `h2.json` (the configuration), `contracts.json` (the contract library) and `smoke.json` (a small end-to-end configuration).
+  - `config/`: `h2.json` (the configuration), `contracts.json` (the specification library) and `smoke.json` (a small end-to-end configuration).
   - `formal/`: the Dafny kernels and lemmas, the DejaVu QTL specification and its Scala bridge.
-  - `artifacts/`: `merged-model-01/` is the delivered run. `approved-experiment/` is the earlier run gated by the 7-property model. The other folders are development snapshots. They share seeds, so never pool them (see `artifacts/README.md`).
+  - `artifacts/`: `experiment/` is the reference run, the only source of the reported results. The other folders are earlier development snapshots kept for provenance; see `artifacts/README.md`.
   - `audit/`: independent audit and negative-control scripts.
   - `tests/`: unit tests.
-  - `paper/`: manuscript sources, figure scripts and extracted numbers.
+  - `paper/`: earlier manuscript sources, figure scripts and extracted numbers.
   - `AUDIT_REPORT.md`, `PROVENANCE.md`.
-- `NuXmv Files/VQE_Logical_Model/`: the logical model at the paper's configuration and its layer-wise evaluation at six bounds. `_superseded/` archives earlier models.
-- `Dafny + Python trace checker/`: the numeric layer as a standalone component: Dafny kernels (`vqe_dafny/`), instrumented VQE runners and trace checkers (`python/`, `python 2.0/`), and recorded traces and reports.
-- `Probabilistic verification - 2 methods comparision/`: the Gaussian DTMC and its analytical and exact small-shot variants, the Storm scalability study, the shot-sensitivity study, and `storm-reward-validation/` (Storm reward queries for P2/P3).
-- `VQE Runtime Verification - DejaVu/`: the three-level runtime-verification package (`src/vqe_runtime/`), specifications, configurations and tools.
+- `NuXmv Files/VQE_Logical_Model/`: the logical model at the paper's configuration and its layer-wise evaluation at six bounds (Sec. VI-B, Supp. S2). `_superseded/` archives earlier models.
+- `Dafny + Python trace checker/`: the numeric layer as a stand-alone component (Sec. VI-C): Dafny kernels and trace contracts (`vqe_dafny/`), instrumented VQE runners and trace checkers (`python/`, `python 2.0/`), and recorded traces and reports.
+- `Probabilistic verification - 2 methods comparision/`: the Gaussian DTMC and its analytical and exact small-shot variants, the Storm scalability study (Sec. VI-D, Fig. 5), the shot-sensitivity study, and `storm-reward-validation/` (Storm reward queries for P2/P3).
+- `VQE Runtime Verification - DejaVu/`: the three-level runtime-verification package (Sec. V-D, VI-E, Supp. S3): `src/vqe_runtime/`, specifications, configurations and tools.
   - `artifacts/hardware_pair_hrzy/`: the `ibm_marrakesh` pair.
   - `artifacts/sampler_verification_scaling_hrzy_20261106/`: the simulator overhead campaign.
-- `Companion platform/prototype/`: the companion page, its data build, and `figures/` (a composite figure of three page views).
+- `Companion platform/prototype/`: the companion page (Supp. S4), its data build, and `figures/`.
 - `vqe_qiskit.py`: the original Qiskit VQE implementation of the benchmark.
 
 ## Reproducing the experiments
 
-Every output below is already in the repository, so a step can be checked by re-running it into a new folder and comparing. Commands run from the folder named in the "Folder" column. Times: "measured" means measured on a Linux cloud VM for this README; "recorded" means taken from the artifacts' own timestamps (Apple-silicon Mac).
+Every output below is already in the repository, so a step can be checked by re-running it into a new folder and comparing. Commands run from the folder named in the "Folder" column. In the "Time" column, "measured" means measured on a Linux cloud VM for this README, and "recorded" means taken from the artifacts' own timestamps or the paper (Apple-silicon Mac).
 
 | Step | Experiment | Paper | Folder · command | Tools | Outputs | Time |
 |---|---|---|---|---|---|---|
 | tests | closed-loop unit tests | | closed-loop · `python3 -m unittest discover -s tests -v` | — | | 1 s measured |
-| audit | re-check the delivered run (hashes, full replay, DejaVu log) | | closed-loop · `python3 experiment.py audit --output <copy of merged-model-01>` | — | `<copy>/comparison/` | 11 s measured |
-| all | full two-stage experiment: Stage 1, freeze, 400 baseline runs, 50 fault tests, verdicts | cross-stage results; faults: Sec. VII-D, Fig. 8 | closed-loop · `python3 experiment.py all --output artifacts/<new>` | nuXmv, Dafny, Storm, Java | `<new>/stage1/`, `stage2/`, `comparison/REPORT.md`, `verdict_agreement.json` | ≈ 45 s recorded (Stage 1 26 s, runs 15 s) |
+| audit | re-check the reference run: hashes, full replay, DejaVu log | Sec. VII-B, Table VII (simulator); Sec. VII-C, Fig. 7 | closed-loop · `python3 experiment.py audit --output <copy of artifacts/experiment>` | — | `<copy>/comparison/` | 11 s measured |
+| all | full two-stage experiment: Stage 1, freeze, 400 baseline runs, 50 fault tests, verdicts | Sec. VII; faults: Sec. VII-D, Fig. 8 | closed-loop · `python3 experiment.py all --output artifacts/<new>` | nuXmv, Dafny, Storm, Java | `<new>/stage1/`, `stage2/`, `comparison/REPORT.md`, `verdict_agreement.json`, `probabilities.csv` | ≈ 45 s recorded (Stage 1 26 s, runs 15 s) |
 | stages | the same, one stage at a time | | closed-loop · `python3 experiment.py pre\|execute\|faults\|compare --output artifacts/<new>` | Stage 1: nuXmv, Dafny, Storm | as above | |
-| nonvacuity | non-vacuity audit of the earlier approved traces | | closed-loop · `python3 audit/nonvacuity_audit.py` | nuXmv | `audit/_out/nonvacuity/` | |
-| logical | layer-wise evaluation of the logical model at six bounds | logical layer | `NuXmv Files/VQE_Logical_Model` · `python3 evaluate.py` | nuXmv | `results/` | |
-| rewards | Storm reward queries for P2/P3 against the Python estimates | probabilistic layer | repository root · `python3 "Probabilistic verification - 2 methods comparision/storm-reward-validation/verify_rewards.py" --output <new>` | Storm | `<new>/REPORT.md` | |
-| runtime | DejaVu runtime-verification unit tests | runtime layer | DejaVu · `PYTHONPATH=src python3 -m unittest discover -s tests -v` | Java | | 31 s measured |
-| overhead | simulator overhead campaign: 350 runs, 5 warm-ups and 30 measured runs per condition at 10–50 evaluations | runtime cost | DejaVu · `python3 tools/benchmark_sampler_hrzy.py --out-dir artifacts/<new>` | Java, Qiskit | `<new>/REPORT.md`, CSVs | ≈ 5 min recorded |
-| hardware | unverified/verified pair on IBM hardware | hardware results | DejaVu · `python3 tools/run_hardware_pair.py check\|preflight\|pair\|analyze --out-dir artifacts/<new> [--pair-id pair01] [--submit --qpu-cap <s>]` | Java, Qiskit, IBM Quantum account | `<new>/pair01/pair_report.md`, `property_report.md` | ≈ 17 min recorded (2 × 150 s QPU) |
-| companion | rebuild the companion page's data | Sec. S4 | repository root · `python3 "Companion platform/prototype/build_data.py"` | — | `Companion platform/prototype/data.js` | 1 s measured |
+| logical | logical model at six bounds: properties, non-vacuity, mutants | Sec. VI-B, Table IV; Sec. VI-F; Supp. S2, Tables XI–XII | `NuXmv Files/VQE_Logical_Model` · `python3 evaluate.py` | nuXmv | `results/` | |
+| numeric | Dafny numeric kernels and trace contracts | Sec. VI-C | `Dafny + Python trace checker` · `./dafny/dafny verify vqe_dafny/VQENumericKernels.dfy` and `./dafny/dafny verify vqe_dafny/VQETraceContracts.dfy` | Dafny | verifier output (11 verified, 0 errors) | |
+| scalability | time-unrolled Gaussian DTMC for K = 10, …, 50: size, construction and checking time | Sec. VI-D, Fig. 5 | `Probabilistic verification - 2 methods comparision` · `python3 model_checking_scalability.py --output-dir <new>` | Storm | `<new>/` | under 5 s per bound recorded |
+| rewards | Storm reward queries for P2/P3 against the Python estimates | Sec. VI-D; Sec. VII-C, Fig. 7(d) | repository root · `python3 "Probabilistic verification - 2 methods comparision/storm-reward-validation/verify_rewards.py" --output <new>` | Storm | `<new>/REPORT.md` | |
+| runtime | DejaVu runtime-verification unit tests | | DejaVu · `PYTHONPATH=src python3 -m unittest discover -s tests -v` | Java | | 31 s measured |
+| coverage | which of the 68 DejaVu properties each trace exercises | Sec. VI-F, Table VI | DejaVu · `python3 tools/property_coverage.py <trace.jsonl>... --output-dir <new>` | — | `<new>/` | |
+| overhead | simulator overhead campaign: 350 runs, 5 warm-ups and 30 measured runs per condition at 10–50 evaluations | Sec. VI-E, Fig. 6(b) | DejaVu · `python3 tools/benchmark_sampler_hrzy.py --out-dir artifacts/<new>` | Java, Qiskit | `<new>/REPORT.md`, CSVs | ≈ 5 min recorded |
+| hardware | unverified/verified pair on IBM hardware | Sec. VI-E, Table V, Fig. 6; Sec. VII-B, Table VII (hardware) | DejaVu · `python3 tools/run_hardware_pair.py check\|preflight\|pair\|analyze --out-dir artifacts/<new> [--pair-id pair01] [--submit --qpu-cap <s>]` | Java, Qiskit, IBM Quantum account | `<new>/pair01/pair_report.md`, `property_report.md` | ≈ 17 min recorded (2 × 150 s QPU) |
+| companion | rebuild the companion page's data | Supp. S4, Fig. 12 | repository root · `python3 "Companion platform/prototype/build_data.py"` | — | `Companion platform/prototype/data.js` | 1 s measured |
 
 Notes:
 
 - Existing Stage 1 and runtime result folders are never overwritten. Choose a new `--output` folder for every repetition. Stage 2 refuses to run if any source, configuration or evidence hash differs from the frozen Stage 1 record.
-- `audit` of `artifacts/approved-experiment/` is refused by design: sources changed after it was frozen. Its traces are audited by `audit/nonvacuity_audit.py` instead.
+- The reference run's sealed records (`stage1/pre_execution.json` and the tool logs) contain the paths where it was produced, including the folder's earlier name. They are kept unchanged because the seal covers them.
 - Runs are seeded (`seed_words` in each trace), so verdicts and counts are reproducible with NumPy 2.5.3. Timings depend on the machine.
 - For a small end-to-end check of the whole pipeline, add `--config config/smoke.json`. Smoke results use a smaller grid, horizon and repetition count; they are not results for the primary configuration.
 - The hardware step uses paid QPU time. `--qpu-cap` bounds it, and `--submit` is required before anything is sent. `check` (a read-only query of the IBM account and backend) and `local-test` (a local stand-in for the backend) submit nothing. Install the Qiskit extras first, from the DejaVu folder: `pip install -e '.[qiskit]'`. `analyze` rewrites the reports in its `--out-dir`, so run it on a copy of `artifacts/hardware_pair_hrzy/`.
@@ -114,16 +114,17 @@ Notes:
 ## Status and known limitations
 
 - Each tool is exhaustive only for what it encodes. nuXmv covers the abstract model of the control flow, Dafny proves the kernels under mathematical (not floating-point) semantics and their preconditions, and Storm covers the constructed Gaussian DTMC. Runtime checking covers the observed traces. A formal refinement from every model to the Python implementation is not claimed.
-- The Gaussian approximation of the finite-shot energy estimate is motivated by the central limit theorem; no certified finite-shot approximation-error bound is supplied.
-- Probabilistic agreement means statistical compatibility at this sample size, not distributional equivalence. The P2/P3 reading (Holm-adjusted) is a post-audit reporting correction; the original labels are kept in the record.
-- The benchmark is small: two qubits, a fixed grid, ideal finite-shot statistics, and an exact-energy stopping oracle available only in simulation. The hardware pair uses its own optimizer and runtime properties, and is checked by the DejaVu runtime layer.
-- Missing measurement records are reported as an L1 disagreement in addition to an inconclusive numeric verdict, a known classification limitation.
+- The Gaussian approximation of the finite-shot energy estimate is motivated by the central limit theorem; no certified finite-shot approximation-error bound is supplied. The model isolates finite-shot measurement uncertainty and does not include gate or readout noise, backend failure or drift.
+- Probabilistic agreement means statistical compatibility at this sample size, not distributional equivalence.
+- The benchmark is a single two-qubit instance with a fixed grid, ideal finite-shot statistics in simulation, and an exact-energy stopping oracle available only in simulation.
+- Missing measurement records are reported as an L1 disagreement in addition to an inconclusive numeric verdict (Sec. VII-D), a known classification limitation.
+- The evaluated faults cover five classes at a single injection boundary.
 - Circuit and basis generation, bit order and parity interpretation, instrumentation and the tools themselves are trusted. Hashes tie files to the experiment; they do not authenticate the physical origin of counts.
 
 ## Citation
 
-Code, data and the companion page are archived at <!-- DOI --> (added once the release is archived on Zenodo). Please cite the paper and the archive.
+If you use this artifact, please cite the paper: *Coordinated Formal Verification of Hybrid Quantum-Classical Workflows: From Pre-Execution Guarantees to Runtime Evidence*, submitted to IEEE Transactions on Information Forensics and Security, 2026. Code and data: <https://github.com/ResearchPub-FH/vqe-formal-verification>.
 
 ## License
 
-No license has been chosen yet. Until a `LICENSE` file is added, all rights are reserved. Third-party tools (nuXmv, Dafny, Storm, DejaVu) keep their own licenses.
+Apache-2.0 (see `LICENSE`). The bundled DejaVu runtime (`VQE Runtime Verification - DejaVu/src/vqe_runtime/vendor/dejavu/`) is also Apache-2.0; see its `LICENSE.txt` and `UPSTREAM.md`. The external tools the experiment calls (nuXmv, Dafny, Storm) are not included and keep their own licenses.

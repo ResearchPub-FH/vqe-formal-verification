@@ -1,7 +1,7 @@
 """FROZEN copy of closed_loop/logical.py as used by the approved experiment (7/10-property controller).
 
 Kept only so audit/nonvacuity_audit.py can re-check the frozen controller of
-artifacts/approved-experiment. Superseded by the merged model in closed_loop/logical.py;
+artifacts/approved-experiment. Superseded by the logical model in closed_loop/logical.py;
 do not use it for new runs.
 """
 

@@ -91,8 +91,8 @@ script checks plotted points against independent reconstruction.
 ## Figure 5 — `figures/fault-discrepancies.pdf`
 
 - Script: `scripts/figures/fault_discrepancies.py`; typography: `style.py`.
-- Direct input: `../artifacts/merged-model-01/stage2/faults/results.json`, the
-  delivered run (fault vectors use obligation counting, so unexercised
+- Direct input: `../artifacts/experiment/stage2/faults/results.json`, the
+  reference run (fault vectors use obligation counting, so unexercised
   obligations are INCONCLUSIVE).
 - Raw sources: the same run's linked `stage2/faults/*.jsonl.gz` traces;
   `comparison/verdict_agreement.json` (`result_files.faults`) supplies the
@@ -101,7 +101,7 @@ script checks plotted points against independent reconstruction.
 - Configuration: `../config/contracts.json` supplies the logical/numeric IDs
   and families. `stage1/pre_execution.json` supplies the configuration digest,
   checked against the fault results. The configuration digest equals Figure 4's;
-  the run is `merged-model-01`, not `approved-experiment`.
+  the run is `experiment`, not `approved-experiment`.
 - Quantities: complete verdict vectors for each fault class, number of records
   with the expected target-obligation result, and DejaVu acceptance counts.
 - Transformation: group individual records by fault. Every repetition must
@@ -113,7 +113,7 @@ script checks plotted points against independent reconstruction.
   fault-injection suite, rather than estimates of population detection rates.
 - Exported cells/counts: `data/fault_figure_points.csv`. Validation checks all
   cells and counts against fault results reconstructed independently from
-  `merged-model-01`'s raw fault records.
+  `experiment`'s raw fault records.
 - Width: single column, 3.5 in; fault names wrap onto two lines and the legend
   uses two rows. Replaces the main-paper fault table.
 - Scope: the saved-trace missing-count scenario retains the existing L1

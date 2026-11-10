@@ -9,10 +9,12 @@ verification checks the corresponding obligations and assumptions.
 Stage 1 obligation, Stage 2 evidence, assumptions, and comparison rule. The
 library is included in the frozen source hashes and assurance record.
 
-The current completed experiment is in
-[`artifacts/approved-experiment/comparison/REPORT.md`](artifacts/approved-experiment/comparison/REPORT.md).
-Earlier outputs in `artifacts/` are retained development snapshots; see the
-artifact index there. They must not be combined as additional independent runs.
+The reference run of this implementation, and the source of every result in
+the paper, is `artifacts/experiment/`; its report is
+[`artifacts/experiment/comparison/REPORT.md`](artifacts/experiment/comparison/REPORT.md).
+The other folders in `artifacts/` are earlier development snapshots kept for
+provenance; see the artifact index there. They must not be combined with it as
+additional independent runs.
 
 ## Run the experiment
 
@@ -53,20 +55,18 @@ fault traces before regenerating the report. Python performs online checks and
 saved-trace replay. The separately generated DejaVu monitor independently
 checks temporal projections during Stage 2 replay. Its results are retained.
 
-To audit the delivered results:
+To audit the reference run, use a copy, because `audit` regenerates
+`comparison/` in the folder it checks:
 
 ```sh
-python3 experiment.py audit --output artifacts/approved-experiment
+cp -r artifacts/experiment /tmp/experiment-audit
+python3 experiment.py audit --output /tmp/experiment-audit
 ```
 
-Sources changed after that experiment was frozen, so the CLI audit now refuses
-it. The read-only non-vacuity audit replays the approved traces with the
-current obligation-counting checker and checks the frozen controller's
-witnesses and mutants, writing only to `audit/_out/nonvacuity/`:
-
-```sh
-python3 audit/nonvacuity_audit.py
-```
+The audit needs no verification tool. It reports 366/400 successes and
+online/replay agreement, and the regenerated `verdict_agreement.json` matches
+the stored one apart from its timestamp and floating-point rounding in the last
+digit.
 
 For a small end-to-end test, use `--config config/smoke.json` with a new output
 directory. Smoke results use a smaller grid, horizon, and repetition count;
@@ -115,8 +115,9 @@ included in the primary configuration.
   defensive default (which must be unreachable), and twelve seeded control
   mutants must each be detected by their target contract. A failed witness
   gives `VACUOUS`, a surviving mutant `WEAK_SPECIFICATION`; both block Stage 2.
-  The approved experiment was gated by the earlier 7-property controller,
-  which `audit/legacy_controller.py` preserves for its audit.
+  The earlier development snapshot `artifacts/approved-experiment/` was gated
+  by a 7-property version of the model, which `audit/legacy_controller.py`
+  preserves for auditing that snapshot.
 - Dafny checks arithmetic kernels, supporting lemmas, physical group summation,
   modular candidate generation, and integer candidate selection. The imported
   energy kernels are copied from the existing numeric artifact; see

@@ -20,7 +20,7 @@ sys.path.insert(0, str(Path(__file__).resolve().parent))
 import legacy_controller
 from legacy_controller import requirements
 
-# The frozen controller predates the merged logical model; check it with its own obligations.
+# The frozen controller predates the current logical model; check it with its own obligations.
 pre_execution.mutants = legacy_controller.mutants
 pre_execution.nonvacuity_queries = legacy_controller.nonvacuity_queries
 from closed_loop.temporal import PROPERTY_TRIGGERS, PYTHON_COUNTERPARTS
