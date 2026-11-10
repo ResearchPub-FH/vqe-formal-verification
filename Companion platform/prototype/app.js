@@ -1,5 +1,5 @@
 /* Companion prototype: guided tour + logical explorer.
-   Reads window.VQE_DATA (data.js, built by build_data.py from merged-model-01). No tool is run here. */
+   Reads window.VQE_DATA (data.js, built by build_data.py from artifacts/experiment). No tool is run here. */
 (function () {
   "use strict";
   const D = window.VQE_DATA;

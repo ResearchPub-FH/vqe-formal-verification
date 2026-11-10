@@ -66,7 +66,7 @@ All paths below are relative to the original workspace. The code verifies source
 
 In the table, `...` means `2-stage verification (closed-loop)/artifacts/approved-experiment`. Complete, unambiguous paths and hashes are in `data/source_manifest.json`.
 
-The later `merged-model-01` archive has the same 400 seeds, success times, termination reasons, update totals, and shot totals; this is checked for provenance only. It is not pooled as another independent sample. Other development/rerun datasets are not inputs to the figure.
+The reference run, `2-stage verification (closed-loop)/artifacts/experiment`, has the same 400 seeds, success times, termination reasons, update totals, and shot totals; this is checked for provenance only. It is not pooled as another independent sample. Other development/rerun datasets are not inputs to the figure.
 
 ## Proposed IEEE-style caption
 

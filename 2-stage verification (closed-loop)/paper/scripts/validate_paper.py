@@ -80,9 +80,9 @@ def main():
         fc=rows(PAPER/'data/fault_figure_points.csv')
         library=read(PAPER.parent/'config/contracts.json')
         ids=[cid for cid,spec in library.items() if spec['family'] in ('logical','numeric')]
-        # The fault figure plots the delivered run (merged-model-01); d['faults'] still describes
+        # The fault figure plots the reference run (artifacts/experiment); d['faults'] still describes
         # approved-experiment, so its cells are reconstructed here from that run's raw fault records.
-        frun=PAPER.parent/'artifacts/merged-model-01'
+        frun=PAPER.parent/'artifacts/experiment'
         assert sha(frun/'stage2/faults/results.json')==read(frun/'comparison/verdict_agreement.json')['result_files']['faults']
         fr=read(frun/'stage2/faults/results.json')['results']
         expected_cells={}

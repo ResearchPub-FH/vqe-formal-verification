@@ -341,13 +341,13 @@ def reconstruct(workspace):
     for relative, role in provenance_files:
         record(workspace / relative, role)
 
-    # A later merged-controller archive retains the same trajectories; do not
+    # The reference run (artifacts/experiment) retains the same trajectories; do not
     # pool these re-gated records as an additional 400 independent observations.
-    merged_path = workspace / EXPERIMENT / "artifacts/merged-model-01/stage2/baseline/results.json"
+    merged_path = workspace / EXPERIMENT / "artifacts/experiment/stage2/baseline/results.json"
     if merged_path.exists():
-        merged = json.loads(record(merged_path, "Later merged-controller rerun; provenance cross-check only, not pooled").read_text())["results"]
+        merged = json.loads(record(merged_path, "Reference run with the same trajectories; provenance cross-check only, not pooled").read_text())["results"]
         fields = ["seed_words", "success_step", "terminal_reason", "updates", "physical_shots"]
-        require(len(merged) == n and all(all(a[key] == b[key] for key in fields) for a, b in zip(merged, baseline["results"])), "Merged-model trajectories differ")
+        require(len(merged) == n and all(all(a[key] == b[key] for key in fields) for a, b in zip(merged, baseline["results"])), "Reference-run trajectories differ")
 
     rows = [{"k": int(step), "model_probability": float(model_cdf[step]), "empirical_probability": float(empirical[step]),
              "successes": int(counts[step]), "n": n, "wilson_low": float(intervals[step, 0]), "wilson_high": float(intervals[step, 1]),

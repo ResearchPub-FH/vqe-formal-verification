@@ -18,7 +18,7 @@ from matplotlib.patches import Patch, Rectangle
 
 # The delivered closed-loop run. Its fault-result checksum is recorded in
 # comparison/verdict_agreement.json; this run has no completion_audit.json.
-RUN = EXP/'artifacts/merged-model-01'
+RUN = EXP/'artifacts/experiment'
 
 SHORT = {'AGREEMENT': 'A', 'DISAGREEMENT': 'D',
          'ASSUMPTION_MISMATCH': 'M', 'INCONCLUSIVE': 'I'}
