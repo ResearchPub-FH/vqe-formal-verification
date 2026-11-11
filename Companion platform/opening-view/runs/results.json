@@ -1,0 +1,1160 @@
+{
+ "configuration_digest": "03b387a2e7fede7a78b71b5a25065f673af10bbb9193103dd9895866d10706be",
+ "pre_execution_digest": "ad0f09cfc34b36e61bfd0657f93f8f493c2afd7c630085fda26cf2345ab67613",
+ "seed_words": [
+  20260721,
+  0,
+  0
+ ],
+ "seed_run": "baseline-0000",
+ "platform": {
+  "machine": "x86_64",
+  "system": "Linux",
+  "python": "3.13.18",
+  "numpy": "2.5.3"
+ },
+ "runs": {
+  "declared": {
+   "run_id": "baseline-0000",
+   "swap_yz_xx": false,
+   "trace": "2-stage verification (closed-loop)/artifacts/experiment/stage2/baseline/baseline-0000.jsonl.gz",
+   "trace_sha256": "2455f121f69b1e871da727158fb526515d39c701c2bd854ceb7d007f93e0ee72",
+   "iterations": 27,
+   "terminal_reason": "success",
+   "final_index": [
+    12,
+    14,
+    8,
+    12
+   ],
+   "physical_shots": 248832,
+   "ideal_start": 0.345232062479574,
+   "updates": [
+    {
+     "update": 1,
+     "choice": 1,
+     "declared_choice": 1,
+     "reported_energy": 0.3033037109375,
+     "energies_used": [
+      0.3578609375,
+      0.3033037109375,
+      0.3300921875
+     ],
+     "declared_energies": [
+      0.3578609375,
+      0.3033037109375,
+      0.3300921875
+     ],
+     "ideal_after": 0.31966121614684434
+    },
+    {
+     "update": 2,
+     "choice": 2,
+     "declared_choice": 2,
+     "reported_energy": 0.180636328125,
+     "energies_used": [
+      0.33657734375,
+      0.4086857421875,
+      0.180636328125
+     ],
+     "declared_energies": [
+      0.33657734375,
+      0.4086857421875,
+      0.180636328125
+     ],
+     "ideal_after": 0.1804834703247905
+    },
+    {
+     "update": 3,
+     "choice": 2,
+     "declared_choice": 2,
+     "reported_energy": 0.1161095703125,
+     "energies_used": [
+      0.185593359375,
+      0.2386794921875,
+      0.1161095703125
+     ],
+     "declared_energies": [
+      0.185593359375,
+      0.2386794921875,
+      0.1161095703125
+     ],
+     "ideal_after": 0.12337920893513646
+    },
+    {
+     "update": 4,
+     "choice": 2,
+     "declared_choice": 2,
+     "reported_energy": 0.1119470703125,
+     "energies_used": [
+      0.11844375,
+      0.1295544921875,
+      0.1119470703125
+     ],
+     "declared_energies": [
+      0.11844375,
+      0.1295544921875,
+      0.1119470703125
+     ],
+     "ideal_after": 0.09694516685911866
+    },
+    {
+     "update": 5,
+     "choice": 1,
+     "declared_choice": 1,
+     "reported_energy": 0.0421251953125,
+     "energies_used": [
+      0.087067578125,
+      0.0421251953125,
+      0.105641796875
+     ],
+     "declared_energies": [
+      0.087067578125,
+      0.0421251953125,
+      0.105641796875
+     ],
+     "ideal_after": 0.06385439972452811
+    },
+    {
+     "update": 6,
+     "choice": 2,
+     "declared_choice": 2,
+     "reported_energy": -0.123006640625,
+     "energies_used": [
+      0.103017578125,
+      0.231226953125,
+      -0.123006640625
+     ],
+     "declared_energies": [
+      0.103017578125,
+      0.231226953125,
+      -0.123006640625
+     ],
+     "ideal_after": -0.09251954771134636
+    },
+    {
+     "update": 7,
+     "choice": 2,
+     "declared_choice": 2,
+     "reported_energy": -0.1668365234375,
+     "energies_used": [
+      -0.1093921875,
+      -0.026982421875,
+      -0.1668365234375
+     ],
+     "declared_energies": [
+      -0.1093921875,
+      -0.026982421875,
+      -0.1668365234375
+     ],
+     "ideal_after": -0.15201231909676408
+    },
+    {
+     "update": 8,
+     "choice": 0,
+     "declared_choice": 0,
+     "reported_energy": -0.178767578125,
+     "energies_used": [
+      -0.178767578125,
+      -0.1620951171875,
+      -0.1495189453125
+     ],
+     "declared_energies": [
+      -0.178767578125,
+      -0.1620951171875,
+      -0.1495189453125
+     ],
+     "ideal_after": -0.15201231909676408
+    },
+    {
+     "update": 9,
+     "choice": 1,
+     "declared_choice": 1,
+     "reported_energy": -0.195366015625,
+     "energies_used": [
+      -0.17562421875,
+      -0.195366015625,
+      -0.1203654296875
+     ],
+     "declared_energies": [
+      -0.17562421875,
+      -0.195366015625,
+      -0.1203654296875
+     ],
+     "ideal_after": -0.20500116977868824
+    },
+    {
+     "update": 10,
+     "choice": 2,
+     "declared_choice": 2,
+     "reported_energy": -0.31584453125,
+     "energies_used": [
+      -0.2152234375,
+      -0.05523515625,
+      -0.31584453125
+     ],
+     "declared_energies": [
+      -0.2152234375,
+      -0.05523515625,
+      -0.31584453125
+     ],
+     "ideal_after": -0.31910674597547645
+    },
+    {
+     "update": 11,
+     "choice": 2,
+     "declared_choice": 2,
+     "reported_energy": -0.350209765625,
+     "energies_used": [
+      -0.32595,
+      -0.2640203125,
+      -0.350209765625
+     ],
+     "declared_energies": [
+      -0.32595,
+      -0.2640203125,
+      -0.350209765625
+     ],
+     "ideal_after": -0.3606284989122457
+    },
+    {
+     "update": 12,
+     "choice": 1,
+     "declared_choice": 1,
+     "reported_energy": -0.377362109375,
+     "energies_used": [
+      -0.3589734375,
+      -0.377362109375,
+      -0.307153125
+     ],
+     "declared_energies": [
+      -0.3589734375,
+      -0.377362109375,
+      -0.307153125
+     ],
+     "ideal_after": -0.38837244723355774
+    },
+    {
+     "update": 13,
+     "choice": 1,
+     "declared_choice": 1,
+     "reported_energy": -0.447533203125,
+     "energies_used": [
+      -0.3395515625,
+      -0.447533203125,
+      -0.3098849609375
+     ],
+     "declared_energies": [
+      -0.3395515625,
+      -0.447533203125,
+      -0.3098849609375
+     ],
+     "ideal_after": -0.4627503427764839
+    },
+    {
+     "update": 14,
+     "choice": 2,
+     "declared_choice": 2,
+     "reported_energy": -0.464137109375,
+     "energies_used": [
+      -0.4550775390625,
+      -0.4073818359375,
+      -0.464137109375
+     ],
+     "declared_energies": [
+      -0.4550775390625,
+      -0.4073818359375,
+      -0.464137109375
+     ],
+     "ideal_after": -0.4610448899927578
+    },
+    {
+     "update": 15,
+     "choice": 2,
+     "declared_choice": 2,
+     "reported_energy": -0.456321484375,
+     "energies_used": [
+      -0.45099453125,
+      -0.4318763671875,
+      -0.456321484375
+     ],
+     "declared_energies": [
+      -0.45099453125,
+      -0.4318763671875,
+      -0.456321484375
+     ],
+     "ideal_after": -0.4651078971559694
+    },
+    {
+     "update": 16,
+     "choice": 0,
+     "declared_choice": 0,
+     "reported_energy": -0.456445703125,
+     "energies_used": [
+      -0.456445703125,
+      -0.4494904296875,
+      -0.455333203125
+     ],
+     "declared_energies": [
+      -0.456445703125,
+      -0.4494904296875,
+      -0.455333203125
+     ],
+     "ideal_after": -0.4651078971559694
+    },
+    {
+     "update": 17,
+     "choice": 1,
+     "declared_choice": 1,
+     "reported_energy": -0.524285546875,
+     "energies_used": [
+      -0.435419921875,
+      -0.524285546875,
+      -0.444612109375
+     ],
+     "declared_energies": [
+      -0.435419921875,
+      -0.524285546875,
+      -0.444612109375
+     ],
+     "ideal_after": -0.49498972451339285
+    },
+    {
+     "update": 18,
+     "choice": 1,
+     "declared_choice": 1,
+     "reported_energy": -0.5252744140625,
+     "energies_used": [
+      -0.496280859375,
+      -0.5252744140625,
+      -0.3970806640625
+     ],
+     "declared_energies": [
+      -0.496280859375,
+      -0.5252744140625,
+      -0.3970806640625
+     ],
+     "ideal_after": -0.5233956054383432
+    },
+    {
+     "update": 19,
+     "choice": 0,
+     "declared_choice": 0,
+     "reported_energy": -0.5223423828125,
+     "energies_used": [
+      -0.5223423828125,
+      -0.50766328125,
+      -0.508281640625
+     ],
+     "declared_energies": [
+      -0.5223423828125,
+      -0.50766328125,
+      -0.508281640625
+     ],
+     "ideal_after": -0.5233956054383432
+    },
+    {
+     "update": 20,
+     "choice": 1,
+     "declared_choice": 1,
+     "reported_energy": -0.57323515625,
+     "energies_used": [
+      -0.53166640625,
+      -0.57323515625,
+      -0.442291796875
+     ],
+     "declared_energies": [
+      -0.53166640625,
+      -0.57323515625,
+      -0.442291796875
+     ],
+     "ideal_after": -0.5653904404784706
+    },
+    {
+     "update": 21,
+     "choice": 1,
+     "declared_choice": 1,
+     "reported_energy": -0.607285546875,
+     "energies_used": [
+      -0.57029296875,
+      -0.607285546875,
+      -0.4509275390625
+     ],
+     "declared_energies": [
+      -0.57029296875,
+      -0.607285546875,
+      -0.4509275390625
+     ],
+     "ideal_after": -0.6141829414262231
+    },
+    {
+     "update": 22,
+     "choice": 0,
+     "declared_choice": 0,
+     "reported_energy": -0.6283912109375,
+     "energies_used": [
+      -0.6283912109375,
+      -0.5569951171875,
+      -0.555356640625
+     ],
+     "declared_energies": [
+      -0.6283912109375,
+      -0.5569951171875,
+      -0.555356640625
+     ],
+     "ideal_after": -0.6141829414262231
+    },
+    {
+     "update": 23,
+     "choice": 1,
+     "declared_choice": 1,
+     "reported_energy": -0.6352962890625,
+     "energies_used": [
+      -0.6249158203125,
+      -0.6352962890625,
+      -0.5764798828125
+     ],
+     "declared_energies": [
+      -0.6249158203125,
+      -0.6352962890625,
+      -0.5764798828125
+     ],
+     "ideal_after": -0.6337342874971206
+    },
+    {
+     "update": 24,
+     "choice": 1,
+     "declared_choice": 1,
+     "reported_energy": -0.6544076171875,
+     "energies_used": [
+      -0.609257421875,
+      -0.6544076171875,
+      -0.5848126953125
+     ],
+     "declared_energies": [
+      -0.609257421875,
+      -0.6544076171875,
+      -0.5848126953125
+     ],
+     "ideal_after": -0.6553541544582309
+    },
+    {
+     "update": 25,
+     "choice": 1,
+     "declared_choice": 1,
+     "reported_energy": -0.6807203125,
+     "energies_used": [
+      -0.6610423828125,
+      -0.6807203125,
+      -0.6065560546875
+     ],
+     "declared_energies": [
+      -0.6610423828125,
+      -0.6807203125,
+      -0.6065560546875
+     ],
+     "ideal_after": -0.6811009461458035
+    },
+    {
+     "update": 26,
+     "choice": 0,
+     "declared_choice": 0,
+     "reported_energy": -0.6906134765625,
+     "energies_used": [
+      -0.6906134765625,
+      -0.684371484375,
+      -0.5923494140625
+     ],
+     "declared_energies": [
+      -0.6906134765625,
+      -0.684371484375,
+      -0.5923494140625
+     ],
+     "ideal_after": -0.6811009461458035
+    },
+    {
+     "update": 27,
+     "choice": 1,
+     "declared_choice": 1,
+     "reported_energy": -0.6940595703125,
+     "energies_used": [
+      -0.6890421875,
+      -0.6940595703125,
+      -0.6295912109375
+     ],
+     "declared_energies": [
+      -0.6890421875,
+      -0.6940595703125,
+      -0.6295912109375
+     ],
+     "ideal_after": -0.6908433252192565
+    }
+   ],
+   "runtime_verdicts": {
+    "L1": {
+     "verdict": "AGREEMENT",
+     "checks": 648,
+     "violations_listed": 0
+    },
+    "L2": {
+     "verdict": "AGREEMENT",
+     "checks": 270,
+     "violations_listed": 0
+    },
+    "L3": {
+     "verdict": "AGREEMENT",
+     "checks": 2709,
+     "violations_listed": 0
+    },
+    "L4": {
+     "verdict": "AGREEMENT",
+     "checks": 489,
+     "violations_listed": 0
+    },
+    "N1": {
+     "verdict": "AGREEMENT",
+     "checks": 891,
+     "violations_listed": 0
+    },
+    "N2": {
+     "verdict": "AGREEMENT",
+     "checks": 702,
+     "violations_listed": 0
+    },
+    "N3": {
+     "verdict": "AGREEMENT",
+     "checks": 514,
+     "violations_listed": 0
+    },
+    "N4": {
+     "verdict": "AGREEMENT",
+     "checks": 919,
+     "violations_listed": 0
+    }
+   }
+  },
+  "swapped": {
+   "run_id": "opening-swapped",
+   "swap_yz_xx": true,
+   "trace": "Companion platform/opening-view/runs/swapped.jsonl.gz",
+   "trace_sha256": "03df3b2008379f4d923c5b4078fea8335d4bc0a466dd0b5a38f8be199576bf0a",
+   "iterations": 33,
+   "terminal_reason": "success",
+   "final_index": [
+    12,
+    13,
+    8,
+    12
+   ],
+   "physical_shots": 304128,
+   "ideal_start": 0.345232062479574,
+   "updates": [
+    {
+     "update": 1,
+     "choice": 2,
+     "declared_choice": 1,
+     "reported_energy": 0.091053125,
+     "energies_used": [
+      0.164171484375,
+      0.1888701171875,
+      0.091053125
+     ],
+     "declared_energies": [
+      0.3578609375,
+      0.3033037109375,
+      0.3300921875
+     ],
+     "ideal_after": 0.32870293839943326
+    },
+    {
+     "update": 2,
+     "choice": 2,
+     "declared_choice": 2,
+     "reported_energy": -0.0817515625,
+     "energies_used": [
+      0.093287890625,
+      0.224866796875,
+      -0.0817515625
+     ],
+     "declared_energies": [
+      0.338684375,
+      0.41940390625,
+      0.1827171875
+     ],
+     "ideal_after": 0.19092849891224586
+    },
+    {
+     "update": 3,
+     "choice": 2,
+     "declared_choice": 2,
+     "reported_energy": -0.134819921875,
+     "energies_used": [
+      -0.0677896484375,
+      0.0191328125,
+      -0.134819921875
+     ],
+     "declared_energies": [
+      0.1987982421875,
+      0.227232421875,
+      0.169488671875
+     ],
+     "ideal_after": 0.16318455059093379
+    },
+    {
+     "update": 4,
+     "choice": 1,
+     "declared_choice": 2,
+     "reported_energy": -0.15784140625,
+     "energies_used": [
+      -0.1202626953125,
+      -0.15784140625,
+      -0.0776248046875
+     ],
+     "declared_energies": [
+      0.1692119140625,
+      0.22275625,
+      0.0753771484375
+     ],
+     "ideal_after": 0.21321089024210943
+    },
+    {
+     "update": 5,
+     "choice": 2,
+     "declared_choice": 2,
+     "reported_energy": -0.210208984375,
+     "energies_used": [
+      -0.152964453125,
+      -0.1576310546875,
+      -0.210208984375
+     ],
+     "declared_energies": [
+      0.228480859375,
+      0.2081326171875,
+      0.170388671875
+     ],
+     "ideal_after": 0.17075303587558952
+    },
+    {
+     "update": 6,
+     "choice": 2,
+     "declared_choice": 2,
+     "reported_energy": -0.3596541015625,
+     "energies_used": [
+      -0.223539453125,
+      -0.0379,
+      -0.3596541015625
+     ],
+     "declared_energies": [
+      0.15578671875,
+      0.32065859375,
+      -0.0019431640625
+     ],
+     "ideal_after": 0.005118059406295422
+    },
+    {
+     "update": 7,
+     "choice": 2,
+     "declared_choice": 2,
+     "reported_energy": -0.3738333984375,
+     "energies_used": [
+      -0.34217890625,
+      -0.278621484375,
+      -0.3738333984375
+     ],
+     "declared_energies": [
+      0.010022265625,
+      0.040944921875,
+      -0.0199369140625
+     ],
+     "ideal_after": 0.0027295494105316204
+    },
+    {
+     "update": 8,
+     "choice": 1,
+     "declared_choice": 2,
+     "reported_energy": -0.35412890625,
+     "energies_used": [
+      -0.348659375,
+      -0.35412890625,
+      -0.3003447265625
+     ],
+     "declared_energies": [
+      0.0124421875,
+      0.038759765625,
+      -0.0252802734375
+     ],
+     "ideal_after": 0.015859725204548758
+    },
+    {
+     "update": 9,
+     "choice": 2,
+     "declared_choice": 2,
+     "reported_energy": -0.402198828125,
+     "energies_used": [
+      -0.3581142578125,
+      -0.33544453125,
+      -0.402198828125
+     ],
+     "declared_energies": [
+      0.0250263671875,
+      0.06803984375,
+      -0.052964453125
+     ],
+     "ideal_after": -0.06751447808285768
+    },
+    {
+     "update": 10,
+     "choice": 2,
+     "declared_choice": 2,
+     "reported_energy": -0.48862578125,
+     "energies_used": [
+      -0.4069673828125,
+      -0.2733734375,
+      -0.48862578125
+     ],
+     "declared_energies": [
+      -0.0611236328125,
+      0.090694921875,
+      -0.22585234375
+     ],
+     "ideal_after": -0.21840513293441882
+    },
+    {
+     "update": 11,
+     "choice": 0,
+     "declared_choice": 0,
+     "reported_energy": -0.4748169921875,
+     "energies_used": [
+      -0.4748169921875,
+      -0.4548873046875,
+      -0.4637390625
+     ],
+     "declared_energies": [
+      -0.2281490234375,
+      -0.2120337890625,
+      -0.20181328125
+     ],
+     "ideal_after": -0.21840513293441882
+    },
+    {
+     "update": 12,
+     "choice": 0,
+     "declared_choice": 2,
+     "reported_energy": -0.50278515625,
+     "energies_used": [
+      -0.50278515625,
+      -0.4862052734375,
+      -0.4901765625
+     ],
+     "declared_energies": [
+      -0.2357734375,
+      -0.2433517578125,
+      -0.249018359375
+     ],
+     "ideal_after": -0.21840513293441882
+    },
+    {
+     "update": 13,
+     "choice": 2,
+     "declared_choice": 2,
+     "reported_energy": -0.523255859375,
+     "energies_used": [
+      -0.4545939453125,
+      -0.456726171875,
+      -0.523255859375
+     ],
+     "declared_energies": [
+      -0.1981779296875,
+      -0.155808203125,
+      -0.318123046875
+     ],
+     "ideal_after": -0.31215664109529484
+    },
+    {
+     "update": 14,
+     "choice": 2,
+     "declared_choice": 2,
+     "reported_energy": -0.5198564453125,
+     "energies_used": [
+      -0.514976171875,
+      -0.4810986328125,
+      -0.5198564453125
+     ],
+     "declared_energies": [
+      -0.304757421875,
+      -0.2043388671875,
+      -0.4168662109375
+     ],
+     "ideal_after": -0.3891238433710733
+    },
+    {
+     "update": 15,
+     "choice": 0,
+     "declared_choice": 0,
+     "reported_energy": -0.5109041015625,
+     "energies_used": [
+      -0.5109041015625,
+      -0.4944697265625,
+      -0.472423046875
+     ],
+     "declared_energies": [
+      -0.3951990234375,
+      -0.3749501953125,
+      -0.3558703125
+     ],
+     "ideal_after": -0.3891238433710733
+    },
+    {
+     "update": 16,
+     "choice": 0,
+     "declared_choice": 0,
+     "reported_energy": -0.50483828125,
+     "energies_used": [
+      -0.50483828125,
+      -0.4680841796875,
+      -0.4920435546875
+     ],
+     "declared_energies": [
+      -0.39294765625,
+      -0.3633986328125,
+      -0.3810005859375
+     ],
+     "ideal_after": -0.3891238433710733
+    },
+    {
+     "update": 17,
+     "choice": 2,
+     "declared_choice": 2,
+     "reported_energy": -0.54879609375,
+     "energies_used": [
+      -0.4962876953125,
+      -0.462125390625,
+      -0.54879609375
+     ],
+     "declared_energies": [
+      -0.3716822265625,
+      -0.32183828125,
+      -0.4564015625
+     ],
+     "ideal_after": -0.44826975519757306
+    },
+    {
+     "update": 18,
+     "choice": 1,
+     "declared_choice": 0,
+     "reported_energy": -0.5811671875,
+     "energies_used": [
+      -0.5186203125,
+      -0.5811671875,
+      -0.399333203125
+     ],
+     "declared_energies": [
+      -0.43639765625,
+      -0.433675,
+      -0.39551875
+     ],
+     "ideal_after": -0.42071482630701057
+    },
+    {
+     "update": 19,
+     "choice": 0,
+     "declared_choice": 1,
+     "reported_energy": -0.573247265625,
+     "energies_used": [
+      -0.573247265625,
+      -0.565688671875,
+      -0.544626171875
+     ],
+     "declared_energies": [
+      -0.41939765625,
+      -0.4254015625,
+      -0.3975578125
+     ],
+     "ideal_after": -0.42071482630701057
+    },
+    {
+     "update": 20,
+     "choice": 0,
+     "declared_choice": 0,
+     "reported_energy": -0.5758625,
+     "energies_used": [
+      -0.5758625,
+      -0.574094921875,
+      -0.524344921875
+     ],
+     "declared_energies": [
+      -0.425403515625,
+      -0.419821484375,
+      -0.381091015625
+     ],
+     "ideal_after": -0.42071482630701057
+    },
+    {
+     "update": 21,
+     "choice": 2,
+     "declared_choice": 2,
+     "reported_energy": -0.6186328125,
+     "energies_used": [
+      -0.558051953125,
+      -0.53849765625,
+      -0.6186328125
+     ],
+     "declared_energies": [
+      -0.39911640625,
+      -0.310901953125,
+      -0.522423828125
+     ],
+     "ideal_after": -0.5275526889534811
+    },
+    {
+     "update": 22,
+     "choice": 0,
+     "declared_choice": 0,
+     "reported_energy": -0.6328619140625,
+     "energies_used": [
+      -0.6328619140625,
+      -0.5882861328125,
+      -0.53943828125
+     ],
+     "declared_energies": [
+      -0.5425865234375,
+      -0.4619853515625,
+      -0.497903125
+     ],
+     "ideal_after": -0.5275526889534811
+    },
+    {
+     "update": 23,
+     "choice": 0,
+     "declared_choice": 0,
+     "reported_energy": -0.6224955078125,
+     "energies_used": [
+      -0.6224955078125,
+      -0.575841015625,
+      -0.6084970703125
+     ],
+     "declared_energies": [
+      -0.5186576171875,
+      -0.48810859375,
+      -0.5156787109375
+     ],
+     "ideal_after": -0.5275526889534811
+    },
+    {
+     "update": 24,
+     "choice": 1,
+     "declared_choice": 2,
+     "reported_energy": -0.6173751953125,
+     "energies_used": [
+      -0.616312890625,
+      -0.6173751953125,
+      -0.615384765625
+     ],
+     "declared_energies": [
+      -0.529004296875,
+      -0.5338810546875,
+      -0.53782421875
+     ],
+     "ideal_after": -0.509612285950935
+    },
+    {
+     "update": 25,
+     "choice": 2,
+     "declared_choice": 2,
+     "reported_energy": -0.65096640625,
+     "energies_used": [
+      -0.575627734375,
+      -0.562438671875,
+      -0.65096640625
+     ],
+     "declared_energies": [
+      -0.489590625,
+      -0.426813671875,
+      -0.59841171875
+     ],
+     "ideal_after": -0.5915147808307113
+    },
+    {
+     "update": 26,
+     "choice": 0,
+     "declared_choice": 0,
+     "reported_energy": -0.6416740234375,
+     "energies_used": [
+      -0.6416740234375,
+      -0.6246220703125,
+      -0.5672361328125
+     ],
+     "declared_energies": [
+      -0.5882716796875,
+      -0.5860537109375,
+      -0.5426541015625
+     ],
+     "ideal_after": -0.5915147808307113
+    },
+    {
+     "update": 27,
+     "choice": 0,
+     "declared_choice": 0,
+     "reported_energy": -0.64158359375,
+     "energies_used": [
+      -0.64158359375,
+      -0.582375,
+      -0.631787109375
+     ],
+     "declared_energies": [
+      -0.60089609375,
+      -0.5705078125,
+      -0.59067578125
+     ],
+     "ideal_after": -0.5915147808307113
+    },
+    {
+     "update": 28,
+     "choice": 2,
+     "declared_choice": 2,
+     "reported_energy": -0.656190234375,
+     "energies_used": [
+      -0.651432421875,
+      -0.5598890625,
+      -0.656190234375
+     ],
+     "declared_energies": [
+      -0.5993015625,
+      -0.51835390625,
+      -0.6091453125
+     ],
+     "ideal_after": -0.6164051329344182
+    },
+    {
+     "update": 29,
+     "choice": 2,
+     "declared_choice": 2,
+     "reported_energy": -0.6828689453125,
+     "energies_used": [
+      -0.64370625,
+      -0.62724765625,
+      -0.6828689453125
+     ],
+     "declared_energies": [
+      -0.597508984375,
+      -0.5314625,
+      -0.6684587890625
+     ],
+     "ideal_after": -0.6737451791031348
+    },
+    {
+     "update": 30,
+     "choice": 1,
+     "declared_choice": 1,
+     "reported_energy": -0.68522421875,
+     "energies_used": [
+      -0.6764291015625,
+      -0.68522421875,
+      -0.5720935546875
+     ],
+     "declared_energies": [
+      -0.6649857421875,
+      -0.671237890625,
+      -0.5631931640625
+     ],
+     "ideal_after": -0.6635687737076966
+    },
+    {
+     "update": 31,
+     "choice": 0,
+     "declared_choice": 0,
+     "reported_energy": -0.6667658203125,
+     "energies_used": [
+      -0.6667658203125,
+      -0.6462369140625,
+      -0.6554322265625
+     ],
+     "declared_energies": [
+      -0.6510841796875,
+      -0.6508990234375,
+      -0.6482271484375
+     ],
+     "ideal_after": -0.6635687737076966
+    },
+    {
+     "update": 32,
+     "choice": 0,
+     "declared_choice": 0,
+     "reported_energy": -0.6991603515625,
+     "energies_used": [
+      -0.6991603515625,
+      -0.6204859375,
+      -0.624812890625
+     ],
+     "declared_energies": [
+      -0.6868693359375,
+      -0.605651953125,
+      -0.60658828125
+     ],
+     "ideal_after": -0.6635687737076966
+    },
+    {
+     "update": 33,
+     "choice": 2,
+     "declared_choice": 2,
+     "reported_energy": -0.6981529296875,
+     "energies_used": [
+      -0.681461328125,
+      -0.6429673828125,
+      -0.6981529296875
+     ],
+     "declared_energies": [
+      -0.66662734375,
+      -0.5874458984375,
+      -0.7023912109375
+     ],
+     "ideal_after": -0.6872342554053404
+    }
+   ],
+   "runtime_verdicts": {
+    "L1": {
+     "verdict": "AGREEMENT",
+     "checks": 792,
+     "violations_listed": 0
+    },
+    "L2": {
+     "verdict": "DISAGREEMENT",
+     "checks": 330,
+     "violations_listed": 24
+    },
+    "L3": {
+     "verdict": "AGREEMENT",
+     "checks": 3309,
+     "violations_listed": 0
+    },
+    "L4": {
+     "verdict": "AGREEMENT",
+     "checks": 597,
+     "violations_listed": 0
+    },
+    "N1": {
+     "verdict": "AGREEMENT",
+     "checks": 1089,
+     "violations_listed": 0
+    },
+    "N2": {
+     "verdict": "DISAGREEMENT",
+     "checks": 858,
+     "violations_listed": 100
+    },
+    "N3": {
+     "verdict": "AGREEMENT",
+     "checks": 628,
+     "violations_listed": 0
+    },
+    "N4": {
+     "verdict": "DISAGREEMENT",
+     "checks": 1123,
+     "violations_listed": 7
+    }
+   }
+  }
+ },
+ "loop_matches_execute_run": true,
+ "note": "violations_listed: the runtime checker lists at most 100 violations per contract."
+}
