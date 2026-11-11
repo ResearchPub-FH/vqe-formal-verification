@@ -20,9 +20,11 @@ CLOSED = PROJECT / "2-stage verification (closed-loop)"
 RUN = CLOSED / "artifacts" / "experiment"
 DEJAVU = PROJECT / "VQE Runtime Verification - DejaVu"
 HW = DEJAVU / "artifacts" / "hardware_pair_hrzy" / "pair01"
+OPENING = HERE.parent / "opening-view" / "runs"
 sys.path.insert(0, str(CLOSED))
 
 from closed_loop import logical, physics  # noqa: E402
+from closed_loop.common import file_hash  # noqa: E402
 from closed_loop.checker import RuntimeChecker  # noqa: E402
 from closed_loop.temporal import PROPERTY_TRIGGERS  # noqa: E402
 
@@ -66,16 +68,23 @@ def run_summary(events):
             "skeleton": skeleton}
 
 
-def swapped_choices(updates, coefficients):
-    """The fault 'coefficient_swap' exchanges the YZ and XX coefficients (closed_loop/execution.py)."""
-    swapped = dict(coefficients, YZ=coefficients["XX"], XX=coefficients["YZ"])
-    rows = []
-    for u in updates:
-        right = [c["energy"] for c in u["candidates"]]
-        wrong = [energy(c["expectations"], swapped) for c in u["candidates"]]
-        rows.append({"update": u["update"], "correct": right, "swapped": wrong,
-                     "choice": u["choice"], "swapped_choice": min(range(3), key=lambda i: (wrong[i], i))})
-    return {"swapped_coefficients": swapped, "rows": rows}
+def opening_view():
+    """The two simulator runs of the opening view (Companion platform/opening-view/run_opening_view.py).
+
+    The declared run is the reference run's baseline-0000; the swapped run has the same seed
+    and exchanges the YZ and XX coefficients at every evaluation. Both trace hashes are checked.
+    """
+    results = json.loads((OPENING / "results.json").read_text())
+    runs = {}
+    for name, r in results["runs"].items():
+        trace = PROJECT / r["trace"]
+        assert file_hash(trace) == r["trace_sha256"], f"{name} trace differs from opening-view/runs/results.json"
+        runs[name] = {"run_id": r["run_id"], "iterations": r["iterations"], "terminal_reason": r["terminal_reason"],
+                      "runtime_verdicts": {cid: v["verdict"] for cid, v in r["runtime_verdicts"].items()},
+                      "updates": [{k: u[k] for k in ("update", "reported_energy", "choice", "declared_choice")}
+                                  for u in r["updates"]]}
+    assert results["runs"]["declared"]["run_id"] == "baseline-0000"
+    return {"source": str((OPENING / "results.json").relative_to(PROJECT)), "platform": results["platform"], **runs}
 
 
 def runtime_by_iteration(config, events, recorded, pre_digest):
@@ -233,7 +242,7 @@ def main():
     baseline_results = json.loads((baseline_dir / "results.json").read_text())
     recorded = next(r for r in baseline_results["results"] if r["run_id"] == run["run_id"])
     run["runtime"] = runtime_by_iteration(config, shown, recorded, baseline_results["pre_execution_digest"])
-    why = swapped_choices(run["updates"], config["hamiltonian"]["terms"])
+    why = opening_view()
 
     first_success = []
     for path in traces:
@@ -291,8 +300,9 @@ def main():
     }
     out = HERE / "data.js"
     out.write_text("window.VQE_DATA = " + json.dumps(data, separators=(",", ":")) + ";\n")
-    flips = [r["update"] for r in why["rows"] if r["choice"] != r["swapped_choice"]]
-    print(f"wrote {out} ({out.stat().st_size // 1024} KB); updates {len(run['updates'])}; swap flips at {flips[:8]}")
+    flips = [u["update"] for u in why["swapped"]["updates"] if u["choice"] != u["declared_choice"]]
+    print(f"wrote {out} ({out.stat().st_size // 1024} KB); updates {len(run['updates'])}; "
+          f"swapped run: {why['swapped']['iterations']} iterations, choice differs from declared at {flips}")
     for m in mutants:
         print(m["name"], m["failing"], {k: (v["length"], len(v["steps"])) for k, v in m["counterexamples"].items()})
 

@@ -146,32 +146,47 @@
      PART 0 — WHY VERIFY
      ================================================================ */
   function renderWhy() {
-    const rows = D.why.rows;
-    const correct = rows.map((r) => [r.update, r.correct[r.choice]]);
-    const swapped = rows.map((r) => [r.update, r.swapped[r.swapped_choice]]);
-    const flips = rows.filter((r) => r.choice !== r.swapped_choice);
-    const lo = Math.min(D.ground_energy, ...swapped.map((p) => p[1]), ...correct.map((p) => p[1]));
-    const hi = Math.max(...swapped.map((p) => p[1]), ...correct.map((p) => p[1]));
+    // Two simulator runs of one declared configuration with the same seed (opening-view/run_opening_view.py):
+    // the declared run (baseline-0000) and a run with the YZ and XX coefficients exchanged at every evaluation.
+    // A red tick marks an iteration of the swapped run whose choice differs from the one the declared
+    // coefficients would make on the same counts.
+    const dec = D.why.declared.updates, swp = D.why.swapped.updates;
+    const decPts = dec.map((u) => [u.update, u.reported_energy]);
+    const swpPts = swp.map((u) => [u.update, u.reported_energy]);
+    const flips = swp.filter((u) => u.choice !== u.declared_choice);
+    const n = Math.max(dec.length, swp.length);
+    const values = decPts.concat(swpPts).map((p) => p[1]);
+    const lo = Math.min(D.ground_energy, ...values), hi = Math.max(...values);
+    const y0 = Math.floor(lo * 10) / 10 - 0.05;
     const NAMES = ["current", "−1", "+1"];
+    const hoverText = (k) => {
+      const d = dec[k - 1], w = swp[k - 1];
+      const declaredLine = d ? `Declared: ${f(d.reported_energy, 4)} → picks ${NAMES[d.choice]}` : `Declared: stopped at iteration ${dec.length} (${D.why.declared.terminal_reason})`;
+      const swappedLine = w ? `Swapped: ${f(w.reported_energy, 4)} → picks ${NAMES[w.choice]}` +
+        (w.choice !== w.declared_choice ? ` (declared coefficients would pick ${NAMES[w.declared_choice]})` : "")
+        : `Swapped: stopped at iteration ${swp.length} (${D.why.swapped.terminal_reason})`;
+      return `Iteration ${k}\n${declaredLine}\n${swappedLine}`;
+    };
     $("whyChart").innerHTML = chart({
-      label: "Reported energy per iteration with declared and swapped coefficients",
-      x: [0.5, rows.length + 0.5], y: [Math.floor(lo * 10) / 10 - 0.05, Math.ceil(hi * 10) / 10],
-      xticks: [1, 5, 10, 15, 20, 25], yticks: [-0.8, -0.6, -0.4, -0.2, 0, 0.2, 0.4].filter((t) => t >= lo - 0.1 && t <= hi + 0.05),
+      label: "Reported energy per iteration of two runs: declared coefficients and YZ/XX coefficients swapped",
+      x: [0.5, n + 0.5], y: [y0, Math.ceil(hi * 10) / 10],
+      xticks: [1, 5, 10, 15, 20, 25, 30, 35, 40, 45, 50].filter((t) => t <= n),
+      yticks: [-0.8, -0.6, -0.4, -0.2, 0, 0.2, 0.4].filter((t) => t >= lo - 0.1 && t <= hi + 0.05),
       yfmt: (t) => f(t, 1), xlabel: "iteration", ylabel: "reported energy of the chosen candidate",
       hlines: [{ y: D.ground_energy, label: "reference minimum " + f(D.ground_energy, 4), color: "var(--muted)", left: true }],
-      under: [(X, Y) => flips.map((r) => `<line x1="${X(r.update)}" x2="${X(r.update)}" y1="${Y(Math.floor(lo * 10) / 10 - 0.05)}" y2="${Y(Math.floor(lo * 10) / 10 - 0.05) - 8}" style="stroke:var(--bad);stroke-width:3"/>`).join("")],
+      under: [(X, Y) => flips.map((u) => `<line x1="${X(u.update)}" x2="${X(u.update)}" y1="${Y(y0)}" y2="${Y(y0) - 8}" style="stroke:var(--bad);stroke-width:3"/>`).join("")],
       series: [
-        { pts: correct, color: "var(--series-a)", dots: true },
-        { pts: swapped, color: "var(--series-b)", dots: true, dash: "5 3" },
+        { pts: decPts, color: "var(--series-a)", dots: true },
+        { pts: swpPts, color: "var(--series-b)", dots: true, dash: "5 3" },
       ],
-      hover: rows.map((r) => ({ x: r.update, text: `Iteration ${r.update}\nDeclared: ${f(r.correct[r.choice], 4)} → picks ${NAMES[r.choice]}\nSwapped: ${f(r.swapped[r.swapped_choice], 4)} → picks ${NAMES[r.swapped_choice]}` })),
+      hover: Array.from({ length: n }, (_, i) => ({ x: i + 1, text: hoverText(i + 1) })),
     });
     $("whyCaption").innerHTML =
       `<span class="legend" style="margin:0"><span><i style="background:var(--series-a)"></i>declared execution</span>` +
       `<span><i style="background:var(--series-b)"></i>YZ ↔ XX coefficients swapped</span><span><i style="background:var(--bad);height:8px;width:3px"></i>a different VQE would be chosen</span></span>` +
       `Hover an iteration to see both choices.`;
     $("whyFlips").textContent = `would choose a different candidate in ${flips.length}`;
-    $("whyTotal").textContent = rows.length;
+    $("whyTotal").textContent = swp.length;
     const fault = D.faults.find((x) => x.fault === "coefficient_swap");
     $("whyFault").innerHTML = `The numeric check N2, which rebuilds each energy from the declared coefficients, reports ${vbadge(fault.vector.N2)} in
       ${fault.detected}/${fault.runs} runs. The temporal replay (DejaVu) accepts ${fault.dejavu_passed}/${fault.runs}, because every step still happens in the right order.`;
